@@ -115,12 +115,12 @@
 		C9129FCB25135B2100EDE4CE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 03B688B124D1565F0020AD47 /* Localizable.strings */; };
 		C91CF63C252C7CC3001C327B /* WeatherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91CF63A252C7CC3001C327B /* WeatherManager.swift */; };
 		C91CF63D252C7CC3001C327B /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91CF63B252C7CC3001C327B /* Weather.swift */; };
-		C91CF641252C7D1A001C327B /* ClassesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91CF640252C7D1A001C327B /* ClassesManager.swift */; };
 		C91CF647252C7DAE001C327B /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91CF646252C7DAE001C327B /* Home.swift */; };
-		C91CF650252C7E36001C327B /* ClassesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91CF640252C7D1A001C327B /* ClassesManager.swift */; };
 		C91CF653252C7E4E001C327B /* WeatherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91CF63A252C7CC3001C327B /* WeatherManager.swift */; };
 		C91CF656252C7E51001C327B /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91CF63B252C7CC3001C327B /* Weather.swift */; };
 		C91CF65A252C81B5001C327B /* HomeViewHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91CF659252C81B5001C327B /* HomeViewHeaderView.swift */; };
+		C91CF662252C859F001C327B /* ClassesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91CF661252C859F001C327B /* ClassesManager.swift */; };
+		C91CF669252C85B4001C327B /* ClassesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91CF661252C859F001C327B /* ClassesManager.swift */; };
 		C92C635725148508000C0411 /* SmallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92C635625148508000C0411 /* SmallView.swift */; };
 		C938C345250251E20033D043 /* CourseTableCourseDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C938C344250251E20033D043 /* CourseTableCourseDetailView.swift */; };
 		D3DB92492505309B009B216D /* CourseTableModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DB92482505309B009B216D /* CourseTableModifier.swift */; };
@@ -258,9 +258,9 @@
 		C9129FC52513510A00EDE4CE /* MediumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediumView.swift; sourceTree = "<group>"; };
 		C91CF63A252C7CC3001C327B /* WeatherManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherManager.swift; sourceTree = "<group>"; };
 		C91CF63B252C7CC3001C327B /* Weather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
-		C91CF640252C7D1A001C327B /* ClassesManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ClassesManager.swift; path = "../../../../../PeiYang-Lite/PeiYang Lite/Scrawler/Classes/ClassesManager.swift"; sourceTree = "<group>"; };
 		C91CF646252C7DAE001C327B /* Home.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Home.swift; path = "PeiYang Lite/Home/Model/Home.swift"; sourceTree = SOURCE_ROOT; };
 		C91CF659252C81B5001C327B /* HomeViewHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewHeaderView.swift; sourceTree = "<group>"; };
+		C91CF661252C859F001C327B /* ClassesManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassesManager.swift; sourceTree = "<group>"; };
 		C92C635625148508000C0411 /* SmallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallView.swift; sourceTree = "<group>"; };
 		C92C636F2519F40D000C0411 /* PeiYangLiteWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PeiYangLiteWidgetExtension.entitlements; sourceTree = "<group>"; };
 		C938C344250251E20033D043 /* CourseTableCourseDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseTableCourseDetailView.swift; sourceTree = "<group>"; };
@@ -568,8 +568,9 @@
 		03B6891924D156F40020AD47 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				C91CF640252C7D1A001C327B /* ClassesManager.swift */,
+				C91CF661252C859F001C327B /* ClassesManager.swift */,
 				03B6891C24D156F40020AD47 /* ClassesSSOView.swift */,
+				03B6891A24D156F40020AD47 /* Semester.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -710,7 +711,6 @@
 			children = (
 				D3DB92482505309B009B216D /* CourseTableModifier.swift */,
 				03CB600824D2565A00DB2985 /* CourseTable.swift */,
-				03B6891A24D156F40020AD47 /* Semester.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -719,6 +719,7 @@
 			isa = PBXGroup;
 			children = (
 				03CB600624D2564C00DB2985 /* CourseTableDetailView.swift */,
+				03CB600424D2563F00DB2985 /* CourseTableCardView.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -729,7 +730,6 @@
 				03F51E8C24D443AC00A19ECF /* CouseTableHeaderView.swift */,
 				03F51E8E24D444F600A19ECF /* CourseTableWeekdaysView.swift */,
 				031A7E8424D69A9C0084FA71 /* CourseTableContentView.swift */,
-				03CB600424D2563F00DB2985 /* CourseTableCardView.swift */,
 				031A7E8624D69E780084FA71 /* CourseTableListView.swift */,
 				C938C344250251E20033D043 /* CourseTableCourseDetailView.swift */,
 			);
@@ -923,8 +923,8 @@
 				032CE4D924DBA1E5003786F6 /* RemoteFileCacheService.swift in Sources */,
 				03B6895A24D157D90020AD47 /* HomeDetailView.swift in Sources */,
 				03B6893824D1572A0020AD47 /* PieCellView.swift in Sources */,
+				C91CF662252C859F001C327B /* ClassesManager.swift in Sources */,
 				03D85EB424DD071800637AB8 /* WLANManager.swift in Sources */,
-				C91CF641252C7D1A001C327B /* ClassesManager.swift in Sources */,
 				032CE4F524DBA1E5003786F6 /* ImageDownloadHandler.swift in Sources */,
 				032CE4D824DBA1E5003786F6 /* FileIndex.swift in Sources */,
 				03B6894824D1579B0020AD47 /* GPA.swift in Sources */,
@@ -1023,13 +1023,13 @@
 				C9129FB72513430400EDE4CE /* Localizable.swift in Sources */,
 				C9129FA8251340FD00EDE4CE /* Storage.swift in Sources */,
 				C9129FC12513473000EDE4CE /* WLAN.swift in Sources */,
+				C91CF669252C85B4001C327B /* ClassesManager.swift in Sources */,
 				C91CF656252C7E51001C327B /* Weather.swift in Sources */,
 				C9129FBB251344C400EDE4CE /* CourseTimelineProvider.swift in Sources */,
 				C9129FB02513416000EDE4CE /* GPA.swift in Sources */,
 				C90384BE252C5BAA00CC7A44 /* CourseTable.swift in Sources */,
 				C9129FB42513429A00EDE4CE /* CourseEntry.swift in Sources */,
 				C91CF653252C7E4E001C327B /* WeatherManager.swift in Sources */,
-				C91CF650252C7E36001C327B /* ClassesManager.swift in Sources */,
 				C9129FA7251340FD00EDE4CE /* Network.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
