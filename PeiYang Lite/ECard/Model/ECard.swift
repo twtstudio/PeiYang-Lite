@@ -60,7 +60,7 @@ struct Transaction: Codable, Storable {
     }
     
     var signedAmount: String {
-        qtype == "1" ? "+\(amount.decimal)" : "-\(amount.decimal)"
+        qtype == "1" ? "+\(amount)" : "-\(amount)"
     }
     
 //    init(qtype: String, date: String, time: String, device: String, amount: Double, balance: Double) {

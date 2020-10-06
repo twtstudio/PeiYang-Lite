@@ -98,13 +98,6 @@ struct Course: Codable, Storable {
         arrangeArray.first { $0.weekday == weekday } ?? Arrange(teacherArray: [], weekArray: [], weekday: 0, unitArray: [], location: "")
     }
     
-    func isThisWeek(activeWeek: Int, weekday: Int) -> Bool {
-        return self.arrangeArray
-            .filter { $0.weekArray.contains(activeWeek) }
-            .map(\.weekday)
-            .contains(weekday)
-    }
-    
 //    init(serial: String, no: String, name: String, credit: String, teacherArray: [String], weeks: String, campus: String, arrangeArray: [Arrange]) {
 //        self.serial = serial
 //        self.no = no
@@ -139,7 +132,7 @@ struct Course: Codable, Storable {
         self.no = ""
         self.name = ""
         self.credit = ""
-        self.teacherArray = []
+        self.teacherArray = [""]
         self.weeks = ""
         self.campus = ""
         self.arrangeArray = []
@@ -306,13 +299,5 @@ class AlertCourse: ObservableObject {
     @Published var showDetail: Bool = false
     @Published var currentCourse = Course()
     @Published var currentWeekday = 0
-    @Published var activeWeek = -1
 }
-
-//struct AlertCourse {
-//    var showDetail: Bool = false
-//    var currentCourse = Course()
-//    var currentWeekday = 0
-//    var activeWeek = -1
-//}
 

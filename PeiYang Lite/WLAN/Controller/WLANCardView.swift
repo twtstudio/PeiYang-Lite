@@ -15,7 +15,7 @@ struct WLANCardView: View {
         VStack(alignment: .leading) {
             HStack(alignment: .top) {
                 Text(Localizable.wlan.rawValue)
-                    .font(.title2)
+                    .font(.title)
                 
                 Spacer()
                 
@@ -27,7 +27,7 @@ struct WLANCardView: View {
             Spacer()
             
             Text("availableTraffic: \(overview.traffic)")
-                .font(.title)
+                .font(.largeTitle)
                 .bold()
                 .frame(maxHeight: .infinity)
             

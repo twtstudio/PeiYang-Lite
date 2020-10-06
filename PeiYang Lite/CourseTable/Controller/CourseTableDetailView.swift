@@ -15,20 +15,17 @@ struct CourseTableDetailView: View {
     private var isRegular: Bool { sizeClass == .regular }
     
     @State private var isLoading = false
-    @State private var isFirstAppear = true
     
     @State private var showFullCourse = false
     
     @State private var showLogin = false
     
-    @State private var showPopup = false
-    
     @State private var activeWeek = Storage.courseTable.object.currentWeek
     private var activeCourseArray: [Course] {
         courseTable.courseArray.filter { $0.weekRange.contains(activeWeek) }
     }
-    // for popup course
-    @ObservedObject var alertCourse: AlertCourse = AlertCourse()
+    
+    @ObservedObject var alertCourse: AlertCourse
     
     @State private var isError = false
     @State private var errorMessage: LocalizedStringKey = ""
@@ -48,21 +45,19 @@ struct CourseTableDetailView: View {
                         
                         Spacer()
                         
-                        RefreshButton(isLoading: $isLoading) {
-                            load(firstLogin: false)
-                        }
-                        .padding(.leading)
+                        RefreshButton(isLoading: $isLoading, action: load)
+                            .padding(.leading)
                     }
                     
                     List {
                         // MARK: - Table
                         if isRegular {
                             Section(header:
-                                        CourseTableWeekdaysView(
-                                            activeWeek: $activeWeek,
-                                            courseTable: courseTable,
-                                            width: full.size.width / 9.5//9
-                                        )
+                                CourseTableWeekdaysView(
+                                    activeWeek: $activeWeek,
+                                    courseTable: courseTable,
+                                    width: full.size.width / 9.5//9
+                                )
                             ) {
                                 CourseTableContentView(
                                     activeWeek: activeWeek,
@@ -73,7 +68,7 @@ struct CourseTableDetailView: View {
                                 )
                             }
                             .listRowInsets(EdgeInsets())
-                            //                        .listRowInsets(EdgeInsets(top: 0, leading: -10, bottom: 0, trailing: 0)) // insane!
+    //                        .listRowInsets(EdgeInsets(top: 0, leading: -10, bottom: 0, trailing: 0)) // insane!
                         } else {
                             VStack {
                                 CourseTableWeekdaysView(
@@ -108,49 +103,44 @@ struct CourseTableDetailView: View {
                 }
                 
                 if alertCourse.showDetail {
-                    //                    withAnimation {
-                    ZStack {
-                        Color.clear
-                            .frame(width: full.size.width,
-                                   height: full.size.height,
-                                   alignment: .center)
-                            .contentShape(Rectangle())
-                        //                                .animation(.easeInOut)
-                        
-                        CourseTableCourseDetailView(course: $alertCourse.currentCourse, weekDay: $alertCourse.currentWeekday, isRegular: isRegular)
-                            .frame(width: full.size.width / 1.5, height: full.size.height / 1.8, alignment: .center)
-                            .background(
-                                alertCourse.currentCourse.isThisWeek(activeWeek: alertCourse.activeWeek, weekday: alertCourse.currentWeekday) ?
-                                    ColorHelper.shared.color[alertCourse.currentCourse.no]?.opacity(0.8) :
-                                    .gray)
-                            .clipShape(RoundedRectangle(cornerRadius: 8))
-                            .shadow(color: Color.gray.opacity(0.5), radius: 8, x: 5, y: 5)
-                        //                                .opacity(alertCourse.showDetail ? 1 : 0)
-                        //                                .animation(.easeInOut)
-                    }
-                    //                        .transition(.opacity)
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .edgesIgnoringSafeArea(.all)
-                    .onTapGesture {
-                        withAnimation(.easeOut) {
-                            self.alertCourse.showDetail = false
+//                    withAnimation {
+                        ZStack {
+                            Color.clear
+                                .frame(width: full.size.width,
+                                       height: full.size.height,
+                                       alignment: .center)
+                                .contentShape(Rectangle())
+//                                .animation(.easeInOut)
+                            
+                            CourseDetailView(course: $alertCourse.currentCourse, weekDay: $alertCourse.currentWeekday, isRegular: isRegular)
+                                .frame(width: full.size.width / 1.5, height: full.size.height / 1.8, alignment: .center)
+//                                .transition(.asymmetric(insertion: .opacity, removal: .opacity))
+                                .background(ColorHelper.shared.color[alertCourse.currentCourse.no]?.opacity(0.8))
+//                                .transition(.opacity)
+                                .clipShape(RoundedRectangle(cornerRadius: 8))
+                                .shadow(color: Color.gray.opacity(0.5), radius: 8, x: 5, y: 5)
+//                                .opacity(alertCourse.showDetail ? 1 : 0)
+                                .animation(.easeInOut)
                         }
-                    }
-                    .layoutPriority(1)
-                    
+//                        .transition(.opacity)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .edgesIgnoringSafeArea(.all)
+                        .onTapGesture {
+                            withAnimation(.easeOut) {
+                                self.alertCourse.showDetail = false
+                            }
+                        }
+                        .layoutPriority(1)
+               
                 }
                 
             }
         }
-        .onAppear {
-            if !Storage.defaults.bool(forKey: ClassesManager.isCourseStoreKey) {
-                load(firstLogin: true)
-            }
-        }
+        .onAppear(perform: load)
         
     }
     
-    private func load(firstLogin: Bool) {
+    func load() {
         isLoading = true
         ClassesManager.checkLogin { result in
             switch result {
@@ -168,27 +158,24 @@ struct CourseTableDetailView: View {
         
         ClassesManager.courseTablePost { result in
             switch result {
-            case .success(_):
-                if firstLogin {
-                    self.activeWeek = store.object.currentWeek
-                }
-            //                store.object = courseTable
-            //                store.save()
-            
-            //                UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { granted, error in
-            //                    guard granted else {
-            //                        return
-            //                    }
-            //
-            //                    if let error = error {
-            //                        print(error)
-            //                        return
-            //                    }
-            //
-            //                    NotificationHelper.setNotification(for: courseTable) { error in
-            //                        print(error)
-            //                    }
-            //                }
+            case .success(let courseTable):
+                store.object = courseTable
+                store.save()
+                
+//                UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { granted, error in
+//                    guard granted else {
+//                        return
+//                    }
+//
+//                    if let error = error {
+//                        print(error)
+//                        return
+//                    }
+//
+//                    NotificationHelper.setNotification(for: courseTable) { error in
+//                        print(error)
+//                    }
+//                }
             case .failure(let error):
                 print(error)
             }
@@ -202,7 +189,7 @@ struct CourseTableDetailView_Previews: PreviewProvider {
         ZStack {
             Color.black
                 .edgesIgnoringSafeArea(.all)
-            CourseTableDetailView()
+            CourseTableDetailView(alertCourse: AlertCourse())
                 .environment(\.colorScheme, .dark)
         }
     }

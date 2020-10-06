@@ -102,7 +102,6 @@ struct CourseTableListView: View {
                 }
             }
             .padding()
-            .contentShape(Rectangle())
             .onTapGesture {
                 let currentIndex = activeCourseArray.firstIndex { $0.no == course.no } ?? -1
                 withAnimation {

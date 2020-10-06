@@ -18,7 +18,7 @@ struct GPACardView: View {
         VStack {
             HStack {
                 Text(Localizable.gpa.rawValue)
-                    .font(.title2)
+                    .font(.title)
                 
                 Spacer()
                 

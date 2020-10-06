@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CourseTableCourseDetailView: View {
+struct CourseDetailView: View {
     @Binding var course: Course
     @Binding var weekDay: Int
     var isRegular: Bool

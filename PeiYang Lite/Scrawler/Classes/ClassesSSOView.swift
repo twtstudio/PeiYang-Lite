@@ -51,17 +51,11 @@ struct ClassesSSOView: View {
                 .onTapGesture(perform: refreshCaptcha)
             }
             
-            Section {
-                Button {
-                    login()
-                    isEnable = false
-                } label: {
-                    Text(Localizable.login.rawValue)
-                        .frame(maxWidth: .infinity)
-                        
-                }
-                .disabled(!isEnable || username.isEmpty || password.isEmpty || captcha.isEmpty)
-            }            
+            Button(Localizable.login.rawValue) {
+                login()
+                isEnable = false
+            }
+            .disabled(!isEnable || username.isEmpty || password.isEmpty || captcha.isEmpty)
         }
         .alert(isPresented: $isError) {
             Alert(title: Text(errorMessage), dismissButton: .cancel())

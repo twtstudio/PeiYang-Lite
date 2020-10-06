@@ -54,12 +54,10 @@
 "courseTable" = "Course Table";
 "emptyCourseMeesage" = "No course today, do something interesting.";
 "week %@" = "Week %@";
-"weeks: %@" = "Weeks: %@";
-"%@ coursesTomorrow" = "%@ courses tomorrow";
-"nextDayEmptyCourse" = "Relax tomorrow";
 "fullCourse" = "Full Course";
 "onlyThisWeek" = "Only This Week";
 "[notThisWeek] %@\n%@" = "[NOT THIS WEEK] %@\n%@";
+"weeks: %@" = "Weeks: %@";
 "unit %@" = "Unit %@";
 "location: %@" = "Location: %@";
 "teacher: %@" = "Teacher: %@";
