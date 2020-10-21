@@ -1,0 +1,102 @@
+/* 
+  Localizable.strings
+  PeiYang Lite
+
+  Created by TwTStudio on 7/7/20.
+  
+*/
+
+"urlError" = "網址錯誤";
+"requestFailed" = "請求失敗";
+"loginFailed" = "登錄失敗";
+"unknownError" = "未知錯誤";
+"notificationError" = "通知錯誤";
+"notificationErrorMessage" = "輕北洋需要您的許可來啟用課程表通知.";
+"biometryNotEnrolled" = "尚未錄入生物信息";
+"biometryNotAvailable" = "生物信息不可用";
+"biometryNotAvailableMessage" = "前往設置啟用生物信息.";
+"userCancel" = "您已取消";
+"faceIDUsageDescription" = "使用Touch ID解鎖輕北洋";
+
+"login" = "登錄";
+"ok" = "好的";
+"captcha" = "驗證碼";
+"classesUsername" = "辦公網用戶名";
+"classesPassword" = "辦公網密碼";
+"ecardUsername" = "校園卡用戶名";
+"ecardPassword" = "校園卡密碼";
+"wlanUsername" = "校園網用戶名";
+"wlanPassword" = "校園網密碼";
+
+"account" = "賬戶";
+"classes" = "辦公網";
+"online" = "在線";
+"offline" = "離線";
+"logout" = "登出";
+"logoutMessage" = "登出將清除所有與該賬戶相關的數據.";
+"confirm" = "確認";
+
+"safety" = "安全";
+"needUnlock" = "需要解鎖";
+
+"home" = "首頁";
+"beforeDawn" = "早點休息";
+"dawn" = "該起床啦";
+"morning" = "早上好";
+"beforeNoon" = " 新的壹天!";
+"noon" = "好好學習";
+"noonSoon" = "吃個午餐~";
+"afternoon" = "小憩壹下";
+"dusk" = "活力滿滿";
+"evening" = "夕陽無限好";
+"night" = "月轉碧梧移鵲影";
+
+"courseTable" = "課程表";
+"emptyCourseMeesage" = "今日無課, 宜休閒.";
+"week %@" = "第 %@ 週";
+"weeks: %@" = "時間: %@ 週";
+"%@ coursesTomorrow" = "明天有%@節課";
+"nextDayEmptyCourse" = "明日無課";
+"fullCourse" = "本學期";
+"onlyThisWeek" = "本周";
+"[notThisWeek] %@\n%@" = "[非本周] %@\n%@";
+"unit %@" = "第 %@ 節";
+"location: %@" = "地點: %@";
+"teacher: %@" = "授課教師: %@";
+"serial: %@" = "邏輯班號: %@";
+"courseNO: %@" = "課程編號: %@";
+"time: %@" = "上課時間: %@";
+"classStart" = "快上課了";
+"Course Name %@ Start Time %@ Location %@" = "%@ 將於 %@ 在 %@ 開始.";
+
+"term" = "學期"; "term: %@" = "學期: %@";
+"score" = "加權"; "score: %@" = "分數: %@";
+"gpa" = "績點"; "gpa: %@" = "績點: %@";
+"credit" = "學分"; "credit: %@" = "學分: %@";
+"emptyGPAMeesage" = "加權空蕩蕩, 幸福在人間.";
+
+"totalScore" = "總加權";
+"totalGPA" = "總績點";
+"totalCredit" = "總學分";
+
+"ecard" = "校園卡";
+"ecardNO" = "卡號"; "ecardNO: %@" = "卡號: %@";
+"state" = "狀態";
+"balance" = "餘額"; "balance: %@" = "餘額: %@ 元";
+"expire" = "有效期"; "expire: %@" = "有效期: %@";
+"subsidy" = "補貼"; "subsidy: %@" = "補貼: %@ 元";
+
+"period" = "時間";
+"transaction" = "流水";
+"dailyConsume" = "每日消費";
+"siteConsume" = "消費分布";
+"siteRecharge" = "充值分布";
+"%@ days" = "%@ 天";
+"date: %@" = "日期: %@";
+"amount: %@" = "金額: %@ 元";
+"site: %@" = "地點: %@";
+"totalAmount: %@" = "總計: %@ 元";
+
+"wlan" = "校園網";
+"availableTraffic: %@" = "可用流量: %@";
+"detail" = "明細";

@@ -1,0 +1,102 @@
+/* 
+  Localizable.strings
+  PeiYang Lite
+
+  Created by TwTStudio on 7/7/20.
+  
+*/
+
+"urlError" = "URL Error";
+"requestFailed" = "Request Failed";
+"loginFailed" = "Login Failed";
+"unknownError" = "Unknown Error";
+"notificationError" = "Notification Error";
+"notificationErrorMessage" = "PeiYang Lite need your permission to enable notification for course table.";
+"biometryNotEnrolled" = "Biometry Not Enrolled";
+"biometryNotAvailable" = "Biometry Not Available";
+"biometryNotAvailableMessage" = "Go to settings and enable biometry.";
+"userCancel" = "You Have Canceled";
+"faceIDUsageDescription" = "Use Touch ID to unlock PeiYang Lite";
+
+"login" = "Login";
+"ok" = "OK";
+"captcha" = "Captcha";
+"classesUsername" = "Classes User Name";
+"classesPassword" = "Classes Password";
+"ecardUsername" = "ECard User Name";
+"ecardPassword" = "ECard Password";
+"wlanUsername" = "WLAN User Name";
+"wlanPassword" = "WLAN Password";
+
+"account" = "Account";
+"classes" = "Classes";
+"online" = "Online";
+"offline" = "Offline";
+"logout" = "Logout";
+"logoutMessage" = "Logout will clear all data associated with this account.";
+"confirm" = "Confirm";
+
+"safety" = "Safety";
+"needUnlock" = "Need Unlock";
+
+"home" = "Home";
+"beforeDawn" = "Time for bed";
+"dawn" = "Wakey-wakey!";
+"morning" = "Good Morning, a nice day!";
+"beforeNoon" = "Study hard";
+"noon" = "Shall we go for launch?";
+"noonSoon" = "Take a nap";
+"afternoon" = "Full of vitality";
+"dusk" = "Ready for dinner";
+"evening" = "Enjoy your time~";
+"night" = "Dream about me";
+
+"courseTable" = "Course Table";
+"emptyCourseMeesage" = "No course today, do something interesting.";
+"week %@" = "Week %@";
+"weeks: %@" = "Weeks: %@";
+"%@ coursesTomorrow" = "%@ courses tomorrow";
+"nextDayEmptyCourse" = "Relax tomorrow";
+"fullCourse" = "Full Course";
+"onlyThisWeek" = "Only This Week";
+"[notThisWeek] %@\n%@" = "[NOT THIS WEEK] %@\n%@";
+"unit %@" = "Unit %@";
+"location: %@" = "Location: %@";
+"teacher: %@" = "Teacher: %@";
+"serial: %@" = "Serial: %@";
+"courseNO: %@" = "NO. %@";
+"time: %@" = "Unit time: %@";
+"classStart" = "About to class";
+"Course Name %@ Start Time %@ Location %@" = "%@ will start at %@ in %@.";
+
+"term" = "Term"; "term: %@" = "Term: %@";
+"score" = "Score"; "score: %@" = "Score: %@";
+"gpa" = "GPA"; "gpa: %@" = "GPA: %@";
+"credit" = "Credit"; "credit: %@" = "Credit: %@";
+"emptyGPAMeesage" = "No gpa data, have fun with Uncle Jimmy.";
+
+"totalScore" = "Total Score";
+"totalGPA" = "Total GPA";
+"totalCredit" = "Total Credit";
+
+"ecard" = "ECard";
+"ecardNO" = "NO"; "ecardNO: %@" = "NO. %@";
+"state" = "State";
+"balance" = "Balance"; "balance: %@" = "Balance: %@";
+"expire" = "Expire"; "expire: %@" = "Expire: %@";
+"subsidy" = "Subsidy"; "subsidy: %@" = "Subsidy: %@";
+
+"period" = "Period";
+"transaction" = "transaction";
+"dailyConsume" = "Daily Consume";
+"siteConsume" = "Site Consume";
+"siteRecharge" = "Site Recharge";
+"%@ days" = "%@ Days";
+"date: %@" = "Date: %@";
+"amount: %@" = "Amount: %@";
+"site: %@" = "Site: %@";
+"totalAmount: %@" = "Total Amount: %@";
+
+"wlan" = "WLAN";
+"availableTraffic: %@" = "Available Traffic: %@";
+"detail" = "Detail";
