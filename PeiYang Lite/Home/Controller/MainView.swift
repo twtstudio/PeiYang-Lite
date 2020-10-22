@@ -17,14 +17,15 @@ struct MainView: View {
     @State private var currentView: Tab = .tab1
    
     var body: some View {
-//        NavigationView {
-            VStack {
+        VStack {
+            NavigationView {
                 CurrentScreen(currentView: self.$currentView)
-                TabBar(currentView: self.$currentView)
+                    .background(Color.white)
+                    .navigationViewStyle(StackNavigationViewStyle())
             }
-//        }
-        .background(Color.white)
-        .navigationViewStyle(StackNavigationViewStyle())
+            TabBar(currentView: self.$currentView)
+        }
+        
     }
 }
 
