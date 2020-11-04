@@ -93,7 +93,7 @@ struct CurveDetailView: View {
                         )
                         .onTapGesture {
                             if activeIndex == i {
-                                activeIndex = -1
+                                activeIndex = 0
                             } else {
                                 activeIndex = i
                             }

@@ -16,13 +16,14 @@ struct ContentView: View {
     
     var body: some View {
         ZStack {
-            HomeView(inBackground: $inBackground, isUnlocked: $isUnlocked)
-            
+            GPADetailView()
+//            HomeView(inBackground: $inBackground, isUnlocked: $isUnlocked)
             if neddHide {
                 BlurView()
                     .edgesIgnoringSafeArea(.all)
             }
         }
+        .edgesIgnoringSafeArea(.all)
         .onAppear {
             if needUnlock {
                 isUnlocked = false

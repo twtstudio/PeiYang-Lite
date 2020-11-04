@@ -30,9 +30,9 @@ struct  CourseTimelineProvider: TimelineProvider {
         var entries: [CourseEntry] = []
         
         let currentDate = Date()
-        for hourOffset in 0..<2 {
+        for offset in 0..<2 {
             let courses = getTodayCourse()
-            let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
+            let entryDate = Calendar.current.date(byAdding: .minute, value: offset, to: currentDate)!
             let entry = CourseEntry(date: entryDate, courses: courses)
             entries.append(entry)
         }

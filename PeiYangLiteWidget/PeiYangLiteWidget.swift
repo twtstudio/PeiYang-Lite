@@ -16,7 +16,7 @@ struct CourseTableWidgetEntryView: View {
     var body: some View {
         switch family {
         case .systemMedium:
-            MediumView(currentCourseTable: entry.courses)
+            MediumView(isNextCourse: false, currentCourseTable: entry.courses)
         default:
             SmallView(currentCourseTable: entry.courses)
         }
@@ -40,7 +40,7 @@ struct PeiYangLiteWidget: Widget {
 
 struct PeiYangLiteWidget_Previews: PreviewProvider {
     static var previews: some View {
-        MediumView(currentCourseTable: [Course()])
+        MediumView(isNextCourse: false, currentCourseTable: [Course()])
             .previewContext(WidgetPreviewContext(family: .systemMedium))
     }
 }

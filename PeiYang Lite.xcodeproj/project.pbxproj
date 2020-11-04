@@ -122,7 +122,10 @@
 		C91CF662252C859F001C327B /* ClassesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91CF661252C859F001C327B /* ClassesManager.swift */; };
 		C91CF669252C85B4001C327B /* ClassesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91CF661252C859F001C327B /* ClassesManager.swift */; };
 		C92C635725148508000C0411 /* SmallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92C635625148508000C0411 /* SmallView.swift */; };
+		C92E614F253997990008A38A /* RadarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92E614E253997990008A38A /* RadarChartView.swift */; };
 		C938C345250251E20033D043 /* CourseTableCourseDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C938C344250251E20033D043 /* CourseTableCourseDetailView.swift */; };
+		C93A75F82550187B00A1456D /* GPACellListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93A75F72550187B00A1456D /* GPACellListView.swift */; };
+		C9D95F0B2531874F00C3C911 /* Morning-Star-1.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C9D95F0A2531874F00C3C911 /* Morning-Star-1.ttf */; };
 		D3DB92492505309B009B216D /* CourseTableModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DB92482505309B009B216D /* CourseTableModifier.swift */; };
 /* End PBXBuildFile section */
 
@@ -263,7 +266,10 @@
 		C91CF661252C859F001C327B /* ClassesManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassesManager.swift; sourceTree = "<group>"; };
 		C92C635625148508000C0411 /* SmallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallView.swift; sourceTree = "<group>"; };
 		C92C636F2519F40D000C0411 /* PeiYangLiteWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PeiYangLiteWidgetExtension.entitlements; sourceTree = "<group>"; };
+		C92E614E253997990008A38A /* RadarChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadarChartView.swift; sourceTree = "<group>"; };
 		C938C344250251E20033D043 /* CourseTableCourseDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseTableCourseDetailView.swift; sourceTree = "<group>"; };
+		C93A75F72550187B00A1456D /* GPACellListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPACellListView.swift; sourceTree = "<group>"; };
+		C9D95F0A2531874F00C3C911 /* Morning-Star-1.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Morning-Star-1.ttf"; sourceTree = "<group>"; };
 		D3DB92482505309B009B216D /* CourseTableModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseTableModifier.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -490,6 +496,7 @@
 				03B6895624D157D90020AD47 /* BlurView.swift */,
 				03B6895724D157D90020AD47 /* GridStack.swift */,
 				03ACE52924D844C5009468D4 /* RefreshButton.swift */,
+				C92E614E253997990008A38A /* RadarChartView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -653,6 +660,7 @@
 			isa = PBXGroup;
 			children = (
 				031A7E8824D6A1A90084FA71 /* GPAListView.swift */,
+				C93A75F72550187B00A1456D /* GPACellListView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -788,6 +796,7 @@
 				C9129FB32513429A00EDE4CE /* CourseEntry.swift */,
 				C9129FBA251344C400EDE4CE /* CourseTimelineProvider.swift */,
 				C9129F992513401E00EDE4CE /* Assets.xcassets */,
+				C9D95F0A2531874F00C3C911 /* Morning-Star-1.ttf */,
 				C9129F9B2513401E00EDE4CE /* Info.plist */,
 			);
 			path = PeiYangLiteWidget;
@@ -905,6 +914,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C9129F9A2513401E00EDE4CE /* Assets.xcassets in Resources */,
+				C9D95F0B2531874F00C3C911 /* Morning-Star-1.ttf in Resources */,
 				C9129FCB25135B2100EDE4CE /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -929,6 +939,7 @@
 				032CE4D824DBA1E5003786F6 /* FileIndex.swift in Sources */,
 				03B6894824D1579B0020AD47 /* GPA.swift in Sources */,
 				03B6892324D156F40020AD47 /* ECardManager.swift in Sources */,
+				C93A75F82550187B00A1456D /* GPACellListView.swift in Sources */,
 				032CE4FC24DBA1E5003786F6 /* CircleActivityView.swift in Sources */,
 				032CE4EC24DBA1E5003786F6 /* ImageProcessorGroup.swift in Sources */,
 				032CE4FB24DBA1E5003786F6 /* CircleProgressShape.swift in Sources */,
@@ -951,6 +962,7 @@
 				032CE4ED24DBA1E5003786F6 /* DownloadCoordinator.swift in Sources */,
 				03D85EBD24DD10AF00637AB8 /* WLANDetailView.swift in Sources */,
 				C91CF63D252C7CC3001C327B /* Weather.swift in Sources */,
+				C92E614F253997990008A38A /* RadarChartView.swift in Sources */,
 				032CE4DE24DBA1E5003786F6 /* Version.swift in Sources */,
 				03CB600524D2563F00DB2985 /* CourseTableCardView.swift in Sources */,
 				032CE4F824DBA1E5003786F6 /* URLImage.swift in Sources */,

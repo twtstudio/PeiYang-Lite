@@ -18,8 +18,8 @@ struct RefreshButton: View {
     var body: some View {
         if isLoading {
             Image(systemName: symbol)
-                .font(.title)
-                .foregroundColor(.secondary)
+                .font(.largeTitle)
+                .foregroundColor(.white)
                 .rotationEffect(.degrees(isAnimating ? 360 : 0))
                 .animation(
                     isLoading
@@ -34,8 +34,8 @@ struct RefreshButton: View {
                 }
         } else {
             Image(systemName: symbol)
-                .font(.title)
-                .foregroundColor(.primary)
+                .font(.largeTitle)
+                .foregroundColor(.white)
                 .onTapGesture(perform: action)
         }
     }
