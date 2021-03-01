@@ -48,10 +48,20 @@ struct CourseTableContentView: View {
                             },
                         id: \.no
                     ) { course in
+<<<<<<< HEAD
                         Text(course.isThisWeek(activeWeek: activeWeek, weekday: weekday) ?
                             "\(course.name)\n\(course.activeArrange(weekday).location)" :
                             "[notThisWeek] \(course.name)\n\(course.activeArrange(weekday).location)")
                             .font(isRegular ? .footnote : .system(size: 10))
+=======
+                        VStack {
+                            Text(self.isThisWeek(course, activeWeek: activeWeek, weekday: weekday) ?
+                                "\(course.name)" :
+                                "[notThisWeek] \(course.name)")
+                            Text(course.activeArrange(weekday).location)
+                        }
+                            .font(isRegular ? .footnote : .system(size: 9))
+>>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
                             .multilineTextAlignment(.center)
                             .padding(5)
                             .foregroundColor(.white)
@@ -60,7 +70,11 @@ struct CourseTableContentView: View {
                                 height: CGFloat(course.activeArrange(weekday).length) * width
                             )
                             // to adapt show full week
+<<<<<<< HEAD
                             .background(course.isThisWeek(activeWeek: activeWeek, weekday: weekday) ?
+=======
+                            .background(self.isThisWeek(course, activeWeek: activeWeek, weekday: weekday) ?
+>>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
                                             colorHelper.color[course.no] :
                                             .gray)
                             .clipShape(RoundedRectangle(cornerRadius: 8))
@@ -70,7 +84,10 @@ struct CourseTableContentView: View {
                                     self.alertCourse.showDetail = true
                                     self.alertCourse.currentCourse = course
                                     self.alertCourse.currentWeekday = weekday
+<<<<<<< HEAD
                                     self.alertCourse.activeWeek = activeWeek
+=======
+>>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
                                 }
                             }
                     }
@@ -81,6 +98,15 @@ struct CourseTableContentView: View {
         }
     }
     
+<<<<<<< HEAD
+=======
+    private func isThisWeek(_ course: Course, activeWeek: Int, weekday: Int) -> Bool {
+        return course.arrangeArray
+            .filter { $0.weekArray.contains(activeWeek) }
+            .map(\.weekday)
+            .contains(weekday)
+    }
+>>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
 }
 
 struct CourseTableContentView_Previews: PreviewProvider {

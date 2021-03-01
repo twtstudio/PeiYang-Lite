@@ -51,6 +51,7 @@ struct WLANLoginView: View {
 //                .onTapGesture(perform: refreshCaptcha)
 //            }
             
+<<<<<<< HEAD
             Section {
                 Button {
                     login()
@@ -62,6 +63,13 @@ struct WLANLoginView: View {
                 }
                 .disabled(!isEnable || username.isEmpty || password.isEmpty)
             }
+=======
+            Button(Localizable.login.rawValue) {
+                login()
+                isEnable = false
+            }
+            .disabled(!isEnable || username.isEmpty || password.isEmpty /*|| captcha.isEmpty*/)
+>>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
         }
         .alert(isPresented: $isError) {
             Alert(title: Text(errorMessage), dismissButton: .cancel())

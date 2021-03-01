@@ -4,7 +4,10 @@
 //
 //  Created by TwTStudio on 8/2/20.
 //
+<<<<<<< HEAD
 
+=======
+>>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
 import SwiftUI
 import LocalAuthentication
 
@@ -35,7 +38,11 @@ struct HomeSettingView: View {
                     activeAccount: $account,
                     showAccountAlert: $showAccountAlert
                 )
+<<<<<<< HEAD
 //                
+=======
+//
+>>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
 //                HomeAccountSettingView(
 //                    title: .ecard,
 //                    isLogin: ECardManager.isStore,

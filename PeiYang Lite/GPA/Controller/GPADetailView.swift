@@ -69,11 +69,15 @@ struct GPADetailView: View {
                       dismissButton: .default(Text(Localizable.ok.rawValue)))
             }
         }
+<<<<<<< HEAD
         .onAppear {
             if !Storage.defaults.bool(forKey: ClassesManager.isGPAStoreKey) {
                 load()
             }
         }
+=======
+        .onAppear(perform: load)
+>>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
     }
     
     func load() {
@@ -95,9 +99,15 @@ struct GPADetailView: View {
         
         ClassesManager.gpaGet { result in
             switch result {
+<<<<<<< HEAD
             case .success(_): break
 //                store.object = gpa
 //                store.save()
+=======
+            case .success(let gpa):
+                store.object = gpa
+                store.save()
+>>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
             case .failure(let error):
                 print(error)
             }

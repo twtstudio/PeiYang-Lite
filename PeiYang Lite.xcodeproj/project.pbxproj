@@ -61,7 +61,10 @@
 		03B6891624D156CF0020AD47 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B688EC24D156CE0020AD47 /* Network.swift */; };
 		03B6891724D156CF0020AD47 /* Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B688ED24D156CE0020AD47 /* Localizable.swift */; };
 		03B6892024D156F40020AD47 /* Semester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B6891A24D156F40020AD47 /* Semester.swift */; };
+<<<<<<< HEAD
 		03B6892124D156F40020AD47 /* ClassesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B6891B24D156F40020AD47 /* ClassesManager.swift */; };
+=======
+>>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
 		03B6892224D156F40020AD47 /* ClassesSSOView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B6891C24D156F40020AD47 /* ClassesSSOView.swift */; };
 		03B6892324D156F40020AD47 /* ECardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B6891E24D156F40020AD47 /* ECardManager.swift */; };
 		03B6892424D156F40020AD47 /* ECardLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B6891F24D156F40020AD47 /* ECardLoginView.swift */; };
@@ -85,7 +88,10 @@
 		03B6895924D157D90020AD47 /* HomeCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B6895024D157D90020AD47 /* HomeCardView.swift */; };
 		03B6895A24D157D90020AD47 /* HomeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B6895124D157D90020AD47 /* HomeDetailView.swift */; };
 		03B6895B24D157D90020AD47 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B6895224D157D90020AD47 /* HomeView.swift */; };
+<<<<<<< HEAD
 		03B6895C24D157D90020AD47 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B6895424D157D90020AD47 /* Home.swift */; };
+=======
+>>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
 		03B6895D24D157D90020AD47 /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B6895624D157D90020AD47 /* BlurView.swift */; };
 		03B6895E24D157D90020AD47 /* GridStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B6895724D157D90020AD47 /* GridStack.swift */; };
 		03CB600524D2563F00DB2985 /* CourseTableCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CB600424D2563F00DB2985 /* CourseTableCardView.swift */; };
@@ -98,6 +104,7 @@
 		03D85EBF24DD17B700637AB8 /* WLANLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D85EBE24DD17B700637AB8 /* WLANLoginView.swift */; };
 		03F51E8D24D443AC00A19ECF /* CouseTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F51E8C24D443AC00A19ECF /* CouseTableHeaderView.swift */; };
 		03F51E8F24D444F600A19ECF /* CourseTableWeekdaysView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F51E8E24D444F600A19ECF /* CourseTableWeekdaysView.swift */; };
+<<<<<<< HEAD
 		C938C345250251E20033D043 /* CourseTableCourseDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C938C344250251E20033D043 /* CourseTableCourseDetailView.swift */; };
 		D35337B42540606300A14D01 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35337B32540606300A14D01 /* MainView.swift */; };
 		D35337B8254093B400A14D01 /* HomeView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35337B7254093B400A14D01 /* HomeView2.swift */; };
@@ -107,6 +114,62 @@
 		D3DB92492505309B009B216D /* CourseTableModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DB92482505309B009B216D /* CourseTableModifier.swift */; };
 /* End PBXBuildFile section */
 
+=======
+		C90384BE252C5BAA00CC7A44 /* CourseTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CB600824D2565A00DB2985 /* CourseTable.swift */; };
+		C90384C1252C5BAD00CC7A44 /* Semester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B6891A24D156F40020AD47 /* Semester.swift */; };
+		C9129F932513401D00EDE4CE /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9129F922513401D00EDE4CE /* WidgetKit.framework */; };
+		C9129F952513401D00EDE4CE /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9129F942513401D00EDE4CE /* SwiftUI.framework */; };
+		C9129F982513401D00EDE4CE /* PeiYangLiteWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9129F972513401D00EDE4CE /* PeiYangLiteWidget.swift */; };
+		C9129F9A2513401E00EDE4CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9129F992513401E00EDE4CE /* Assets.xcassets */; };
+		C9129F9E2513401E00EDE4CE /* PeiYangLiteWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C9129F902513401D00EDE4CE /* PeiYangLiteWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		C9129FA7251340FD00EDE4CE /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B688EC24D156CE0020AD47 /* Network.swift */; };
+		C9129FA8251340FD00EDE4CE /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B688B424D156CE0020AD47 /* Storage.swift */; };
+		C9129FB02513416000EDE4CE /* GPA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B6894024D1579B0020AD47 /* GPA.swift */; };
+		C9129FB42513429A00EDE4CE /* CourseEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9129FB32513429A00EDE4CE /* CourseEntry.swift */; };
+		C9129FB72513430400EDE4CE /* Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B688ED24D156CE0020AD47 /* Localizable.swift */; };
+		C9129FBB251344C400EDE4CE /* CourseTimelineProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9129FBA251344C400EDE4CE /* CourseTimelineProvider.swift */; };
+		C9129FBE2513472800EDE4CE /* ECard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B6892A24D157290020AD47 /* ECard.swift */; };
+		C9129FC12513473000EDE4CE /* WLAN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D85EB724DD0C6300637AB8 /* WLAN.swift */; };
+		C9129FC62513510A00EDE4CE /* MediumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9129FC52513510A00EDE4CE /* MediumView.swift */; };
+		C9129FCB25135B2100EDE4CE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 03B688B124D1565F0020AD47 /* Localizable.strings */; };
+		C91CF63C252C7CC3001C327B /* WeatherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91CF63A252C7CC3001C327B /* WeatherManager.swift */; };
+		C91CF63D252C7CC3001C327B /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91CF63B252C7CC3001C327B /* Weather.swift */; };
+		C91CF647252C7DAE001C327B /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91CF646252C7DAE001C327B /* Home.swift */; };
+		C91CF653252C7E4E001C327B /* WeatherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91CF63A252C7CC3001C327B /* WeatherManager.swift */; };
+		C91CF656252C7E51001C327B /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91CF63B252C7CC3001C327B /* Weather.swift */; };
+		C91CF65A252C81B5001C327B /* HomeViewHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91CF659252C81B5001C327B /* HomeViewHeaderView.swift */; };
+		C91CF662252C859F001C327B /* ClassesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91CF661252C859F001C327B /* ClassesManager.swift */; };
+		C91CF669252C85B4001C327B /* ClassesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91CF661252C859F001C327B /* ClassesManager.swift */; };
+		C92C635725148508000C0411 /* SmallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92C635625148508000C0411 /* SmallView.swift */; };
+		C938C345250251E20033D043 /* CourseTableCourseDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C938C344250251E20033D043 /* CourseTableCourseDetailView.swift */; };
+		D3DB92492505309B009B216D /* CourseTableModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DB92482505309B009B216D /* CourseTableModifier.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C9129F9C2513401E00EDE4CE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 03B6887124D155850020AD47 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C9129F8F2513401D00EDE4CE;
+			remoteInfo = PeiYangLiteWidgetExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		C9129F9F2513401E00EDE4CE /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				C9129F9E2513401E00EDE4CE /* PeiYangLiteWidgetExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+>>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
 /* Begin PBXFileReference section */
 		030C655324DC2D9A00ECBE8D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		030C655424DC2D9A00ECBE8D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -169,7 +232,10 @@
 		03B688EC24D156CE0020AD47 /* Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		03B688ED24D156CE0020AD47 /* Localizable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Localizable.swift; sourceTree = "<group>"; };
 		03B6891A24D156F40020AD47 /* Semester.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Semester.swift; sourceTree = "<group>"; };
+<<<<<<< HEAD
 		03B6891B24D156F40020AD47 /* ClassesManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassesManager.swift; sourceTree = "<group>"; };
+=======
+>>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
 		03B6891C24D156F40020AD47 /* ClassesSSOView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassesSSOView.swift; sourceTree = "<group>"; };
 		03B6891E24D156F40020AD47 /* ECardManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ECardManager.swift; sourceTree = "<group>"; };
 		03B6891F24D156F40020AD47 /* ECardLoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ECardLoginView.swift; sourceTree = "<group>"; };
@@ -193,7 +259,10 @@
 		03B6895024D157D90020AD47 /* HomeCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeCardView.swift; sourceTree = "<group>"; };
 		03B6895124D157D90020AD47 /* HomeDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeDetailView.swift; sourceTree = "<group>"; };
 		03B6895224D157D90020AD47 /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+<<<<<<< HEAD
 		03B6895424D157D90020AD47 /* Home.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
+=======
+>>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
 		03B6895624D157D90020AD47 /* BlurView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlurView.swift; sourceTree = "<group>"; };
 		03B6895724D157D90020AD47 /* GridStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridStack.swift; sourceTree = "<group>"; };
 		03CB600424D2563F00DB2985 /* CourseTableCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseTableCardView.swift; sourceTree = "<group>"; };
@@ -206,12 +275,32 @@
 		03D85EBE24DD17B700637AB8 /* WLANLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WLANLoginView.swift; sourceTree = "<group>"; };
 		03F51E8C24D443AC00A19ECF /* CouseTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouseTableHeaderView.swift; sourceTree = "<group>"; };
 		03F51E8E24D444F600A19ECF /* CourseTableWeekdaysView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseTableWeekdaysView.swift; sourceTree = "<group>"; };
+<<<<<<< HEAD
 		C938C344250251E20033D043 /* CourseTableCourseDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseTableCourseDetailView.swift; sourceTree = "<group>"; };
 		D35337B32540606300A14D01 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		D35337B7254093B400A14D01 /* HomeView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView2.swift; sourceTree = "<group>"; };
 		D39F34EC2514465C00710C7A /* HomeViewHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewHeaderView.swift; sourceTree = "<group>"; };
 		D3DAD9DA25190FD70074EDD7 /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 		D3DAD9DE2519105E0074EDD7 /* WeatherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherManager.swift; sourceTree = "<group>"; };
+=======
+		C9129F902513401D00EDE4CE /* PeiYangLiteWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = PeiYangLiteWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		C9129F922513401D00EDE4CE /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		C9129F942513401D00EDE4CE /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		C9129F972513401D00EDE4CE /* PeiYangLiteWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeiYangLiteWidget.swift; sourceTree = "<group>"; };
+		C9129F992513401E00EDE4CE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C9129F9B2513401E00EDE4CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C9129FB32513429A00EDE4CE /* CourseEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseEntry.swift; sourceTree = "<group>"; };
+		C9129FBA251344C400EDE4CE /* CourseTimelineProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseTimelineProvider.swift; sourceTree = "<group>"; };
+		C9129FC52513510A00EDE4CE /* MediumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediumView.swift; sourceTree = "<group>"; };
+		C91CF63A252C7CC3001C327B /* WeatherManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherManager.swift; sourceTree = "<group>"; };
+		C91CF63B252C7CC3001C327B /* Weather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
+		C91CF646252C7DAE001C327B /* Home.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Home.swift; path = "PeiYang Lite/Home/Model/Home.swift"; sourceTree = SOURCE_ROOT; };
+		C91CF659252C81B5001C327B /* HomeViewHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewHeaderView.swift; sourceTree = "<group>"; };
+		C91CF661252C859F001C327B /* ClassesManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassesManager.swift; sourceTree = "<group>"; };
+		C92C635625148508000C0411 /* SmallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallView.swift; sourceTree = "<group>"; };
+		C92C636F2519F40D000C0411 /* PeiYangLiteWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PeiYangLiteWidgetExtension.entitlements; sourceTree = "<group>"; };
+		C938C344250251E20033D043 /* CourseTableCourseDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseTableCourseDetailView.swift; sourceTree = "<group>"; };
+>>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
 		D3DB92482505309B009B216D /* CourseTableModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseTableModifier.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -223,6 +312,18 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+<<<<<<< HEAD
+=======
+		C9129F8D2513401D00EDE4CE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C9129F952513401D00EDE4CE /* SwiftUI.framework in Frameworks */,
+				C9129F932513401D00EDE4CE /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+>>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -436,7 +537,14 @@
 		03B6887024D155850020AD47 = {
 			isa = PBXGroup;
 			children = (
+<<<<<<< HEAD
 				03B6887B24D155850020AD47 /* PeiYang Lite */,
+=======
+				C92C636F2519F40D000C0411 /* PeiYangLiteWidgetExtension.entitlements */,
+				03B6887B24D155850020AD47 /* PeiYang Lite */,
+				C9129F962513401D00EDE4CE /* PeiYangLiteWidget */,
+				C9129F912513401D00EDE4CE /* Frameworks */,
+>>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
 				03B6887A24D155850020AD47 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -445,6 +553,10 @@
 			isa = PBXGroup;
 			children = (
 				03B6887924D155850020AD47 /* PeiYang Lite.app */,
+<<<<<<< HEAD
+=======
+				C9129F902513401D00EDE4CE /* PeiYangLiteWidgetExtension.appex */,
+>>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -483,9 +595,15 @@
 		03B688B324D156CE0020AD47 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+<<<<<<< HEAD
 				03B688ED24D156CE0020AD47 /* Localizable.swift */,
 				03B688EC24D156CE0020AD47 /* Network.swift */,
 				03B688B424D156CE0020AD47 /* Storage.swift */,
+=======
+				03B688B424D156CE0020AD47 /* Storage.swift */,
+				03B688EC24D156CE0020AD47 /* Network.swift */,
+				03B688ED24D156CE0020AD47 /* Localizable.swift */,
+>>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -503,9 +621,15 @@
 		03B6891924D156F40020AD47 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+<<<<<<< HEAD
 				03B6891A24D156F40020AD47 /* Semester.swift */,
 				03B6891B24D156F40020AD47 /* ClassesManager.swift */,
 				03B6891C24D156F40020AD47 /* ClassesSSOView.swift */,
+=======
+				C91CF661252C859F001C327B /* ClassesManager.swift */,
+				03B6891C24D156F40020AD47 /* ClassesSSOView.swift */,
+				03B6891A24D156F40020AD47 /* Semester.swift */,
+>>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -606,10 +730,15 @@
 			isa = PBXGroup;
 			children = (
 				037AAF2724D64F6F00C2A9D3 /* HomeSettingView.swift */,
+<<<<<<< HEAD
 				D39F34EC2514465C00710C7A /* HomeViewHeaderView.swift */,
 				03B6895224D157D90020AD47 /* HomeView.swift */,
 				D35337B7254093B400A14D01 /* HomeView2.swift */,
 				D35337B32540606300A14D01 /* MainView.swift */,
+=======
+				C91CF659252C81B5001C327B /* HomeViewHeaderView.swift */,
+				03B6895224D157D90020AD47 /* HomeView.swift */,
+>>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -617,8 +746,13 @@
 		03B6895324D157D90020AD47 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+<<<<<<< HEAD
 				D3DAD9DD2519104B0074EDD7 /* Weather */,
 				03B6895424D157D90020AD47 /* Home.swift */,
+=======
+				C91CF639252C7CC3001C327B /* Weather */,
+				C91CF646252C7DAE001C327B /* Home.swift */,
+>>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -646,8 +780,13 @@
 		03CB600124D2561200DB2985 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+<<<<<<< HEAD
 				03CB600824D2565A00DB2985 /* CourseTable.swift */,
 				D3DB92482505309B009B216D /* CourseTableModifier.swift */,
+=======
+				D3DB92482505309B009B216D /* CourseTableModifier.swift */,
+				03CB600824D2565A00DB2985 /* CourseTable.swift */,
+>>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -655,8 +794,13 @@
 		03CB600224D2561700DB2985 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+<<<<<<< HEAD
 				03CB600424D2563F00DB2985 /* CourseTableCardView.swift */,
 				03CB600624D2564C00DB2985 /* CourseTableDetailView.swift */,
+=======
+				03CB600624D2564C00DB2985 /* CourseTableDetailView.swift */,
+				03CB600424D2563F00DB2985 /* CourseTableCardView.swift */,
+>>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -708,11 +852,50 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+<<<<<<< HEAD
 		D3DAD9DD2519104B0074EDD7 /* Weather */ = {
 			isa = PBXGroup;
 			children = (
 				D3DAD9DA25190FD70074EDD7 /* Weather.swift */,
 				D3DAD9DE2519105E0074EDD7 /* WeatherManager.swift */,
+=======
+		C9129F912513401D00EDE4CE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C9129F922513401D00EDE4CE /* WidgetKit.framework */,
+				C9129F942513401D00EDE4CE /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C9129F962513401D00EDE4CE /* PeiYangLiteWidget */ = {
+			isa = PBXGroup;
+			children = (
+				C9129FC4251350E600EDE4CE /* WidgetViews */,
+				C9129F972513401D00EDE4CE /* PeiYangLiteWidget.swift */,
+				C9129FB32513429A00EDE4CE /* CourseEntry.swift */,
+				C9129FBA251344C400EDE4CE /* CourseTimelineProvider.swift */,
+				C9129F992513401E00EDE4CE /* Assets.xcassets */,
+				C9129F9B2513401E00EDE4CE /* Info.plist */,
+			);
+			path = PeiYangLiteWidget;
+			sourceTree = "<group>";
+		};
+		C9129FC4251350E600EDE4CE /* WidgetViews */ = {
+			isa = PBXGroup;
+			children = (
+				C9129FC52513510A00EDE4CE /* MediumView.swift */,
+				C92C635625148508000C0411 /* SmallView.swift */,
+			);
+			path = WidgetViews;
+			sourceTree = "<group>";
+		};
+		C91CF639252C7CC3001C327B /* Weather */ = {
+			isa = PBXGroup;
+			children = (
+				C91CF63A252C7CC3001C327B /* WeatherManager.swift */,
+				C91CF63B252C7CC3001C327B /* Weather.swift */,
+>>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
 			);
 			path = Weather;
 			sourceTree = "<group>";
@@ -727,16 +910,44 @@
 				03B6887524D155850020AD47 /* Sources */,
 				03B6887624D155850020AD47 /* Frameworks */,
 				03B6887724D155850020AD47 /* Resources */,
+<<<<<<< HEAD
+=======
+				C9129F9F2513401E00EDE4CE /* Embed App Extensions */,
+>>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
 			);
 			buildRules = (
 			);
 			dependencies = (
+<<<<<<< HEAD
+=======
+				C9129F9D2513401E00EDE4CE /* PBXTargetDependency */,
+>>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
 			);
 			name = "PeiYang Lite";
 			productName = "PeiYang Lite";
 			productReference = 03B6887924D155850020AD47 /* PeiYang Lite.app */;
 			productType = "com.apple.product-type.application";
 		};
+<<<<<<< HEAD
+=======
+		C9129F8F2513401D00EDE4CE /* PeiYangLiteWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C9129FA22513401E00EDE4CE /* Build configuration list for PBXNativeTarget "PeiYangLiteWidgetExtension" */;
+			buildPhases = (
+				C9129F8C2513401D00EDE4CE /* Sources */,
+				C9129F8D2513401D00EDE4CE /* Frameworks */,
+				C9129F8E2513401D00EDE4CE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PeiYangLiteWidgetExtension;
+			productName = PeiYangLiteWidgetExtension;
+			productReference = C9129F902513401D00EDE4CE /* PeiYangLiteWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+>>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -749,6 +960,12 @@
 					03B6887824D155850020AD47 = {
 						CreatedOnToolsVersion = 12.0;
 					};
+<<<<<<< HEAD
+=======
+					C9129F8F2513401D00EDE4CE = {
+						CreatedOnToolsVersion = 12.0;
+					};
+>>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
 				};
 			};
 			buildConfigurationList = 03B6887424D155850020AD47 /* Build configuration list for PBXProject "PeiYang Lite" */;
@@ -767,6 +984,10 @@
 			projectRoot = "";
 			targets = (
 				03B6887824D155850020AD47 /* PeiYang Lite */,
+<<<<<<< HEAD
+=======
+				C9129F8F2513401D00EDE4CE /* PeiYangLiteWidgetExtension */,
+>>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
 			);
 		};
 /* End PBXProject section */
@@ -783,6 +1004,18 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+<<<<<<< HEAD
+=======
+		C9129F8E2513401D00EDE4CE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C9129F9A2513401E00EDE4CE /* Assets.xcassets in Resources */,
+				C9129FCB25135B2100EDE4CE /* Localizable.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+>>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -797,12 +1030,19 @@
 				032CE4D924DBA1E5003786F6 /* RemoteFileCacheService.swift in Sources */,
 				03B6895A24D157D90020AD47 /* HomeDetailView.swift in Sources */,
 				03B6893824D1572A0020AD47 /* PieCellView.swift in Sources */,
+<<<<<<< HEAD
+=======
+				C91CF662252C859F001C327B /* ClassesManager.swift in Sources */,
+>>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
 				03D85EB424DD071800637AB8 /* WLANManager.swift in Sources */,
 				032CE4F524DBA1E5003786F6 /* ImageDownloadHandler.swift in Sources */,
 				032CE4D824DBA1E5003786F6 /* FileIndex.swift in Sources */,
 				03B6894824D1579B0020AD47 /* GPA.swift in Sources */,
 				03B6892324D156F40020AD47 /* ECardManager.swift in Sources */,
+<<<<<<< HEAD
 				03B6892124D156F40020AD47 /* ClassesManager.swift in Sources */,
+=======
+>>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
 				032CE4FC24DBA1E5003786F6 /* CircleActivityView.swift in Sources */,
 				032CE4EC24DBA1E5003786F6 /* ImageProcessorGroup.swift in Sources */,
 				032CE4FB24DBA1E5003786F6 /* CircleProgressShape.swift in Sources */,
@@ -816,10 +1056,14 @@
 				032CE4F224DBA1E5003786F6 /* DownloadService.swift in Sources */,
 				032CE4E724DBA1E5003786F6 /* ImageDecoder.swift in Sources */,
 				03B6894924D1579B0020AD47 /* CurveDetailView.swift in Sources */,
+<<<<<<< HEAD
 				D3DAD9DF2519105E0074EDD7 /* WeatherManager.swift in Sources */,
 				032CE4F724DBA1E5003786F6 /* DownloadProgressWrapper.swift in Sources */,
 				D35337B8254093B400A14D01 /* HomeView2.swift in Sources */,
 				D35337B42540606300A14D01 /* MainView.swift in Sources */,
+=======
+				032CE4F724DBA1E5003786F6 /* DownloadProgressWrapper.swift in Sources */,
+>>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
 				03B6895B24D157D90020AD47 /* HomeView.swift in Sources */,
 				03B6887D24D155850020AD47 /* PeiYang_LiteApp.swift in Sources */,
 				032CE4DA24DBA1E5003786F6 /* CGContext+Extensions.swift in Sources */,
@@ -827,7 +1071,11 @@
 				032CE4D724DBA1E5003786F6 /* URLImageService.swift in Sources */,
 				032CE4ED24DBA1E5003786F6 /* DownloadCoordinator.swift in Sources */,
 				03D85EBD24DD10AF00637AB8 /* WLANDetailView.swift in Sources */,
+<<<<<<< HEAD
 				D3DAD9DB25190FD70074EDD7 /* Weather.swift in Sources */,
+=======
+				C91CF63D252C7CC3001C327B /* Weather.swift in Sources */,
+>>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
 				032CE4DE24DBA1E5003786F6 /* Version.swift in Sources */,
 				03CB600524D2563F00DB2985 /* CourseTableCardView.swift in Sources */,
 				032CE4F824DBA1E5003786F6 /* URLImage.swift in Sources */,
@@ -835,8 +1083,13 @@
 				03B6892424D156F40020AD47 /* ECardLoginView.swift in Sources */,
 				03B6895824D157D90020AD47 /* HomeLoginView.swift in Sources */,
 				032CE4E424DBA1E5003786F6 /* DefaultPlaceholder.swift in Sources */,
+<<<<<<< HEAD
 				D39F34ED2514465C00710C7A /* HomeViewHeaderView.swift in Sources */,
 				03B6893224D1572A0020AD47 /* ECardDetailView.swift in Sources */,
+=======
+				03B6893224D1572A0020AD47 /* ECardDetailView.swift in Sources */,
+				C91CF63C252C7CC3001C327B /* WeatherManager.swift in Sources */,
+>>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
 				C938C345250251E20033D043 /* CourseTableCourseDetailView.swift in Sources */,
 				032CE4E324DBA1E5003786F6 /* CoreDataAttributeDescription.swift in Sources */,
 				03B6894B24D1579B0020AD47 /* Chart.swift in Sources */,
@@ -872,12 +1125,22 @@
 				032CE4EA24DBA1E5003786F6 /* ImageProcessorClosure.swift in Sources */,
 				03D85EB824DD0C6300637AB8 /* WLAN.swift in Sources */,
 				032CE4EB24DBA1E5003786F6 /* Resize.swift in Sources */,
+<<<<<<< HEAD
 				032CE4EF24DBA1E5003786F6 /* DownloadHandler.swift in Sources */,
 				03B6891624D156CF0020AD47 /* Network.swift in Sources */,
 				03ACE52A24D844C5009468D4 /* RefreshButton.swift in Sources */,
 				037AAF2824D64F6F00C2A9D3 /* HomeSettingView.swift in Sources */,
 				032CE4E124DBA1E5003786F6 /* CoreDataEntityDescription.swift in Sources */,
 				03B6895C24D157D90020AD47 /* Home.swift in Sources */,
+=======
+				C91CF65A252C81B5001C327B /* HomeViewHeaderView.swift in Sources */,
+				032CE4EF24DBA1E5003786F6 /* DownloadHandler.swift in Sources */,
+				03B6891624D156CF0020AD47 /* Network.swift in Sources */,
+				03ACE52A24D844C5009468D4 /* RefreshButton.swift in Sources */,
+				C91CF647252C7DAE001C327B /* Home.swift in Sources */,
+				037AAF2824D64F6F00C2A9D3 /* HomeSettingView.swift in Sources */,
+				032CE4E124DBA1E5003786F6 /* CoreDataEntityDescription.swift in Sources */,
+>>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
 				032CE4F424DBA1E5003786F6 /* ImageLoaderView.swift in Sources */,
 				03B6894724D1579B0020AD47 /* GPACardView.swift in Sources */,
 				03B6893724D1572A0020AD47 /* ECardTranscationView.swift in Sources */,
@@ -887,8 +1150,44 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+<<<<<<< HEAD
 /* End PBXSourcesBuildPhase section */
 
+=======
+		C9129F8C2513401D00EDE4CE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C9129F982513401D00EDE4CE /* PeiYangLiteWidget.swift in Sources */,
+				C92C635725148508000C0411 /* SmallView.swift in Sources */,
+				C9129FC62513510A00EDE4CE /* MediumView.swift in Sources */,
+				C90384C1252C5BAD00CC7A44 /* Semester.swift in Sources */,
+				C9129FBE2513472800EDE4CE /* ECard.swift in Sources */,
+				C9129FB72513430400EDE4CE /* Localizable.swift in Sources */,
+				C9129FA8251340FD00EDE4CE /* Storage.swift in Sources */,
+				C9129FC12513473000EDE4CE /* WLAN.swift in Sources */,
+				C91CF669252C85B4001C327B /* ClassesManager.swift in Sources */,
+				C91CF656252C7E51001C327B /* Weather.swift in Sources */,
+				C9129FBB251344C400EDE4CE /* CourseTimelineProvider.swift in Sources */,
+				C9129FB02513416000EDE4CE /* GPA.swift in Sources */,
+				C90384BE252C5BAA00CC7A44 /* CourseTable.swift in Sources */,
+				C9129FB42513429A00EDE4CE /* CourseEntry.swift in Sources */,
+				C91CF653252C7E4E001C327B /* WeatherManager.swift in Sources */,
+				C9129FA7251340FD00EDE4CE /* Network.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C9129F9D2513401E00EDE4CE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C9129F8F2513401D00EDE4CE /* PeiYangLiteWidgetExtension */;
+			targetProxy = C9129F9C2513401E00EDE4CE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+>>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
 /* Begin PBXVariantGroup section */
 		0356D02724D15B2D00614A26 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
@@ -1032,11 +1331,19 @@
 		03B6889F24D155860020AD47 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+<<<<<<< HEAD
+=======
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+>>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "PeiYang Lite/PeiYang Lite.entitlements";
 				CODE_SIGN_STYLE = Automatic;
+<<<<<<< HEAD
 				CURRENT_PROJECT_VERSION = 202009220221;
+=======
+				CURRENT_PROJECT_VERSION = 202009142000;
+>>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
 				DEVELOPMENT_ASSET_PATHS = "\"PeiYang Lite/Preview Content\"";
 				DEVELOPMENT_TEAM = T5JB4K7FT9;
 				ENABLE_PREVIEWS = YES;
@@ -1046,7 +1353,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+<<<<<<< HEAD
 				MARKETING_VERSION = 1.0.8;
+=======
+				MARKETING_VERSION = 1.0.2;
+>>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
 				PRODUCT_BUNDLE_IDENTIFIER = "com.twtstudio.PeiYang-Lite";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1057,11 +1368,19 @@
 		03B688A024D155860020AD47 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+<<<<<<< HEAD
+=======
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+>>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "PeiYang Lite/PeiYang Lite.entitlements";
 				CODE_SIGN_STYLE = Automatic;
+<<<<<<< HEAD
 				CURRENT_PROJECT_VERSION = 202009220221;
+=======
+				CURRENT_PROJECT_VERSION = 202009142000;
+>>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
 				DEVELOPMENT_ASSET_PATHS = "\"PeiYang Lite/Preview Content\"";
 				DEVELOPMENT_TEAM = T5JB4K7FT9;
 				ENABLE_PREVIEWS = YES;
@@ -1071,7 +1390,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+<<<<<<< HEAD
 				MARKETING_VERSION = 1.0.8;
+=======
+				MARKETING_VERSION = 1.0.2;
+>>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
 				PRODUCT_BUNDLE_IDENTIFIER = "com.twtstudio.PeiYang-Lite";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1079,6 +1402,53 @@
 			};
 			name = Release;
 		};
+<<<<<<< HEAD
+=======
+		C9129FA02513401E00EDE4CE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = PeiYangLiteWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = T5JB4K7FT9;
+				INFOPLIST_FILE = PeiYangLiteWidget/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.twtstudio.PeiYang-Lite.PeiYangLiteWidget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C9129FA12513401E00EDE4CE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = PeiYangLiteWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = T5JB4K7FT9;
+				INFOPLIST_FILE = PeiYangLiteWidget/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.twtstudio.PeiYang-Lite.PeiYangLiteWidget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+>>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1100,6 +1470,18 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+<<<<<<< HEAD
+=======
+		C9129FA22513401E00EDE4CE /* Build configuration list for PBXNativeTarget "PeiYangLiteWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C9129FA02513401E00EDE4CE /* Debug */,
+				C9129FA12513401E00EDE4CE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+>>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
 /* End XCConfigurationList section */
 	};
 	rootObject = 03B6887124D155850020AD47 /* Project object */;

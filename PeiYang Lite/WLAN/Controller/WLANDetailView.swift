@@ -71,20 +71,30 @@ struct WLANDetailView: View {
                 Spacer()
             }
         }
+<<<<<<< HEAD
         .onAppear {
             if !Storage.defaults.bool(forKey: WLANManager.isStoreKey) {
                 load()
             }
         }
+=======
+        .onAppear(perform: load)
+>>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
     }
     
     func load() {
         isLoading = true
         WLANManager.wlanGet { result in
             switch result {
+<<<<<<< HEAD
             case .success(_): break
 //                store.object = wlan
 //                store.save()
+=======
+            case .success(let wlan):
+                store.object = wlan
+                store.save()
+>>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
             case .failure(let error):
                 print(error)
             }

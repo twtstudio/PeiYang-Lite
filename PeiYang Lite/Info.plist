@@ -4,8 +4,11 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
+<<<<<<< HEAD
 	<key>CFBundleDisplayName</key>
 	<string>轻北洋</string>
+=======
+>>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -20,8 +23,11 @@
 	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
+<<<<<<< HEAD
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
+=======
+>>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
