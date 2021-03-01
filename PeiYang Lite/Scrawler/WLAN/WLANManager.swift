@@ -24,10 +24,6 @@ struct WLANManager {
     
     static func removeAll() {
         remove(isLoginKey)
-<<<<<<< HEAD
-        remove(isStoreKey)
-=======
->>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
         remove(usernameKey)
         remove(passwordKey)
         Storage.wlan.remove()
@@ -152,10 +148,7 @@ struct WLANManager {
                         state: html.find("状态</label><a .*?>(.+?)</a>"),// 正则需要改写finish
                         balance: html.find("账户余额</label>(.+?)<a"),//⬆️finish
                         traffic: html.find("可用流量</label>(.+?)&nbsp;&nbsp;")//⬆️ finish
-<<<<<<< HEAD
-=======
                         
->>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
                     )
                     semaphore.signal()
                 case .failure(let error):
@@ -180,15 +173,7 @@ struct WLANManager {
             
             let wlan = WLAN(overview: overview, detailArray: detailArray)
             DispatchQueue.main.async {
-<<<<<<< HEAD
-                // Storage save
                 completion(.success(wlan))
-                Storage.defaults.setValue(true, forKey: isStoreKey)
-                Storage.wlan.object = wlan
-                Storage.wlan.save()
-=======
-                completion(.success(wlan))
->>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
             }
         }
     }

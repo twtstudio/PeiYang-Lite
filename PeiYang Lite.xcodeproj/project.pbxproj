@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -57,10 +57,6 @@
 		03B6891624D156CF0020AD47 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B688EC24D156CE0020AD47 /* Network.swift */; };
 		03B6891724D156CF0020AD47 /* Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B688ED24D156CE0020AD47 /* Localizable.swift */; };
 		03B6892024D156F40020AD47 /* Semester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B6891A24D156F40020AD47 /* Semester.swift */; };
-<<<<<<< HEAD
-		03B6892124D156F40020AD47 /* ClassesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B6891B24D156F40020AD47 /* ClassesManager.swift */; };
-=======
->>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
 		03B6892224D156F40020AD47 /* ClassesSSOView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B6891C24D156F40020AD47 /* ClassesSSOView.swift */; };
 		03B6892324D156F40020AD47 /* ECardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B6891E24D156F40020AD47 /* ECardManager.swift */; };
 		03B6892424D156F40020AD47 /* ECardLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B6891F24D156F40020AD47 /* ECardLoginView.swift */; };
@@ -77,17 +73,6 @@
 		03B6894A24D1579B0020AD47 /* Indicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B6894324D1579B0020AD47 /* Indicator.swift */; };
 		03B6894B24D1579B0020AD47 /* Chart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B6894424D1579B0020AD47 /* Chart.swift */; };
 		03B6894C24D1579B0020AD47 /* CurveCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B6894524D1579B0020AD47 /* CurveCardView.swift */; };
-<<<<<<< HEAD
-		03B6895824D157D90020AD47 /* HomeLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B6894F24D157D90020AD47 /* HomeLoginView.swift */; };
-		03B6895924D157D90020AD47 /* HomeCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B6895024D157D90020AD47 /* HomeCardView.swift */; };
-		03B6895A24D157D90020AD47 /* HomeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B6895124D157D90020AD47 /* HomeDetailView.swift */; };
-		03B6895B24D157D90020AD47 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B6895224D157D90020AD47 /* HomeView.swift */; };
-<<<<<<< HEAD
-		03B6895C24D157D90020AD47 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B6895424D157D90020AD47 /* Home.swift */; };
-=======
->>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
-=======
->>>>>>> origin/PhoneixBranch
 		03B6895D24D157D90020AD47 /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B6895624D157D90020AD47 /* BlurView.swift */; };
 		03B6895E24D157D90020AD47 /* GridStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B6895724D157D90020AD47 /* GridStack.swift */; };
 		03D85EB424DD071800637AB8 /* WLANManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D85EB324DD071800637AB8 /* WLANManager.swift */; };
@@ -95,29 +80,13 @@
 		03D85EBB24DD10A500637AB8 /* WLANCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D85EBA24DD10A500637AB8 /* WLANCardView.swift */; };
 		03D85EBD24DD10AF00637AB8 /* WLANDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D85EBC24DD10AF00637AB8 /* WLANDetailView.swift */; };
 		03D85EBF24DD17B700637AB8 /* WLANLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D85EBE24DD17B700637AB8 /* WLANLoginView.swift */; };
-<<<<<<< HEAD
-		03F51E8D24D443AC00A19ECF /* CouseTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F51E8C24D443AC00A19ECF /* CouseTableHeaderView.swift */; };
-		03F51E8F24D444F600A19ECF /* CourseTableWeekdaysView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F51E8E24D444F600A19ECF /* CourseTableWeekdaysView.swift */; };
-<<<<<<< HEAD
-		C938C345250251E20033D043 /* CourseTableCourseDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C938C344250251E20033D043 /* CourseTableCourseDetailView.swift */; };
-		D35337B42540606300A14D01 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35337B32540606300A14D01 /* MainView.swift */; };
-		D35337B8254093B400A14D01 /* HomeView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35337B7254093B400A14D01 /* HomeView2.swift */; };
-		D39F34ED2514465C00710C7A /* HomeViewHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39F34EC2514465C00710C7A /* HomeViewHeaderView.swift */; };
-		D3DAD9DB25190FD70074EDD7 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DAD9DA25190FD70074EDD7 /* Weather.swift */; };
-		D3DAD9DF2519105E0074EDD7 /* WeatherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DAD9DE2519105E0074EDD7 /* WeatherManager.swift */; };
-		D3DB92492505309B009B216D /* CourseTableModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DB92482505309B009B216D /* CourseTableModifier.swift */; };
-/* End PBXBuildFile section */
-
-=======
-		C90384BE252C5BAA00CC7A44 /* CourseTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CB600824D2565A00DB2985 /* CourseTable.swift */; };
-=======
+		AD84AA3202491DFCF618DD89 /* Pods_PeiYangLiteWidgetExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04BB6100050161BFA2B5D4B3 /* Pods_PeiYangLiteWidgetExtension.framework */; };
 		C9016ED925E630F1007524DD /* AddCommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9016ED825E630F1007524DD /* AddCommentView.swift */; };
 		C9016EDF25E7CEE0007524DD /* TagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9016EDE25E7CEDF007524DD /* TagsView.swift */; };
 		C9016EE425E88557007524DD /* SchCommentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9016EE325E88557007524DD /* SchCommentManager.swift */; };
 		C9016EED25E95242007524DD /* BuildingSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9016EEC25E95242007524DD /* BuildingSectionView.swift */; };
 		C9016EF525E9CC72007524DD /* StudySearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9016EF425E9CC72007524DD /* StudySearchView.swift */; };
 		C9016EF925E9D7AC007524DD /* SearchAnsViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9016EF825E9D7AC007524DD /* SearchAnsViews.swift */; };
->>>>>>> origin/PhoneixBranch
 		C90384C1252C5BAD00CC7A44 /* Semester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B6891A24D156F40020AD47 /* Semester.swift */; };
 		C9129F932513401D00EDE4CE /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9129F922513401D00EDE4CE /* WidgetKit.framework */; };
 		C9129F952513401D00EDE4CE /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9129F942513401D00EDE4CE /* SwiftUI.framework */; };
@@ -184,7 +153,6 @@
 		C971BA9425C9076D006A292E /* ForgetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C971BA9325C9076D006A292E /* ForgetManager.swift */; };
 		C97795682560B3C6001CA8F0 /* ChooseClassView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97795672560B3C6001CA8F0 /* ChooseClassView.swift */; };
 		C990BB86255FB05B00444D2E /* StudyRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = C990BB85255FB05B00444D2E /* StudyRoom.swift */; };
-		C9A8DB2E25C5728F001F33E2 /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = C9A8DB2D25C5728F001F33E2 /* FSCalendar */; };
 		C9A9942225C271950063C3BB /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A9942125C271950063C3BB /* LoginManager.swift */; };
 		C9BCE6BD25DE9A040041E533 /* DrawerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9BCE6BC25DE9A040041E533 /* DrawerView.swift */; };
 		C9C25AD325C4F9D500F26E40 /* StudyRoomTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C25AD225C4F9D500F26E40 /* StudyRoomTopView.swift */; };
@@ -224,6 +192,7 @@
 		C9ED7EF125DB7A0300CB3438 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9ED7EF025DB7A0300CB3438 /* SplashView.swift */; };
 		C9ED7F1F25DB886600CB3438 /* GPA.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9ED7F1925DB886600CB3438 /* GPA.swift */; };
 		C9FCF26A25EB92B7004FC993 /* GridWithoutScrollStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FCF26925EB92B7004FC993 /* GridWithoutScrollStack.swift */; };
+		F81EA16B8704924F59A9337E /* Pods_PeiYang_Lite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9455FB18B34C565541F53AB /* Pods_PeiYang_Lite.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -250,7 +219,6 @@
 		};
 /* End PBXCopyFilesBuildPhase section */
 
->>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
 /* Begin PBXFileReference section */
 		030C655324DC2D9A00ECBE8D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		030C655424DC2D9A00ECBE8D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -309,10 +277,6 @@
 		03B688EC24D156CE0020AD47 /* Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		03B688ED24D156CE0020AD47 /* Localizable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Localizable.swift; sourceTree = "<group>"; };
 		03B6891A24D156F40020AD47 /* Semester.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Semester.swift; sourceTree = "<group>"; };
-<<<<<<< HEAD
-		03B6891B24D156F40020AD47 /* ClassesManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassesManager.swift; sourceTree = "<group>"; };
-=======
->>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
 		03B6891C24D156F40020AD47 /* ClassesSSOView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassesSSOView.swift; sourceTree = "<group>"; };
 		03B6891E24D156F40020AD47 /* ECardManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ECardManager.swift; sourceTree = "<group>"; };
 		03B6891F24D156F40020AD47 /* ECardLoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ECardLoginView.swift; sourceTree = "<group>"; };
@@ -329,17 +293,6 @@
 		03B6894324D1579B0020AD47 /* Indicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Indicator.swift; sourceTree = "<group>"; };
 		03B6894424D1579B0020AD47 /* Chart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chart.swift; sourceTree = "<group>"; };
 		03B6894524D1579B0020AD47 /* CurveCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurveCardView.swift; sourceTree = "<group>"; };
-<<<<<<< HEAD
-		03B6894F24D157D90020AD47 /* HomeLoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeLoginView.swift; sourceTree = "<group>"; };
-		03B6895024D157D90020AD47 /* HomeCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeCardView.swift; sourceTree = "<group>"; };
-		03B6895124D157D90020AD47 /* HomeDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeDetailView.swift; sourceTree = "<group>"; };
-		03B6895224D157D90020AD47 /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
-<<<<<<< HEAD
-		03B6895424D157D90020AD47 /* Home.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
-=======
->>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
-=======
->>>>>>> origin/PhoneixBranch
 		03B6895624D157D90020AD47 /* BlurView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlurView.swift; sourceTree = "<group>"; };
 		03B6895724D157D90020AD47 /* GridStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridStack.swift; sourceTree = "<group>"; };
 		03D85EB324DD071800637AB8 /* WLANManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WLANManager.swift; sourceTree = "<group>"; };
@@ -347,25 +300,15 @@
 		03D85EBA24DD10A500637AB8 /* WLANCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WLANCardView.swift; sourceTree = "<group>"; };
 		03D85EBC24DD10AF00637AB8 /* WLANDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WLANDetailView.swift; sourceTree = "<group>"; };
 		03D85EBE24DD17B700637AB8 /* WLANLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WLANLoginView.swift; sourceTree = "<group>"; };
-<<<<<<< HEAD
-		03F51E8C24D443AC00A19ECF /* CouseTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouseTableHeaderView.swift; sourceTree = "<group>"; };
-		03F51E8E24D444F600A19ECF /* CourseTableWeekdaysView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseTableWeekdaysView.swift; sourceTree = "<group>"; };
-<<<<<<< HEAD
-		C938C344250251E20033D043 /* CourseTableCourseDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseTableCourseDetailView.swift; sourceTree = "<group>"; };
-		D35337B32540606300A14D01 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
-		D35337B7254093B400A14D01 /* HomeView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView2.swift; sourceTree = "<group>"; };
-		D39F34EC2514465C00710C7A /* HomeViewHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewHeaderView.swift; sourceTree = "<group>"; };
-		D3DAD9DA25190FD70074EDD7 /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
-		D3DAD9DE2519105E0074EDD7 /* WeatherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherManager.swift; sourceTree = "<group>"; };
-=======
-=======
+		04BB6100050161BFA2B5D4B3 /* Pods_PeiYangLiteWidgetExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PeiYangLiteWidgetExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		478399CB343B8DC9325A9BC1 /* Pods-PeiYangLiteWidgetExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PeiYangLiteWidgetExtension.release.xcconfig"; path = "Target Support Files/Pods-PeiYangLiteWidgetExtension/Pods-PeiYangLiteWidgetExtension.release.xcconfig"; sourceTree = "<group>"; };
+		A778CB9C0C13C61941F8EA2C /* Pods-PeiYang Lite.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PeiYang Lite.debug.xcconfig"; path = "Target Support Files/Pods-PeiYang Lite/Pods-PeiYang Lite.debug.xcconfig"; sourceTree = "<group>"; };
 		C9016ED825E630F1007524DD /* AddCommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCommentView.swift; sourceTree = "<group>"; };
 		C9016EDE25E7CEDF007524DD /* TagsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsView.swift; sourceTree = "<group>"; };
 		C9016EE325E88557007524DD /* SchCommentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchCommentManager.swift; sourceTree = "<group>"; };
 		C9016EEC25E95242007524DD /* BuildingSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingSectionView.swift; sourceTree = "<group>"; };
 		C9016EF425E9CC72007524DD /* StudySearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudySearchView.swift; sourceTree = "<group>"; };
 		C9016EF825E9D7AC007524DD /* SearchAnsViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAnsViews.swift; sourceTree = "<group>"; };
->>>>>>> origin/PhoneixBranch
 		C9129F902513401D00EDE4CE /* PeiYangLiteWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = PeiYangLiteWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9129F922513401D00EDE4CE /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		C9129F942513401D00EDE4CE /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -373,16 +316,12 @@
 		C9129F9B2513401E00EDE4CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C91CF661252C859F001C327B /* ClassesManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassesManager.swift; sourceTree = "<group>"; };
 		C92C636F2519F40D000C0411 /* PeiYangLiteWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PeiYangLiteWidgetExtension.entitlements; sourceTree = "<group>"; };
-<<<<<<< HEAD
-		C938C344250251E20033D043 /* CourseTableCourseDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseTableCourseDetailView.swift; sourceTree = "<group>"; };
->>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
-		D3DB92482505309B009B216D /* CourseTableModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseTableModifier.swift; sourceTree = "<group>"; };
-=======
 		C92E614E253997990008A38A /* RadarChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadarChartView.swift; sourceTree = "<group>"; };
 		C930724125E16C75005E5736 /* BubbleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleView.swift; sourceTree = "<group>"; };
 		C941D59425D65CAC00E361AB /* SharedMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedMessage.swift; sourceTree = "<group>"; };
 		C942C1B925CABACE006D0B83 /* supplyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = supplyView.swift; sourceTree = "<group>"; };
 		C942C1BD25CABE71006D0B83 /* SupplyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupplyManager.swift; sourceTree = "<group>"; };
+		C9455FB18B34C565541F53AB /* Pods_PeiYang_Lite.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PeiYang_Lite.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C95B579F25EBF37F004300B5 /* Issue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Issue.swift; sourceTree = "<group>"; };
 		C95B57A125EBF37F004300B5 /* QuestionCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionCardView.swift; sourceTree = "<group>"; };
 		C95B57AB25EBF3BA004300B5 /* HomeView2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView2.swift; sourceTree = "<group>"; };
@@ -467,7 +406,8 @@
 		C9ED7EF025DB7A0300CB3438 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		C9ED7F1925DB886600CB3438 /* GPA.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPA.swift; sourceTree = "<group>"; };
 		C9FCF26925EB92B7004FC993 /* GridWithoutScrollStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridWithoutScrollStack.swift; sourceTree = "<group>"; };
->>>>>>> origin/PhoneixBranch
+		D7E41DE3E6B713D16EC6B8F9 /* Pods-PeiYangLiteWidgetExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PeiYangLiteWidgetExtension.debug.xcconfig"; path = "Target Support Files/Pods-PeiYangLiteWidgetExtension/Pods-PeiYangLiteWidgetExtension.debug.xcconfig"; sourceTree = "<group>"; };
+		FEBDECA626850C8311037F0F /* Pods-PeiYang Lite.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PeiYang Lite.release.xcconfig"; path = "Target Support Files/Pods-PeiYang Lite/Pods-PeiYang Lite.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -475,22 +415,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C9A8DB2E25C5728F001F33E2 /* FSCalendar in Frameworks */,
+				F81EA16B8704924F59A9337E /* Pods_PeiYang_Lite.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-<<<<<<< HEAD
-=======
 		C9129F8D2513401D00EDE4CE /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				C9129F952513401D00EDE4CE /* SwiftUI.framework in Frameworks */,
 				C9129F932513401D00EDE4CE /* WidgetKit.framework in Frameworks */,
+				AD84AA3202491DFCF618DD89 /* Pods_PeiYangLiteWidgetExtension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
->>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -709,15 +647,12 @@
 		03B6887024D155850020AD47 = {
 			isa = PBXGroup;
 			children = (
-<<<<<<< HEAD
-				03B6887B24D155850020AD47 /* PeiYang Lite */,
-=======
 				C92C636F2519F40D000C0411 /* PeiYangLiteWidgetExtension.entitlements */,
 				03B6887B24D155850020AD47 /* PeiYang Lite */,
 				C9129F962513401D00EDE4CE /* PeiYangLiteWidget */,
 				C9129F912513401D00EDE4CE /* Frameworks */,
->>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
 				03B6887A24D155850020AD47 /* Products */,
+				B6F6EFF7A80D1BD8F2E8C7BA /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -725,10 +660,7 @@
 			isa = PBXGroup;
 			children = (
 				03B6887924D155850020AD47 /* PeiYang Lite.app */,
-<<<<<<< HEAD
-=======
 				C9129F902513401D00EDE4CE /* PeiYangLiteWidgetExtension.appex */,
->>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -777,15 +709,9 @@
 		03B688B324D156CE0020AD47 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-<<<<<<< HEAD
-				03B688ED24D156CE0020AD47 /* Localizable.swift */,
-				03B688EC24D156CE0020AD47 /* Network.swift */,
-				03B688B424D156CE0020AD47 /* Storage.swift */,
-=======
 				03B688B424D156CE0020AD47 /* Storage.swift */,
 				03B688EC24D156CE0020AD47 /* Network.swift */,
 				03B688ED24D156CE0020AD47 /* Localizable.swift */,
->>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -803,15 +729,9 @@
 		03B6891924D156F40020AD47 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-<<<<<<< HEAD
-				03B6891A24D156F40020AD47 /* Semester.swift */,
-				03B6891B24D156F40020AD47 /* ClassesManager.swift */,
-				03B6891C24D156F40020AD47 /* ClassesSSOView.swift */,
-=======
 				C91CF661252C859F001C327B /* ClassesManager.swift */,
 				03B6891C24D156F40020AD47 /* ClassesSSOView.swift */,
 				03B6891A24D156F40020AD47 /* Semester.swift */,
->>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -898,6 +818,18 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		B6F6EFF7A80D1BD8F2E8C7BA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A778CB9C0C13C61941F8EA2C /* Pods-PeiYang Lite.debug.xcconfig */,
+				FEBDECA626850C8311037F0F /* Pods-PeiYang Lite.release.xcconfig */,
+				D7E41DE3E6B713D16EC6B8F9 /* Pods-PeiYangLiteWidgetExtension.debug.xcconfig */,
+				478399CB343B8DC9325A9BC1 /* Pods-PeiYangLiteWidgetExtension.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		C9016EE225E88543007524DD /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -911,6 +843,8 @@
 			children = (
 				C9129F922513401D00EDE4CE /* WidgetKit.framework */,
 				C9129F942513401D00EDE4CE /* SwiftUI.framework */,
+				C9455FB18B34C565541F53AB /* Pods_PeiYang_Lite.framework */,
+				04BB6100050161BFA2B5D4B3 /* Pods_PeiYangLiteWidgetExtension.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -999,21 +933,8 @@
 		C95B57D025EBF3DD004300B5 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-<<<<<<< HEAD
-				037AAF2724D64F6F00C2A9D3 /* HomeSettingView.swift */,
-<<<<<<< HEAD
-				D39F34EC2514465C00710C7A /* HomeViewHeaderView.swift */,
-				03B6895224D157D90020AD47 /* HomeView.swift */,
-				D35337B7254093B400A14D01 /* HomeView2.swift */,
-				D35337B32540606300A14D01 /* MainView.swift */,
-=======
-				C91CF659252C81B5001C327B /* HomeViewHeaderView.swift */,
-				03B6895224D157D90020AD47 /* HomeView.swift */,
->>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
-=======
 				C95B57D125EBF3DD004300B5 /* GPADetailView.swift */,
 				C95B57D225EBF3DD004300B5 /* GPACardView.swift */,
->>>>>>> origin/PhoneixBranch
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1021,15 +942,6 @@
 		C95B57D725EBF3ED004300B5 /* View */ = {
 			isa = PBXGroup;
 			children = (
-<<<<<<< HEAD
-<<<<<<< HEAD
-				D3DAD9DD2519104B0074EDD7 /* Weather */,
-				03B6895424D157D90020AD47 /* Home.swift */,
-=======
-				C91CF639252C7CC3001C327B /* Weather */,
-				C91CF646252C7DAE001C327B /* Home.swift */,
->>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
-=======
 				C95B57D825EBF3ED004300B5 /* GPAListView.swift */,
 				C95B57D925EBF3ED004300B5 /* GPACellListView.swift */,
 			);
@@ -1050,7 +962,6 @@
 			isa = PBXGroup;
 			children = (
 				C95B57EC25EBF413004300B5 /* CourseTable.swift */,
->>>>>>> origin/PhoneixBranch
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1094,17 +1005,7 @@
 		C971BA9225C90755006A292E /* Model */ = {
 			isa = PBXGroup;
 			children = (
-<<<<<<< HEAD
-<<<<<<< HEAD
-				03CB600824D2565A00DB2985 /* CourseTable.swift */,
-				D3DB92482505309B009B216D /* CourseTableModifier.swift */,
-=======
-				D3DB92482505309B009B216D /* CourseTableModifier.swift */,
-				03CB600824D2565A00DB2985 /* CourseTable.swift */,
->>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
-=======
 				C971BA9325C9076D006A292E /* ForgetManager.swift */,
->>>>>>> origin/PhoneixBranch
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1112,21 +1013,11 @@
 		C977955E2560A826001CA8F0 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-<<<<<<< HEAD
-<<<<<<< HEAD
-				03CB600424D2563F00DB2985 /* CourseTableCardView.swift */,
-				03CB600624D2564C00DB2985 /* CourseTableDetailView.swift */,
-=======
-				03CB600624D2564C00DB2985 /* CourseTableDetailView.swift */,
-				03CB600424D2563F00DB2985 /* CourseTableCardView.swift */,
->>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
-=======
 				C9C25AD225C4F9D500F26E40 /* StudyRoomTopView.swift */,
 				C9016EF425E9CC72007524DD /* StudySearchView.swift */,
 				C9016EEC25E95242007524DD /* BuildingSectionView.swift */,
 				C97795672560B3C6001CA8F0 /* ChooseClassView.swift */,
 				C95B57F725EBF60E004300B5 /* RoomDetailView.swift */,
->>>>>>> origin/PhoneixBranch
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1253,18 +1144,7 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
-<<<<<<< HEAD
-<<<<<<< HEAD
-		D3DAD9DD2519104B0074EDD7 /* Weather */ = {
-			isa = PBXGroup;
-			children = (
-				D3DAD9DA25190FD70074EDD7 /* Weather.swift */,
-				D3DAD9DE2519105E0074EDD7 /* WeatherManager.swift */,
-=======
-		C9129F912513401D00EDE4CE /* Frameworks */ = {
-=======
 		C9D59B4D25BC4959006865FC /* Model */ = {
->>>>>>> origin/PhoneixBranch
 			isa = PBXGroup;
 			children = (
 				C9D59B4E25BC49CC006865FC /* PQTextField.swift */,
@@ -1297,15 +1177,9 @@
 		C9ED446C25C40C62001A5456 /* Register */ = {
 			isa = PBXGroup;
 			children = (
-<<<<<<< HEAD
-				C91CF63A252C7CC3001C327B /* WeatherManager.swift */,
-				C91CF63B252C7CC3001C327B /* Weather.swift */,
->>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
-=======
 				C9ED448025C42105001A5456 /* Model */,
 				C9ED446D25C40C6E001A5456 /* Controller */,
 				C95B57FB25EC0387004300B5 /* AccountNeedToKnowView.swift */,
->>>>>>> origin/PhoneixBranch
 			);
 			path = Register;
 			sourceTree = "<group>";
@@ -1364,36 +1238,28 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 03B6889E24D155860020AD47 /* Build configuration list for PBXNativeTarget "PeiYang Lite" */;
 			buildPhases = (
+				3D494620A98B787088D24BD6 /* [CP] Check Pods Manifest.lock */,
 				03B6887524D155850020AD47 /* Sources */,
 				03B6887624D155850020AD47 /* Frameworks */,
 				03B6887724D155850020AD47 /* Resources */,
-<<<<<<< HEAD
-=======
 				C9129F9F2513401E00EDE4CE /* Embed App Extensions */,
->>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
+				5F478FF6DEC0E114CC6FF748 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-<<<<<<< HEAD
-=======
 				C9129F9D2513401E00EDE4CE /* PBXTargetDependency */,
->>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
 			);
 			name = "PeiYang Lite";
-			packageProductDependencies = (
-				C9A8DB2D25C5728F001F33E2 /* FSCalendar */,
-			);
 			productName = "PeiYang Lite";
 			productReference = 03B6887924D155850020AD47 /* PeiYang Lite.app */;
 			productType = "com.apple.product-type.application";
 		};
-<<<<<<< HEAD
-=======
 		C9129F8F2513401D00EDE4CE /* PeiYangLiteWidgetExtension */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = C9129FA22513401E00EDE4CE /* Build configuration list for PBXNativeTarget "PeiYangLiteWidgetExtension" */;
 			buildPhases = (
+				86567CA5A41E53899BBD7119 /* [CP] Check Pods Manifest.lock */,
 				C9129F8C2513401D00EDE4CE /* Sources */,
 				C9129F8D2513401D00EDE4CE /* Frameworks */,
 				C9129F8E2513401D00EDE4CE /* Resources */,
@@ -1407,7 +1273,6 @@
 			productReference = C9129F902513401D00EDE4CE /* PeiYangLiteWidgetExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
->>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -1420,12 +1285,9 @@
 					03B6887824D155850020AD47 = {
 						CreatedOnToolsVersion = 12.0;
 					};
-<<<<<<< HEAD
-=======
 					C9129F8F2513401D00EDE4CE = {
 						CreatedOnToolsVersion = 12.0;
 					};
->>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
 				};
 			};
 			buildConfigurationList = 03B6887424D155850020AD47 /* Build configuration list for PBXProject "PeiYang Lite" */;
@@ -1439,18 +1301,12 @@
 				"zh-Hant",
 			);
 			mainGroup = 03B6887024D155850020AD47;
-			packageReferences = (
-				C9A8DB2C25C5728F001F33E2 /* XCRemoteSwiftPackageReference "FSCalendar" */,
-			);
 			productRefGroup = 03B6887A24D155850020AD47 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				03B6887824D155850020AD47 /* PeiYang Lite */,
-<<<<<<< HEAD
-=======
 				C9129F8F2513401D00EDE4CE /* PeiYangLiteWidgetExtension */,
->>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
 			);
 		};
 /* End PBXProject section */
@@ -1467,8 +1323,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-<<<<<<< HEAD
-=======
 		C9129F8E2513401D00EDE4CE /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1480,8 +1334,71 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
->>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3D494620A98B787088D24BD6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PeiYang Lite-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5F478FF6DEC0E114CC6FF748 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PeiYang Lite/Pods-PeiYang Lite-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PeiYang Lite/Pods-PeiYang Lite-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PeiYang Lite/Pods-PeiYang Lite-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		86567CA5A41E53899BBD7119 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PeiYangLiteWidgetExtension-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		03B6887524D155850020AD47 /* Sources */ = {
@@ -1505,19 +1422,12 @@
 				C9663C2A25E248A600DFC973 /* WeekGridView.swift in Sources */,
 				C9ED447725C413A2001A5456 /* RegisterSecView.swift in Sources */,
 				03B6893824D1572A0020AD47 /* PieCellView.swift in Sources */,
-<<<<<<< HEAD
-=======
 				C91CF662252C859F001C327B /* ClassesManager.swift in Sources */,
->>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
 				03D85EB424DD071800637AB8 /* WLANManager.swift in Sources */,
 				032CE4F524DBA1E5003786F6 /* ImageDownloadHandler.swift in Sources */,
 				032CE4D824DBA1E5003786F6 /* FileIndex.swift in Sources */,
 				C9D59B6025BD3859006865FC /* FirstStepView.swift in Sources */,
 				03B6892324D156F40020AD47 /* ECardManager.swift in Sources */,
-<<<<<<< HEAD
-				03B6892124D156F40020AD47 /* ClassesManager.swift in Sources */,
-=======
->>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
 				032CE4FC24DBA1E5003786F6 /* CircleActivityView.swift in Sources */,
 				C9663C2B25E248A600DFC973 /* CourseTableListView.swift in Sources */,
 				032CE4EC24DBA1E5003786F6 /* ImageProcessorGroup.swift in Sources */,
@@ -1534,22 +1444,11 @@
 				C9D59B6C25BE7655006865FC /* FinalStepView.swift in Sources */,
 				032CE4E724DBA1E5003786F6 /* ImageDecoder.swift in Sources */,
 				03B6894924D1579B0020AD47 /* CurveDetailView.swift in Sources */,
-<<<<<<< HEAD
-				D3DAD9DF2519105E0074EDD7 /* WeatherManager.swift in Sources */,
 				032CE4F724DBA1E5003786F6 /* DownloadProgressWrapper.swift in Sources */,
-<<<<<<< HEAD
-				D35337B8254093B400A14D01 /* HomeView2.swift in Sources */,
-				D35337B42540606300A14D01 /* MainView.swift in Sources */,
-=======
-				032CE4F724DBA1E5003786F6 /* DownloadProgressWrapper.swift in Sources */,
->>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
-				03B6895B24D157D90020AD47 /* HomeView.swift in Sources */,
-=======
 				C9663C3B25E4A9D500DFC973 /* CommentCellView.swift in Sources */,
 				C971BA8725C8DED9006A292E /* VerificationCodeManager.swift in Sources */,
 				C9ED446625C40936001A5456 /* RegisterFirView.swift in Sources */,
 				C9CF3D5E25D153780085263F /* BindPhoneView.swift in Sources */,
->>>>>>> origin/PhoneixBranch
 				03B6887D24D155850020AD47 /* PeiYang_LiteApp.swift in Sources */,
 				C97795682560B3C6001CA8F0 /* ChooseClassView.swift in Sources */,
 				C9D5BF8025D0D5FE00CD3537 /* BsLoginView.swift in Sources */,
@@ -1562,20 +1461,12 @@
 				032CE4ED24DBA1E5003786F6 /* DownloadCoordinator.swift in Sources */,
 				C9663C2825E248A600DFC973 /* CourseTableCourseDetailView.swift in Sources */,
 				03D85EBD24DD10AF00637AB8 /* WLANDetailView.swift in Sources */,
-<<<<<<< HEAD
-<<<<<<< HEAD
-				D3DAD9DB25190FD70074EDD7 /* Weather.swift in Sources */,
-=======
-				C91CF63D252C7CC3001C327B /* Weather.swift in Sources */,
->>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
-=======
 				C95B57C325EBF3C2004300B5 /* HomeCardView.swift in Sources */,
 				C95B57C925EBF3C2004300B5 /* HomeHeaderView.swift in Sources */,
 				C9D59B3825BBB80C006865FC /* BeginView.swift in Sources */,
 				C9D5BF7525D010F000CD3537 /* SettingView.swift in Sources */,
 				C95B57B025EBF3BA004300B5 /* HomeView2.swift in Sources */,
 				C92E614F253997990008A38A /* RadarChartView.swift in Sources */,
->>>>>>> origin/PhoneixBranch
 				032CE4DE24DBA1E5003786F6 /* Version.swift in Sources */,
 				032CE4F824DBA1E5003786F6 /* URLImage.swift in Sources */,
 				032CE4DD24DBA1E5003786F6 /* CacheHelper.swift in Sources */,
@@ -1584,16 +1475,6 @@
 				C9D5BF5325CC0D4800CD3537 /* RemindView.swift in Sources */,
 				C9016ED925E630F1007524DD /* AddCommentView.swift in Sources */,
 				032CE4E424DBA1E5003786F6 /* DefaultPlaceholder.swift in Sources */,
-<<<<<<< HEAD
-<<<<<<< HEAD
-				D39F34ED2514465C00710C7A /* HomeViewHeaderView.swift in Sources */,
-				03B6893224D1572A0020AD47 /* ECardDetailView.swift in Sources */,
-=======
-				03B6893224D1572A0020AD47 /* ECardDetailView.swift in Sources */,
-				C91CF63C252C7CC3001C327B /* WeatherManager.swift in Sources */,
->>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
-				C938C345250251E20033D043 /* CourseTableCourseDetailView.swift in Sources */,
-=======
 				C95B57E725EBF40C004300B5 /* CourseTableDetailView.swift in Sources */,
 				C95B57DB25EBF3ED004300B5 /* GPACellListView.swift in Sources */,
 				C971BA8F25C8FEE4006A292E /* RegisterManager.swift in Sources */,
@@ -1601,7 +1482,6 @@
 				C95B57F425EBF5D2004300B5 /* StudyRoomContentView.swift in Sources */,
 				C990BB86255FB05B00444D2E /* StudyRoom.swift in Sources */,
 				C9D59B6825BE6E71006865FC /* SecondStepView.swift in Sources */,
->>>>>>> origin/PhoneixBranch
 				032CE4E324DBA1E5003786F6 /* CoreDataAttributeDescription.swift in Sources */,
 				03B6894B24D1579B0020AD47 /* Chart.swift in Sources */,
 				C95B57B125EBF3BA004300B5 /* HomeView.swift in Sources */,
@@ -1665,19 +1545,7 @@
 				C95B57B325EBF3BA004300B5 /* HomeViewHeaderView.swift in Sources */,
 				03D85EB824DD0C6300637AB8 /* WLAN.swift in Sources */,
 				032CE4EB24DBA1E5003786F6 /* Resize.swift in Sources */,
-<<<<<<< HEAD
-<<<<<<< HEAD
-				032CE4EF24DBA1E5003786F6 /* DownloadHandler.swift in Sources */,
-				03B6891624D156CF0020AD47 /* Network.swift in Sources */,
-				03ACE52A24D844C5009468D4 /* RefreshButton.swift in Sources */,
-				037AAF2824D64F6F00C2A9D3 /* HomeSettingView.swift in Sources */,
-				032CE4E124DBA1E5003786F6 /* CoreDataEntityDescription.swift in Sources */,
-				03B6895C24D157D90020AD47 /* Home.swift in Sources */,
-=======
-				C91CF65A252C81B5001C327B /* HomeViewHeaderView.swift in Sources */,
-=======
 				C9ED7EF125DB7A0300CB3438 /* SplashView.swift in Sources */,
->>>>>>> origin/PhoneixBranch
 				032CE4EF24DBA1E5003786F6 /* DownloadHandler.swift in Sources */,
 				C971BA7B25C64F7D006A292E /* CalendarRepresentable.swift in Sources */,
 				03B6891624D156CF0020AD47 /* Network.swift in Sources */,
@@ -1687,7 +1555,6 @@
 				C95B57DA25EBF3ED004300B5 /* GPAListView.swift in Sources */,
 				C9BCE6BD25DE9A040041E533 /* DrawerView.swift in Sources */,
 				032CE4E124DBA1E5003786F6 /* CoreDataEntityDescription.swift in Sources */,
->>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
 				032CE4F424DBA1E5003786F6 /* ImageLoaderView.swift in Sources */,
 				C95B57A325EBF37F004300B5 /* QuestionCardView.swift in Sources */,
 				03B6893724D1572A0020AD47 /* ECardTranscationView.swift in Sources */,
@@ -1695,10 +1562,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-<<<<<<< HEAD
-/* End PBXSourcesBuildPhase section */
-
-=======
 		C9129F8C2513401D00EDE4CE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1735,7 +1598,6 @@
 		};
 /* End PBXTargetDependency section */
 
->>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
 /* Begin PBXVariantGroup section */
 		0356D02724D15B2D00614A26 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
@@ -1878,20 +1740,14 @@
 		};
 		03B6889F24D155860020AD47 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A778CB9C0C13C61941F8EA2C /* Pods-PeiYang Lite.debug.xcconfig */;
 			buildSettings = {
-<<<<<<< HEAD
-=======
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
->>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "PeiYang Lite/PeiYang Lite.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-<<<<<<< HEAD
-				CURRENT_PROJECT_VERSION = 202009220221;
-=======
 				CURRENT_PROJECT_VERSION = 202009142000;
->>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
 				DEVELOPMENT_ASSET_PATHS = "\"PeiYang Lite/Preview Content\"";
 				DEVELOPMENT_TEAM = T5JB4K7FT9;
 				ENABLE_PREVIEWS = YES;
@@ -1901,11 +1757,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-<<<<<<< HEAD
-				MARKETING_VERSION = 1.0.8;
-=======
 				MARKETING_VERSION = 1.0.2;
->>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
 				PRODUCT_BUNDLE_IDENTIFIER = "com.twtstudio.PeiYang-Lite";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1915,20 +1767,14 @@
 		};
 		03B688A024D155860020AD47 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FEBDECA626850C8311037F0F /* Pods-PeiYang Lite.release.xcconfig */;
 			buildSettings = {
-<<<<<<< HEAD
-=======
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
->>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "PeiYang Lite/PeiYang Lite.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-<<<<<<< HEAD
-				CURRENT_PROJECT_VERSION = 202009220221;
-=======
 				CURRENT_PROJECT_VERSION = 202009142000;
->>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
 				DEVELOPMENT_ASSET_PATHS = "\"PeiYang Lite/Preview Content\"";
 				DEVELOPMENT_TEAM = T5JB4K7FT9;
 				ENABLE_PREVIEWS = YES;
@@ -1938,11 +1784,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-<<<<<<< HEAD
-				MARKETING_VERSION = 1.0.8;
-=======
 				MARKETING_VERSION = 1.0.2;
->>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
 				PRODUCT_BUNDLE_IDENTIFIER = "com.twtstudio.PeiYang-Lite";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1950,10 +1792,9 @@
 			};
 			name = Release;
 		};
-<<<<<<< HEAD
-=======
 		C9129FA02513401E00EDE4CE /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D7E41DE3E6B713D16EC6B8F9 /* Pods-PeiYangLiteWidgetExtension.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
@@ -1976,6 +1817,7 @@
 		};
 		C9129FA12513401E00EDE4CE /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 478399CB343B8DC9325A9BC1 /* Pods-PeiYangLiteWidgetExtension.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
@@ -1996,7 +1838,6 @@
 			};
 			name = Release;
 		};
->>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -2018,8 +1859,6 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-<<<<<<< HEAD
-=======
 		C9129FA22513401E00EDE4CE /* Build configuration list for PBXNativeTarget "PeiYangLiteWidgetExtension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -2029,27 +1868,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
->>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		C9A8DB2C25C5728F001F33E2 /* XCRemoteSwiftPackageReference "FSCalendar" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/WenchaoD/FSCalendar.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.8.2;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		C9A8DB2D25C5728F001F33E2 /* FSCalendar */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C9A8DB2C25C5728F001F33E2 /* XCRemoteSwiftPackageReference "FSCalendar" */;
-			productName = FSCalendar;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 03B6887124D155850020AD47 /* Project object */;
 }

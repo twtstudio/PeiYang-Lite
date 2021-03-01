@@ -15,11 +15,7 @@ struct WLANCardView: View {
         VStack(alignment: .leading) {
             HStack(alignment: .top) {
                 Text(Localizable.wlan.rawValue)
-<<<<<<< HEAD
-                    .font(.title2)
-=======
                     .font(.title)
->>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
                 
                 Spacer()
                 
@@ -31,11 +27,7 @@ struct WLANCardView: View {
             Spacer()
             
             Text("availableTraffic: \(overview.traffic)")
-<<<<<<< HEAD
-                .font(.title)
-=======
                 .font(.largeTitle)
->>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
                 .bold()
                 .frame(maxHeight: .infinity)
             

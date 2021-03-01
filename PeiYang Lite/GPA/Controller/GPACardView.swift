@@ -18,11 +18,7 @@ struct GPACardView: View {
         VStack {
             HStack {
                 Text(Localizable.gpa.rawValue)
-<<<<<<< HEAD
-                    .font(.title2)
-=======
                     .font(.title)
->>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
                 
                 Spacer()
                 

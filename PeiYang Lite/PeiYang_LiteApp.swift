@@ -11,19 +11,11 @@ import SwiftUI
 struct PeiYang_LiteApp: App {
     var body: some Scene {
         WindowGroup {
-<<<<<<< HEAD
-<<<<<<< HEAD
-            MainView()
-=======
-            ContentView()
->>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
-=======
             SplashView()
                 .environmentObject(User())
                 .environmentObject(AppState())
                 .environmentObject(SharedMessage())
                 
->>>>>>> origin/PhoneixBranch
         }
     }
 }
