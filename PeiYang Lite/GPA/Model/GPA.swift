@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct SingleGPA: Codable, Storable {
+struct SingleGPA: Codable, Storable, Hashable {
     let semester: String
     let no: String
     let name: String

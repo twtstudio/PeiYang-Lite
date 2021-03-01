@@ -16,7 +16,9 @@ struct ContentView: View {
     
     var body: some View {
         ZStack {
-            GPADetailView()
+//            GPADetailView()
+//            HomeView2()
+            MainView()
 //            HomeView(inBackground: $inBackground, isUnlocked: $isUnlocked)
             if neddHide {
                 BlurView()

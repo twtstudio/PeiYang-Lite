@@ -11,7 +11,16 @@ import SwiftUI
 struct PeiYang_LiteApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            SplashView()
+                .environmentObject(User())
+                .environmentObject(AppState())
+                .environmentObject(SharedMessage())
+                
         }
+    }
+}
+extension UIApplication {
+    func endEditing() {
+        sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
 }

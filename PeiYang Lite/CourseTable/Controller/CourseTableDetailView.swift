@@ -11,12 +11,13 @@ struct CourseTableDetailView: View {
     @ObservedObject var store = Storage.courseTable
     private var courseTable: CourseTable { store.object }
     
+    @Environment(\.presentationMode) var presentationMode
     @Environment(\.horizontalSizeClass) private var sizeClass
     private var isRegular: Bool { sizeClass == .regular }
     
     @State private var isLoading = false
     
-    @State private var showFullCourse = false
+    @State private var showFullCourse = true
     
     @State private var showLogin = false
     
@@ -31,112 +32,122 @@ struct CourseTableDetailView: View {
     @State private var errorMessage: LocalizedStringKey = ""
     
     var body: some View {
-        
-        GeometryReader { full in
-            ZStack {
-                VStack {
-                    // MARK: - Header
-                    HStack {
-                        CouseTableHeaderView(
+//        GeometryReader { full in
+        VStack(alignment: .leading) {
+            // MARK: - Header
+            HStack {
+                Button(action: {
+                    self.presentationMode.wrappedValue.dismiss()
+                  }) {
+                    Image(systemName: "arrow.left")
+                        .font(.title)
+                        .foregroundColor(Color(#colorLiteral(red: 0.3856853843, green: 0.403162986, blue: 0.4810273647, alpha: 1)))
+                        .padding()
+                }
+                
+                Spacer()
+                
+                RefreshButton(isLoading: $isLoading, action: load, color: Color(#colorLiteral(red: 0.3856853843, green: 0.403162986, blue: 0.4810273647, alpha: 1)))
+            }
+//                .padding(.top, 40)
+            .padding(.trailing, 20)
+            
+//            ZStack {
+            ScrollView(showsIndicators: false) {
+                // MARK: - Header
+                CouseTableHeaderView(
+                    activeWeek: $activeWeek,
+                    showFullCourse: $showFullCourse,
+                    totalWeek: courseTable.totalWeek
+                ).padding()
+                
+//                    List {
+                    // MARK: - Table
+                if isRegular {
+                    Section(header:
+                        CourseTableWeekdaysView(
                             activeWeek: $activeWeek,
-                            showFullCourse: $showFullCourse,
-                            totalWeek: courseTable.totalWeek
+                            courseTable: courseTable,
+                            width: screen.width / 6.8//9
+                        )
+                    ) {
+                        CourseTableContentView(
+                            activeWeek: activeWeek,
+                            courseArray: courseTable.courseArray,
+                            width: screen.width / 6.8,
+                            alertCourse: alertCourse,
+                            showFullCourse: $showFullCourse//9
+                        )
+                    }.padding(.horizontal, 20)
+//                            .listRowInsets(EdgeInsets())
+//                        .listRowInsets(EdgeInsets(top: 0, leading: -10, bottom: 0, trailing: 0)) // insane!
+                } else {
+                    VStack(alignment: .leading) {
+                        CourseTableWeekdaysView(
+                            activeWeek: $activeWeek,
+                            courseTable: courseTable,
+                            width: screen.width / (7.5)//9
                         )
                         
-                        Spacer()
-                        
-                        RefreshButton(isLoading: $isLoading, action: load)
-                            .padding(.leading)
-                    }
-                    
-                    List {
-                        // MARK: - Table
-                        if isRegular {
-                            Section(header:
-                                CourseTableWeekdaysView(
-                                    activeWeek: $activeWeek,
-                                    courseTable: courseTable,
-                                    width: full.size.width / 9.5//9
-                                )
-                            ) {
-                                CourseTableContentView(
-                                    activeWeek: activeWeek,
-                                    courseArray: courseTable.courseArray,
-                                    width: full.size.width / 9.5,
-                                    alertCourse: alertCourse,
-                                    showFullCourse: $showFullCourse//9
-                                )
-                            }
-                            .listRowInsets(EdgeInsets())
-    //                        .listRowInsets(EdgeInsets(top: 0, leading: -10, bottom: 0, trailing: 0)) // insane!
-                        } else {
-                            VStack {
-                                CourseTableWeekdaysView(
-                                    activeWeek: $activeWeek,
-                                    courseTable: courseTable,
-                                    width: full.size.width / (9.5)//9
-                                )
-                                
-                                CourseTableContentView(
-                                    activeWeek: activeWeek,
-                                    courseArray: courseTable.courseArray,
-                                    width: full.size.width / (9.5),
-                                    alertCourse: alertCourse,//9
-                                    showFullCourse: $showFullCourse
-                                )
-                            }
-                            .listRowInsets(EdgeInsets(top: 0, leading: -8/*-10 */, bottom: 0, trailing: 5)) // insane!
-                        }
-                        
-                        // MARK: - List
-                        CourseTableListView(activeCourseArray: activeCourseArray)
-                            .listRowInsets(EdgeInsets())
-                    }
-                    .listIndicatorNone(.vertical)
-                    .sheet(isPresented: $showLogin) {
-                        HomeLoginView(module: .courseTable)
-                    }
-                    .alert(isPresented: $isError) {
-                        Alert(title: Text(errorMessage),
-                              dismissButton: .default(Text(Localizable.ok.rawValue)))
-                    }
+                        CourseTableContentView(
+                            activeWeek: activeWeek,
+                            courseArray: courseTable.courseArray,
+                            width: screen.width / (7.5),
+                            alertCourse: alertCourse,//9
+                            showFullCourse: $showFullCourse
+                        )
+                    }.padding(.horizontal, 20)
+//                            .listRowInsets(EdgeInsets(top: 0, leading: 5/*-10 */, bottom: 0, trailing: 5)) // insane!
                 }
-                
-                if alertCourse.showDetail {
-//                    withAnimation {
-                        ZStack {
-                            Color.clear
-                                .frame(width: full.size.width,
-                                       height: full.size.height,
-                                       alignment: .center)
-                                .contentShape(Rectangle())
-//                                .animation(.easeInOut)
-                            
-                            CourseDetailView(course: $alertCourse.currentCourse, weekDay: $alertCourse.currentWeekday, isRegular: isRegular)
-                                .frame(width: full.size.width / 1.5, height: full.size.height / 1.8, alignment: .center)
-//                                .transition(.asymmetric(insertion: .opacity, removal: .opacity))
-                                .background(ColorHelper.shared.color[alertCourse.currentCourse.no]?.opacity(0.8))
-//                                .transition(.opacity)
-                                .clipShape(RoundedRectangle(cornerRadius: 8))
-                                .shadow(color: Color.gray.opacity(0.5), radius: 8, x: 5, y: 5)
-//                                .opacity(alertCourse.showDetail ? 1 : 0)
-                                .animation(.easeInOut)
-                        }
-//                        .transition(.opacity)
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
-                        .edgesIgnoringSafeArea(.all)
-                        .onTapGesture {
-                            withAnimation(.easeOut) {
-                                self.alertCourse.showDetail = false
-                            }
-                        }
-                        .layoutPriority(1)
-               
-                }
-                
             }
+            .sheet(isPresented: $showLogin) {
+            HomeLoginView(module: .courseTable)
+            }
+            .alert(isPresented: $isError) {
+                Alert(title: Text(errorMessage),
+                      dismissButton: .default(Text(Localizable.ok.rawValue)))
+            }
+            .edgesIgnoringSafeArea(.all)
+            
+//                if alertCourse.showDetail {
+////                    withAnimation {
+//                        ZStack {
+//                            Color.clear
+//                                .frame(width: full.size.width,
+//                                       height: full.size.height,
+//                                       alignment: .center)
+//                                .contentShape(Rectangle())
+////                                .animation(.easeInOut)
+//
+//                            CourseDetailView(course: $alertCourse.currentCourse, weekDay: $alertCourse.currentWeekday, isRegular: isRegular)
+//                                .frame(width: full.size.width / 1.5, height: full.size.height / 1.8, alignment: .center)
+////                                .transition(.asymmetric(insertion: .opacity, removal: .opacity))
+//                                .background(ColorHelper.shared.color[alertCourse.currentCourse.no]?.opacity(0.8))
+////                                .transition(.opacity)
+//                                .clipShape(RoundedRectangle(cornerRadius: 8))
+//                                .shadow(color: Color.gray.opacity(0.5), radius: 8, x: 5, y: 5)
+////                                .opacity(alertCourse.showDetail ? 1 : 0)
+//                                .animation(.easeInOut)
+//                        }
+////                        .transition(.opacity)
+//                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+//                        .edgesIgnoringSafeArea(.all)
+//                        .onTapGesture {
+//                            withAnimation(.easeOut) {
+//                                self.alertCourse.showDetail = false
+//                            }
+//                        }
+//                        .layoutPriority(1)
+//
+//                }
+            
+//            }
         }
+        .padding(.leading)
+//        }
+        .navigationBarHidden(true)
         .onAppear(perform: load)
+        .navigationBarHidden(true)
         
     }
     

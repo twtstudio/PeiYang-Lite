@@ -10,22 +10,23 @@ import SwiftUI
 struct Network {
     enum Failure: Error {
         case urlError, requestFailed, loginFailed, unknownError
-        
         private static let pair: [Failure: Localizable] = [
             .urlError: .urlError,
             .requestFailed: .requestFailed,
             .loginFailed: .loginFailed,
-            .unknownError: .unknownError
+            .unknownError: .unknownError,
         ]
         
         var localizedStringKey: LocalizedStringKey {
             Failure.pair[self]?.rawValue ?? ""
         }
+        
     }
-
+    
     enum Method: String {
         case get = "GET"
         case post = "POST"
+        case put = "PUT"
     }
 
     static func fetch(

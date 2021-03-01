@@ -10,11 +10,10 @@ import WidgetKit
 
 struct MediumView: View {
     @Environment(\.colorScheme) private var colorScheme
-    @State var isNextCourse: Bool
     var courseTable: CourseTable = Storage.courseTable.object
-    let currentCourseTable: [Course]
-    var colorHelper: ColorHelper { ColorHelper.shared }
-//    let hour: Int = getHourInt()
+    let entry: CourseEntry
+    var currentCourseTable: [Course] { entry.courses }
+    var weathers: [Weather] { entry.weathers }
     var hour: Int {
         let hourFormatter = DateFormatter()
         hourFormatter.dateFormat = "HH"
@@ -28,75 +27,99 @@ struct MediumView: View {
         GeometryReader { geo in
             HStack(alignment: .center) {
                 ZStack {
-                    Image(colorScheme == .dark ? "NOW-1" : "NOW")
-                        .resizable()
-                        .scaledToFill()
-                        .frame(width: geo.size.width/2, height: geo.size.height*(5/7))
-                        .clipShape(RoundedRectangle(cornerRadius: 10))
-                    
-                    if currentCourseTable.isEmpty {
-                        Text("当前无课")
-                            .font(.body)
-                            .fontWeight(.bold)
-                    } else {
-    //                    GeometryReader { geo in
-                            if let preCourse = getPresentationCourse(courseArray: currentCourseTable, courseTable: courseTable, hour: hour) {
-                                if preCourse.isEmpty == false {
-                                    VStack(alignment: .center) {
-                                        Text("\(preCourse.course.name)")
-                                            .font(.footnote)
-                                            .fontWeight(.bold)
-                                            .lineLimit(1)
-                                        
-                                        Text("\(preCourse.course.activeArrange(courseTable.currentWeekday).location)")
-                                            .font(.footnote)
-                                    }
-                                    .frame(width: geo.size.width*(4/5), height: geo.size.height, alignment: .center)
-                                    .foregroundColor(.white)
-                                    .padding(8)
-                                } else {
-                                    Text("接下来无课")
-                                        .font(.body)
-                                        .fontWeight(.bold)
+                    if !currentCourseTable.isEmpty {
+                    if let preCourse = getPresentCourse(courseArray: currentCourseTable, courseTable: courseTable, hour: hour) {
+                        if preCourse.isNext == false {
+                            Image("NOW")
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: geo.size.width/2, height: geo.size.height*(5/7))
+                                .clipShape(RoundedRectangle(cornerRadius: 10))
+                        } else {
+                            Image("NEXT")
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: geo.size.width/2, height: geo.size.height*(5/7))
+                                .clipShape(RoundedRectangle(cornerRadius: 10))
+                        }
+
+                        if preCourse.isEmpty == false {
+                            VStack(alignment: .center) {
+                                Text("\(preCourse.course.name)")
+                                    .font(.footnote)
+                                    .fontWeight(.bold)
+                                    .lineLimit(1)
+                                HStack {
+                                    Text("\(preCourse.course.activeArrange(courseTable.currentWeekday).location)")
+                                        .font(.footnote)
+                                    
+                                    Text("\(preCourse.course.activeArrange(courseTable.currentWeekday).startTimeString)-\(preCourse.course.activeArrange(courseTable.currentWeekday).endTimeString)")
+                                        .font(.footnote)
                                 }
                             }
-    //                    }
+                            .frame(width: geo.size.width*(4/5), height: geo.size.height, alignment: .center)
+                            .foregroundColor(.white)
+                            .padding(8)
+                            .padding(.top, 8)
+                        } else {
+                            Text("接下来无课\n做点有意义的事情吧")
+                                .font(.footnote)
+                                .foregroundColor(.white)
+                            }
+                        }
+                    }
+        
+                    else {
+                        Image("无课2*4")
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: geo.size.width/2, height: geo.size.height*(5/7))
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
                         
+                        Text("今日无课:)\n做点有意义的事情吧")
+                            .font(.footnote)
+                            .foregroundColor(.white)
                     }
                 }
                 .frame(width: geo.size.width*(3/5), height: geo.size.height*(4/5))
 //                .padding(.trailing, 10)
 //                .padding(.leading, geo.size.width/25)
                 
-                VStack {
+                VStack(alignment: .leading) {
                     HStack {
-                        Image(colorScheme == .dark ? "晴转阴-1" : "晴转阴")
+                        Image(weathers[0].weatherIconString1)
                             .resizable()
                             .scaledToFill()
                             .frame(width: 50, height: 50)
-                        VStack {
-                            Text("晴转阴")
+                        
+                        VStack(alignment: .leading) {
+                            Text("今：\(weathers[0].wStatus)")
                                 .font(.footnote)
+                                .bold()
                             
-                            Text("19 ℃")
-                                .font(.body)
+                            Text("\(weathers[0].weatherString)")
+                                .font(.footnote)
+                                .bold()
                         }
-                        .foregroundColor(colorScheme == .dark ? .white : Color(#colorLiteral(red: 0.4518171549, green: 0.5009640455, blue: 0.6247268915, alpha: 1)))
+                        .foregroundColor(colorScheme == .dark ? .white : Color(#colorLiteral(red: 0.1279886365, green: 0.1797681153, blue: 0.2823780477, alpha: 1)))
                     }
                     
                     HStack {
-                        Image(colorScheme == .dark ? "晴转阴-1" : "晴转阴")
+                        Image(weathers[1].weatherIconString1)
                             .resizable()
                             .scaledToFill()
                             .frame(width: 50, height: 50)
-                        VStack {
-                            Text("晴转阴")
+                        
+                        VStack(alignment: .leading) {
+                            Text("明：\(weathers[1].wStatus)")
                                 .font(.footnote)
+                                .bold()
                             
-                            Text("19 ℃")
-                                .font(.body)
+                            Text("\(weathers[1].weatherString)")
+                                .font(.footnote)
+                                .bold()
                         }
-                        .foregroundColor(colorScheme == .dark ? .white : Color(#colorLiteral(red: 0.4518171549, green: 0.5009640455, blue: 0.6247268915, alpha: 1)))
+                        .foregroundColor(colorScheme == .dark ? .white : Color(#colorLiteral(red: 0.1279886365, green: 0.1797681153, blue: 0.2823780477, alpha: 1)))
                     }
                 }
             }
@@ -111,12 +134,12 @@ struct MediumView: View {
 
 
 
-struct MidView_Previews: PreviewProvider {
-    static var previews: some View {
-        MediumView(isNextCourse: false, currentCourseTable: [])
-            .previewContext(WidgetPreviewContext(family: WidgetFamily.systemMedium))
-    }
-}
+//struct MidView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        MediumView(currentCourseTable: [], weathers: [])
+//            .previewContext(WidgetPreviewContext(family: WidgetFamily.systemMedium))
+//    }
+//}
 
 struct WidgetCourse {
     var isNext: Bool
@@ -131,31 +154,48 @@ struct WidgetCourse {
 }
 
 extension View {
-    func getPresentationCourse(courseArray: [Course], courseTable: CourseTable, hour: Int) -> WidgetCourse {
-        var presentationCourse = WidgetCourse()
+    func getPresentCourse(courseArray: [Course], courseTable: CourseTable, hour: Int) -> WidgetCourse {
+        var presentCourse = WidgetCourse()
         for course in courseArray {
             let arrange = course.activeArrange(courseTable.currentWeekday)
             if arrange.startTime.0 <= hour && arrange.endTime.0 > hour {
-                presentationCourse.course = course
-                presentationCourse.isEmpty = false
-                presentationCourse.isNext = false
+                presentCourse.course = course
+                presentCourse.isEmpty = false
+                presentCourse.isNext = false
                 break
             } else if arrange.startTime.0 >= hour {
-                presentationCourse.course = course
-                presentationCourse.isEmpty = false
-                presentationCourse.isNext = true
+                presentCourse.course = course
+                presentCourse.isNext = true
+                presentCourse.isEmpty = false
                 break
             } else {
-                presentationCourse.course = Course()
-                presentationCourse.isEmpty = true
+                presentCourse.course = Course()
+                presentCourse.isEmpty = true
             }
         }
-        print(hour)
-        return presentationCourse
+        return presentCourse
+    }
+    
+    func getNextCourse(courseArray: [Course], courseTable: CourseTable, hour: Int) -> WidgetCourse {
+        var nextCourse = WidgetCourse()
+        for course in courseArray {
+            let arrange = course.activeArrange(courseTable.currentWeekday)
+            if arrange.startTime.0 >= hour {
+                nextCourse.course = course
+                nextCourse.isEmpty = false
+                nextCourse.isNext = true
+                break
+            } else {
+                nextCourse.course = Course()
+                nextCourse.isEmpty = true
+            }
+        }
+        return nextCourse
     }
 }
 
 
 
+   
 
 

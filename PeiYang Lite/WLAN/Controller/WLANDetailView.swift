@@ -40,7 +40,7 @@ struct WLANDetailView: View {
                 
                 Spacer()
                 
-                RefreshButton(isLoading: $isLoading, action: load)
+                RefreshButton(isLoading: $isLoading, action: load, color: .white)
             }
             .padding(.vertical)
             

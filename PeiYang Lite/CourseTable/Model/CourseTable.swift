@@ -153,6 +153,8 @@ struct CourseTable: Codable, Storable {
     }
     var startDate: Date {
         // TODO: Changed termly
+        // 20212
+//        DateComponents(calendar: currentCalendar, year: 2021, month: 3, day: 1).date ?? Date(timeIntervalSince1970: 0)
         // 20211
         DateComponents(calendar: currentCalendar, year: 2020, month: 8, day: 31).date ?? Date(timeIntervalSince1970: 0)
         // 19202
@@ -170,7 +172,7 @@ struct CourseTable: Codable, Storable {
             return currentDate
         }
         // test date
-//        DateComponents(calendar: currentCalendar, year: 2020, month: 4, day: 27, hour: 10, minute: 30).date ?? Date()
+//        DateComponents(calendar: currentCalendar, year: 2020, month: 9, day: 10, hour: 10, minute: 30).date ?? Date()
     }
     
     var currentMonth: String { currentDate.format(with: "LLL") }
@@ -215,8 +217,8 @@ struct ColorHelper {
     
     init(_ courseArray: [Course]) {
         var colorArray = [
-            #colorLiteral(red: 0.6470588235, green: 0.1411764706, blue: 0.2392156863, alpha: 1), #colorLiteral(red: 0.8196078431, green: 0.3764705882, blue: 0.07843137255, alpha: 1), #colorLiteral(red: 1, green: 0.5098039216, blue: 0, alpha: 1), #colorLiteral(red: 0.9647058824, green: 0.6823529412, blue: 0.1764705882, alpha: 1), #colorLiteral(red: 0.5607843137, green: 0.8078431373, blue: 0.3882352941, alpha: 1), #colorLiteral(red: 0.02352941176, green: 0.5647058824, blue: 0.5607843137, alpha: 1), #colorLiteral(red: 0.003921568627, green: 0.5921568627, blue: 0.9647058824, alpha: 1), #colorLiteral(red: 0.1098039216, green: 0.4666666667, blue: 0.7647058824, alpha: 1),
-            #colorLiteral(red: 0.4745098039, green: 0.1176470588, blue: 0.5803921569, alpha: 1), #colorLiteral(red: 0.7411764706, green: 0.2509803922, blue: 0.537254902, alpha: 1), #colorLiteral(red: 0.9490196078, green: 0.3607843137, blue: 0.6549019608, alpha: 1), #colorLiteral(red: 0.5450980392, green: 0.4431372549, blue: 0.462745098, alpha: 1), #colorLiteral(red: 0.4156862745, green: 0.3450980392, blue: 0.2156862745, alpha: 1), #colorLiteral(red: 0.2745098039, green: 0.1450980392, blue: 0.1294117647, alpha: 1), #colorLiteral(red: 0.2392156863, green: 0.2274509804, blue: 0.2941176471, alpha: 1), #colorLiteral(red: 0.04705882353, green: 0.2784313725, blue: 0.4039215686, alpha: 1)
+            #colorLiteral(red: 0.5590268373, green: 0.5717645288, blue: 0.645496428, alpha: 1), #colorLiteral(red: 0.4453202486, green: 0.4580122828, blue: 0.5316858888, alpha: 1), #colorLiteral(red: 0.5585952401, green: 0.4775523543, blue: 0.5879413486, alpha: 1), #colorLiteral(red: 0.512439549, green: 0.524015069, blue: 0.6323540807, alpha: 1), #colorLiteral(red: 0.3847824335, green: 0.396281302, blue: 0.4800215364, alpha: 1), #colorLiteral(red: 0.6332313418, green: 0.6521518826, blue: 0.7899104953, alpha: 1), #colorLiteral(red: 0.6195089221, green: 0.5867381692, blue: 0.7159363031, alpha: 1), #colorLiteral(red: 0.6934235692, green: 0.6567432284, blue: 0.8013477921, alpha: 1),
+            #colorLiteral(red: 0.4496340156, green: 0.3764404655, blue: 0.4869975448, alpha: 1), #colorLiteral(red: 0.6253550649, green: 0.5235865116, blue: 0.6773356795, alpha: 1), #colorLiteral(red: 0.7457726598, green: 0.6244233251, blue: 0.8077706695, alpha: 1), #colorLiteral(red: 0.4722867608, green: 0.5927650928, blue: 0.6177451015, alpha: 1), #colorLiteral(red: 0.4739673138, green: 0.6488676667, blue: 0.6929715872, alpha: 1), #colorLiteral(red: 0.2412205935, green: 0.3298183084, blue: 0.3522273302, alpha: 1), #colorLiteral(red: 0.218701601, green: 0.3526560962, blue: 0.2918043733, alpha: 1), #colorLiteral(red: 0.04705882353, green: 0.2784313725, blue: 0.4039215686, alpha: 1)
         ].map { Color($0) }
         
         var color = [String: Color]()
