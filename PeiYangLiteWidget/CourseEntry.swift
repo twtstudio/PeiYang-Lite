@@ -11,12 +11,13 @@ import WidgetKit
 struct CourseEntry: TimelineEntry {
     let date: Date
     let courses: [Course]
+    let weathers: [Weather]
     var isPlaceHolder = false
 }
 
 extension CourseEntry {
     static var placeholder: CourseEntry {
-        CourseEntry(date: Date(), courses: [], isPlaceHolder: true)
+        CourseEntry(date: Date(), courses: [], weathers: [Weather(), Weather()], isPlaceHolder: true)
     }
 }
 

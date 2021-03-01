@@ -99,28 +99,28 @@ struct ClassesSSOView: View {
     }
 }
 
-struct LoadingView: View {
-    @State private var isAnimating = false
-    
-    var body: some View {
-        Image(systemName: "gear")
-            .rotationEffect(.degrees(isAnimating ? 360 : 0))
-            .animation(Animation.linear(duration: 2).repeatForever(autoreverses: false))
-            .onAppear {
-                DispatchQueue.main.async { // wired, no animation in the first loading if sync
-                    isAnimating = true
-                }
-            }
-            .onDisappear {
-                isAnimating = false
-            }
-    }
-}
+//struct LoadingView: View {
+//    @State private var isAnimating = false
+//
+//    var body: some View {
+//        Image(systemName: "gear")
+//            .rotationEffect(.degrees(isAnimating ? 360 : 0))
+//            .animation(Animation.linear(duration: 2).repeatForever(autoreverses: false))
+//            .onAppear {
+//                DispatchQueue.main.async { // wired, no animation in the first loading if sync
+//                    isAnimating = true
+//                }
+//            }
+//            .onDisappear {
+//                isAnimating = false
+//            }
+//    }
+//}
 
 struct ColorInvertView<Content: View>: View {
     @Environment(\.colorScheme) private var colorScheme
     let content: () -> Content
-    
+
     var body: some View {
         colorScheme == .dark
         ? AnyView(

@@ -11,30 +11,67 @@ struct CouseTableHeaderView: View {
     @Binding var activeWeek: Int
     @Binding var showFullCourse: Bool
     var totalWeek: Int
+    @ObservedObject var store = Storage.courseTable
+    private var courseTable: CourseTable { store.object }
     
     var body: some View {
-        HStack {
-            Text(Localizable.courseTable.rawValue)
-                .font(.title)
+        VStack(alignment: .leading, spacing: 5) {
+            HStack(alignment: .firstTextBaseline) {
+            Text("Schedule")
+                .font(.largeTitle)
+                .bold()
+                .foregroundColor(Color(#colorLiteral(red: 0.3856853843, green: 0.403162986, blue: 0.4810273647, alpha: 1)))
             
-            Spacer()
+            Text("WEEK \(activeWeek.description)")
+                .font(.body)
+                .fontWeight(.light)
+                .foregroundColor(.gray)
+            }
+            .padding(10)
             
-            Button(action: {
-                self.showFullCourse.toggle()
-            }, label: {
-                Text(showFullCourse ? "onlyThisWeek" : "fullCourse")
-            })
-            .cthViewButtonModifier()
-            
-            Menu("week \(activeWeek.description)") {
-                ForEach(1...totalWeek, id: \.self) { week in
-                    Button("week \(week.description)") {
-                        activeWeek = week
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack {
+                    ForEach(1...totalWeek, id: \.self) { week in
+                        Button(action: { activeWeek = week }, label: {
+                            if let weekMatrixArray = self.getWeekMatrix() {
+                            VStack {
+                                WeekGridView(width: 45, height: 40, rows: 5, cols: 6, weekMatrix: weekMatrixArray[week-1])
+                                Text("WEEK\(week.description)")
+                                    .foregroundColor(.gray)
+                                    .font(.footnote)
+                            }
+                            }
+                        })
+                        .padding(10)
                     }
                 }
             }
-            .cthViewButtonModifier()
+//            .cthViewButtonModifier()
         }
+    }
+    
+    private func getWeekMatrix() -> [[[Bool]]] {
+        var emptyMatrix = [[Bool]]()
+        for _ in 0...5 {
+          var row = [Bool]()
+          for _ in 0...6 {
+            row.append(false)
+          }
+          emptyMatrix.append(row)
+        }
+        
+        var weekMatrixArray = Array(repeating: emptyMatrix, count: courseTable.totalWeek)
+        
+        for arrange in courseTable.courseArray.flatMap(\.arrangeArray) {
+            for week in arrange.weekArray {
+                for unit in arrange.unitArray {
+                     
+                    weekMatrixArray[week-1][arrange.weekday][Int(Double(unit))/2] = true
+                    
+                }
+            }
+        }
+        return weekMatrixArray
     }
 }
 

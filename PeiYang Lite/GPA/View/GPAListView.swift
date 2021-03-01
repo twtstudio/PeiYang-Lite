@@ -9,6 +9,8 @@ import SwiftUI
 
 struct GPAListView: View {
     let activeSemesterGPA: SemesterGPA
+    var titleColor: Color
+    var valueColor: Color
     
     @Environment(\.horizontalSizeClass) private var sizeClass
     private var isRegular: Bool { sizeClass == .regular }
@@ -17,19 +19,19 @@ struct GPAListView: View {
         VStack {
             HStack {
                 if isRegular {
-                    GPATitleView(value: activeSemesterGPA.semester.fullname, title: .term)
-                    GPATitleView(value: activeSemesterGPA.score.decimal, title: .score)
-                    GPATitleView(value: activeSemesterGPA.gpa.decimal, title: .gpa)
-                    GPATitleView(value: activeSemesterGPA.credit.decimal, title: .credit)
+                    GPATitleView(value: activeSemesterGPA.semester.fullname, title: .term, titleColor: titleColor, valueColor: valueColor)
+                    GPATitleView(value: activeSemesterGPA.score.decimal, title: .score, titleColor: titleColor, valueColor: valueColor)
+                    GPATitleView(value: activeSemesterGPA.gpa.decimal, title: .gpa, titleColor: titleColor, valueColor: valueColor)
+                    GPATitleView(value: activeSemesterGPA.credit.decimal, title: .credit, titleColor: titleColor, valueColor: valueColor)
                 } else {
                     VStack {
-                        GPATitleView(value: activeSemesterGPA.semester.fullname, title: .term)
-                        GPATitleView(value: activeSemesterGPA.score.decimal, title: .score)
+                        GPATitleView(value: activeSemesterGPA.semester.fullname, title: .term, titleColor: titleColor, valueColor: valueColor)
+                        GPATitleView(value: activeSemesterGPA.score.decimal, title: .score, titleColor: titleColor, valueColor: valueColor)
                     }
                     
                     VStack {
-                        GPATitleView(value: activeSemesterGPA.gpa.decimal, title: .gpa)
-                        GPATitleView(value: activeSemesterGPA.credit.decimal, title: .credit)
+                        GPATitleView(value: activeSemesterGPA.gpa.decimal, title: .gpa, titleColor: titleColor, valueColor: valueColor)
+                        GPATitleView(value: activeSemesterGPA.credit.decimal, title: .credit, titleColor: titleColor, valueColor: valueColor)
                     }
                 }
             }
@@ -61,7 +63,7 @@ struct GPAListView_Previews: PreviewProvider {
         ZStack {
             Color.black
                 .edgesIgnoringSafeArea(.all)
-            GPAListView(activeSemesterGPA: SemesterGPA())
+            GPAListView(activeSemesterGPA: SemesterGPA(), titleColor: Color.white, valueColor: Color.white)
                 .environment(\.colorScheme, .dark)
         }
     }

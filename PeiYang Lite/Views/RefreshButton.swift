@@ -10,6 +10,7 @@ import SwiftUI
 struct RefreshButton: View {
     @Binding var isLoading: Bool
     let action: () -> Void
+    let color: Color
     
     @State private var isAnimating = false
     
@@ -19,7 +20,7 @@ struct RefreshButton: View {
         if isLoading {
             Image(systemName: symbol)
                 .font(.title)
-                .foregroundColor(.secondary)
+                .foregroundColor(color)
                 .rotationEffect(.degrees(isAnimating ? 360 : 0))
                 .animation(
                     isLoading
@@ -35,7 +36,7 @@ struct RefreshButton: View {
         } else {
             Image(systemName: symbol)
                 .font(.title)
-                .foregroundColor(.primary)
+                .foregroundColor(color)
                 .onTapGesture(perform: action)
         }
     }
@@ -46,7 +47,7 @@ struct RefreshButton_Previews: PreviewProvider {
         ZStack {
             Color.black
                 .edgesIgnoringSafeArea(.all)
-            RefreshButton(isLoading: .constant(true), action: {})
+            RefreshButton(isLoading: .constant(true), action: {}, color: Color.white)
                 .environment(\.colorScheme, .dark)
         }
     }

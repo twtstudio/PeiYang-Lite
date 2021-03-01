@@ -54,7 +54,7 @@ struct ECardDetailView: View {
                     }
                     .pickerStyle(SegmentedPickerStyle())
                     
-                    RefreshButton(isLoading: $isLoading, action: load)
+                    RefreshButton(isLoading: $isLoading, action: load, color: .white)
                 }
                 .padding(.bottom)
                 

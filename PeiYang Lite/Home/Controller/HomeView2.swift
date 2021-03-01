@@ -13,6 +13,7 @@ struct MyCourse {
     var loc: String
 }
 
+<<<<<<< HEAD
 struct Module {
     var image: Image
     var title: String
@@ -21,11 +22,41 @@ struct HomeView2: View {
     
     private var safeAreaHeight: CGFloat {
         return (UIApplication.shared.windows.first ?? UIWindow()).safeAreaInsets.top == 44 ? 44 : 0
+=======
+enum Destination {
+    case courseTable, yellowPage, GPA, studyRoom
+}
+
+struct Module {
+    var image: Image
+    var title: String
+    var destination: Destination
+}
+
+struct StudyRoom: Identifiable {
+    let id: UUID = UUID()
+    var image: Image
+    var building: String
+    var number: String
+    var isAvailable: Bool
+    
+    var description: String {
+        building + "教 " + number
+    }
+}
+
+struct HomeView2: View {
+    @AppStorage(ClassesManager.isGPAStoreKey, store: Storage.defaults) private var isNotShowGPA = true
+    
+    private var safeAreaHeight: CGFloat {
+        return (UIApplication.shared.windows.first ?? UIWindow()).safeAreaInsets.top
+>>>>>>> origin/PhoneixBranch
     }
     
     init() {
         UITableView.appearance().backgroundColor = .white
     }
+<<<<<<< HEAD
     
     var body: some View {
         ScrollView(showsIndicators: false) {
@@ -54,6 +85,68 @@ struct HomeView2: View {
         .padding(.top, safeAreaHeight)
         .edgesIgnoringSafeArea(.top)
     }
+=======
+    @EnvironmentObject var sharedMessage: SharedMessage
+    var body: some View {
+
+        
+            VStack {
+                HomeHeaderView(AccountName: sharedMessage.Account.nickname)
+                .padding(.top, safeAreaHeight)
+                .padding(.horizontal)
+                
+            ScrollView(showsIndicators: false) {
+            HomeModuleSectionView()
+//                .padding(.horizontal)
+            
+            Section(header: HStack {
+                Text(Localizable.courseTable.rawValue)
+                    .font(.title3)
+                    .bold()
+                    .foregroundColor(Color(#colorLiteral(red: 0.3803921569, green: 0.3960784314, blue: 0.4862745098, alpha: 1)))
+                    .padding(.horizontal)
+                Spacer()
+            }) {
+                HomeCourseSectionView()
+            }
+            
+            if(!isNotShowGPA) {
+                Section(header: HStack {
+                    Text(Localizable.gpa.rawValue)
+                        .font(.title3)
+                        .bold()
+                        .foregroundColor(Color(#colorLiteral(red: 0.3803921569, green: 0.3960784314, blue: 0.4862745098, alpha: 1)))
+                    Spacer()
+                }) {
+                    HomeGPASectionView()
+                }
+                .padding(.horizontal)
+            }
+            
+            Section(header: HStack {
+                Text("自习室")
+                    .font(.title3)
+                    .bold()
+                    .foregroundColor(Color(#colorLiteral(red: 0.3803921569, green: 0.3960784314, blue: 0.4862745098, alpha: 1)))
+                    .padding(.horizontal)
+                Spacer()
+            }) {
+                HomeStudyRoomSectionView()
+                    .padding(.bottom, 80)
+            }
+            }
+            
+        }
+        .navigationBarHidden(true)
+        .background(Color(#colorLiteral(red: 0.9352087975, green: 0.9502342343, blue: 0.9600060582, alpha: 1)))
+        .edgesIgnoringSafeArea(.all)
+        
+
+        
+    }
+    
+    
+>>>>>>> origin/PhoneixBranch
 }
 
 struct HomeView2_Previews: PreviewProvider {
@@ -62,6 +155,7 @@ struct HomeView2_Previews: PreviewProvider {
     }
 }
 
+<<<<<<< HEAD
 fileprivate struct HeaderView: View {
     var body: some View {
         HStack {
@@ -220,3 +314,8 @@ struct ModuleScrollView: View {
         }
     }
 }
+=======
+
+
+
+>>>>>>> origin/PhoneixBranch

@@ -33,22 +33,22 @@ struct ECardLoginView: View {
                 TextField(Localizable.captcha.rawValue, text: $captcha)
                 .keyboardType(.asciiCapable)
                 
-                URLImage(
-                    URL(string: captchaURL)!,
-                    expireAfter: Date(timeIntervalSinceNow: 0),
-                    placeholder: { _ in
-                        LoadingView()
-                    },
-                    content: { imageProxy in
-                        ColorInvertView {
-                            imageProxy.image
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(height: 32)
-                        }
-                    }
-                )
-                .onTapGesture(perform: refreshCaptcha)
+//                URLImage(
+//                    URL(string: captchaURL)!,
+//                    expireAfter: Date(timeIntervalSinceNow: 0),
+//                    placeholder: { _ in
+//                        LoadingView()
+//                    },
+//                    content: { imageProxy in
+//                        ColorInvertView {
+//                            imageProxy.image
+//                                .resizable()
+//                                .aspectRatio(contentMode: .fit)
+//                                .frame(height: 32)
+//                        }
+//                    }
+//                )
+//                .onTapGesture(perform: refreshCaptcha)
             }
             
             Section {

@@ -81,7 +81,7 @@ struct InnerGrid<Header: View, Content: View>: View {
     }
     
     var body : some View {
-        ScrollView(.vertical) {
+        ScrollView(.vertical, showsIndicators: false) {
             VStack(alignment: alignment, spacing: spacing) {
                 header()
                 

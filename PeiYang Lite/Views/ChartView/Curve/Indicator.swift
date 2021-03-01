@@ -17,7 +17,7 @@ struct Indicator: View {
             Circle()
                 .stroke(Color.background, style: StrokeStyle(lineWidth: 4))
         }
-        .frame(width: 16, height: 16)
+        .frame(width: 8, height: 8)
         .shadow(color: .shadow, radius: 4, x: 0, y: 4)
     }
 }

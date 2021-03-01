@@ -21,7 +21,7 @@ struct CourseTableWeekdaysView: View {
         return startDate.addingTimeInterval(TimeInterval(distance))
     }
     
-    private var activeMonth: String { activeWeekStartDate.format(with: "LLL") }
+    private var activeMonth: String { activeWeekStartDate.format(with: "MM") }
     
     private var weekdays: [String] {
         var calendar = Calendar.current
@@ -40,6 +40,10 @@ struct CourseTableWeekdaysView: View {
         return dates
     }
     
+    private var months: [Int] {
+        dates.map { courseTable.currentCalendar.component(.month, from: $0)}
+    }
+    
     private var days: [Int] {
         dates.map { courseTable.currentCalendar.component(.day, from: $0) }
     }
@@ -56,21 +60,24 @@ struct CourseTableWeekdaysView: View {
     }
     
     var body: some View {
-        HStack {
-            Text(activeMonth)
-                .font(isRegular ? .body : .footnote)
-                .frame(width: width)
+        HStack(alignment: .center) {
+//            Text(activeMonth)
+//                .font(isRegular ? .body : .footnote)
+//                .frame(width: width)
             
-            ForEach(0...6, id: \.self) {
-                Text("\(weekdays[$0])\n\(days[$0])")
+            ForEach(0...5, id: \.self) {
+                Text("\(activeMonth)\\\(days[$0])")
+                    .bold()
+                    .lineLimit(1)
                     .font(isRegular ? .subheadline : .system(size: 10))
-                    .multilineTextAlignment(.center)
-                    .padding(7)//8
-                    .foregroundColor(isActiveDate(dates[$0]) ? .white : .primary)
+                    .padding(4)//8
+                    .foregroundColor(isActiveDate(dates[$0]) ? .gray : Color(#colorLiteral(red: 0.8110870719, green: 0.8155250549, blue: 0.8371899128, alpha: 1)))
+//                    .foregroundColor(Color(#colorLiteral(red: 0.8110870719, green: 0.8155250549, blue: 0.8371899128, alpha: 1)))
                     .frame(width: width)
-                    .frame(minHeight: width)
-                    .background(isActiveDate(dates[$0]) ? Color(#colorLiteral(red: 0.9372549057, green: 0.3490196168, blue: 0.1921568662, alpha: 1)) : Color.clear)
-                    .clipShape(RoundedRectangle(cornerRadius: 8))
+                    .frame(minHeight: width/1.7)
+//                    .background(isActiveDate(dates[$0]) ? Color(#colorLiteral(red: 0.9372549057, green: 0.3490196168, blue: 0.1921568662, alpha: 1)) : Color.clear)
+                    .background(Color(#colorLiteral(red: 0.9246603847, green: 0.9294714928, blue: 0.9379970431, alpha: 1)))
+                    .clipShape(RoundedRectangle(cornerRadius: 5))
             }
         }
     }

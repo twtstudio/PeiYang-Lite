@@ -8,12 +8,13 @@
 import SwiftUI
 
 struct GPADetailView: View {
+    @Environment(\.presentationMode) var presentationMode
     @ObservedObject var store = Storage.gpa
     private var gpa: GPA { store.object }
     
     @State private var isLoading = false
     
-    @State private var activeIndex = -1
+    @State private var activeIndex = 0
     
     @State private var showLogin = false
     
@@ -25,49 +26,77 @@ struct GPADetailView: View {
             VStack {
                 // MARK: - Header
                 HStack {
-                    Text(Localizable.gpa.rawValue)
-                        .font(.title)
+                    Button(action: {
+                        self.presentationMode.wrappedValue.dismiss()
+                      }) {
+                        Image(systemName: "arrow.left")
+                            .font(.title)
+                            .foregroundColor(.white)
+                            .padding()
+                    }
                     
                     Spacer()
                     
-                    RefreshButton(isLoading: $isLoading, action: load)
+                    RefreshButton(isLoading: $isLoading, action: load, color: .white)
+                    Image(systemName: "exclamationmark.circle")
+                        .font(.title)
+                        .foregroundColor(.white)
                 }
-                
-                // MARK: - Chart
-                GeometryReader { geo in
-                    CurveDetailView(
-                        data: ChartData(points: gpa.semesterGPAArray.map(\.score)),
-                        size: .constant(CGSize(width: geo.size.width, height: geo.size.width * 0.5)),
-                        minDataValue: .constant(nil),
-                        maxDataValue: .constant(nil),
-                        activeIndex: $activeIndex,
-                        showIndicator: .constant(true),
-                        pathGradient: Gradient(colors: [Color(#colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)), Color(#colorLiteral(red: 0.8549019694, green: 0.250980407, blue: 0.4784313738, alpha: 1))]),
-                        backgroundGradient: Gradient(colors: [Color(#colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)), .background]),
-                        indicatorColor: Color(#colorLiteral(red: 1, green: 0.3411764706, blue: 0.6509803922, alpha: 1))
-                    )
-                }
-                .padding()
-                .frame(width: full.size.width, height: full.size.width * 0.5)
-                
-                // MARK: - List
-                if activeIndex == -1 {
-                    HStack {
-                        GPATitleView(value: gpa.score.decimal, title: .totalScore)
-                        GPATitleView(value: gpa.gpa.decimal, title: .totalGPA)
-                        GPATitleView(value: gpa.credit.decimal, title: .totalCredit)
+                .padding(.top, 40)
+                .padding(.trailing, 20)
+                if !gpa.semesterGPAArray.isEmpty {
+                ScrollView(showsIndicators: false) {
+                        // MARK: - RadarChart
+        //                    GPAListView(activeSemesterGPA: gpa.semesterGPAArray[activeIndex])
+                    if !gpa.semesterGPAArray.isEmpty {
+                        RadarChartView(strokeColor: Color(#colorLiteral(red: 0.6459901929, green: 0.6900593638, blue: 0.5020841956, alpha: 1)), textColor: Color.white, center: CGPoint(x: (full.size.width - 30)/2, y: (full.size.width - 30)/2), width: full.size.width - 20, activeIndex: $activeIndex)
+                    } else {
+                        Text("Empty Data!")
                     }
-                } else {
-                    GPAListView(activeSemesterGPA: gpa.semesterGPAArray[activeIndex])
+                        
+                        HStack {
+                            GPATitleView(value: gpa.semesterGPAArray[activeIndex].score.decimal, title: .score, titleColor: Color(#colorLiteral(red: 0.6580134034, green: 0.7014739513, blue: 0.5453689694, alpha: 1)), valueColor: .white)
+                                .padding(5)
+                            GPATitleView(value: gpa.semesterGPAArray[activeIndex].gpa.decimal, title: .gpa, titleColor: Color(#colorLiteral(red: 0.6580134034, green: 0.7014739513, blue: 0.5453689694, alpha: 1)), valueColor: .white)
+                                .padding(5)
+                            GPATitleView(value: gpa.semesterGPAArray[activeIndex].credit.decimal, title: .credit, titleColor: Color(#colorLiteral(red: 0.6580134034, green: 0.7014739513, blue: 0.5453689694, alpha: 1)), valueColor: .white)
+                                .padding(5)
+                        }
+                        
+                        // MARK: - Curve
+    //                    GeometryReader { geo in
+                            CurveDetailView(
+                                data: ChartData(points: gpa.semesterGPAArray.filter({ $0.gpa != 0}).map(\.score)),
+                                size: .constant(CGSize(width: full.size.width - 30, height: full.size.width * 0.5)),
+                                minDataValue: .constant(nil),
+                                maxDataValue: .constant(nil),
+                                activeIndex: $activeIndex,
+                                showIndicator: .constant(true),
+                                pathGradient: Gradient(colors: [Color(#colorLiteral(red: 0.6580134034, green: 0.7014739513, blue: 0.5453689694, alpha: 1))]),
+                                backgroundGradient: Gradient(colors: [Color.clear]),
+                                indicatorColor: Color.white
+                            )
+    //                        .frame(width: full.size.width - 30, height: full.size.width*0.5)
+                            .frame(height: full.size.width*0.5)
+                            .padding(.leading)
+    //                    }
+    //                    .frame(width: full.size.width, height: full.size.width/6)
+    //                    .padding()
+                        // MARK: - CellList
+                        GPACellListView(activeSemesterGPA: gpa.semesterGPAArray[activeIndex])
+                    }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+//                    .sheet(isPresented: $showLogin) {
+//                        HomeLoginView(module: .gpa)
+//                    }
+                    .alert(isPresented: $isError) {
+                        Alert(title: Text(errorMessage),
+                              dismissButton: .default(Text(Localizable.ok.rawValue)))
+                    }
                 }
-            }
-            .sheet(isPresented: $showLogin) {
-                HomeLoginView(module: .gpa)
-            }
-            .alert(isPresented: $isError) {
-                Alert(title: Text(errorMessage),
-                      dismissButton: .default(Text(Localizable.ok.rawValue)))
-            }
+                }
+                .edgesIgnoringSafeArea(.all)
+                .background(Color(#colorLiteral(red: 0.500842154, green: 0.5448840261, blue: 0.3510230184, alpha: 1)))
         }
 <<<<<<< HEAD
         .onAppear {
@@ -77,7 +106,16 @@ struct GPADetailView: View {
         }
 =======
         .onAppear(perform: load)
+<<<<<<< HEAD
 >>>>>>> e4291697b2a03afcf4cfbf314ae8cf47114102d1
+=======
+        .navigationBarHidden(true)
+        .sheet(isPresented: $showLogin) {
+            HomeLoginView(module: .gpa)
+        }
+        .edgesIgnoringSafeArea(.all)
+        .background(Color(#colorLiteral(red: 0.500842154, green: 0.5448840261, blue: 0.3510230184, alpha: 1)))
+>>>>>>> origin/PhoneixBranch
     }
     
     func load() {
@@ -86,6 +124,7 @@ struct GPADetailView: View {
         ClassesManager.checkLogin { result in
             switch result {
             case .success:
+//                showLogin = false
                 return
             case .failure(let error):
                 if error == .requestFailed {
@@ -119,13 +158,19 @@ struct GPADetailView: View {
 struct GPATitleView: View {
     let value: String
     let title: Localizable
+    let titleColor: Color
+    let valueColor: Color
     
     var body: some View {
         VStack {
-            Text(value)
-                .font(.title)
             Text(title.rawValue)
-                .foregroundColor(.secondary)
+                .font(.footnote)
+                .fontWeight(.bold)
+                .foregroundColor(titleColor)
+            Text(value)
+                .lineLimit(1)
+                .font(.title2)
+                .foregroundColor(valueColor)
         }
         .padding()
     }

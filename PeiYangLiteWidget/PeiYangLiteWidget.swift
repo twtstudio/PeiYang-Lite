@@ -16,9 +16,11 @@ struct CourseTableWidgetEntryView: View {
     var body: some View {
         switch family {
         case .systemMedium:
-            MediumView(currentCourseTable: entry.courses)
+            MediumView(entry: entry)
+        case .systemLarge:
+            LargeView(entry: entry)
         default:
-            SmallView(currentCourseTable: entry.courses)
+            SmallView(entry: entry)
         }
     }
 }
@@ -34,13 +36,13 @@ struct PeiYangLiteWidget: Widget {
         }
         .configurationDisplayName("PeiYang Lite Widget")
         .description("This is an example widget.")
-        .supportedFamilies([.systemMedium, .systemSmall])
+        .supportedFamilies([.systemMedium, .systemSmall, .systemLarge])
     }
 }
 
-struct PeiYangLiteWidget_Previews: PreviewProvider {
-    static var previews: some View {
-        MediumView(currentCourseTable: [Course()])
-            .previewContext(WidgetPreviewContext(family: .systemMedium))
-    }
-}
+//struct PeiYangLiteWidget_Previews: PreviewProvider {
+//    static var previews: some View {
+//        MediumView(currentCourseTable: [Course()], weathers: [Weather()])
+//            .previewContext(WidgetPreviewContext(family: .systemMedium))
+//    }
+//}
