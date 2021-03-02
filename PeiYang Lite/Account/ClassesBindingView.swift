@@ -1,5 +1,5 @@
 //
-//  BsLoginView.swift
+//  ClassesBindingView.swift
 //  PeiYang Lite
 //
 //  Created by phoenix Dai on 2021/2/8.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct BsLoginView: View {
+struct ClassesBindingView: View {
     let themeColor = Color(red: 102/255, green: 106/255, blue: 125/255)
     let titleColor = Color.init(red: 98/255, green: 103/255, blue: 122/255)
     
@@ -278,6 +278,6 @@ struct LoadingView: View {
 
 struct BsLoginView_Previews: PreviewProvider {
     static var previews: some View {
-        BsLoginView()
+        ClassesBindingView()
     }
 }

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -81,9 +81,6 @@
 		03D85EBD24DD10AF00637AB8 /* WLANDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D85EBC24DD10AF00637AB8 /* WLANDetailView.swift */; };
 		03D85EBF24DD17B700637AB8 /* WLANLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D85EBE24DD17B700637AB8 /* WLANLoginView.swift */; };
 		AD84AA3202491DFCF618DD89 /* Pods_PeiYangLiteWidgetExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04BB6100050161BFA2B5D4B3 /* Pods_PeiYangLiteWidgetExtension.framework */; };
-		C9016ED925E630F1007524DD /* AddCommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9016ED825E630F1007524DD /* AddCommentView.swift */; };
-		C9016EDF25E7CEE0007524DD /* TagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9016EDE25E7CEDF007524DD /* TagsView.swift */; };
-		C9016EE425E88557007524DD /* SchCommentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9016EE325E88557007524DD /* SchCommentManager.swift */; };
 		C9016EED25E95242007524DD /* BuildingSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9016EEC25E95242007524DD /* BuildingSectionView.swift */; };
 		C9016EF525E9CC72007524DD /* StudySearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9016EF425E9CC72007524DD /* StudySearchView.swift */; };
 		C9016EF925E9D7AC007524DD /* SearchAnsViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9016EF825E9D7AC007524DD /* SearchAnsViews.swift */; };
@@ -142,10 +139,6 @@
 		C9663C2C25E248A600DFC973 /* CourseTableContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9663C2525E248A600DFC973 /* CourseTableContentView.swift */; };
 		C9663C2D25E248A600DFC973 /* CourseTableWeekdaysView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9663C2625E248A600DFC973 /* CourseTableWeekdaysView.swift */; };
 		C9663C2E25E248A600DFC973 /* CouseTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9663C2725E248A600DFC973 /* CouseTableHeaderView.swift */; };
-		C9663C3725E4A06800DFC973 /* SchAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9663C3625E4A06800DFC973 /* SchAccountView.swift */; };
-		C9663C3B25E4A9D500DFC973 /* CommentCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9663C3A25E4A9D500DFC973 /* CommentCellView.swift */; };
-		C9663C3F25E4FE4500DFC973 /* SchProjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9663C3E25E4FE4500DFC973 /* SchProjectView.swift */; };
-		C9663C4A25E508F700DFC973 /* SchSearchTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9663C4925E508F700DFC973 /* SchSearchTableView.swift */; };
 		C971BA7B25C64F7D006A292E /* CalendarRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C971BA7A25C64F7D006A292E /* CalendarRepresentable.swift */; };
 		C971BA8125C6500D006A292E /* TimeSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C971BA8025C6500D006A292E /* TimeSelectionView.swift */; };
 		C971BA8725C8DED9006A292E /* VerificationCodeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C971BA8625C8DED9006A292E /* VerificationCodeManager.swift */; };
@@ -184,7 +177,7 @@
 		C9D5BF6525CE31E400CD3537 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D5BF6425CE31E400CD3537 /* AccountView.swift */; };
 		C9D5BF6925CE407700CD3537 /* AcMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D5BF6825CE407700CD3537 /* AcMessageView.swift */; };
 		C9D5BF7525D010F000CD3537 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D5BF7425D010F000CD3537 /* SettingView.swift */; };
-		C9D5BF8025D0D5FE00CD3537 /* BsLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D5BF7F25D0D5FE00CD3537 /* BsLoginView.swift */; };
+		C9D5BF8025D0D5FE00CD3537 /* ClassesBindingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D5BF7F25D0D5FE00CD3537 /* ClassesBindingView.swift */; };
 		C9D95F0B2531874F00C3C911 /* Morning-Star-1.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C9D95F0A2531874F00C3C911 /* Morning-Star-1.ttf */; };
 		C9ED446625C40936001A5456 /* RegisterFirView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9ED446525C40936001A5456 /* RegisterFirView.swift */; };
 		C9ED446F25C40C88001A5456 /* RegisterThiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9ED446E25C40C88001A5456 /* RegisterThiView.swift */; };
@@ -192,6 +185,14 @@
 		C9ED7EF125DB7A0300CB3438 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9ED7EF025DB7A0300CB3438 /* SplashView.swift */; };
 		C9ED7F1F25DB886600CB3438 /* GPA.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9ED7F1925DB886600CB3438 /* GPA.swift */; };
 		C9FCF26A25EB92B7004FC993 /* GridWithoutScrollStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FCF26925EB92B7004FC993 /* GridWithoutScrollStack.swift */; };
+		D37DD87D25EDFA8700A662E0 /* SchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37DD87425EDFA8700A662E0 /* SchView.swift */; };
+		D37DD87E25EDFA8700A662E0 /* SchAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37DD87525EDFA8700A662E0 /* SchAccountView.swift */; };
+		D37DD87F25EDFA8700A662E0 /* SchNewQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37DD87625EDFA8700A662E0 /* SchNewQuestionView.swift */; };
+		D37DD88025EDFA8700A662E0 /* SchSearchTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37DD87725EDFA8700A662E0 /* SchSearchTableView.swift */; };
+		D37DD88125EDFA8700A662E0 /* SchCommentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37DD87925EDFA8700A662E0 /* SchCommentManager.swift */; };
+		D37DD88225EDFA8700A662E0 /* SchQuestionCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37DD87B25EDFA8700A662E0 /* SchQuestionCellView.swift */; };
+		D37DD88325EDFA8700A662E0 /* TagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37DD87C25EDFA8700A662E0 /* TagsView.swift */; };
+		D37DD88725EDFAC600A662E0 /* SchQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37DD88625EDFAC600A662E0 /* SchQuestion.swift */; };
 		F81EA16B8704924F59A9337E /* Pods_PeiYang_Lite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9455FB18B34C565541F53AB /* Pods_PeiYang_Lite.framework */; };
 /* End PBXBuildFile section */
 
@@ -303,9 +304,6 @@
 		04BB6100050161BFA2B5D4B3 /* Pods_PeiYangLiteWidgetExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PeiYangLiteWidgetExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		478399CB343B8DC9325A9BC1 /* Pods-PeiYangLiteWidgetExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PeiYangLiteWidgetExtension.release.xcconfig"; path = "Target Support Files/Pods-PeiYangLiteWidgetExtension/Pods-PeiYangLiteWidgetExtension.release.xcconfig"; sourceTree = "<group>"; };
 		A778CB9C0C13C61941F8EA2C /* Pods-PeiYang Lite.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PeiYang Lite.debug.xcconfig"; path = "Target Support Files/Pods-PeiYang Lite/Pods-PeiYang Lite.debug.xcconfig"; sourceTree = "<group>"; };
-		C9016ED825E630F1007524DD /* AddCommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCommentView.swift; sourceTree = "<group>"; };
-		C9016EDE25E7CEDF007524DD /* TagsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsView.swift; sourceTree = "<group>"; };
-		C9016EE325E88557007524DD /* SchCommentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchCommentManager.swift; sourceTree = "<group>"; };
 		C9016EEC25E95242007524DD /* BuildingSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingSectionView.swift; sourceTree = "<group>"; };
 		C9016EF425E9CC72007524DD /* StudySearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudySearchView.swift; sourceTree = "<group>"; };
 		C9016EF825E9D7AC007524DD /* SearchAnsViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAnsViews.swift; sourceTree = "<group>"; };
@@ -356,10 +354,6 @@
 		C9663C2525E248A600DFC973 /* CourseTableContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseTableContentView.swift; sourceTree = "<group>"; };
 		C9663C2625E248A600DFC973 /* CourseTableWeekdaysView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseTableWeekdaysView.swift; sourceTree = "<group>"; };
 		C9663C2725E248A600DFC973 /* CouseTableHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CouseTableHeaderView.swift; sourceTree = "<group>"; };
-		C9663C3625E4A06800DFC973 /* SchAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchAccountView.swift; sourceTree = "<group>"; };
-		C9663C3A25E4A9D500DFC973 /* CommentCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCellView.swift; sourceTree = "<group>"; };
-		C9663C3E25E4FE4500DFC973 /* SchProjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchProjectView.swift; sourceTree = "<group>"; };
-		C9663C4925E508F700DFC973 /* SchSearchTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchSearchTableView.swift; sourceTree = "<group>"; };
 		C971BA7A25C64F7D006A292E /* CalendarRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarRepresentable.swift; sourceTree = "<group>"; };
 		C971BA8025C6500D006A292E /* TimeSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSelectionView.swift; sourceTree = "<group>"; };
 		C971BA8625C8DED9006A292E /* VerificationCodeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationCodeManager.swift; sourceTree = "<group>"; };
@@ -398,7 +392,7 @@
 		C9D5BF6425CE31E400CD3537 /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 		C9D5BF6825CE407700CD3537 /* AcMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcMessageView.swift; sourceTree = "<group>"; };
 		C9D5BF7425D010F000CD3537 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
-		C9D5BF7F25D0D5FE00CD3537 /* BsLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BsLoginView.swift; sourceTree = "<group>"; };
+		C9D5BF7F25D0D5FE00CD3537 /* ClassesBindingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassesBindingView.swift; sourceTree = "<group>"; };
 		C9D95F0A2531874F00C3C911 /* Morning-Star-1.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Morning-Star-1.ttf"; sourceTree = "<group>"; };
 		C9ED446525C40936001A5456 /* RegisterFirView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterFirView.swift; sourceTree = "<group>"; };
 		C9ED446E25C40C88001A5456 /* RegisterThiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterThiView.swift; sourceTree = "<group>"; };
@@ -406,6 +400,14 @@
 		C9ED7EF025DB7A0300CB3438 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		C9ED7F1925DB886600CB3438 /* GPA.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPA.swift; sourceTree = "<group>"; };
 		C9FCF26925EB92B7004FC993 /* GridWithoutScrollStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridWithoutScrollStack.swift; sourceTree = "<group>"; };
+		D37DD87425EDFA8700A662E0 /* SchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchView.swift; sourceTree = "<group>"; };
+		D37DD87525EDFA8700A662E0 /* SchAccountView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchAccountView.swift; sourceTree = "<group>"; };
+		D37DD87625EDFA8700A662E0 /* SchNewQuestionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchNewQuestionView.swift; sourceTree = "<group>"; };
+		D37DD87725EDFA8700A662E0 /* SchSearchTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchSearchTableView.swift; sourceTree = "<group>"; };
+		D37DD87925EDFA8700A662E0 /* SchCommentManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchCommentManager.swift; sourceTree = "<group>"; };
+		D37DD87B25EDFA8700A662E0 /* SchQuestionCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchQuestionCellView.swift; sourceTree = "<group>"; };
+		D37DD87C25EDFA8700A662E0 /* TagsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagsView.swift; sourceTree = "<group>"; };
+		D37DD88625EDFAC600A662E0 /* SchQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchQuestion.swift; sourceTree = "<group>"; };
 		D7E41DE3E6B713D16EC6B8F9 /* Pods-PeiYangLiteWidgetExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PeiYangLiteWidgetExtension.debug.xcconfig"; path = "Target Support Files/Pods-PeiYangLiteWidgetExtension/Pods-PeiYangLiteWidgetExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		FEBDECA626850C8311037F0F /* Pods-PeiYang Lite.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PeiYang Lite.release.xcconfig"; path = "Target Support Files/Pods-PeiYang Lite/Pods-PeiYang Lite.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -668,6 +670,7 @@
 		03B6887B24D155850020AD47 /* PeiYang Lite */ = {
 			isa = PBXGroup;
 			children = (
+				D37DD87225EDFA8700A662E0 /* SchoolProject */,
 				C95B579D25EBF37F004300B5 /* Issue */,
 				C9CF3DBC25D2B1E00085263F /* Home */,
 				C9D59B3625BBB7DD006865FC /* Login */,
@@ -678,7 +681,6 @@
 				C990BBE2255FC4C500444D2E /* Account */,
 				C9BCE6BB25DE99F40041E533 /* Drawer */,
 				C990BB83255FB02B00444D2E /* StudyRoom */,
-				C9663C3325E49F6800DFC973 /* SchoolProject */,
 				03B6892524D157290020AD47 /* ECard */,
 				03D85EB524DD0C4300637AB8 /* WLAN */,
 				03B6891824D156F40020AD47 /* Scrawler */,
@@ -826,16 +828,7 @@
 				D7E41DE3E6B713D16EC6B8F9 /* Pods-PeiYangLiteWidgetExtension.debug.xcconfig */,
 				478399CB343B8DC9325A9BC1 /* Pods-PeiYangLiteWidgetExtension.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
-			sourceTree = "<group>";
-		};
-		C9016EE225E88543007524DD /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				C9016EE325E88557007524DD /* SchCommentManager.swift */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		C9129F912513401D00EDE4CE /* Frameworks */ = {
@@ -980,28 +973,6 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		C9663C3325E49F6800DFC973 /* SchoolProject */ = {
-			isa = PBXGroup;
-			children = (
-				C9016EE225E88543007524DD /* Model */,
-				C9663C4225E4FE8100DFC973 /* View */,
-				C9663C3E25E4FE4500DFC973 /* SchProjectView.swift */,
-				C9663C3625E4A06800DFC973 /* SchAccountView.swift */,
-				C9663C4925E508F700DFC973 /* SchSearchTableView.swift */,
-				C9016ED825E630F1007524DD /* AddCommentView.swift */,
-			);
-			path = SchoolProject;
-			sourceTree = "<group>";
-		};
-		C9663C4225E4FE8100DFC973 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				C9663C3A25E4A9D500DFC973 /* CommentCellView.swift */,
-				C9016EDE25E7CEDF007524DD /* TagsView.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		C971BA9225C90755006A292E /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -1065,7 +1036,7 @@
 			children = (
 				C9D5BF6425CE31E400CD3537 /* AccountView.swift */,
 				C9D5BF6825CE407700CD3537 /* AcMessageView.swift */,
-				C9D5BF7F25D0D5FE00CD3537 /* BsLoginView.swift */,
+				C9D5BF7F25D0D5FE00CD3537 /* ClassesBindingView.swift */,
 				C9CF3D5D25D153780085263F /* BindPhoneView.swift */,
 				C9CF3D6925D1684E0085263F /* BindEmailView.swift */,
 				C9D5BF7425D010F000CD3537 /* SettingView.swift */,
@@ -1229,6 +1200,45 @@
 				C9ED7F1925DB886600CB3438 /* GPA.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		D37DD87225EDFA8700A662E0 /* SchoolProject */ = {
+			isa = PBXGroup;
+			children = (
+				D37DD87325EDFA8700A662E0 /* Controller */,
+				D37DD87825EDFA8700A662E0 /* Model */,
+				D37DD87A25EDFA8700A662E0 /* View */,
+			);
+			path = SchoolProject;
+			sourceTree = "<group>";
+		};
+		D37DD87325EDFA8700A662E0 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				D37DD87425EDFA8700A662E0 /* SchView.swift */,
+				D37DD87525EDFA8700A662E0 /* SchAccountView.swift */,
+				D37DD87625EDFA8700A662E0 /* SchNewQuestionView.swift */,
+				D37DD87725EDFA8700A662E0 /* SchSearchTableView.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		D37DD87825EDFA8700A662E0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D37DD87925EDFA8700A662E0 /* SchCommentManager.swift */,
+				D37DD88625EDFAC600A662E0 /* SchQuestion.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		D37DD87A25EDFA8700A662E0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D37DD87B25EDFA8700A662E0 /* SchQuestionCellView.swift */,
+				D37DD87C25EDFA8700A662E0 /* TagsView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1405,15 +1415,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D37DD87F25EDFA8700A662E0 /* SchNewQuestionView.swift in Sources */,
 				03B6887F24D155850020AD47 /* ContentView.swift in Sources */,
 				C95B57C725EBF3C2004300B5 /* HomeGPASectionView.swift in Sources */,
-				C9663C4A25E508F700DFC973 /* SchSearchTableView.swift in Sources */,
 				C941D59525D65CAC00E361AB /* SharedMessage.swift in Sources */,
 				C9C25AD325C4F9D500F26E40 /* StudyRoomTopView.swift in Sources */,
 				032CE4E524DBA1E5003786F6 /* FileManager+Extensions.swift in Sources */,
 				C95B57B425EBF3BA004300B5 /* MainView.swift in Sources */,
 				C9D5BF4C25CB9C2800CD3537 /* AlertView.swift in Sources */,
 				C9663C2E25E248A600DFC973 /* CouseTableHeaderView.swift in Sources */,
+				D37DD88325EDFA8700A662E0 /* TagsView.swift in Sources */,
 				03B6894C24D1579B0020AD47 /* CurveCardView.swift in Sources */,
 				03D85EBB24DD10A500637AB8 /* WLANCardView.swift in Sources */,
 				032CE4D924DBA1E5003786F6 /* RemoteFileCacheService.swift in Sources */,
@@ -1426,6 +1437,7 @@
 				03D85EB424DD071800637AB8 /* WLANManager.swift in Sources */,
 				032CE4F524DBA1E5003786F6 /* ImageDownloadHandler.swift in Sources */,
 				032CE4D824DBA1E5003786F6 /* FileIndex.swift in Sources */,
+				D37DD88225EDFA8700A662E0 /* SchQuestionCellView.swift in Sources */,
 				C9D59B6025BD3859006865FC /* FirstStepView.swift in Sources */,
 				03B6892324D156F40020AD47 /* ECardManager.swift in Sources */,
 				032CE4FC24DBA1E5003786F6 /* CircleActivityView.swift in Sources */,
@@ -1442,27 +1454,29 @@
 				C9663C2D25E248A600DFC973 /* CourseTableWeekdaysView.swift in Sources */,
 				032CE4F224DBA1E5003786F6 /* DownloadService.swift in Sources */,
 				C9D59B6C25BE7655006865FC /* FinalStepView.swift in Sources */,
+				D37DD88725EDFAC600A662E0 /* SchQuestion.swift in Sources */,
 				032CE4E724DBA1E5003786F6 /* ImageDecoder.swift in Sources */,
 				03B6894924D1579B0020AD47 /* CurveDetailView.swift in Sources */,
 				032CE4F724DBA1E5003786F6 /* DownloadProgressWrapper.swift in Sources */,
-				C9663C3B25E4A9D500DFC973 /* CommentCellView.swift in Sources */,
 				C971BA8725C8DED9006A292E /* VerificationCodeManager.swift in Sources */,
 				C9ED446625C40936001A5456 /* RegisterFirView.swift in Sources */,
 				C9CF3D5E25D153780085263F /* BindPhoneView.swift in Sources */,
 				03B6887D24D155850020AD47 /* PeiYang_LiteApp.swift in Sources */,
 				C97795682560B3C6001CA8F0 /* ChooseClassView.swift in Sources */,
-				C9D5BF8025D0D5FE00CD3537 /* BsLoginView.swift in Sources */,
+				C9D5BF8025D0D5FE00CD3537 /* ClassesBindingView.swift in Sources */,
 				032CE4DA24DBA1E5003786F6 /* CGContext+Extensions.swift in Sources */,
 				C9CF3DD725D2B1E00085263F /* Home.swift in Sources */,
-				C9663C3725E4A06800DFC973 /* SchAccountView.swift in Sources */,
 				032CE4DB24DBA1E5003786F6 /* CGImage+Extensions.swift in Sources */,
 				C9D59B5A25BD35D0006865FC /* ChMeToFindView.swift in Sources */,
 				032CE4D724DBA1E5003786F6 /* URLImageService.swift in Sources */,
+				D37DD87E25EDFA8700A662E0 /* SchAccountView.swift in Sources */,
 				032CE4ED24DBA1E5003786F6 /* DownloadCoordinator.swift in Sources */,
 				C9663C2825E248A600DFC973 /* CourseTableCourseDetailView.swift in Sources */,
+				D37DD88125EDFA8700A662E0 /* SchCommentManager.swift in Sources */,
 				03D85EBD24DD10AF00637AB8 /* WLANDetailView.swift in Sources */,
 				C95B57C325EBF3C2004300B5 /* HomeCardView.swift in Sources */,
 				C95B57C925EBF3C2004300B5 /* HomeHeaderView.swift in Sources */,
+				D37DD87D25EDFA8700A662E0 /* SchView.swift in Sources */,
 				C9D59B3825BBB80C006865FC /* BeginView.swift in Sources */,
 				C9D5BF7525D010F000CD3537 /* SettingView.swift in Sources */,
 				C95B57B025EBF3BA004300B5 /* HomeView2.swift in Sources */,
@@ -1473,7 +1487,6 @@
 				C9016EF525E9CC72007524DD /* StudySearchView.swift in Sources */,
 				03B6892424D156F40020AD47 /* ECardLoginView.swift in Sources */,
 				C9D5BF5325CC0D4800CD3537 /* RemindView.swift in Sources */,
-				C9016ED925E630F1007524DD /* AddCommentView.swift in Sources */,
 				032CE4E424DBA1E5003786F6 /* DefaultPlaceholder.swift in Sources */,
 				C95B57E725EBF40C004300B5 /* CourseTableDetailView.swift in Sources */,
 				C95B57DB25EBF3ED004300B5 /* GPACellListView.swift in Sources */,
@@ -1489,7 +1502,6 @@
 				C9CF3DD825D2B1E00085263F /* WeatherManager.swift in Sources */,
 				03B6893A24D1572A0020AD47 /* ECardDailyAmountView.swift in Sources */,
 				C95B57E625EBF40C004300B5 /* CourseTableDetailView2.swift in Sources */,
-				C9016EDF25E7CEE0007524DD /* TagsView.swift in Sources */,
 				C95B57D425EBF3DD004300B5 /* GPACardView.swift in Sources */,
 				C95B57C125EBF3C2004300B5 /* HomeLoginView.swift in Sources */,
 				C9D59B4F25BC49CC006865FC /* PQTextField.swift in Sources */,
@@ -1508,6 +1520,7 @@
 				03B6893924D1572A0020AD47 /* PieChartView.swift in Sources */,
 				C95B57C525EBF3C2004300B5 /* HomeCourseSectionView.swift in Sources */,
 				03B6893624D1572A0020AD47 /* ECardSiteAmountView.swift in Sources */,
+				D37DD88025EDFA8700A662E0 /* SchSearchTableView.swift in Sources */,
 				C9CF3D6225D162310085263F /* BindManager.swift in Sources */,
 				032CE4DC24DBA1E5003786F6 /* Log.swift in Sources */,
 				032CE4F324DBA1E5003786F6 /* ImageLoaderContentView.swift in Sources */,
@@ -1520,7 +1533,6 @@
 				03B688EE24D156CE0020AD47 /* Storage.swift in Sources */,
 				C95B57C225EBF3C2004300B5 /* HomeStudyRoomSectionView.swift in Sources */,
 				C971BA9425C9076D006A292E /* ForgetManager.swift in Sources */,
-				C9663C3F25E4FE4500DFC973 /* SchProjectView.swift in Sources */,
 				C930724225E16C75005E5736 /* BubbleView.swift in Sources */,
 				032CE4E924DBA1E5003786F6 /* CoreImageFilterProcessor.swift in Sources */,
 				C942C1BA25CABACE006D0B83 /* supplyView.swift in Sources */,
@@ -1529,7 +1541,6 @@
 				C95B57F825EBF60E004300B5 /* RoomDetailView.swift in Sources */,
 				C9CF3D6A25D1684E0085263F /* BindEmailView.swift in Sources */,
 				032CE4F124DBA1E5003786F6 /* DownloadObserver.swift in Sources */,
-				C9016EE425E88557007524DD /* SchCommentManager.swift in Sources */,
 				C9D59B3F25BBC138006865FC /* KeywordLoginView.swift in Sources */,
 				C9ED446F25C40C88001A5456 /* RegisterThiView.swift in Sources */,
 				C9016EED25E95242007524DD /* BuildingSectionView.swift in Sources */,

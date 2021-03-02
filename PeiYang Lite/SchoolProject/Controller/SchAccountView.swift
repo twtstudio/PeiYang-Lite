@@ -40,9 +40,9 @@ struct SchAccountView: View {
                         .background(Color.white)
                         .cornerRadius(30)
                     
-                    CommentCellView(title: "微北洋课表是不是出问题了？", bodyText: "同学您好。IOS应用商店、安卓平台华为、小米、应用宝等应用商店均已上线新版微北洋，请更新后使", likes: "123", comments: "123", date: "2019-01-30   23：33", isSettled: true)
-                    CommentCellView(title: "微北洋课表是不是出问题了？", bodyText: "同学您好。IOS应用商店、安卓平台华为、小米、应用宝等应用商店均已上线新版微北洋，请更新后使", likes: "123", comments: "123", date: "2019-01-30   23：33", isSettled: false)
-                    CommentCellView(title: "微北洋课表是不是出问题了？", bodyText: "同学您好。IOS应用商店、安卓平台华为、小米、应用宝等应用商店均已上线新版微北洋，请更新后使", likes: "123", comments: "123", date: "2019-01-30   23：33", imgName: "Text", isSettled: true)
+                    SchQuestionCellView(title: "微北洋课表是不是出问题了？", bodyText: "同学您好。IOS应用商店、安卓平台华为、小米、应用宝等应用商店均已上线新版微北洋，请更新后使", likes: "123", comments: "123", date: "2019-01-30   23：33", isSettled: true)
+                    SchQuestionCellView(title: "微北洋课表是不是出问题了？", bodyText: "同学您好。IOS应用商店、安卓平台华为、小米、应用宝等应用商店均已上线新版微北洋，请更新后使", likes: "123", comments: "123", date: "2019-01-30   23：33", isSettled: false)
+                    SchQuestionCellView(title: "微北洋课表是不是出问题了？", bodyText: "同学您好。IOS应用商店、安卓平台华为、小米、应用宝等应用商店均已上线新版微北洋，请更新后使", likes: "123", comments: "123", date: "2019-01-30   23：33", imgName: "Text", isSettled: true)
                 }
                 .frame(width: UIScreen.main.bounds.width)
             }
@@ -86,6 +86,7 @@ struct SchAccountView_Previews: PreviewProvider {
 struct SchBackGround: View {
     var body: some View {
         VStack {
+            
             Color.init(red: 67/255, green: 70/255, blue: 80/255)
                 .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.45)
             Color.init(red: 247/255, green: 247/255, blue: 248/255)

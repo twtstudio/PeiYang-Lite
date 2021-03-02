@@ -33,7 +33,10 @@ struct TagsView: View {
                 .foregroundColor(color)
             
             GeometryReader { geometry in
-                self.generateContent(in: geometry)
+                ScrollView(.vertical) {
+                    self.generateContent(in: geometry)
+                    
+                }
             }
             .frame(width: UIScreen.main.bounds.width * 0.9)
             Spacer()

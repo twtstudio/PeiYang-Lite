@@ -39,7 +39,7 @@ struct MainView: View {
                     Text("抽屉")
                 }
             
-            SchProjectView()
+            SchView()
                 .tabItem {
                     Image(systemName: self.selected == 2 ? "captions.bubble.fill" : "captions.bubble")
                     Text("校务专区")

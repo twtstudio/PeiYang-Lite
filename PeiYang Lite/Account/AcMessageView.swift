@@ -52,7 +52,7 @@ struct AcMessageView: View {
                                     AcListView(title: "用户名", caption: sharedMessage.Account.nickname)
                                 }
                                 
-                                NavigationLink(destination: BsLoginView()){
+                                NavigationLink(destination: ClassesBindingView()){
                                     AcListView(title: "办公网", caption: isLogin ? "已绑定" : "未绑定")
                                 }
                             }
