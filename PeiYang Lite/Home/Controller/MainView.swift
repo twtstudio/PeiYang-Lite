@@ -37,7 +37,7 @@ struct MainView: View {
                 .tabItem {
                     Image(systemName: self.selected == 1 ? "archivebox.fill" : "archivebox")
                     Text("抽屉")
-                }
+                }.tag(1)
             
             SchView()
                 .tabItem {

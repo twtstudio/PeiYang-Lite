@@ -3,7 +3,7 @@ import SwiftUI
 struct CourseTableDetailView2: View {
     @ObservedObject var store = Storage.courseTable
     private var courseTable: CourseTable { store.object }
-    
+    @EnvironmentObject var sharedMessage: SharedMessage
     @Environment(\.presentationMode) var presentationMode
     @Environment(\.horizontalSizeClass) private var sizeClass
     private var isRegular: Bool { sizeClass == .regular }
@@ -155,7 +155,7 @@ struct CourseTableDetailView2: View {
         //            trailing: RefreshButton(isLoading: $isLoading, action: load, color: Color(#colorLiteral(red: 0.3856853843, green: 0.403162986, blue: 0.4810273647, alpha: 1)))
         //        )
     }
-    
+    //MARK: function: LOAD
     func load() {
         isLoading = true
         ClassesManager.checkLogin { result in
@@ -163,6 +163,7 @@ struct CourseTableDetailView2: View {
             case .success:
                 return
             case .failure(let error):
+                sharedMessage.isBindBs = false
                 if error == .requestFailed {
                     isError = true
                     errorMessage = error.localizedStringKey

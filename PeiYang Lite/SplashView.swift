@@ -36,9 +36,6 @@ struct SplashView: View {
             } else {
                 isStored = false
             }
-            if(username == "" || password == "") {
-                sharedMessage.isBindBs = false
-            }
             Jump(isStored: isStored)
         })
     }

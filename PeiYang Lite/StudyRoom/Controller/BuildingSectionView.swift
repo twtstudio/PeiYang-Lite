@@ -12,9 +12,10 @@ struct BuildingSectionView: View {
     @EnvironmentObject var sharedMessage: SharedMessage
     let themeColor = Color.init(red: 98/255, green: 103/255, blue: 123/255)
     var buildingName: String
+    var sections: [Area]
     @State private var isShowCalender = false
     var body: some View {
-//        NavigationView {
+
             VStack {
                 HStack{
                     Image("building-gray")
@@ -28,22 +29,16 @@ struct BuildingSectionView: View {
                 .padding()
                 .frame(width: UIScreen.main.bounds.width * 0.9)
                 HStack(spacing: 20) {
-                    NavigationLink(
-                        destination: ChooseClassView(buildingName: buildingName + "A区"),
-                        label: {
-                            SchSection(title: "A区")
+                    ForEach(sections) { item in
+                        NavigationLink(
+                            destination: ChooseClassView(fullClasses: item.classrooms, buildingName: buildingName + item.areaID + "区"),
+                            label: {
+                                SchSection(title: item.areaID + "区")
                         })
-                    NavigationLink(
-                        destination: ChooseClassView(buildingName: buildingName + "B区"),
-                        label: {
-                            SchSection(title: "B区")
-                        })
-                    NavigationLink(
-                        destination: ChooseClassView(buildingName: buildingName + "C区"),
-                        label: {
-                            SchSection(title: "C区")
-                        })
+                    }
+                    Spacer()
                 }
+                .frame(width: UIScreen.main.bounds.width * 0.9)
                
                 Spacer()
             }
@@ -65,15 +60,15 @@ struct BuildingSectionView: View {
             }) {
                 Image("calender")
         })
-//        }
+
     }
 }
 
-struct BuildingSectionView_Previews: PreviewProvider {
-    static var previews: some View {
-        BuildingSectionView(buildingName: "16教")
-    }
-}
+//struct BuildingSectionView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        BuildingSectionView(buildingName: "16教", sections: 2)
+//    }
+//}
 
 struct SchSection: View {
     var title: String
