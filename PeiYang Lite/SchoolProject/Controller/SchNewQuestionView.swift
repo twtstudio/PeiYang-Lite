@@ -9,19 +9,28 @@ import SwiftUI
 
 struct SchNewQuestionView: View {
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
-    let color = Color.init(red: 48/255, green: 60/255, blue: 102/255)
-    let seperator = Color.init(red: 208/255, green: 209/255, blue: 214/255)
-    let textColor = Color.init(red: 208/255, green: 209/255, blue: 214/255)
-    @ObservedObject var bodyText = TextFieldManager()
-    @State var question: String = ""
+    private let color = Color.init(red: 48/255, green: 60/255, blue: 102/255)
+    private let seperator = Color.init(red: 208/255, green: 209/255, blue: 214/255)
+    private let textColor = Color.init(red: 208/255, green: 209/255, blue: 214/255)
     
-    @State var tags: String = "#天外天 (点击更改标签)"
-    @State var isShowTags = false
+    @ObservedObject private var bodyText = TextFieldManager()
+    @State private var images: [UIImage] = []
+    @State private var selectedTags: [String] = []
+    
+    @State private var question: String = ""
+    
+    @State private var tags: String = "#天外天 (点击更改标签)"
+    // 状态布尔
+    @State private var isShowTags = false
+    @State private var titleDidChange = false
+    @State private var detailDidChange = false
+    
     
     
     var body: some View {
         ZStack {
             VStack {
+                // MARK: NavigationBar
                 HStack {//MARK: NavigationBar
                     Button(action: {self.mode.wrappedValue.dismiss()}, label: {
                         Image("back-arrow")
@@ -33,86 +42,75 @@ struct SchNewQuestionView: View {
                     Spacer()
                     Image("back-arrow")
                         .opacity(0)
-                }// NavigationBar
+                }
                 .frame(width: UIScreen.main.bounds.width * 0.9)
                 
-                
-                
                 VStack{
-//                    HStack {
-//                        Text("下方输入标题")
-//                            .font(.title2)
-//                            .fontWeight(.bold)
-//                            .foregroundColor(textColor)
-//                        Spacer()
-//                        Text("\(String(bodyText.labelTitle.count))/200")
-//                            .font(.footnote)
-//                            .foregroundColor(textColor)
-//                    }
-                    ZStack(alignment: .leading) {
+                    HStack {
                         TextEditor(text: $bodyText.title)
-                            .foregroundColor(color)
+                            .foregroundColor(titleDidChange ? color : textColor)
                             .font(.title2)
                             .background(Color.clear)
-                        if bodyText.title.isEmpty {
-                            Text("输入问题")
-                                .font(.title2)
-                                .fontWeight(.bold)
-                                .foregroundColor(textColor)
-                                .padding(.leading)
-                                .padding(.bottom, 5)
-                                .contentShape(Circle())
-                                .onTapGesture {
-                                    
+                            .frame(height: UIScreen.main.bounds.height / 25, alignment: .center)
+                            .onTapGesture {
+                                if !titleDidChange {
+                                    bodyText.title = ""
+                                    titleDidChange = true
                                 }
                         }
-                    }
-                    .frame(height: UIScreen.main.bounds.height / 25, alignment: .center)
-                    
-                    seperator.frame(width: UIScreen.main.bounds.width * 0.85, height: 1, alignment: .center)
-                    
-                    ZStack(alignment: .leading) {
-                        TextEditor(text: $bodyText.detail)
-                            .foregroundColor(color)
-//                            .padding(.all)
-                            .font(.body)
-                        if bodyText.detail.isEmpty {
-                            VStack {
-                                Text("问题详情...")
-                                    .padding(.leading)
-                                    .foregroundColor(textColor)
-                                    .font(.body)
-                                Spacer()
-                            }
-                        }
-                    }
-                    
-                    HStack {
-                        Spacer()
-                        Text("\(String(bodyText.detail.count))/200")
+                        Text("\(String(titleDidChange ? bodyText.title.count : 0))/20")
                             .font(.footnote)
                             .foregroundColor(textColor)
                     }
+                    
+                    seperator.frame(width: UIScreen.main.bounds.width * 0.85, height: 1, alignment: .center)
+                    
+                    TextEditor(text: $bodyText.detail)
+                        .foregroundColor(detailDidChange ? color : textColor)
+                        //                        .padding(.all)
+                        .font(.body)
+                        .onTapGesture {
+                            if !detailDidChange {
+                                detailDidChange = true
+                                bodyText.detail = ""
+                            }
+                        }
+                    HStack {
+                        Spacer()
+                        Text("\(String(detailDidChange ? bodyText.detail.count : 0))/200")
+                            .font(.footnote)
+                            .foregroundColor(textColor)
+                    }
+                    
+                    PhotoListView(images: $images)
                     
                     HStack {
                         Text(tags)
                             .foregroundColor(color)
                             .onTapGesture {
-                                self.isShowTags.toggle()
+                                self.isShowTags = true
                             }
                         Spacer()
                     }
                     
                     Spacer()
                     
+                    seperator.frame(width: UIScreen.main.bounds.width * 0.85, height: 1, alignment: .center)
+                    Button(action: {
+                        print(images)
+                    }, label: {
+                        Text("提交")
+                            .bold()
+                            .foregroundColor(color)
+                            .font(.title3)
+                    })
                     
                 }
                 .padding()
-                .frame(width: UIScreen.main.bounds.width * 0.9, height: UIScreen.main.bounds.height * 0.5, alignment: .center)
+                .frame(width: UIScreen.main.bounds.width * 0.9, height: UIScreen.main.bounds.height * 0.6, alignment: .center)
                 .background(Color.white)
                 .cornerRadius(10)
                 .shadow(color: Color.black.opacity(0.1), radius: 10, x: 0.0, y: 0.0)
-                
                 Spacer()
                 
             }
@@ -123,21 +121,12 @@ struct SchNewQuestionView: View {
                     .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height, alignment: .center)
                     .ignoresSafeArea()
             )
-            Color.black.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height, alignment: .center)
-                .ignoresSafeArea()
-                    .opacity(isShowTags ? 0.3 : 0)
-                .animation(.easeInOut)
-            
-                TagsView(isShowTags: $isShowTags)
-                    .padding()
-                    .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height, alignment: .center)
-                    .background(Color.white)
-                    .cornerRadius(30)
-                    .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0, y: 0)
-                    .offset(y: isShowTags ? 250 : 1000)
-                    .animation(.easeInOut)
+            .sheet(isPresented: $isShowTags, content: {
+                SchQuestionTagView(selectedTags: $selectedTags)
+            })
+           
         }
-       
+        
         
     }
 }
@@ -149,19 +138,20 @@ struct SchNewQuestionView_Previews: PreviewProvider {
 }
 
 class TextFieldManager: ObservableObject {
-//MARK: character limit
-    let characterLimit = 200
-    @Published var title: String = "" {
+    //MARK: character limit
+    let titleLimit = 20
+    let detailLimit = 200
+    @Published var title: String = "输入问题" {
         didSet {
-            if title.count > characterLimit {
-                title = String(title.prefix(characterLimit))
+            if title.count > titleLimit {
+                title = String(title.prefix(titleLimit))
             }
         }
     }
-    @Published var detail: String = "" {
+    @Published var detail: String = "问题详情" {
         didSet {
-            if detail.count > characterLimit {
-                detail = String(detail.prefix(characterLimit))
+            if detail.count > detailLimit {
+                detail = String(detail.prefix(detailLimit))
             }
         }
     }

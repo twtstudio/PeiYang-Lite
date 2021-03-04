@@ -1,5 +1,5 @@
 //
-//  TagsView.swift
+//  SchQuestionTagView.swift
 //  PeiYang Lite
 //
 //  Created by phoenix Dai on 2021/2/25.
@@ -7,27 +7,21 @@
 
 import SwiftUI
 
-struct TagsView: View {
-    @Binding var isShowTags: Bool
+struct SchQuestionTagView: View {
+    
     let color = Color.init(red: 48/255, green: 60/255, blue: 102/255)
     
+    @State private var tagIntro: String = ""
+    @Binding var selectedTags: [String]
+    
     var labelsArray = ["单纯吐槽", "天外天", "教务处", "学工部", "后勤保障处", "体育部、场馆中心", "信网中心", "保卫处", "国际处", "研究生院", "科研院", "医科办", "人文社科处", "教工部、人事处", "基建处", "校工会", "离退处", "资产处", "校友与基金事务处", "招标办", "宣传部", "组织部", "党办校办", "保密办", "小幼医", "校团委", "档案馆", "图书馆"]
+    
+    
     var body: some View {
         VStack(spacing: 10) {
-            HStack {
-                Text("确定")
-                    .opacity(0)
-                Spacer()
-                Text("添加标签")
-                    .font(.title2)
-                    .foregroundColor(color)
-                Spacer()
-                Button(action: {isShowTags.toggle()}, label: {
-                    Text("确定")
-                        .foregroundColor(color)
-                        .fontWeight(.bold)
-                })
-            }
+            Text("添加标签")
+                .font(.title2)
+                .foregroundColor(color)
             Text("这一行能添加的小字号的部门介绍的字数上限大概有25~30个字")
                 .font(.footnote)
                 .foregroundColor(color)
@@ -35,13 +29,13 @@ struct TagsView: View {
             GeometryReader { geometry in
                 ScrollView(.vertical) {
                     self.generateContent(in: geometry)
-                    
                 }
             }
             .frame(width: UIScreen.main.bounds.width * 0.9)
             Spacer()
-        }.padding()
-        .frame(width: UIScreen.main.bounds.width * 0.9, height: UIScreen.main.bounds.height)
+        }
+        .padding()
+//        .frame(width: UIScreen.main.bounds.width * 0.9, height: UIScreen.main.bounds.height)
         
     }
     private func generateContent(in g: GeometryProxy) -> some View {
@@ -79,16 +73,23 @@ struct TagsView: View {
 
         func item(for text: String) -> some View {
             Button(action: {}, label: {
-                tagView(text: text)
+                SchTagView(text: text)
             })
             
         }
 
 }
 
+struct SchQuestionTagView_Previews: PreviewProvider {
+    static var previews: some View {
+        SchQuestionTagView(selectedTags: .constant([]))
+    }
+}
 
 
-struct tagView: View {
+
+
+struct SchTagView: View {
     @State var isSelected: Bool = false
     var text: String
     var body: some View {

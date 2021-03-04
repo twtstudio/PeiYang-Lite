@@ -1,43 +1,151 @@
 //
 //  SchCommentManager.swift
-//  PeiYang Lite
+//  WePeiYang
 //
-//  Created by phoenix Dai on 2021/2/26.
+//  Created by 于隆祎 on 2020/9/20.
+//  Copyright © 2020 twtstudio. All rights reserved.
 //
 
 import Foundation
 
+// MARK: - SchCommentGet
+struct SchCommentGet: Codable {
+    var errorCode: Int?
+    var msg: String?
+    var data: [SchCommentModel]?
+    
+    enum CodingKeys: String, CodingKey {
+        case errorCode = "ErrorCode"
+        case msg, data
+    }
+}
 
-struct SchCommentManager {
+// MARK: - SchCommentModel
+// 这个是问题回复和评论的杂合体
+struct SchCommentModel: Codable {
+    var id: Int?
+    var contain: String?
+    var adminID: Int?
+    var score: Int?
+    var commit: String?
+    var userID, likes: Int?
+    var createdAt, updatedAt, username: String?
+    var isLiked: Bool?
+    var adminName: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case id, contain
+        case userID = "user_id"
+        case likes, adminID = "admin_id"
+        case score, commit
+        case createdAt = "created_at"
+        case updatedAt = "updated_at"
+        case username, adminName = "admin_name"
+        case isLiked = "is_liked"
+    }
+}
 
-    static func CommentGet(url: String, tagList: [Int]?, searchString: String,  completion: @escaping (Result<AccountMessage, Network.Failure>) -> Void) {
-        Network.fetch(
-            url,
-//            query: [String : String],
-            method: .get
-           
-        ) {
-            result in
-            switch result {
-            case .success(let(data, response)):
-                guard let accountMessage = try? JSONDecoder().decode(AccountMessage.self, from: data) else {
-                    completion(.failure(.requestFailed))
-                    return
+
+class SchCommentManager {
+    enum type {
+        case comment, answer
+    }
+    
+    static func commentGet(type: type = .comment, id: Int, completion: @escaping (Result<[SchCommentModel]>) -> Void) {
+        let url = Sch_BASE_USER_URL + (type == .comment ?
+                                        "question/get/commit?question_id=\(id)&user_id=\(Sch_USER_ID)" :
+                                        "question/get/answer?question_id=\(id)&user_id=\(Sch_USER_ID)")
+        let commentRequest: DataRequest = Alamofire.request(url)
+        commentRequest.validate().responseJSON { response in
+            if let data = response.data {
+                do {
+                    let commentGet = try JSONDecoder().decode(SchCommentGet.self, from: data)
+                    completion(.success(commentGet.data ?? []))
+                } catch {
+                    completion(.failure(error as! Network.Failure))
                 }
-                completion(.success(accountMessage))
-                switch response.statusCode {
-                case 200:
-                    completion(.success(accountMessage))
-                case 401:
-                    completion(.failure(.loginFailed))
-                default:
-                    completion(.failure(.unknownError))
-                }
-            case .failure(let error):
-                completion(.failure(error))
+            } else {
+                print("comment get error")
             }
         }
     }
     
-   
+    static func addComment(questionId: Int, contain: String, completion: @escaping (Result<String>) -> Void) {
+        let paras = ["question_id": questionId, "user_id": Sch_USER_ID, "contain": contain] as [String : Any]
+        Alamofire.request(Sch_BASE_USER_URL + "commit/add/question", method: .post, parameters: paras, encoding: JSONEncoding.default)
+            .validate().responseJSON { response in
+                if let data = response.data {
+                    do {
+                        let plain = try JSONDecoder().decode(SchPlainModel.self, from: data)
+                        if plain.errorCode == 0 {
+                            completion(.success("评论成功"))
+                        }
+                    } catch {
+                        completion(.failure(error as! Network.Failure))
+                    }
+                } else {
+                    print("likeComment error")
+                }
+            }
+    }
+    
+    static func commentAnswer (answerId: Int, score: Int, commit: String, completion: @escaping (Result<String>) -> Void) {
+        let paras = ["user_id": Sch_USER_ID, "answer_id": answerId, "score": score, "commit": commit] as [String: Any]
+        Alamofire.request(Sch_BASE_USER_URL + "answer/commit", method: .post, parameters: paras, encoding: JSONEncoding.default)
+            .validate().responseJSON { (response) in
+                if let data = response.data {
+                    do {
+                        let plain = try JSONDecoder().decode(SchPlainModel.self, from: data)
+                        if plain.errorCode == 0 {
+                            completion(.success("评论回复成功"))
+                        } else {
+                            completion(.failure(WPYCustomError.custom(plain.msg ?? "")))
+                        }
+                    } catch {
+                        completion(.failure(error as! Network.Failure))
+                    }
+                } else {
+                    print("post commit error \(response.result.debugDescription)")
+                }
+            }
+    }
+    
+    static func likeComment(type: type = .comment, commentId: Int, completion: @escaping (Result<String>) -> Void) {
+        let paras = ["id": commentId, "user_id": Sch_USER_ID]
+        Alamofire.request(Sch_BASE_USER_URL + (type == .comment ? "commit/like" : "answer/like") , method: .post, parameters: paras, encoding: JSONEncoding.default)
+            .validate().responseJSON { (response) in
+                if let data = response.data {
+                    do {
+                        let plain = try JSONDecoder().decode(SchPlainModel.self, from: data)
+                        if plain.errorCode == 0 {
+                            completion(.success("点赞成功"))
+                        }
+                    } catch {
+                        completion(.failure(error as! Network.Failure))
+                    }
+                } else {
+                    print("likeComment error")
+                }
+            }
+    }
+    
+    static func dislikeComment(type: type = .comment, commentId: Int, completion: @escaping (Result<String>) -> Void) {
+        let paras = ["id": commentId, "user_id": Sch_USER_ID]
+        Alamofire.request(Sch_BASE_USER_URL + (type == .comment ? "commit/dislike" : "answer/dislike"), method: .post, parameters: paras, encoding: JSONEncoding.default)
+            .validate().responseJSON { (response) in
+                if let data = response.data {
+                    do {
+                        let plain = try JSONDecoder().decode(SchPlainModel.self, from: data)
+                        if plain.errorCode == 0 {
+                            completion(.success("取消点赞"))
+                        }
+                    } catch {
+                        completion(.failure(error as! Network.Failure))
+                    }
+                } else {
+                    print("likeComment error")
+                }
+            }
+    }
 }
+

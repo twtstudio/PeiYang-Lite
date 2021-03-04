@@ -1,5 +1,5 @@
 //
-//  QuestionCardView.swift
+//  SchQuestionCardView.swift
 //  PeiYang Lite
 //
 //  Created by 游奕桁 on 2021/2/26.
@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct QuestionCardView: View {
-    var question = QuestionData()
+struct SchQuestionCardView: View {
+    var question = SchQuestionData()
     var width: CGFloat
     var height: CGFloat
     var body: some View {
@@ -82,13 +82,13 @@ struct QuestionCardView: View {
     }
 }
 
-struct QuestionCardView_Previews: PreviewProvider {
+struct SchQuestionCardView_Previews: PreviewProvider {
     static var previews: some View {
         ZStack {
             Color(#colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1))
                 .edgesIgnoringSafeArea(.all)
             
-            QuestionCardView(width: screen.width-20, height: screen.width-20)
+            SchQuestionCardView(width: screen.width-20, height: screen.width-20)
                 .shadow(color: Color.black.opacity(0.2), radius: 10, x: 2, y: 2)
         }
     }

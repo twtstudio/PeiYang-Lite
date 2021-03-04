@@ -24,8 +24,7 @@ class SharedMessage: ObservableObject {
     static var showCourseNum: Int {Int(Storage.defaults.double(forKey: showCourseNumKey))}
 //    static var studyRoomHistory: [String] {Storage.defaults.stringArray(forKey: studyRoomHistoryKey) ?? [""]}
     
-    // 个人页面的绑定数据
-    @Published var Account: accountResult = accountResult(userNumber: "", nickname: "", telephone: "", email: "", token: "", role: "", realname: "", gender: "", department: "", major: "", stuType: "", avatar: "", campus: "")
+    @Published var Account: AccountResult = AccountResult(userNumber: "", nickname: "", telephone: "", email: "", token: "", role: "", realname: "", gender: "", department: "", major: "", stuType: "", avatar: "", campus: "")
     @Published var isBindBs: Bool = false
     @Published var isBindPh: Bool = false
     @Published var isBindEm: Bool = false

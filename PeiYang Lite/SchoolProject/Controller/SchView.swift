@@ -12,6 +12,10 @@ struct SchView: View {
     @State private var isRefreshing: Bool = false
     @State var Array = ["1111","1111","1111","1111","1111","1111","1111"]
     
+    init() {
+        SchNetworkManager
+    }
+    
     private var refreshListener: some View {
         // 一个任意视图，我们将把它添置在滚动列表的尾部
         Color.black
@@ -80,7 +84,6 @@ struct SchView: View {
             }
             .frame(height: UIScreen.main.bounds.height * 0.8)
         }
-        
     }
 }
 
