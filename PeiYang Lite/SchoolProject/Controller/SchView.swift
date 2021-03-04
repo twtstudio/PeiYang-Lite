@@ -1,5 +1,5 @@
 //
-//  SchProjectView.swift
+//  SchView.swift
 //  PeiYang Lite
 //
 //  Created by phoenix Dai on 2021/2/23.
@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct SchProjectView: View {
-    @Environment(\.presentationMode) var mode: Binding<PresentationMode>
+struct SchView: View {
+    @Environment(\.presentationMode) var mode
     @State private var isRefreshing: Bool = false
     @State var Array = ["1111","1111","1111","1111","1111","1111","1111"]
     
@@ -17,13 +17,12 @@ struct SchProjectView: View {
         Color.black
             .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.1)
             .ignoresSafeArea()// height: 如果有加载动画就设置，没有设置为0就可以
-          .onAppear(perform: {
-            Array.append("222")
-          })
-      }
+            .onAppear(perform: {
+                Array.append("222")
+            })
+    }
     var body: some View {
         ZStack {
-           
             VStack {
                 HStack {
                     NavigationLink(
@@ -41,19 +40,17 @@ struct SchProjectView: View {
                 }
                 .frame(width: UIScreen.main.bounds.width * 0.9)
                 
-                ScrollView(showsIndicators: false) {
-                    LazyVStack{
-                        CommentCellView(title: "微北洋课表是不是出问题了？", bodyText: "同学您好。IOS应用商店、安卓平台华为、小米、应用宝等应用商店均已上线新版微北洋，请更新后使", likes: "123", comments: "123", date: "2019-01-30   23：33", imgName: "Text", isSettled: true)
+                ScrollView(.vertical, showsIndicators: false) {
+                    LazyVStack(spacing: 10) {
+                        SchQuestionCellView(title: "微北洋课表是不是出问题了？", bodyText: "同学您好。IOS应用商店、安卓平台华为、小米、应用宝等应用商店均已上线新版微北洋，请更新后使", likes: "123", comments: "123", date: "2019-01-30   23：33", imgName: "Text", isSettled: true)
                         
-                        CommentCellView(title: "微北洋课表是不是出问题了？", bodyText: "同学您好。IOS应用商店、安卓平台华为、小米、应用宝等应用商店均已上线新版微北洋，请更新后使", likes: "123", comments: "123", date: "2019-01-30   23：33", isSettled: true)
+                        SchQuestionCellView(title: "微北洋课表是不是出问题了？", bodyText: "同学您好。IOS应用商店、安卓平台华为、小米、应用宝等应用商店均已上线新版微北洋，请更新后使", likes: "123", comments: "123", date: "2019-01-30   23：33", isSettled: true)
                         
-                        CommentCellView(title: "微北洋课表是不是出问题了？", bodyText: "不知道", likes: "123", comments: "123", date: "2019-01-30   23：33", isSettled: false)
-                        CommentCellView(title: "微北洋课表是不是出问题了？", bodyText: "不知道", likes: "123", comments: "123", date: "2019-01-30   23：33", isSettled: false)
+                        SchQuestionCellView(title: "微北洋课表是不是出问题了？", bodyText: "不知道", likes: "123", comments: "123", date: "2019-01-30   23：33", isSettled: false)
+                        SchQuestionCellView(title: "微北洋课表是不是出问题了？", bodyText: "不知道", likes: "123", comments: "123", date: "2019-01-30   23：33", isSettled: false)
                     }
-                    .frame(height: UIScreen.main.bounds.height)
+                    .ignoresSafeArea(edges: .all)
                     
-                    .ignoresSafeArea(edges: .bottom)
-                   
                 }
                 
                 .padding()
@@ -71,11 +68,13 @@ struct SchProjectView: View {
                 HStack {
                     Spacer()
                     NavigationLink(
-                        destination: AddCommentView(),
+                        destination: SchNewQuestionView(),
                         label: {
                             Image("SchAdd")
-                    })
-                   
+                                .resizable()
+                                .frame(width: screen.width * 0.2, height: screen.width * 0.2)
+                        })
+                    
                 }
                 .padding()
             }
@@ -85,9 +84,9 @@ struct SchProjectView: View {
     }
 }
 
-struct SchProjectView_Previews: PreviewProvider {
+struct SchView_Previews: PreviewProvider {
     static var previews: some View {
-        SchProjectView()
+        SchView()
     }
 }
 

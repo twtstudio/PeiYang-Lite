@@ -11,15 +11,8 @@ struct TimeSelectionView: View {
     let themeColor = Color.init(red: 98/255, green: 103/255, blue: 123/255)
     var timePeriod: String
     
-//    @Binding var selectedTimePeriod: String
     @EnvironmentObject var sharedMessage: SharedMessage
-//    var isSelected: Bool {
-//        if(selectedTimePeriod == timePeriod) {
-//            return true
-//        } else {
-//            return false
-//        }
-//    }
+
     var body: some View {
         Button(action:{
             sharedMessage.studyRoomSelectTime = timePeriod

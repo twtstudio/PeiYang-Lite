@@ -39,7 +39,7 @@ struct DrawerView: View {
             .frame(width: UIScreen.main.bounds.width * 0.8)
 //            HStack {
 //                NavigationLink(
-//                    destination: SchProjectView(),
+//                    destination: SchView(),
 //                    label: {
 //                        DrawerCellView(imgName: "drawer-business", title: "校务专区")
 //                    })

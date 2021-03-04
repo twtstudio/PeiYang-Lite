@@ -1,5 +1,5 @@
 //
-//  CommentCellView.swift
+//  SchQuestionCellView.swift
 //  PeiYang Lite
 //
 //  Created by phoenix Dai on 2021/2/23.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CommentCellView: View {
+struct SchQuestionCellView: View {
     let titleColor = Color.init(red: 54/255, green: 60/255, blue: 84/255)
     let labelColor = Color.init(red: 145/255, green: 145/255, blue: 145/255)
     let bottomColor = Color.init(red: 177/255, green: 178/255, blue: 190/255)
@@ -107,6 +107,12 @@ struct CommentCellView: View {
 
 struct CommentCellView_Previews: PreviewProvider {
     static var previews: some View {
-        CommentCellView(title: "微北洋课表是不是出问题了？", bodyText: "同学您好。IOS应用商店、安卓平台华为、小米、应用宝等应用商店均已上线新版微北洋，请更新后使", likes: "123", comments: "123", date: "2019-01-30   23：33", isSettled: true)
+        VStack {
+            SchQuestionCellView(title: "微北洋课表是不是出问题了？", bodyText: "同学您好。IOS应用商店、安卓平台华为、小米、应用宝等应用商店均已上线新版微北洋，请更新后使", likes: "123", comments: "123", date: "2019-01-30   23：33", isSettled: true)
+        }
+        .edgesIgnoringSafeArea(.all)
+        .frame(width: screen.width, height: screen.height)
+        .background(Color.black)
+        
     }
 }

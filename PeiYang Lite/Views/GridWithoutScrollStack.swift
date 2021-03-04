@@ -80,7 +80,6 @@ struct InnerGridWithoutScroll<Header: View, Content: View>: View {
     }
     
     var body : some View {
-//        ScrollView(.vertical, showsIndicators: false) {
             VStack(alignment: alignment, spacing: spacing) {
                 header()
                 
@@ -93,7 +92,8 @@ struct InnerGridWithoutScroll<Header: View, Content: View>: View {
                         }
                     }.padding(.horizontal, spacing)
                 }
+               
             }.padding(.vertical, spacing)
-//        }
+           
     }
 }

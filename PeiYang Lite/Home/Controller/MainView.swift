@@ -37,9 +37,9 @@ struct MainView: View {
                 .tabItem {
                     Image(systemName: self.selected == 1 ? "archivebox.fill" : "archivebox")
                     Text("抽屉")
-                }
+                }.tag(1)
             
-            SchProjectView()
+            SchView()
                 .tabItem {
                     Image(systemName: self.selected == 2 ? "captions.bubble.fill" : "captions.bubble")
                     Text("校务专区")

@@ -1,13 +1,14 @@
 //
-//  GridStack.swift
+//  StyRmSelectClassGridView.swift
 //  PeiYang Lite
 //
-//  Created by TwTStudio on 7/6/20.
+//  Created by phoenix Dai on 2021/3/3.
 //
 
 import SwiftUI
 
-struct GridStack<Header: View, Content: View>: View {
+
+struct StyRmSelectClassGridStack<Header: View, Content: View>: View {
     private let minCellWidth: CGFloat
     private let spacing: CGFloat
     private let numItems: Int
@@ -56,7 +57,7 @@ struct GridStack<Header: View, Content: View>: View {
     }
 }
 
-struct InnerGrid<Header: View, Content: View>: View {
+struct StyRmInnerGrid<Header: View, Content: View>: View {
     private let spacing: CGFloat
     private let rows: [[Int]]
     private let alignment: HorizontalAlignment
@@ -94,51 +95,13 @@ struct InnerGrid<Header: View, Content: View>: View {
                     }.padding(.horizontal, spacing)
                 }
             }.padding(.vertical, spacing)
+            .frame(height: .infinity)
         }
     }
 }
 
-struct GridCalculator {
-    typealias GridDefinition = (
-        columnWidth: CGFloat,
-        columnCount: Int
-    )
-    
-    func calculate(
-        availableWidth: CGFloat,
-        minimumCellWidth: CGFloat,
-        cellSpacing: CGFloat
-    ) -> GridDefinition {
-        /**
-         * 1. Subtract the cell spacing once from all the available width
-         * 2. Add the cell spacing to each cell Width
-         * 3. See how many fit and round that down (by producing an `Int`)
-         */
-        let columnsThatFit = Int((availableWidth - cellSpacing) / (minimumCellWidth + cellSpacing))
-        let columnCount = max(1, columnsThatFit)
-        let remainingWidth = availableWidth - totalSpacingFor(columnCount: columnCount, cellSpacing: cellSpacing)
-        
-        return (
-            columnWidth: remainingWidth / CGFloat(columnCount),
-            columnCount: columnCount
-        )
-    }
-    
-    private func totalSpacingFor(columnCount: Int, cellSpacing: CGFloat) -> CGFloat {
-        // There is a total of `columnCount + 1` spacers
-        return CGFloat((columnCount + 1)) * cellSpacing
-    }
-}
 
-extension Array {
-    func chunked(into size: Int) -> [[Element]] {
-        stride(from: 0, to: count, by: size).map {
-            Array(self[$0 ..< Swift.min($0 + size, count)])
-        }
-    }
-}
-
-struct GridStack_Previews: PreviewProvider {
+struct StuRmGridStack_Previews: PreviewProvider {
     static var previews: some View {
         ZStack {
             Color.black
@@ -174,3 +137,4 @@ struct GridStack_Previews: PreviewProvider {
         }
     }
 }
+

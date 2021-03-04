@@ -21,13 +21,15 @@ class SharedMessage: ObservableObject {
     static var password: String {Storage.defaults.string(forKey: passwordKey) ?? ""}
     static var schSearchHistory: [String] {Storage.defaults.stringArray(forKey: schSearchHistoryKey) ?? []}
     
-    
+    // 个人页面的绑定数据
     @Published var Account: accountResult = accountResult(userNumber: "", nickname: "", telephone: "", email: "", token: "", role: "", realname: "", gender: "", department: "", major: "", stuType: "", avatar: "", campus: "")
     @Published var isBindBs: Bool = false
     @Published var isBindPh: Bool = false
     @Published var isBindEm: Bool = false
     
+    // 自习室的时间数据和是否获取信息
     @Published var studyRoomSelectDate: Date = Date()
     @Published var studyRoomSelectTime: String = ""
     @Published var isGetStudyRoomBuildingMessage: Bool = false
+
 }
