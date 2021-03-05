@@ -3,15 +3,16 @@ import SwiftUI
 struct CourseTableDetailView2: View {
     @ObservedObject var store = Storage.courseTable
     private var courseTable: CourseTable { store.object }
-    @EnvironmentObject var sharedMessage: SharedMessage
+    
     @Environment(\.presentationMode) var presentationMode
     @Environment(\.horizontalSizeClass) private var sizeClass
     private var isRegular: Bool { sizeClass == .regular }
     
     @State private var isLoading = false
     @AppStorage(SharedMessage.isShowFullCourseKey, store: Storage.defaults) private var showFullCourse = true
+    @AppStorage(SharedMessage.showCourseNumKey, store: Storage.defaults) private var showCourseNum = 5
     
-    //    @State private var showFullCourse = true
+    @EnvironmentObject var sharedMessage: SharedMessage
     
     @State private var showLogin = false
     
@@ -66,13 +67,13 @@ struct CourseTableDetailView2: View {
                                         CourseTableWeekdaysView(
                                             activeWeek: $activeWeek,
                                             courseTable: courseTable,
-                                            width: full.size.width / 7//9
+                                            width: full.size.width / CGFloat(showCourseNum+2)//9
                                         ).frame(width: full.size.width)
                             ) {
                                 CourseTableContentView(
                                     activeWeek: activeWeek,
                                     courseArray: courseTable.courseArray,
-                                    width: full.size.width / 7,
+                                    width: full.size.width / CGFloat(showCourseNum+2),
                                     alertCourse: alertCourse,
                                     showFullCourse: $showFullCourse//9
                                 )
@@ -84,15 +85,15 @@ struct CourseTableDetailView2: View {
                                 CourseTableWeekdaysView(
                                     activeWeek: $activeWeek,
                                     courseTable: courseTable,
-                                    width: full.size.width / 7//9
+                                    width: full.size.width / CGFloat(showCourseNum+2)//9
                                 )
                                 .frame(width: full.size.width, alignment: .center)
                                 
                                 CourseTableContentView(
                                     activeWeek: activeWeek,
                                     courseArray: courseTable.courseArray,
-                                    width: full.size.width / 7,
-                                    alertCourse: alertCourse,//9
+                                    width: full.size.width / CGFloat(showCourseNum+2),//9
+                                    alertCourse: alertCourse,
                                     showFullCourse: $showFullCourse
                                 )
                                 .frame(width: full.size.width, height: full.size.height, alignment: .top)

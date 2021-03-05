@@ -19,6 +19,7 @@ struct SettingView: View {
     
     @AppStorage(SharedMessage.isShowFullCourseKey, store: Storage.defaults) private var showFullCourse = true
     @AppStorage(ClassesManager.isGPAStoreKey, store: Storage.defaults) private var isNotShowGPA = false
+    @AppStorage(SharedMessage.showCourseNumKey, store: Storage.defaults) private var showCourseNum = 5
     
     var body: some View {
         VStack{
@@ -56,14 +57,11 @@ struct SettingView: View {
                 HeaderView(headerName: "课程表")
                     .padding(.top)
                 
-                Button(action: {
-                    sharedMessage.showCourseNum += 1
-                    if(sharedMessage.showCourseNum == 7) {
-                        sharedMessage.showCourseNum = 4
-                    }
-                }){
-                    StListView(title: "每周显示天数", caption: String(sharedMessage.showCourseNum + 1))
-                }
+                NavigationLink(
+                    destination: AcSetShowDayView(),
+                    label: {
+                        StListView(title: "每周显示天数", caption: String(showCourseNum + 1))
+                    })
                 
                 StToggleView(title: "课表显示非本周课程", caption: "课表中将会显示当周并未开课的课程", isOn: $showFullCourse)
               

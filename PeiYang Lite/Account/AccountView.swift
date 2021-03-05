@@ -53,11 +53,11 @@ struct AccountView: View {
                 VStack(spacing: UIScreen.main.bounds.height / 50){
                     HStack {//MARK: 加气泡的地方
                         NavigationLink(destination: AcMessageView()){
-                            Image(stuImg)
+                            Image(systemName: "person.circle")
                                 .resizable()
                                 .frame(width: UIScreen.main.bounds.width * 0.3, height: UIScreen.main.bounds.width * 0.3, alignment: .center)
                                 .cornerRadius(UIScreen.main.bounds.width * 0.15)
-                        }
+                        }.padding(.top)
                        
                     }
                    
@@ -135,14 +135,22 @@ struct AccountView: View {
                         } else {
                            isJumpToTop = true
                         }
-                        storagePassword = ""
-                        storageUserName = ""
-                        isNotShowGPA = true
-                        showFullCourse = false
-                        isShowSignOut = false
-                        isLogin = false
-                        username = ""
-                        password = ""
+                        ClassesManager.removeAll()
+                        let cookieStorage = HTTPCookieStorage.shared
+                        if let cookies = cookieStorage.cookies {
+                            for cookie in cookies {
+                                cookieStorage.deleteCookie(cookie)
+                            }
+                        }
+                        SharedMessage.removeAll()
+//                        storagePassword = ""
+//                        storageUserName = ""
+//                        isNotShowGPA = true
+//                        showFullCourse = false
+//                        isShowSignOut = false
+//                        isLogin = false
+//                        username = ""
+//                        password = ""
                     }){
                         Text("确认")
                             .foregroundColor(titleColor)

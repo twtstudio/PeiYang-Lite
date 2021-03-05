@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct AccountNeedToKnowView: View {
+    let foreGroundColor = Color.init(red: 98/255, green: 103/255, blue: 124/255)
     var body: some View {
         ScrollView(.vertical, showsIndicators: false, content: {
             VStack(alignment: .leading, spacing: 10) {
@@ -18,7 +19,9 @@ struct AccountNeedToKnowView: View {
                 Text("为共同营造绿色、安全、健康、清朗的网络环境，请仔细阅读并遵守相关规定。").bold()
                 Text("如果你发现任何违规行为或内容，可以通过天外天微信公众号、用户社群、开发者邮箱等渠道发起投诉。我们收到投诉后，将对相关投诉进行审核。如违反规则，我们可能对帐号或内容")+Text("停止提供服务").bold() + Text("。对于违反规则的用户，微北洋将视违规程度，可能停止提供违规内容在微北洋继续展示、传播的服务，予以警告，并可能停止对你的帐号提供服务。")
 
-            }.frame(width: UIScreen.main.bounds.width * 0.9)
+            }
+            .foregroundColor(foreGroundColor)
+            .frame(width: UIScreen.main.bounds.width * 0.9)
             .padding(.top)
             
             VStack(alignment: .leading, spacing: 10) {
@@ -29,6 +32,7 @@ struct AccountNeedToKnowView: View {
                 Text("1.1 官方渠道注册。用户须通过i.twt.edu.cn注册天外天帐号登录微北洋。")
                 Text("1.2 不得恶意注册、使用天外天帐号。用户不得实施恶意注册、使用天外天帐号的行为，您不得对账号进行任何形式的许可、出售、租赁、转让、发行或其他商业用途；您不得删除或破坏包含在本产品中的任何版权声明或其他所有权标记。用户不得冒充他人；不得利用他人的名义发布任何信息；")
             }.frame(width: UIScreen.main.bounds.width * 0.9)
+            .foregroundColor(foreGroundColor)
             .padding(.top)
             
             VStack(alignment: .leading, spacing: 10) {
@@ -42,7 +46,9 @@ struct AccountNeedToKnowView: View {
                 Text("2.1.4 当您使用自定义课程、蹭课功能时，我们会收集您编辑的信息。您也可以随时删除这些信息。")
                 Text("2.1.5 当您使用自习室功能时，若您需要收藏自习室，我们会请求您的手机存储权限并将此信息存储在您的手机本地；若您退出天外天账号，则该信息会自动删除；若您拒绝授权则会影响收藏自习室这一功能的正常使用，但不影响您正常使用自习室查询的功能。")
             }.padding(.top)
+            .foregroundColor(foreGroundColor)
             .frame(width: UIScreen.main.bounds.width * 0.9)
+            
             VStack(alignment: .leading, spacing: 10) {
                 Text("2.2 数据使用规范").font(.headline)
 
@@ -51,6 +57,8 @@ struct AccountNeedToKnowView: View {
                 Text("2.2.3 在涉及国家安全与利益、社会公共利益、与犯罪侦查有关的相关活动、您或他人生命财产安全但在特殊情况下无法获得您的及时授权、能够从其他合法公开的渠道、法律法规规定的其他情形下，微北洋可能在不经过您的同意或授权的前提下，向相关部门提供您的个人信息。")
             }.padding(.top)
             .frame(width: UIScreen.main.bounds.width * 0.9)
+            .foregroundColor(foreGroundColor)
+            
             VStack(alignment: .leading, spacing: 10){
                 Text("3. 关于校务专区的使用规范").font(.headline)
 
@@ -61,7 +69,9 @@ struct AccountNeedToKnowView: View {
 
                 Text("3.2 在您使用微北洋服务的过程中应当遵守相关的法律法规，尊重道德和风俗习惯，维护良好的校园民主建议、民主监督的氛围；热情参与，独立思考，合理审慎地表达的意见与建议。如果你的行为违反了法律法规、道德风俗、校园秩序，你应当为此独立承担责任。")
             }.padding(.top)
+            .foregroundColor(foreGroundColor)
             .frame(width: UIScreen.main.bounds.width * 0.9)
+            
             VStack (alignment: .leading, spacing: 10){
 //
                 Text("三、免责声明").font(.headline)
@@ -75,6 +85,7 @@ struct AccountNeedToKnowView: View {
                 Text("微北洋用户社区（QQ群）：738068756\n微北洋用户社区2（QQ群）：738064793")
             } .padding(.vertical)
             .frame(width: UIScreen.main.bounds.width * 0.9)
+            .foregroundColor(foreGroundColor)
         })
     }
 }

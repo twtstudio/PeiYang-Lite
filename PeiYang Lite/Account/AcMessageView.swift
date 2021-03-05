@@ -38,9 +38,10 @@ struct AcMessageView: View {
                                         Text("头像")
                                             .foregroundColor(themeColor)
                                         Spacer()
-                                        Image("Text")
+                                        Image(systemName: "person.circle")
                                             .resizable()
                                             .frame(width: UIScreen.main.bounds.height / 25, height: UIScreen.main.bounds.height / 25, alignment: .center)
+                                            .foregroundColor(themeColor)
                                             .cornerRadius(UIScreen.main.bounds.height / 50)
                                     }
                                     .frame(height: UIScreen.main.bounds.height / 15, alignment: .center)

@@ -34,7 +34,7 @@ struct HomeHeaderView: View {
             Text(AccountName)
                 .padding()
             NavigationLink(destination: AcMessageView()) {
-                Image("Text")
+                Image(systemName: "person.circle")
                     .resizable()
                     .frame(width: 50, height: 50)
                     .clipShape(Circle())

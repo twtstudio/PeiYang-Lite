@@ -12,7 +12,7 @@ struct CourseTableContentView: View {
     let courseArray: [Course]
     let width: CGFloat
     
-    @EnvironmentObject var sharedMessage: SharedMessage
+//    @EnvironmentObject var sharedMessage: SharedMessage
     @Environment(\.horizontalSizeClass) private var sizeClass
     private var isRegular: Bool { sizeClass == .regular }
     
@@ -21,6 +21,8 @@ struct CourseTableContentView: View {
     // use observable class to pass data
     @ObservedObject var alertCourse: AlertCourse
     @Binding var showFullCourse: Bool
+    
+    @AppStorage(SharedMessage.showCourseNumKey, store: Storage.defaults) private var showCourseNum = 5
     
     var body: some View {
         HStack(alignment: .top) {
@@ -33,7 +35,7 @@ struct CourseTableContentView: View {
 //            }
             
             // MARK: - Course
-            ForEach(0...sharedMessage.showCourseNum, id: \.self) { weekday in
+            ForEach(0...showCourseNum, id: \.self) { weekday in
                 ZStack(alignment: .top) {
                     ForEach(
                         courseArray
