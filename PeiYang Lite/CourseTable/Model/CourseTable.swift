@@ -154,9 +154,9 @@ struct CourseTable: Codable, Storable {
     var startDate: Date {
         // TODO: Changed termly
         // 20212
-//        DateComponents(calendar: currentCalendar, year: 2021, month: 3, day: 1).date ?? Date(timeIntervalSince1970: 0)
+        DateComponents(calendar: currentCalendar, year: 2021, month: 3, day: 1).date ?? Date(timeIntervalSince1970: 0)
         // 20211
-        DateComponents(calendar: currentCalendar, year: 2020, month: 8, day: 31).date ?? Date(timeIntervalSince1970: 0)
+//        DateComponents(calendar: currentCalendar, year: 2020, month: 8, day: 31).date ?? Date(timeIntervalSince1970: 0)
         // 19202
 //        DateComponents(calendar: currentCalendar, year: 2020, month: 2, day: 17).date ?? Date()
     }

@@ -9,6 +9,7 @@ import SwiftUI
 struct StudyRoomContentView: View {
     let activeWeek: Int
     let courseArray: [Course]
+    let status: [String] = ["001100000000","110000000000","000011111111","000011000000","000000001100","111100000000","000000001111"]
     let width: CGFloat
     private var colorHelper: ColorHelper { ColorHelper.shared }
     
@@ -29,16 +30,32 @@ struct StudyRoomContentView: View {
             // MARK: - Course
             ForEach(0...5, id: \.self) { weekday in
                 ZStack(alignment: .top) {
-                    ForEach(
-                        courseArray
-                            .filter { course in
-                                return course.arrangeArray
-                                    .filter { $0.weekArray.contains(activeWeek) }
-                                    .map(\.weekday)
-                                    .contains(weekday)
-                                },
-                        id: \.no
-                    ) { course in
+//                    ForEach(
+//                        courseArray
+//                            .filter { course in
+//                                return course.arrangeArray
+//                                    .filter { $0.weekArray.contains(activeWeek) }
+//                                    .map(\.weekday)
+//                                    .contains(weekday)
+//                                },
+//                        id: \.no
+//                    ) { course in
+//                            Text("课程占用")
+//                                .font(.caption2)
+//                                .bold()
+//                                .padding(7)
+//                                .foregroundColor(.white)
+//                                .frame(
+//                                    width: width*1.1,
+//                                    height: CGFloat(course.activeArrange(weekday).length) * width * 1.5
+//                                )
+//                                .background(colorHelper.color[course.no])
+//                                .clipShape(RoundedRectangle(cornerRadius: 8))
+//                                .offset(y: CGFloat(course.activeArrange(weekday).startUnit) * width * 1.52)
+//                        }
+                        
+                    ForEach(0...5, id:\.self) { i in
+                        if status[weekday][2*i] == "1" {
                             Text("课程占用")
                                 .font(.caption2)
                                 .bold()
@@ -46,13 +63,13 @@ struct StudyRoomContentView: View {
                                 .foregroundColor(.white)
                                 .frame(
                                     width: width*1.1,
-                                    height: CGFloat(course.activeArrange(weekday).length) * width * 1.5
+                                    height: width * 3
                                 )
-                                .background(colorHelper.color[course.no])
+                                .background(Color(#colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)))
                                 .clipShape(RoundedRectangle(cornerRadius: 8))
-                                .offset(y: CGFloat(course.activeArrange(weekday).startUnit) * width * 1.52)
+                                .offset(y: 2 * CGFloat(i) * width * 1.52)
                         }
-                        
+                    }
                     }
                     
                 }
