@@ -155,7 +155,8 @@ struct AcMessageView: View {
         
                 
                                     
-        }//: NAVIGATION
+        }
+            //: NAVIGATION
         .onAppear(perform: {
             if(sharedMessage.Account.email != nil) {
                 sharedMessage.isBindEm = true

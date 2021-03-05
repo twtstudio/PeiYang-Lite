@@ -132,7 +132,7 @@ struct StudyRoomTopView: View {
             if(isGetStudyRoomBuildingMessage == false) {
                 VStack{
                     Button(action: {
-                        StudyRoomManager.allBuidlingGet(term: "20211", week: String(weeks), day: String(days)) {result in
+                        StudyRoomManager.allBuidlingGet(term: "20212", week: String(weeks), day: String(days)) {result in
                             switch result {
                             case .success(let data):
                                 buildings = data.data
@@ -284,7 +284,7 @@ struct StudyRoomTopView: View {
         .onAppear {
             
             if(isGetStudyRoomBuildingMessage == false) {
-                StudyRoomManager.allBuidlingGet(term: "20211", week: "1", day: "1") { result in
+                StudyRoomManager.allBuidlingGet(term: "20212", week: "1", day: "1") { result in
                     switch result {
                     case .success(let data):
                         buildings = data.data

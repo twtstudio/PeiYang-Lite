@@ -7,6 +7,20 @@
 
 import SwiftUI
 
+struct infoView: View {
+    var title: String
+    var info: String
+    var body: some View {
+        VStack(alignment: .leading, spacing: 5) {
+            Text(title)
+            Text(info)
+                .bold()
+        }
+        .font(.footnote)
+        .foregroundColor(.white)
+    }
+}
+
 struct CourseDetailView: View {
     @Binding var course: Course
     @Binding var weekDay: Int
@@ -14,45 +28,38 @@ struct CourseDetailView: View {
 //    var bgColor: Color
     
     var body: some View {
-        VStack(alignment: .center, spacing: 10) {
+        VStack(alignment: .leading, spacing: 10) {
 //            VStack {
             Text(course.name)
-                .font(isRegular ? .custom("", size: 45) : .title)
+                .font(.title)
+                .bold()
                 .foregroundColor(.white)
-                .multilineTextAlignment(.center)
+                .multilineTextAlignment(.leading)
+                .padding(.bottom, 5)
             
-//            padding(.bottom)
-            
-            Text("location: \(course.activeArrange(weekDay).location)")
-                .font(isRegular ? .title :.subheadline)
-                .foregroundColor(.white)
-//            }
-//            .frame(width: 180, height: 80, alignment: .center)
-//            .background(Color.gray.opacity(0.5))
-//            .background(bgColor)
-//            .clipShape(RoundedRectangle(cornerRadius: 8))
-            Text("time: \(course.activeArrange(weekDay).unitTimeString)")
-                .font(isRegular ? .title : .footnote)
-                .foregroundColor(.white)
-                        
-            Text("credit: \(course.credit)")
-                .font(isRegular ? .title : .footnote)
-                .foregroundColor(.white)
-                        
-            Text("teacher: \(course.teacherArray[0])")
-                .font(isRegular ? .title : .footnote)
-                .foregroundColor(.white)
-
-            Text("serial: \(course.serial)")
-                .font(isRegular ? .title : .footnote)
+            Text(course.teacherArray[0])
+                .font(.headline)
+                .bold()
                 .foregroundColor(.white)
             
-            Text("courseNO: \(course.no)")
-                .font(isRegular ? .title : .footnote)
-                .foregroundColor(.white)
+            Spacer().frame(height: 50)
             
+            HStack(spacing: 5) {
+                infoView(title: "ID", info: course.no)
+                infoView(title: "逻辑班号", info: course.serial)
+                infoView(title: "校区", info: "北洋园校区")
+            }
+            
+            HStack(spacing: 5) {
+                infoView(title: "上课地点", info: course.activeArrange(weekDay).location)
+                infoView(title: "起始周", info: course.weeks)
+                infoView(title: "学分", info: course.credit)
+            }
+            
+            infoView(title: "时间", info: course.activeArrange(weekDay).unitTimeString)
             
         }
+        .padding(15)
         //        .frame(width: 300, height: 500, alignment: .center)
     }
 }
