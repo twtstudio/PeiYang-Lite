@@ -25,14 +25,14 @@ struct RoomDetailView: View {
                       }) {
                         Image("back-arrow")
                     }
-                    
+
                     Spacer()
                     Button(action: {
                         isShowCalender.toggle()
                     }, label: {
                         Image("calender")
                     })
-                    
+
                 }
                 .frame(width: UIScreen.main.bounds.width * 0.9)
                 .padding(.top, 40)
@@ -55,24 +55,31 @@ struct RoomDetailView: View {
                             courseArray: courseTable.courseArray,
                             width: full.size.width / 8
                             )
-                            .frame(width: full.size.width, height: full.size.height, alignment: .top)
+                        .frame(width: full.size.width, height: full.size.height*1.2, alignment: .top)
                     }
                     .padding(.horizontal, 10)
                 }
             }
-            .navigationBarTitle("")
-            .navigationBarHidden(true)
-            .frame(width: full.size.width, height: full.size.height)            .edgesIgnoringSafeArea(.all)
+            .frame(width: screen.size.width, height: screen.size.height)
+//            .edgesIgnoringSafeArea(.all)
             .sheet(isPresented: $isShowCalender,
                    content: {
                     CalendarView(isShowCalender: $isShowCalender)
-            })//: sheet
+            })
            
         }
+        .edgesIgnoringSafeArea(.all)
         .navigationBarHidden(true)
-            
-        
-        
+//        .navigationBarBackButtonHidden(true)
+//        .navigationBarItems(leading: Button(action : {
+//            self.mode.wrappedValue.dismiss()
+//        }) {
+//            Image("back-arrow")
+//        }, trailing: Button(action : {
+//            isShowCalender.toggle()
+//        }) {
+//            Image("calender")
+//        })
     }
 }
 

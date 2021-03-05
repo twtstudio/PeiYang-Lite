@@ -152,10 +152,8 @@ struct AcMessageView: View {
                 .animation(.easeInOut)
                 
             }
-        
-                
-                                    
 //        }//: NAVIGATION
+
         .onAppear(perform: {
             if(sharedMessage.Account.email != nil) {
                 sharedMessage.isBindEm = true

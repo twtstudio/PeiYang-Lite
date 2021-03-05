@@ -128,7 +128,11 @@ struct CourseTableDetailView2: View {
                         
                         CourseDetailView(course: $alertCourse.currentCourse, weekDay: $alertCourse.currentWeekday, isRegular: isRegular)
                             .frame(width: full.size.width / 1.5, height: full.size.height / 1.8, alignment: .center)
-                            .background(ColorHelper.shared.color[alertCourse.currentCourse.no]?.opacity(0.8))
+                            .background(
+                                Image("emblem")
+                                    .resizable()
+                                    .scaledToFit()
+                            )
                             .clipShape(RoundedRectangle(cornerRadius: 8))
                             .shadow(color: Color.gray.opacity(0.5), radius: 8, x: 5, y: 5)
                     }

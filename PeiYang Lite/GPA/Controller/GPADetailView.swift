@@ -95,8 +95,8 @@ struct GPADetailView: View {
                     }
                 }
                 }
-                .edgesIgnoringSafeArea(.all)
-                .background(Color(#colorLiteral(red: 0.500842154, green: 0.5448840261, blue: 0.3510230184, alpha: 1)))
+//                .edgesIgnoringSafeArea(.all)
+//                .background(Color(#colorLiteral(red: 0.500842154, green: 0.5448840261, blue: 0.3510230184, alpha: 1)))
         }
         .onAppear(perform: load)
         .navigationBarHidden(true)
@@ -104,7 +104,7 @@ struct GPADetailView: View {
             HomeLoginView(module: .gpa)
         }
         .edgesIgnoringSafeArea(.all)
-        .background(Color(#colorLiteral(red: 0.500842154, green: 0.5448840261, blue: 0.3510230184, alpha: 1)))
+        .background(Color(#colorLiteral(red: 0.500842154, green: 0.5448840261, blue: 0.3510230184, alpha: 1)).edgesIgnoringSafeArea(.all))
     }
     
     func load() {

@@ -135,6 +135,7 @@ struct StudyRoomTopView: View {
                 VStack{
                     Button(action: {
                         StudyRoomManager.allBuidlingGet(term: "20212", week: String(weeks.wrappedValue), day: String(days.wrappedValue)) {result in
+
                             switch result {
                             case .success(let data):
                                 buildings = data.data
