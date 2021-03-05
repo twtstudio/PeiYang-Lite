@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SettingView: View {
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
+    @EnvironmentObject var sharedMessage: SharedMessage
     @State var isNightKitty = false
     @State var isRemindBeforeClass = false
     let remindTimes = ["15分钟", "30分钟", "45分钟", "60分钟"]
@@ -56,9 +57,12 @@ struct SettingView: View {
                     .padding(.top)
                 
                 Button(action: {
-                    print("a")
+                    sharedMessage.showCourseNum += 1
+                    if(sharedMessage.showCourseNum == 7) {
+                        sharedMessage.showCourseNum = 4
+                    }
                 }){
-                    StListView(title: "每周显示天数", caption: "6")
+                    StListView(title: "每周显示天数", caption: String(sharedMessage.showCourseNum + 1))
                 }
                 
                 StToggleView(title: "课表显示非本周课程", caption: "课表中将会显示当周并未开课的课程", isOn: $showFullCourse)
@@ -127,6 +131,7 @@ struct SettingView: View {
 struct SettingView_Previews: PreviewProvider {
     static var previews: some View {
         SettingView()
+            .environmentObject(SharedMessage())
     }
 }
 

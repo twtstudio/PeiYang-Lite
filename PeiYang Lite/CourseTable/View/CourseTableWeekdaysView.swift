@@ -12,6 +12,7 @@ struct CourseTableWeekdaysView: View {
     let courseTable: CourseTable
     let width: CGFloat
     
+    @EnvironmentObject var sharedMessage: SharedMessage
     @Environment(\.horizontalSizeClass) private var sizeClass
     private var isRegular: Bool { sizeClass == .regular }
     
@@ -65,7 +66,7 @@ struct CourseTableWeekdaysView: View {
 //                .font(isRegular ? .body : .footnote)
 //                .frame(width: width)
             
-            ForEach(0...5, id: \.self) {
+            ForEach(0...sharedMessage.showCourseNum, id: \.self) {
                 Text("\(activeMonth)\\\(days[$0])")
                     .bold()
                     .lineLimit(1)

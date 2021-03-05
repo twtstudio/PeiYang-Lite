@@ -20,7 +20,7 @@ struct ChooseClassView: View {
         GridItem(.fixed(UIScreen.main.bounds.width / 5.5), spacing: 16),
         GridItem(.fixed(UIScreen.main.bounds.width / 5.5), spacing: 16)
         ]
-    
+    @Binding var week: Int
     
     // 日历及其中数据
     @State private var isShowCalender = false
@@ -80,7 +80,7 @@ struct ChooseClassView: View {
                 ) {
                    
                     ForEach(0...totalFloors, id: \.self) { floor in
-                        if(floor == 0) {
+                        if(floor == 0 || classes[floor].count == 0) {
                            // null
                         } else {
                             Section(header: FloorTitleView(floor: String(floor))) {
@@ -90,7 +90,7 @@ struct ChooseClassView: View {
                                     } else {
                                         NavigationLink(
                                             destination: RoomDetailView(activeWeek:
-                                                                            .constant(2), className: buildingName + room.classroom),
+                                                                            $week, className: buildingName + room.classroom),
                                             label: {
                                                 SelectRoomView(classTitle: room.classroom, isFree: room.status[checkTheClassNum] == "0")
                                             })

@@ -12,6 +12,8 @@ struct AccountView: View {
     
     @EnvironmentObject var appState: AppState
     @EnvironmentObject var sharedMessage: SharedMessage
+    
+    //存绑定的东西
     @AppStorage(SharedMessage.usernameKey, store: Storage.defaults) private var storageUserName = ""
     @AppStorage(SharedMessage.passwordKey, store: Storage.defaults) private var storagePassword = ""
     @AppStorage(SharedMessage.isShowFullCourseKey, store: Storage.defaults) private var showFullCourse = true
@@ -24,11 +26,13 @@ struct AccountView: View {
    
     @State var stuImg = "Text"
     
+    
     @State var isActive = false
     @State var isShowSignOut = false
     @State var isJumpToTop = false
     
-
+    // 关于天外天
+    @State var isShowAboutTwT = false
 
     let themeColor = Color(red: 102/255, green: 106/255, blue: 125/255)
     let titleColor = Color.init(red: 98/255, green: 103/255, blue: 122/255)
@@ -74,7 +78,7 @@ struct AccountView: View {
                 
                 VStack(spacing: 15.0) {
                     Button(action:{
-                        print("about TwT")
+                        isShowAboutTwT = true
                     }){
                         HStack {
                             Image("TwT")
@@ -161,6 +165,9 @@ struct AccountView: View {
             .offset(y: isShowSignOut ? 0 : 1000)
             .animation(.easeInOut)
         }
+        .sheet(isPresented: $isShowAboutTwT, content: {
+            AboutTwTView()
+        })
         .navigationBarHidden(true)
         .navigationBarBackButtonHidden(true)
     }

@@ -25,7 +25,7 @@ struct AcMessageView: View {
 
     
     var body: some View {
-        NavigationView {
+//        NavigationView {
             ZStack {
                 VStack {
                         List {
@@ -155,7 +155,7 @@ struct AcMessageView: View {
         
                 
                                     
-        }//: NAVIGATION
+//        }//: NAVIGATION
         .onAppear(perform: {
             if(sharedMessage.Account.email != nil) {
                 sharedMessage.isBindEm = true

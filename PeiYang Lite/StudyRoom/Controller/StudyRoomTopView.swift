@@ -46,11 +46,14 @@ struct StudyRoomTopView: View {
     var totalDays: Int {
         endDate.daysBetweenDate(toDate: sharedMessage.studyRoomSelectDate)
     }
-    var days: Int{
-        return totalDays % 7 + 1
+    //TODO: 将计算属性弄成State
+    var days: Binding<Int> {Binding(
+        get: {totalDays % 7 + 1},
+        set: {_ in})
     }
-    var weeks: Int{
-        return totalDays / 7 + 1
+    var weeks: Binding<Int> { Binding(
+        get: {totalDays / 7 + 1},
+        set: {_ in})
     }
     
     
@@ -74,7 +77,7 @@ struct StudyRoomTopView: View {
                     Image("calender")
                 }
             }.frame(width: screen.width * 0.9)
-            .padding(.top, UIScreen.main.bounds.height / 11.5)
+            .padding(.top, UIScreen.main.bounds.height / 8)
             
             HStack{
                 Image("position")
@@ -99,7 +102,6 @@ struct StudyRoomTopView: View {
                     .font(.custom("HelveticaNeue-Bold", size: UIScreen.main.bounds.height/40))
                 })
                 
-
 
                 Spacer()
                 
@@ -132,7 +134,7 @@ struct StudyRoomTopView: View {
             if(isGetStudyRoomBuildingMessage == false) {
                 VStack{
                     Button(action: {
-                        StudyRoomManager.allBuidlingGet(term: "20211", week: String(weeks), day: String(days)) {result in
+                        StudyRoomManager.allBuidlingGet(term: "20212", week: String(weeks.wrappedValue), day: String(days.wrappedValue)) {result in
                             switch result {
                             case .success(let data):
                                 buildings = data.data
@@ -172,7 +174,7 @@ struct StudyRoomTopView: View {
                         GeometryReader { geo in
                             if(buildingsWJ[index].areas[0].areaID != "-1") {
                                 NavigationLink(
-                                    destination: BuildingSectionView(buildingName: buildingsWJ[index].building, sections: buildingsWJ[index].areas),
+                                    destination: BuildingSectionView(buildingName: buildingsWJ[index].building, sections: buildingsWJ[index].areas, weeks: weeks),
                                     label: {
                                         VStack(spacing: 5) {
                                             Image("building")
@@ -189,7 +191,7 @@ struct StudyRoomTopView: View {
 
                             } else {
                                 NavigationLink(
-                                    destination: ChooseClassView(fullClasses: buildingsWJ[index].areas[0].classrooms, buildingName: buildingsWJ[index].building),
+                                    destination: ChooseClassView(week: weeks, fullClasses: buildingsWJ[index].areas[0].classrooms, buildingName: buildingsWJ[index].building),
                                     label: {
                                         VStack(spacing: 5) {
                                             Image("building")
@@ -218,7 +220,7 @@ struct StudyRoomTopView: View {
                         GeometryReader { geo in
                             if(buildingsBY[index].areas[0].areaID != "-1") {
                                 NavigationLink(
-                                    destination: BuildingSectionView(buildingName: buildingsBY[index].building, sections: buildingsBY[index].areas),
+                                    destination: BuildingSectionView(buildingName: buildingsBY[index].building, sections: buildingsBY[index].areas, weeks: weeks),
                                     label: {
                                         VStack(spacing: 5) {
                                             Image("building")
@@ -235,7 +237,7 @@ struct StudyRoomTopView: View {
 
                             } else {
                                 NavigationLink(
-                                    destination: ChooseClassView(fullClasses: buildingsBY[index].areas[0].classrooms, buildingName: buildingsBY[index].building),
+                                    destination: ChooseClassView(week: weeks, fullClasses: buildingsBY[index].areas[0].classrooms, buildingName: buildingsBY[index].building),
                                     label: {
                                         VStack(spacing: 5) {
                                             Image("building")
@@ -284,10 +286,14 @@ struct StudyRoomTopView: View {
         .onAppear {
             
             if(isGetStudyRoomBuildingMessage == false) {
-                StudyRoomManager.allBuidlingGet(term: "20211", week: "1", day: "1") { result in
+                StudyRoomManager.allBuidlingGet(term: "20212", week: "1", day: "1") { result in
                     switch result {
                     case .success(let data):
                         buildings = data.data
+                        if(data.errorCode != 0) {
+                            isGetStudyRoomBuildingMessage = false
+                            break
+                        }
                         for building in buildings{
                             if(building.campusID == "1"){
                                 buildingsWJ.insert(building, at: 0)

@@ -12,6 +12,7 @@ struct CourseTableContentView: View {
     let courseArray: [Course]
     let width: CGFloat
     
+    @EnvironmentObject var sharedMessage: SharedMessage
     @Environment(\.horizontalSizeClass) private var sizeClass
     private var isRegular: Bool { sizeClass == .regular }
     
@@ -32,7 +33,7 @@ struct CourseTableContentView: View {
 //            }
             
             // MARK: - Course
-            ForEach(0...5, id: \.self) { weekday in
+            ForEach(0...sharedMessage.showCourseNum, id: \.self) { weekday in
                 ZStack(alignment: .top) {
                     ForEach(
                         courseArray

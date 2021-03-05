@@ -26,10 +26,12 @@ class SharedMessage: ObservableObject {
     @Published var isBindBs: Bool = false
     @Published var isBindPh: Bool = false
     @Published var isBindEm: Bool = false
+    @Published var showCourseNum: Int = 5
     
     // 自习室的时间数据和是否获取信息
     @Published var studyRoomSelectDate: Date = Date()
     @Published var studyRoomSelectTime: String = ""
     @Published var isGetStudyRoomBuildingMessage: Bool = false
+    
 
 }

@@ -14,6 +14,7 @@ struct BuildingSectionView: View {
     var buildingName: String
     var sections: [Area]
     @State private var isShowCalender = false
+    @Binding var weeks: Int
     var body: some View {
 
             VStack {
@@ -31,7 +32,7 @@ struct BuildingSectionView: View {
                 HStack(spacing: 20) {
                     ForEach(sections) { item in
                         NavigationLink(
-                            destination: ChooseClassView(fullClasses: item.classrooms, buildingName: buildingName + item.areaID + "区"),
+                            destination: ChooseClassView(week: $weeks, fullClasses: item.classrooms, buildingName: buildingName + item.areaID + "区"),
                             label: {
                                 SchSection(title: item.areaID + "区")
                         })
