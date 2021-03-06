@@ -37,6 +37,12 @@ struct StudyRoomTopView: View {
     @State var buildingsWJ: [StudyBuilding] = []
     @State var buildingsBY: [StudyBuilding] = []
     
+    // 一星期全部教学楼
+    @State var weeksBuildings: [[StudyBuilding]] = [[], [], [], [], [], [], []]
+    @State var weeksBuildingWJ: [[StudyBuilding]] = [[], [], [], [], [], [], []]
+    @State var weeksBuildingBY: [[StudyBuilding]] = [[], [], [], [], [], [], []]
+    @State private var isFailGetOneWeek = true
+    
     //计算week和day
     let formatter = DateFormatter()
     var endDate: Date{
@@ -175,7 +181,7 @@ struct StudyRoomTopView: View {
                         GeometryReader { geo in
                             if(buildingsWJ[index].areas[0].areaID != "-1") {
                                 NavigationLink(
-                                    destination: BuildingSectionView(buildingName: buildingsWJ[index].building, sections: buildingsWJ[index].areas, weeks: weeks),
+                                    destination: BuildingSectionView(buildingName: buildingsWJ[index].building, sections: buildingsWJ[index].areas, weeks: weeks, theNumOfBuilding: index, theField: schoolDistrict),
                                     label: {
                                         VStack(spacing: 5) {
                                             Image("building")
@@ -192,7 +198,7 @@ struct StudyRoomTopView: View {
 
                             } else {
                                 NavigationLink(
-                                    destination: ChooseClassView(week: weeks, fullClasses: buildingsWJ[index].areas[0].classrooms, buildingName: buildingsWJ[index].building),
+                                    destination:ChooseClassView(theNumOfBuilding: index, theNumOfSection: 0, theField: schoolDistrict, week: weeks, fullClasses: buildingsWJ[index].areas[0].classrooms, buildingName:  buildingsWJ[index].building),
                                     label: {
                                         VStack(spacing: 5) {
                                             Image("building")
@@ -221,7 +227,7 @@ struct StudyRoomTopView: View {
                         GeometryReader { geo in
                             if(buildingsBY[index].areas[0].areaID != "-1") {
                                 NavigationLink(
-                                    destination: BuildingSectionView(buildingName: buildingsBY[index].building, sections: buildingsBY[index].areas, weeks: weeks),
+                                    destination: BuildingSectionView(buildingName: buildingsBY[index].building, sections: buildingsBY[index].areas, weeks: weeks, theNumOfBuilding: index, theField: schoolDistrict),
                                     label: {
                                         VStack(spacing: 5) {
                                             Image("building")
@@ -238,7 +244,7 @@ struct StudyRoomTopView: View {
 
                             } else {
                                 NavigationLink(
-                                    destination: ChooseClassView(week: weeks, fullClasses: buildingsBY[index].areas[0].classrooms, buildingName: buildingsBY[index].building),
+                                    destination: ChooseClassView(theNumOfBuilding: index, theNumOfSection: 0, theField: schoolDistrict, week: weeks, fullClasses: buildingsBY[index].areas[0].classrooms, buildingName:  buildingsBY[index].building),
                                     label: {
                                         VStack(spacing: 5) {
                                             Image("building")
@@ -285,9 +291,8 @@ struct StudyRoomTopView: View {
         .ignoresSafeArea()
         // MARK: get funciton
         .onAppear {
-            
             if(isGetStudyRoomBuildingMessage == false) {
-                StudyRoomManager.allBuidlingGet(term: "20212", week: "1", day: "1") { result in
+                StudyRoomManager.allBuidlingGet(term: "20212", week: String(weeks.wrappedValue), day: String(days.wrappedValue)) { result in
                     switch result {
                     case .success(let data):
                         buildings = data.data
@@ -309,14 +314,64 @@ struct StudyRoomTopView: View {
                     }
                 }
             }
-            
+            //MARK: 异步请求全部数据
+            DispatchQueue.global().asyncAfter(deadline: DispatchTime.now()+1) {
+                DispatchQueue.main.async {
+                    for i in 0...6 {
+                        StudyRoomManager.allBuidlingGet(term: "20212", week: String(weeks.wrappedValue), day: String(i+1)) { result in
+                            switch result {
+                            case .success(let data):
+                                weeksBuildings.insert(data.data, at: 0)
+                                if(data.errorCode != 0) {
+                                    isFailGetOneWeek = true
+                                    break
+                                }
+                                for building in weeksBuildings[i]  {
+                                    if(building.campusID == "1"){
+                                        weeksBuildingWJ[i].append(building)
+                                    }
+                                    else if(building.campusID == "2") {
+                                        weeksBuildingBY[i].append(building)
+                                    }
+                                }
+                                
+                                isFailGetOneWeek = false
+                            case .failure(_):
+                                isFailGetOneWeek = true
+                            }
+                        }
+                    }
+                }
+            }
         }
+        .onDisappear(perform: {
+            if(!isFailGetOneWeek) {
+                save()
+            }
+        })
         .background(Color(#colorLiteral(red: 0.9352087975, green: 0.9502342343, blue: 0.9600060582, alpha: 1)).frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height, alignment: .center).ignoresSafeArea())
         .navigationBarHidden(true)
 //
         
         
     }//: BODY
+    
+    func save() {
+        let queue = DispatchQueue.global()
+        queue.async {
+            DataStorage.store(weeksBuildings, in: .caches, as: "studyroom/weekdata.json")
+            DataStorage.store(weeksBuildingWJ, in: .caches, as: "studyroom/weekdataWJ.json")
+            DataStorage.store(weeksBuildingBY, in: .caches, as: "studyroom/weekdataBY.json")
+        }
+    }
+    
+//    func load() {
+//        DispatchQueue.global().sync {
+//            if let saveStudyRoomHistory = DataStorage.retreive("studyroom/history.json", from: .caches, as: [String].self) {
+//                studyRoomHistory = saveStudyRoomHistory
+//            }
+//        }
+//    }
 }
 
 

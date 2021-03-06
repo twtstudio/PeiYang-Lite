@@ -15,6 +15,8 @@ struct RoomDetailView: View {
     
     @State private var isShowCalender = false
     var className: String
+    
+//    var availArray: [String]
     var body: some View {
         
         GeometryReader { full in

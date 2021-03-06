@@ -12,6 +12,10 @@ struct ChooseClassView: View {
     @EnvironmentObject var sharedMessage: SharedMessage
     let themeColor = Color.init(red: 98/255, green: 103/255, blue: 123/255)
     
+    // 定位class
+    var theNumOfBuilding: Int
+    var theNumOfSection: Int
+    var theField: Int
     
     // grid布局
     var columns: [GridItem] = [
@@ -54,7 +58,10 @@ struct ChooseClassView: View {
 
     var buildingName: String
     
-    
+    // 一周教室存储
+    @State var weeksBuildings: [[Classroom]] = [[]]
+    @State var weeksClasses: [[[Classroom]]] = [[[]], [[]], [[]], [[]], [[]], [[]], [[]]]
+    var availArray: [String] = []
     
     var body: some View {
         VStack {
@@ -84,17 +91,16 @@ struct ChooseClassView: View {
                            // null
                         } else {
                             Section(header: FloorTitleView(floor: String(floor))) {
-                                ForEach(classes[floor], id: \.self) { room in
+                                ForEach(classes[floor], id: \.self) { rooms in
+                                    
                                     if(checkTheClassNum == -1){
-                                        SelectRoomView(classTitle: room.classroom)
+                                        SelectRoomView(classTitle: rooms.classroom)
                                     } else {
                                         NavigationLink(
-                                            destination: RoomDetailView(activeWeek:
-                                                                            $week, className: buildingName + room.classroom),
+                                            destination: RoomDetailView(activeWeek: $week, className: buildingName + rooms.classroom),
                                             label: {
-                                                SelectRoomView(classTitle: room.classroom, isFree: room.status[checkTheClassNum] == "0")
+                                                SelectRoomView(classTitle: rooms.classroom, isFree: rooms.status[checkTheClassNum] == "0")
                                             })
-                                       
                                     }
                                 }
                             }
@@ -107,10 +113,12 @@ struct ChooseClassView: View {
             
         }
         .onAppear(perform: {
-           
+//            load()
             let getFloorsAndSort = GetFloorsAndSort(fullClasses: finalFullClasses)
             classes = getFloorsAndSort.0
             totalFloors = getFloorsAndSort.1
+
+
         })
         .padding(.top, UIScreen.main.bounds.height / 10)
         .edgesIgnoringSafeArea(.top)
@@ -131,6 +139,25 @@ struct ChooseClassView: View {
             Image("calender")
         })
   
+    }
+    
+    func load() {
+        DispatchQueue.global().sync {
+            if(theField == 0) {
+                if let saveWeeksBuildings = DataStorage.retreive("studyroom/weekdataWJ.json", from: .caches, as: [[Classroom]].self) {
+                    weeksBuildings = saveWeeksBuildings
+                }
+            } else {
+                if let saveWeeksBuildings = DataStorage.retreive("studyroom/weekdataWJ.json", from: .caches, as: [[Classroom]].self) {
+                    weeksBuildings = saveWeeksBuildings
+                }
+            }
+            for i in 0...6 {
+                let getFloorsAndSort = GetFloorsAndSort(fullClasses: weeksBuildings[i])
+                weeksClasses[i] = getFloorsAndSort.0
+            }
+            
+        }
     }
     
 }

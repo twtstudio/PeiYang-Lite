@@ -13,16 +13,14 @@ struct StudySearchView: View {
     
     // 搜索string和搜索历史
     @State var searchString: String = ""
-    @State var searchHistory: [String] = ["text"]
+    @State var studyRoomHistory: [String] = []
     @State var isSearched: Bool = false
     
     var body: some View {
         VStack{
-            
-            
             HStack {
                 Button(action: {
-                    searchHistory.insert(searchString, at: 0)
+                    studyRoomHistory.insert(searchString, at: 0)
                     isSearched = true
                 }, label: {
                     Image("search")
@@ -52,7 +50,7 @@ struct StudySearchView: View {
                 .frame(width: UIScreen.main.bounds.width * 0.9, height: 1, alignment: .center)
                 .padding(.top, 0)
             if(!isSearched){
-                SchHistorySectionView(searchString: $searchString, searchHistory: $searchHistory)
+                SchHistorySectionView(searchString: $searchString, searchHistory: $studyRoomHistory)
             }
             ScrollView(.vertical, showsIndicators: false){
 //                SearchBuildingAndClassView(title: "45教A102", isFree: true)
@@ -67,11 +65,29 @@ struct StudySearchView: View {
         .navigationBarHidden(true)
         .frame(width: UIScreen.main.bounds.width * 0.9)
         .background(Color(#colorLiteral(red: 0.9352087975, green: 0.9502342343, blue: 0.9600060582, alpha: 1)).frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height, alignment: .center).ignoresSafeArea())
-        
+        .onDisappear(perform: {
+            save()
+        })
+        .onAppear(perform: {
+            load()
+        })
         
     }
     
+    func save() {
+        let queue = DispatchQueue.global()
+        queue.async {
+            DataStorage.store(studyRoomHistory, in: .caches, as: "studyroom/history.json")
+        }
+    }
     
+    func load() {
+        DispatchQueue.global().sync {
+            if let saveStudyRoomHistory = DataStorage.retreive("studyroom/history.json", from: .caches, as: [String].self) {
+                studyRoomHistory = saveStudyRoomHistory
+            }
+        }
+    }
 }
 
 struct StudySearchView_Previews: PreviewProvider {

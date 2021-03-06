@@ -74,6 +74,10 @@ struct BeginView: View {
             .navigationBarHidden(true)
         }
         .navigationBarHidden(true)
+//        .onDisappear(perform: {
+//            let array: [String] = []
+//            UserDefaults.standard.set(array, forKey: SharedMessage.studyRoomHistoryKey)
+//        })
     }
 }
 

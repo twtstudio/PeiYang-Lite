@@ -19,7 +19,11 @@ struct SchHistorySectionView: View {
                     .fontWeight(.heavy)
                     .foregroundColor(color)
                 Spacer()
-                Button(action: {searchHistory = []}, label: {
+                Button(action: {
+                        searchHistory = []
+                    UserDefaults.standard.removeObject(forKey: SharedMessage.studyRoomHistoryKey)
+                    
+                }, label: {
                     Image("trash")
                 })
             }.padding()

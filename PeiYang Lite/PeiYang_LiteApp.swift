@@ -9,12 +9,14 @@ import SwiftUI
 
 @main
 struct PeiYang_LiteApp: App {
+    let persistenceController = PersistenceController.shared
     var body: some Scene {
         WindowGroup {
             SplashView()
                 .environmentObject(User())
                 .environmentObject(AppState())
                 .environmentObject(SharedMessage())
+                .environment(\.managedObjectContext, persistenceController.container.viewContext)
                 
         }
     }

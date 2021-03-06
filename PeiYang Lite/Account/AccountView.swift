@@ -143,14 +143,7 @@ struct AccountView: View {
                             }
                         }
                         SharedMessage.removeAll()
-//                        storagePassword = ""
-//                        storageUserName = ""
-//                        isNotShowGPA = true
-//                        showFullCourse = false
-//                        isShowSignOut = false
-//                        isLogin = false
-//                        username = ""
-//                        password = ""
+                        DataStorage.clear(in: DataStorage.Directory.caches)
                     }){
                         Text("确认")
                             .foregroundColor(titleColor)
