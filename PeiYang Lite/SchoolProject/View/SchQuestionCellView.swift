@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import URLImage
 
 struct SchQuestionCellView: View {
     let titleColor = Color.init(red: 54/255, green: 60/255, blue: 84/255)
@@ -13,25 +14,17 @@ struct SchQuestionCellView: View {
     let bottomColor = Color.init(red: 177/255, green: 178/255, blue: 190/255)
     let settleColor = Color.init(red: 48/255, green: 60/255, blue: 102/255)
     
-    var title: String
-    var bodyText: String
-    var likes: String
-    var comments: String
-    var date: String
-    var imgName: String?
-    
-    var isSettled: Bool
-    @State private var isLiked: Bool = false
+    @State var question: SchQuestionModel
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             HStack {
-                Text(title)
+                Text(question.name ?? "")
                     .lineLimit(1)
                     .foregroundColor(titleColor)
                     .font(.custom("Avenir-Heavy", size: 20))
                 Spacer()
-                if(isSettled) {
+                if (question.solved ?? 0) == 1 {
                     Text("·已解决")
                         .foregroundColor(settleColor)
                         .font(.caption)
@@ -41,17 +34,16 @@ struct SchQuestionCellView: View {
             HStack {
                 VStack(alignment: .leading) {
                     HStack {
-                        Text("#天外天")
-                            .foregroundColor(labelColor)
-                            .font(.caption)
-                        Text("#学工部")
-                            .foregroundColor(labelColor)
-                            .font(.caption)
+                        ForEach(0..<(question.tags?.count ?? 0), id: \.self) { i in
+                            Text("#" + (question.tags?[i].name ?? ""))
+                                .foregroundColor(labelColor)
+                                .font(.caption)
+                        }
                     }
                     .padding(.horizontal)
                     .padding(.bottom, 10)
                     
-                    Text(bodyText)
+                    Text(question.description ?? "")
                         .frame(height: 40)
                         .lineLimit(2)
                         .foregroundColor(titleColor)
@@ -59,14 +51,17 @@ struct SchQuestionCellView: View {
                         .padding(.horizontal)
                     Spacer()
                 }
-                if(imgName != nil){
-                    Image("Text")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 80, height: 80, alignment: .center)
-                        .cornerRadius(10)
-                        .padding(.trailing)
+                if question.thumbImg != nil {
+                    URLImage(url: URL(string: question.thumbImg!)!) { image in
+                        image
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 80, height: 80, alignment: .center)
+                            .cornerRadius(10)
+                            .padding(.trailing)
+                    }
                 }
+                    
             }
             
             
@@ -78,19 +73,19 @@ struct SchQuestionCellView: View {
                     Image("comment")
                 })
                 
-                Text(comments)
+                Text((question.msgCount ?? 0).description)
                     .foregroundColor(bottomColor)
                     .font(.caption)
                 
-                Button(action: {isLiked.toggle()}, label: {
-                    Image(isLiked ? "liked" : "like")
+                Button(action: {}, label: {
+                    Image((question.isLiked ?? false) ? "liked" : "like")
                 })
                 
-                Text(likes)
+                Text((question.likes ?? 0).description)
                     .foregroundColor(bottomColor)
                     .font(.caption)
                 Spacer()
-                Text(date)
+                Text(question.createdAt ?? "")
                     .foregroundColor(bottomColor)
                     .font(.caption)
             }
@@ -108,7 +103,7 @@ struct SchQuestionCellView: View {
 struct CommentCellView_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
-            SchQuestionCellView(title: "微北洋课表是不是出问题了？", bodyText: "同学您好。IOS应用商店、安卓平台华为、小米、应用宝等应用商店均已上线新版微北洋，请更新后使", likes: "123", comments: "123", date: "2019-01-30   23：33", isSettled: true)
+            SchQuestionCellView(question: SchQuestionModel(id: 0, name: "哈哈蛤", description: "等哈u的哈舞电话我和杜哈武汉大货车闹ID那次娃u的", userID: nil, solved: 1, noCommit: nil, likes: 1, createdAt: "20190202 22:22", updatedAt: nil, username: "hahaha", msgCount: 500, urlList: nil, thumbImg: "https://www.hackingwithswift.com/img/covers-flat/watchos@2x.png", tags: [SchTagModel(id: nil, name: "教务处", description: nil, children: nil)], thumbUrlList: nil, isLiked: true, isOwner: true))
         }
         .edgesIgnoringSafeArea(.all)
         .frame(width: screen.width, height: screen.height)

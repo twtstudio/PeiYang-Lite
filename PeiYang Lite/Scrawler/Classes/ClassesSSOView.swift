@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import URLImage
 
 struct ClassesSSOView: View {
     @Environment(\.presentationMode) private var preMode
@@ -33,22 +34,21 @@ struct ClassesSSOView: View {
                 TextField(Localizable.captcha.rawValue, text: $captcha)
                 .keyboardType(.asciiCapable)
                 
-                URLImage(
-                    URL(string: captchaURL)!,
-                    expireAfter: Date(timeIntervalSinceNow: 0),
-                    placeholder: { _ in
-                        LoadingView()
-                    },
-                    content: { imageProxy in
-                        ColorInvertView {
-                            imageProxy.image
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(height: 32)
-                        }
-                    }
-                )
-                .onTapGesture(perform: refreshCaptcha)
+//                URLImage(
+//                    URL(string: captchaURL)!,
+//                    placeholder: { _ in
+//                        LoadingView()
+//                    },
+//                    content: { imageProxy in
+//                        ColorInvertView {
+//                            imageProxy.image
+//                                .resizable()
+//                                .aspectRatio(contentMode: .fit)
+//                                .frame(height: 32)
+//                        }
+//                    }
+//                )
+//                .onTapGesture(perform: refreshCaptcha)
             }
             
             Button(Localizable.login.rawValue) {

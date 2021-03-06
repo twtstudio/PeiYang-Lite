@@ -26,7 +26,7 @@ struct SchUserModel: Codable {
 
 struct SchUserManager {
     static func getDetail(completion: @escaping (Result<SchUserModel, Network.Failure>) -> Void) {
-        SchNetworkManager.request("/user/userData") { (result) in
+        SchManager.request("/user/userData") { (result) in
             switch result {
             case .success(let (data, _)):
                 do {        
@@ -36,13 +36,13 @@ struct SchUserManager {
                     completion(.failure(error as! Network.Failure))
                 }
             case .failure(let err):
-                print("用户信息获取失败", err)
+                completion(.failure(err))
             }
         }
     }
     
     static func login(completion: @escaping (Result<Bool, Network.Failure>) -> Void) {
-        SchNetworkManager.request("/user/login",
+        SchManager.request("/user/login",
                                   method: .post,
                                   body: [
                                     "username": SharedMessage.username,
@@ -55,7 +55,7 @@ struct SchUserManager {
                     if let dict = res.data {
                         if dict.keys.contains("token") {
                             let token = dict["token"]
-                            Storage.defaults.set(token, forKey: SchNetworkManager.schtokenKey)
+                            Storage.defaults.set(token, forKey: SchManager.tokenKey)
                             completion(.success(true))
                         }
                     }
@@ -63,7 +63,7 @@ struct SchUserManager {
                     completion(.failure(error as! Network.Failure))
                 }
             case .failure(let err):
-                print("登录失败", err)
+                completion(.failure(err))
             }
         }
     }

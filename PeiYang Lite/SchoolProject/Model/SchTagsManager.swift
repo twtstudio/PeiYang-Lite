@@ -23,7 +23,7 @@ struct SchTagModel: Codable {
 
 struct SchTagsManager {
     static func tagGet(completion: @escaping (Result<[SchTagModel], Network.Failure>) -> Void) {
-        SchNetworkManager.request("/user/tag/get/all") { (result) in
+        SchManager.request("/user/tag/get/all") { (result) in
             switch result {
             case .success(let (data, _)):
                 do {
@@ -38,7 +38,7 @@ struct SchTagsManager {
                     completion(.failure(error as! Network.Failure))
                 }
             case .failure(let err):
-                print("获取标签失败", err)
+                completion(.failure(err))
             }
         }
     }

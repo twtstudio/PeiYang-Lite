@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 // MARK: - SchQuestionData
 struct SchQuestionData: Codable {
@@ -34,10 +35,10 @@ struct SchQuestionData: Codable {
     }
 }
 
-// MARK: - Datum
-struct SchQuestionModel: Codable {
+// MARK: - SchQuestionModel
+struct SchQuestionModel: Codable, Identifiable {
     var id: Int?
-    var name, datumDescription: String?
+    var name, description: String?
     var userID, solved, noCommit, likes: Int?
     var createdAt, updatedAt, username: String?
     var msgCount: Int?
@@ -50,7 +51,6 @@ struct SchQuestionModel: Codable {
     
     enum CodingKeys: String, CodingKey {
         case id, name
-        case datumDescription = "description"
         case userID = "user_id"
         case solved
         case noCommit = "no_commit"
@@ -66,169 +66,121 @@ struct SchQuestionModel: Codable {
 }
 
 struct SchQuestionManager {
-    static func searchQuestions(tags: [Int] = [], string: String = "", limits: Int = 10, page: Int = 1, completion: @escaping (Result<[SchQuestionModel], Network.Failure>) -> Void) {
-        SchNetworkManager.request("/user/question/search?tagList=\(tags)&searchString=\(string)&limits=\(limits)&page=\(page)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!) { (result) in
+    static func loadQuestions(limits: Int = 10, page: Int = 1, completion: @escaping (Result<([SchQuestionModel], Int), Network.Failure>) -> Void) {
+        return searchQuestions(tags: [], string: "", limits: limits, page: page, completion: completion)
+    }
+    
+    static func searchQuestions(tags: [SchTagModel] = [], string: String = "", limits: Int = 10, page: Int = 1, completion: @escaping (Result<([SchQuestionModel], Int), Network.Failure>) -> Void) {
+        let tagList = tags.map { tag in tag.id ?? 0 }
+        SchManager.request("/user/question/search?tagList=\(tagList)&searchString=\(string)&limits=\(limits)&page=\(page)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!) { (result) in
             switch result {
             case .success(let (data, _)):
                 do {
                     let questionGet = try JSONDecoder().decode(SchResponseModel<SchQuestionData>.self, from: data)
-                    completion(.success(questionGet.data?.data ?? []))
+                    completion(.success((questionGet.data?.data ?? [], questionGet.data?.total ?? 0)))
                 } catch {
                     completion(.failure(error as! Network.Failure))
                 }
             case .failure(let err):
-                print("搜索问题失败", err)
+                completion(.failure(err))
             }
         }
     }
     
-    static func postQuestion (title: String, content: String, tagList: [Int], campus: Int = 0, completion: @escaping (Result<Int>) -> Void) {
-        let paras = ["user_id": Sch_USER_ID, "name": title, "description": content, "tagList": tagList.description, "campus": campus] as [String : Any]
-        Alamofire.request(Sch_BASE_USER_URL + "question/add" , method: .post, parameters: paras, encoding: JSONEncoding.default)
-            .validate().responseJSON { (response) in
-                if let data = response.data {
-                    do {
-                        let jsonData = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as AnyObject
-                        let data: AnyObject = jsonData["data"] as AnyObject
-                        if let incurData = try? JSONSerialization.data(withJSONObject: data, options: []) {
-                            let data = try JSONSerialization.jsonObject(with: incurData, options: .mutableContainers) as AnyObject
-                            completion(.success((data["question_id"]! as! Int?) ?? 0))
-                        }
-                    } catch {
-                        completion(.failure(error as! Network.Failure))
-                    }
-                } else {
-                    print("post question error")
-                }
-            }
-    }
-    
-    static func postImg (img: UIImage, question_id: Int, completion: @escaping (Result<String>) -> Void) {
-        let imageData = img.jpegData(compressionQuality: 1)!
-        let paras =  ["user_id": Sch_USER_ID, "question_id": question_id] as [String: Int]
-        Alamofire.upload(multipartFormData: { (multi) in
-            multi.append(imageData, withName: "newImg", fileName: "1.jpg", mimeType: "image/jpeg")
-            for (key, val) in paras {
-                let v: String = val.description
-                let vd: Data = v.data(using: .utf8)!
-                multi.append(vd, withName: key)
-            }
-        }, to: Sch_BASE_USER_URL + "image/add") { (result) in
+    static func postQuestion(title: String, content: String, tagList: [Int], campus: Int = 0, completion: @escaping (Result<Int, Network.Failure>) -> Void) {
+        let paras = ["name": title, "description": content, "tagList": tagList.description, "campus": campus] as [String : Any]
+        SchManager.request("/user/question/add",
+                                  method: .post,
+                                  body: paras) { (result) in
             switch result {
-            case .success(let upload, _, _):
-                upload.uploadProgress { (pro) in
-                    
-                }
-                upload.responseJSON { (response) in
-                    if let data = response.data {
-                        do {
-                            let jsonData = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as AnyObject
-                            let data: AnyObject = jsonData["data"] as AnyObject
-                            if let incurData = try? JSONSerialization.data(withJSONObject: data, options: []) {
-                                let data = try JSONSerialization.jsonObject(with: incurData, options: .mutableContainers) as AnyObject
-                                completion(.success((data["url"]! as! String?) ?? ""))
+                case .success(let (data, _)):
+                    do {
+                        let res = try JSONDecoder().decode(SchResponseModel<[String: Int]>.self, from: data)
+                        if let dict = res.data {
+                            if dict.keys.contains("question_id") {
+                                completion(.success(dict["question_id"] ?? 0))
                             }
-                        } catch {
-                            completion(.failure(error as! Network.Failure))
                         }
-                    } else {
-                        print("post img error")
+                    } catch {
+                        completion(.failure(error as! Network.Failure))
                     }
-                }
-            case .failure(let err):
-                print(err)
+                case .failure(let err):
+                    completion(.failure(err))
             }
-            
         }
     }
     
-    static func likeQuestion(id: Int, completion: @escaping (Result<String>) -> Void) {
-        let paras = ["id": id, "user_id": Sch_USER_ID] as [String : Any]
-        Alamofire.request(Sch_BASE_USER_URL + "question/like", method: .post, parameters: paras, encoding: JSONEncoding.default)
-            .validate().responseJSON{ (response) in
-                if let data = response.data {
-                    do {
-                        let plain = try JSONDecoder().decode(SchPlainModel.self, from: data)
-                        if plain.errorCode == 0 {
-                            completion(.success("点赞成功"))
-                        }
-                    } catch {
-                        completion(.failure(error as! Network.Failure))
-                    }
-                } else {
-                    print("post like error")
-                }
-            }
+    static func postImg(img: UIImage, question_id: Int, completion: @escaping (Result<String, Network.Failure>) -> Void) {
+        let imageData = img.jpegData(compressionQuality: 1)!
+        let paras =  ["question_id": question_id] as [String: Int]
+        
+//        Network
     }
-    static func dislikeQuestion(id: Int, completion: @escaping (Result<String>) -> Void) {
-        let paras = ["id": id, "user_id": Sch_USER_ID] as [String : Any]
-        Alamofire.request(Sch_BASE_USER_URL + "question/dislike", method: .post, parameters: paras, encoding: JSONEncoding.default)
-            .validate().responseJSON{ (response) in
-                if let data = response.data {
+    
+    static func likeOrDislikeQuestion(id: Int, like: Bool, completion: @escaping (Result<Bool, Network.Failure>) -> Void) {
+        let paras = ["id": id] as [String : Any]
+        SchManager.request(like ? "/user/question/like" : "/user/question/dislike",
+                                  method: .post,
+                                  body: paras) { (result) in
+            switch result {
+                case .success(let (data, _)):
                     do {
-                        let plain = try JSONDecoder().decode(SchPlainModel.self, from: data)
-                        if plain.errorCode == 0 {
-                            completion(.success("取消点赞"))
+                        let res = try JSONDecoder().decode(SchResponseModel<[String: Int]>.self, from: data)
+                        if res.errorCode == 0 {
+                            completion(.success(true))
                         }
                     } catch {
                         completion(.failure(error as! Network.Failure))
                     }
-                } else {
-                    print("post dislike error")
-                }
+                case .failure(let err):
+                    completion(.failure(err))
             }
+        }
     }
     
     enum QuesGetType {
         case liked, my, solved
     }
     
-    static func getQuestions(type: QuesGetType, limits: Int = 0, completion: @escaping (Result<[SchQuestionModel]>) -> Void) {
-        let url = Sch_BASE_USER_URL + (type == .liked ? "likes/get/question?user_id=\(Sch_USER_ID)" : "question/get/myQuestion?user_id=\(Sch_USER_ID)&limits=\(limits)")
-        Alamofire.request(url)
-            .validate().responseJSON { (response) in
-                do {
-                    if let data = response.data {
-                        if type == .liked {
-                            let jsonData = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as AnyObject
-                            let data: AnyObject = jsonData["data"] as AnyObject
-                            if let incurData = try? JSONSerialization.data(withJSONObject: data, options: []) {
-                                let questions = try JSONDecoder().decode([SchQuestionModel].self, from: incurData)
-                                completion(.success(questions))
-                            }
-                        } else {
-                            //                                   let questionGet = try JSONDecoder().decode(SchQuestionGet.self, from: data)
-                            //                                   completion(.success(questionGet.questionData?.data ?? []))
-                            let jsonData = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as AnyObject
-                            let data: AnyObject = jsonData["data"] as AnyObject
-                            if let incurData = try? JSONSerialization.data(withJSONObject: data, options: []) {
-                                let questions = try JSONDecoder().decode([SchQuestionModel].self, from: incurData)
-                                completion(.success(questions))
-                            }
-                        }
-                    }
-                } catch {
-                    completion(.failure(error as! Network.Failure))
-                }
-            }
-    }
-    
-    static func deleteMyQuestion(questionId: Int, completion: @escaping (Result<String>) -> Void) {
-        let paras = ["user_id": Sch_USER_ID, "question_id": questionId]
-        Alamofire.request(Sch_BASE_USER_URL + "question/delete", method: .post, parameters: paras, encoding: JSONEncoding.default)
-            .validate().responseJSON { (response) in
-                if let data = response.data {
+    static func getQuestions(type: QuesGetType, limits: Int = 0, completion: @escaping (Result<[SchQuestionModel], Network.Failure>) -> Void) {
+        SchManager.request(type == .liked ? "/user/likes/get/question" : "/user/question/get/myQuestion?limits=\(limits)") { (result) in
+            switch result {
+                case .success(let (data, _)):
                     do {
-                        let plain = try JSONDecoder().decode(SchPlainModel.self, from: data)
-                        if plain.errorCode == 0 {
-                            completion(.success("问题删除成功"))
+                        if type == .liked {
+                            let res = try JSONDecoder().decode(SchResponseModel<[SchQuestionModel]>.self, from: data)
+                            completion(.success(res.data ?? []))
+                        } else {
+                            let res = try JSONDecoder().decode(SchResponseModel<SchQuestionData>.self, from: data)
+                            completion(.success(res.data?.data ?? []))
                         }
                     } catch {
                         completion(.failure(error as! Network.Failure))
                     }
-                } else {
-                    print("question delete error")
-                }
+                case .failure(let err):
+                    completion(.failure(err))
             }
+        }
+    }
+    
+    static func deleteMyQuestion(questionId: Int, completion: @escaping (Result<Bool, Network.Failure>) -> Void) {
+        let paras = ["question_id": questionId]
+        SchManager.request("/user/question/delete",
+                                  method: .post,
+                                  body: paras) { (result) in
+            switch result {
+                case .success(let (data, _)):
+                    do {
+                        let res = try JSONDecoder().decode(SchResponseModel<Int>.self, from: data)
+                        if res.errorCode == 0 {
+                            completion(.success(true))
+                        }
+                    } catch {
+                        completion(.failure(error as! Network.Failure))
+                    }
+                case .failure(let err):
+                    completion(.failure(err))
+            }
+        }
     }
 }

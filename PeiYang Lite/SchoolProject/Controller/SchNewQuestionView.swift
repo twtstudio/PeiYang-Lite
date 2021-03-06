@@ -38,6 +38,7 @@ struct SchNewQuestionView: View {
                     
                     Spacer()
                     Text("新建提问")
+                        .font(.title2)
                         .foregroundColor(color)
                     Spacer()
                     Image("back-arrow")
@@ -97,7 +98,7 @@ struct SchNewQuestionView: View {
                     
                     seperator.frame(width: UIScreen.main.bounds.width * 0.85, height: 1, alignment: .center)
                     Button(action: {
-                        print(images)
+                        
                     }, label: {
                         Text("提交")
                             .bold()

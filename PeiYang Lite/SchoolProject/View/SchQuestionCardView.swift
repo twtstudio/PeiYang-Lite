@@ -8,20 +8,18 @@
 import SwiftUI
 
 struct SchQuestionCardView: View {
-    var question = SchQuestionData()
-    var width: CGFloat
-    var height: CGFloat
+    @State var question = SchQuestionModel()
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             HStack {
-                Text(question.name)
+                Text(question.name ?? "")
                     .bold()
                     .font(.body)
                     .foregroundColor(Color(#colorLiteral(red: 0.2117647059, green: 0.2352941176, blue: 0.3294117647, alpha: 1)))
                 
                 Spacer()
                 
-                Text(question.no_commit == 0 ? "未回复" : "已回复")
+                Text((question.noCommit ?? 0) == 0 ? "未回复" : "已回复")
                     .font(.footnote)
                     .foregroundColor(Color(#colorLiteral(red: 0.1882352941, green: 0.2352941176, blue: 0.4, alpha: 1)))
             }
@@ -29,15 +27,15 @@ struct SchQuestionCardView: View {
             .padding(.horizontal)
             
             HStack {
-                ForEach(question.tags, id: \.id) { tag in
-                    Text("#\(tag.name)")
+                ForEach(question.tags ?? [], id: \.id) { tag in
+                    Text("#\(tag.name ?? "")")
                         .font(.footnote)
                         .foregroundColor(.gray)
                 }
                 .padding(.horizontal)
             }
             
-            Text(question.description)
+            Text(question.description ?? "")
                 .font(.footnote)
                 .foregroundColor(Color(#colorLiteral(red: 0.2117647059, green: 0.2352941176, blue: 0.3294117647, alpha: 1)))
                 .padding(.horizontal)
@@ -45,27 +43,26 @@ struct SchQuestionCardView: View {
             Image("Text")                .resizable()
                 .scaledToFit()
                 .clipShape(RoundedRectangle(cornerRadius: 8))
-                .frame(width: width-30)
                 .padding(.horizontal)
             
             HStack {
-                Text(question.created_at.format(with: "yyyy-M-d"))
+                Text(question.createdAt?[0..<10] ?? "")
                     .fontWeight(.light)
                 
-                Text(question.created_at.format(with: "hh:m"))
+                Text(question.createdAt?[11..<16] ?? "")
                     .fontWeight(.light)
                 
                 Spacer()
                 Group {
                 Image(systemName: "bubble.left")
                 
-                Text("\(question.msgCount)")
+                Text("\(question.msgCount ?? 0)")
                     .fontWeight(.light)
                 }
                 
                 Group {
                 Image(systemName: "hand.thumbsup")
-                Text("\(question.likes)")
+                Text("\(question.likes ?? 0)")
                     .fontWeight(.light)
                 }
                 
@@ -76,7 +73,6 @@ struct SchQuestionCardView: View {
             .padding()
             
         }
-        .frame(width: width, height: height, alignment: .top)
         .background(Color.white)
         .clipShape(RoundedRectangle(cornerRadius: 10))
     }
@@ -88,7 +84,8 @@ struct SchQuestionCardView_Previews: PreviewProvider {
             Color(#colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1))
                 .edgesIgnoringSafeArea(.all)
             
-            SchQuestionCardView(width: screen.width-20, height: screen.width-20)
+            SchQuestionCardView()
+                .frame(width: screen.width - 20, height: screen.width - 20)
                 .shadow(color: Color.black.opacity(0.2), radius: 10, x: 2, y: 2)
         }
     }
