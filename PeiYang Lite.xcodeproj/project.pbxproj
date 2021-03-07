@@ -160,7 +160,7 @@
 		D35E4E4325EEB18D00526388 /* PhotoListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35E4E4225EEB18D00526388 /* PhotoListView.swift */; };
 		D35E4E6225F061B000526388 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35E4E6125F061B000526388 /* ImagePicker.swift */; };
 		D35E4E6D25F0C32700526388 /* SchCommentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35E4E6825F0C32600526388 /* SchCommentManager.swift */; };
-		D35E4E6E25F0C32700526388 /* SchTagsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35E4E6925F0C32600526388 /* SchTagsManager.swift */; };
+		D35E4E6E25F0C32700526388 /* SchTagManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35E4E6925F0C32600526388 /* SchTagManager.swift */; };
 		D35E4E6F25F0C32700526388 /* SchQusetionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35E4E6A25F0C32700526388 /* SchQusetionManager.swift */; };
 		D35E4E7125F0C32700526388 /* SchUserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35E4E6C25F0C32700526388 /* SchUserManager.swift */; };
 		D37DD87D25EDFA8700A662E0 /* SchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37DD87425EDFA8700A662E0 /* SchView.swift */; };
@@ -169,8 +169,9 @@
 		D37DD88025EDFA8700A662E0 /* SchSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37DD87725EDFA8700A662E0 /* SchSearchView.swift */; };
 		D37DD88125EDFA8700A662E0 /* SchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37DD87925EDFA8700A662E0 /* SchManager.swift */; };
 		D37DD88225EDFA8700A662E0 /* SchQuestionCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37DD87B25EDFA8700A662E0 /* SchQuestionCellView.swift */; };
-		D37DD88325EDFA8700A662E0 /* SchQuestionTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37DD87C25EDFA8700A662E0 /* SchQuestionTagView.swift */; };
+		D37DD88325EDFA8700A662E0 /* SchSelectTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37DD87C25EDFA8700A662E0 /* SchSelectTagView.swift */; };
 		D3EB57EB25F3991500A9321F /* SchQuestionScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3EB57EA25F3991500A9321F /* SchQuestionScrollView.swift */; };
+		D3EB57F125F4B40700A9321F /* MutiLineVStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3EB57F025F4B40700A9321F /* MutiLineVStack.swift */; };
 		F81EA16B8704924F59A9337E /* Pods_PeiYang_Lite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9455FB18B34C565541F53AB /* Pods_PeiYang_Lite.framework */; };
 /* End PBXBuildFile section */
 
@@ -352,7 +353,7 @@
 		D35E4E4225EEB18D00526388 /* PhotoListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoListView.swift; sourceTree = "<group>"; };
 		D35E4E6125F061B000526388 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		D35E4E6825F0C32600526388 /* SchCommentManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchCommentManager.swift; sourceTree = "<group>"; };
-		D35E4E6925F0C32600526388 /* SchTagsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchTagsManager.swift; sourceTree = "<group>"; };
+		D35E4E6925F0C32600526388 /* SchTagManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchTagManager.swift; sourceTree = "<group>"; };
 		D35E4E6A25F0C32700526388 /* SchQusetionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchQusetionManager.swift; sourceTree = "<group>"; };
 		D35E4E6C25F0C32700526388 /* SchUserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchUserManager.swift; sourceTree = "<group>"; };
 		D37DD87425EDFA8700A662E0 /* SchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchView.swift; sourceTree = "<group>"; };
@@ -361,8 +362,9 @@
 		D37DD87725EDFA8700A662E0 /* SchSearchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchSearchView.swift; sourceTree = "<group>"; };
 		D37DD87925EDFA8700A662E0 /* SchManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchManager.swift; sourceTree = "<group>"; };
 		D37DD87B25EDFA8700A662E0 /* SchQuestionCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchQuestionCellView.swift; sourceTree = "<group>"; };
-		D37DD87C25EDFA8700A662E0 /* SchQuestionTagView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchQuestionTagView.swift; sourceTree = "<group>"; };
+		D37DD87C25EDFA8700A662E0 /* SchSelectTagView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchSelectTagView.swift; sourceTree = "<group>"; };
 		D3EB57EA25F3991500A9321F /* SchQuestionScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchQuestionScrollView.swift; sourceTree = "<group>"; };
+		D3EB57F025F4B40700A9321F /* MutiLineVStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MutiLineVStack.swift; sourceTree = "<group>"; };
 		D7E41DE3E6B713D16EC6B8F9 /* Pods-PeiYangLiteWidgetExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PeiYangLiteWidgetExtension.debug.xcconfig"; path = "Target Support Files/Pods-PeiYangLiteWidgetExtension/Pods-PeiYangLiteWidgetExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		FEBDECA626850C8311037F0F /* Pods-PeiYang Lite.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PeiYang Lite.release.xcconfig"; path = "Target Support Files/Pods-PeiYang Lite/Pods-PeiYang Lite.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -433,6 +435,7 @@
 				D35E4E4225EEB18D00526388 /* PhotoListView.swift */,
 				D35E4E6125F061B000526388 /* ImagePicker.swift */,
 				D346ACD925F2A90000A146D8 /* ScrollViewWithRefresh.swift */,
+				D3EB57F025F4B40700A9321F /* MutiLineVStack.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1001,7 +1004,7 @@
 				D35E4E6825F0C32600526388 /* SchCommentManager.swift */,
 				D357A26225F0FFC600C061CF /* SchAnswerManager.swift */,
 				D35E4E6A25F0C32700526388 /* SchQusetionManager.swift */,
-				D35E4E6925F0C32600526388 /* SchTagsManager.swift */,
+				D35E4E6925F0C32600526388 /* SchTagManager.swift */,
 				D35E4E6C25F0C32700526388 /* SchUserManager.swift */,
 				D37DD87925EDFA8700A662E0 /* SchManager.swift */,
 			);
@@ -1013,7 +1016,7 @@
 			children = (
 				C95B57A125EBF37F004300B5 /* SchQuestionCardView.swift */,
 				D37DD87B25EDFA8700A662E0 /* SchQuestionCellView.swift */,
-				D37DD87C25EDFA8700A662E0 /* SchQuestionTagView.swift */,
+				D37DD87C25EDFA8700A662E0 /* SchSelectTagView.swift */,
 				D3EB57EA25F3991500A9321F /* SchQuestionScrollView.swift */,
 			);
 			path = View;
@@ -1201,7 +1204,7 @@
 				C95B57B425EBF3BA004300B5 /* MainView.swift in Sources */,
 				C9D5BF4C25CB9C2800CD3537 /* AlertView.swift in Sources */,
 				C9663C2E25E248A600DFC973 /* CouseTableHeaderView.swift in Sources */,
-				D37DD88325EDFA8700A662E0 /* SchQuestionTagView.swift in Sources */,
+				D37DD88325EDFA8700A662E0 /* SchSelectTagView.swift in Sources */,
 				03B6894C24D1579B0020AD47 /* CurveCardView.swift in Sources */,
 				03D85EBB24DD10A500637AB8 /* WLANCardView.swift in Sources */,
 				C95B57FC25EC0387004300B5 /* AccountNeedToKnowView.swift in Sources */,
@@ -1243,7 +1246,7 @@
 				D37DD88125EDFA8700A662E0 /* SchCommentManager.swift in Sources */,
 				D37DD87E25EDFA8700A662E0 /* SchAccountView.swift in Sources */,
 				C9663C2825E248A600DFC973 /* CourseTableCourseDetailView.swift in Sources */,
-				D35E4E6E25F0C32700526388 /* SchTagsManager.swift in Sources */,
+				D35E4E6E25F0C32700526388 /* SchTagManager.swift in Sources */,
 				D37DD88125EDFA8700A662E0 /* SchManager.swift in Sources */,
 				03D85EBD24DD10AF00637AB8 /* WLANDetailView.swift in Sources */,
 				C95B57C325EBF3C2004300B5 /* HomeCardView.swift in Sources */,
@@ -1273,6 +1276,8 @@
 				C9ED7F1F25DB886600CB3438 /* GPA.swift in Sources */,
 				C9CF3DD825D2B1E00085263F /* WeatherManager.swift in Sources */,
 				03B6893A24D1572A0020AD47 /* ECardDailyAmountView.swift in Sources */,
+				C95B57E625EBF40C004300B5 /* CourseTableDetailView2.swift in Sources */,
+				D3EB57F125F4B40700A9321F /* MutiLineVStack.swift in Sources */,
 				C95B57D425EBF3DD004300B5 /* GPACardView.swift in Sources */,
 				C95B57C125EBF3C2004300B5 /* HomeLoginView.swift in Sources */,
 				C9D59B4F25BC49CC006865FC /* PQTextField.swift in Sources */,

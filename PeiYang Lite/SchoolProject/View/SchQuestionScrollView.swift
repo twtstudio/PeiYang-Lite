@@ -54,8 +54,8 @@ struct SchQuestionScrollView<Model>: View where Model: SchQuestionScrollViewMode
     }
 }
 
-struct SchQuestionScrollView_Previews: PreviewProvider {
-    static var previews: some View {
-        SchQuestionScrollView(model: SchViewModel())
-    }
-}
+//struct SchQuestionScrollView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        SchQuestionScrollView(model: SchViewModel())
+//    }
+//}

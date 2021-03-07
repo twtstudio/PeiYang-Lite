@@ -15,7 +15,7 @@ struct SchNewQuestionView: View {
     
     @ObservedObject private var bodyText = TextFieldManager()
     @State private var images: [UIImage] = []
-    @State private var selectedTags: [String] = []
+    @State private var availableTags: [SchTagModel] = []
     
     @State private var question: String = ""
     
@@ -123,11 +123,19 @@ struct SchNewQuestionView: View {
                     .ignoresSafeArea()
             )
             .sheet(isPresented: $isShowTags, content: {
-                SchQuestionTagView(selectedTags: $selectedTags)
+                SchSelectTagView(availableTags: $availableTags)
             })
-           
         }
-        
+        .onAppear {
+            SchTagManager.tagGet { (result) in
+                switch result {
+                    case .success(let tags):
+                        availableTags = tags
+                    case .failure(let err):
+                        print("获取标签错误", err)
+                }
+            }
+        }
         
     }
 }

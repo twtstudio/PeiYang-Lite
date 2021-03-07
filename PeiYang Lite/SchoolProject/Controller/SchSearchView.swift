@@ -8,29 +8,33 @@
 import SwiftUI
 
 struct SchSearchView: View {
+    // 历史记录本地存储
+    static let historyKey = "SCH_SEARCH_HISTORY_KEY"
+    @AppStorage(SchSearchView.historyKey, store: Storage.defaults) var historyArray: [String] = []
     @State private var inputMessage: String = ""
-    @State var historyTags: [SchTagModel] = []
+    
     @State var availableTags: [SchTagModel] = []
     
     var body: some View {
         VStack {
-            SchSearchTopView(inputMessage: $inputMessage, historyArray: $historyTags)
+            SchSearchTopView(inputMessage: $inputMessage, historyArray: $historyArray)
             HStack {
                 Text("历史记录")
                     .foregroundColor(.init(red: 98/255, green: 103/255, blue: 124/255))
                     .font(.custom("Avenir-Black", size: 17))
                 Spacer()
-                Button(action: {self.historyTags = []}, label: {
+                Button(action: {
+                    
+                }, label: {
                     Image("trash")
                 })
             }
             .padding()
             .frame(width: UIScreen.main.bounds.width * 0.9)
             VStack(spacing: 20){
-                ForEach(historyTags, id: \.self) { item in
-                    SchHistoryView(historyName: item)
+                ForEach(historyArray, id: \.self) { s in
+                    SchHistoryView(historyString: s)
                 }
-                
                 Spacer()
             }
             .frame(height: UIScreen.main.bounds.height * 0.15)
@@ -43,65 +47,29 @@ struct SchSearchView: View {
             }
             .padding()
             .frame(width: UIScreen.main.bounds.width * 0.9)
+            MutiLineVStack(source: $availableTags, content: { tag in
+                Button(action: {
+//                    self.availableTags.first(where: { t in t == tag }).isSelected?.toggle()
+                }, label: {
+                    Text("")
+                })
+            })
             
-            GeometryReader { geometry in
-                self.generateContent(in: geometry)
-            }
             .frame(width: UIScreen.main.bounds.width * 0.9)
             Spacer()
         }
         .navigationBarHidden(true)
     }
-    
-    private func generateContent(in g: GeometryProxy) -> some View {
-        var width = CGFloat.zero
-        var height = CGFloat.zero
-        
-        return ZStack(alignment: .topLeading) {
-            ForEach(self.availableTags, id: \.self) { platform in
-                self.item(for: platform)
-                    .padding([.horizontal, .vertical], 10)
-                    .alignmentGuide(.leading, computeValue: { d in
-                        if (abs(width - d.width) > g.size.width)
-                        {
-                            width = 0
-                            height -= d.height
-                        }
-                        let result = width
-                        if platform == self.availableTags.last! {
-                            width = 0 //last item
-                        } else {
-                            width -= d.width
-                        }
-                        return result
-                    })
-                    .alignmentGuide(.top, computeValue: {d in
-                        let result = height
-                        if platform == self.availableTags.last! {
-                            height = 0 // last item
-                        }
-                        return result
-                    })
-            }
-        }
-    }
-    
-    func item(for text: String) -> some View {
-        Button(action: {}, label: {
-            Text(text)
-                .padding(.all, 10)
-                .font(.subheadline)
-                .background(Color.init(red: 238/255, green: 238/255, blue: 238/255))
-                .foregroundColor(Color.init(red: 98/255, green: 103/255, blue: 144/255))
-                .cornerRadius(30)
-        })
-        
-    }
 }
 
 struct SchSearchTableView_Previews: PreviewProvider {
     static var previews: some View {
-        SchSearchView(availableTags: ["单纯吐槽", "天外天", "教务处", "学工部", "后勤保障处", "体育部、场馆中心", "信网中心", "保卫处", "国际处", "研究生院", "科研院", "医科办", "人文社科处", "教工部、人事处", "基建处", "校工会", "离退处", "资产处", "校友与基金事务处", "招标办", "宣传部", "组织部", "党办校办", "保密办", "小幼医", "校团委", "档案馆", "图书馆"])
+        SchSearchView(availableTags: [
+//            SchTagModel(id: 1, name: "哈哈哈", description: "这是个测试标签", children: nil),
+//            SchTagModel(id: 2, name: "哈哈哈", description: "这是个测试标签", children: nil),
+//            SchTagModel(id: 3, name: "哈哈哈", description: "这是个测试标签", children: nil),
+//            SchTagModel(id: 4, name: "哈哈哈", description: "这是个测试标签", children: nil),
+        ])
     }
 }
 
@@ -109,6 +77,8 @@ struct SchSearchTopView: View {
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     @Binding var inputMessage: String
     @Binding var historyArray: [String]
+    
+    
     var body: some View {
         HStack {
             HStack {
@@ -125,13 +95,13 @@ struct SchSearchTopView: View {
             
             
             Button(action: {
-                if(inputMessage == "") {
+                if inputMessage == "" {
                     self.mode.wrappedValue.dismiss()
                 } else {
-                    if(historyArray.count < 4) {
+                    if historyArray.count < 4 {
                         historyArray.insert(inputMessage, at: 0)
                     } else {
-                        historyArray.remove(at: 3)
+                        historyArray.removeLast()
                         historyArray.insert(inputMessage, at: 0)
                     }
                     inputMessage = ""
@@ -146,10 +116,10 @@ struct SchSearchTopView: View {
 }
 
 struct SchHistoryView: View {
-    var historyName: String
+    var historyString: String
     var body: some View {
         HStack{
-            Text(historyName)
+            Text(historyString)
                 .font(.subheadline)
                 .foregroundColor(.init(red: 48/255, green: 60/255, blue: 102/255))
             Spacer()
@@ -157,5 +127,26 @@ struct SchHistoryView: View {
         }
         .padding(.horizontal)
         .frame(width: UIScreen.main.bounds.width * 0.9)
+    }
+}
+
+// 解决AppStorage无法解释数组的问题
+extension Array: RawRepresentable where Element: Codable {
+    public init?(rawValue: String) {
+        guard let data = rawValue.data(using: .utf8),
+              let result = try? JSONDecoder().decode([Element].self, from: data)
+        else {
+            return nil
+        }
+        self = result
+    }
+    
+    public var rawValue: String {
+        guard let data = try? JSONEncoder().encode(self),
+              let result = String(data: data, encoding: .utf8)
+        else {
+            return "[]"
+        }
+        return result
     }
 }

@@ -103,7 +103,7 @@ struct SchQuestionCellView: View {
 struct CommentCellView_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
-            SchQuestionCellView(question: SchQuestionModel(id: 0, name: "哈哈蛤", description: "等哈u的哈舞电话我和杜哈武汉大货车闹ID那次娃u的", userID: nil, solved: 1, noCommit: nil, likes: 1, createdAt: "20190202 22:22", updatedAt: nil, username: "hahaha", msgCount: 500, urlList: nil, thumbImg: "https://www.hackingwithswift.com/img/covers-flat/watchos@2x.png", tags: [SchTagModel(id: nil, name: "教务处", description: nil, children: nil)], thumbUrlList: nil, isLiked: true, isOwner: true))
+            SchQuestionCellView(question: SchQuestionModel(id: 0, name: "哈哈蛤", description: "等哈u的哈舞电话我和杜哈武汉大货车闹ID那次娃u的", userID: nil, solved: 1, noCommit: nil, likes: 1, createdAt: "20190202 22:22", updatedAt: nil, username: "hahaha", msgCount: 500, urlList: nil, thumbImg: "https://www.hackingwithswift.com/img/covers-flat/watchos@2x.png", tags: [], thumbUrlList: nil, isLiked: true, isOwner: true))
         }
         .edgesIgnoringSafeArea(.all)
         .frame(width: screen.width, height: screen.height)
