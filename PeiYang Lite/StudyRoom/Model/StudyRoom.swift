@@ -8,7 +8,8 @@
 import SwiftUI
 
 // MARK: - StudyRooms
-struct StudyRooms: Codable {
+struct StudyRooms: Codable, Identifiable, Hashable {
+    var id = UUID()
     let data: [StudyBuilding]
     let errorCode: Int
     let message: String
@@ -21,7 +22,8 @@ struct StudyRooms: Codable {
 }
 
 // MARK: - StudyBuilding
-struct StudyBuilding: Codable {
+struct StudyBuilding: Codable, Hashable, Identifiable{
+    var id = UUID()
     let buildingID: String
     let areas: [Area]
     let building, campusID: String
@@ -34,7 +36,7 @@ struct StudyBuilding: Codable {
 }
 
 // MARK: - Area
-struct Area: Codable, Identifiable {
+struct Area: Codable, Identifiable, Hashable {
     var id = UUID()
     
     let areaID: String
@@ -114,37 +116,7 @@ class StudyRoomManager {
             }
         }
     }
-    static func getCollections(token: String, completion: @escaping (Result<StudyRooms, Network.Failure>) -> Void) {
-        Network.fetch(
-            "https://selfstudy.twt.edu.cn/getCollections",
-            headers:[
-                "ticket": ticket,
-                "domain": domain,
-                "token": token
-            ],
-            method: .get
-        ) {
-            result in
-            switch result {
-            case .success(let(data, response)):
-                guard let ReturnMessage = try? JSONDecoder().decode(StudyRooms.self, from: data) else {
-                    completion(.failure(.requestFailed))
-                    return
-                }
-                completion(.success(ReturnMessage))
-                switch response.statusCode {
-                case 200:
-                    completion(.success(ReturnMessage))
-                case 401:
-                    completion(.failure(.urlError))
-                default:
-                    completion(.failure(.unknownError))
-                }
-            case .failure(let error):
-                completion(.failure(error))
-            }
-        }
-    }
+    
 }
 
 // MARK: - 字符串截取

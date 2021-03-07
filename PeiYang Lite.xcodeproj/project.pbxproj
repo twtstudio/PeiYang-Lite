@@ -150,6 +150,7 @@
 		C983700625F32F49000E3367 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = C983700525F32F49000E3367 /* Persistence.swift */; };
 		C983700B25F32F51000E3367 /* PeyangTry.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C983700925F32F51000E3367 /* PeyangTry.xcdatamodeld */; };
 		C983703C25F37B98000E3367 /* DataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C983703B25F37B98000E3367 /* DataStorage.swift */; };
+		C983704A25F459CE000E3367 /* CollectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C983704925F459CE000E3367 /* CollectionManager.swift */; };
 		C990BB86255FB05B00444D2E /* StudyRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = C990BB85255FB05B00444D2E /* StudyRoom.swift */; };
 		C9A9942225C271950063C3BB /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A9942125C271950063C3BB /* LoginManager.swift */; };
 		C9BCE6BD25DE9A040041E533 /* DrawerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9BCE6BC25DE9A040041E533 /* DrawerView.swift */; };
@@ -370,6 +371,7 @@
 		C983700525F32F49000E3367 /* Persistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		C983700A25F32F51000E3367 /* PeyangTry.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PeyangTry.xcdatamodel; sourceTree = "<group>"; };
 		C983703B25F37B98000E3367 /* DataStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStorage.swift; sourceTree = "<group>"; };
+		C983704925F459CE000E3367 /* CollectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionManager.swift; sourceTree = "<group>"; };
 		C990BB85255FB05B00444D2E /* StudyRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyRoom.swift; sourceTree = "<group>"; };
 		C9A9942125C271950063C3BB /* LoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
 		C9BCE6BC25DE9A040041E533 /* DrawerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerView.swift; sourceTree = "<group>"; };
@@ -1020,6 +1022,7 @@
 			isa = PBXGroup;
 			children = (
 				C990BB85255FB05B00444D2E /* StudyRoom.swift */,
+				C983704925F459CE000E3367 /* CollectionManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1497,6 +1500,7 @@
 				D37DD87D25EDFA8700A662E0 /* SchView.swift in Sources */,
 				C9D59B3825BBB80C006865FC /* BeginView.swift in Sources */,
 				C9D5BF7525D010F000CD3537 /* SettingView.swift in Sources */,
+				C983704A25F459CE000E3367 /* CollectionManager.swift in Sources */,
 				C95B57B025EBF3BA004300B5 /* HomeView2.swift in Sources */,
 				C92E614F253997990008A38A /* RadarChartView.swift in Sources */,
 				032CE4DE24DBA1E5003786F6 /* Version.swift in Sources */,

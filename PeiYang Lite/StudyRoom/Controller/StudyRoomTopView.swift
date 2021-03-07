@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Foundation
 
 
 struct StudyRoomTopView: View {
@@ -42,6 +43,13 @@ struct StudyRoomTopView: View {
     @State var weeksBuildingWJ: [[StudyBuilding]] = [[], [], [], [], [], [], []]
     @State var weeksBuildingBY: [[StudyBuilding]] = [[], [], [], [], [], [], []]
     @State private var isFailGetOneWeek = true
+    
+    // 提示
+    @State var alertMessage = ""
+    
+    // 收藏
+    @State var getMessage: [String] = []
+    @State var collectionBuildings: [CollectionClass] = []
     
     //计算week和day
     let formatter = DateFormatter()
@@ -83,7 +91,7 @@ struct StudyRoomTopView: View {
                     Image("calender")
                 }
             }.frame(width: screen.width * 0.9)
-            .padding(.top, UIScreen.main.bounds.height / 8)
+            .padding(.top, UIScreen.main.bounds.height / 15)
             
             HStack{
                 Image("position")
@@ -138,6 +146,7 @@ struct StudyRoomTopView: View {
                         
             
             if(isGetStudyRoomBuildingMessage == false) {
+                //MARK: if is already get message
                 VStack{
                     Button(action: {
                         StudyRoomManager.allBuidlingGet(term: "20212", week: String(weeks.wrappedValue), day: String(days.wrappedValue)) {result in
@@ -172,7 +181,7 @@ struct StudyRoomTopView: View {
             } else {
                 
                 if(schoolDistrict == 0) {
-                    
+                    //MARK: show the buildings in WJ
                     GridWithoutScrollStack(minCellWidth: UIScreen.main.bounds.width / 8,
                                            spacing: 20,
                                            numItems: buildingsWJ.count/2) {
@@ -221,6 +230,7 @@ struct StudyRoomTopView: View {
                     .padding()
                     .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.4, alignment: .center)
                 } else{
+                    //MARK: show the buildings in BY
                     GridWithoutScrollStack(minCellWidth: UIScreen.main.bounds.width / 8,
                                            spacing: 20,
                                            numItems: buildingsBY.count/2) {} content: { index, width in
@@ -270,7 +280,7 @@ struct StudyRoomTopView: View {
                 }
                 
             }
-            
+            // MARK: Collections
             HStack {
                 Text("我的收藏")
                     .font(.custom("HelveticaNeue-Bold", size: UIScreen.main.bounds.height/40))
@@ -278,9 +288,7 @@ struct StudyRoomTopView: View {
                 Spacer()
             }
             .frame(width: UIScreen.main.bounds.width * 0.9)
-            StudyRoomFavourCard()
-            
-            
+            StudyRoomFavourCard(collectionClasses: collectionBuildings)
             Spacer()
             
             NavigationLink(
@@ -288,8 +296,9 @@ struct StudyRoomTopView: View {
                 isActive: $isShowSearch,
                 label: {})
         }//: VSTACK
+        .navigationBarHidden(true)
         .ignoresSafeArea()
-        // MARK: get funciton
+        // MARK: 请求当天数据
         .onAppear {
             if(isGetStudyRoomBuildingMessage == false) {
                 StudyRoomManager.allBuidlingGet(term: "20212", week: String(weeks.wrappedValue), day: String(days.wrappedValue)) { result in
@@ -300,6 +309,7 @@ struct StudyRoomTopView: View {
                             isGetStudyRoomBuildingMessage = false
                             break
                         }
+                        requestDataToUseData()
                         for building in buildings{
                             if(building.campusID == "1"){
                                 buildingsWJ.insert(building, at: 0)
@@ -350,7 +360,7 @@ struct StudyRoomTopView: View {
             }
         })
         .background(Color(#colorLiteral(red: 0.9352087975, green: 0.9502342343, blue: 0.9600060582, alpha: 1)).frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height, alignment: .center).ignoresSafeArea())
-        .navigationBarHidden(true)
+       
 //
         
         
@@ -365,13 +375,35 @@ struct StudyRoomTopView: View {
         }
     }
     
-//    func load() {
-//        DispatchQueue.global().sync {
-//            if let saveStudyRoomHistory = DataStorage.retreive("studyroom/history.json", from: .caches, as: [String].self) {
-//                studyRoomHistory = saveStudyRoomHistory
-//            }
-//        }
-//    }
+    func requestDataToUseData() {
+        CollrctionManager.getCollections() {result in
+            switch result {
+            case .success(let data):
+                if(data.errorCode != 0){
+                    alertMessage = data.message
+                } else {
+                    alertMessage = data.message
+                    getMessage = data.data.classroomID!
+                }
+                for code in getMessage {
+                    for building in buildings {
+                        for area in building.areas {
+                            for room in area.classrooms {
+                                if(room.classroomID == code) {
+                                    let collection = CollectionClass(classMessage: room, buildingName: building.building)
+                                    collectionBuildings.append(collection)
+                                }
+                            }
+                        }
+                    }
+                }
+            case .failure(_):
+                break
+            }
+        }
+        
+        
+    }
 }
 
 
@@ -447,13 +479,17 @@ struct StudyRoomBuildingCardView: View {
 }
 
 struct StudyRoomFavourCard: View {
+    var collectionClasses: [CollectionClass]
+    private var index: Int {
+        collectionClasses.count / 4
+    }
+    
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false, content: {
             HStack(spacing: 20) {
-                StudyRoomBuildingCardView(buildingName: "23教", className: "A208", isFree: true)
-                StudyRoomBuildingCardView(buildingName: "24教", className: "110", isFree: false)
-                StudyRoomBuildingCardView(buildingName: "16教", className: "B210", isFree: true)
-                StudyRoomBuildingCardView(buildingName: "55教", className: "C228", isFree: false)
+                ForEach(collectionClasses, id: \.self) { collectionclass in
+                    StudyRoomBuildingCardView(buildingName: collectionclass.buildingName, className: collectionclass.classMessage.classroom, isFree: true)
+                }
             }
         }).padding()
     }
@@ -464,4 +500,10 @@ extension Date {
         let components = Calendar.current.dateComponents([.day], from: self, to: toDate)
         return components.day ?? 0
     }
+}
+
+struct CollectionClass: Hashable {
+    var id = UUID()
+    var classMessage: Classroom
+    var buildingName: String
 }
