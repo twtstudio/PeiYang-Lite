@@ -32,6 +32,11 @@ struct StudyRoomTopView: View {
         dateFormatter.dateFormat = "yyyy-MM-dd"
         return dateFormatter.string(from: sharedMessage.studyRoomSelectDate)
     }
+    var nowTime: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm"
+        return dateFormatter.string(from: Date())
+    }
     
     // 教学楼储存数组
     @State var buildings: [StudyBuilding] = []
@@ -70,6 +75,26 @@ struct StudyRoomTopView: View {
         set: {_ in})
     }
     
+    // 计算现在的时间处于哪个时间段
+    var nowPeriod: String {
+        if nowTime.prefix(2) > "00" && (nowTime.prefix(2) <= "10" && nowTime.suffix(2) < "05"){
+            return "8:30--10:05"
+        }
+        else if (nowTime.prefix(2) >= "10" && nowTime.suffix(2) >= "05") && nowTime.prefix(2) < "12" {
+            return "10:25--12:00"
+        }
+        else if nowTime.prefix(2) > "12" && (nowTime.prefix(2) <= "15" && nowTime.suffix(2) <= "05"){
+            return "13:30--15:05"
+        }
+        else if (nowTime.prefix(2) >= "15" && nowTime.suffix(2) > "05") && nowTime.prefix(2) < "17" {
+            return "15:25--17:00"
+        }
+        else if nowTime.prefix(2) >= "17" && (nowTime.prefix(2) <= "20" && nowTime.suffix(2) <= "05"){
+            return "18:30--20:05"
+        }
+        else {return "20:25--22:00"}
+    }
+    
     
     
     
@@ -93,6 +118,9 @@ struct StudyRoomTopView: View {
             }.frame(width: screen.width * 0.9)
             .padding(.top, UIScreen.main.bounds.height / 15)
             
+//            Text(String(collectionBuildings.count))
+//            Text(alertMessage)
+
             HStack{
                 Image("position")
                 
@@ -300,6 +328,7 @@ struct StudyRoomTopView: View {
         .ignoresSafeArea()
         // MARK: 请求当天数据
         .onAppear {
+            sharedMessage.studyRoomSelectTime = nowPeriod
             if(isGetStudyRoomBuildingMessage == false) {
                 StudyRoomManager.allBuidlingGet(term: "20212", week: String(weeks.wrappedValue), day: String(days.wrappedValue)) { result in
                     switch result {
@@ -375,8 +404,9 @@ struct StudyRoomTopView: View {
         }
     }
     
+    //MARK: classroom_id -> classroom
     func requestDataToUseData() {
-        CollrctionManager.getCollections() {result in
+        CollectionManager.getCollections() {result in
             switch result {
             case .success(let data):
                 if(data.errorCode != 0){
@@ -452,18 +482,20 @@ struct StudyRoomBuildingCardView: View {
                 .fontWeight(.heavy)
                 .foregroundColor(themeColor)
             HStack{
-                if(isFree) {
+                if (isFree) {
                     Color.green.frame(width: UIScreen.main.bounds.width / 50, height: UIScreen.main.bounds.width / 50, alignment: .center)
                         .cornerRadius(UIScreen.main.bounds.width / 100)
                 } else {
                     Color.red.frame(width: UIScreen.main.bounds.width / 50, height: UIScreen.main.bounds.width / 50, alignment: .center)
                         .cornerRadius(UIScreen.main.bounds.width / 100)
                 }
-                
                 Text(isFree ? "空闲" : "占用")
                     .font(.headline)
                     .foregroundColor(isFree ? .green : .red)
                     .fontWeight(.heavy)
+            
+                
+                
             }
             .padding(.top, 0)
         }
@@ -479,16 +511,39 @@ struct StudyRoomBuildingCardView: View {
 }
 
 struct StudyRoomFavourCard: View {
+    @EnvironmentObject var sharedMessage: SharedMessage
     var collectionClasses: [CollectionClass]
+    
+    var checkTheClassNum: Int {
+        switch sharedMessage.studyRoomSelectTime {
+        case "8:30--10:05":
+            return 0
+        case "10:25--12:00":
+            return 2
+        case "13:30--15:05":
+            return 4
+        case "15:25--17:00":
+            return 6
+        case "18:30--20:05":
+            return 8
+        case "20:25--22:00":
+            return 10
+        default:
+            return -1
+        }
+    }
     private var index: Int {
         collectionClasses.count / 4
     }
+    
+    
     
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false, content: {
             HStack(spacing: 20) {
                 ForEach(collectionClasses, id: \.self) { collectionclass in
-                    StudyRoomBuildingCardView(buildingName: collectionclass.buildingName, className: collectionclass.classMessage.classroom, isFree: true)
+                    StudyRoomBuildingCardView(buildingName: collectionclass.buildingName, className: collectionclass.classMessage.classroom, isFree: collectionclass.classMessage.status[checkTheClassNum] == "0")
+                    
                 }
             }
         }).padding()
