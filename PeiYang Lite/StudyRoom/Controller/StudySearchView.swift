@@ -15,12 +15,22 @@ struct StudySearchView: View {
     @State var searchString: String = ""
     @State var studyRoomHistory: [String] = []
     @State var isSearched: Bool = false
+    enum method {
+        case buildings
+        case sections
+        case rooms
+        case wrong
+    }
+    @State var selectedMethod = method.buildings
+    
+    @State var brokenString: [String] = []
     
     var body: some View {
         VStack{
             HStack {
                 Button(action: {
                     studyRoomHistory.insert(searchString, at: 0)
+                    chooseMethod()
                     isSearched = true
                 }, label: {
                     Image("search")
@@ -53,9 +63,19 @@ struct StudySearchView: View {
                 SchHistorySectionView(searchString: $searchString, searchHistory: $studyRoomHistory)
             }
             ScrollView(.vertical, showsIndicators: false){
-//                SearchBuildingAndClassView(title: "45教A102", isFree: true)
-//                SearchBuildingView(title: "45教", section: "A")
-//                SearchBuildingView(title: "45教", section: "B")
+                switch selectedMethod {
+                case .buildings:
+                    Text("building")
+                case .sections:
+                    SearchBuildingView(title: "45教", section: "A")
+                case .rooms:
+                    SearchBuildingAndClassView(title: "45教A102", isFree: true)
+                case .wrong:
+                    Text("ERROR")
+                }
+               
+                
+                
                 
             }
             .padding(.top)
@@ -87,6 +107,60 @@ struct StudySearchView: View {
                 studyRoomHistory = saveStudyRoomHistory
             }
         }
+    }
+    
+    func chooseMethod() {
+        //先看看是否有空格，教，楼
+        if (searchString.findString("教") != -1) {
+            brokenString = searchString.components(separatedBy: "教")
+        }
+        else if searchString.findString("楼") != -1 {
+            brokenString = searchString.components(separatedBy: "楼")
+        }
+        else {
+            brokenString = searchString.components(separatedBy: " ")
+        }
+
+        ///eg: "13教", "13", "13楼" --> buildings
+        if (brokenString.count == 1 &&
+            brokenString[0].count == 2 &&
+            brokenString[0].findString("A") == -1 &&
+            brokenString[0].findString("B") == -1 &&
+            brokenString[0].findString("C") == -1) {
+            selectedMethod = .buildings
+        }
+        
+        /// eg: "13A", "14B" --> sections 
+        else if (brokenString.count == 1 &&
+            brokenString[0].count == 3 &&
+            (brokenString[0].findString("A") != -1 ||
+            brokenString[0].findString("B") != -1 ||
+            brokenString[0].findString("C") != -1)) {
+            selectedMethod = .sections
+        }
+        /// eg: "313", "413", "102" --> rooms
+        else if brokenString.count == 1 &&
+                brokenString[0].count == 3 &&
+                brokenString[0].findString("A") == -1 &&
+                brokenString[0].findString("B") == -1 &&
+                brokenString[0].findString("C") == -1{
+            selectedMethod = .rooms
+        }
+        /// eg: "A312", "B312" --> rooms
+        else if brokenString.count == 1 &&
+                brokenString[0].count == 4 {
+            selectedMethod = .rooms
+        }
+        /// eg: "36楼A", "36 A" --> sections
+        else if brokenString.count != 1 &&
+                (brokenString[1] == "A" ||
+                brokenString[1] == "B" ||
+                brokenString[1] == "C") {
+            selectedMethod = .sections
+        }
+        /// eg: "36 A103", "36 103" --> rooms
+        else if brokenString.count != 1 {selectedMethod = .rooms}
+        else {selectedMethod = .wrong}
     }
 }
 

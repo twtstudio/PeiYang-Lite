@@ -147,8 +147,6 @@
 		C9836FB925F28608000E3367 /* CourseTableDetailView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9836FB825F28608000E3367 /* CourseTableDetailView2.swift */; };
 		C9836FBF25F28622000E3367 /* RoomDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9836FBE25F28622000E3367 /* RoomDetailView.swift */; };
 		C9836FD025F29160000E3367 /* AcSetShowDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9836FCF25F29160000E3367 /* AcSetShowDayView.swift */; };
-		C983700625F32F49000E3367 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = C983700525F32F49000E3367 /* Persistence.swift */; };
-		C983700B25F32F51000E3367 /* PeyangTry.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C983700925F32F51000E3367 /* PeyangTry.xcdatamodeld */; };
 		C983703C25F37B98000E3367 /* DataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C983703B25F37B98000E3367 /* DataStorage.swift */; };
 		C983704A25F459CE000E3367 /* CollectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C983704925F459CE000E3367 /* CollectionManager.swift */; };
 		C990BB86255FB05B00444D2E /* StudyRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = C990BB85255FB05B00444D2E /* StudyRoom.swift */; };
@@ -368,8 +366,6 @@
 		C9836FB825F28608000E3367 /* CourseTableDetailView2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseTableDetailView2.swift; sourceTree = "<group>"; };
 		C9836FBE25F28622000E3367 /* RoomDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomDetailView.swift; sourceTree = "<group>"; };
 		C9836FCF25F29160000E3367 /* AcSetShowDayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcSetShowDayView.swift; sourceTree = "<group>"; };
-		C983700525F32F49000E3367 /* Persistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
-		C983700A25F32F51000E3367 /* PeyangTry.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PeyangTry.xcdatamodel; sourceTree = "<group>"; };
 		C983703B25F37B98000E3367 /* DataStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStorage.swift; sourceTree = "<group>"; };
 		C983704925F459CE000E3367 /* CollectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionManager.swift; sourceTree = "<group>"; };
 		C990BB85255FB05B00444D2E /* StudyRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyRoom.swift; sourceTree = "<group>"; };
@@ -682,8 +678,6 @@
 		03B6887B24D155850020AD47 /* PeiYang Lite */ = {
 			isa = PBXGroup;
 			children = (
-				C983700525F32F49000E3367 /* Persistence.swift */,
-				C983700925F32F51000E3367 /* PeyangTry.xcdatamodeld */,
 				D37DD87225EDFA8700A662E0 /* SchoolProject */,
 				C95B579D25EBF37F004300B5 /* Issue */,
 				C9CF3DBC25D2B1E00085263F /* Home */,
@@ -1444,7 +1438,6 @@
 				C9663C2E25E248A600DFC973 /* CouseTableHeaderView.swift in Sources */,
 				D37DD88325EDFA8700A662E0 /* TagsView.swift in Sources */,
 				03B6894C24D1579B0020AD47 /* CurveCardView.swift in Sources */,
-				C983700625F32F49000E3367 /* Persistence.swift in Sources */,
 				03D85EBB24DD10A500637AB8 /* WLANCardView.swift in Sources */,
 				032CE4D924DBA1E5003786F6 /* RemoteFileCacheService.swift in Sources */,
 				C95B57FC25EC0387004300B5 /* AccountNeedToKnowView.swift in Sources */,
@@ -1465,7 +1458,6 @@
 				032CE4EC24DBA1E5003786F6 /* ImageProcessorGroup.swift in Sources */,
 				032CE4FB24DBA1E5003786F6 /* CircleProgressShape.swift in Sources */,
 				032CE4F624DBA1E5003786F6 /* ImageProxy.swift in Sources */,
-				C983700B25F32F51000E3367 /* PeyangTry.xcdatamodeld in Sources */,
 				C95B57C625EBF3C2004300B5 /* SelectedDetailView.swift in Sources */,
 				032CE4F024DBA1E5003786F6 /* URLSessionDownloadDelegateWrapper.swift in Sources */,
 				C95B57C825EBF3C2004300B5 /* HomeModuleSectionView.swift in Sources */,
@@ -1904,19 +1896,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		C983700925F32F51000E3367 /* PeyangTry.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				C983700A25F32F51000E3367 /* PeyangTry.xcdatamodel */,
-			);
-			currentVersion = C983700A25F32F51000E3367 /* PeyangTry.xcdatamodel */;
-			path = PeyangTry.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 03B6887124D155850020AD47 /* Project object */;
 }

@@ -154,6 +154,16 @@ extension String {
     func substring(from:Int) -> String{
         return self[from..<self.count]
     }
+    // 查找子字符串
+    func findString(_ sub: String)-> Int {
+        var pos = -1
+        if let range = range(of: sub, options: .literal) {
+            if !range.isEmpty {
+                pos = self.distance(from: startIndex, to: range.lowerBound)
+            }
+        }
+        return pos
+    }
     
 }
 
