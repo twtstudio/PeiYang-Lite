@@ -18,61 +18,55 @@ struct RoomDetailView: View {
     
 //    var availArray: [String]
     var body: some View {
-        
-        GeometryReader { full in
-            VStack {
-                HStack {
-                    Button(action: {
-                        self.mode.wrappedValue.dismiss()
-                      }) {
-                        Image("back-arrow")
-                    }
-
-                    Spacer()
-                    Button(action: {
-                        isShowCalender.toggle()
-                    }, label: {
-                        Image("calender")
-                    })
-
+        VStack {
+            HStack {
+                Button(action: {
+                    self.mode.wrappedValue.dismiss()
+                  }) {
+                    Image("back-arrow")
                 }
-                .frame(width: UIScreen.main.bounds.width * 0.9)
-                .padding(.top, 40)
-                
-                
-                RoomDetailHeaderView(className: className, activeWeek: activeWeek)
-                
-                ScrollView(.vertical, showsIndicators: false) {
-                    VStack {
-                        CourseTableWeekdaysView(
-                            activeWeek: $activeWeek,
-                            courseTable: courseTable,
-                            width: full.size.width / 8
-                        )
-                        .padding(.leading, full.size.width/16 + 7)
-                        .frame(width: full.size.width, alignment: .center)
-                        
-                        StudyRoomContentView(
-                            activeWeek: activeWeek,
-                            courseArray: courseTable.courseArray,
-                            width: full.size.width / 8
-                            )
-                        .frame(width: full.size.width, height: full.size.height*1.2, alignment: .top)
-                    }
-                    .padding(.horizontal, 10)
-                }
+
+                Spacer()
+                Button(action: {
+                    isShowCalender.toggle()
+                }, label: {
+                    Image("calender")
+                })
             }
-            .frame(width: screen.size.width, height: screen.size.height)
-//            .edgesIgnoringSafeArea(.all)
-            .sheet(isPresented: $isShowCalender,
-                   content: {
-                    CalendarView(isShowCalender: $isShowCalender)
-            })
-           
+            .frame(width: screen.width * 0.9)
+            .padding(.top, 40)
+            
+            RoomDetailHeaderView(className: className, activeWeek: activeWeek)
+                .navigationBarHidden(true)
+            
+            ScrollView(.vertical, showsIndicators: false) {
+                VStack {
+                    CourseTableWeekdaysView(
+                        activeWeek: $activeWeek,
+                        courseTable: courseTable,
+                        width: screen.width / 8
+                    )
+                    .padding(.leading, screen.width/16 + 7)
+                    .frame(width: screen.width, alignment: .center)
+                    
+                    StudyRoomContentView(
+                        activeWeek: activeWeek,
+                        courseArray: courseTable.courseArray,
+                        width: screen.width / 8
+                        )
+                    .frame(width: screen.width, height: screen.height*1.2, alignment: .top)
+                }
+                .padding(.horizontal, 10)
+            }
         }
         .edgesIgnoringSafeArea(.all)
+//        .navigationBarTitle("")
         .navigationBarHidden(true)
-//        .navigationBarBackButtonHidden(true)
+        .sheet(isPresented: $isShowCalender,
+               content: {
+                CalendarView(isShowCalender: $isShowCalender)
+        })
+        //        .navigationBarBackButtonHidden(true)
 //        .navigationBarItems(leading: Button(action : {
 //            self.mode.wrappedValue.dismiss()
 //        }) {

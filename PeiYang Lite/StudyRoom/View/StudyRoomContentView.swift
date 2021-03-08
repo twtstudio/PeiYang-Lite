@@ -30,30 +30,6 @@ struct StudyRoomContentView: View {
             // MARK: - Course
             ForEach(0...5, id: \.self) { weekday in
                 ZStack(alignment: .top) {
-//                    ForEach(
-//                        courseArray
-//                            .filter { course in
-//                                return course.arrangeArray
-//                                    .filter { $0.weekArray.contains(activeWeek) }
-//                                    .map(\.weekday)
-//                                    .contains(weekday)
-//                                },
-//                        id: \.no
-//                    ) { course in
-//                            Text("课程占用")
-//                                .font(.caption2)
-//                                .bold()
-//                                .padding(7)
-//                                .foregroundColor(.white)
-//                                .frame(
-//                                    width: width*1.1,
-//                                    height: CGFloat(course.activeArrange(weekday).length) * width * 1.5
-//                                )
-//                                .background(colorHelper.color[course.no])
-//                                .clipShape(RoundedRectangle(cornerRadius: 8))
-//                                .offset(y: CGFloat(course.activeArrange(weekday).startUnit) * width * 1.52)
-//                        }
-                        
                     ForEach(0...5, id:\.self) { i in
                         if status[weekday][2*i] == "1" {
                             Text("课程占用")
