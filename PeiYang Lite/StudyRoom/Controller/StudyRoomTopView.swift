@@ -38,6 +38,7 @@ struct StudyRoomTopView: View {
         return dateFormatter.string(from: Date())
     }
     
+    
     // 教学楼储存数组
     @State var buildings: [StudyBuilding] = []
     @State var buildingsWJ: [StudyBuilding] = []
@@ -75,21 +76,21 @@ struct StudyRoomTopView: View {
         set: {_ in})
     }
     
-    // 计算现在的时间处于哪个时间段
+    // 计算现在的时间处于哪个时间段 ？？
     var nowPeriod: String {
-        if nowTime.prefix(2) > "00" && (nowTime.prefix(2) <= "10" && nowTime.suffix(2) < "05"){
+        if nowTime.prefix(2) < "10" && nowTime.prefix(2) >= "00" || (nowTime.prefix(2) == "10" && nowTime.suffix(2) < "05"){
             return "8:30--10:05"
         }
-        else if (nowTime.prefix(2) >= "10" && nowTime.suffix(2) >= "05") && nowTime.prefix(2) < "12" {
+        else if nowTime.prefix(2) > "10" && nowTime.prefix(2) < "12" || (nowTime.prefix(2) == "10" && nowTime.suffix(2) >= "05"){
             return "10:25--12:00"
         }
-        else if nowTime.prefix(2) > "12" && (nowTime.prefix(2) <= "15" && nowTime.suffix(2) <= "05"){
+        else if nowTime.prefix(2) > "12" && nowTime.prefix(2) < "15" || (nowTime.prefix(2) == "15" && nowTime.suffix(2) <= "05"){
             return "13:30--15:05"
         }
-        else if (nowTime.prefix(2) >= "15" && nowTime.suffix(2) > "05") && nowTime.prefix(2) < "17" {
+        else if nowTime.prefix(2) > "15" && nowTime.prefix(2) < "17" || (nowTime.prefix(2) == "15" && nowTime.suffix(2) > "05") {
             return "15:25--17:00"
         }
-        else if nowTime.prefix(2) >= "17" && (nowTime.prefix(2) <= "20" && nowTime.suffix(2) <= "05"){
+        else if nowTime.prefix(2) >= "17" && nowTime.prefix(2) < "20" || (nowTime.prefix(2) == "20" && nowTime.suffix(2) <= "05"){
             return "18:30--20:05"
         }
         else {return "20:25--22:00"}
@@ -118,31 +119,35 @@ struct StudyRoomTopView: View {
             }.frame(width: screen.width * 0.9)
             .padding(.top, UIScreen.main.bounds.height / 15)
             
+           /// Text String
+//            Text(nowTime)
+//            Text(nowPeriod)
 //            Text(String(collectionBuildings.count))
 //            Text(alertMessage)
+//            Text(String(weeksBuildingWJ[0].count))
 
             HStack{
                 Image("position")
                 
-//                Picker(schoolDistricts[schoolDistrict], selection: $schoolDistrict) {
-//                    ForEach(0 ..< schoolDistricts.count) {
-//                        Text(schoolDistricts[$0])
-//
-//                    }
-//                }.pickerStyle(MenuPickerStyle())
-//                .foregroundColor(themeColor)
-//                .font(.custom("HelveticaNeue-Bold", size: UIScreen.main.bounds.height/40))
-                Button(action: {
-                    if(schoolDistrict == 1) {
-                        schoolDistrict = 0
-                    } else {
-                        schoolDistrict = 1
+                Picker(schoolDistricts[schoolDistrict], selection: $schoolDistrict) {
+                    ForEach(0 ..< schoolDistricts.count) {
+                        Text(schoolDistricts[$0])
+
                     }
-                }, label: {
-                    Text(schoolDistricts[schoolDistrict])
-                    .foregroundColor(themeColor)
-                    .font(.custom("HelveticaNeue-Bold", size: UIScreen.main.bounds.height/40))
-                })
+                }.pickerStyle(MenuPickerStyle())
+                .foregroundColor(themeColor)
+                .font(.custom("HelveticaNeue-Bold", size: UIScreen.main.bounds.height/40))
+//                Button(action: {
+//                    if(schoolDistrict == 1) {
+//                        schoolDistrict = 0
+//                    } else {
+//                        schoolDistrict = 1
+//                    }
+//                }, label: {
+//                    Text(schoolDistricts[schoolDistrict])
+//                    .foregroundColor(themeColor)
+//                    .font(.custom("HelveticaNeue-Bold", size: UIScreen.main.bounds.height/40))
+//                })
                 
 
                 Spacer()

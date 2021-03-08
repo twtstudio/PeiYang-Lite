@@ -87,7 +87,6 @@ struct CalendarView: View {
                 }
             }
             
-            Text("当前选择时间: \(sharedMessage.studyRoomSelectTime)").padding()
             Spacer()
             HStack{
                 Spacer()
