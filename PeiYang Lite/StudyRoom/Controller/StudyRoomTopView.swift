@@ -20,7 +20,7 @@ struct StudyRoomTopView: View {
     
     // 学区选择
     let schoolDistricts: [String] = ["卫津路校区", "北洋园校区"]
-    @State var schoolDistrict = 0
+    @AppStorage(SharedMessage.schoolDistrictKey, store: Storage.defaults) private var schoolDistrict = 0
     
     // 搜索栏跳转State
     @State var isShowSearch = false
@@ -330,7 +330,7 @@ struct StudyRoomTopView: View {
                 label: {})
         }//: VSTACK
         .navigationBarHidden(true)
-        .ignoresSafeArea()
+        .edgesIgnoringSafeArea(.top)
         // MARK: 请求当天数据
         .onAppear {
             sharedMessage.studyRoomSelectTime = nowPeriod
@@ -403,6 +403,7 @@ struct StudyRoomTopView: View {
     func save() {
         let queue = DispatchQueue.global()
         queue.async {
+            DataStorage.store(buildings, in: .caches, as: "studyroom/todaydata.json")
             DataStorage.store(weeksBuildings, in: .caches, as: "studyroom/weekdata.json")
             DataStorage.store(weeksBuildingWJ, in: .caches, as: "studyroom/weekdataWJ.json")
             DataStorage.store(weeksBuildingBY, in: .caches, as: "studyroom/weekdataBY.json")

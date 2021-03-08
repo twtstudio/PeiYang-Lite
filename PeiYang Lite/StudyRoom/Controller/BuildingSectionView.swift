@@ -19,8 +19,9 @@ struct BuildingSectionView: View {
     // 定位building
     var theNumOfBuilding: Int
     var theField: Int
+    
+    
     var body: some View {
-
             VStack {
                 HStack {
                     Button(action: {
