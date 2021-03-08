@@ -45,18 +45,23 @@ struct CourseDetailView: View {
             Spacer().frame(height: 50)
             
             HStack(spacing: 5) {
-                infoView(title: "ID", info: course.no)
-                infoView(title: "逻辑班号", info: course.serial)
-                infoView(title: "校区", info: "北洋园校区")
+                VStack(alignment: .leading, spacing: 5) {
+                    infoView(title: "ID", info: course.no)
+                    infoView(title: "上课地点", info: course.activeArrange(weekDay).location)
+                    infoView(title: "时间", info: course.activeArrange(weekDay).unitTimeString)
+                }
+                
+                VStack(alignment: .leading, spacing: 5) {
+                    infoView(title: "逻辑班号", info: course.serial)
+                    infoView(title: "起始周", info: course.weeks)
+                }
+                
+                VStack(alignment: .leading, spacing: 5) {
+                    infoView(title: "校区", info: course.campus)
+                    infoView(title: "学分", info: course.credit)
+                }
             }
-            
-            HStack(spacing: 5) {
-                infoView(title: "上课地点", info: course.activeArrange(weekDay).location)
-                infoView(title: "起始周", info: course.weeks)
-                infoView(title: "学分", info: course.credit)
-            }
-            
-            infoView(title: "时间", info: course.activeArrange(weekDay).unitTimeString)
+            .padding(.vertical, 8)
             
         }
         .padding(15)

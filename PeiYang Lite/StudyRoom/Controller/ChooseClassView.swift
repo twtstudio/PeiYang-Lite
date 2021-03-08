@@ -65,6 +65,23 @@ struct ChooseClassView: View {
     
     var body: some View {
         VStack {
+            HStack {
+                Button(action: {
+                    self.mode.wrappedValue.dismiss()
+                  }) {
+                    Image("back-arrow")
+                }
+
+                Spacer()
+                Button(action: {
+                    isShowCalender.toggle()
+                }, label: {
+                    Image("calender")
+                })
+            }
+            .frame(width: screen.width * 0.9)
+            .padding(.top, 40)
+            
             HStack{
                 Image("building-gray")
                     .resizable()
@@ -105,6 +122,7 @@ struct ChooseClassView: View {
                             }
                         }
                     }
+                    .navigationBarHidden(true)
                 }
             }
 
@@ -119,7 +137,7 @@ struct ChooseClassView: View {
 
 
         })
-        .padding(.top, UIScreen.main.bounds.height / 10)
+//        .padding(.top, UIScreen.main.bounds.height / 10)
         .edgesIgnoringSafeArea(.top)
         .frame(width: UIScreen.main.bounds.width)
         .background(Color(#colorLiteral(red: 0.9352087975, green: 0.9502342343, blue: 0.9600060582, alpha: 1)).ignoresSafeArea())
@@ -127,16 +145,17 @@ struct ChooseClassView: View {
                content: {
                 CalendarView(isShowCalender: $isShowCalender)
         })//: sheet
-        .navigationBarBackButtonHidden(true)
-        .navigationBarItems(leading: Button(action : {
-            self.mode.wrappedValue.dismiss()
-        }) {
-            Image("back-arrow")
-        }, trailing: Button(action : {
-            isShowCalender.toggle()
-        }) {
-            Image("calender")
-        })
+        .navigationBarHidden(true)
+//        .navigationBarBackButtonHidden(true)
+//        .navigationBarItems(leading: Button(action : {
+//            self.mode.wrappedValue.dismiss()
+//        }) {
+//            Image("back-arrow")
+//        }, trailing: Button(action : {
+//            isShowCalender.toggle()
+//        }) {
+//            Image("calender")
+//        })
   
     }
     

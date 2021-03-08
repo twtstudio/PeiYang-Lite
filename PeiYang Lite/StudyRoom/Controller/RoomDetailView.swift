@@ -37,7 +37,6 @@ struct RoomDetailView: View {
             .padding(.top, 40)
             
             RoomDetailHeaderView(className: className, activeWeek: activeWeek)
-                .navigationBarHidden(true)
             
             ScrollView(.vertical, showsIndicators: false) {
                 VStack {
@@ -59,9 +58,9 @@ struct RoomDetailView: View {
                 .padding(.horizontal, 10)
             }
         }
-        .edgesIgnoringSafeArea(.all)
-//        .navigationBarTitle("")
+        .navigationBarTitle("")
         .navigationBarHidden(true)
+        .edgesIgnoringSafeArea(.all)
         .sheet(isPresented: $isShowCalender,
                content: {
                 CalendarView(isShowCalender: $isShowCalender)

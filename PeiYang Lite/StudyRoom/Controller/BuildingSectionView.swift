@@ -22,6 +22,23 @@ struct BuildingSectionView: View {
     var body: some View {
 
             VStack {
+                HStack {
+                    Button(action: {
+                        self.mode.wrappedValue.dismiss()
+                      }) {
+                        Image("back-arrow")
+                    }
+
+                    Spacer()
+                    Button(action: {
+                        isShowCalender.toggle()
+                    }, label: {
+                        Image("calender")
+                    })
+                }
+                .frame(width: screen.width * 0.9)
+                .padding(.top, 40)
+                
                 HStack{
                     Image("building-gray")
                         .resizable()
@@ -33,6 +50,7 @@ struct BuildingSectionView: View {
                 }// TOP BUILDING NAME
                 .padding()
                 .frame(width: UIScreen.main.bounds.width * 0.9)
+                
                 HStack(spacing: 20) {
                     ForEach(0..<sections.count) { index in
                         NavigationLink(
@@ -41,13 +59,14 @@ struct BuildingSectionView: View {
                                 SchSection(title: sections[index].areaID + "区")
                         })
                     }
+                    .navigationBarHidden(true)
                     Spacer()
                 }
                 .frame(width: UIScreen.main.bounds.width * 0.9)
                
                 Spacer()
             }
-            .padding(.top, UIScreen.main.bounds.height / 10)
+//            .padding(.top, UIScreen.main.bounds.height / 10)
             .edgesIgnoringSafeArea(.top)
             
             .sheet(isPresented: $isShowCalender,
@@ -55,16 +74,16 @@ struct BuildingSectionView: View {
                     CalendarView(isShowCalender: $isShowCalender)
             })//: sheet
             .background(Color(#colorLiteral(red: 0.9352087975, green: 0.9502342343, blue: 0.9600060582, alpha: 1)).frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height, alignment: .center).ignoresSafeArea())
-            .navigationBarBackButtonHidden(true)
-            .navigationBarItems(leading: Button(action : {
-                self.mode.wrappedValue.dismiss()
-            }) {
-                Image("back-arrow")
-            }, trailing: Button(action : {
-                isShowCalender.toggle()
-            }) {
-                Image("calender")
-        })
+//            .navigationBarBackButtonHidden(true)
+//            .navigationBarItems(leading: Button(action : {
+//                self.mode.wrappedValue.dismiss()
+//            }) {
+//                Image("back-arrow")
+//            }, trailing: Button(action : {
+//                isShowCalender.toggle()
+//            }) {
+//                Image("calender")
+//        })
 
     }
 }

@@ -33,7 +33,7 @@ struct HomeCourseSectionView: View {
     }
     
     private var currentCourseArray: [Course] {
-        activeCourseArray.filter { $0.arrangeArray.map(\.weekday).contains(courseTable.currentWeekday) }
+        activeCourseArray.filter { $0.arrangeArray.map(\.weekday).contains(courseTable.currentWeekday) && $0.arrangeArray.map(\.weekday).contains(activeWeek) }
     }
     
     private var colorHelper: ColorHelper { ColorHelper.shared }

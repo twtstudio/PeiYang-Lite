@@ -67,13 +67,13 @@ struct CourseTableDetailView2: View {
                                         CourseTableWeekdaysView(
                                             activeWeek: $activeWeek,
                                             courseTable: courseTable,
-                                            width: full.size.width / CGFloat(showCourseNum+2)//9
+                                            width: (full.size.width-40-14*CGFloat(showCourseNum)) / CGFloat(showCourseNum)//9
                                         ).frame(width: full.size.width)
                             ) {
                                 CourseTableContentView(
                                     activeWeek: activeWeek,
                                     courseArray: courseTable.courseArray,
-                                    width: full.size.width / CGFloat(showCourseNum+2),
+                                    width: (full.size.width-40-14*CGFloat(showCourseNum)) / CGFloat(showCourseNum),
                                     alertCourse: alertCourse,
                                     showFullCourse: $showFullCourse//9
                                 )
@@ -85,14 +85,14 @@ struct CourseTableDetailView2: View {
                                 CourseTableWeekdaysView(
                                     activeWeek: $activeWeek,
                                     courseTable: courseTable,
-                                    width: full.size.width / CGFloat(showCourseNum+2)//9
+                                    width: (screen.width-40-14*CGFloat(showCourseNum)) / CGFloat(showCourseNum)//9
                                 )
                                 .frame(width: full.size.width, alignment: .center)
                                 
                                 CourseTableContentView(
                                     activeWeek: activeWeek,
                                     courseArray: courseTable.courseArray,
-                                    width: full.size.width / CGFloat(showCourseNum+2),//9
+                                    width: (screen.width-40-14*CGFloat(showCourseNum)) / CGFloat(showCourseNum),//9
                                     alertCourse: alertCourse,
                                     showFullCourse: $showFullCourse
                                 )
@@ -247,8 +247,8 @@ struct NavigationConfigurator: UIViewControllerRepresentable {
 struct CourseTableDetailView2_Previews: PreviewProvider {
     static var previews: some View {
         ZStack {
-            Color.black
-                .edgesIgnoringSafeArea(.all)
+//            Color.black
+//                .edgesIgnoringSafeArea(.all)
             CourseTableDetailView2(alertCourse: AlertCourse())
                 .environment(\.colorScheme, .dark)
         }
