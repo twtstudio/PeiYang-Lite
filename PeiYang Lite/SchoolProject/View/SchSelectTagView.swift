@@ -13,7 +13,8 @@ struct SchSelectTagView: View {
     
     @State private var tagIntro: String = ""
     
-    @Binding var availableTags: [SchTagModel]
+    @EnvironmentObject var tagSource: SchTagSource
+    @State private var tagDescription: String = ""
     
     var body: some View {
         VStack(spacing: 10) {
@@ -21,49 +22,83 @@ struct SchSelectTagView: View {
                 .padding(.top)
                 .font(.title2)
                 .foregroundColor(color)
-            Text("这一行能添加的小字号的部门介绍的字数上限大概有25~30个字dawdawdawdawdaw")
+            Text(tagDescription)
                 .frame(width: screen.width * 0.8)
                 .font(.footnote)
                 .foregroundColor(color)
             
-            MutiLineVStack(source: $availableTags, content: { tag in
-                Button(action: {
-                    if let idx = self.availableTags.firstIndex(of: tag.wrappedValue) {
-                        self.availableTags[idx].isSelected = true
-                    }
-                }, label: {
-                    SchTagView(model: tag)
-                })
-            })
+            GeometryReader { g in
+                ScrollView {
+                    generateView(g)
+                }
+            }
             .frame(width: UIScreen.main.bounds.width * 0.9)
             Spacer()
         }
     }
+    
+    func generateView(_ g: GeometryProxy) -> some View {
+        var width: CGFloat = 0
+        var height: CGFloat = 0
+        
+        return ZStack(alignment: .topLeading) {
+            ForEach(tagSource.tags.indices, id: \.self) { i in
+                Button(action: {
+                    for i in tagSource.tags.indices {
+                        tagSource.tags[i].isSelected = false
+                    }
+                    tagSource.tags[i].isSelected?.toggle()
+                    tagDescription = tagSource.tags[i].description ?? ""
+                }, label: {
+                    SchTagView(model: $tagSource.tags[i])
+                })
+                .padding([.horizontal, .vertical], 10)
+                .alignmentGuide(.leading, computeValue: { d in
+                    if (abs(width - d.width) > g.size.width)
+                    {
+                        width = 0
+                        height -= d.height
+                    }
+                    let result = width
+                    if tagSource.tags[i] == tagSource.tags.last! {
+                        width = 0 //last item
+                    } else {
+                        width -= d.width
+                    }
+                    return result
+                })
+                .alignmentGuide(.top, computeValue: {d in
+                    let result = height
+                    if tagSource.tags[i] == tagSource.tags.last! {
+                        height = 0 // last item
+                    }
+                    return result
+                })
+            }
+        }
+    }
 }
 
-//struct SchQuestionTagView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        SchSelectTagView(availableTags: .constant([]))
-//    }
-//}
+struct SchQuestionTagView_Previews: PreviewProvider {
+    static var previews: some View {
+        SchSelectTagView()
+            .environmentObject(SchTagSource())
+    }
+}
 
 
 
 
 struct SchTagView: View {
     @Binding var model: SchTagModel
-    private var isSelected: Bool {
-        get { return model.isSelected ?? false }
-    }
     
     var body: some View {
         Text(model.name ?? "")
             .padding(.all, 10)
             .font(.subheadline)
-            .background(isSelected ? Color.init(red: 98/255, green: 103/255, blue: 124/255) : Color.init(red: 238/255, green: 238/255, blue: 238/255) )
-            .foregroundColor(isSelected ? .white : Color.init(red: 98/255, green: 103/255, blue: 144/255))
+            .background((model.isSelected ?? false) ? Color.init(red: 98/255, green: 103/255, blue: 124/255) : Color.init(red: 238/255, green: 238/255, blue: 238/255) )
+            .foregroundColor((model.isSelected ?? false) ? .white : Color.init(red: 98/255, green: 103/255, blue: 144/255))
             .cornerRadius(30)
-        Text((model.isSelected ?? false) ? "1" : "2" )
     }
     
 }

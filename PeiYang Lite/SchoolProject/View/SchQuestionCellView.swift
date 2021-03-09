@@ -16,6 +16,14 @@ struct SchQuestionCellView: View {
     
     @State var question: SchQuestionModel
     
+    private var questionTime: String {
+        get {
+            let day = (question.createdAt ?? "")[0..<10] ?? ""
+            let time = (question.createdAt ?? "")[11..<16] ?? ""
+            return day + " " + time
+        }
+    }
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             HStack {
@@ -64,8 +72,6 @@ struct SchQuestionCellView: View {
                     
             }
             
-            
-            
             Spacer()
             
             HStack {
@@ -85,7 +91,7 @@ struct SchQuestionCellView: View {
                     .foregroundColor(bottomColor)
                     .font(.caption)
                 Spacer()
-                Text(question.createdAt ?? "")
+                Text(questionTime)
                     .foregroundColor(bottomColor)
                     .font(.caption)
             }

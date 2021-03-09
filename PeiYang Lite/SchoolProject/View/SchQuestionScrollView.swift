@@ -30,6 +30,11 @@ protocol SchQuestionScrollViewModel: ObservableObject {
 struct SchQuestionScrollView<Model>: View where Model: SchQuestionScrollViewModel {
     @ObservedObject var model: Model
     
+    init (model: Model) {
+        self.model = model
+        model.action.loadOnAppear()
+    }
+    
     var body: some View {
         ScrollViewWithRefresh(refreshing: $model.dataSource.isReloading,
                               loadAction: {
@@ -48,9 +53,9 @@ struct SchQuestionScrollView<Model>: View where Model: SchQuestionScrollViewMode
                 }
             }
         })
-        .onAppear(perform: {
-            model.action.loadOnAppear()
-        })
+//        .onAppear(perform: {
+//            model.action.loadOnAppear()
+//        })
     }
 }
 

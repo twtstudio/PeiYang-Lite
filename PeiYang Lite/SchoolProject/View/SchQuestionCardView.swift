@@ -40,7 +40,8 @@ struct SchQuestionCardView: View {
                 .foregroundColor(Color(#colorLiteral(red: 0.2117647059, green: 0.2352941176, blue: 0.3294117647, alpha: 1)))
                 .padding(.horizontal)
             
-            Image("Text")                .resizable()
+            Image("Text")
+                .resizable()
                 .scaledToFit()
                 .clipShape(RoundedRectangle(cornerRadius: 8))
                 .padding(.horizontal)

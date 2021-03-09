@@ -170,6 +170,7 @@
 		D37DD88125EDFA8700A662E0 /* SchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37DD87925EDFA8700A662E0 /* SchManager.swift */; };
 		D37DD88225EDFA8700A662E0 /* SchQuestionCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37DD87B25EDFA8700A662E0 /* SchQuestionCellView.swift */; };
 		D37DD88325EDFA8700A662E0 /* SchSelectTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37DD87C25EDFA8700A662E0 /* SchSelectTagView.swift */; };
+		D38F7FEA25F63A67008DBB0E /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38F7FE925F63A67008DBB0E /* LoadingView.swift */; };
 		D3EB57EB25F3991500A9321F /* SchQuestionScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3EB57EA25F3991500A9321F /* SchQuestionScrollView.swift */; };
 		D3EB57F125F4B40700A9321F /* MutiLineVStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3EB57F025F4B40700A9321F /* MutiLineVStack.swift */; };
 		F81EA16B8704924F59A9337E /* Pods_PeiYang_Lite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9455FB18B34C565541F53AB /* Pods_PeiYang_Lite.framework */; };
@@ -363,6 +364,7 @@
 		D37DD87925EDFA8700A662E0 /* SchManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchManager.swift; sourceTree = "<group>"; };
 		D37DD87B25EDFA8700A662E0 /* SchQuestionCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchQuestionCellView.swift; sourceTree = "<group>"; };
 		D37DD87C25EDFA8700A662E0 /* SchSelectTagView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchSelectTagView.swift; sourceTree = "<group>"; };
+		D38F7FE925F63A67008DBB0E /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		D3EB57EA25F3991500A9321F /* SchQuestionScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchQuestionScrollView.swift; sourceTree = "<group>"; };
 		D3EB57F025F4B40700A9321F /* MutiLineVStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MutiLineVStack.swift; sourceTree = "<group>"; };
 		D7E41DE3E6B713D16EC6B8F9 /* Pods-PeiYangLiteWidgetExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PeiYangLiteWidgetExtension.debug.xcconfig"; path = "Target Support Files/Pods-PeiYangLiteWidgetExtension/Pods-PeiYangLiteWidgetExtension.debug.xcconfig"; sourceTree = "<group>"; };
@@ -436,6 +438,7 @@
 				D35E4E6125F061B000526388 /* ImagePicker.swift */,
 				D346ACD925F2A90000A146D8 /* ScrollViewWithRefresh.swift */,
 				D3EB57F025F4B40700A9321F /* MutiLineVStack.swift */,
+				D38F7FE925F63A67008DBB0E /* LoadingView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1291,6 +1294,7 @@
 				C95B57C425EBF3C2004300B5 /* HomeDetailView.swift in Sources */,
 				C9016EF925E9D7AC007524DD /* SearchAnsViews.swift in Sources */,
 				03B6893924D1572A0020AD47 /* PieChartView.swift in Sources */,
+				D38F7FEA25F63A67008DBB0E /* LoadingView.swift in Sources */,
 				C95B57C525EBF3C2004300B5 /* HomeCourseSectionView.swift in Sources */,
 				03B6893624D1572A0020AD47 /* ECardSiteAmountView.swift in Sources */,
 				D37DD88025EDFA8700A662E0 /* SchSearchView.swift in Sources */,

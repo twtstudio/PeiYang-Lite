@@ -9,7 +9,7 @@
 import Foundation
 
 // MARK: - SchTagModel
-class SchTagModel: Codable, Equatable {
+struct SchTagModel: Codable, Equatable {
     var id: Int?
     var name: String?
     var description, tagDescription: String?
@@ -21,15 +21,6 @@ class SchTagModel: Codable, Equatable {
         case description = "description"
         case tagDescription = "tag_description"
         case children, isSelected
-    }
-    
-    init(id: Int?, name: String?, description: String?, tagDescription: String?, isSelected: Bool?, children: [SchTagModel]?) {
-        self.id = id
-        self.name = name
-        self.description = description
-        self.tagDescription = tagDescription
-        self.isSelected = isSelected
-        self.children = children
     }
     
     static func ==(lhs: SchTagModel, rhs: SchTagModel) -> Bool {

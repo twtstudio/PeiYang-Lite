@@ -18,7 +18,7 @@ struct PhotoListView: View {
     @State private var showPicker: Bool = false
     @State private var imageToAdd: UIImage?
     // 图片过多
-    @State private var showToMoreAlert: Bool = false
+    @State private var showTooMoreAlert: Bool = false
     // 选择图片选取模式
     @State private var showSelector: Bool = false
     @State private var useCamera: Bool = false
@@ -40,7 +40,7 @@ struct PhotoListView: View {
                 PhotoPlaceHolderView()
                     .onTapGesture {
                         guard images.count < 3 else {
-                            showToMoreAlert = true
+                            showTooMoreAlert = true
                             return
                         }
                         
@@ -57,7 +57,7 @@ struct PhotoListView: View {
                       }),
                       secondaryButton: .cancel())
             })
-            .alert(isPresented: $showToMoreAlert, content: {
+            .alert(isPresented: $showTooMoreAlert, content: {
                 Alert(title: Text("警告"), message: Text("最多可以添加3张图片"), dismissButton: .cancel())
             })
             .actionSheet(isPresented: $showSelector, content: {
