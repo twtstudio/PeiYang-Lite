@@ -10,6 +10,25 @@ import SwiftUI
 struct StudySearchView: View {
     let color = Color.init(red: 98/255, green: 103/255, blue: 124/255)
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
+    @EnvironmentObject var sharedMessage: SharedMessage
+    var checkTheClassNum: Int {
+        switch sharedMessage.studyRoomSelectTime {
+        case "8:30--10:05":
+            return 0
+        case "10:25--12:00":
+            return 2
+        case "13:30--15:05":
+            return 4
+        case "15:25--17:00":
+            return 6
+        case "18:30--20:05":
+            return 8
+        case "20:25--22:00":
+            return 10
+        default:
+            return -1
+        }
+    }
     
     // 搜索string和搜索历史
     @State var searchString: String = ""
@@ -35,7 +54,7 @@ struct StudySearchView: View {
     
     @State var searchBuilding: [StudyBuilding] = []
     @State var searchSection: [SearchSectionData] = []
-    @State var searchRoom: [Classroom] = []
+    @State var searchRoom: [SearchClassData] = []
     
     // grid布局
     var roomAndBuildingColumns: [GridItem] = [
@@ -127,16 +146,22 @@ struct StudySearchView: View {
                             spacing: 16,
                             pinnedViews: [.sectionHeaders, .sectionFooters]
                         ) {
-                            ForEach(0 ..< 5) { item in
-                                SelectRoomView(classTitle: "11", isFree: true)
+                            ForEach(searchRoom, id: \.self) { room in
+                                SelectRoomView(classTitle: room.room.classroom, isFree: room.room.status[checkTheClassNum] == "0")
                             }
                         }
                         
                     case .wrong:
-                        Text("ERROR")
+                        VStack(alignment: .leading, spacing: 15.0){
+                            Text("格式错误").font(.title)
+                            Text("请用如下格式：").font(.headline)
+                            Text("**, **楼(教)，**A, ** A, A, ** A***, A***")
+                        }
+                        .foregroundColor(color)
+                        
                     case .unclearrooms:
-                        ForEach(0 ..< 5) { item in
-                            SearchBuildingAndClassView(title: "45教A102", isFree: true)
+                        ForEach(searchRoom, id: \.self) { room in
+                            SearchBuildingAndClassView(title: room.buildingName + ((room.sectionName == "-1") ? "" : room.sectionName) + room.room.classroom, isFree: room.room.status[checkTheClassNum] == "0")
                         }
                     }
                 }
@@ -176,6 +201,7 @@ struct StudySearchView: View {
             }
         }
     }
+    
     // MARK: choose the search method
     func chooseMethod() {
         //先看看是否有空格，教，楼
@@ -228,14 +254,19 @@ struct StudySearchView: View {
         }
         /// eg: "36 A103", "36 103" --> rooms
         else if brokenString.count != 1 {selectedMethod = .rooms}
-        /// eg: "A", "B", "C"
+        
+        /// eg: "A", "B", "C" --> sections
         else if brokenString[0] == "A" || brokenString[0] == "B" || brokenString[0] == "C" {
             selectedMethod = .sections
         }
+        
         /// eg: "1", "2" --> buildings
         else if brokenString[0].count == 1 {selectedMethod = .buildings}
+        
         else {selectedMethod = .wrong}
     }
+    
+// MARK: Search function
     func search() {
         switch selectedMethod {
         case .buildings:
@@ -282,10 +313,64 @@ struct StudySearchView: View {
             }
             
         case .unclearrooms:
-            break
+            /// A312
+            if(brokenString[0].prefix(1) == "A" || brokenString[0].prefix(1) == "B") {
+                for building in searchData {
+                    for area in building.areas {
+                        if area.areaID == brokenString[0].prefix(1) {
+                            for room in area.classrooms {
+                                if(room.classroom == brokenString[0].suffix(3)) {
+                                    searchRoom.append(SearchClassData(buildingName: building.building, sectionName: area.areaID, room: room))
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            /// 312
+            else {
+                for building in searchData {
+                    for area in building.areas {
+                        for room in area.classrooms {
+                            if room.classroom == brokenString[0] {
+                                searchRoom.append(SearchClassData(buildingName: building.building, sectionName: area.areaID, room: room))
+                            }
+                        }
+                    }
+                }
+            }
             
         case .rooms:
-            break
+            /// 36 A103
+            if brokenString[1].prefix(1) == "A" || brokenString[1].prefix(1) == "B" {
+                for building in searchData {
+                    if building.building.prefix(2) == brokenString[0] {
+                        for area in building.areas {
+                            if(area.areaID == brokenString[1].prefix(1)) {
+                                for room in area.classrooms {
+                                    if(room.classroom == brokenString[1].suffix(3)) {
+                                        searchRoom.append(SearchClassData(buildingName: building.building, sectionName: area.areaID, room: room))
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            /// 36 103
+            else {
+                for building in searchData {
+                    if building.building.prefix(2) == brokenString[0] {
+                        for area in building.areas {
+                            for room in area.classrooms {
+                                if(room.classroom == brokenString[1].suffix(3)) {
+                                    searchRoom.append(SearchClassData(buildingName: building.building, sectionName: area.areaID, room: room))
+                                }
+                            }
+                        }
+                    }
+                }
+            }
             
         case .wrong:
             break
@@ -303,6 +388,13 @@ struct SearchSectionData: Identifiable, Hashable {
     var id = UUID()
     var buildingName: String
     var sectionData: Area
+}
+
+struct SearchClassData: Identifiable, Hashable {
+    var id = UUID()
+    var buildingName: String
+    var sectionName: String
+    var room: Classroom
 }
 
 
