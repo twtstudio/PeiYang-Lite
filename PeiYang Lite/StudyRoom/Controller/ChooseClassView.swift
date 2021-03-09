@@ -13,9 +13,9 @@ struct ChooseClassView: View {
     let themeColor = Color.init(red: 98/255, green: 103/255, blue: 123/255)
     
     // 定位class
-    var theNumOfBuilding: Int
-    var theNumOfSection: Int
-    var theField: Int
+//    var theNumOfBuilding: Int
+//    var theNumOfSection: Int
+//    var theField: Int
     
     // grid布局
     var columns: [GridItem] = [
@@ -160,22 +160,22 @@ struct ChooseClassView: View {
     }
     
     func load() {
-        DispatchQueue.global().sync {
-            if(theField == 0) {
-                if let saveWeeksBuildings = DataStorage.retreive("studyroom/weekdataWJ.json", from: .caches, as: [[Classroom]].self) {
-                    weeksBuildings = saveWeeksBuildings
-                }
-            } else {
-                if let saveWeeksBuildings = DataStorage.retreive("studyroom/weekdataWJ.json", from: .caches, as: [[Classroom]].self) {
-                    weeksBuildings = saveWeeksBuildings
-                }
-            }
-            for i in 0...6 {
-                let getFloorsAndSort = GetFloorsAndSort(fullClasses: weeksBuildings[i])
-                weeksClasses[i] = getFloorsAndSort.0
-            }
-            
-        }
+//        DispatchQueue.global().sync {
+//            if(theField == 0) {
+//                if let saveWeeksBuildings = DataStorage.retreive("studyroom/weekdataWJ.json", from: .caches, as: [[Classroom]].self) {
+//                    weeksBuildings = saveWeeksBuildings
+//                }
+//            } else {
+//                if let saveWeeksBuildings = DataStorage.retreive("studyroom/weekdataWJ.json", from: .caches, as: [[Classroom]].self) {
+//                    weeksBuildings = saveWeeksBuildings
+//                }
+//            }
+//            for i in 0...6 {
+//                let getFloorsAndSort = GetFloorsAndSort(fullClasses: weeksBuildings[i])
+//                weeksClasses[i] = getFloorsAndSort.0
+//            }
+//            
+//        }
     }
     
 }

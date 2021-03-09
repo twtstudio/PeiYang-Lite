@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct StudySearchView: View {
+    // text
+    @State var textNum = 1
     let color = Color.init(red: 98/255, green: 103/255, blue: 124/255)
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     @EnvironmentObject var sharedMessage: SharedMessage
@@ -123,7 +125,20 @@ struct StudySearchView: View {
                             pinnedViews: [.sectionHeaders, .sectionFooters]
                         ) {
                             ForEach(searchBuilding, id: \.self) { building in
-                                SearchBuildingView(title: building.building)
+                                if(building.areas[0].areaID != "-1"){
+                                    NavigationLink(
+                                        destination: BuildingSectionView(buildingName: building.building, sections: building.areas, weeks: $textNum),
+                                        label: {
+                                            SearchBuildingView(title: building.building)
+                                        })
+                                }
+                                else {
+                                    NavigationLink(
+                                        destination: ChooseClassView(week: $textNum, fullClasses: building.areas[0].classrooms, buildingName: building.building),
+                                        label: {
+                                            SearchBuildingView(title: building.building)
+                                        })
+                                }
                             }
                         }
                         
@@ -135,7 +150,11 @@ struct StudySearchView: View {
                             pinnedViews: [.sectionHeaders, .sectionFooters]
                         ) {
                             ForEach(searchSection, id: \.self){ section in
-                                SearchBuildingSectionView(title: section.buildingName, section: section.sectionData.areaID)
+                                NavigationLink(
+                                    destination: ChooseClassView(week: $textNum, fullClasses: section.sectionData.classrooms, buildingName: section.buildingName + section.sectionData.areaID),
+                                    label: {
+                                        SearchBuildingSectionView(title: section.buildingName, section: section.sectionData.areaID)
+                                    })
                             }
                         }
                        
@@ -147,7 +166,11 @@ struct StudySearchView: View {
                             pinnedViews: [.sectionHeaders, .sectionFooters]
                         ) {
                             ForEach(searchRoom, id: \.self) { room in
-                                SelectRoomView(classTitle: room.room.classroom, isFree: room.room.status[checkTheClassNum] == "0")
+                                NavigationLink(
+                                    destination: RoomDetailView(activeWeek: $textNum, className: room.buildingName + ((room.sectionName == "-1") ? "" : room.sectionName) + room.room.classroom),
+                                    label: {
+                                        SelectRoomView(classTitle: room.room.classroom, isFree: room.room.status[checkTheClassNum] == "0")
+                                    })
                             }
                         }
                         
@@ -161,7 +184,11 @@ struct StudySearchView: View {
                         
                     case .unclearrooms:
                         ForEach(searchRoom, id: \.self) { room in
-                            SearchBuildingAndClassView(title: room.buildingName + ((room.sectionName == "-1") ? "" : room.sectionName) + room.room.classroom, isFree: room.room.status[checkTheClassNum] == "0")
+                            NavigationLink(
+                                destination: RoomDetailView(activeWeek: $textNum, className: room.buildingName + ((room.sectionName == "-1") ? "" : room.sectionName)+room.room.classroom),
+                                label: {
+                                    SearchBuildingAndClassView(title: room.buildingName + ((room.sectionName == "-1") ? "" : room.sectionName) + room.room.classroom, isFree: room.room.status[checkTheClassNum] == "0")
+                                })
                         }
                     }
                 }
