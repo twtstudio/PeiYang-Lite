@@ -29,7 +29,7 @@ struct CourseTableDetailView2: View {
     @State private var navBarHeight: CGFloat = 0
     
     var body: some View {
-        GeometryReader { full in
+//        GeometryReader { full in
             ZStack {
                 VStack {
                     // 头部伪导航栏
@@ -45,70 +45,47 @@ struct CourseTableDetailView2: View {
                         
                         Spacer()
                         
-                        RefreshButton(isLoading: $isLoading, action: load, color: Color(#colorLiteral(red: 0.3856853843, green: 0.403162986, blue: 0.4810273647, alpha: 1)))
+                        RefreshButton(isLoading: $isLoading, action: reload, color: Color(#colorLiteral(red: 0.3856853843, green: 0.403162986, blue: 0.4810273647, alpha: 1)))
                     }
                     .padding(.top, 40)
                     .padding(.trailing, 20)
                     
+                    // MARK: - Header
+                    CouseTableHeaderView(
+                        activeWeek: $activeWeek,
+                        showFullCourse: $showFullCourse,
+                        totalWeek: courseTable.totalWeek
+                    )
+                    .frame(width: screen.width, height: screen.height/5, alignment: .leading)
+                    
+                    CourseTableWeekdaysView(
+                        activeWeek: $activeWeek,
+                        courseTable: courseTable,
+                        width: (screen.width-40-14*CGFloat(showCourseNum)) / CGFloat(showCourseNum)//9
+                    )
+                    .frame(width: screen.width, alignment: .center)
                     
                     ScrollView(.vertical, showsIndicators: false) {
-                        // MARK: - Header
-                        CouseTableHeaderView(
-                            activeWeek: $activeWeek,
-                            showFullCourse: $showFullCourse,
-                            totalWeek: courseTable.totalWeek
-                        )
-                        //                    .padding()
-                        .frame(width: screen.width, height: full.size.height/5, alignment: .leading)
-                        
                         // MARK: - Table
-                        if isRegular {
-                            Section(header:
-                                        CourseTableWeekdaysView(
-                                            activeWeek: $activeWeek,
-                                            courseTable: courseTable,
-                                            width: (full.size.width-40-14*CGFloat(showCourseNum)) / CGFloat(showCourseNum)//9
-                                        ).frame(width: full.size.width)
-                            ) {
-                                CourseTableContentView(
-                                    activeWeek: activeWeek,
-                                    courseArray: courseTable.courseArray,
-                                    width: (full.size.width-40-14*CGFloat(showCourseNum)) / CGFloat(showCourseNum),
-                                    alertCourse: alertCourse,
-                                    showFullCourse: $showFullCourse//9
-                                )
-                                .frame(width: full.size.width, height: full.size.height*2)
+                        VStack {
+                            CourseTableContentView(
+                                activeWeek: activeWeek,
+                                courseArray: courseTable.courseArray,
+                                width: (screen.width-40-14*CGFloat(showCourseNum)) / CGFloat(showCourseNum),//9
+                                alertCourse: alertCourse,
+                                showFullCourse: $showFullCourse
+                            )
+                            .frame(width: screen.width, height: screen.height*1.2, alignment: .top)
+                            
+                            if let totalHour = getCourseHour(week: courseTable.totalWeek), let currentHour = getCourseHour(week: activeWeek) {
+                                ProgressBarView(current: currentHour, total: totalHour)
+                                    .padding(.horizontal)
+                                    .frame(width: screen.width, height: 80, alignment: .center)
                             }
-                            .padding(.horizontal, 20)
-                        } else {
-                            VStack {
-                                CourseTableWeekdaysView(
-                                    activeWeek: $activeWeek,
-                                    courseTable: courseTable,
-                                    width: (screen.width-40-14*CGFloat(showCourseNum)) / CGFloat(showCourseNum)//9
-                                )
-                                .frame(width: full.size.width, alignment: .center)
-                                
-                                CourseTableContentView(
-                                    activeWeek: activeWeek,
-                                    courseArray: courseTable.courseArray,
-                                    width: (screen.width-40-14*CGFloat(showCourseNum)) / CGFloat(showCourseNum),//9
-                                    alertCourse: alertCourse,
-                                    showFullCourse: $showFullCourse
-                                )
-                                .frame(width: full.size.width, height: full.size.height, alignment: .top)
-                                
-                                if let totalHour = getCourseHour(week: courseTable.totalWeek), let currentHour = getCourseHour(week: activeWeek) {
-                                    ProgressBarView(current: currentHour, total: totalHour)
-                                        .padding(.horizontal)
-                                        .frame(width: full.size.width, height: full.size.width, alignment: .center)
-                                }
-                            }
-                            .padding(.horizontal, 10)
                         }
+                        .padding(.horizontal, 10)
                     }
-                    
-                    .frame(width: full.size.width, height: full.size.height)
+//                    .frame(width: full.size.width, height: full.size.height*1.2)
                     .alert(isPresented: $isError) {
                         Alert(title: Text(errorMessage),
                               dismissButton: .default(Text(Localizable.ok.rawValue)))
@@ -122,13 +99,13 @@ struct CourseTableDetailView2: View {
                 if alertCourse.showDetail {
                     Group {
                         Color.clear
-                            .frame(width: full.size.width,
-                                   height: full.size.height,
+                            .frame(width: screen.width,
+                                   height: screen.height,
                                    alignment: .center)
                             .contentShape(Rectangle())
                         
                         CourseDetailView(course: $alertCourse.currentCourse, weekDay: $alertCourse.currentWeekday, isRegular: isRegular)
-                            .frame(width: full.size.width / 1.5, height: full.size.height / 1.8, alignment: .center)
+                            .frame(width: screen.width / 1.5, height: screen.height / 1.8, alignment: .center)
                             .background(
                                 Image("emblem")
                                     .resizable()
@@ -146,7 +123,7 @@ struct CourseTableDetailView2: View {
                 }
                 
             }
-        }
+//        }
         .onAppear(perform: load)
         .edgesIgnoringSafeArea(.all)
         .navigationBarHidden(true)
@@ -162,6 +139,35 @@ struct CourseTableDetailView2: View {
     }
     //MARK: function: LOAD
     func load() {
+        isLoading = true
+//        ClassesManager.checkLogin { result in
+//            switch result {
+//            case .success:
+//                return
+//            case .failure(let error):
+//                sharedMessage.isBindBs = false
+//                if error == .requestFailed {
+//                    isError = true
+//                    errorMessage = error.localizedStringKey
+//                } else {
+//                    showLogin = true
+//                }
+//            }
+//        }
+        
+        ClassesManager.courseTablePost { result in
+            switch result {
+            case .success(let courseTable):
+                store.object = courseTable
+                store.save()
+            case .failure(let error):
+                print(error)
+            }
+            isLoading = false
+        }
+    }
+    
+    func reload() {
         isLoading = true
         ClassesManager.checkLogin { result in
             switch result {

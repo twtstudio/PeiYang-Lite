@@ -62,7 +62,7 @@ struct MediumView: View {
                             .padding(8)
                             .padding(.top, 8)
                         } else {
-                            Text("接下来无课\n做点有意义的事情吧")
+                            Text("接下来无课")
                                 .font(.footnote)
                                 .foregroundColor(.white)
                             }

@@ -37,7 +37,7 @@ struct GPADetailView: View {
                     
                     Spacer()
                     
-                    RefreshButton(isLoading: $isLoading, action: load, color: .white)
+                    RefreshButton(isLoading: $isLoading, action: reload, color: .white)
                     Image(systemName: "exclamationmark.circle")
                         .font(.title)
                         .foregroundColor(.white)
@@ -110,6 +110,35 @@ struct GPADetailView: View {
     func load() {
         isLoading = true
         
+//        ClassesManager.checkLogin { result in
+//            switch result {
+//            case .success:
+////                showLogin = false
+//                return
+//            case .failure(let error):
+//                if error == .requestFailed {
+//                    isError = true
+//                    errorMessage = error.localizedStringKey
+//                } else {
+//                    showLogin = true
+//                }
+//            }
+//        }
+//
+        ClassesManager.gpaGet { result in
+            switch result {
+            case .success(let gpa):
+                store.object = gpa
+                store.save()
+            case .failure(let error):
+                print(error)
+            }
+            isLoading = false
+        }
+    }
+    
+    func reload() {
+        isLoading = true
         ClassesManager.checkLogin { result in
             switch result {
             case .success:
@@ -124,7 +153,6 @@ struct GPADetailView: View {
                 }
             }
         }
-        
         ClassesManager.gpaGet { result in
             switch result {
             case .success(let gpa):

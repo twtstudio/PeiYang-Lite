@@ -39,7 +39,7 @@ struct GPACellListView: View {
                 .frame(width: screen.width - 40, height: screen.width/5)
                 .background(Color(#colorLiteral(red: 0.5362423062, green: 0.5800756216, blue: 0.4005104303, alpha: 1)))
                 .clipShape(RoundedRectangle(cornerRadius: 10))
-                .padding()
+                .padding(8)
             }
         }
         .frame(maxHeight: .infinity)

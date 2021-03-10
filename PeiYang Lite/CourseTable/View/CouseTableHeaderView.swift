@@ -35,7 +35,7 @@ struct CouseTableHeaderView: View {
                         Button(action: { activeWeek = week }, label: {
                             if let weekMatrixArray = self.getWeekMatrix() {
                             VStack {
-                                WeekGridView(width: 45, height: 40, rows: 5, cols: 6, weekMatrix: weekMatrixArray[week-1])
+                                WeekGridView(width: 40, height: 35, rows: 5, cols: 6, weekMatrix: weekMatrixArray[week-1])
                                 Text("WEEK\(week.description)")
                                     .foregroundColor(.gray)
                                     .font(.footnote)

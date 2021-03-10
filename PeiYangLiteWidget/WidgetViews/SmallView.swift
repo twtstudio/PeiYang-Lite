@@ -76,7 +76,7 @@ struct SmallView: View {
                                     }
                                 }
                                 else {
-                                    Text("当前没有课:)\n做点有意义的事情吧")
+                                    Text("当前没有课:)")
                                         .font(.footnote)
                                         .foregroundColor(.gray)
                                 }
@@ -109,7 +109,7 @@ struct SmallView: View {
                                         }
                                     }
                                 } else {
-                                    Text("接下来没有课:)做点有意义的事情吧")
+                                    Text("接下来没有课:)")
                                         .font(.footnote)
                                         .foregroundColor(.gray)
                                 }

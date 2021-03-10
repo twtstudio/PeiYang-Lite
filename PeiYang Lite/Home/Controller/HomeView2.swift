@@ -47,28 +47,16 @@ struct HomeView2: View {
     }
     @EnvironmentObject var sharedMessage: SharedMessage
     var body: some View {
-
-        
-            VStack {
+        VStack {
                 HomeHeaderView(AccountName: sharedMessage.Account.nickname)
                 .padding(.top, safeAreaHeight)
                 .padding(.horizontal)
                 
             ScrollView(showsIndicators: false) {
             HomeModuleSectionView()
-//                .padding(.horizontal)
             
-            Section(header: HStack {
-                Text(Localizable.courseTable.rawValue)
-                    .font(.title3)
-                    .bold()
-                    .foregroundColor(Color(#colorLiteral(red: 0.3803921569, green: 0.3960784314, blue: 0.4862745098, alpha: 1)))
-                    .padding(.horizontal)
-                Spacer()
-            }) {
-                HomeCourseSectionView()
-            }
-            
+            HomeCourseSectionView()
+                
             if(!isNotShowGPA) {
                 Section(header: HStack {
                     Text(Localizable.gpa.rawValue)
@@ -79,7 +67,7 @@ struct HomeView2: View {
                 }) {
                     HomeGPASectionView()
                 }
-                .padding(.horizontal)
+                .padding()
             }
             
             Section(header: HStack {
@@ -94,6 +82,7 @@ struct HomeView2: View {
                     .padding(.bottom, 80)
             }
             }
+            .padding(.vertical, 30)
             
         }
         .navigationBarHidden(true)

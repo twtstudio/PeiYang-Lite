@@ -51,7 +51,6 @@ struct HomeStudyRoomSectionView: View {
                 }
                 .padding(10)
             }
-            
             .frame(height: screen.width * 0.45)
         })
     }

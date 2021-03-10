@@ -8,13 +8,6 @@
 import SwiftUI
 
 struct HomeCourseSectionView: View {
-//    let classTableData: [MyCourse] = [
-//        MyCourse(name: "Software Engineering", time: "08:30 - 10:30", loc: "45-B331"),
-//        MyCourse(name: "Software Engineering", time: "08:30 - 10:30", loc: "45-B331"),
-//        MyCourse(name: "Software Engineering", time: "08:30 - 10:30", loc: "45-B331"),
-//        MyCourse(name: "Software Engineering", time: "08:30 - 10:30", loc: "45-B331"),
-//        MyCourse(name: "Software Engineering", time: "08:30 - 10:30", loc: "45-B331"),
-//    ]
     @ObservedObject var store = Storage.courseTable
     private var courseTable: CourseTable { store.object }
     
@@ -39,8 +32,21 @@ struct HomeCourseSectionView: View {
     private var colorHelper: ColorHelper { ColorHelper.shared }
     
     var body: some View {
+        Section(header: HStack {
+            Text(Localizable.courseTable.rawValue)
+                .font(.title3)
+                .bold()
+                .foregroundColor(Color(#colorLiteral(red: 0.3803921569, green: 0.3960784314, blue: 0.4862745098, alpha: 1)))
+                .padding(.horizontal)
+            
+            Spacer()
+            
+            Text("今日\(currentCourseArray.count)节课")
+                .font(.footnote)
+                .foregroundColor(Color(#colorLiteral(red: 0.3803921569, green: 0.3960784314, blue: 0.4862745098, alpha: 1)))
+                .padding(.horizontal)
+        }) {
         NavigationLink(destination: CourseTableDetailView2(alertCourse: AlertCourse())) {
-        ScrollView(.horizontal, showsIndicators: false) {
             if currentCourseArray.isEmpty {
                 ZStack(alignment: .center) {
                     RoundedRectangle(cornerRadius: 10)
@@ -52,44 +58,47 @@ struct HomeCourseSectionView: View {
                         .foregroundColor(.white)
                 }
             } else {
-                HStack {
-                    ForEach(currentCourseArray, id: \.no) { course in
-                        VStack(alignment: .leading) {
-                            Group {
-                            Text(course.name)
-                                .bold()
-                                .lineLimit(2)
-                                .font(.body)
-                                .padding()
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack {
+                        ForEach(currentCourseArray, id: \.no) { course in
+                            VStack(alignment: .leading) {
+                                Group {
+                                Text(course.name)
+                                    .bold()
+                                    .lineLimit(2)
+                                    .font(.body)
+                                    .padding()
+                                
+                                Spacer()
+                                    .frame(height: 20)
+                                
+                                Text(course.activeArrange(courseTable.currentWeekday).unitTimeString)
+                                    .font(.footnote)
+                                    .padding()
                             
-                            Spacer()
-                                .frame(height: 20)
-                            
-                            Text(course.activeArrange(courseTable.currentWeekday).unitTimeString)
-                                .font(.footnote)
-                                .padding()
-                        
-                            Text(course.activeArrange(courseTable.currentWeekday).location)
-                                .bold()
-                                .padding([.horizontal, .bottom])
+                                Text(course.activeArrange(courseTable.currentWeekday).location)
+                                    .bold()
+                                    .padding([.horizontal, .bottom])
+                                }
+                                .foregroundColor(.white)
+                                
                             }
-                            .foregroundColor(.white)
-                            
+                            .frame(width: screen.width/2.5, height: screen.width/2)
+                            .background(colorHelper.color[course.no])
+                            .contentShape(RoundedRectangle(cornerRadius: 15))
+                            .clipShape(RoundedRectangle(cornerRadius: 15))
+    //                        .padding(.leading, 10)
                         }
-                        .frame(width: screen.width/2.5, height: screen.width/2)
-                        .background(colorHelper.color[course.no])
-                        .contentShape(RoundedRectangle(cornerRadius: 15))
-                        .clipShape(RoundedRectangle(cornerRadius: 15))
-//                        .padding(.leading, 10)
                     }
+                    .frame(height: screen.width)
+                    .padding(.leading, 10)
                 }
-                .frame(height: screen.width)
-                .padding(.leading, 10)
+                .frame(height: screen.width/2)
             }
         }
-        .frame(height: screen.width/2)
-        }
     }
+    }
+    
 }
 
 struct HomeCourseSectionView_Previews: PreviewProvider {
