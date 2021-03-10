@@ -9,7 +9,7 @@ import SwiftUI
 struct StudyRoomContentView: View {
     let activeWeek: Int
     let courseArray: [Course]
-    let status: [String] = ["001100000000","110000000000","000011111111","000011000000","000000001100","111100000000","000000001111"]
+    let status: [String]
     let width: CGFloat
     private var colorHelper: ColorHelper { ColorHelper.shared }
     
@@ -60,7 +60,7 @@ struct StudyRoomContentView_Previews: PreviewProvider {
         ZStack {
             Color.black
                 .edgesIgnoringSafeArea(.all)
-            StudyRoomContentView(activeWeek: 11, courseArray: [Course](), width: 40)
+            StudyRoomContentView(activeWeek: 11, courseArray: [Course](), status:  ["001100000000","110000000000","000011111111","000011000000","000000001100","111100000000","000000001111"], width: 40)
                 .environment(\.colorScheme, .dark)
         }
     }

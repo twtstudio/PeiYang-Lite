@@ -67,7 +67,7 @@ struct SchHistorySectionView: View {
         }
 
         func item(for text: String) -> some View {
-            Button(action: {}, label: {
+            Button(action: {searchString = text}, label: {
                 Text(text)
                     .padding(.horizontal)
                     .padding(.vertical, 10)
@@ -114,20 +114,47 @@ struct SearchBuildingAndClassView: View {
 }
 
 //MARK: Building
-struct SearchBuildingView: View {
+struct SearchBuildingSectionView: View {
     var title: String
     var section: String
+    var imageId = Int(arc4random_uniform(3))
     var backImg: Image{
-        switch section {
-        case "A":
-            return Image("A-deep")
-        case "B":
-            return Image("B-deep")
-        case "C":
-            return Image("C-deep")
+        switch imageId {
+        case 0:
+            switch section {
+            case "A":
+                return Image("A-deep")
+            case "B":
+                return Image("B-deep")
+            case "C":
+                return Image("C-deep")
+            default:
+                return Image("A-deep")
+            }
+        case 1:
+            switch section {
+            case "A":
+                return Image("A-blue")
+            case "B":
+                return Image("B-blue")
+            case "C":
+                return Image("C-blue")
+            default:
+                return Image("A-blue")
+            }
         default:
-            return Image("A-deep")
+            switch section {
+            case "A":
+                return Image("A-light")
+            case "B":
+                return Image("B-light")
+            case "C":
+                return Image("C-light")
+            default:
+                return Image("A-light")
+            }
         }
+        
     }
     var body: some View {
         Text(title)
@@ -141,5 +168,24 @@ struct SearchBuildingView: View {
                     .scaledToFit()
             )
             .padding(10)
+    }
+}
+
+struct SearchBuildingView: View {
+    let themeColor = Color.init(red: 98/255, green: 103/255, blue: 123/255)
+    
+    var title: String
+    var body: some View {
+        VStack(spacing: 5) {
+            Image("building")
+                .resizable()
+                .scaledToFit()
+                .frame(width:UIScreen.main.bounds.width / 8)
+            Text(title)
+                .font(.custom("HelveticaNeue-Bold", size: UIScreen.main.bounds.height / 60))
+                .foregroundColor(themeColor)
+            
+        }
+        
     }
 }

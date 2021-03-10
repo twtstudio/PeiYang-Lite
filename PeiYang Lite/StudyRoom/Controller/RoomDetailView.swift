@@ -15,8 +15,35 @@ struct RoomDetailView: View {
     
     @State private var isShowCalender = false
     var className: String
+    // 定位classroom
+    var classData: Classroom
+    /// 每一个元素会重复两次……
+    var weekData: [String] {
+        var returnWeekData: [String] = []
+        if let saveweekData = DataStorage.retreive("studyroom/weekdata.json", from: .caches, as: [[StudyBuilding]].self) {
+            for buildingOneDay in saveweekData {
+                for building in buildingOneDay{
+                    for area in building.areas {
+                        for room in area.classrooms {
+                            if room.classroomID == classData.classroomID {
+                                returnWeekData.insert(room.status, at: 0)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return returnWeekData
+    }
     
-//    var availArray: [String]
+    /// 手动换算一下
+    var finalWeekData: [String] {
+        var returnFinalClassData: [String] = []
+        for i in stride(from: 0, to: weekData.count, by: 2) {
+            returnFinalClassData.append(weekData[i])
+        }
+        return returnFinalClassData
+    }
     var body: some View {
         VStack {
             HStack {
@@ -50,7 +77,7 @@ struct RoomDetailView: View {
                     
                     StudyRoomContentView(
                         activeWeek: activeWeek,
-                        courseArray: courseTable.courseArray,
+                        courseArray: courseTable.courseArray, status: finalWeekData,
                         width: screen.width / 8
                         )
                     .frame(width: screen.width, height: screen.height*1.2, alignment: .top)
@@ -82,7 +109,7 @@ struct RoomDetailView: View {
 
 struct RoomDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        RoomDetailView(activeWeek: .constant(16), className: "16教A208")
+        RoomDetailView(activeWeek: .constant(16), className: "16教A208", classData: Classroom(classroomID: "303", classroom: "303", status: "001100110011"))
     }
 }
 

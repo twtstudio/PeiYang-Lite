@@ -17,10 +17,11 @@ struct BuildingSectionView: View {
     @Binding var weeks: Int
     
     // 定位building
-    var theNumOfBuilding: Int
-    var theField: Int
+//    var theNumOfBuilding: Int
+//    var theField: Int
+    
+    
     var body: some View {
-
             VStack {
                 HStack {
                     Button(action: {
@@ -54,7 +55,7 @@ struct BuildingSectionView: View {
                 HStack(spacing: 20) {
                     ForEach(0..<sections.count) { index in
                         NavigationLink(
-                            destination: ChooseClassView(theNumOfBuilding: theNumOfBuilding, theNumOfSection: index, theField: theField, week: $weeks, fullClasses: sections[index].classrooms, buildingName: buildingName + sections[index].areaID + "区"),
+                            destination: ChooseClassView(week: $weeks, fullClasses: sections[index].classrooms, buildingName: buildingName + sections[index].areaID + "区"),
                             label: {
                                 SchSection(title: sections[index].areaID + "区")
                         })

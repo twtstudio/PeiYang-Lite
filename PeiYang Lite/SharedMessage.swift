@@ -22,22 +22,22 @@ class SharedMessage: ObservableObject {
     static var username: String {Storage.defaults.string(forKey: usernameKey) ?? ""}
     static var password: String {Storage.defaults.string(forKey: passwordKey) ?? ""}
     static var showCourseNum: Int {Int(Storage.defaults.double(forKey: showCourseNumKey))}
-    static var studyRoomHistory: [String] {Storage.defaults.stringArray(forKey: studyRoomHistoryKey) ?? [""]}
+//    static var studyRoomHistory: [String] {Storage.defaults.stringArray(forKey: studyRoomHistoryKey) ?? [""]}
     
     // 个人页面的绑定数据
     @Published var Account: accountResult = accountResult(userNumber: "", nickname: "", telephone: "", email: "", token: "", role: "", realname: "", gender: "", department: "", major: "", stuType: "", avatar: "", campus: "")
     @Published var isBindBs: Bool = false
     @Published var isBindPh: Bool = false
     @Published var isBindEm: Bool = false
-
+    static var schoolDistrictKey: String = "schoolDistrictKey"
+    static var schoolDistrict: Int{Storage.defaults.integer(forKey: schoolDistrictKey)}
     
     // 自习室的时间数据和是否获取信息
     @Published var studyRoomSelectDate: Date = Date()
     @Published var studyRoomSelectTime: String = ""
     @Published var isGetStudyRoomBuildingMessage: Bool = false
     
-    // 自习室历史记录数据存储
-    
+
     
     // 清空全部的缓存
     static func remove(_ key: String) { Storage.defaults.removeObject(forKey: key) }
@@ -47,6 +47,7 @@ class SharedMessage: ObservableObject {
         remove(usernameKey)
         remove(passwordKey)
         remove(showCourseNumKey)
+        remove(schoolDistrictKey)
     }
     
 

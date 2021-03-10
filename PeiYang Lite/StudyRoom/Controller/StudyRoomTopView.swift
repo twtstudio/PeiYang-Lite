@@ -8,7 +8,6 @@
 import SwiftUI
 import Foundation
 
-
 struct StudyRoomTopView: View {
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     @EnvironmentObject var sharedMessage: SharedMessage
@@ -20,7 +19,7 @@ struct StudyRoomTopView: View {
     
     // 学区选择
     let schoolDistricts: [String] = ["卫津路校区", "北洋园校区"]
-    @State var schoolDistrict = 0
+    @AppStorage(SharedMessage.schoolDistrictKey, store: Storage.defaults) private var schoolDistrict = 0
     
     // 搜索栏跳转State
     @State var isShowSearch = false
@@ -57,6 +56,9 @@ struct StudyRoomTopView: View {
     @State var getMessage: [String] = []
     @State var collectionBuildings: [CollectionClass] = []
     
+//     StudyRoom共享数据
+//    @StateObject private var studyRoomModel: StudyRoomModel = StudyRoomModel()
+    
     //计算week和day
     let formatter = DateFormatter()
     var endDate: Date{
@@ -67,7 +69,7 @@ struct StudyRoomTopView: View {
         endDate.daysBetweenDate(toDate: sharedMessage.studyRoomSelectDate)
     }
     //TODO: 将计算属性弄成State
-    var days: Binding<Int> {Binding(
+    var days: Binding<Int> { Binding(
         get: {totalDays % 7 + 1},
         set: {_ in})
     }
@@ -84,7 +86,7 @@ struct StudyRoomTopView: View {
         else if nowTime.prefix(2) > "10" && nowTime.prefix(2) < "12" || (nowTime.prefix(2) == "10" && nowTime.suffix(2) >= "05"){
             return "10:25--12:00"
         }
-        else if nowTime.prefix(2) > "12" && nowTime.prefix(2) < "15" || (nowTime.prefix(2) == "15" && nowTime.suffix(2) <= "05"){
+        else if nowTime.prefix(2) >= "12" && nowTime.prefix(2) < "15" || (nowTime.prefix(2) == "15" && nowTime.suffix(2) <= "05"){
             return "13:30--15:05"
         }
         else if nowTime.prefix(2) > "15" && nowTime.prefix(2) < "17" || (nowTime.prefix(2) == "15" && nowTime.suffix(2) > "05") {
@@ -95,8 +97,6 @@ struct StudyRoomTopView: View {
         }
         else {return "20:25--22:00"}
     }
-    
-    
     
     
     var body: some View {
@@ -125,6 +125,7 @@ struct StudyRoomTopView: View {
 //            Text(String(collectionBuildings.count))
 //            Text(alertMessage)
 //            Text(String(weeksBuildingWJ[0].count))
+//            Text(String(buildings.count))
 
             HStack{
                 Image("position")
@@ -223,7 +224,7 @@ struct StudyRoomTopView: View {
                         GeometryReader { geo in
                             if(buildingsWJ[index].areas[0].areaID != "-1") {
                                 NavigationLink(
-                                    destination: BuildingSectionView(buildingName: buildingsWJ[index].building, sections: buildingsWJ[index].areas, weeks: weeks, theNumOfBuilding: index, theField: schoolDistrict),
+                                    destination: BuildingSectionView(buildingName: buildingsWJ[index].building, sections: buildingsWJ[index].areas, weeks: weeks),
                                     label: {
                                         VStack(spacing: 5) {
                                             Image("building")
@@ -240,7 +241,7 @@ struct StudyRoomTopView: View {
 
                             } else {
                                 NavigationLink(
-                                    destination:ChooseClassView(theNumOfBuilding: index, theNumOfSection: 0, theField: schoolDistrict, week: weeks, fullClasses: buildingsWJ[index].areas[0].classrooms, buildingName:  buildingsWJ[index].building),
+                                    destination:ChooseClassView(week: weeks, fullClasses: buildingsWJ[index].areas[0].classrooms, buildingName:  buildingsWJ[index].building),
                                     label: {
                                         VStack(spacing: 5) {
                                             Image("building")
@@ -270,7 +271,7 @@ struct StudyRoomTopView: View {
                         GeometryReader { geo in
                             if(buildingsBY[index].areas[0].areaID != "-1") {
                                 NavigationLink(
-                                    destination: BuildingSectionView(buildingName: buildingsBY[index].building, sections: buildingsBY[index].areas, weeks: weeks, theNumOfBuilding: index, theField: schoolDistrict),
+                                    destination: BuildingSectionView(buildingName: buildingsBY[index].building, sections: buildingsBY[index].areas, weeks: weeks),
                                     label: {
                                         VStack(spacing: 5) {
                                             Image("building")
@@ -287,7 +288,7 @@ struct StudyRoomTopView: View {
 
                             } else {
                                 NavigationLink(
-                                    destination: ChooseClassView(theNumOfBuilding: index, theNumOfSection: 0, theField: schoolDistrict, week: weeks, fullClasses: buildingsBY[index].areas[0].classrooms, buildingName:  buildingsBY[index].building),
+                                    destination: ChooseClassView(week: weeks, fullClasses: buildingsBY[index].areas[0].classrooms, buildingName:  buildingsBY[index].building),
                                     label: {
                                         VStack(spacing: 5) {
                                             Image("building")
@@ -330,7 +331,7 @@ struct StudyRoomTopView: View {
                 label: {})
         }//: VSTACK
         .navigationBarHidden(true)
-        .ignoresSafeArea()
+        .edgesIgnoringSafeArea(.top)
         // MARK: 请求当天数据
         .onAppear {
             sharedMessage.studyRoomSelectTime = nowPeriod
@@ -403,6 +404,7 @@ struct StudyRoomTopView: View {
     func save() {
         let queue = DispatchQueue.global()
         queue.async {
+            DataStorage.store(buildings, in: .caches, as: "studyroom/todaydata.json")
             DataStorage.store(weeksBuildings, in: .caches, as: "studyroom/weekdata.json")
             DataStorage.store(weeksBuildingWJ, in: .caches, as: "studyroom/weekdataWJ.json")
             DataStorage.store(weeksBuildingBY, in: .caches, as: "studyroom/weekdataBY.json")
@@ -411,7 +413,7 @@ struct StudyRoomTopView: View {
     
     //MARK: classroom_id -> classroom
     func requestDataToUseData() {
-        CollectionManager.getCollections() {result in
+        CollectionManager.getCollections() { result in
             switch result {
             case .success(let data):
                 if(data.errorCode != 0){
@@ -425,13 +427,13 @@ struct StudyRoomTopView: View {
                         for area in building.areas {
                             for room in area.classrooms {
                                 if(room.classroomID == code) {
-                                    let collection = CollectionClass(classMessage: room, buildingName: building.building)
-                                    collectionBuildings.append(collection)
+                                    collectionBuildings.append(CollectionClass(classMessage: room, buildingName: building.building))
                                 }
                             }
                         }
                     }
                 }
+                
             case .failure(_):
                 break
             }
@@ -566,4 +568,10 @@ struct CollectionClass: Hashable {
     var id = UUID()
     var classMessage: Classroom
     var buildingName: String
+}
+
+class StudyRoomModel: ObservableObject {
+    @Published var day: Int = 0
+    @Published var weeks: Int = 0
+    @Published var studyRoomSelectTime: String = ""
 }
