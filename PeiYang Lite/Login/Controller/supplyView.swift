@@ -88,7 +88,7 @@ struct supplyView: View {
                 Button(action: {
                     VerficationCodeManager.CodePost(phone: telephone){ result in
                         switch result{
-                        case .success(let data):
+                        case .success(_):
                             break
                         case .failure(_):
                             break

@@ -30,11 +30,6 @@ protocol SchQuestionScrollViewModel: ObservableObject {
 struct SchQuestionScrollView<Model>: View where Model: SchQuestionScrollViewModel {
     @ObservedObject var model: Model
     
-    init (model: Model) {
-        self.model = model
-        model.action.loadOnAppear()
-    }
-    
     var body: some View {
         ScrollViewWithRefresh(refreshing: $model.dataSource.isReloading,
                               loadAction: {
@@ -42,8 +37,14 @@ struct SchQuestionScrollView<Model>: View where Model: SchQuestionScrollViewMode
                               },
                               content: {
             LazyVStack(spacing: 10) {
-                ForEach(0..<model.dataSource.questions.count, id: \.self) { i in
-                    SchQuestionCellView(question: model.dataSource.questions[i])
+//                ForEach(model.dataSource.questions.indices, id: \.self) { i in
+//                    SchQuestionCellView(question: model.dataSource.questions[i])
+//                }
+                if model.dataSource.questions.count > 4 {
+                    SchQuestionCellView(question: model.dataSource.questions[0])
+                    SchQuestionCellView(question: model.dataSource.questions[0])
+                    SchQuestionCellView(question: model.dataSource.questions[0])
+                    SchQuestionCellView(question: model.dataSource.questions[0])
                 }
                 if model.dataSource.questions.count > 0{
                     Text(model.dataSource.page < model.dataSource.maxPage ? "加载中..." : "已经到底了...")
@@ -53,9 +54,6 @@ struct SchQuestionScrollView<Model>: View where Model: SchQuestionScrollViewMode
                 }
             }
         })
-//        .onAppear(perform: {
-//            model.action.loadOnAppear()
-//        })
     }
 }
 

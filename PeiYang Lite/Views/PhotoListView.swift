@@ -22,32 +22,25 @@ struct PhotoListView: View {
     // 选择图片选取模式
     @State private var showSelector: Bool = false
     @State private var useCamera: Bool = false
+    @State private var imageToReplace: UIImage?
     
     var body: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            HStack {
-                ForEach(images, id: \.self) { image in
-                    Image(uiImage: image)
-                        .resizable()
-                        .frame(width: 100, height: 100, alignment: .center)
-                        .cornerRadius(5)
-                        .onLongPressGesture {
-                            imageToDelete = image
-                            showDeleteAlert = true
-                        }
-                }
-                // 图片占位符
-                PhotoPlaceHolderView()
+        HStack(alignment: VerticalAlignment.center) {
+            ForEach(images, id: \.self) { image in
+                Image(uiImage: image)
+                    .resizable()
+                    .frame(width: 100, height: 100, alignment: .center)
+                    .cornerRadius(5)
                     .onTapGesture {
-                        guard images.count < 3 else {
-                            showTooMoreAlert = true
-                            return
-                        }
-                        
                         showSelector = true
+                        imageToReplace = image
                     }
-                Spacer()
+                    .onLongPressGesture {
+                        imageToDelete = image
+                        showDeleteAlert = true
+                    }
             }
+            // emm竟然只能添加一个alert对一个view
             .alert(isPresented: $showDeleteAlert, content: {
                 Alert(title: Text("确定要删除这张图片吗?"),
                       primaryButton: .destructive(Text("删除"), action: {
@@ -57,33 +50,48 @@ struct PhotoListView: View {
                       }),
                       secondaryButton: .cancel())
             })
-            .alert(isPresented: $showTooMoreAlert, content: {
-                Alert(title: Text("警告"), message: Text("最多可以添加3张图片"), dismissButton: .cancel())
-            })
-            .actionSheet(isPresented: $showSelector, content: {
-                ActionSheet(title: Text("选择来源"), message: nil, buttons: [
-                    .default(Text("拍照"), action: {
-                        useCamera = true
-                        showPicker = true
-                    }),
-                    .default(Text("相册"), action: {
-                        useCamera = false
-                        showPicker = true
-                    }),
-                    .cancel()
-                ])
-            })
-            .sheet(isPresented: $showPicker, content: {
-                ImagePicker(image: $imageToAdd, useCamera: useCamera)
-                    .onDisappear(perform: {
-                        images.append(imageToAdd!)
-                        imageToAdd = nil
+            // 图片占位符
+            if images.count < 3 {
+                PhotoPlaceHolderView()
+                    .onTapGesture {
+                        //                            guard images.count < 3 else {
+                        //                                showTooMoreAlert = true
+                        //                                return
+                        //                            }
+                        showSelector = true
+                    }
+                    .actionSheet(isPresented: $showSelector, content: {
+                        ActionSheet(title: Text("选择来源"), message: nil, buttons: [
+                            .default(Text("拍照"), action: {
+                                useCamera = true
+                                showPicker = true
+                            }),
+                            .default(Text("相册"), action: {
+                                useCamera = false
+                                showPicker = true
+                            }),
+                            .cancel()
+                        ])
                     })
-            })
+                    .sheet(isPresented: $showPicker, content: {
+                        ImagePicker(image: $imageToAdd, useCamera: useCamera)
+                            .onDisappear(perform: {
+                                if let image = imageToAdd {
+                                    if let replace = imageToReplace {
+                                        let idx = images.firstIndex(of: replace)
+                                        images[idx!] = image
+                                    } else {
+                                        images.append(image)
+                                    }
+                                    imageToAdd = nil
+                                }
+                            })
+                            .edgesIgnoringSafeArea(.all)
+                    })
+                Spacer()
+            }
         }
-        
     }
-    
 }
 
 struct PhotoListView_Previews: PreviewProvider {

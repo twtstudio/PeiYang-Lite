@@ -11,7 +11,7 @@ struct ClassesManager {
     static let isLoginKey = "classesIsLogin"
     static let isGPAStoreKey = "gpaIsStore"
     static let isCourseStoreKey = "courseIsStore"
-//    static let isUndergraduateKey = "isUndergraduate"
+    //    static let isUndergraduateKey = "isUndergraduate"
     
     static let usernameKey = "classesUsername"
     static let passwordKey = "classesPassword"
@@ -169,7 +169,7 @@ struct ClassesManager {
                             }
                         }
                         
-//                        let validSemesters = allSemesters[indexPair[0]...indexPair[1]]
+                        //                        let validSemesters = allSemesters[indexPair[0]...indexPair[1]]
                         let validSemesters = allSemesters[(indexPair.first ?? 0)...(indexPair.last ?? 0)]
                         
                         completion(.success(Array(validSemesters)))

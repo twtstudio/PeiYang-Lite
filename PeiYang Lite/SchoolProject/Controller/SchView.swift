@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SchView: View {
     @Environment(\.presentationMode) var mode
+    @StateObject private var schViewModel: SchViewModel = .init()
     
     var body: some View {
         ZStack {
@@ -30,7 +31,8 @@ struct SchView: View {
                 }
                 .frame(width: UIScreen.main.bounds.width * 0.9)
                 
-                SchQuestionScrollView(model: SchViewModel())
+                SchQuestionScrollView<SchViewModel>()
+                    .environmentObject(schViewModel)
                     .padding(.top)
                     .frame(width: screen.width)
             }
@@ -51,7 +53,6 @@ struct SchView: View {
                                 .resizable()
                                 .frame(width: screen.width * 0.2, height: screen.width * 0.2)
                         })
-                    
                 }
                 .padding()
             }
@@ -61,17 +62,33 @@ struct SchView: View {
 }
 
 fileprivate class SchViewModel: SchQuestionScrollViewModel, SchQuestionScrollViewAction, SchQuestionScrollViewDataSource {
+    @Published var questions: [SchQuestionModel] = []
+    
+    @Published var isReloading: Bool = false
+    
+    @Published var isLoadingMore: Bool = false
+    
+    @Published var page: Int = 0
+    
+    @Published var maxPage: Int = 0
+    
     func reloadData() {
         page = 1
         SchQuestionManager.loadQuestions { (result) in
             switch result {
                 case .success(let (questions, maxPage)):
-                    DispatchQueue.main.async {
-                        self.questions = questions
-                        self.maxPage = maxPage
-                        self.isReloading = false
-                        print("刷新成功")
+//                    DispatchQueue.main.async {
+                    if !self.questions.isEmpty {
+                        print(self.questions[0])
                     }
+                    if !self.questions.isEmpty && self.questions[0].id! != questions[0].id! {
+                        print(self.questions[0], questions[0])
+                    }
+                    self.questions = questions
+                    self.maxPage = maxPage
+                    self.isReloading = false
+                    print("刷新成功")
+//                    }
                 case .failure(let err):
                     print("刷新失败", err)
             }
@@ -110,17 +127,6 @@ fileprivate class SchViewModel: SchQuestionScrollViewModel, SchQuestionScrollVie
         get { _dataSource }
         set { _dataSource = newValue }
     }
-    
-    @Published var questions: [SchQuestionModel] = []
-    
-    @Published var isReloading: Bool = false
-    
-    @Published var isLoadingMore: Bool = false
-    
-    @Published var page: Int = 0
-    
-    @Published var maxPage: Int = 0
-    
 }
 
 struct SchView_Previews: PreviewProvider {

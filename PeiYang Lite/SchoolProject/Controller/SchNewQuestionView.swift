@@ -107,6 +107,11 @@ struct SchNewQuestionView: View {
                             }
                         Spacer()
                     }
+                    // sheet不能添加给全局
+                    .sheet(isPresented: $isShowTagSelector, content: {
+                        SchSelectTagView()
+                            .environmentObject(tagSource)
+                    })
                     
                     // 分割线
                     seperator.frame(width: UIScreen.main.bounds.width * 0.85, height: 1, alignment: .center)
@@ -121,7 +126,16 @@ struct SchNewQuestionView: View {
                             .foregroundColor(color)
                             .font(.title3)
                     })
+                    .alert(isPresented: $noTagError, content: {
+                        Alert(title: Text("您还未选择标签"))
+                    })
                     
+                    Text("")
+                        .frame(width: 0, height: 0)
+                        // emm 此为下策但是alert之间只能是平级
+                        .alert(isPresented: $submitError, content: {
+                            Alert(title: Text("问题提交失败"))
+                        })
                 }
                 .padding()
                 .frame(width: UIScreen.main.bounds.width * 0.9, height: UIScreen.main.bounds.height * 0.6, alignment: .center)
@@ -139,10 +153,6 @@ struct SchNewQuestionView: View {
                     .ignoresSafeArea()
             )
         }
-        .sheet(isPresented: $isShowTagSelector, content: {
-            SchSelectTagView()
-                .environmentObject(tagSource)
-        })
         .onAppear {
             SchTagManager.tagGet { (result) in
                 switch result {
@@ -156,12 +166,6 @@ struct SchNewQuestionView: View {
             }
         }
         .loading(style: .medium, isLoading: $isLoading)
-        .alert(isPresented: $noTagError, content: {
-            Alert(title: Text("您还未选择标签"))
-        })
-        .alert(isPresented: $submitError, content: {
-            Alert(title: Text("问题提交失败"))
-        })
     }
     
     func submitQuestion() {
@@ -170,6 +174,8 @@ struct SchNewQuestionView: View {
             noTagError = true
             return
         }
+        // 开始加载
+        isLoading = true
         SchQuestionManager.postQuestion(title: textManager.title, content: textManager.detail, tagList: [tag]) { (result) in
             switch result {
                 case .success(let questionId):
@@ -181,7 +187,7 @@ struct SchNewQuestionView: View {
                             SchQuestionManager.postImg(img: images[i], question_id: questionId) { (result) in
                                 switch result {
                                 case .success(let str):
-                                    print(str)
+                                    print("上传图片成功", str)
                                     group.leave()
                                 case .failure(let err):
                                     print(err)
@@ -189,10 +195,16 @@ struct SchNewQuestionView: View {
                                 }
                             }
                         }
+                        group.notify(queue: .main, work: DispatchWorkItem(block: {
+                            isLoading = false
+                            mode.wrappedValue.dismiss()
+                            print("提交问题成功, id:", questionId)
+                        }))
+                    } else {
+                        isLoading = false
+                        mode.wrappedValue.dismiss()
+                        print("提交问题成功, id:", questionId)
                     }
-                    isLoading = false
-                    mode.wrappedValue.dismiss()
-                    print("提交问题成功, id:", questionId)
                 case .failure(let err):
                     isLoading = false
                     submitError = true

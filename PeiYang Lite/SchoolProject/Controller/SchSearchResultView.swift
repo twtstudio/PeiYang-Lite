@@ -16,7 +16,7 @@ struct SchSearchResultView: View {
         if isEmpty {
             Text("未检索到相关问题")
         } else {
-            SchQuestionScrollView(model: SchSearchResultViewModel())
+//            SchQuestionScrollView(model: SchSearchResultViewModel())
         }
     }
 }

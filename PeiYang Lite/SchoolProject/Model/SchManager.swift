@@ -39,5 +39,19 @@ struct SchManager {
         return Network.fetch(url, query: tmpQuery, headers: headers, method: method, body: body, async: async, completion: completion)
     }
     
-    
+    static func uploadImage(
+        _ path: String,
+        imageData: [String: Data],
+        query: [String: String] = [:],
+        headers: [String: String] = [:],
+        method: Network.Method = .get,
+        body: [String: Any] = [:],
+        async: Bool = true,
+        completion: @escaping (Result<(Data, HTTPURLResponse), Network.Failure>) -> Void
+    ) {
+        let url = BASE_URL + path
+        var tmpBody = body
+        tmpBody["token"] = Storage.defaults.string(forKey: tokenKey)
+        return Network.requestWithFormData(urlString: url, parameters: tmpBody, dataPath: imageData, completion: completion)
+    }
 }
