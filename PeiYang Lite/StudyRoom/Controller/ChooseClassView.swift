@@ -114,7 +114,7 @@ struct ChooseClassView: View {
                                         SelectRoomView(classTitle: rooms.classroom)
                                     } else {
                                         NavigationLink(
-                                            destination: RoomDetailView(activeWeek: $week, className: buildingName + rooms.classroom)) {
+                                            destination: RoomDetailView(activeWeek: $week, className: buildingName + rooms.classroom, classData: rooms)) {
                                                 SelectRoomView(classTitle: rooms.classroom, isFree: rooms.status[checkTheClassNum] == "0")
                                             }
                                     }

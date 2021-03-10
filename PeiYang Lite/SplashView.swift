@@ -38,6 +38,7 @@ struct SplashView: View {
             }
             Jump(isStored: isStored)
         })
+        
     }
     func Jump(isStored: Bool) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {

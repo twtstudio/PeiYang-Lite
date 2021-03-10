@@ -167,7 +167,7 @@ struct StudySearchView: View {
                         ) {
                             ForEach(searchRoom, id: \.self) { room in
                                 NavigationLink(
-                                    destination: RoomDetailView(activeWeek: $textNum, className: room.buildingName + ((room.sectionName == "-1") ? "" : room.sectionName) + room.room.classroom),
+                                    destination: RoomDetailView(activeWeek: $textNum, className: room.buildingName + ((room.sectionName == "-1") ? "" : room.sectionName) + room.room.classroom, classData: room.room),
                                     label: {
                                         SelectRoomView(classTitle: room.room.classroom, isFree: room.room.status[checkTheClassNum] == "0")
                                     })
@@ -185,7 +185,7 @@ struct StudySearchView: View {
                     case .unclearrooms:
                         ForEach(searchRoom, id: \.self) { room in
                             NavigationLink(
-                                destination: RoomDetailView(activeWeek: $textNum, className: room.buildingName + ((room.sectionName == "-1") ? "" : room.sectionName)+room.room.classroom),
+                                destination: RoomDetailView(activeWeek: $textNum, className: room.buildingName + ((room.sectionName == "-1") ? "" : room.sectionName)+room.room.classroom, classData: room.room),
                                 label: {
                                     SearchBuildingAndClassView(title: room.buildingName + ((room.sectionName == "-1") ? "" : room.sectionName) + room.room.classroom, isFree: room.room.status[checkTheClassNum] == "0")
                                 })
