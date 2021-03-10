@@ -28,7 +28,7 @@ struct StudyRoomContentView: View {
             }
             
             // MARK: - Course
-            ForEach(0...5, id: \.self) { weekday in
+            ForEach(0...6, id: \.self) { weekday in
                 ZStack(alignment: .top) {
                     ForEach(0...5, id:\.self) { i in
                         if status[weekday][2*i] == "1" {

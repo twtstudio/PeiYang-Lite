@@ -122,8 +122,9 @@ class StudyRoomManager {
 // MARK: - 字符串截取
 extension String {
     /// String使用下标截取字符串
-    /// string[index] 例如："abcdefg"[3] // c
+    /// string[index] 例如："abcdefg"[2] // c
     subscript (i:Int)->String{
+        if(self == "") {return ""}
         let startIndex = self.index(self.startIndex, offsetBy: i)
         let endIndex = self.index(startIndex, offsetBy: 1)
         return String(self[startIndex..<endIndex])

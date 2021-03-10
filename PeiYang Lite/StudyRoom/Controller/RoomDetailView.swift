@@ -18,23 +18,7 @@ struct RoomDetailView: View {
     // 定位classroom
     var classData: Classroom
     /// 每一个元素会重复两次……
-    var weekData: [String] {
-        var returnWeekData: [String] = []
-        if let saveweekData = DataStorage.retreive("studyroom/weekdata.json", from: .caches, as: [[StudyBuilding]].self) {
-            for buildingOneDay in saveweekData {
-                for building in buildingOneDay{
-                    for area in building.areas {
-                        for room in area.classrooms {
-                            if room.classroomID == classData.classroomID {
-                                returnWeekData.insert(room.status, at: 0)
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        return returnWeekData
-    }
+    @State var weekData: [String] = []
     
     /// 手动换算一下
     var finalWeekData: [String] {
@@ -62,7 +46,9 @@ struct RoomDetailView: View {
             }
             .frame(width: screen.width * 0.9)
             .padding(.top, 40)
-            
+            ForEach(weekData, id: \.self) { data in
+                Text(data)
+            }
             RoomDetailHeaderView(className: className, activeWeek: activeWeek)
             
             ScrollView(.vertical, showsIndicators: false) {
@@ -77,7 +63,7 @@ struct RoomDetailView: View {
                     
                     StudyRoomContentView(
                         activeWeek: activeWeek,
-                        courseArray: courseTable.courseArray, status: finalWeekData,
+                        courseArray: courseTable.courseArray, status: weekData,
                         width: screen.width / 8
                         )
                     .frame(width: screen.width, height: screen.height*1.2, alignment: .top)
@@ -92,16 +78,24 @@ struct RoomDetailView: View {
                content: {
                 CalendarView(isShowCalender: $isShowCalender)
         })
-        //        .navigationBarBackButtonHidden(true)
-//        .navigationBarItems(leading: Button(action : {
-//            self.mode.wrappedValue.dismiss()
-//        }) {
-//            Image("back-arrow")
-//        }, trailing: Button(action : {
-//            isShowCalender.toggle()
-//        }) {
-//            Image("calender")
-//        })
+        .onAppear(perform: {
+            var returnWeekData: [String] = []
+            if let saveweekData = DataStorage.retreive("studyroom/weekdata.json", from: .caches, as: [[StudyBuilding]].self) {
+                for buildingOneDay in saveweekData {
+                    for building in buildingOneDay{
+                        for area in building.areas {
+                            for room in area.classrooms {
+                                if room.classroomID == classData.classroomID {
+                                    returnWeekData.insert(room.status, at: 0)
+                                    break
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            weekData = returnWeekData
+        })
     }
 }
 

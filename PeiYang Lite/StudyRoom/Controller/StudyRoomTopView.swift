@@ -15,7 +15,6 @@ struct StudyRoomTopView: View {
     
     //是否获取教室信息
     @State var isGetStudyRoomBuildingMessage = false
-    static var isGet: Bool = false
     
     // 学区选择
     let schoolDistricts: [String] = ["卫津路校区", "北洋园校区"]
@@ -105,6 +104,7 @@ struct StudyRoomTopView: View {
             HStack {
                 Button(action : {
                     self.mode.wrappedValue.dismiss()
+                    sharedMessage.studyRoomSelectDate = Date()
                 }) {
                     Image("back-arrow")
                 }
@@ -350,12 +350,36 @@ struct StudyRoomTopView: View {
                                 buildingsWJ.insert(building, at: 0)
                             }
                             else if(building.campusID == "2") {
-                                buildingsBY.append(building)
+                                buildingsBY.insert(building, at: 0)
                             }
                         }
                         isGetStudyRoomBuildingMessage = true
                     case .failure(_):
                         isGetStudyRoomBuildingMessage = false
+                    }
+                }
+            } else {
+                buildingsWJ = []
+                buildingsBY = []
+                if let saveBuildings = DataStorage.retreive("studyroom/todaydata.json", from: .caches, as: [StudyBuilding].self) {
+                    buildings = saveBuildings
+                    for building in buildings{
+                        if(building.campusID == "1"){
+                            buildingsWJ.insert(building, at: 0)
+                        }
+                        else if(building.campusID == "2") {
+                            buildingsBY.insert(building, at: 0)
+                        }
+                    }
+                    /// bug，因为在上面的第一次请求，会导致，分配两遍
+                    /// 然后人为改的只遍历数组的前1/2
+                    for building in buildings{
+                        if(building.campusID == "1"){
+                            buildingsWJ.insert(building, at: 0)
+                        }
+                        else if(building.campusID == "2") {
+                            buildingsBY.insert(building, at: 0)
+                        }
                     }
                 }
             }
