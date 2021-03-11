@@ -10,6 +10,7 @@ import Combine
 
 struct BeginView: View {
     @EnvironmentObject var appState: AppState
+
     var body: some View {
         NavigationView {
             VStack {
@@ -24,6 +25,8 @@ struct BeginView: View {
                     Spacer()
                 }
                 .padding()
+                
+
                 
                 Spacer()
                 
@@ -90,6 +93,7 @@ struct ChooseMethodView_Previews: PreviewProvider {
     static var previews: some View {
         BeginView()
             .environmentObject(User())
+            .environmentObject(AppState())
     }
 }
 

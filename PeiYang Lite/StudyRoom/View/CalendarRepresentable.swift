@@ -15,7 +15,7 @@ struct CalendarRepresentable: UIViewRepresentable {
     typealias UIViewType = FSCalendar
     var calendar = FSCalendar()
     @EnvironmentObject var sharedMessage: SharedMessage
-//    @Binding var selectedDate: Date
+    @Binding var isChangeDate: Bool
     
     func updateUIView(_ uiView: FSCalendar, context: Context) { }
     func makeUIView(context: Context) -> FSCalendar {
@@ -50,6 +50,9 @@ struct CalendarRepresentable: UIViewRepresentable {
             self.parent = parent
         }
         func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
+            if(parent.sharedMessage.studyRoomSelectDate != date) {
+                parent.isChangeDate = true
+            }
             parent.sharedMessage.studyRoomSelectDate = date
         }
     }
@@ -60,12 +63,13 @@ struct CalendarRepresentable: UIViewRepresentable {
 struct CalendarView: View {
     let themeColor = Color.init(red: 98/255, green: 103/255, blue: 123/255)
     @EnvironmentObject var sharedMessage: SharedMessage
-//    @Binding var selectedDate: Date
-//    @Binding var selectedTimePeriod: String
+    @State var buildings: [StudyBuilding] = []
+    @State var isGetStudyRoomBuildingMessage = false
     @Binding var isShowCalender: Bool
+    @State var isChangeDate = false
     var body: some View {
         VStack{
-            CalendarRepresentable()
+            CalendarRepresentable(isChangeDate: $isChangeDate)
                 .padding()
                 .frame(width: UIScreen.main.bounds.width * 0.9, height: UIScreen.main.bounds.height / 2, alignment: .center)
             
@@ -91,6 +95,11 @@ struct CalendarView: View {
             HStack{
                 Spacer()
                 Button(action:{
+                    reSave()
+                    let queue = DispatchQueue.global()
+                    queue.async {
+                        DataStorage.store(buildings, in: .caches, as: "studyroom/todaydata.json")
+                    }
                     isShowCalender = false
                 }) {
                     Text("确定")
@@ -103,6 +112,40 @@ struct CalendarView: View {
             
             
         }
+    }
+    func reSave() {
+//        if(isChangeDate == true) {
+            let formatter = DateFormatter()
+            var endDate: Date{
+                formatter.dateFormat = "YYYYMMdd"
+                return formatter.date(from: "20210301")!
+            }
+            var totalDays: Int {
+                endDate.daysBetweenDate(toDate: sharedMessage.studyRoomSelectDate)
+            }
+            var days: Int {
+               totalDays % 7 + 1
+            }
+            var weeks: Int {
+                totalDays / 7 + 1
+            }
+            
+            StudyRoomManager.allBuidlingGet(term: "20212", week: String(weeks), day: String(days)) { result in
+                switch result {
+                case .success(let data):
+                    buildings = data.data
+                    if(data.errorCode != 0) {
+                        isGetStudyRoomBuildingMessage = false
+                        break
+                    }
+                    DataStorage.store(buildings, in: .caches, as: "studyroom/todaydata.json")
+                    isGetStudyRoomBuildingMessage = true
+                case .failure(_):
+                    isGetStudyRoomBuildingMessage = false
+                }
+            }
+            
+//        }
     }
 }
 

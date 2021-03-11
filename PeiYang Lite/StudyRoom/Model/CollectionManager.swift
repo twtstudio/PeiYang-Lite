@@ -79,7 +79,7 @@ class CollectionManager {
     
     static func deleteFavour(classroomID: String, completion: @escaping (Result<StudyroomOrdinaryMessage, Network.Failure>) -> Void) {
         Network.fetch(
-            "https://selfstudy.twt.edu.cn/addCollection",
+            "https://selfstudy.twt.edu.cn/deleteCollection",
             headers:[
                 "ticket": ticket,
                 "domain": domain,

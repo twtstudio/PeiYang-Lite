@@ -84,6 +84,7 @@
 		C9016EED25E95242007524DD /* BuildingSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9016EEC25E95242007524DD /* BuildingSectionView.swift */; };
 		C9016EF525E9CC72007524DD /* StudySearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9016EF425E9CC72007524DD /* StudySearchView.swift */; };
 		C9016EF925E9D7AC007524DD /* SearchAnsViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9016EF825E9D7AC007524DD /* SearchAnsViews.swift */; };
+		C903418625F8B78900F78B9C /* AcChangeNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C903418525F8B78900F78B9C /* AcChangeNameView.swift */; };
 		C90384C1252C5BAD00CC7A44 /* Semester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B6891A24D156F40020AD47 /* Semester.swift */; };
 		C9129F932513401D00EDE4CE /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9129F922513401D00EDE4CE /* WidgetKit.framework */; };
 		C9129F952513401D00EDE4CE /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9129F942513401D00EDE4CE /* SwiftUI.framework */; };
@@ -311,6 +312,7 @@
 		C9016EEC25E95242007524DD /* BuildingSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingSectionView.swift; sourceTree = "<group>"; };
 		C9016EF425E9CC72007524DD /* StudySearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudySearchView.swift; sourceTree = "<group>"; };
 		C9016EF825E9D7AC007524DD /* SearchAnsViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAnsViews.swift; sourceTree = "<group>"; };
+		C903418525F8B78900F78B9C /* AcChangeNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcChangeNameView.swift; sourceTree = "<group>"; };
 		C9129F902513401D00EDE4CE /* PeiYangLiteWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = PeiYangLiteWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9129F922513401D00EDE4CE /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		C9129F942513401D00EDE4CE /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -1052,6 +1054,7 @@
 				C9CF3D6925D1684E0085263F /* BindEmailView.swift */,
 				C9D5BF7425D010F000CD3537 /* SettingView.swift */,
 				C9836FCF25F29160000E3367 /* AcSetShowDayView.swift */,
+				C903418525F8B78900F78B9C /* AcChangeNameView.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -1482,6 +1485,7 @@
 				C9CF3DD725D2B1E00085263F /* Home.swift in Sources */,
 				032CE4DB24DBA1E5003786F6 /* CGImage+Extensions.swift in Sources */,
 				C9D59B5A25BD35D0006865FC /* ChMeToFindView.swift in Sources */,
+				C903418625F8B78900F78B9C /* AcChangeNameView.swift in Sources */,
 				032CE4D724DBA1E5003786F6 /* URLImageService.swift in Sources */,
 				D37DD87E25EDFA8700A662E0 /* SchAccountView.swift in Sources */,
 				032CE4ED24DBA1E5003786F6 /* DownloadCoordinator.swift in Sources */,
@@ -1776,7 +1780,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 202103072021;
 				DEVELOPMENT_ASSET_PATHS = "\"PeiYang Lite/Preview Content\"";
-				DEVELOPMENT_TEAM = T5JB4K7FT9;
+				DEVELOPMENT_TEAM = 863S6TAW4N;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "PeiYang Lite/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -1803,7 +1807,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 202103072021;
 				DEVELOPMENT_ASSET_PATHS = "\"PeiYang Lite/Preview Content\"";
-				DEVELOPMENT_TEAM = T5JB4K7FT9;
+				DEVELOPMENT_TEAM = 863S6TAW4N;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "PeiYang Lite/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -1828,7 +1832,7 @@
 				CODE_SIGN_ENTITLEMENTS = PeiYangLiteWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 202103072021;
-				DEVELOPMENT_TEAM = T5JB4K7FT9;
+				DEVELOPMENT_TEAM = 863S6TAW4N;
 				INFOPLIST_FILE = PeiYangLiteWidget/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1853,7 +1857,7 @@
 				CODE_SIGN_ENTITLEMENTS = PeiYangLiteWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 202103072021;
-				DEVELOPMENT_TEAM = T5JB4K7FT9;
+				DEVELOPMENT_TEAM = 863S6TAW4N;
 				INFOPLIST_FILE = PeiYangLiteWidget/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
