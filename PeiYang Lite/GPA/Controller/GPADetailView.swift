@@ -53,8 +53,7 @@ struct GPADetailView: View {
                     } else {
                         Text("Empty Data!")
                     }
-                        
-                        HStack {
+                    HStack {
                             GPATitleView(value: gpa.semesterGPAArray[activeIndex].score.decimal, title: .score, titleColor: Color(#colorLiteral(red: 0.6580134034, green: 0.7014739513, blue: 0.5453689694, alpha: 1)), valueColor: .white)
                                 .padding(5)
                             GPATitleView(value: gpa.semesterGPAArray[activeIndex].gpa.decimal, title: .gpa, titleColor: Color(#colorLiteral(red: 0.6580134034, green: 0.7014739513, blue: 0.5453689694, alpha: 1)), valueColor: .white)
@@ -66,7 +65,7 @@ struct GPADetailView: View {
                         // MARK: - Curve
     //                    GeometryReader { geo in
                             CurveDetailView(
-                                data: ChartData(points: gpa.semesterGPAArray.filter({ $0.gpa != 0}).map(\.score)),
+                                data: ChartData(points: gpa.semesterGPAArray.filter({ $0.score != 0}).map(\.score)),
                                 size: .constant(CGSize(width: full.size.width - 30, height: full.size.width * 0.5)),
                                 minDataValue: .constant(nil),
                                 maxDataValue: .constant(nil),
