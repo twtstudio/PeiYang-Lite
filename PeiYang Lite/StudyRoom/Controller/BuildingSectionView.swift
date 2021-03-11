@@ -17,8 +17,7 @@ struct BuildingSectionView: View {
     @Binding var weeks: Int
     
     // 定位building
-//    var theNumOfBuilding: Int
-//    var theField: Int
+    var buildingID: String
     
     
     var body: some View {
@@ -55,7 +54,7 @@ struct BuildingSectionView: View {
                 HStack(spacing: 20) {
                     ForEach(0..<sections.count) { index in
                         NavigationLink(
-                            destination: ChooseClassView(week: $weeks, fullClasses: sections[index].classrooms, buildingName: buildingName + sections[index].areaID + "区"),
+                            destination:ChooseClassView(buildingID: buildingID, sectionName: sections[index].areaID, week: $weeks, buildingName: buildingName + sections[index].areaID + "区"),
                             label: {
                                 SchSection(title: sections[index].areaID + "区")
                         })

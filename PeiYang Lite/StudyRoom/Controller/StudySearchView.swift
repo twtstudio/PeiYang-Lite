@@ -12,25 +12,7 @@ struct StudySearchView: View {
     @State var textNum = 1
     let color = Color.init(red: 98/255, green: 103/255, blue: 124/255)
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
-    @EnvironmentObject var sharedMessage: SharedMessage
-    var checkTheClassNum: Int {
-        switch sharedMessage.studyRoomSelectTime {
-        case "8:30--10:05":
-            return 0
-        case "10:25--12:00":
-            return 2
-        case "13:30--15:05":
-            return 4
-        case "15:25--17:00":
-            return 6
-        case "18:30--20:05":
-            return 8
-        case "20:25--22:00":
-            return 10
-        default:
-            return -1
-        }
-    }
+    
     
     // 搜索string和搜索历史
     @State var searchString: String = ""
@@ -57,6 +39,26 @@ struct StudySearchView: View {
     @State var searchBuilding: [StudyBuilding] = []
     @State var searchSection: [SearchSectionData] = []
     @State var searchRoom: [SearchClassData] = []
+    
+    @EnvironmentObject var sharedMessage: SharedMessage
+    var checkTheClassNum: Int {
+        switch sharedMessage.studyRoomSelectTime {
+        case "8:30--10:05":
+            return 0
+        case "10:25--12:00":
+            return 2
+        case "13:30--15:05":
+            return 4
+        case "15:25--17:00":
+            return 6
+        case "18:30--20:05":
+            return 8
+        case "20:25--22:00":
+            return 10
+        default:
+            return -1
+        }
+    }
     
     // grid布局
     var roomAndBuildingColumns: [GridItem] = [
@@ -117,6 +119,7 @@ struct StudySearchView: View {
             } else {
                 ScrollView(.vertical, showsIndicators: false){
                     switch selectedMethod {
+                    
                     case .buildings:
                         LazyVGrid(
                             columns: roomAndBuildingColumns,
@@ -127,21 +130,21 @@ struct StudySearchView: View {
                             ForEach(searchBuilding, id: \.self) { building in
                                 if(building.areas[0].areaID != "-1"){
                                     NavigationLink(
-                                        destination: BuildingSectionView(buildingName: building.building, sections: building.areas, weeks: $textNum),
+                                        destination: BuildingSectionView(buildingName: building.building, sections: building.areas, weeks: $textNum, buildingID: building.buildingID),
                                         label: {
                                             SearchBuildingView(title: building.building)
                                         })
                                 }
                                 else {
                                     NavigationLink(
-                                        destination: ChooseClassView(week: $textNum, fullClasses: building.areas[0].classrooms, buildingName: building.building),
+                                        destination: ChooseClassView(buildingID: building.buildingID, sectionName: "-1", week: $textNum, buildingName: building.building),
                                         label: {
                                             SearchBuildingView(title: building.building)
                                         })
                                 }
                             }
                         }
-                        
+                   
                     case .sections:
                         LazyVGrid(
                             columns: sectionColumns,
@@ -151,13 +154,13 @@ struct StudySearchView: View {
                         ) {
                             ForEach(searchSection, id: \.self){ section in
                                 NavigationLink(
-                                    destination: ChooseClassView(week: $textNum, fullClasses: section.sectionData.classrooms, buildingName: section.buildingName + section.sectionData.areaID),
+                                    destination: ChooseClassView(buildingID: section.buildingID, sectionName: section.sectionData.areaID, week: $textNum, buildingName: section.buildingName + section.sectionData.areaID),
                                     label: {
                                         SearchBuildingSectionView(title: section.buildingName, section: section.sectionData.areaID)
                                     })
                             }
                         }
-                       
+                        
                     case .rooms:
                         LazyVGrid(
                             columns: roomAndBuildingColumns,
@@ -194,8 +197,8 @@ struct StudySearchView: View {
                 }
                 .padding(.top)
             }
-            
-            
+
+
             Spacer()
         }
         .navigationBarHidden(true)
@@ -203,12 +206,12 @@ struct StudySearchView: View {
         .background(Color(#colorLiteral(red: 0.9352087975, green: 0.9502342343, blue: 0.9600060582, alpha: 1)).frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height, alignment: .center).ignoresSafeArea())
         .onDisappear(perform: {
             save()
-            
+
         })
         .onAppear(perform: {
             load()
         })
-        
+        Text("hello")
     }
     //MARK: save
     func save() {
@@ -309,7 +312,7 @@ struct StudySearchView: View {
                 for building in searchData {
                     for area in building.areas {
                         if brokenString[0] == area.areaID {
-                            searchSection.append(SearchSectionData(buildingName: building.building, sectionData: area))
+                            searchSection.append(SearchSectionData(buildingID: building.buildingID, buildingName: building.building, sectionData: area))
                         }
                     }
                 }
@@ -320,7 +323,7 @@ struct StudySearchView: View {
                     if(building.building.prefix(2) == brokenString[0].prefix(2)) {
                         for area in building.areas {
                             if area.areaID == brokenString[0].suffix(1) {
-                                searchSection.append(SearchSectionData(buildingName: building.building, sectionData: area))
+                                searchSection.append(SearchSectionData(buildingID: building.buildingID, buildingName: building.building, sectionData: area))
                             }
                         }
                     }
@@ -332,7 +335,7 @@ struct StudySearchView: View {
                     if(building.building.prefix(2) == brokenString[0]) {
                         for area in building.areas {
                             if area.areaID == brokenString[1] {
-                                searchSection.append(SearchSectionData(buildingName: building.building, sectionData: area))
+                                searchSection.append(SearchSectionData(buildingID: building.buildingID, buildingName: building.building, sectionData: area))
                             }
                         }
                     }
@@ -413,6 +416,7 @@ struct StudySearchView_Previews: PreviewProvider {
 
 struct SearchSectionData: Identifiable, Hashable {
     var id = UUID()
+    var buildingID: String
     var buildingName: String
     var sectionData: Area
 }
@@ -426,3 +430,52 @@ struct SearchClassData: Identifiable, Hashable {
 
 
 
+
+//struct SearchAnsView: View {
+//    @State var textNum = 1
+//    let color = Color.init(red: 98/255, green: 103/255, blue: 124/255)
+//
+//    @EnvironmentObject var sharedMessage: SharedMessage
+//    var checkTheClassNum: Int {
+//        switch sharedMessage.studyRoomSelectTime {
+//        case "8:30--10:05":
+//            return 0
+//        case "10:25--12:00":
+//            return 2
+//        case "13:30--15:05":
+//            return 4
+//        case "15:25--17:00":
+//            return 6
+//        case "18:30--20:05":
+//            return 8
+//        case "20:25--22:00":
+//            return 10
+//        default:
+//            return -1
+//        }
+//    }
+//
+//    // grid布局
+//    var roomAndBuildingColumns: [GridItem] = [
+//        GridItem(.fixed(UIScreen.main.bounds.width / 5.5), spacing: 16),
+//        GridItem(.fixed(UIScreen.main.bounds.width / 5.5), spacing: 16),
+//        GridItem(.fixed(UIScreen.main.bounds.width / 5.5), spacing: 16),
+//        GridItem(.fixed(UIScreen.main.bounds.width / 5.5), spacing: 16)
+//        ]
+//
+//    var sectionColumns: [GridItem] = [
+//        GridItem(.fixed(UIScreen.main.bounds.width / 4), spacing: 20),
+//        GridItem(.fixed(UIScreen.main.bounds.width / 4), spacing: 20),
+//        GridItem(.fixed(UIScreen.main.bounds.width / 4), spacing: 20),
+//    ]
+//    // data
+//    @Binding var searchBuilding: [StudyBuilding]
+//    @Binding var searchSection: [SearchSectionData]
+//    @Binding var searchRoom: [SearchClassData]
+//
+//
+//    var body: some View {
+//
+//
+//    }
+//}

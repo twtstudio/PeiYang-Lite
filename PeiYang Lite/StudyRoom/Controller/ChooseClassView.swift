@@ -13,9 +13,8 @@ struct ChooseClassView: View {
     let themeColor = Color.init(red: 98/255, green: 103/255, blue: 123/255)
     
     // 定位class
-//    var theNumOfBuilding: Int
-//    var theNumOfSection: Int
-//    var theField: Int
+    var buildingID: String
+    var sectionName: String
     
     // grid布局
     var columns: [GridItem] = [
@@ -49,7 +48,20 @@ struct ChooseClassView: View {
 
     
     // 教室存储
-    @State var fullClasses: [Classroom]
+     var fullClasses: [Classroom] {
+        if let saveBuildings = DataStorage.retreive("studyroom/todaydata.json", from: .caches, as: [StudyBuilding].self){
+            for building in saveBuildings {
+                if building.buildingID == buildingID {
+                    for area in building.areas {
+                        if area.areaID == sectionName {
+                            return area.classrooms
+                        }
+                    }
+                }
+            }
+        }
+        return []
+    }
     var finalFullClasses: [Classroom] {
         return fullClasses.sorted(by: {$0.classroom < $1.classroom})
     }
@@ -137,25 +149,20 @@ struct ChooseClassView: View {
 
 
         })
-//        .padding(.top, UIScreen.main.bounds.height / 10)
         .edgesIgnoringSafeArea(.top)
         .frame(width: UIScreen.main.bounds.width)
         .background(Color(#colorLiteral(red: 0.9352087975, green: 0.9502342343, blue: 0.9600060582, alpha: 1)).ignoresSafeArea())
         .sheet(isPresented: $isShowCalender,
                content: {
                 CalendarView(isShowCalender: $isShowCalender)
+                    .onDisappear(perform: {
+                        let getFloorsAndSort = GetFloorsAndSort(fullClasses: finalFullClasses)
+                        classes = getFloorsAndSort.0
+                        totalFloors = getFloorsAndSort.1
+                    })
         })//: sheet
         .navigationBarHidden(true)
-//        .navigationBarBackButtonHidden(true)
-//        .navigationBarItems(leading: Button(action : {
-//            self.mode.wrappedValue.dismiss()
-//        }) {
-//            Image("back-arrow")
-//        }, trailing: Button(action : {
-//            isShowCalender.toggle()
-//        }) {
-//            Image("calender")
-//        })
+
   
     }
     
