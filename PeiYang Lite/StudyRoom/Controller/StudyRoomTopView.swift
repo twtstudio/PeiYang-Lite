@@ -357,6 +357,35 @@ struct StudyRoomTopView: View {
                         isGetStudyRoomBuildingMessage = false
                     }
                 }
+                //MARK: 异步请求全部数据
+                DispatchQueue.global().asyncAfter(deadline: DispatchTime.now()) {
+                    DispatchQueue.main.async {
+                        for i in 0...6 {
+                            StudyRoomManager.allBuidlingGet(term: "20212", week: String(weeks.wrappedValue), day: String(i+1)) { result in
+                                switch result {
+                                case .success(let data):
+                                    weeksBuildings[i] = data.data
+                                    if(data.errorCode != 0) {
+                                        isFailGetOneWeek = true
+                                        break
+                                    }
+//                                    for building in weeksBuildings[i]  {
+//                                        if(building.campusID == "1"){
+//                                            weeksBuildingWJ[i].append(building)
+//                                        }
+//                                        else if(building.campusID == "2") {
+//                                            weeksBuildingBY[i].append(building)
+//                                        }
+//                                    }
+                                    
+                                    isFailGetOneWeek = false
+                                case .failure(_):
+                                    isFailGetOneWeek = true
+                                }
+                            }
+                        }
+                    }
+                }
             } else {
                 buildingsWJ = []
                 buildingsBY = []
@@ -385,35 +414,7 @@ struct StudyRoomTopView: View {
                     }
                 }
             }
-            //MARK: 异步请求全部数据
-            DispatchQueue.global().asyncAfter(deadline: DispatchTime.now()+1) {
-                DispatchQueue.main.async {
-                    for i in 0...6 {
-                        StudyRoomManager.allBuidlingGet(term: "20212", week: String(weeks.wrappedValue), day: String(i+1)) { result in
-                            switch result {
-                            case .success(let data):
-                                weeksBuildings.insert(data.data, at: 0)
-                                if(data.errorCode != 0) {
-                                    isFailGetOneWeek = true
-                                    break
-                                }
-                                for building in weeksBuildings[i]  {
-                                    if(building.campusID == "1"){
-                                        weeksBuildingWJ[i].append(building)
-                                    }
-                                    else if(building.campusID == "2") {
-                                        weeksBuildingBY[i].append(building)
-                                    }
-                                }
-                                
-                                isFailGetOneWeek = false
-                            case .failure(_):
-                                isFailGetOneWeek = true
-                            }
-                        }
-                    }
-                }
-            }
+            
         }
         .onDisappear(perform: {
             if(!isFailGetOneWeek) {
@@ -432,13 +433,13 @@ struct StudyRoomTopView: View {
         queue.async {
             DataStorage.store(buildings, in: .caches, as: "studyroom/todaydata.json")
             DataStorage.store(weeksBuildings, in: .caches, as: "studyroom/weekdata.json")
-            DataStorage.store(weeksBuildingWJ, in: .caches, as: "studyroom/weekdataWJ.json")
-            DataStorage.store(weeksBuildingBY, in: .caches, as: "studyroom/weekdataBY.json")
+//            DataStorage.store(weeksBuildingWJ, in: .caches, as: "studyroom/weekdataWJ.json")
+//            DataStorage.store(weeksBuildingBY, in: .caches, as: "studyroom/weekdataBY.json")
             DataStorage.store(getCollectionClassId, in: .caches, as: "studyroom/collections.json")
         }
     }
     
-    //MARK: classroom_id -> classroom
+    //MARK: 收藏的数据整理
     func requestDataToUseData() {
         CollectionManager.getCollections() { result in
             switch result {

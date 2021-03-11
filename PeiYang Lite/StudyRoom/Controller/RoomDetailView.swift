@@ -18,16 +18,16 @@ struct RoomDetailView: View {
     // 定位classroom
     var classData: Classroom
     /// 每一个元素会重复两次……
-    @State var weekData: [String] = []
+    @State var weekData: [String] = ["001100110011", "001100110011", "001100110011", "001100110011", "001100110011", "001100110011"]
     
     /// 手动换算一下
-    var finalWeekData: [String] {
-        var returnFinalClassData: [String] = []
-        for i in stride(from: 0, to: weekData.count, by: 2) {
-            returnFinalClassData.append(weekData[i])
-        }
-        return returnFinalClassData
-    }
+//    var finalWeekData: [String] {
+//        var returnFinalClassData: [String] = []
+//        for i in stride(from: 0, to: weekData.count, by: 2) {
+//            returnFinalClassData.append(weekData[i])
+//        }
+//        return returnFinalClassData
+//    }
     var body: some View {
         VStack {
             HStack {
@@ -46,9 +46,9 @@ struct RoomDetailView: View {
             }
             .frame(width: screen.width * 0.9)
             .padding(.top, 40)
-//            ForEach(weekData, id: \.self) { data in
-//                Text(data)
-//            }
+            ForEach(weekData, id: \.self) { data in
+                Text(data)
+            }
             RoomDetailHeaderView(classroomId: classData.classroomID, className: className, activeWeek: activeWeek)
             /// Text Spacer()
             Spacer()
@@ -78,20 +78,46 @@ struct RoomDetailView: View {
         .sheet(isPresented: $isShowCalender,
                content: {
                 CalendarView(isShowCalender: $isShowCalender)
+                    .onDisappear(perform: {
+                        var returnWeekData: [String] = ["", "", "", "", "", "", ""]
+                        if let saveweekData = DataStorage.retreive("studyroom/weekdata.json", from: .caches, as: [[StudyBuilding]].self) {
+                            for i in 0...6 {
+                                for building in saveweekData[i] {
+                                    for area in building.areas {
+                                        for room in area.classrooms {
+                                            if room.classroomID == classData.classroomID {
+                                                returnWeekData[i] = room.status
+                                                
+                                                break
+                                            }
+                                        }
+                                    }
+                                }
+                                if returnWeekData[i] == "" {
+                                    returnWeekData[i] = "111111111111"
+                                }
+                            }
+                        }
+                        weekData = returnWeekData
+                    })
         })
         .onAppear(perform: {
-            var returnWeekData: [String] = []
+            var returnWeekData: [String] = ["", "", "", "", "", "", ""]
             if let saveweekData = DataStorage.retreive("studyroom/weekdata.json", from: .caches, as: [[StudyBuilding]].self) {
-                for buildingOneDay in saveweekData {
-                    for building in buildingOneDay{
+                for i in 0...6 {
+                    for building in saveweekData[i]{
                         for area in building.areas {
                             for room in area.classrooms {
                                 if room.classroomID == classData.classroomID {
-                                    returnWeekData.insert(room.status, at: 0)
+                                    returnWeekData[i] = room.status
+                                    
                                     break
                                 }
                             }
                         }
+                    }
+                    if returnWeekData[i] == "" {
+                        returnWeekData[i] = "111111111111"
                     }
                 }
             }
@@ -107,6 +133,7 @@ struct RoomDetailView_Previews: PreviewProvider {
         RoomDetailView(activeWeek: .constant(16), className: "16教A208", classData: Classroom(classroomID: "303", classroom: "303", status: "001100110011"))
     }
 }
+
 
 struct RoomDetailHeaderView: View {
     var classroomId: String

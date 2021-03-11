@@ -24,12 +24,12 @@ struct AccountView: View {
     @AppStorage(ClassesManager.passwordKey, store: Storage.defaults) private var password = ""
     
    
-    @State var stuImg = "Text"
     
     
     @State var isActive = false
     @State var isShowSignOut = false
     @State var isJumpToTop = false
+    @State var isJumpToChange = false
     
     // 关于天外天
     @State var isShowAboutTwT = false
@@ -52,7 +52,7 @@ struct AccountView: View {
                 .offset(y: UIScreen.main.bounds.height / 10)
                 VStack(spacing: UIScreen.main.bounds.height / 50){
                     HStack {//MARK: 加气泡的地方
-                        NavigationLink(destination: AcMessageView()){
+                        NavigationLink(destination: AcMessageView(), isActive: $isJumpToChange){
                             Image(systemName: "person.circle")
                                 .resizable()
                                 .frame(width: UIScreen.main.bounds.width * 0.3, height: UIScreen.main.bounds.width * 0.3, alignment: .center)
@@ -69,14 +69,34 @@ struct AccountView: View {
                 .padding(.top, UIScreen.main.bounds.height / 13)
                 
                 HStack{
-                    
+                   Image("AcExpect")
+                    .resizable()
+                    .scaledToFit()
                 }// Horizontal 3 icons
+                .padding(30)
                 .frame(width: UIScreen.main.bounds.width * 0.9, height: UIScreen.main.bounds.height * 0.18, alignment: .center)
                 .background(Color.white)
                 .cornerRadius(30)
                 
                 
                 VStack(spacing: 15.0) {
+                    Button(action:{
+                        isJumpToChange = true
+                    }){
+                        HStack {
+                            Image("AcChange")
+                            Text("个人信息更改")
+                                .foregroundColor(titleColor)
+                            Spacer()
+                            Image("right")
+                        }
+                        
+                    }
+                    .padding()
+                    .frame(width: UIScreen.main.bounds.width * 0.9, height: UIScreen.main.bounds.height * 0.08, alignment: .center)
+                    .background(Color.white)
+                    .cornerRadius(15)
+                    
                     Button(action:{
                         isShowAboutTwT = true
                     }){
@@ -93,7 +113,6 @@ struct AccountView: View {
                     .frame(width: UIScreen.main.bounds.width * 0.9, height: UIScreen.main.bounds.height * 0.08, alignment: .center)
                     .background(Color.white)
                     .cornerRadius(15)
-                   
                     
                     Button(action:{
                         print("log out")
@@ -106,8 +125,8 @@ struct AccountView: View {
                             Spacer()
                             Image("right")
                         }
-                        
                     }
+                    
                     .padding()
                     .frame(width: UIScreen.main.bounds.width * 0.9, height: UIScreen.main.bounds.height * 0.08, alignment: .center)
                     .background(Color.white)

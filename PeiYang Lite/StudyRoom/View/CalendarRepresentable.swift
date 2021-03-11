@@ -17,6 +17,7 @@ struct CalendarRepresentable: UIViewRepresentable {
     @EnvironmentObject var sharedMessage: SharedMessage
     @Binding var isChangeDate: Bool
     
+    
     func updateUIView(_ uiView: FSCalendar, context: Context) { }
     func makeUIView(context: Context) -> FSCalendar {
         calendar.delegate = context.coordinator
@@ -67,6 +68,9 @@ struct CalendarView: View {
     @State var isGetStudyRoomBuildingMessage = false
     @Binding var isShowCalender: Bool
     @State var isChangeDate = false
+    
+    @State private var isFailGetOneWeek = true
+    @State var weeksBuildings: [[StudyBuilding]] = [[], [], [], [], [], [], []]
     var body: some View {
         VStack{
             CalendarRepresentable(isChangeDate: $isChangeDate)
@@ -114,38 +118,60 @@ struct CalendarView: View {
         }
     }
     func reSave() {
-//        if(isChangeDate == true) {
-            let formatter = DateFormatter()
-            var endDate: Date{
-                formatter.dateFormat = "YYYYMMdd"
-                return formatter.date(from: "20210301")!
+        
+        let formatter = DateFormatter()
+        var endDate: Date{
+            formatter.dateFormat = "YYYYMMdd"
+            return formatter.date(from: "20210301")!
+        }
+        var totalDays: Int {
+            endDate.daysBetweenDate(toDate: sharedMessage.studyRoomSelectDate)
+        }
+        var days: Int {
+           totalDays % 7 + 1
+        }
+        var weeks: Int {
+            totalDays / 7 + 1
+        }
+        
+        StudyRoomManager.allBuidlingGet(term: "20212", week: String(weeks), day: String(days)) { result in
+            switch result {
+            case .success(let data):
+                buildings = data.data
+                if(data.errorCode != 0) {
+                    isGetStudyRoomBuildingMessage = false
+                    break
+                }
+                DataStorage.store(buildings, in: .caches, as: "studyroom/todaydata.json")
+                isGetStudyRoomBuildingMessage = true
+            case .failure(_):
+                isGetStudyRoomBuildingMessage = false
             }
-            var totalDays: Int {
-                endDate.daysBetweenDate(toDate: sharedMessage.studyRoomSelectDate)
-            }
-            var days: Int {
-               totalDays % 7 + 1
-            }
-            var weeks: Int {
-                totalDays / 7 + 1
-            }
-            
-            StudyRoomManager.allBuidlingGet(term: "20212", week: String(weeks), day: String(days)) { result in
+        }
+        
+       
+          
+        for i in 0...6 {
+            StudyRoomManager.allBuidlingGet(term: "20212", week: String(weeks), day: String(i+1)) { result in
                 switch result {
                 case .success(let data):
-                    buildings = data.data
+                    weeksBuildings[i] = data.data
                     if(data.errorCode != 0) {
-                        isGetStudyRoomBuildingMessage = false
+                        isFailGetOneWeek = true
                         break
                     }
-                    DataStorage.store(buildings, in: .caches, as: "studyroom/todaydata.json")
-                    isGetStudyRoomBuildingMessage = true
+                    if(i == 6) {
+                        DataStorage.store(weeksBuildings, in: .caches, as: "studyroom/weekdata.json")
+                    }
+                    isFailGetOneWeek = false
                 case .failure(_):
-                    isGetStudyRoomBuildingMessage = false
+                    isFailGetOneWeek = true
                 }
             }
+        }
+        
             
-//        }
+        
     }
 }
 
