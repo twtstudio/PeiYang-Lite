@@ -12,64 +12,118 @@ struct SchSearchView: View {
     static let historyKey = "SCH_SEARCH_HISTORY_KEY"
     @AppStorage(SchSearchView.historyKey, store: Storage.defaults) var historyArray: [String] = []
     @State private var inputMessage: String = ""
-    
-    @State var availableTags: [SchTagModel] = []
+    @StateObject private var tagSource: SchTagSource = SchTagSource()
+    // 用于弹回到root
+    @Binding var rootIsActive: Bool
     
     var body: some View {
         VStack {
-            SchSearchTopView(inputMessage: $inputMessage, historyArray: $historyArray)
-            HStack {
-                Text("历史记录")
-                    .foregroundColor(.init(red: 98/255, green: 103/255, blue: 124/255))
-                    .font(.custom("Avenir-Black", size: 17))
-                Spacer()
-                Button(action: {
-                    
-                }, label: {
-                    Image("trash")
-                })
-            }
-            .padding()
-            .frame(width: UIScreen.main.bounds.width * 0.9)
-            VStack(spacing: 20){
-                ForEach(historyArray, id: \.self) { s in
-                    SchHistoryView(historyString: s)
+            SchSearchTopView(inputMessage: $inputMessage, historyArray: $historyArray, rootIsActive: $rootIsActive)
+                .environmentObject(tagSource)
+            VStack(alignment: .leading) {
+                HStack {
+                    Text("历史记录")
+                        .foregroundColor(.init(red: 98/255, green: 103/255, blue: 124/255))
+                        .font(.custom("Avenir-Black", size: 17))
+                    Spacer()
+                    Button(action: {
+                        historyArray = []
+                    }, label: {
+                        Image("sch-trash")
+                    })
                 }
-                Spacer()
-            }
-            .frame(height: UIScreen.main.bounds.height * 0.15)
-            
-            HStack {
+                .frame(width: UIScreen.main.bounds.width * 0.9)
+                
+                VStack(spacing: 20){
+                    ForEach(historyArray, id: \.self) { s in
+                        Button(action: {
+                            self.inputMessage = s
+                        }, label: {
+                            HStack{
+                                Text(s)
+                                    .font(.subheadline)
+                                    .foregroundColor(.init(red: 48/255, green: 60/255, blue: 102/255))
+                                Spacer()
+                                Image("SchArrow")
+                            }
+                        })
+                    }
+                }
+                .padding(.top, 10)
+                .frame(width: UIScreen.main.bounds.width * 0.9)
+                
                 Text("标签搜索")
                     .foregroundColor(.init(red: 98/255, green: 103/255, blue: 124/255))
                     .font(.custom("Avenir-Black", size: 17))
-                Spacer()
             }
-            .padding()
-            .frame(width: UIScreen.main.bounds.width * 0.9)
-            MutiLineVStack(source: $availableTags, content: { tag in
-                Button(action: {
-//                    self.availableTags.first(where: { t in t == tag }).isSelected?.toggle()
-                }, label: {
-                    Text("")
-                })
-            })
-            
+            .padding(.top)
+                
+            GeometryReader { g in
+                ScrollView {
+                    generateView(g)
+                }
+            }
             .frame(width: UIScreen.main.bounds.width * 0.9)
             Spacer()
         }
         .navigationBarHidden(true)
+        .navigationBarBackButtonHidden(true)
+        .onAppear {
+            SchTagManager.tagGet { (result) in
+                switch result {
+                    case .success(let tags):
+                        self.tagSource.tags = tags
+                    case .failure(let err):
+                        print("获取标签失败", err)
+                }
+            }
+        }
+    }
+    
+    private func generateView(_ g: GeometryProxy) -> some View {
+        var width: CGFloat = 0
+        var height: CGFloat = 0
+        
+        return ZStack(alignment: .topLeading) {
+            ForEach(tagSource.tags.indices, id: \.self) { i in
+                Button(action: {
+                    for i in tagSource.tags.indices {
+                        tagSource.tags[i].isSelected = false
+                    }
+                    tagSource.tags[i].isSelected?.toggle()
+                }, label: {
+                    SchTagView(model: $tagSource.tags[i])
+                })
+                .padding([.horizontal, .vertical], 10)
+                .alignmentGuide(.leading, computeValue: { d in
+                    if (abs(width - d.width) > g.size.width)
+                    {
+                        width = 0
+                        height -= d.height
+                    }
+                    let result = width
+                    if tagSource.tags[i] == tagSource.tags.last! {
+                        width = 0 //last item
+                    } else {
+                        width -= d.width
+                    }
+                    return result
+                })
+                .alignmentGuide(.top, computeValue: {d in
+                    let result = height
+                    if tagSource.tags[i] == tagSource.tags.last! {
+                        height = 0 // last item
+                    }
+                    return result
+                })
+            }
+        }
     }
 }
 
 struct SchSearchTableView_Previews: PreviewProvider {
     static var previews: some View {
-        SchSearchView(availableTags: [
-//            SchTagModel(id: 1, name: "哈哈哈", description: "这是个测试标签", children: nil),
-//            SchTagModel(id: 2, name: "哈哈哈", description: "这是个测试标签", children: nil),
-//            SchTagModel(id: 3, name: "哈哈哈", description: "这是个测试标签", children: nil),
-//            SchTagModel(id: 4, name: "哈哈哈", description: "这是个测试标签", children: nil),
-        ])
+        SchSearchView(rootIsActive: .constant(false))
     }
 }
 
@@ -77,15 +131,19 @@ struct SchSearchTopView: View {
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     @Binding var inputMessage: String
     @Binding var historyArray: [String]
+    @Binding var rootIsActive: Bool
+    @EnvironmentObject var tagSource: SchTagSource
     
+    @State private var navigateToResult: Bool = false
     
     var body: some View {
         HStack {
             HStack {
                 Image("search")
-                TextField("搜索问题...", text: $inputMessage)
-                    .foregroundColor(.init(red: 207/255, green: 208/255, blue: 213/255))
-                
+                TextField("搜索问题...", text: $inputMessage, onCommit: {
+                    searchQuestion()
+                })
+                .foregroundColor(inputMessage.isEmpty ? .init(red: 207/255, green: 208/255, blue: 213/255) : Color.black)
                 Spacer()
             }
             .padding()
@@ -93,40 +151,33 @@ struct SchSearchTopView: View {
             .background(Color.init(red: 236/255, green: 237/255, blue: 239/255))
             .cornerRadius(UIScreen.main.bounds.height / 40)
             
-            
             Button(action: {
-                if inputMessage == "" {
-                    self.mode.wrappedValue.dismiss()
-                } else {
-                    if historyArray.count < 4 {
-                        historyArray.insert(inputMessage, at: 0)
-                    } else {
-                        historyArray.removeLast()
-                        historyArray.insert(inputMessage, at: 0)
-                    }
-                    inputMessage = ""
-                }
-                
+                self.rootIsActive = false
+                self.mode.wrappedValue.dismiss()
             }, label: {
-                Text((inputMessage == "") ? "取消" : "搜索")
+                Text("取消")
                     .foregroundColor(.init(red: 98/255, green: 103/255, blue: 124/255))
             })
+            
+            NavigationLink(
+                destination:
+                    SchSearchResultView(inputMessage: $inputMessage, rootIsActive: $rootIsActive)
+                    .environmentObject(tagSource),
+                isActive: $navigateToResult,
+                label: { EmptyView() })
+                .isDetailLink(false)
         }
     }
-}
-
-struct SchHistoryView: View {
-    var historyString: String
-    var body: some View {
-        HStack{
-            Text(historyString)
-                .font(.subheadline)
-                .foregroundColor(.init(red: 48/255, green: 60/255, blue: 102/255))
-            Spacer()
-            Image("SchArrow")
+    
+    private func searchQuestion() {
+        if !historyArray.contains(inputMessage) {
+            historyArray.insert(inputMessage, at: 0)
+            if historyArray.count > 4 {
+                historyArray.removeLast()
+            }
         }
-        .padding(.horizontal)
-        .frame(width: UIScreen.main.bounds.width * 0.9)
+        navigateToResult = true
+        rootIsActive = false
     }
 }
 

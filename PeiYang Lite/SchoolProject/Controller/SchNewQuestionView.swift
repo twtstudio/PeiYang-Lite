@@ -221,10 +221,6 @@ struct SchNewQuestionView_Previews: PreviewProvider {
     }
 }
 
-class SchTagSource: ObservableObject {
-    @Published var tags: [SchTagModel] = []
-}
-
 fileprivate class TextFieldManager: ObservableObject {
     //MARK: character limit
     let titleLimit = 20

@@ -31,9 +31,8 @@ struct BeginView: View {
                 Spacer()
                 
                 HStack(){
-                    
                     NavigationLink(destination: KeywordLoginView(), isActive: self.$appState.leftHome) {
-                        Text("登陆")
+                        Text("登录")
                             .foregroundColor(.white)
                             .font(.custom("", size: 20))
                     }
@@ -59,15 +58,11 @@ struct BeginView: View {
                         .padding()
                         
                     }
-                    
-                    
-                    
-                   
                 }
                 .padding(.bottom)
                 
                 
-                Text("首次登陆微北洋4.0请使用天外天账号密码登陆，在登陆后绑定手机号码即可手机验证登陆。")
+                Text("首次登录微北洋4.0请使用天外天账号密码登录，在登录后绑定手机号码即可手机验证登录。")
                     .font(.custom("", size: 14))
                     .foregroundColor(.gray)
                     .frame(width: UIScreen.main.bounds.width * 0.6, height: UIScreen.main.bounds.height / 15, alignment: .center)

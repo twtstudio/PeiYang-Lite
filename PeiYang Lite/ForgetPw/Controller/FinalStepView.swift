@@ -19,7 +19,7 @@ struct FinalStepView: View {
             Button(action:{
                 self.appState.leftHome.toggle()
             }) {
-                Text("前往登陆")
+                Text("前往登录")
                     .foregroundColor(.white)
                     .frame(width: UIScreen.main.bounds.width * 0.4, height: UIScreen.main.bounds.height / 15, alignment: .center)
                     .background(Color.init(red: 79/255, green: 88/255, blue: 107/255))

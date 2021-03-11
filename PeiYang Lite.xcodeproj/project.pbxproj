@@ -154,6 +154,7 @@
 		C9FCF26A25EB92B7004FC993 /* GridWithoutScrollStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FCF26925EB92B7004FC993 /* GridWithoutScrollStack.swift */; };
 		D344856625F38EF30005915B /* SchSearchResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344856525F38EF30005915B /* SchSearchResultView.swift */; };
 		D346ACDA25F2A90000A146D8 /* ScrollViewWithRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = D346ACD925F2A90000A146D8 /* ScrollViewWithRefresh.swift */; };
+		D3490D0025FA42B3004AB614 /* SchQuestionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3490CFF25FA42B3004AB614 /* SchQuestionDetailView.swift */; };
 		D357A25725F0FEEA00C061CF /* UniversalExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D357A25625F0FEEA00C061CF /* UniversalExtension.swift */; };
 		D357A25F25F0FF7F00C061CF /* UniversalExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D357A25625F0FEEA00C061CF /* UniversalExtension.swift */; };
 		D357A26325F0FFC600C061CF /* SchAnswerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D357A26225F0FFC600C061CF /* SchAnswerManager.swift */; };
@@ -350,6 +351,7 @@
 		C9FCF26925EB92B7004FC993 /* GridWithoutScrollStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridWithoutScrollStack.swift; sourceTree = "<group>"; };
 		D344856525F38EF30005915B /* SchSearchResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchSearchResultView.swift; sourceTree = "<group>"; };
 		D346ACD925F2A90000A146D8 /* ScrollViewWithRefresh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollViewWithRefresh.swift; sourceTree = "<group>"; };
+		D3490CFF25FA42B3004AB614 /* SchQuestionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchQuestionDetailView.swift; sourceTree = "<group>"; };
 		D357A25625F0FEEA00C061CF /* UniversalExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniversalExtension.swift; sourceTree = "<group>"; };
 		D357A26225F0FFC600C061CF /* SchAnswerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchAnswerManager.swift; sourceTree = "<group>"; };
 		D35E4E4225EEB18D00526388 /* PhotoListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoListView.swift; sourceTree = "<group>"; };
@@ -1000,6 +1002,7 @@
 				D37DD87625EDFA8700A662E0 /* SchNewQuestionView.swift */,
 				D37DD87725EDFA8700A662E0 /* SchSearchView.swift */,
 				D344856525F38EF30005915B /* SchSearchResultView.swift */,
+				D3490CFF25FA42B3004AB614 /* SchQuestionDetailView.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1301,6 +1304,7 @@
 				D38F7FEA25F63A67008DBB0E /* LoadingView.swift in Sources */,
 				C95B57C525EBF3C2004300B5 /* HomeCourseSectionView.swift in Sources */,
 				03B6893624D1572A0020AD47 /* ECardSiteAmountView.swift in Sources */,
+				D3490D0025FA42B3004AB614 /* SchQuestionDetailView.swift in Sources */,
 				D37DD88025EDFA8700A662E0 /* SchSearchView.swift in Sources */,
 				C9CF3D6225D162310085263F /* BindManager.swift in Sources */,
 				032CE4DC24DBA1E5003786F6 /* Log.swift in Sources */,

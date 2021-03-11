@@ -11,13 +11,16 @@ struct SchView: View {
     @Environment(\.presentationMode) var mode
     @StateObject private var schViewModel: SchViewModel = .init()
     
+    @State var isSearching: Bool = false
+    
     var body: some View {
         ZStack {
             VStack {
                 // 顶部栏
                 HStack {
                     NavigationLink(
-                        destination: SchSearchView(),
+                        destination: SchSearchView(rootIsActive: $isSearching),
+                        isActive: $isSearching,
                         label: {
                             SchSearchBarView()
                         })
@@ -31,8 +34,7 @@ struct SchView: View {
                 }
                 .frame(width: UIScreen.main.bounds.width * 0.9)
                 
-                SchQuestionScrollView<SchViewModel>()
-                    .environmentObject(schViewModel)
+                SchQuestionScrollView(model: schViewModel)
                     .padding(.top)
                     .frame(width: screen.width)
             }
@@ -72,23 +74,23 @@ fileprivate class SchViewModel: SchQuestionScrollViewModel, SchQuestionScrollVie
     
     @Published var maxPage: Int = 0
     
+    private var cnt: Int = 0
+    
+    init() {
+        loadOnAppear()
+    }
+    
     func reloadData() {
         page = 1
         SchQuestionManager.loadQuestions { (result) in
             switch result {
                 case .success(let (questions, maxPage)):
-//                    DispatchQueue.main.async {
-                    if !self.questions.isEmpty {
-                        print(self.questions[0])
+                    DispatchQueue.main.async {
+                        self.questions = questions
+                        self.maxPage = maxPage
+                        self.isReloading = false
+                        print("刷新成功")
                     }
-                    if !self.questions.isEmpty && self.questions[0].id! != questions[0].id! {
-                        print(self.questions[0], questions[0])
-                    }
-                    self.questions = questions
-                    self.maxPage = maxPage
-                    self.isReloading = false
-                    print("刷新成功")
-//                    }
                 case .failure(let err):
                     print("刷新失败", err)
             }
@@ -102,8 +104,10 @@ fileprivate class SchViewModel: SchQuestionScrollViewModel, SchQuestionScrollVie
         SchQuestionManager.loadQuestions(page: page) { (result) in
             switch result {
                 case .success(let (questions, _)):
-                    self.questions += questions
-                    self.isLoadingMore = false
+                    DispatchQueue.main.async {
+                        self.questions += questions
+                        self.isLoadingMore = false
+                    }
                 case .failure(let err):
                     print("刷新失败", err)
             }

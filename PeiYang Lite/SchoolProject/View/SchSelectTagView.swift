@@ -37,7 +37,7 @@ struct SchSelectTagView: View {
         }
     }
     
-    func generateView(_ g: GeometryProxy) -> some View {
+    private func generateView(_ g: GeometryProxy) -> some View {
         var width: CGFloat = 0
         var height: CGFloat = 0
         

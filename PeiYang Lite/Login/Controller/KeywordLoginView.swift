@@ -37,7 +37,7 @@ struct KeywordLoginView: View {
     
     var body: some View {
         VStack(spacing: 25.0){
-            Text("天外天账号密码登陆")
+            Text("天外天账号密码登录")
                 .font(.title2)
                 .foregroundColor(Color.init(red: 98/255, green: 103/255, blue: 124/255))
                 
@@ -122,7 +122,7 @@ struct KeywordLoginView: View {
                     self.alertTime -= 1
                 })
             }) {
-                Text("登陆")
+                Text("登录")
                     .frame(width: UIScreen.main.bounds.width * 0.9, height: UIScreen.main.bounds.height/15, alignment: .center)
                     .font(.headline)
                     .foregroundColor(.white)

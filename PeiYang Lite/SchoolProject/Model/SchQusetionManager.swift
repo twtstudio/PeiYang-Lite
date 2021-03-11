@@ -38,7 +38,7 @@ struct SchQuestionData: Codable {
 // MARK: - SchQuestionModel
 struct SchQuestionModel: Codable, Identifiable {
     var id: Int?
-    var name, description: String?
+    var name, content: String?
     var userID, solved, noCommit, likes: Int?
     var createdAt, updatedAt, username: String?
     var msgCount: Int?
@@ -62,6 +62,7 @@ struct SchQuestionModel: Codable, Identifiable {
         case thumbImg, isLiked = "is_liked"
         case thumbUrlList = "thumb_url_list"
         case isOwner = "is_owner"
+        case content = "description"
     }
 }
 

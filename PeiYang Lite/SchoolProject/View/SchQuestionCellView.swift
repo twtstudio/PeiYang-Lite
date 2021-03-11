@@ -14,7 +14,7 @@ struct SchQuestionCellView: View {
     let bottomColor = Color.init(red: 177/255, green: 178/255, blue: 190/255)
     let settleColor = Color.init(red: 48/255, green: 60/255, blue: 102/255)
     
-    @State var question: SchQuestionModel
+    var question: SchQuestionModel
     
     private var questionTime: String {
         get {
@@ -39,54 +39,48 @@ struct SchQuestionCellView: View {
                 }
             }.padding()
             
-            HStack {
-                VStack(alignment: .leading) {
-                    HStack {
-                        ForEach(0..<(question.tags?.count ?? 0), id: \.self) { i in
-                            Text("#" + (question.tags?[i].name ?? ""))
-                                .foregroundColor(labelColor)
-                                .font(.caption)
+            GeometryReader { g in
+                HStack {
+                    VStack(alignment: .leading) {
+                        HStack {
+                            ForEach(0..<(question.tags?.count ?? 0), id: \.self) { i in
+                                Text("#" + (question.tags?[i].name ?? ""))
+                                    .foregroundColor(labelColor)
+                                    .font(.caption)
+                            }
                         }
-                    }
-                    .padding(.horizontal)
-                    .padding(.bottom, 10)
-                    
-                    Text(question.description ?? "")
-                        .frame(height: 40)
-                        .lineLimit(2)
-                        .foregroundColor(titleColor)
-                        .font(.subheadline)
                         .padding(.horizontal)
+                        .padding(.bottom, 10)
+                        
+                        Text(question.content ?? "")
+                            .frame(height: 40)
+                            .lineLimit(2)
+                            .foregroundColor(titleColor)
+                            .font(.subheadline)
+                            .padding(.horizontal)
+                    }
                     Spacer()
-                }
-                if question.thumbImg != nil {
-                    URLImage(url: URL(string: question.thumbImg!)!) { image in
-                        image
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 80, height: 80, alignment: .center)
-                            .cornerRadius(10)
-                            .padding(.trailing)
+                    if question.thumbImg != nil {
+                        URLImage(url: URL(string: question.thumbImg!)!) { image in
+                            image
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: g.size.width * 0.3, height: g.size.height)
+                                .cornerRadius(10)
+                        }
+                        .padding(.trailing)
                     }
                 }
-                    
             }
             
             Spacer()
             
             HStack {
-                Button(action: {}, label: {
-                    Image("comment")
-                })
-                
+                Image("sch-comment")
                 Text((question.msgCount ?? 0).description)
                     .foregroundColor(bottomColor)
                     .font(.caption)
-                
-                Button(action: {}, label: {
-                    Image((question.isLiked ?? false) ? "liked" : "like")
-                })
-                
+                Image((question.isLiked ?? false) ? "sch-liked" : "sch-like")
                 Text((question.likes ?? 0).description)
                     .foregroundColor(bottomColor)
                     .font(.caption)
@@ -101,15 +95,13 @@ struct SchQuestionCellView: View {
         .frame(width: UIScreen.main.bounds.width * 0.9, height: UIScreen.main.bounds.height / 4.5, alignment: .center)
         .background(Color.white)
         .cornerRadius(20)
-        
-        
     }
 }
 
 struct CommentCellView_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
-            SchQuestionCellView(question: SchQuestionModel(id: 0, name: "哈哈蛤", description: "等哈u的哈舞电话我和杜哈武汉大货车闹ID那次娃u的", userID: nil, solved: 1, noCommit: nil, likes: 1, createdAt: "20190202 22:22", updatedAt: nil, username: "hahaha", msgCount: 500, urlList: nil, thumbImg: "https://www.hackingwithswift.com/img/covers-flat/watchos@2x.png", tags: [], thumbUrlList: nil, isLiked: true, isOwner: true))
+            SchQuestionCellView(question: SchQuestionModel(id: 0, name: "哈哈蛤", content: "等哈u的哈", userID: nil, solved: 1, noCommit: nil, likes: 1, createdAt: "2021-03-10T12:50:28.000000Z", updatedAt: nil, username: "hahaha", msgCount: 500, urlList: nil, thumbImg: "https://www.hackingwithswift.com/img/covers-flat/watchos@2x.png", tags: [SchTagModel(id: 1, name: "天津大学", description: nil, tagDescription: nil, isSelected: nil, children: nil)], thumbUrlList: nil, isLiked: true, isOwner: true))
         }
         .edgesIgnoringSafeArea(.all)
         .frame(width: screen.width, height: screen.height)

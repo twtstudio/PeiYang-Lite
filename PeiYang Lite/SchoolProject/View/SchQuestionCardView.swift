@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct SchQuestionCardView: View {
-    @State var question = SchQuestionModel()
+    @Binding var question: SchQuestionModel
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             HStack {
@@ -35,7 +36,7 @@ struct SchQuestionCardView: View {
                 .padding(.horizontal)
             }
             
-            Text(question.description ?? "")
+            Text(question.content ?? "")
                 .font(.footnote)
                 .foregroundColor(Color(#colorLiteral(red: 0.2117647059, green: 0.2352941176, blue: 0.3294117647, alpha: 1)))
                 .padding(.horizontal)
@@ -54,20 +55,26 @@ struct SchQuestionCardView: View {
                     .fontWeight(.light)
                 
                 Spacer()
-                Group {
-                Image(systemName: "bubble.left")
+                
+                Image("sch-conmment")
                 
                 Text("\(question.msgCount ?? 0)")
                     .fontWeight(.light)
-                }
                 
-                Group {
-                Image(systemName: "hand.thumbsup")
+                
+                Button(action: {
+                    likeQuestion()
+                }, label: {
+                    Image(question.isLiked ?? false ? "sch-liked" : "liked")
+                })
                 Text("\(question.likes ?? 0)")
                     .fontWeight(.light)
-                }
+                Button(action: {
+                    
+                }, label: {
+                    Image(systemName: "star")
+                })
                 
-                Image(systemName: "star")
             }
             .font(.footnote)
             .foregroundColor(.gray)
@@ -77,6 +84,10 @@ struct SchQuestionCardView: View {
         .background(Color.white)
         .clipShape(RoundedRectangle(cornerRadius: 10))
     }
+    
+    private func likeQuestion() {
+        
+    }
 }
 
 struct SchQuestionCardView_Previews: PreviewProvider {
@@ -85,7 +96,7 @@ struct SchQuestionCardView_Previews: PreviewProvider {
             Color(#colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1))
                 .edgesIgnoringSafeArea(.all)
             
-            SchQuestionCardView()
+            SchQuestionCardView(question: .constant(SchQuestionModel(id: 0, name: "微北洋真不戳", content: "微北洋真不戳微北洋真不戳微北洋真不戳微北洋真不戳微北洋真不戳微北洋真不戳", userID: nil, solved: 1, noCommit: 0, likes: 999, createdAt: "2021-03-10T12:50:28.000000Z", updatedAt: nil, username: "真不戳", msgCount: 999, urlList: ["https://www.hackingwithswift.com/img/covers-flat/watchos@2x.png","https://www.hackingwithswift.com/img/covers-flat/watchos@2x.png"], thumbImg: nil, tags: [SchTagModel(id: 0, name: "天津大学", description: nil, tagDescription: nil, isSelected: nil, children: nil)], thumbUrlList: nil, isLiked: true, isOwner: true)))
                 .frame(width: screen.width - 20, height: screen.width - 20)
                 .shadow(color: Color.black.opacity(0.2), radius: 10, x: 2, y: 2)
         }

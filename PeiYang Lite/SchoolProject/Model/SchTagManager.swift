@@ -8,6 +8,10 @@
 
 import Foundation
 
+class SchTagSource: ObservableObject {
+    @Published var tags: [SchTagModel] = []
+}
+
 // MARK: - SchTagModel
 struct SchTagModel: Codable, Equatable {
     var id: Int?
