@@ -206,7 +206,10 @@ struct ClassesManager {
                                         let singleGPA = singleGPAHTML.findArray("<td[^>]*>\\s*([^<\\t\\n]*)")
                                         switch singleGPA.count {
                                         case 9:
-                                            return SingleGPA(fullGPA: singleGPA)
+//                                            return SingleGPA(fullGPA: singleGPA)
+                                            return singleGPA[1].contains("S") ? SingleGPA(pgGPA2: singleGPA) : SingleGPA(fullGPA: singleGPA)
+                                        case 11:
+                                            return SingleGPA(pgGPA: singleGPA)
                                         case 6:
                                             return SingleGPA(partialGPA: singleGPA)
                                         default:

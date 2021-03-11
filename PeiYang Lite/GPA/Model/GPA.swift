@@ -9,6 +9,7 @@ import Foundation
 
 struct SingleGPA: Codable, Storable, Hashable {
     let semester: String
+    let courseCode: String
     let no: String
     let name: String
     let type: String
@@ -29,10 +30,36 @@ struct SingleGPA: Codable, Storable, Hashable {
 //        self.scoreProperty = scoreProperty
 //        self.gpa = gpa
 //    }
+    init(pgGPA: [String]) {
+        self.semester = pgGPA[0]
+        self.no = pgGPA[2]
+        self.courseCode = pgGPA[1]
+        self.name = pgGPA[3]
+        self.type = pgGPA[4]
+        self.classProperty = "无分类"
+        self.credit = Double(pgGPA[5]) ?? 0
+        self.score = Double(pgGPA[9]) ?? 0
+        self.scoreProperty = ""
+        self.gpa = Double(pgGPA[10]) ?? 0
+    }
+    
+    init(pgGPA2: [String]) {
+        self.semester = pgGPA2[0]
+        self.no = pgGPA2[2]
+        self.courseCode = pgGPA2[1]
+        self.name = pgGPA2[3]
+        self.type = pgGPA2[4]
+        self.classProperty = "无分类"
+        self.credit = Double(pgGPA2[5]) ?? 0
+        self.score = Double(pgGPA2[7]) ?? 0
+        self.scoreProperty = ""
+        self.gpa = Double(pgGPA2[8]) ?? 0
+    }
     
     init(fullGPA: [String]) {
         self.semester = fullGPA[0]
         self.no = fullGPA[1]
+        self.courseCode = ""
         self.name = fullGPA[2]
         self.type = fullGPA[3]
         self.classProperty = fullGPA[4]
@@ -45,6 +72,7 @@ struct SingleGPA: Codable, Storable, Hashable {
     init(partialGPA: [String]) {
         self.semester = partialGPA[0]
         self.no = partialGPA[1]
+        self.courseCode = ""
         self.name = partialGPA[2]
         self.type = partialGPA[3]
         self.classProperty = partialGPA[4]
@@ -57,6 +85,7 @@ struct SingleGPA: Codable, Storable, Hashable {
     init() {
         self.semester = ""
         self.no = ""
+        self.courseCode = ""
         self.name = ""
         self.type = ""
         self.classProperty = ""

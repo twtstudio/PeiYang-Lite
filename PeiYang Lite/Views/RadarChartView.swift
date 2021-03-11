@@ -31,7 +31,7 @@ struct RadarChartView: View {
     private var gpa: GPA { store.object }
     @Binding var activeIndex: Int
 //    let activeSemesterGPA: SemesterGPA
-    private var activeGPAArray: [SingleGPA] { gpa.semesterGPAArray[activeIndex].gpaArray.filter({$0.gpa != 0}) }
+    private var activeGPAArray: [SingleGPA] { gpa.semesterGPAArray[activeIndex].gpaArray.filter({$0.score != 0}) }
     
     private func getX(i: Int) -> CGFloat {
         let angle = radAngle_fromFraction(numerator: i, denominator: activeGPAArray.count)
