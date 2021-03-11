@@ -52,8 +52,8 @@ struct StudyRoomTopView: View {
     @State var alertMessage = ""
     
     // 收藏
-    @State var getMessage: [String] = []
-    @State var collectionBuildings: [CollectionClass] = []
+    @State var getCollectionClassId: [String] = []
+    @State var collectionClass: [CollectionClass] = []
     
 //     StudyRoom共享数据
 //    @StateObject private var studyRoomModel: StudyRoomModel = StudyRoomModel()
@@ -77,7 +77,7 @@ struct StudyRoomTopView: View {
         set: {_ in})
     }
     
-    // 计算现在的时间处于哪个时间段 ？？
+    // 计算现在的时间处于哪个时间段
     var nowPeriod: String {
         if nowTime.prefix(2) < "10" && nowTime.prefix(2) >= "00" || (nowTime.prefix(2) == "10" && nowTime.suffix(2) < "05"){
             return "8:30--10:05"
@@ -240,7 +240,7 @@ struct StudyRoomTopView: View {
 
                             } else {
                                 NavigationLink(
-                                    destination: ChooseClassView(buildingID: buildingsWJ[index].building, sectionName: "-1", week: weeks, buildingName: buildingsWJ[index].building),
+                                    destination: ChooseClassView(buildingID: buildingsWJ[index].buildingID, sectionName: "-1", week: weeks, buildingName: buildingsWJ[index].building),
                                     label: {
                                         VStack(spacing: 5) {
                                             Image("building")
@@ -287,7 +287,7 @@ struct StudyRoomTopView: View {
 
                             } else {
                                 NavigationLink(
-                                    destination: ChooseClassView(buildingID: buildingsBY[index].building, sectionName: "-1", week: weeks, buildingName: buildingsBY[index].building),
+                                    destination: ChooseClassView(buildingID: buildingsBY[index].buildingID, sectionName: "-1", week: weeks, buildingName: buildingsBY[index].building),
                                     label: {
                                         VStack(spacing: 5) {
                                             Image("building")
@@ -321,7 +321,7 @@ struct StudyRoomTopView: View {
                 Spacer()
             }
             .frame(width: UIScreen.main.bounds.width * 0.9)
-            StudyRoomFavourCard(collectionClasses: collectionBuildings)
+            StudyRoomFavourCard(collectionClasses: collectionClass)
             Spacer()
             
             NavigationLink(
@@ -360,8 +360,11 @@ struct StudyRoomTopView: View {
             } else {
                 buildingsWJ = []
                 buildingsBY = []
+                collectionClass = []
+                getCollectionClassId = []
                 if let saveBuildings = DataStorage.retreive("studyroom/todaydata.json", from: .caches, as: [StudyBuilding].self) {
                     buildings = saveBuildings
+                    requestDataToUseData()
                     for building in buildings{
                         if(building.campusID == "1"){
                             buildingsWJ.insert(building, at: 0)
@@ -431,6 +434,7 @@ struct StudyRoomTopView: View {
             DataStorage.store(weeksBuildings, in: .caches, as: "studyroom/weekdata.json")
             DataStorage.store(weeksBuildingWJ, in: .caches, as: "studyroom/weekdataWJ.json")
             DataStorage.store(weeksBuildingBY, in: .caches, as: "studyroom/weekdataBY.json")
+            DataStorage.store(getCollectionClassId, in: .caches, as: "studyroom/collections.json")
         }
     }
     
@@ -443,14 +447,14 @@ struct StudyRoomTopView: View {
                     alertMessage = data.message
                 } else {
                     alertMessage = data.message
-                    getMessage = data.data.classroomID!
+                    getCollectionClassId = data.data.classroomID!
                 }
-                for code in getMessage {
+                for code in getCollectionClassId {
                     for building in buildings {
                         for area in building.areas {
                             for room in area.classrooms {
                                 if(room.classroomID == code) {
-                                    collectionBuildings.append(CollectionClass(classMessage: room, buildingName: building.building))
+                                    collectionClass.append(CollectionClass(classMessage: room, buildingName: building.building))
                                 }
                             }
                         }
