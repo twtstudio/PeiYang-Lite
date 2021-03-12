@@ -6,10 +6,17 @@
 //
 
 import SwiftUI
+import URLImage
 
 struct PhotoListView: View {
+    enum PhotoListViewType {
+        case write, read
+    }
+    
     // 图片数据
     @Binding var images: [UIImage]
+    @State var imageURLs: [String] = []
+    @State var mode: PhotoListViewType = .read
     
     // 删除图片
     @State private var imageToDelete: UIImage?
@@ -17,47 +24,63 @@ struct PhotoListView: View {
     // 添加图片
     @State private var showPicker: Bool = false
     @State private var imageToAdd: UIImage?
-    // 图片过多
-    @State private var showTooMoreAlert: Bool = false
     // 选择图片选取模式
     @State private var showSelector: Bool = false
     @State private var useCamera: Bool = false
     @State private var imageToReplace: UIImage?
+    // 添加模式or查看模式
+    
+    init (images: Binding<[UIImage]>, mode: PhotoListViewType = .read) {
+        _images = images
+        self.mode = mode
+    }
+    // 只能是只读的
+    init (imageURLs: [String]) {
+        self._images = .constant([])
+        self.imageURLs = imageURLs
+        self.mode = .read
+    }
     
     var body: some View {
         HStack(alignment: VerticalAlignment.center) {
-            ForEach(images, id: \.self) { image in
-                Image(uiImage: image)
-                    .resizable()
-                    .frame(width: 100, height: 100, alignment: .center)
-                    .cornerRadius(5)
-                    .onTapGesture {
-                        showSelector = true
-                        imageToReplace = image
-                    }
-                    .onLongPressGesture {
-                        imageToDelete = image
-                        showDeleteAlert = true
-                    }
-            }
-            // emm竟然只能添加一个alert对一个view
-            .alert(isPresented: $showDeleteAlert, content: {
-                Alert(title: Text("确定要删除这张图片吗?"),
-                      primaryButton: .destructive(Text("删除"), action: {
-                        withAnimation(.easeInOut(duration: 0.5)) {
-                            images.remove(atOffsets: IndexSet(integer: images.firstIndex(of: imageToDelete!)!))
+            if imageURLs.isEmpty {
+                ForEach(images, id: \.self) { image in
+                    Image(uiImage: image)
+                        .resizable()
+                        .frame(width: 100, height: 100, alignment: .center)
+                        .cornerRadius(5)
+                        .onTapGesture {
+                            if mode == .write {
+                                showSelector = true
+                                imageToReplace = image
+                            } else {
+                                // 看大图
+                            }
                         }
-                      }),
-                      secondaryButton: .cancel())
-            })
+                        .onLongPressGesture {
+                            if mode == .write {
+                                imageToDelete = image
+                                showDeleteAlert = true
+                            }
+                        }
+                }
+            } else {
+                ForEach(imageURLs.indices, id: \.self) { i in
+                    URLImage(url: URL(string: imageURLs[i])!, content: { (image) in
+                        image
+                            .resizable()
+                            .frame(width: 100, height: 100, alignment: .center)
+                            .cornerRadius(5)
+                    })
+                    .onTapGesture {
+                        // 看大图
+                    }
+                }
+            }
             // 图片占位符
-            if images.count < 3 {
+            if mode == .write && images.count < 3 {
                 PhotoPlaceHolderView()
                     .onTapGesture {
-                        //                            guard images.count < 3 else {
-                        //                                showTooMoreAlert = true
-                        //                                return
-                        //                            }
                         showSelector = true
                     }
                     .actionSheet(isPresented: $showSelector, content: {
@@ -91,6 +114,16 @@ struct PhotoListView: View {
                 Spacer()
             }
         }
+        // emm竟然只能添加一个alert对一个view
+        .alert(isPresented: $showDeleteAlert, content: {
+            Alert(title: Text("确定要删除这张图片吗?"),
+                  primaryButton: .destructive(Text("删除"), action: {
+                    withAnimation(.easeInOut(duration: 0.5)) {
+                        images.remove(atOffsets: IndexSet(integer: images.firstIndex(of: imageToDelete!)!))
+                    }
+                  }),
+                  secondaryButton: .cancel())
+        })
     }
 }
 

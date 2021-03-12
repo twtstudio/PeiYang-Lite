@@ -18,8 +18,8 @@ struct SchQuestionCellView: View {
     
     private var questionTime: String {
         get {
-            let day = (question.createdAt ?? "")[0..<10] ?? ""
-            let time = (question.createdAt ?? "")[11..<16] ?? ""
+            let day = question.createdAt?[0..<10] ?? ""
+            let time = question.createdAt?[11..<16] ?? ""
             return day + " " + time
         }
     }

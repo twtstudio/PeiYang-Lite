@@ -12,48 +12,46 @@ struct SchSearchResultView: View {
     
     @State var tags: [SchTagModel] = []
     
-    @Binding var inputMessage: String
     @AppStorage(SchSearchView.historyKey, store: Storage.defaults) var historyArray: [String] = []
     @EnvironmentObject var tagSource: SchTagSource
-    
-    @Binding var rootIsActive: Bool
+    @EnvironmentObject var searchModel: SchSearchResultViewModel
     
     var body: some View {
         VStack {
+//            SchSearchTopView(inputMessage: $inputMessage, historyArray: $historyArray)
+//                .environmentObject(tagSource)
+            // 头部伪导航栏
             HStack {
-                NavigationLink(
-                    destination: SchSearchView(rootIsActive: $rootIsActive),
-                    isActive: $rootIsActive,
-                    label: {
-                        SchSearchBarView()
-                })
-                    .isDetailLink(false)
                 Button(action: {
-                    self.rootIsActive = false
                     self.presentationMode.wrappedValue.dismiss()
-                }, label: {
-                    Text("取消")
-                        .foregroundColor(.init(red: 98/255, green: 103/255, blue: 124/255))
-                })
+                }) {
+                    Image(systemName: "arrow.left")
+                        .font(.title)
+                        .foregroundColor(Color(#colorLiteral(red: 0.3856853843, green: 0.403162986, blue: 0.4810273647, alpha: 1)))
+                        .padding()
+                }
+                
+                Spacer()
+
             }
-            SchQuestionScrollView(model: SchSearchResultViewModel())
+            .padding(.top, 40)
+            .padding(.trailing, 20)
+            SchQuestionScrollView(model: searchModel)
                 .padding(.top)
                 .frame(width: screen.width)
             Spacer()
         }
-        .edgesIgnoringSafeArea(.bottom)
+        .edgesIgnoringSafeArea(.all)
         .navigationBarHidden(true)
+        .background(
+            Color(#colorLiteral(red: 0.968627451, green: 0.968627451, blue: 0.968627451, alpha: 1))
+                .ignoresSafeArea()
+                .frame(width: screen.width, height: screen.height)
+        )
     }
 }
 
-struct SchSearchResultView_Preview: PreviewProvider {
-    static var previews: some View {
-        SchSearchResultView(inputMessage: .constant("hahaha"), rootIsActive: .constant(false))
-            .environmentObject(SchSearchResultViewModel())
-    }
-}
-
-fileprivate class SchSearchResultViewModel: SchQuestionScrollViewModel, SchQuestionScrollViewDataSource, SchQuestionScrollViewAction {
+class SchSearchResultViewModel: SchQuestionScrollViewModel, SchQuestionScrollViewDataSource, SchQuestionScrollViewAction {
     @Published var questions: [SchQuestionModel] = []
     
     @Published var isReloading: Bool = false
@@ -66,10 +64,10 @@ fileprivate class SchSearchResultViewModel: SchQuestionScrollViewModel, SchQuest
     
     @Published var tags: [SchTagModel] = []
     
-    @Published var searchString: String = ""
-    
-    init() {
-        loadOnAppear()
+    @Published var searchString: String = "" {
+        didSet {
+            self.reloadData()
+        }
     }
     
     func reloadData() {
@@ -104,9 +102,7 @@ fileprivate class SchSearchResultViewModel: SchQuestionScrollViewModel, SchQuest
         }
     }
     
-    func loadOnAppear() {
-        self.reloadData()
-    }
+    func loadOnAppear() {}
     
     var action: SchQuestionScrollViewAction { self }
     private lazy var _dataSource: SchQuestionScrollViewDataSource = { self }()

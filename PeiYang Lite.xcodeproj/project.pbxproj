@@ -66,10 +66,14 @@
 		C942C1BA25CABACE006D0B83 /* supplyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C942C1B925CABACE006D0B83 /* supplyView.swift */; };
 		C942C1BE25CABE71006D0B83 /* SupplyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C942C1BD25CABE71006D0B83 /* SupplyManager.swift */; };
 		C942EF2125DB9785005495C3 /* GPA.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9ED7F1925DB886600CB3438 /* GPA.swift */; };
+<<<<<<< HEAD
 		C95A700B25F10F4900C83F65 /* AboutTwTView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95A700A25F10F4900C83F65 /* AboutTwTView.swift */; };
 		C95B57A225EBF37F004300B5 /* Issue.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95B579F25EBF37F004300B5 /* Issue.swift */; };
 		C95B57A325EBF37F004300B5 /* QuestionCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95B57A125EBF37F004300B5 /* QuestionCardView.swift */; };
 		C95B57A325EBF37F004300B5 /* SchQuestionCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95B57A125EBF37F004300B5 /* SchQuestionCardView.swift */; };
+=======
+		C95B57A325EBF37F004300B5 /* SchQuestionDetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95B57A125EBF37F004300B5 /* SchQuestionDetailHeaderView.swift */; };
+>>>>>>> [Fix] 搜索没问题了
 		C95B57B025EBF3BA004300B5 /* HomeView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95B57AB25EBF3BA004300B5 /* HomeView2.swift */; };
 		C95B57B125EBF3BA004300B5 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95B57AC25EBF3BA004300B5 /* HomeView.swift */; };
 		C95B57B225EBF3BA004300B5 /* HomeSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95B57AD25EBF3BA004300B5 /* HomeSettingView.swift */; };
@@ -155,6 +159,7 @@
 		D344856625F38EF30005915B /* SchSearchResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344856525F38EF30005915B /* SchSearchResultView.swift */; };
 		D346ACDA25F2A90000A146D8 /* ScrollViewWithRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = D346ACD925F2A90000A146D8 /* ScrollViewWithRefresh.swift */; };
 		D3490D0025FA42B3004AB614 /* SchQuestionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3490CFF25FA42B3004AB614 /* SchQuestionDetailView.swift */; };
+		D3490D1225FAE78A004AB614 /* SchQuestionCommentCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3490D1125FAE78A004AB614 /* SchQuestionCommentCellView.swift */; };
 		D357A25725F0FEEA00C061CF /* UniversalExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D357A25625F0FEEA00C061CF /* UniversalExtension.swift */; };
 		D357A25F25F0FF7F00C061CF /* UniversalExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D357A25625F0FEEA00C061CF /* UniversalExtension.swift */; };
 		D357A26325F0FFC600C061CF /* SchAnswerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D357A26225F0FFC600C061CF /* SchAnswerManager.swift */; };
@@ -264,10 +269,14 @@
 		C942C1B925CABACE006D0B83 /* supplyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = supplyView.swift; sourceTree = "<group>"; };
 		C942C1BD25CABE71006D0B83 /* SupplyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupplyManager.swift; sourceTree = "<group>"; };
 		C9455FB18B34C565541F53AB /* Pods_PeiYang_Lite.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PeiYang_Lite.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+<<<<<<< HEAD
 		C95A700A25F10F4900C83F65 /* AboutTwTView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutTwTView.swift; sourceTree = "<group>"; };
 		C95B579F25EBF37F004300B5 /* Issue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Issue.swift; sourceTree = "<group>"; };
 		C95B57A125EBF37F004300B5 /* QuestionCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionCardView.swift; sourceTree = "<group>"; };
 		C95B57A125EBF37F004300B5 /* SchQuestionCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchQuestionCardView.swift; sourceTree = "<group>"; };
+=======
+		C95B57A125EBF37F004300B5 /* SchQuestionDetailHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchQuestionDetailHeaderView.swift; sourceTree = "<group>"; };
+>>>>>>> [Fix] 搜索没问题了
 		C95B57AB25EBF3BA004300B5 /* HomeView2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView2.swift; sourceTree = "<group>"; };
 		C95B57AC25EBF3BA004300B5 /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		C95B57AD25EBF3BA004300B5 /* HomeSettingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeSettingView.swift; sourceTree = "<group>"; };
@@ -352,6 +361,7 @@
 		D344856525F38EF30005915B /* SchSearchResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchSearchResultView.swift; sourceTree = "<group>"; };
 		D346ACD925F2A90000A146D8 /* ScrollViewWithRefresh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollViewWithRefresh.swift; sourceTree = "<group>"; };
 		D3490CFF25FA42B3004AB614 /* SchQuestionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchQuestionDetailView.swift; sourceTree = "<group>"; };
+		D3490D1125FAE78A004AB614 /* SchQuestionCommentCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchQuestionCommentCellView.swift; sourceTree = "<group>"; };
 		D357A25625F0FEEA00C061CF /* UniversalExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniversalExtension.swift; sourceTree = "<group>"; };
 		D357A26225F0FFC600C061CF /* SchAnswerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchAnswerManager.swift; sourceTree = "<group>"; };
 		D35E4E4225EEB18D00526388 /* PhotoListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoListView.swift; sourceTree = "<group>"; };
@@ -1023,7 +1033,8 @@
 		D37DD87A25EDFA8700A662E0 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				C95B57A125EBF37F004300B5 /* SchQuestionCardView.swift */,
+				C95B57A125EBF37F004300B5 /* SchQuestionDetailHeaderView.swift */,
+				D3490D1125FAE78A004AB614 /* SchQuestionCommentCellView.swift */,
 				D37DD87B25EDFA8700A662E0 /* SchQuestionCellView.swift */,
 				D37DD87C25EDFA8700A662E0 /* SchSelectTagView.swift */,
 				D3EB57EA25F3991500A9321F /* SchQuestionScrollView.swift */,
@@ -1324,6 +1335,7 @@
 				C930724225E16C75005E5736 /* BubbleView.swift in Sources */,
 				C942C1BA25CABACE006D0B83 /* supplyView.swift in Sources */,
 				03B6894A24D1579B0020AD47 /* Indicator.swift in Sources */,
+				D3490D1225FAE78A004AB614 /* SchQuestionCommentCellView.swift in Sources */,
 				03B6893524D1572A0020AD47 /* ECardOverviewView.swift in Sources */,
 				C9CF3D6A25D1684E0085263F /* BindEmailView.swift in Sources */,
 				C9D59B3F25BBC138006865FC /* KeywordLoginView.swift in Sources */,
@@ -1351,7 +1363,7 @@
 				C95B57ED25EBF413004300B5 /* CourseTable.swift in Sources */,
 				C95B57DA25EBF3ED004300B5 /* GPAListView.swift in Sources */,
 				C9BCE6BD25DE9A040041E533 /* DrawerView.swift in Sources */,
-				C95B57A325EBF37F004300B5 /* SchQuestionCardView.swift in Sources */,
+				C95B57A325EBF37F004300B5 /* SchQuestionDetailHeaderView.swift in Sources */,
 				03B6893724D1572A0020AD47 /* ECardTranscationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

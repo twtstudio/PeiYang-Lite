@@ -11,15 +11,15 @@ struct SchSearchView: View {
     // 历史记录本地存储
     static let historyKey = "SCH_SEARCH_HISTORY_KEY"
     @AppStorage(SchSearchView.historyKey, store: Storage.defaults) var historyArray: [String] = []
-    @State private var inputMessage: String = ""
-    @StateObject private var tagSource: SchTagSource = SchTagSource()
-    // 用于弹回到root
-    @Binding var rootIsActive: Bool
+
+    @StateObject private var tagSource: SchTagSource = .init()
+    @StateObject private var searchModel: SchSearchResultViewModel = .init()
     
     var body: some View {
         VStack {
-            SchSearchTopView(inputMessage: $inputMessage, historyArray: $historyArray, rootIsActive: $rootIsActive)
+            SchSearchTopView(inputMessage: $searchModel.searchString, historyArray: $historyArray)
                 .environmentObject(tagSource)
+                .environmentObject(searchModel)
             VStack(alignment: .leading) {
                 HStack {
                     Text("历史记录")
@@ -37,7 +37,7 @@ struct SchSearchView: View {
                 VStack(spacing: 20){
                     ForEach(historyArray, id: \.self) { s in
                         Button(action: {
-                            self.inputMessage = s
+                            searchModel.searchString = s
                         }, label: {
                             HStack{
                                 Text(s)
@@ -66,6 +66,11 @@ struct SchSearchView: View {
             .frame(width: UIScreen.main.bounds.width * 0.9)
             Spacer()
         }
+        .background(
+            Color(#colorLiteral(red: 0.968627451, green: 0.968627451, blue: 0.968627451, alpha: 1))
+                .ignoresSafeArea()
+                .frame(width: screen.width, height: screen.height)
+        )
         .navigationBarHidden(true)
         .navigationBarBackButtonHidden(true)
         .onAppear {
@@ -123,7 +128,7 @@ struct SchSearchView: View {
 
 struct SchSearchTableView_Previews: PreviewProvider {
     static var previews: some View {
-        SchSearchView(rootIsActive: .constant(false))
+        SchSearchView()
     }
 }
 
@@ -131,8 +136,8 @@ struct SchSearchTopView: View {
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     @Binding var inputMessage: String
     @Binding var historyArray: [String]
-    @Binding var rootIsActive: Bool
     @EnvironmentObject var tagSource: SchTagSource
+    @EnvironmentObject var searchModel: SchSearchResultViewModel
     
     @State private var navigateToResult: Bool = false
     
@@ -152,7 +157,6 @@ struct SchSearchTopView: View {
             .cornerRadius(UIScreen.main.bounds.height / 40)
             
             Button(action: {
-                self.rootIsActive = false
                 self.mode.wrappedValue.dismiss()
             }, label: {
                 Text("取消")
@@ -161,12 +165,13 @@ struct SchSearchTopView: View {
             
             NavigationLink(
                 destination:
-                    SchSearchResultView(inputMessage: $inputMessage, rootIsActive: $rootIsActive)
-                    .environmentObject(tagSource),
+                    SchSearchResultView()
+                    .environmentObject(tagSource)
+                    .environmentObject(searchModel),
                 isActive: $navigateToResult,
                 label: { EmptyView() })
-                .isDetailLink(false)
         }
+        
     }
     
     private func searchQuestion() {
@@ -177,7 +182,6 @@ struct SchSearchTopView: View {
             }
         }
         navigateToResult = true
-        rootIsActive = false
     }
 }
 

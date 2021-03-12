@@ -94,7 +94,7 @@ struct SchNewQuestionView: View {
                     }
                     
                     // 图片选择
-                    PhotoListView(images: $images)
+                    PhotoListView(images: $images, mode: .write)
                     
                     // 标签选择
                     HStack {

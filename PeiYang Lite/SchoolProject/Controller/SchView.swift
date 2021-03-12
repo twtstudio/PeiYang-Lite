@@ -11,16 +11,13 @@ struct SchView: View {
     @Environment(\.presentationMode) var mode
     @StateObject private var schViewModel: SchViewModel = .init()
     
-    @State var isSearching: Bool = false
-    
     var body: some View {
         ZStack {
             VStack {
                 // 顶部栏
                 HStack {
                     NavigationLink(
-                        destination: SchSearchView(rootIsActive: $isSearching),
-                        isActive: $isSearching,
+                        destination: SchSearchView(),
                         label: {
                             SchSearchBarView()
                         })
@@ -39,7 +36,9 @@ struct SchView: View {
                     .frame(width: screen.width)
             }
             .background(
-                Color.init(red: 247/255, green: 247/255, blue: 248/255).ignoresSafeArea().frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height, alignment: .center)
+                Color(#colorLiteral(red: 0.968627451, green: 0.968627451, blue: 0.968627451, alpha: 1))
+                    .ignoresSafeArea()
+                    .frame(width: screen.width, height: screen.height)
             )
             .navigationBarHidden(true)
             

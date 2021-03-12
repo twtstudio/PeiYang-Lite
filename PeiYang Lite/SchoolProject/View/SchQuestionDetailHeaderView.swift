@@ -1,5 +1,5 @@
 //
-//  SchQuestionCardView.swift
+//  SchQuestionDetailHeaderView.swift
 //  PeiYang Lite
 //
 //  Created by 游奕桁 on 2021/2/26.
@@ -7,8 +7,16 @@
 
 import SwiftUI
 
-struct SchQuestionCardView: View {
+struct SchQuestionDetailHeaderView: View {
     @Binding var question: SchQuestionModel
+    
+    private var questionTime: String {
+        get {
+            let day = question.createdAt?[0..<10] ?? ""
+            let time = question.createdAt?[11..<16] ?? ""
+            return day + " " + time
+        }
+    }
     
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
@@ -41,17 +49,10 @@ struct SchQuestionCardView: View {
                 .foregroundColor(Color(#colorLiteral(red: 0.2117647059, green: 0.2352941176, blue: 0.3294117647, alpha: 1)))
                 .padding(.horizontal)
             
-            Image("Text")
-                .resizable()
-                .scaledToFit()
-                .clipShape(RoundedRectangle(cornerRadius: 8))
-                .padding(.horizontal)
+            PhotoListView(imageURLs: question.thumbUrlList ?? [])
             
             HStack {
-                Text(question.createdAt?[0..<10] ?? "")
-                    .fontWeight(.light)
-                
-                Text(question.createdAt?[11..<16] ?? "")
+                Text(questionTime)
                     .fontWeight(.light)
                 
                 Spacer()
@@ -96,7 +97,7 @@ struct SchQuestionCardView_Previews: PreviewProvider {
             Color(#colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1))
                 .edgesIgnoringSafeArea(.all)
             
-            SchQuestionCardView(question: .constant(SchQuestionModel(id: 0, name: "微北洋真不戳", content: "微北洋真不戳微北洋真不戳微北洋真不戳微北洋真不戳微北洋真不戳微北洋真不戳", userID: nil, solved: 1, noCommit: 0, likes: 999, createdAt: "2021-03-10T12:50:28.000000Z", updatedAt: nil, username: "真不戳", msgCount: 999, urlList: ["https://www.hackingwithswift.com/img/covers-flat/watchos@2x.png","https://www.hackingwithswift.com/img/covers-flat/watchos@2x.png"], thumbImg: nil, tags: [SchTagModel(id: 0, name: "天津大学", description: nil, tagDescription: nil, isSelected: nil, children: nil)], thumbUrlList: nil, isLiked: true, isOwner: true)))
+            SchQuestionDetailHeaderView(question: .constant(SchQuestionModel(id: 0, name: "微北洋真不戳", content: "微北洋真不戳微北洋真不戳微北洋真不戳微北洋真不戳微北洋真不戳微北洋真不戳", userID: nil, solved: 1, noCommit: 0, likes: 999, createdAt: "2021-03-10T12:50:28.000000Z", updatedAt: nil, username: "真不戳", msgCount: 999, urlList: ["https://www.hackingwithswift.com/img/covers-flat/watchos@2x.png","https://www.hackingwithswift.com/img/covers-flat/watchos@2x.png"], thumbImg: nil, tags: [SchTagModel(id: 0, name: "天津大学", description: nil, tagDescription: nil, isSelected: nil, children: nil)], thumbUrlList: ["https://www.hackingwithswift.com/img/covers-flat/watchos@2x.png","https://www.hackingwithswift.com/img/covers-flat/watchos@2x.png"], isLiked: true, isOwner: true)))
                 .frame(width: screen.width - 20, height: screen.width - 20)
                 .shadow(color: Color.black.opacity(0.2), radius: 10, x: 2, y: 2)
         }
