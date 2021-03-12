@@ -351,9 +351,8 @@ struct StudyRoomTopView: View {
         queue.async {
             DataStorage.store(buildings, in: .caches, as: "studyroom/todaydata.json")
             DataStorage.store(weeksBuildings, in: .caches, as: "studyroom/weekdata.json")
-//            DataStorage.store(weeksBuildingWJ, in: .caches, as: "studyroom/weekdataWJ.json")
-//            DataStorage.store(weeksBuildingBY, in: .caches, as: "studyroom/weekdataBY.json")
             DataStorage.store(getCollectionClassId, in: .caches, as: "studyroom/collections.json")
+            DataStorage.store(collectionClass, in: .caches, as: "studyroom/collectionclass.json")
         }
     }
     

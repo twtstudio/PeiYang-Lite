@@ -28,22 +28,11 @@ struct StudyRoomContentView: View {
             }
             
             // MARK: - Course
-            ForEach(0...5, id: \.self) { weekday in
+            ForEach(0...6, id: \.self) { weekday in
                 ZStack(alignment: .top) {
                     ForEach(0...5, id:\.self) { i in
                         if status[weekday][2*i] == "1" {
-                            Text("课程占用")
-                                .font(.caption2)
-                                .bold()
-                                .padding(7)
-                                .foregroundColor(.white)
-                                .frame(
-                                    width: width*1.1,
-                                    height: width * 3
-                                )
-                                .background(Color(#colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)))
-                                .clipShape(RoundedRectangle(cornerRadius: 8))
-                                .offset(y: 2 * CGFloat(i) * width * 1.52)
+                            StudyRoomRoomView(index: i, width: width)
                         }
                     }
                     }
@@ -66,3 +55,23 @@ struct StudyRoomContentView_Previews: PreviewProvider {
     }
 }
 
+
+struct StudyRoomRoomView: View {
+    var index: Int
+    let width: CGFloat
+    
+    var body: some View {
+        Text("课程占用")
+            .font(.caption2)
+            .bold()
+            .padding(7)
+            .foregroundColor(.white)
+            .frame(
+                width: width*1.1,
+                height: width * 3
+            )
+            .background(Color(#colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)))
+            .clipShape(RoundedRectangle(cornerRadius: 8))
+            .offset(y: 2 * CGFloat(index) * width * 1.52)
+    }
+}

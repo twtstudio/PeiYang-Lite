@@ -11,8 +11,8 @@ struct CourseTableWeekdaysView: View {
     @Binding var activeWeek: Int
     let courseTable: CourseTable
     let width: CGFloat
-    
-    @AppStorage(SharedMessage.showCourseNumKey, store: Storage.defaults) private var showCourseNum = 5
+    let showCourseNum: Int
+//    @AppStorage(SharedMessage.showCourseNumKey, store: Storage.defaults) private var showCourseNum = 5
     @Environment(\.horizontalSizeClass) private var sizeClass
     private var isRegular: Bool { sizeClass == .regular }
     
@@ -89,7 +89,7 @@ struct CourseTableWeekdaysView_Previews: PreviewProvider {
         ZStack {
             Color.black
                 .edgesIgnoringSafeArea(.all)
-            CourseTableWeekdaysView(activeWeek: .constant(1), courseTable: Storage.courseTable.object, width: 36)
+            CourseTableWeekdaysView(activeWeek: .constant(1), courseTable: Storage.courseTable.object, width: 36, showCourseNum: 5)
                 .environment(\.colorScheme, .dark)
         }
     }

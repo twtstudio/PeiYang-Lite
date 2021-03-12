@@ -18,7 +18,7 @@ struct RoomDetailView: View {
     // 定位classroom
     var classData: Classroom
     /// 每一个元素会重复两次……
-    @State var weekData: [String] = []
+    @State var weekData: [String] =  ["", "", "", "", "", "", ""]
     
 
     var body: some View {
@@ -39,31 +39,32 @@ struct RoomDetailView: View {
             }
             .frame(width: screen.width * 0.9)
             .padding(.top, 40)
-            ForEach(weekData, id: \.self) { data in
-                Text(data)
-            }
-            RoomDetailHeaderView(classroomId: classData.classroomID, className: className, activeWeek: activeWeek)
-            /// Text Spacer()
-            Spacer()
-//            ScrollView(.vertical, showsIndicators: false) {
-//                VStack {
-//                    CourseTableWeekdaysView(
-//                        activeWeek: $activeWeek,
-//                        courseTable: courseTable,
-//                        width: screen.width / 8
-//                    )
-//                    .padding(.leading, screen.width/16 + 7)
-//                    .frame(width: screen.width, alignment: .center)
-//
-//                    StudyRoomContentView(
-//                        activeWeek: activeWeek,
-//                        courseArray: courseTable.courseArray, status: weekData,
-//                        width: screen.width / 8
-//                        )
-//                    .frame(width: screen.width, height: screen.height*1.2, alignment: .top)
-//                }
-//                .padding(.horizontal, 10)
+//            ForEach(weekData, id: \.self) { data in
+//                Text(data)
 //            }
+            RoomDetailHeaderView(classroomId: classData.classroomID, className: className, activeWeek: activeWeek)
+                .padding(.horizontal)
+            
+            ScrollView(.vertical, showsIndicators: false) {
+                VStack {
+                    CourseTableWeekdaysView(
+                        activeWeek: $activeWeek,
+                        courseTable: courseTable,
+                        width: screen.width / 9.5 ,// 变成七天的手动
+                        showCourseNum: 6
+                    )
+                    .padding(.leading, screen.width/16 + 7)
+                    .frame(width: screen.width, alignment: .center)
+
+                    StudyRoomContentView(
+                        activeWeek: activeWeek,
+                        courseArray: courseTable.courseArray, status: weekData,
+                        width: screen.width / 9.5 // 变成七天的手动
+                        )
+                    .frame(width: screen.width, height: screen.height*1.2, alignment: .top)
+                }
+                .padding(.horizontal, 10)
+            }
         }
         .navigationBarTitle("")
         .navigationBarHidden(true)

@@ -14,7 +14,7 @@ struct DrawerView: View {
         VStack(spacing: UIScreen.main.bounds.width / 10) {
             HStack {
                 NavigationLink(
-                    destination: CourseTableDetailView2(alertCourse: AlertCourse()),
+                    destination: CourseTableDetailView(alertCourse: AlertCourse()),
                     label: {
                         DrawerCellView(imgName: "drawer-course", title: "课程表")
                     })
