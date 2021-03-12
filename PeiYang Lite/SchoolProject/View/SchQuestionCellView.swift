@@ -80,7 +80,7 @@ struct SchQuestionCellView: View {
                 Text((question.msgCount ?? 0).description)
                     .foregroundColor(bottomColor)
                     .font(.caption)
-                Image((question.isLiked ?? false) ? "sch-liked" : "sch-like")
+                Image((question.isLiked ?? false) ? "sch-like-fill" : "sch-like")
                 Text((question.likes ?? 0).description)
                     .foregroundColor(bottomColor)
                     .font(.caption)

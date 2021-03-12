@@ -66,7 +66,7 @@ struct SchQuestionDetailHeaderView: View {
                 Button(action: {
                     likeQuestion()
                 }, label: {
-                    Image(question.isLiked ?? false ? "sch-liked" : "liked")
+                    Image(question.isLiked ?? false ? "sch-like-fill" : "liked")
                 })
                 Text("\(question.likes ?? 0)")
                     .fontWeight(.light)

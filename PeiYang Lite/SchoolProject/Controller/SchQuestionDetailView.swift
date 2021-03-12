@@ -11,6 +11,8 @@ struct SchQuestionDetailView: View {
     @Environment(\.presentationMode) var presentationMode
     
     @Binding var question: SchQuestionModel
+    @State var answer: SchCommentModel?
+    @State var comments: [SchCommentModel] = []
     
     var body: some View {
         VStack {
@@ -20,9 +22,6 @@ struct SchQuestionDetailView: View {
                     self.presentationMode.wrappedValue.dismiss()
                 }) {
                     Image(systemName: "arrow.left")
-                        .font(.title)
-                        .foregroundColor(Color(#colorLiteral(red: 0.3856853843, green: 0.403162986, blue: 0.4810273647, alpha: 1)))
-                        .padding()
                 }
                 
                 Spacer()
@@ -31,16 +30,37 @@ struct SchQuestionDetailView: View {
                     Button(action: {
                         
                     }, label: {
-                        Image("sch-trash")
+                        Image(systemName: "trash")
                     })
                 }
             }
-            .padding(.top, 40)
-            .padding(.trailing, 20)
+            .font(.title)
+            .foregroundColor(Color(#colorLiteral(red: 0.3856853843, green: 0.403162986, blue: 0.4810273647, alpha: 1)))
+            .padding()
             
             SchQuestionDetailHeaderView(question: $question)
             
+            LazyVStack {
+                ForEach(comments.indices, id: \.self) { i in
+                    SchQuestionCommentCellView(comment: comments[i])
+                }
+            }
+            Spacer()
             
+            HStack {
+                
+            }
+        }
+        .edgesIgnoringSafeArea(.bottom)
+        .onAppear {
+            SchCommentManager.commentGet(id: question.id ?? 0) { (result) in
+                switch result {
+                case .success(let comments):
+                    self.comments = comments
+                case .failure(let err):
+                    print("获取评论失败", err)
+                }
+            }
         }
         .background(
             Color(#colorLiteral(red: 0.968627451, green: 0.968627451, blue: 0.968627451, alpha: 1))

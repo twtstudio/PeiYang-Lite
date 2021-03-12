@@ -19,28 +19,43 @@ struct SchQuestionCommentCellView: View {
     }
     
     var body: some View {
-        GeometryReader { g in
-            VStack {
+        VStack {
+            GeometryReader { g in
                 HStack {
                     Image("Text")
                         .resizable()
+                        .frame(width: g.size.height, height: g.size.height)
+                        .cornerRadius(g.size.height / 2)
                     Text(comment.username ?? "")
                     Spacer()
                     Text(commentTime)
                 }
-                Text(comment.commit ?? "")
-                
-                HStack {
-                    Spacer()
-                    Button(action: {
-                        
-                    }, label: {
-                        Image(comment.isLiked ?? false ? "sch-liked" : "sch-like")
-                    })
-                }
+                .frame(height: g.size.height)
+            }
+            .frame(height: screen.height * 0.05)
+            
+            Text(comment.commit ?? "")
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .multilineTextAlignment(.leading)
+            
+            HStack {
+                Spacer()
+                Button(action: {
+                    SchCommentManager.likeOrDislikeComment(commentId: comment.id ?? 0, like: !(comment.isLiked ?? false)) { (result) in
+                        switch result {
+                        case .success(_):
+                            comment.isLiked?.toggle()
+                        case .failure(let err):
+                            print("评论点赞失败", err)
+                        }
+                    }
+                }, label: {
+                    Image(comment.isLiked ?? false ? "sch-like-fill" : "sch-like")
+                })
                 Text((comment.likes ?? 0).description)
             }
         }
+        .padding()
         .background(Color.white)
         .cornerRadius(15)
     }
@@ -48,7 +63,11 @@ struct SchQuestionCommentCellView: View {
 
 struct SchQuestionCommentCellView_Previews: PreviewProvider {
     static var previews: some View {
-        SchQuestionCommentCellView(comment: SchCommentModel(id: 0, contain: nil, adminID: -1, score: nil, commit: "微北洋真不戳微北洋真不戳微北洋真不戳微北洋真不戳微北洋真不戳微北洋真不戳微北洋真不戳", userID: 0, likes: 999, createdAt: "2021-03-10T12:50:28.000000Z", updatedAt: nil, username: "微北洋真不戳", isLiked: true, adminName: nil))
-            .background(Color.black.edgesIgnoringSafeArea(.all))
+        VStack {
+            SchQuestionCommentCellView(comment: SchCommentModel(id: 0, contain: nil, adminID: -1, score: nil, commit: "微北洋真", userID: 0, likes: 999, createdAt: "2021-03-10T12:50:28.000000Z", updatedAt: nil, username: "微北洋真不戳", isLiked: true, adminName: nil))
+            SchQuestionCommentCellView(comment: SchCommentModel(id: 0, contain: nil, adminID: -1, score: nil, commit: "微北洋真不戳微北洋真不戳微北洋真不戳微北洋真不戳微北洋真不戳微北洋真不戳微北洋真不戳微北洋真不戳微北洋真不戳微北洋真不戳微北洋真不戳微北洋真不戳微北洋真不戳微北洋真不戳微北洋真不戳", userID: 0, likes: 999, createdAt: "2021-03-10T12:50:28.000000Z", updatedAt: nil, username: "微北洋真不戳", isLiked: true, adminName: nil))
+        }
+        .frame(width: screen.width, height: screen.height)
+        .background(Color.black.edgesIgnoringSafeArea(.all))
     }
 }
