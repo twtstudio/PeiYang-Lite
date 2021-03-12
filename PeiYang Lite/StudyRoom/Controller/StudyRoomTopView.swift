@@ -119,13 +119,6 @@ struct StudyRoomTopView: View {
             }.frame(width: screen.width * 0.9)
             .padding(.top, UIScreen.main.bounds.height / 15)
             
-           /// Text String
-//            Text(nowTime)
-//            Text(nowPeriod)
-//            Text(String(collectionBuildings.count))
-//            Text(alertMessage)
-//            Text(String(weeksBuildingWJ[0].count))
-//            Text(String(buildings.count))
 
             HStack{
                 Image("position")
@@ -321,11 +314,11 @@ struct StudyRoomTopView: View {
                 Spacer()
             }
             .frame(width: UIScreen.main.bounds.width * 0.9)
-            StudyRoomFavourCard(collectionClasses: collectionClass)
+            StudyRoomFavourCard(activeWeek: weeks, collectionClasses: collectionClass)
             Spacer()
             
             NavigationLink(
-                destination: StudySearchView(),
+                destination: StudySearchView(activeWeek: weeks),
                 isActive: $isShowSearch,
                 label: {})
         }//: VSTACK
@@ -335,75 +328,9 @@ struct StudyRoomTopView: View {
         .onAppear {
             sharedMessage.studyRoomSelectTime = nowPeriod
             if(isGetStudyRoomBuildingMessage == false) {
-                StudyRoomManager.allBuidlingGet(term: "20212", week: String(weeks.wrappedValue), day: String(days.wrappedValue)) { result in
-                    switch result {
-                    case .success(let data):
-                        buildings = data.data
-                        if(data.errorCode != 0) {
-                            isGetStudyRoomBuildingMessage = false
-                            break
-                        }
-                        requestDataToUseData()
-                        for building in buildings{
-                            if(building.campusID == "1"){
-                                buildingsWJ.insert(building, at: 0)
-                            }
-                            else if(building.campusID == "2") {
-                                buildingsBY.insert(building, at: 0)
-                            }
-                        }
-                        isGetStudyRoomBuildingMessage = true
-                    case .failure(_):
-                        isGetStudyRoomBuildingMessage = false
-                    }
-                }
-                //MARK: 异步请求全部数据
-                DispatchQueue.global().asyncAfter(deadline: DispatchTime.now()) {
-                    DispatchQueue.main.async {
-                        for i in 0...6 {
-                            StudyRoomManager.allBuidlingGet(term: "20212", week: String(weeks.wrappedValue), day: String(i+1)) { result in
-                                switch result {
-                                case .success(let data):
-                                    weeksBuildings[i] = data.data
-                                    if(data.errorCode != 0) {
-                                        isFailGetOneWeek = true
-                                        break
-                                    }
-//                                    for building in weeksBuildings[i]  {
-//                                        if(building.campusID == "1"){
-//                                            weeksBuildingWJ[i].append(building)
-//                                        }
-//                                        else if(building.campusID == "2") {
-//                                            weeksBuildingBY[i].append(building)
-//                                        }
-//                                    }
-                                    
-                                    isFailGetOneWeek = false
-                                case .failure(_):
-                                    isFailGetOneWeek = true
-                                }
-                            }
-                        }
-                    }
-                }
+                firstInGetTodayAndWeeks()
             } else {
-                buildingsWJ = []
-                buildingsBY = []
-                collectionClass = []
-                getCollectionClassId = []
-                if let saveBuildings = DataStorage.retreive("studyroom/todaydata.json", from: .caches, as: [StudyBuilding].self) {
-                    buildings = saveBuildings
-                    requestDataToUseData()
-                    for building in buildings{
-                        if(building.campusID == "1"){
-                            buildingsWJ.insert(building, at: 0)
-                        }
-                        else if(building.campusID == "2") {
-                            buildingsBY.insert(building, at: 0)
-                        }
-                    }
-                  
-                }
+                secondInLoadtoday()
             }
             
         }
@@ -457,8 +384,75 @@ struct StudyRoomTopView: View {
                 break
             }
         }
-        
-        
+    }
+    
+    //MARK: 第一次进入请求今天和一周数据，collection
+    func firstInGetTodayAndWeeks() {
+        StudyRoomManager.allBuidlingGet(term: "20212", week: String(weeks.wrappedValue), day: String(days.wrappedValue)) { result in
+            switch result {
+            case .success(let data):
+                buildings = data.data
+                if(data.errorCode != 0) {
+                    isGetStudyRoomBuildingMessage = false
+                    break
+                }
+                requestDataToUseData()
+                for building in buildings{
+                    if(building.campusID == "1"){
+                        buildingsWJ.insert(building, at: 0)
+                    }
+                    else if(building.campusID == "2") {
+                        buildingsBY.insert(building, at: 0)
+                    }
+                }
+                isGetStudyRoomBuildingMessage = true
+            case .failure(_):
+                isGetStudyRoomBuildingMessage = false
+            }
+        }
+
+        DispatchQueue.global().asyncAfter(deadline: DispatchTime.now()) {
+            DispatchQueue.main.async {
+                for i in 0...6 {
+                    StudyRoomManager.allBuidlingGet(term: "20212", week: String(weeks.wrappedValue), day: String(i+1)) { result in
+                        switch result {
+                        case .success(let data):
+                            weeksBuildings[i] = data.data
+                            if(data.errorCode != 0) {
+                                isFailGetOneWeek = true
+                                break
+                            }
+                            
+                            isFailGetOneWeek = false
+                        case .failure(_):
+                            isFailGetOneWeek = true
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    //MARK: 第二次进入加载缓存（today和collection)
+    func secondInLoadtoday() {
+        /// clear the array data first
+        buildingsWJ = []
+        buildingsBY = []
+        collectionClass = []
+        getCollectionClassId = []
+        if let saveBuildings = DataStorage.retreive("studyroom/todaydata.json", from: .caches, as: [StudyBuilding].self) {
+            buildings = saveBuildings
+            requestDataToUseData()
+            for building in buildings{
+                if(building.campusID == "1"){
+                    buildingsWJ.insert(building, at: 0)
+                }
+                else if(building.campusID == "2") {
+                    buildingsBY.insert(building, at: 0)
+                }
+            }
+          
+        }
     }
 }
 
@@ -536,8 +530,10 @@ struct StudyRoomBuildingCardView: View {
     }
 }
 
+
 struct StudyRoomFavourCard: View {
     @EnvironmentObject var sharedMessage: SharedMessage
+    @Binding var activeWeek: Int
     var collectionClasses: [CollectionClass]
     
     var checkTheClassNum: Int {
@@ -558,17 +554,17 @@ struct StudyRoomFavourCard: View {
             return -1
         }
     }
-    private var index: Int {
-        collectionClasses.count / 4
-    }
-    
-    
-    
+ 
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false, content: {
             HStack(spacing: 20) {
                 ForEach(collectionClasses, id: \.self) { collectionclass in
-                    StudyRoomBuildingCardView(buildingName: collectionclass.buildingName, className: collectionclass.classMessage.classroom, isFree: collectionclass.classMessage.status[checkTheClassNum] == "0")
+                    NavigationLink(
+                        destination: RoomDetailView(activeWeek: $activeWeek, className: collectionclass.buildingName + collectionclass.classMessage.classroom, classData: collectionclass.classMessage),
+                        label: {
+                            StudyRoomBuildingCardView(buildingName: collectionclass.buildingName, className: collectionclass.classMessage.classroom, isFree: collectionclass.classMessage.status[checkTheClassNum] == "0")
+                        })
+                   
                     
                 }
             }
@@ -583,14 +579,3 @@ extension Date {
     }
 }
 
-struct CollectionClass: Hashable {
-    var id = UUID()
-    var classMessage: Classroom
-    var buildingName: String
-}
-
-class StudyRoomModel: ObservableObject {
-    @Published var day: Int = 0
-    @Published var weeks: Int = 0
-    @Published var studyRoomSelectTime: String = ""
-}

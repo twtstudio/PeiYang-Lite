@@ -117,44 +117,17 @@ struct SearchBuildingAndClassView: View {
 struct SearchBuildingSectionView: View {
     var title: String
     var section: String
-    var imageId = Int(arc4random_uniform(3))
     var backImg: Image{
-        switch imageId {
-        case 0:
-            switch section {
-            case "A":
-                return Image("A-deep")
-            case "B":
-                return Image("B-deep")
-            case "C":
-                return Image("C-deep")
-            default:
-                return Image("A-deep")
-            }
-        case 1:
-            switch section {
-            case "A":
-                return Image("A-blue")
-            case "B":
-                return Image("B-blue")
-            case "C":
-                return Image("C-blue")
-            default:
-                return Image("A-blue")
-            }
+        switch section {
+        case "A":
+            return Image("A-deep")
+        case "B":
+            return Image("B-light")
+        case "C":
+            return Image("C-blue")
         default:
-            switch section {
-            case "A":
-                return Image("A-light")
-            case "B":
-                return Image("B-light")
-            case "C":
-                return Image("C-light")
-            default:
-                return Image("A-light")
-            }
+            return Image("D-deep")
         }
-        
     }
     var body: some View {
         Text(title)

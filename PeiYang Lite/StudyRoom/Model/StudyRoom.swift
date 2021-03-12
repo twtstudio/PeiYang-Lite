@@ -59,6 +59,19 @@ struct Classroom: Codable, Identifiable, Hashable {
         case classroom, status
     }
 }
+// 收藏储存结构体
+struct CollectionClass: Hashable {
+    var id = UUID()
+    var classMessage: Classroom
+    var buildingName: String
+}
+
+//class StudyRoomModel: ObservableObject {
+//    @Published var day: Int = 0
+//    @Published var weeks: Int = 0
+//    @Published var studyRoomSelectTime: String = ""
+//}
+
 
 
 class StudyRoomManager {

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct StudySearchView: View {
     // text
-    @State var textNum = 1
+    @Binding var activeWeek: Int
     let color = Color.init(red: 98/255, green: 103/255, blue: 124/255)
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     
@@ -130,14 +130,14 @@ struct StudySearchView: View {
                             ForEach(searchBuilding, id: \.self) { building in
                                 if(building.areas[0].areaID != "-1"){
                                     NavigationLink(
-                                        destination: BuildingSectionView(buildingName: building.building, sections: building.areas, weeks: $textNum, buildingID: building.buildingID),
+                                        destination: BuildingSectionView(buildingName: building.building, sections: building.areas, weeks: $activeWeek, buildingID: building.buildingID),
                                         label: {
                                             SearchBuildingView(title: building.building)
                                         })
                                 }
                                 else {
                                     NavigationLink(
-                                        destination: ChooseClassView(buildingID: building.buildingID, sectionName: "-1", week: $textNum, buildingName: building.building),
+                                        destination: ChooseClassView(buildingID: building.buildingID, sectionName: "-1", week: $activeWeek, buildingName: building.building),
                                         label: {
                                             SearchBuildingView(title: building.building)
                                         })
@@ -154,7 +154,7 @@ struct StudySearchView: View {
                         ) {
                             ForEach(searchSection, id: \.self){ section in
                                 NavigationLink(
-                                    destination: ChooseClassView(buildingID: section.buildingID, sectionName: section.sectionData.areaID, week: $textNum, buildingName: section.buildingName + section.sectionData.areaID),
+                                    destination: ChooseClassView(buildingID: section.buildingID, sectionName: section.sectionData.areaID, week: $activeWeek, buildingName: section.buildingName + section.sectionData.areaID),
                                     label: {
                                         SearchBuildingSectionView(title: section.buildingName, section: section.sectionData.areaID)
                                     })
@@ -170,7 +170,7 @@ struct StudySearchView: View {
                         ) {
                             ForEach(searchRoom, id: \.self) { room in
                                 NavigationLink(
-                                    destination: RoomDetailView(activeWeek: $textNum, className: room.buildingName + ((room.sectionName == "-1") ? "" : room.sectionName) + room.room.classroom, classData: room.room),
+                                    destination: RoomDetailView(activeWeek: $activeWeek, className: room.buildingName + ((room.sectionName == "-1") ? "" : room.sectionName) + room.room.classroom, classData: room.room),
                                     label: {
                                         SelectRoomView(classTitle: room.room.classroom, isFree: room.room.status[checkTheClassNum] == "0")
                                     })
@@ -188,7 +188,7 @@ struct StudySearchView: View {
                     case .unclearrooms:
                         ForEach(searchRoom, id: \.self) { room in
                             NavigationLink(
-                                destination: RoomDetailView(activeWeek: $textNum, className: room.buildingName + ((room.sectionName == "-1") ? "" : room.sectionName)+room.room.classroom, classData: room.room),
+                                destination: RoomDetailView(activeWeek: $activeWeek, className: room.buildingName + ((room.sectionName == "-1") ? "" : room.sectionName)+room.room.classroom, classData: room.room),
                                 label: {
                                     SearchBuildingAndClassView(title: room.buildingName + ((room.sectionName == "-1") ? "" : room.sectionName) + room.room.classroom, isFree: room.room.status[checkTheClassNum] == "0")
                                 })
@@ -206,12 +206,10 @@ struct StudySearchView: View {
         .background(Color(#colorLiteral(red: 0.9352087975, green: 0.9502342343, blue: 0.9600060582, alpha: 1)).frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height, alignment: .center).ignoresSafeArea())
         .onDisappear(perform: {
             save()
-
         })
         .onAppear(perform: {
             load()
         })
-        Text("hello")
     }
     //MARK: save
     func save() {
@@ -410,7 +408,7 @@ struct StudySearchView: View {
 
 struct StudySearchView_Previews: PreviewProvider {
     static var previews: some View {
-        StudySearchView()
+        StudySearchView(activeWeek: .constant(10))
     }
 }
 

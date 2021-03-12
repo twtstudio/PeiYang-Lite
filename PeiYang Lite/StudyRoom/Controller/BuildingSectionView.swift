@@ -74,25 +74,12 @@ struct BuildingSectionView: View {
                     CalendarView(isShowCalender: $isShowCalender)
             })//: sheet
             .background(Color(#colorLiteral(red: 0.9352087975, green: 0.9502342343, blue: 0.9600060582, alpha: 1)).frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height, alignment: .center).ignoresSafeArea())
-//            .navigationBarBackButtonHidden(true)
-//            .navigationBarItems(leading: Button(action : {
-//                self.mode.wrappedValue.dismiss()
-//            }) {
-//                Image("back-arrow")
-//            }, trailing: Button(action : {
-//                isShowCalender.toggle()
-//            }) {
-//                Image("calender")
-//        })
+
 
     }
 }
 
-//struct BuildingSectionView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        BuildingSectionView(buildingName: "16教", sections: 2)
-//    }
-//}
+
 
 struct SchSection: View {
     var title: String

@@ -20,14 +20,7 @@ struct RoomDetailView: View {
     /// 每一个元素会重复两次……
     @State var weekData: [String] = []
     
-    /// 手动换算一下
-//    var finalWeekData: [String] {
-//        var returnFinalClassData: [String] = []
-//        for i in stride(from: 0, to: weekData.count, by: 2) {
-//            returnFinalClassData.append(weekData[i])
-//        }
-//        return returnFinalClassData
-//    }
+
     var body: some View {
         VStack {
             HStack {
@@ -79,50 +72,35 @@ struct RoomDetailView: View {
                content: {
                 CalendarView(isShowCalender: $isShowCalender)
                     .onDisappear(perform: {
-                        var returnWeekData: [String] = ["", "", "", "", "", "", ""]
-                        if let saveweekData = DataStorage.retreive("studyroom/weekdata.json", from: .caches, as: [[StudyBuilding]].self) {
-                            for i in 0...6 {
-                                for building in saveweekData[i] {
-                                    for area in building.areas {
-                                        for room in area.classrooms {
-                                            if room.classroomID == classData.classroomID {
-                                                returnWeekData[i] = room.status
-                                                
-                                                break
-                                            }
-                                        }
-                                    }
-                                }
-                                if returnWeekData[i] == "" {
-                                    returnWeekData[i] = "111111111111"
-                                }
-                            }
-                        }
-                        weekData = returnWeekData
+                        loadTodayOrNewWeekData()
                     })
         })
         .onAppear(perform: {
-            var returnWeekData: [String] = ["", "", "", "", "", "", ""]
-            if let saveweekData = DataStorage.retreive("studyroom/weekdata.json", from: .caches, as: [[StudyBuilding]].self) {
-                for i in 0...6 {
-                    for building in saveweekData[i]{
-                        for area in building.areas {
-                            for room in area.classrooms {
-                                if room.classroomID == classData.classroomID {
-                                    returnWeekData[i] = room.status
-                                    
-                                    break
-                                }
+            loadTodayOrNewWeekData()
+        })
+    }
+    
+    func loadTodayOrNewWeekData() {
+        var returnWeekData: [String] = ["", "", "", "", "", "", ""]
+        if let saveweekData = DataStorage.retreive("studyroom/weekdata.json", from: .caches, as: [[StudyBuilding]].self) {
+            for i in 0...6 {
+                for building in saveweekData[i] {
+                    for area in building.areas {
+                        for room in area.classrooms {
+                            if room.classroomID == classData.classroomID {
+                                returnWeekData[i] = room.status
+                                
+                                break
                             }
                         }
                     }
-                    if returnWeekData[i] == "" {
-                        returnWeekData[i] = "111111111111"
-                    }
+                }
+                if returnWeekData[i] == "" {
+                    returnWeekData[i] = "111111111111"
                 }
             }
-            weekData = returnWeekData
-        })
+        }
+        weekData = returnWeekData
     }
 }
 
@@ -140,17 +118,8 @@ struct RoomDetailHeaderView: View {
     var className: String
     var activeWeek: Int
     
-    @State private var AlertMessage: String = "网络出现问题"
-    @State private var isShowAlert: Bool = false
-    @State private var alertTimer: Timer?
-    @State private var alertTime = 2
     
-    enum favourType {
-        case unFavour
-        case favoured
-        case wrong
-    }
-    @State var showTitle: String = "收藏"
+    @State var isFavoured: Bool = false
     
     var body: some View {
         HStack(alignment: .firstTextBaseline) {
@@ -167,49 +136,25 @@ struct RoomDetailHeaderView: View {
             Spacer()
             
             Button(action: {
-                if (showTitle == "收藏"){
+                if (isFavoured == false){
                     CollectionManager.addFavour(classroomID: classroomId) {result in
                         switch result {
                         case .success(let data):
-                            AlertMessage = data.message
+
                             if(data.errorCode == 0) {
-                                showTitle = "已收藏"
-                            } else {
-                                showTitle = "失败"
-                                alertTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { (time) in
-                                    if self.alertTime < 1 {
-                                        self.alertTime = 3
-                                        time.invalidate()
-                                        showTitle = "收藏"
-                                    }
-                                    self.alertTime -= 1
-                                })
+                                isFavoured = true
                             }
                         case .failure(_):
                             break
                         }
                     }
-                    
-                   
-                    
                 }
-                else if (showTitle == "已收藏") {
+                else if (isFavoured == true) {
                     CollectionManager.deleteFavour(classroomID: classroomId) { result in
                         switch result {
                         case .success(let data):
-                            AlertMessage = data.message
                             if(data.errorCode == 0) {
-                                showTitle = "收藏"
-                            } else {
-                                showTitle = "失败"
-                                alertTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { (time) in
-                                    if self.alertTime < 1 {
-                                        self.alertTime = 3
-                                        time.invalidate()
-                                        showTitle = "已收藏"
-                                    }
-                                    self.alertTime -= 1
-                                })
+                                isFavoured = false
                             }
                         case .failure(_):
                            break
@@ -218,19 +163,18 @@ struct RoomDetailHeaderView: View {
                     
                 }
             }) {
-                Text(showTitle)
+                Text(isFavoured ? "已收藏" : "收藏")
                     .font(.headline)
                     .bold()
                     .foregroundColor(Color(#colorLiteral(red: 0.3856853843, green: 0.403162986, blue: 0.4810273647, alpha: 1)))
             }
-            .disabled(showTitle == "失败")
         }
         .padding()
         .onAppear(perform: {
             if let saveCollectionClassId = DataStorage.retreive("studyroom/collections.json", from: .caches, as: [String].self) {
                 for roomID in saveCollectionClassId {
                     if roomID == classroomId {
-                        showTitle = "已收藏"
+                        isFavoured = true
                     }
                 }
             }
