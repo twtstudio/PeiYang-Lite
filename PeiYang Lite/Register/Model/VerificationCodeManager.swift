@@ -27,7 +27,6 @@ struct VerficationCodeManager {
                     completion(.failure(.requestFailed))
                     return
                 }
-                completion(.success(ReturnMessage))
                 switch response.statusCode {
                 case 200:
                     completion(.success(ReturnMessage))

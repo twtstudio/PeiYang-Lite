@@ -35,7 +35,6 @@ struct RegisterManager {
                     completion(.failure(.requestFailed))
                     return
                 }
-                completion(.success(ReturnMessage))
                 switch response.statusCode {
                 case 200:
                     completion(.success(ReturnMessage))
@@ -66,7 +65,6 @@ struct RegisterManager {
                     completion(.failure(.requestFailed))
                     return
                 }
-                completion(.success(ReturnMessage))
                 switch response.statusCode {
                 case 200:
                     completion(.success(ReturnMessage))
@@ -101,7 +99,6 @@ struct RegisterManager {
                     completion(.failure(.requestFailed))
                     return
                 }
-                completion(.success(ReturnMessage))
                 switch response.statusCode {
                 case 200:
                     completion(.success(ReturnMessage))

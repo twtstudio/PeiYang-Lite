@@ -40,7 +40,6 @@ struct LoginManager {
                     completion(.failure(wrongMessage ?? OrdinaryMessage(errorCode: 0, message: "请求异常", result: nil)))
                     return
                 }
-                completion(.success(accountMessage))
                 switch response.statusCode {
                 case 200:
                     completion(.success(accountMessage))

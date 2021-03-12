@@ -18,7 +18,7 @@ struct RoomDetailView: View {
     // 定位classroom
     var classData: Classroom
     /// 每一个元素会重复两次……
-    @State var weekData: [String] = ["001100110011", "001100110011", "001100110011", "001100110011", "001100110011", "001100110011"]
+    @State var weekData: [String] = []
     
     /// 手动换算一下
 //    var finalWeekData: [String] {

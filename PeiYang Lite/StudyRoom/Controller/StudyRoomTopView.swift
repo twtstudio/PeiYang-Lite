@@ -217,7 +217,7 @@ struct StudyRoomTopView: View {
                     //MARK: show the buildings in WJ
                     GridWithoutScrollStack(minCellWidth: UIScreen.main.bounds.width / 8,
                                            spacing: 20,
-                                           numItems: buildingsWJ.count/2) {
+                                           numItems: buildingsWJ.count) {
                         
                     } content: { index, width in
                         GeometryReader { geo in
@@ -266,7 +266,7 @@ struct StudyRoomTopView: View {
                     //MARK: show the buildings in BY
                     GridWithoutScrollStack(minCellWidth: UIScreen.main.bounds.width / 8,
                                            spacing: 20,
-                                           numItems: buildingsBY.count/2) {} content: { index, width in
+                                           numItems: buildingsBY.count) {} content: { index, width in
                         GeometryReader { geo in
                             if(buildingsBY[index].areas[0].areaID != "-1") {
                                 NavigationLink(
@@ -402,16 +402,7 @@ struct StudyRoomTopView: View {
                             buildingsBY.insert(building, at: 0)
                         }
                     }
-                    /// bug，因为在上面的第一次请求，会导致，分配两遍
-                    /// 然后人为改的只遍历数组的前1/2
-                    for building in buildings{
-                        if(building.campusID == "1"){
-                            buildingsWJ.insert(building, at: 0)
-                        }
-                        else if(building.campusID == "2") {
-                            buildingsBY.insert(building, at: 0)
-                        }
-                    }
+                  
                 }
             }
             
