@@ -43,9 +43,7 @@ struct SettingView: View {
                     .padding(.top)
                 
                 
-                Button(action: {
-                    print("a")
-                }){
+                NavigationLink(destination: AcChangeColorView()){
                     StListView(title: "调色板", caption: "给课表、GPA以及黄页自定义喜欢的颜色")
                 }
                

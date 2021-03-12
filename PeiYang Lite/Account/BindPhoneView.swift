@@ -230,7 +230,7 @@ struct BindPhoneView: View {
         }){
             Image("back-arrow")
                 
-    })
+        })
     }
 }
 
