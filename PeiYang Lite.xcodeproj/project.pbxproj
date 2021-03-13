@@ -66,14 +66,8 @@
 		C942C1BA25CABACE006D0B83 /* supplyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C942C1B925CABACE006D0B83 /* supplyView.swift */; };
 		C942C1BE25CABE71006D0B83 /* SupplyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C942C1BD25CABE71006D0B83 /* SupplyManager.swift */; };
 		C942EF2125DB9785005495C3 /* GPA.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9ED7F1925DB886600CB3438 /* GPA.swift */; };
-<<<<<<< HEAD
 		C95A700B25F10F4900C83F65 /* AboutTwTView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95A700A25F10F4900C83F65 /* AboutTwTView.swift */; };
-		C95B57A225EBF37F004300B5 /* Issue.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95B579F25EBF37F004300B5 /* Issue.swift */; };
-		C95B57A325EBF37F004300B5 /* QuestionCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95B57A125EBF37F004300B5 /* QuestionCardView.swift */; };
-		C95B57A325EBF37F004300B5 /* SchQuestionCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95B57A125EBF37F004300B5 /* SchQuestionCardView.swift */; };
-=======
 		C95B57A325EBF37F004300B5 /* SchQuestionDetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95B57A125EBF37F004300B5 /* SchQuestionDetailHeaderView.swift */; };
->>>>>>> [Fix] 搜索没问题了
 		C95B57B025EBF3BA004300B5 /* HomeView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95B57AB25EBF3BA004300B5 /* HomeView2.swift */; };
 		C95B57B125EBF3BA004300B5 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95B57AC25EBF3BA004300B5 /* HomeView.swift */; };
 		C95B57B225EBF3BA004300B5 /* HomeSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95B57AD25EBF3BA004300B5 /* HomeSettingView.swift */; };
@@ -156,19 +150,19 @@
 		C9ED7EF125DB7A0300CB3438 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9ED7EF025DB7A0300CB3438 /* SplashView.swift */; };
 		C9ED7F1F25DB886600CB3438 /* GPA.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9ED7F1925DB886600CB3438 /* GPA.swift */; };
 		C9FCF26A25EB92B7004FC993 /* GridWithoutScrollStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FCF26925EB92B7004FC993 /* GridWithoutScrollStack.swift */; };
+		D31F8DE425FCA93900911775 /* DynamicHeightTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31F8DE125FCA93900911775 /* DynamicHeightTextField.swift */; };
+		D31F8DE525FCA93900911775 /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31F8DE225FCA93900911775 /* NavigationBar.swift */; };
+		D31F8DE625FCA93900911775 /* WebHtmlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31F8DE325FCA93900911775 /* WebHtmlView.swift */; };
+		D31F8DEA25FCA95800911775 /* log.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31F8DE925FCA95800911775 /* log.swift */; };
+		D31F8DEE25FCA97100911775 /* SchFavManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31F8DED25FCA97100911775 /* SchFavManager.swift */; };
+		D31F8DF825FCA9C000911775 /* SchQuestionAnswerCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31F8DF725FCA9C000911775 /* SchQuestionAnswerCellView.swift */; };
 		D344856625F38EF30005915B /* SchSearchResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344856525F38EF30005915B /* SchSearchResultView.swift */; };
 		D346ACDA25F2A90000A146D8 /* ScrollViewWithRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = D346ACD925F2A90000A146D8 /* ScrollViewWithRefresh.swift */; };
 		D3490D0025FA42B3004AB614 /* SchQuestionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3490CFF25FA42B3004AB614 /* SchQuestionDetailView.swift */; };
 		D3490D1225FAE78A004AB614 /* SchQuestionCommentCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3490D1125FAE78A004AB614 /* SchQuestionCommentCellView.swift */; };
-		D3490D1E25FB5061004AB614 /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3490D1D25FB5061004AB614 /* NavigationBar.swift */; };
-		D3490D2E25FB6592004AB614 /* DynamicHeightTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3490D2D25FB6592004AB614 /* DynamicHeightTextField.swift */; };
-		D3490D3225FB7C45004AB614 /* log.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3490D3125FB7C45004AB614 /* log.swift */; };
-		D3490D3C25FB847A004AB614 /* SchQuestionAnswerCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3490D3B25FB847A004AB614 /* SchQuestionAnswerCellView.swift */; };
-		D34FEF1B25FBAEB000226C92 /* WebHtmlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34FEF1A25FBAEB000226C92 /* WebHtmlView.swift */; };
 		D357A25725F0FEEA00C061CF /* UniversalExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D357A25625F0FEEA00C061CF /* UniversalExtension.swift */; };
 		D357A25F25F0FF7F00C061CF /* UniversalExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D357A25625F0FEEA00C061CF /* UniversalExtension.swift */; };
 		D357A26325F0FFC600C061CF /* SchAnswerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D357A26225F0FFC600C061CF /* SchAnswerManager.swift */; };
-		D35BBEF325FBEBBA00A58F8A /* SchFavManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35BBEF225FBEBBA00A58F8A /* SchFavManager.swift */; };
 		D35E4E4325EEB18D00526388 /* PhotoListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35E4E4225EEB18D00526388 /* PhotoListView.swift */; };
 		D35E4E6225F061B000526388 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35E4E6125F061B000526388 /* ImagePicker.swift */; };
 		D35E4E6D25F0C32700526388 /* SchCommentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35E4E6825F0C32600526388 /* SchCommentManager.swift */; };
@@ -275,14 +269,8 @@
 		C942C1B925CABACE006D0B83 /* supplyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = supplyView.swift; sourceTree = "<group>"; };
 		C942C1BD25CABE71006D0B83 /* SupplyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupplyManager.swift; sourceTree = "<group>"; };
 		C9455FB18B34C565541F53AB /* Pods_PeiYang_Lite.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PeiYang_Lite.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-<<<<<<< HEAD
 		C95A700A25F10F4900C83F65 /* AboutTwTView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutTwTView.swift; sourceTree = "<group>"; };
-		C95B579F25EBF37F004300B5 /* Issue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Issue.swift; sourceTree = "<group>"; };
-		C95B57A125EBF37F004300B5 /* QuestionCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionCardView.swift; sourceTree = "<group>"; };
-		C95B57A125EBF37F004300B5 /* SchQuestionCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchQuestionCardView.swift; sourceTree = "<group>"; };
-=======
 		C95B57A125EBF37F004300B5 /* SchQuestionDetailHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchQuestionDetailHeaderView.swift; sourceTree = "<group>"; };
->>>>>>> [Fix] 搜索没问题了
 		C95B57AB25EBF3BA004300B5 /* HomeView2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView2.swift; sourceTree = "<group>"; };
 		C95B57AC25EBF3BA004300B5 /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		C95B57AD25EBF3BA004300B5 /* HomeSettingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeSettingView.swift; sourceTree = "<group>"; };
@@ -364,18 +352,18 @@
 		C9ED7EF025DB7A0300CB3438 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		C9ED7F1925DB886600CB3438 /* GPA.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPA.swift; sourceTree = "<group>"; };
 		C9FCF26925EB92B7004FC993 /* GridWithoutScrollStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridWithoutScrollStack.swift; sourceTree = "<group>"; };
+		D31F8DE125FCA93900911775 /* DynamicHeightTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicHeightTextField.swift; sourceTree = "<group>"; };
+		D31F8DE225FCA93900911775 /* NavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
+		D31F8DE325FCA93900911775 /* WebHtmlView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebHtmlView.swift; sourceTree = "<group>"; };
+		D31F8DE925FCA95800911775 /* log.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = log.swift; sourceTree = "<group>"; };
+		D31F8DED25FCA97100911775 /* SchFavManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchFavManager.swift; sourceTree = "<group>"; };
+		D31F8DF725FCA9C000911775 /* SchQuestionAnswerCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchQuestionAnswerCellView.swift; sourceTree = "<group>"; };
 		D344856525F38EF30005915B /* SchSearchResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchSearchResultView.swift; sourceTree = "<group>"; };
 		D346ACD925F2A90000A146D8 /* ScrollViewWithRefresh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollViewWithRefresh.swift; sourceTree = "<group>"; };
 		D3490CFF25FA42B3004AB614 /* SchQuestionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchQuestionDetailView.swift; sourceTree = "<group>"; };
 		D3490D1125FAE78A004AB614 /* SchQuestionCommentCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchQuestionCommentCellView.swift; sourceTree = "<group>"; };
-		D3490D1D25FB5061004AB614 /* NavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
-		D3490D2D25FB6592004AB614 /* DynamicHeightTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicHeightTextField.swift; sourceTree = "<group>"; };
-		D3490D3125FB7C45004AB614 /* log.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = log.swift; sourceTree = "<group>"; };
-		D3490D3B25FB847A004AB614 /* SchQuestionAnswerCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchQuestionAnswerCellView.swift; sourceTree = "<group>"; };
-		D34FEF1A25FBAEB000226C92 /* WebHtmlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebHtmlView.swift; sourceTree = "<group>"; };
 		D357A25625F0FEEA00C061CF /* UniversalExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniversalExtension.swift; sourceTree = "<group>"; };
 		D357A26225F0FFC600C061CF /* SchAnswerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchAnswerManager.swift; sourceTree = "<group>"; };
-		D35BBEF225FBEBBA00A58F8A /* SchFavManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchFavManager.swift; sourceTree = "<group>"; };
 		D35E4E4225EEB18D00526388 /* PhotoListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoListView.swift; sourceTree = "<group>"; };
 		D35E4E6125F061B000526388 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		D35E4E6825F0C32600526388 /* SchCommentManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchCommentManager.swift; sourceTree = "<group>"; };
@@ -466,9 +454,9 @@
 				D3EB57F025F4B40700A9321F /* MutiLineVStack.swift */,
 				D38F7FE925F63A67008DBB0E /* LoadingView.swift */,
 				D35E4FE125F7E6F000526388 /* StarRatingView.swift */,
-				D3490D1D25FB5061004AB614 /* NavigationBar.swift */,
-				D3490D2D25FB6592004AB614 /* DynamicHeightTextField.swift */,
-				D34FEF1A25FBAEB000226C92 /* WebHtmlView.swift */,
+				D31F8DE125FCA93900911775 /* DynamicHeightTextField.swift */,
+				D31F8DE225FCA93900911775 /* NavigationBar.swift */,
+				D31F8DE325FCA93900911775 /* WebHtmlView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -538,11 +526,8 @@
 		03B688B324D156CE0020AD47 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-<<<<<<< HEAD
+				D31F8DE925FCA95800911775 /* log.swift */,
 				C983703B25F37B98000E3367 /* DataStorage.swift */,
-=======
-				D3490D3125FB7C45004AB614 /* log.swift */,
->>>>>>> [Mix] 校务完成了，评论框还差点意思
 				03B688B424D156CE0020AD47 /* Storage.swift */,
 				03B688EC24D156CE0020AD47 /* Network.swift */,
 				03B688ED24D156CE0020AD47 /* Localizable.swift */,
@@ -1039,10 +1024,10 @@
 		D37DD87825EDFA8700A662E0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				D35E4E6A25F0C32700526388 /* SchQusetionManager.swift */,
+				D31F8DED25FCA97100911775 /* SchFavManager.swift */,
 				D35E4E6825F0C32600526388 /* SchCommentManager.swift */,
 				D357A26225F0FFC600C061CF /* SchAnswerManager.swift */,
-				D35BBEF225FBEBBA00A58F8A /* SchFavManager.swift */,
+				D35E4E6A25F0C32700526388 /* SchQusetionManager.swift */,
 				D35E4E6925F0C32600526388 /* SchTagManager.swift */,
 				D35E4E6C25F0C32700526388 /* SchUserManager.swift */,
 				D37DD87925EDFA8700A662E0 /* SchManager.swift */,
@@ -1053,9 +1038,9 @@
 		D37DD87A25EDFA8700A662E0 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D31F8DF725FCA9C000911775 /* SchQuestionAnswerCellView.swift */,
 				C95B57A125EBF37F004300B5 /* SchQuestionDetailHeaderView.swift */,
 				D3490D1125FAE78A004AB614 /* SchQuestionCommentCellView.swift */,
-				D3490D3B25FB847A004AB614 /* SchQuestionAnswerCellView.swift */,
 				D37DD87B25EDFA8700A662E0 /* SchQuestionCellView.swift */,
 				D37DD87C25EDFA8700A662E0 /* SchSelectTagView.swift */,
 				D3EB57EA25F3991500A9321F /* SchQuestionScrollView.swift */,
@@ -1243,7 +1228,6 @@
 				C941D59525D65CAC00E361AB /* SharedMessage.swift in Sources */,
 				C9C25AD325C4F9D500F26E40 /* StudyRoomTopView.swift in Sources */,
 				C95B57B425EBF3BA004300B5 /* MainView.swift in Sources */,
-				D3490D2E25FB6592004AB614 /* DynamicHeightTextField.swift in Sources */,
 				C9D5BF4C25CB9C2800CD3537 /* AlertView.swift in Sources */,
 				C9663C2E25E248A600DFC973 /* CouseTableHeaderView.swift in Sources */,
 				D37DD88325EDFA8700A662E0 /* SchSelectTagView.swift in Sources */,
@@ -1257,10 +1241,10 @@
 				03B6893824D1572A0020AD47 /* PieCellView.swift in Sources */,
 				C91CF662252C859F001C327B /* ClassesManager.swift in Sources */,
 				03D85EB424DD071800637AB8 /* WLANManager.swift in Sources */,
+				D31F8DEA25FCA95800911775 /* log.swift in Sources */,
 				D37DD88225EDFA8700A662E0 /* SchQuestionCellView.swift in Sources */,
 				C9D59B6025BD3859006865FC /* FirstStepView.swift in Sources */,
 				03B6892324D156F40020AD47 /* ECardManager.swift in Sources */,
-				032CE4FC24DBA1E5003786F6 /* CircleActivityView.swift in Sources */,
 				C983703C25F37B98000E3367 /* DataStorage.swift in Sources */,
 				C9663C2B25E248A600DFC973 /* CourseTableListView.swift in Sources */,
 				C95B57C625EBF3C2004300B5 /* SelectedDetailView.swift in Sources */,
@@ -1272,7 +1256,6 @@
 				C9D59B6C25BE7655006865FC /* FinalStepView.swift in Sources */,
 				03B6894924D1579B0020AD47 /* CurveDetailView.swift in Sources */,
 				C971BA8725C8DED9006A292E /* VerificationCodeManager.swift in Sources */,
-				D3490D1E25FB5061004AB614 /* NavigationBar.swift in Sources */,
 				D346ACDA25F2A90000A146D8 /* ScrollViewWithRefresh.swift in Sources */,
 				C9ED446625C40936001A5456 /* RegisterFirView.swift in Sources */,
 				C9CF3D5E25D153780085263F /* BindPhoneView.swift in Sources */,
@@ -1284,12 +1267,9 @@
 				C9CF3DD725D2B1E00085263F /* Home.swift in Sources */,
 				C9D59B5A25BD35D0006865FC /* ChMeToFindView.swift in Sources */,
 				C903418625F8B78900F78B9C /* AcChangeNameView.swift in Sources */,
-				032CE4D724DBA1E5003786F6 /* URLImageService.swift in Sources */,
 				D37DD87E25EDFA8700A662E0 /* SchAccountView.swift in Sources */,
-				032CE4ED24DBA1E5003786F6 /* DownloadCoordinator.swift in Sources */,
-				D37DD88125EDFA8700A662E0 /* SchCommentManager.swift in Sources */,
+				D37DD88125EDFA8700A662E0 /* SchManager.swift in Sources */,
 				D37DD87E25EDFA8700A662E0 /* SchAccountView.swift in Sources */,
-				C9663C2825E248A600DFC973 /* CourseTableCourseDetailView.swift in Sources */,
 				D35E4E6E25F0C32700526388 /* SchTagManager.swift in Sources */,
 				D37DD88125EDFA8700A662E0 /* SchManager.swift in Sources */,
 				03D85EBD24DD10AF00637AB8 /* WLANDetailView.swift in Sources */,
@@ -1307,12 +1287,6 @@
 				D357A25725F0FEEA00C061CF /* UniversalExtension.swift in Sources */,
 				03B6892424D156F40020AD47 /* ECardLoginView.swift in Sources */,
 				C9D5BF5325CC0D4800CD3537 /* RemindView.swift in Sources */,
-<<<<<<< HEAD
-				032CE4E424DBA1E5003786F6 /* DefaultPlaceholder.swift in Sources */,
-=======
-				D35BBEF325FBEBBA00A58F8A /* SchFavManager.swift in Sources */,
->>>>>>> [Mix] 校务完成了，评论框还差点意思
-				C95B57E725EBF40C004300B5 /* CourseTableDetailView.swift in Sources */,
 				C95B57DB25EBF3ED004300B5 /* GPACellListView.swift in Sources */,
 				C971BA8F25C8FEE4006A292E /* RegisterManager.swift in Sources */,
 				03B6893224D1572A0020AD47 /* ECardDetailView.swift in Sources */,
@@ -1320,11 +1294,12 @@
 				C9836FBF25F28622000E3367 /* RoomDetailView.swift in Sources */,
 				C9D59B6825BE6E71006865FC /* SecondStepView.swift in Sources */,
 				03B6894B24D1579B0020AD47 /* Chart.swift in Sources */,
+				D31F8DE525FCA93900911775 /* NavigationBar.swift in Sources */,
 				C95B57B125EBF3BA004300B5 /* HomeView.swift in Sources */,
+				D31F8DE425FCA93900911775 /* DynamicHeightTextField.swift in Sources */,
 				C9ED7F1F25DB886600CB3438 /* GPA.swift in Sources */,
 				C9CF3DD825D2B1E00085263F /* WeatherManager.swift in Sources */,
 				03B6893A24D1572A0020AD47 /* ECardDailyAmountView.swift in Sources */,
-				C95B57E625EBF40C004300B5 /* CourseTableDetailView2.swift in Sources */,
 				D3EB57F125F4B40700A9321F /* MutiLineVStack.swift in Sources */,
 				C95B57D425EBF3DD004300B5 /* GPACardView.swift in Sources */,
 				C95B57C125EBF3C2004300B5 /* HomeLoginView.swift in Sources */,
@@ -1334,7 +1309,6 @@
 				C9FCF26A25EB92B7004FC993 /* GridWithoutScrollStack.swift in Sources */,
 				03B6895D24D157D90020AD47 /* BlurView.swift in Sources */,
 				03B6891724D156CF0020AD47 /* Localizable.swift in Sources */,
-				D3490D3225FB7C45004AB614 /* log.swift in Sources */,
 				03B6895E24D157D90020AD47 /* GridStack.swift in Sources */,
 				C9D5BF6525CE31E400CD3537 /* AccountView.swift in Sources */,
 				C95B57C425EBF3C2004300B5 /* HomeDetailView.swift in Sources */,
@@ -1346,10 +1320,7 @@
 				D3490D0025FA42B3004AB614 /* SchQuestionDetailView.swift in Sources */,
 				D37DD88025EDFA8700A662E0 /* SchSearchView.swift in Sources */,
 				C9CF3D6225D162310085263F /* BindManager.swift in Sources */,
-				032CE4DC24DBA1E5003786F6 /* Log.swift in Sources */,
-				032CE4F324DBA1E5003786F6 /* ImageLoaderContentView.swift in Sources */,
 				C9836FD025F29160000E3367 /* AcSetShowDayView.swift in Sources */,
-				032CE4F924DBA1E5003786F6 /* AnimatedImageView.swift in Sources */,
 				D35E4E6F25F0C32700526388 /* SchQusetionManager.swift in Sources */,
 				03D85EBF24DD17B700637AB8 /* WLANLoginView.swift in Sources */,
 				C9663C2C25E248A600DFC973 /* CourseTableContentView.swift in Sources */,
@@ -1366,11 +1337,10 @@
 				D3490D1225FAE78A004AB614 /* SchQuestionCommentCellView.swift in Sources */,
 				03B6893524D1572A0020AD47 /* ECardOverviewView.swift in Sources */,
 				C9CF3D6A25D1684E0085263F /* BindEmailView.swift in Sources */,
-				D3490D3C25FB847A004AB614 /* SchQuestionAnswerCellView.swift in Sources */,
+				D31F8DF825FCA9C000911775 /* SchQuestionAnswerCellView.swift in Sources */,
 				C9D59B3F25BBC138006865FC /* KeywordLoginView.swift in Sources */,
 				C9ED446F25C40C88001A5456 /* RegisterThiView.swift in Sources */,
 				C9016EED25E95242007524DD /* BuildingSectionView.swift in Sources */,
-				032CE4EE24DBA1E5003786F6 /* LoadingState.swift in Sources */,
 				C9836FB925F28608000E3367 /* CourseTableDetailView.swift in Sources */,
 				C95B57E825EBF40C004300B5 /* CourseTableCardView.swift in Sources */,
 				03B6893324D1572A0020AD47 /* ECardCardView.swift in Sources */,
@@ -1380,23 +1350,20 @@
 				D3EB57EB25F3991500A9321F /* SchQuestionScrollView.swift in Sources */,
 				C95B57B325EBF3BA004300B5 /* HomeViewHeaderView.swift in Sources */,
 				03D85EB824DD0C6300637AB8 /* WLAN.swift in Sources */,
-				032CE4EB24DBA1E5003786F6 /* Resize.swift in Sources */,
 				C9836FB325F285EA000E3367 /* CourseTableCourseDetailView.swift in Sources */,
+				D31F8DEE25FCA97100911775 /* SchFavManager.swift in Sources */,
 				C9ED7EF125DB7A0300CB3438 /* SplashView.swift in Sources */,
 				D35E4E4325EEB18D00526388 /* PhotoListView.swift in Sources */,
 				C971BA7B25C64F7D006A292E /* CalendarRepresentable.swift in Sources */,
 				03B6891624D156CF0020AD47 /* Network.swift in Sources */,
 				03ACE52A24D844C5009468D4 /* RefreshButton.swift in Sources */,
-<<<<<<< HEAD
 				C9836FAD25F285A9000E3367 /* StudyRoomContentView.swift in Sources */,
-=======
-				D34FEF1B25FBAEB000226C92 /* WebHtmlView.swift in Sources */,
->>>>>>> [Mix] 校务完成了，评论框还差点意思
 				C971BA8125C6500D006A292E /* TimeSelectionView.swift in Sources */,
 				C95B57ED25EBF413004300B5 /* CourseTable.swift in Sources */,
 				C95B57DA25EBF3ED004300B5 /* GPAListView.swift in Sources */,
 				C9BCE6BD25DE9A040041E533 /* DrawerView.swift in Sources */,
 				C95B57A325EBF37F004300B5 /* SchQuestionDetailHeaderView.swift in Sources */,
+				D31F8DE625FCA93900911775 /* WebHtmlView.swift in Sources */,
 				03B6893724D1572A0020AD47 /* ECardTranscationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

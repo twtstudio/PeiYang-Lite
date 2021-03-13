@@ -28,7 +28,7 @@ struct SchQuestionDetailHeaderView: View {
                 
                 Spacer()
                 
-                Text((question.solved ?? -1) == -1 ? "未回复" : "·已回复")
+                Text((question.solved ?? 0) == 0 ? "未回复" : "·已回复")
                     .font(.subheadline)
                     .foregroundColor(Color(#colorLiteral(red: 0.1882352941, green: 0.2352941176, blue: 0.4, alpha: 1)))
             }
