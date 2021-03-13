@@ -14,6 +14,7 @@ struct RoomDetailView: View {
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     
     @State private var isShowCalender = false
+    @State var isFavoured: Bool = false
     var className: String
     // 定位classroom
     var classData: Classroom
@@ -39,10 +40,57 @@ struct RoomDetailView: View {
             }
             .frame(width: screen.width * 0.9)
             .padding(.top, 40)
-//            ForEach(weekData, id: \.self) { data in
-//                Text(data)
-//            }
-            RoomDetailHeaderView(classroomId: classData.classroomID, className: className, activeWeek: activeWeek)
+//
+//            RoomDetailHeaderView(classroomId: classData.classroomID, className: className, activeWeek: activeWeek)
+            HStack(alignment: .firstTextBaseline) {
+                Text(className)
+                    .font(.title)
+                    .fontWeight(.bold)
+                    .foregroundColor(Color(#colorLiteral(red: 0.3856853843, green: 0.403162986, blue: 0.4810273647, alpha: 1)))
+                
+                Text("WEEK \(activeWeek.description)")
+                    .font(.body)
+                    .fontWeight(.light)
+                    .foregroundColor(.gray)
+                
+                Spacer()
+                
+                Button(action: {
+                    
+                    if (isFavoured == false){
+                        CollectionManager.addFavour(classroomID: classData.classroomID) {result in
+                            switch result {
+                            case .success(_):
+                                break
+//                                isFavoured = true
+//
+                            case .failure(_):
+                                break
+                            }
+                        }
+                    }
+                    else if (isFavoured == true) {
+                        CollectionManager.deleteFavour(classroomID: classData.classroomID) { result in
+                            switch result {
+                            case .success(_):
+                                break
+//                                    isFavoured = false
+//
+                            case .failure(_):
+                               break
+                            }
+                        }
+                        
+                    }
+                    isFavoured.toggle()
+                }) {
+                    Text(isFavoured ? "已收藏" : "收藏")
+                        .font(.headline)
+                        .bold()
+                        .foregroundColor(Color(#colorLiteral(red: 0.3856853843, green: 0.403162986, blue: 0.4810273647, alpha: 1)))
+                }
+            }
+            .padding()
                 .padding(.horizontal)
             
             ScrollView(.vertical, showsIndicators: false) {
@@ -102,6 +150,14 @@ struct RoomDetailView: View {
             }
         }
         weekData = returnWeekData
+        
+        if let saveCollectionClassId = DataStorage.retreive("studyroom/collections.json", from: .caches, as: [String].self) {
+            for roomID in saveCollectionClassId {
+                if roomID == classData.classroomID {
+                    isFavoured = true
+                }
+            }
+        }
     }
 }
 
@@ -114,71 +170,71 @@ struct RoomDetailView_Previews: PreviewProvider {
 }
 
 
-struct RoomDetailHeaderView: View {
-    var classroomId: String
-    var className: String
-    var activeWeek: Int
-    
-    
-    @State var isFavoured: Bool = false
-    
-    var body: some View {
-        HStack(alignment: .firstTextBaseline) {
-            Text(className)
-                .font(.title)
-                .fontWeight(.bold)
-                .foregroundColor(Color(#colorLiteral(red: 0.3856853843, green: 0.403162986, blue: 0.4810273647, alpha: 1)))
-            
-            Text("WEEK \(activeWeek.description)")
-                .font(.body)
-                .fontWeight(.light)
-                .foregroundColor(.gray)
-            
-            Spacer()
-            
-            Button(action: {
-                if (isFavoured == false){
-                    CollectionManager.addFavour(classroomID: classroomId) {result in
-                        switch result {
-                        case .success(let data):
-
-                            if(data.errorCode == 0) {
-                                isFavoured = true
-                            }
-                        case .failure(_):
-                            break
-                        }
-                    }
-                }
-                else if (isFavoured == true) {
-                    CollectionManager.deleteFavour(classroomID: classroomId) { result in
-                        switch result {
-                        case .success(let data):
-                            if(data.errorCode == 0) {
-                                isFavoured = false
-                            }
-                        case .failure(_):
-                           break
-                        }
-                    }
-                    
-                }
-            }) {
-                Text(isFavoured ? "已收藏" : "收藏")
-                    .font(.headline)
-                    .bold()
-                    .foregroundColor(Color(#colorLiteral(red: 0.3856853843, green: 0.403162986, blue: 0.4810273647, alpha: 1)))
-            }
-        }
-        .padding()
-        .onAppear(perform: {
-            if let saveCollectionClassId = DataStorage.retreive("studyroom/collections.json", from: .caches, as: [String].self) {
-                for roomID in saveCollectionClassId {
-                    if roomID == classroomId {
-                        isFavoured = true
-                    }
-                }
-            }
-        })
-    }
-}
+//struct RoomDetailHeaderView: View {
+//    var classroomId: String
+//    var className: String
+//    var activeWeek: Int
+//
+//
+//    @State var isFavoured: Bool = false
+//
+//    var body: some View {
+//        HStack(alignment: .firstTextBaseline) {
+//            Text(className)
+//                .font(.title)
+//                .fontWeight(.bold)
+//                .foregroundColor(Color(#colorLiteral(red: 0.3856853843, green: 0.403162986, blue: 0.4810273647, alpha: 1)))
+//
+//            Text("WEEK \(activeWeek.description)")
+//                .font(.body)
+//                .fontWeight(.light)
+//                .foregroundColor(.gray)
+//
+//            Spacer()
+//
+//            Button(action: {
+//                if (isFavoured == false){
+//                    CollectionManager.addFavour(classroomID: classroomId) {result in
+//                        switch result {
+//                        case .success(let data):
+//
+//                            if(data.errorCode == 0) {
+//                                isFavoured = true
+//                            }
+//                        case .failure(_):
+//                            break
+//                        }
+//                    }
+//                }
+//                else if (isFavoured == true) {
+//                    CollectionManager.deleteFavour(classroomID: classroomId) { result in
+//                        switch result {
+//                        case .success(let data):
+//                            if(data.errorCode == 0) {
+//                                isFavoured = false
+//                            }
+//                        case .failure(_):
+//                           break
+//                        }
+//                    }
+//
+//                }
+//            }) {
+//                Text(isFavoured ? "已收藏" : "收藏")
+//                    .font(.headline)
+//                    .bold()
+//                    .foregroundColor(Color(#colorLiteral(red: 0.3856853843, green: 0.403162986, blue: 0.4810273647, alpha: 1)))
+//            }
+//        }
+//        .padding()
+//        .onAppear(perform: {
+//            if let saveCollectionClassId = DataStorage.retreive("studyroom/collections.json", from: .caches, as: [String].self) {
+//                for roomID in saveCollectionClassId {
+//                    if roomID == classroomId {
+//                        isFavoured = true
+//                    }
+//                }
+//            }
+//        })
+//    }
+//}

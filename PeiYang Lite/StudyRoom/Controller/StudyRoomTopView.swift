@@ -195,10 +195,10 @@ struct StudyRoomTopView: View {
                             }
                         }
                     }, label: {
-                        Text("信号开小差了...")
-                            .font(.title)
-                            .fontWeight(.black)
-                            .foregroundColor(.gray)
+                        Image("netWrong")
+                            .resizable()
+                            .scaledToFit()
+                            .padding(50)
                     })
                     
                 }
@@ -366,6 +366,7 @@ struct StudyRoomTopView: View {
                 } else {
                     alertMessage = data.message
                     getCollectionClassId = data.data.classroomID!
+                    DataStorage.store(getCollectionClassId, in: .caches, as: "studyroom/collections.json")
                 }
                 for code in getCollectionClassId {
                     for building in buildings {
@@ -378,7 +379,6 @@ struct StudyRoomTopView: View {
                         }
                     }
                 }
-                
             case .failure(_):
                 break
             }
