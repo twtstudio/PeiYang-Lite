@@ -29,7 +29,7 @@ protocol SchQuestionScrollViewModel: ObservableObject {
 
 struct SchQuestionScrollView<Model: SchQuestionScrollViewModel>: View {
     @ObservedObject var model: Model
-    @Environment(\.presentationMode) var presentationMode
+    
  
     var body: some View {
         ScrollViewWithRefresh(refreshing: $model.dataSource.isReloading,
@@ -37,12 +37,10 @@ struct SchQuestionScrollView<Model: SchQuestionScrollViewModel>: View {
                                 model.action.reloadData()
                               },
                               content: {
-            LazyVStack(spacing: 10) {
+            LazyVStack {
                 ForEach(model.dataSource.questions.indices, id: \.self) { i in
                     SchQuestionCellView(question: model.dataSource.questions[i])
-                        .onTapGesture {
-                            
-                        }
+                        .padding(.top, 10)
                 }
                 if model.dataSource.questions.count > 0{
                     Text(model.dataSource.page < model.dataSource.maxPage ? "加载中..." : "已经到底了...")

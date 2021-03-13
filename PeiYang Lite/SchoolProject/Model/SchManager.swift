@@ -21,7 +21,7 @@ struct SchResponseModel<T: Codable>: Codable {
 
 struct SchManager {
     
-    static let BASE_URL = "http://47.93.253.240:10805/api"
+    static let BASE_URL = "http://47.94.198.197:10805/api"
     static let tokenKey = "SCHTOKENKEY"
     
     static func request(
@@ -35,8 +35,13 @@ struct SchManager {
     ) {
         let url = BASE_URL + path
         var tmpQuery = query
-        tmpQuery["token"] = Storage.defaults.string(forKey: tokenKey)
-        return Network.fetch(url, query: tmpQuery, headers: headers, method: method, body: body, async: async, completion: completion)
+        var tmpBody = body
+        if method == .get {
+            tmpQuery["token"] = Storage.defaults.string(forKey: tokenKey)
+        } else if method == .post {
+            tmpBody["token"] = Storage.defaults.string(forKey: tokenKey)
+        }
+        return Network.fetch(url, query: tmpQuery, headers: headers, method: method, body: tmpBody, async: async, completion: completion)
     }
     
     static func uploadImage(

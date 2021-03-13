@@ -14,7 +14,7 @@ struct SchQuestionCommentCellView: View {
         get {
             let day = comment.createdAt?[0..<10] ?? ""
             let time = comment.createdAt?[11..<16] ?? ""
-            return day + " " + time
+            return day + "  " + time
         }
     }
     
@@ -34,7 +34,7 @@ struct SchQuestionCommentCellView: View {
             }
             .frame(height: screen.height * 0.05)
             
-            Text(comment.commit ?? "")
+            Text(comment.contain ?? "")
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .multilineTextAlignment(.leading)
             
@@ -45,6 +45,11 @@ struct SchQuestionCommentCellView: View {
                         switch result {
                         case .success(_):
                             comment.isLiked?.toggle()
+                            if comment.isLiked ?? false {
+                                comment.likes = (comment.likes ?? 0) + 1
+                            } else {
+                                comment.likes = (comment.likes ?? 0) - 1
+                            }
                         case .failure(let err):
                             print("评论点赞失败", err)
                         }
@@ -64,8 +69,8 @@ struct SchQuestionCommentCellView: View {
 struct SchQuestionCommentCellView_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
-            SchQuestionCommentCellView(comment: SchCommentModel(id: 0, contain: nil, adminID: -1, score: nil, commit: "微北洋真", userID: 0, likes: 999, createdAt: "2021-03-10T12:50:28.000000Z", updatedAt: nil, username: "微北洋真不戳", isLiked: true, adminName: nil))
-            SchQuestionCommentCellView(comment: SchCommentModel(id: 0, contain: nil, adminID: -1, score: nil, commit: "微北洋真不戳微北洋真不戳微北洋真不戳微北洋真不戳微北洋真不戳微北洋真不戳微北洋真不戳微北洋真不戳微北洋真不戳微北洋真不戳微北洋真不戳微北洋真不戳微北洋真不戳微北洋真不戳微北洋真不戳", userID: 0, likes: 999, createdAt: "2021-03-10T12:50:28.000000Z", updatedAt: nil, username: "微北洋真不戳", isLiked: true, adminName: nil))
+            SchQuestionCommentCellView(comment: SchCommentModel(id: 0, contain: "微北洋真", adminID: -1, score: nil, commit: "微北洋真", userID: 0, likes: 999, createdAt: "2021-03-10T12:50:28.000000Z", updatedAt: nil, username: "微北洋真不戳", isLiked: true, adminName: nil))
+            SchQuestionCommentCellView(comment: SchCommentModel(id: 0, contain: "微北洋真不戳微北洋真不戳微北洋真不戳微北洋真不戳微北洋真不戳微北洋真不戳微北洋真不戳微北洋真不戳微北洋真不戳微北洋真不戳微北洋真不戳微北洋真不戳微北洋真不戳微北洋真不戳微北洋真不戳", adminID: -1, score: nil, commit: "微北洋真不戳微北洋真不戳微北洋真不戳微北洋真不戳微北洋真不戳微北洋真不戳微北洋真不戳微北洋真不戳微北洋真不戳微北洋真不戳微北洋真不戳微北洋真不戳微北洋真不戳微北洋真不戳微北洋真不戳", userID: 0, likes: 999, createdAt: "2021-03-10T12:50:28.000000Z", updatedAt: nil, username: "微北洋真不戳", isLiked: true, adminName: nil))
         }
         .frame(width: screen.width, height: screen.height)
         .background(Color.black.edgesIgnoringSafeArea(.all))

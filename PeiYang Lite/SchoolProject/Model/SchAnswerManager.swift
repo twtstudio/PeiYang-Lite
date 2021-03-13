@@ -7,7 +7,7 @@
 
 import Foundation
 
-class SchAnswerManager {
+struct SchAnswerManager {
     static func answerGet(id: Int, completion: @escaping (Result<[SchCommentModel], Network.Failure>) -> Void) {
         SchManager.request("/user/question/get/answer?question_id=\(id)") { (result) in
             switch result {
@@ -53,7 +53,7 @@ class SchAnswerManager {
             switch result {
                 case .success(let (data, _)):
                     do {
-                        let res = try JSONDecoder().decode(SchResponseModel<Int>.self, from: data)
+                        let res = try JSONDecoder().decode(SchResponseModel<[String: Int]>.self, from: data)
                         if res.errorCode == 0 {
                             completion(.success(true))
                         }
@@ -66,4 +66,3 @@ class SchAnswerManager {
         }
     }
 }
-

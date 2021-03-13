@@ -4,7 +4,7 @@ struct CourseTableDetailView: View {
     @ObservedObject var store = Storage.courseTable
     private var courseTable: CourseTable { store.object }
     
-    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.presentationMode) private var presentationMode
     @Environment(\.horizontalSizeClass) private var sizeClass
     private var isRegular: Bool { sizeClass == .regular }
     

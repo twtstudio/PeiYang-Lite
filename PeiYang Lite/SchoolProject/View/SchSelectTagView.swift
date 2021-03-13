@@ -14,7 +14,16 @@ struct SchSelectTagView: View {
     @State private var tagIntro: String = ""
     
     @EnvironmentObject var tagSource: SchTagSource
-    @State private var tagDescription: String = ""
+    private var tagDescription: String {
+        for tag in tagSource.tags {
+            if tag.isSelected ?? false {
+                return tag.description ?? ""
+            }
+        }
+        return ""
+    }
+    
+    
     
     var body: some View {
         VStack(spacing: 10) {
@@ -48,7 +57,6 @@ struct SchSelectTagView: View {
                         tagSource.tags[i].isSelected = false
                     }
                     tagSource.tags[i].isSelected?.toggle()
-                    tagDescription = tagSource.tags[i].description ?? ""
                 }, label: {
                     SchTagView(model: $tagSource.tags[i])
                 })

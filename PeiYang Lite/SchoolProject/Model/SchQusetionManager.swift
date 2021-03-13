@@ -48,6 +48,7 @@ struct SchQuestionModel: Codable, Identifiable {
     var thumbUrlList: [String]?
     var isLiked: Bool?
     var isOwner: Bool?
+    var isFavorite: Bool?
     
     enum CodingKeys: String, CodingKey {
         case id, name
@@ -63,6 +64,7 @@ struct SchQuestionModel: Codable, Identifiable {
         case thumbUrlList = "thumb_url_list"
         case isOwner = "is_owner"
         case content = "description"
+        case isFavorite = "is_favorite"
     }
 }
 
@@ -158,15 +160,15 @@ struct SchQuestionManager {
     }
     
     enum QuesGetType {
-        case liked, my, solved
+        case fav, my
     }
     
     static func getQuestions(type: QuesGetType, limits: Int = 0, completion: @escaping (Result<[SchQuestionModel], Network.Failure>) -> Void) {
-        SchManager.request(type == .liked ? "/user/likes/get/question" : "/user/question/get/myQuestion?limits=\(limits)") { (result) in
+        SchManager.request(type == .fav ? "/user/favorite/get/all" : "/user/question/get/myQuestion?limits=\(limits)") { (result) in
             switch result {
                 case .success(let (data, _)):
                     do {
-                        if type == .liked {
+                        if type == .fav || limits == 0 {
                             let res = try JSONDecoder().decode(SchResponseModel<[SchQuestionModel]>.self, from: data)
                             completion(.success(res.data ?? []))
                         } else {

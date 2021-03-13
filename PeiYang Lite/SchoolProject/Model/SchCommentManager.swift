@@ -34,7 +34,7 @@ struct SchCommentModel: Codable {
 }
 
 
-class SchCommentManager {
+struct SchCommentManager {
     static func commentGet(id: Int, completion: @escaping (Result<[SchCommentModel], Network.Failure>) -> Void) {
         SchManager.request("/user/question/get/commit?question_id=\(id)") { (result) in
             switch result {
@@ -59,7 +59,7 @@ class SchCommentManager {
             switch result {
                 case .success(let (data, _)):
                     do {
-                        let res = try JSONDecoder().decode(SchResponseModel<Int>.self, from: data)
+                        let res = try JSONDecoder().decode(SchResponseModel<[String: Int]>.self, from: data)
                         if res.errorCode == 0 {
                             completion(.success(true))
                         }
@@ -80,7 +80,7 @@ class SchCommentManager {
             switch result {
                 case .success(let (data, _)):
                     do {
-                        let res = try JSONDecoder().decode(SchResponseModel<Int>.self, from: data)
+                        let res = try JSONDecoder().decode(SchResponseModel<[String: Int]>.self, from: data)
                         if res.errorCode == 0 {
                             completion(.success(true))
                         }

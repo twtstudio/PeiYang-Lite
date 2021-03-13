@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SchSearchResultView: View {
-    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.presentationMode) private var presentationMode
     
     @State var tags: [SchTagModel] = []
     

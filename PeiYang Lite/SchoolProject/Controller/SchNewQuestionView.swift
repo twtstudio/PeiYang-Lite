@@ -68,7 +68,7 @@ struct SchNewQuestionView: View {
                                     textManager.title = ""
                                     titleDidChange = true
                                 }
-                        }
+                            }
                         Text("\(String(titleDidChange ? textManager.title.count : 0))/20")
                             .font(.footnote)
                             .foregroundColor(textColor)

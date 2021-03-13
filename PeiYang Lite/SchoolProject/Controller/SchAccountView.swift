@@ -8,71 +8,125 @@
 import SwiftUI
 
 struct SchAccountView: View {
-    @Environment(\.presentationMode) var mode: Binding<PresentationMode>
+    @Environment(\.presentationMode) private var presentationMode
     @EnvironmentObject var sharedMessage: SharedMessage
     
+    @State private var isMineSelected: Bool = true
+    @State private var isFavSelected: Bool = false
+    
+    @State private var myQuestions: [SchQuestionModel] = []
+    @State private var favQuestions: [SchQuestionModel] = []
+    
+    // 删除问题
+    @State private var isShowAlert: Bool = false
+    @State private var questionIdToDelete: Int = -1
     
     var body: some View {
-                    
-        ZStack {
-            SchBackGround()
-            
-            ScrollView(showsIndicators: false) {
-                VStack(spacing: UIScreen.main.bounds.height / 40) {
-                    VStack (spacing: UIScreen.main.bounds.height / 55){
-                        Image("Text")
-                            .resizable()
-                            .frame(width: UIScreen.main.bounds.width * 0.3, height: UIScreen.main.bounds.width * 0.3, alignment: .center)
-                            .cornerRadius(UIScreen.main.bounds.width * 0.15)
-                        
-                        Text(/*sharedMessage.Account.nickname*/"PhoenixDai")
-                            .font(.custom("Avenir-Heavy", size: 20))
-                        Text(/*sharedMessage.Account.userNumber*/"3019244328")
-                    }
-                        .padding(.top, UIScreen.main.bounds.height / 15)
-                        .foregroundColor(.white)
-                    
-                    HStack(spacing: UIScreen.main.bounds.width / 5){
-                        SchHorizontalView(imgTitle: "ques", title: "我的提问")
-                        SchHorizontalView(imgTitle: "favour", title: "我的收藏")
-                    }// Horizontal 3 icons
-                        .frame(width: UIScreen.main.bounds.width * 0.9, height: UIScreen.main.bounds.height * 0.18, alignment: .center)
-                        .background(Color.white)
-                        .cornerRadius(30)
-                    
-//                    SchQuestionCellView(title: "微北洋课表是不是出问题了？", bodyText: "同学您好。IOS应用商店、安卓平台华为、小米、应用宝等应用商店均已上线新版微北洋，请更新后使", likes: "123", comments: "123", date: "2019-01-30   23：33", isSettled: true)
-//                    SchQuestionCellView(title: "微北洋课表是不是出问题了？", bodyText: "同学您好。IOS应用商店、安卓平台华为、小米、应用宝等应用商店均已上线新版微北洋，请更新后使", likes: "123", comments: "123", date: "2019-01-30   23：33", isSettled: false)
-//                    SchQuestionCellView(title: "微北洋课表是不是出问题了？", bodyText: "同学您好。IOS应用商店、安卓平台华为、小米、应用宝等应用商店均已上线新版微北洋，请更新后使", likes: "123", comments: "123", date: "2019-01-30   23：33", imgName: "Text", isSettled: true)
+        
+        VStack {
+            NavigationBar(leading: {
+                Button(action: {
+                    self.presentationMode.wrappedValue.dismiss()
+                }) {
+                    Image(systemName: "arrow.left")
                 }
-                .frame(width: UIScreen.main.bounds.width)
-            }
-            .padding(.top, 30)
-            .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height, alignment: .center)
-            
+                .font(.title2)
+                .foregroundColor(.white)
+                .padding()
+            }, center: {
+                Text("个人中心")
+                    .font(.title2)
+                    .foregroundColor(.white)
+            })
             VStack {
-                HStack {
-                    Button(action : {
-                        self.mode.wrappedValue.dismiss()
-                    }){
-                        Image("back-arrow-white")
-                    }
-                    Spacer()
-                    Text("个人中心").font(.headline).foregroundColor(.white)
-                    Spacer()
-                    
-                    Image("back-arrow-white").opacity(0)
-                }.padding()
-                .padding(.top, 30)
-                .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height / 10, alignment: .center)
-                .background(Color.init(red: 67/255, green: 70/255, blue: 80/255))
-                .shadow(color: Color.init(red: 67/255, green: 70/255, blue: 80/255).opacity(0.5), radius: 10, x: 0, y: 10)
-                .ignoresSafeArea()
-                Spacer()
+                Text(sharedMessage.Account.nickname)
+                    .font(.title)
+                    .padding(4)
+                Text(sharedMessage.Account.userNumber)
+                    .font(.title2)
             }
-            .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height, alignment: .center)
+            .foregroundColor(.white)
+            .frame(height: screen.height * 0.12)
+            
+            HStack(spacing: screen.width / 5){
+                Button(action: {
+                    isMineSelected = true
+                    isFavSelected = false
+                }, label: {
+                    SchAccountModeView(img: "sch-ques", title: "我的提问", isSelected: $isMineSelected)
+                })
+                Button(action: {
+                    isMineSelected = false
+                    isFavSelected = true
+                }, label: {
+                    SchAccountModeView(img: "sch-favour", title: "我的收藏", isSelected: $isFavSelected)
+                })
+            }// Horizontal 3 icons
+            .frame(width: UIScreen.main.bounds.width * 0.9, height: screen.height * 0.17, alignment: .center)
+            .background(Color.white)
+            .cornerRadius(20)
+            
+            ScrollView {
+                LazyVStack {
+                    let questions = isMineSelected ? myQuestions : favQuestions
+                    ForEach(questions.indices, id: \.self) { i in
+                        SchQuestionCellView(question: questions[i], isEditing: isMineSelected, deleteAction: {
+                            isShowAlert = true
+                            questionIdToDelete = questions[i].id ?? -1
+                        })
+                            .padding(.top, 10)
+                    }
+                }
+            }
+            .padding(.top, 6)
+            .edgesIgnoringSafeArea(.bottom)
+            .alert(isPresented: $isShowAlert, content: {
+                Alert(title: Text("确定要删除此问题吗?"), primaryButton: .destructive(Text("好"), action: {
+                    deleteQuestion(questionId: questionIdToDelete)
+                }), secondaryButton: .cancel())
+            })
+            
+            Spacer()
+            
+            
             
         }
+        .background(SchBackGround())
         .navigationBarHidden(true)
+        .onAppear {
+            loadQuestionData()
+        }
+    }
+    
+    private func loadQuestionData() {
+        SchQuestionManager.getQuestions(type: .fav) { (result) in
+            switch result {
+                case .success(let questions):
+                    self.favQuestions = questions
+                case .failure(let err):
+                    log(err)
+            }
+        }
+        SchQuestionManager.getQuestions(type: .my) { (result) in
+            switch result {
+                case .success(let questions):
+                    self.myQuestions = questions
+                case .failure(let err):
+                    log(err)
+            }
+        }
+    }
+    
+    private func deleteQuestion(questionId: Int) {
+        SchQuestionManager.deleteMyQuestion(questionId: questionId) { (result) in
+            switch result {
+                case .success(_):
+                    log("删除问题成功")
+                    loadQuestionData()
+                case .failure(let err):
+                    log(err)
+            }
+        }
     }
 }
 
@@ -96,17 +150,22 @@ struct SchBackGround: View {
     }
 }
 
-struct SchHorizontalView: View {
-    var imgTitle: String
+struct SchAccountModeView: View {
+    var img: String
     var title: String
+    @Binding var isSelected: Bool
     var body: some View {
         VStack {
-            Image(imgTitle)
+            Image(img)
                 .resizable()
                 .scaledToFit()
                 .frame(width: UIScreen.main.bounds.width / 9)
             Text(title)
                 .foregroundColor(.init(red: 105/255, green: 111/255, blue: 133/255))
+            Circle()
+                .frame(width: 6, height: 6)
+                .foregroundColor(Color(#colorLiteral(red: 0.262745098, green: 0.2745098039, blue: 0.3137254902, alpha: 1)))
+                .opacity(isSelected ? 1 : 0)
         }
     }
 }

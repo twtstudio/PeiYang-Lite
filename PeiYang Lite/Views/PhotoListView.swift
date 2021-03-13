@@ -16,7 +16,7 @@ struct PhotoListView: View {
     // 图片数据
     @Binding var images: [UIImage]
     @State var imageURLs: [String] = []
-    @State var mode: PhotoListViewType = .read
+    private var mode: PhotoListViewType = .write
     
     // 删除图片
     @State private var imageToDelete: UIImage?

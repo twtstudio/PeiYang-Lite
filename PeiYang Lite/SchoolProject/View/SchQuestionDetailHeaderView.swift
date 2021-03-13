@@ -23,13 +23,13 @@ struct SchQuestionDetailHeaderView: View {
             HStack {
                 Text(question.name ?? "")
                     .bold()
-                    .font(.body)
+                    .font(.title2)
                     .foregroundColor(Color(#colorLiteral(red: 0.2117647059, green: 0.2352941176, blue: 0.3294117647, alpha: 1)))
                 
                 Spacer()
                 
-                Text((question.noCommit ?? 0) == 0 ? "未回复" : "已回复")
-                    .font(.footnote)
+                Text((question.solved ?? -1) == -1 ? "未回复" : "·已回复")
+                    .font(.subheadline)
                     .foregroundColor(Color(#colorLiteral(red: 0.1882352941, green: 0.2352941176, blue: 0.4, alpha: 1)))
             }
             .padding(.top)
@@ -38,14 +38,14 @@ struct SchQuestionDetailHeaderView: View {
             HStack {
                 ForEach(question.tags ?? [], id: \.id) { tag in
                     Text("#\(tag.name ?? "")")
-                        .font(.footnote)
+                        .font(.subheadline)
                         .foregroundColor(.gray)
                 }
                 .padding(.horizontal)
             }
             
             Text(question.content ?? "")
-                .font(.footnote)
+                .font(.body)
                 .foregroundColor(Color(#colorLiteral(red: 0.2117647059, green: 0.2352941176, blue: 0.3294117647, alpha: 1)))
                 .padding(.horizontal)
             
@@ -53,27 +53,27 @@ struct SchQuestionDetailHeaderView: View {
             
             HStack {
                 Text(questionTime)
-                    .fontWeight(.light)
+                    .font(.subheadline)
                 
                 Spacer()
                 
-                Image("sch-conmment")
+                Image("sch-comment")
                 
                 Text("\(question.msgCount ?? 0)")
-                    .fontWeight(.light)
+                    .font(.subheadline)
                 
                 
                 Button(action: {
                     likeQuestion()
                 }, label: {
-                    Image(question.isLiked ?? false ? "sch-like-fill" : "liked")
+                    Image(question.isLiked ?? false ? "sch-like-fill" : "sch-like")
                 })
                 Text("\(question.likes ?? 0)")
-                    .fontWeight(.light)
+                    .font(.subheadline)
                 Button(action: {
-                    
+                    favQuestion()
                 }, label: {
-                    Image(systemName: "star")
+                    Image(question.isFavorite ?? false ? "sch-star-fill" : "sch-star")
                 })
                 
             }
@@ -83,11 +83,33 @@ struct SchQuestionDetailHeaderView: View {
             
         }
         .background(Color.white)
-        .clipShape(RoundedRectangle(cornerRadius: 10))
     }
     
     private func likeQuestion() {
-        
+        SchQuestionManager.likeOrDislikeQuestion(id: question.id ?? 0, like: !(question.isLiked ?? false)) { (result) in
+            switch result {
+            case .success(_):
+                question.isLiked?.toggle()
+                if question.isLiked ?? false {
+                    question.likes = (question.likes ?? 0) + 1
+                } else {
+                    question.likes = (question.likes ?? 0) - 1
+                }
+            case .failure(let err):
+                log(err)
+            }
+        }
+    }
+    
+    private func favQuestion() {
+        SchFavManager.favOrUnfavQuestion(questionId: question.id ?? 0, fav: !(question.isFavorite ?? false)) { (result) in
+            switch result {
+            case .success(_):
+                question.isFavorite?.toggle()
+            case .failure(let err):
+                log(err)
+            }
+        }
     }
 }
 
