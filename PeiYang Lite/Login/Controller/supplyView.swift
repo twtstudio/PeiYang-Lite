@@ -40,7 +40,7 @@ struct supplyView: View {
     }
     var body: some View {
         VStack(spacing: 25.0){
-            Text("请补全信息后登陆")
+            Text("请补全信息后登录")
                 .font(.title2)
                 .foregroundColor(Color.init(red: 98/255, green: 103/255, blue: 124/255))
             
@@ -88,7 +88,7 @@ struct supplyView: View {
                 Button(action: {
                     VerficationCodeManager.CodePost(phone: telephone){ result in
                         switch result{
-                        case .success(let data):
+                        case .success(_):
                             break
                         case .failure(_):
                             break
@@ -138,7 +138,7 @@ struct supplyView: View {
                 })
                 
             }) {
-                Text("登陆")
+                Text("登录")
                     .frame(width: UIScreen.main.bounds.width * 0.9, height: UIScreen.main.bounds.height/15, alignment: .center)
                     .font(.headline)
                     .foregroundColor(.white)

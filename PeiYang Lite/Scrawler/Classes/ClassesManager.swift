@@ -11,7 +11,7 @@ struct ClassesManager {
     static let isLoginKey = "classesIsLogin"
     static let isGPAStoreKey = "gpaIsStore"
     static let isCourseStoreKey = "courseIsStore"
-//    static let isUndergraduateKey = "isUndergraduate"
+    //    static let isUndergraduateKey = "isUndergraduate"
     
     static let usernameKey = "classesUsername"
     static let passwordKey = "classesPassword"
@@ -169,7 +169,7 @@ struct ClassesManager {
                             }
                         }
                         
-//                        let validSemesters = allSemesters[indexPair[0]...indexPair[1]]
+                        //                        let validSemesters = allSemesters[indexPair[0]...indexPair[1]]
                         let validSemesters = allSemesters[(indexPair.first ?? 0)...(indexPair.last ?? 0)]
                         
                         completion(.success(Array(validSemesters)))
@@ -330,71 +330,6 @@ struct ClassesManager {
             case .failure(let error):
                 completion(.failure(error))
             }
-        }
-    }
-}
-
-extension String {
-    func find(_ pattern: String, at group: Int = 1) -> String {
-        let regex: NSRegularExpression
-        do {
-            regex = try NSRegularExpression(pattern: pattern, options: .dotMatchesLineSeparators)
-        } catch {
-            print(error.localizedDescription)
-            return ""
-        }
-        
-        guard let match = regex.firstMatch(in: self, range: NSRange(location: 0, length: self.count)) else {
-            return ""
-        }
-        
-        guard let range = Range(match.range(at: group), in: self) else {
-            return ""
-        }
-        
-        return String(self[range])
-    }
-    
-    func findArray(_ pattern: String, at group: Int = 1) -> [String] {
-        let regex: NSRegularExpression
-        do {
-            regex = try NSRegularExpression(pattern: pattern, options: .dotMatchesLineSeparators)
-        } catch {
-            print(error.localizedDescription)
-            return []
-        }
-        
-        let matches = regex.matches(in: self, options: .withoutAnchoringBounds, range: NSRange(location: 0, length: self.count))
-        
-        var array = [String]()
-        for match in matches {
-            guard let range = Range(match.range(at: group), in: self) else {
-                return []
-            }
-            array.append(String(self[range]))
-        }
-        
-        return array
-    }
-    
-    // Good Alternative!
-    func findArrays(_ pattern: String) -> [[String]] {
-        do {
-            let regex = try NSRegularExpression(pattern: pattern, options: .dotMatchesLineSeparators)
-            let matches = regex.matches(in: self, range: NSRange(location: 0, length: self.count))
-            
-            return matches.map { match in
-                return (0..<match.numberOfRanges).map {
-                    let rangeBounds = match.range(at: $0)
-                    guard let range = Range(rangeBounds, in: self) else {
-                        return ""
-                    }
-                    return String(self[range])
-                }
-            }
-        } catch {
-            print(error.localizedDescription)
-            return []
         }
     }
 }

@@ -9,14 +9,13 @@ import SwiftUI
 
 @main
 struct PeiYang_LiteApp: App {
+    @State var images: [UIImage] = []
     var body: some Scene {
         WindowGroup {
             SplashView()
                 .environmentObject(User())
                 .environmentObject(AppState())
                 .environmentObject(SharedMessage())
-                
-                
         }
     }
 }

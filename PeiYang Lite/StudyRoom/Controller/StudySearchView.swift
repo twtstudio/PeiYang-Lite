@@ -172,7 +172,7 @@ struct StudySearchView: View {
                                 NavigationLink(
                                     destination: RoomDetailView(activeWeek: $activeWeek, className: room.buildingName + ((room.sectionName == "-1") ? "" : room.sectionName) + room.room.classroom, classData: room.room),
                                     label: {
-                                        SelectRoomView(classTitle: room.room.classroom, isFree: room.room.status[checkTheClassNum] == "0")
+                                        SelectRoomView(classTitle: room.room.classroom, classData: room.room)
                                     })
                             }
                         }
@@ -190,7 +190,7 @@ struct StudySearchView: View {
                             NavigationLink(
                                 destination: RoomDetailView(activeWeek: $activeWeek, className: room.buildingName + ((room.sectionName == "-1") ? "" : room.sectionName)+room.room.classroom, classData: room.room),
                                 label: {
-                                    SearchBuildingAndClassView(title: room.buildingName + ((room.sectionName == "-1") ? "" : room.sectionName) + room.room.classroom, isFree: room.room.status[checkTheClassNum] == "0")
+                                    SearchBuildingAndClassView(title: room.buildingName + ((room.sectionName == "-1") ? "" : room.sectionName) + room.room.classroom, classData: room.room)
                                 })
                         }
                     }

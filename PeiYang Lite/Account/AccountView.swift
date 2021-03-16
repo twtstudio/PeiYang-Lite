@@ -163,6 +163,7 @@ struct AccountView: View {
                         }
                         SharedMessage.removeAll()
                         DataStorage.clear(in: DataStorage.Directory.caches)
+                        
                     }){
                         Text("确认")
                             .foregroundColor(titleColor)

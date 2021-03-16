@@ -191,7 +191,7 @@ struct BindPhoneView: View {
                 .animation(.easeIn)
 
             VStack(spacing: UIScreen.main.bounds.height / 40) {
-                Text("解除邮箱绑定后无法使用邮箱登陆微北洋。若本次登录为邮箱登陆则将退出登陆，需要您重新进行账号密码登陆。您是否确定解除绑定？").padding()
+                Text("解除邮箱绑定后无法使用邮箱登录微北洋。若本次登录为邮箱登录则将退出登录，需要您重新进行账号密码登录。您是否确定解除绑定？").padding()
                     .foregroundColor(themeColor)
                     .font(.caption)
 

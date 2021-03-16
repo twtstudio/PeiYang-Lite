@@ -21,7 +21,6 @@ struct RoomDetailView: View {
     /// 每一个元素会重复两次……
     @State var weekData: [String] =  ["", "", "", "", "", "", ""]
     
-
     var body: some View {
         VStack {
             HStack {
@@ -40,7 +39,7 @@ struct RoomDetailView: View {
             }
             .frame(width: screen.width * 0.9)
             .padding(.top, 40)
-//
+           
 //            RoomDetailHeaderView(classroomId: classData.classroomID, className: className, activeWeek: activeWeek)
             HStack(alignment: .firstTextBaseline) {
                 Text(className)
@@ -60,29 +59,29 @@ struct RoomDetailView: View {
                     if (isFavoured == false){
                         CollectionManager.addFavour(classroomID: classData.classroomID) {result in
                             switch result {
-                            case .success(_):
-                                break
-//                                isFavoured = true
-//
-                            case .failure(_):
-                                break
+                            case .success(let data):
+                                if data.errorCode == 0 {
+                                    isFavoured.toggle()
+                                }
+                            case .failure(let error):
+                                log(error)
                             }
                         }
                     }
                     else if (isFavoured == true) {
                         CollectionManager.deleteFavour(classroomID: classData.classroomID) { result in
                             switch result {
-                            case .success(_):
-                                break
-//                                    isFavoured = false
-//
-                            case .failure(_):
-                               break
+                            case .success(let data):
+                                if data.errorCode == 0 {
+                                    isFavoured.toggle()
+                                }
+                            case .failure(let error):
+                               log(error)
                             }
                         }
                         
                     }
-                    isFavoured.toggle()
+                    
                 }) {
                     Text(isFavoured ? "已收藏" : "收藏")
                         .font(.headline)

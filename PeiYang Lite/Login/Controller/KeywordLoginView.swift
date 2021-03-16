@@ -20,7 +20,7 @@ struct KeywordLoginView: View {
     @State private var isEnable = true
     
     
-    @State var accountMessage: AccountMessage = AccountMessage(errorCode: 0, message:  "网络出现问题", result: accountResult(userNumber: "无", nickname: "无", telephone: nil, email: "无", token: "无", role: "无", realname: "无", gender: "无", department: "无", major: "无", stuType: "无", avatar: "无", campus: "无"))
+    @State var accountMessage: AccountMessage = AccountMessage(errorCode: 0, message:  "网络出现问题", result: AccountResult(userNumber: "无", nickname: "无", telephone: nil, email: "无", token: "无", role: "无", realname: "无", gender: "无", department: "无", major: "无", stuType: "无", avatar: "无", campus: "无"))
     
     @EnvironmentObject var sharedMessage: SharedMessage
     
@@ -37,7 +37,7 @@ struct KeywordLoginView: View {
     
     var body: some View {
         VStack(spacing: 25.0){
-            Text("天外天账号密码登陆")
+            Text("天外天账号密码登录")
                 .font(.title2)
                 .foregroundColor(Color.init(red: 98/255, green: 103/255, blue: 124/255))
                 
@@ -122,7 +122,7 @@ struct KeywordLoginView: View {
                     self.alertTime -= 1
                 })
             }) {
-                Text("登陆")
+                Text("登录")
                     .frame(width: UIScreen.main.bounds.width * 0.9, height: UIScreen.main.bounds.height/15, alignment: .center)
                     .font(.headline)
                     .foregroundColor(.white)

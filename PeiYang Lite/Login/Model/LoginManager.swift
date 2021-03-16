@@ -60,7 +60,7 @@ struct LoginManager {
 struct AccountMessage: Codable {
     let errorCode: Int
     let message: String
-    let result: accountResult
+    let result: AccountResult
 
     enum CodingKeys: String, CodingKey {
         case errorCode = "error_code"
@@ -68,8 +68,8 @@ struct AccountMessage: Codable {
     }
 }
 
-// MARK: - accountResult
-struct accountResult: Codable {
+// MARK: - AccountResult
+struct AccountResult: Codable {
     let userNumber:String
     var nickname: String
     var telephone: String?
@@ -87,10 +87,10 @@ class JSONNull: Codable, Hashable {
         return true
     }
 
-    public var hashValue: Int {
-        return 0
+    func hash(into hasher: inout Hasher) {
+        return
     }
-
+    
     public init() {}
 
     public required init(from decoder: Decoder) throws {

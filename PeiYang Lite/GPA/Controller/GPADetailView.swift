@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct GPADetailView: View {
-    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.presentationMode) private var presentationMode
     @ObservedObject var store = Storage.gpa
     private var gpa: GPA { store.object }
     

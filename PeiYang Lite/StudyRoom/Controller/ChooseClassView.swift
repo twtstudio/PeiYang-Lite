@@ -27,24 +27,6 @@ struct ChooseClassView: View {
     
     // 日历及其中数据
     @State private var isShowCalender = false
-    var checkTheClassNum: Int {
-        switch sharedMessage.studyRoomSelectTime {
-        case "8:30--10:05":
-            return 0
-        case "10:25--12:00":
-            return 2
-        case "13:30--15:05":
-            return 4
-        case "15:25--17:00":
-            return 6
-        case "18:30--20:05":
-            return 8
-        case "20:25--22:00":
-            return 10
-        default:
-            return -1
-        }
-    }
 
     
     // 教室存储
@@ -122,14 +104,12 @@ struct ChooseClassView: View {
                             Section(header: FloorTitleView(floor: String(floor))) {
                                 ForEach(classes[floor], id: \.self) { rooms in
                                     
-                                    if(checkTheClassNum == -1){
-                                        SelectRoomView(classTitle: rooms.classroom)
-                                    } else {
-                                        NavigationLink(
-                                            destination: RoomDetailView(activeWeek: $week, className: buildingName + rooms.classroom, classData: rooms)) {
-                                                SelectRoomView(classTitle: rooms.classroom, isFree: rooms.status[checkTheClassNum] == "0")
-                                            }
+                                    
+                                NavigationLink(
+                                    destination: RoomDetailView(activeWeek: $week, className: buildingName + rooms.classroom, classData: rooms)) {
+                                    SelectRoomView(classTitle: rooms.classroom, classData: rooms)
                                     }
+                                    
                                 }
                             }
                         }
@@ -227,11 +207,19 @@ struct FloorTitleView: View {
     }
 }
 
+
 struct SelectRoomView: View {
+    let circleDiameter: CGFloat = UIScreen.main.bounds.width / 70
+    let subTitleSize: CGFloat = UIScreen.main.bounds.height / 75
+    @EnvironmentObject var sharedMessage: SharedMessage
     var id = UUID()
     let themeColor = Color.init(red: 98/255, green: 103/255, blue: 123/255)
     var classTitle: String
     var isFree: Bool?
+    
+    var classData: Classroom
+    @State var indexArray: [Int] = []
+    @State var periodsFree: Bool = true
     var body: some View {
         VStack(spacing: 3){
             Text(classTitle)
@@ -241,29 +229,76 @@ struct SelectRoomView: View {
                 HStack(spacing: 3){
                     if(isFree!) {
                         Color.green
-                            .frame(width: UIScreen.main.bounds.width / 70, height: UIScreen.main.bounds.width / 70, alignment: .center)
-                            .cornerRadius(UIScreen.main.bounds.width / 140)
+                            .frame(width: circleDiameter, height: circleDiameter, alignment: .center)
+                            .cornerRadius(circleDiameter / 2)
                     } else {
                         Color.red
-                            .frame(width: UIScreen.main.bounds.width / 70, height: UIScreen.main.bounds.width / 70, alignment: .center)
-                            .cornerRadius(UIScreen.main.bounds.width / 140)
+                            .frame(width: circleDiameter, height: circleDiameter, alignment: .center)
+                            .cornerRadius(circleDiameter / 2)
                     }
                     
                     Text(isFree! ? "空闲" : "占用")
-                        .font(.custom("HelveticaNeue-Bold", size: UIScreen.main.bounds.height/75))
+                        .font(.custom("HelveticaNeue-Bold", size: subTitleSize))
                         .foregroundColor(isFree! ? .green : .red)
                 }
             } else {
-                Text("未选时间段")
-                    .font(.custom("HelveticaNeue-Bold", size: UIScreen.main.bounds.height/75))
-                    .foregroundColor(.gray)
+                if(sharedMessage.studyRoomSelectPeriod == []) {
+                    Text("未选时间段")
+                        .font(.custom("HelveticaNeue-Bold", size: subTitleSize))
+                        .foregroundColor(.gray)
+                } else {
+                    HStack(spacing: 3){
+                        if(periodsFree) {
+                            Color.green
+                                .frame(width: circleDiameter, height: circleDiameter, alignment: .center)
+                                .cornerRadius(circleDiameter / 2)
+                        } else {
+                            Color.red
+                                .frame(width: circleDiameter, height: circleDiameter, alignment: .center)
+                                .cornerRadius(circleDiameter / 2)
+                        }
+                        
+                        Text(periodsFree ? "空闲" : "占用")
+                            .font(.custom("HelveticaNeue-Bold", size: subTitleSize))
+                            .foregroundColor(periodsFree ? .green : .red)
+                    }
+                }
             }
         }
-            
-        
         .frame(width: UIScreen.main.bounds.width / 6, height: UIScreen.main.bounds.width / 7, alignment: .center)
         .background(Color.init(red: 252/255, green: 252/255, blue: 250/255))
         .cornerRadius(10)
+        .onAppear(perform: {
+            if(sharedMessage.studyRoomSelectPeriod != []) {
+                turnPeriodToIndex()
+                for i in indexArray {
+                    if classData.status[i] == "1" {
+                        periodsFree = false
+                        break
+                    }
+                }
+            }
+        })
+    }
+    func turnPeriodToIndex() {
+        for period in sharedMessage.studyRoomSelectPeriod {
+            switch period {
+            case "8:30--10:05":
+                indexArray.append(0)
+            case "10:25--12:00":
+                indexArray.append(2)
+            case "13:30--15:05":
+                indexArray.append(4)
+            case "15:25--17:00":
+                indexArray.append(6)
+            case "18:30--20:05":
+                indexArray.append(8)
+            case "20:25--22:00":
+                indexArray.append(10)
+            default:
+                indexArray.append(-1)
+            }
+        }
     }
 }
 

@@ -131,18 +131,7 @@ struct StudyRoomTopView: View {
                 }.pickerStyle(MenuPickerStyle())
                 .foregroundColor(themeColor)
                 .font(.custom("HelveticaNeue-Bold", size: UIScreen.main.bounds.height/40))
-//                Button(action: {
-//                    if(schoolDistrict == 1) {
-//                        schoolDistrict = 0
-//                    } else {
-//                        schoolDistrict = 1
-//                    }
-//                }, label: {
-//                    Text(schoolDistricts[schoolDistrict])
-//                    .foregroundColor(themeColor)
-//                    .font(.custom("HelveticaNeue-Bold", size: UIScreen.main.bounds.height/40))
-//                })
-                
+
 
                 Spacer()
                 
@@ -326,8 +315,12 @@ struct StudyRoomTopView: View {
         .edgesIgnoringSafeArea(.top)
         // MARK: 请求当天数据
         .onAppear {
-            sharedMessage.studyRoomSelectTime = nowPeriod
             if(isGetStudyRoomBuildingMessage == false) {
+                if(sharedMessage.studyRoomSelectPeriod == []){
+                    sharedMessage.studyRoomSelectPeriod.append(nowPeriod)
+                } else {
+                    sharedMessage.studyRoomSelectPeriod[0] = nowPeriod
+                }
                 firstInGetTodayAndWeeks()
             } else {
                 secondInLoadtoday()
@@ -470,14 +463,19 @@ struct StudyRoomTopView_Previews: PreviewProvider {
 
 
 struct StudyRoomBuildingCardView: View {
+    // 横向的自习室收藏卡片
     var buildingName: String
     var className: String
-    var isFree: Bool
+    @EnvironmentObject var sharedMessage: SharedMessage
+    var isFree: Bool?
+    var classData: Classroom
+    @State var indexArray: [Int] = []
+    @State var isPeriodFree: Bool = true
     private var fullName: String {
         return buildingName + " " + className
     }
     let themeColor = Color.init(red: 98/255, green: 103/255, blue: 123/255)
-    private var imageId = Int(arc4random_uniform(4)) // 0-3随机数
+    var imageId = Int(arc4random_uniform(4)) // 0-3随机数
     var ImageName: String {
         switch imageId {
         case 0:
@@ -501,19 +499,32 @@ struct StudyRoomBuildingCardView: View {
                 .fontWeight(.heavy)
                 .foregroundColor(themeColor)
             HStack{
-                if (isFree) {
-                    Color.green.frame(width: UIScreen.main.bounds.width / 50, height: UIScreen.main.bounds.width / 50, alignment: .center)
-                        .cornerRadius(UIScreen.main.bounds.width / 100)
+                if isFree != nil {
+                    if (isFree!) {
+                        Color.green.frame(width: UIScreen.main.bounds.width / 50, height: UIScreen.main.bounds.width / 50, alignment: .center)
+                            .cornerRadius(UIScreen.main.bounds.width / 100)
+                    } else {
+                        Color.red.frame(width: UIScreen.main.bounds.width / 50, height: UIScreen.main.bounds.width / 50, alignment: .center)
+                            .cornerRadius(UIScreen.main.bounds.width / 100)
+                    }
+                    Text(isFree! ? "空闲" : "占用")
+                        .font(.headline)
+                        .foregroundColor(isFree! ? .green : .red)
+                        .fontWeight(.heavy)
+                    
                 } else {
-                    Color.red.frame(width: UIScreen.main.bounds.width / 50, height: UIScreen.main.bounds.width / 50, alignment: .center)
-                        .cornerRadius(UIScreen.main.bounds.width / 100)
+                    if (isPeriodFree) {
+                        Color.green.frame(width: UIScreen.main.bounds.width / 50, height: UIScreen.main.bounds.width / 50, alignment: .center)
+                            .cornerRadius(UIScreen.main.bounds.width / 100)
+                    } else {
+                        Color.red.frame(width: UIScreen.main.bounds.width / 50, height: UIScreen.main.bounds.width / 50, alignment: .center)
+                            .cornerRadius(UIScreen.main.bounds.width / 100)
+                    }
+                    Text(isPeriodFree ? "空闲" : "占用")
+                        .font(.headline)
+                        .foregroundColor(isPeriodFree ? .green : .red)
+                        .fontWeight(.heavy)
                 }
-                Text(isFree ? "空闲" : "占用")
-                    .font(.headline)
-                    .foregroundColor(isFree ? .green : .red)
-                    .fontWeight(.heavy)
-            
-                
                 
             }
             .padding(.top, 0)
@@ -521,12 +532,42 @@ struct StudyRoomBuildingCardView: View {
         .frame(width: UIScreen.main.bounds.width / 3.5, height: UIScreen.main.bounds.width / 2.5, alignment: .center)
         .background(Color.white)
         .cornerRadius(15)
+        .onAppear(perform: {
+            if isFree == nil {
+                if(sharedMessage.studyRoomSelectPeriod != []) {
+                    turnPeriodToIndex()
+                    for i in indexArray {
+                        if classData.status[i] == "1" {
+                            isPeriodFree = false
+                            break
+                        }
+                    }
+                }
+
+            }
+        })
     }
-    init(buildingName: String, className: String, isFree: Bool) {
-        self.buildingName = buildingName
-        self.className = className
-        self.isFree = isFree
+    func turnPeriodToIndex() {
+        for period in sharedMessage.studyRoomSelectPeriod {
+            switch period {
+            case "8:30--10:05":
+                indexArray.append(0)
+            case "10:25--12:00":
+                indexArray.append(2)
+            case "13:30--15:05":
+                indexArray.append(4)
+            case "15:25--17:00":
+                indexArray.append(6)
+            case "18:30--20:05":
+                indexArray.append(8)
+            case "20:25--22:00":
+                indexArray.append(10)
+            default:
+                indexArray.append(-1)
+            }
+        }
     }
+    
 }
 
 
@@ -535,24 +576,7 @@ struct StudyRoomFavourCard: View {
     @Binding var activeWeek: Int
     var collectionClasses: [CollectionClass]
     
-    var checkTheClassNum: Int {
-        switch sharedMessage.studyRoomSelectTime {
-        case "8:30--10:05":
-            return 0
-        case "10:25--12:00":
-            return 2
-        case "13:30--15:05":
-            return 4
-        case "15:25--17:00":
-            return 6
-        case "18:30--20:05":
-            return 8
-        case "20:25--22:00":
-            return 10
-        default:
-            return -1
-        }
-    }
+    
  
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false, content: {
@@ -561,7 +585,7 @@ struct StudyRoomFavourCard: View {
                     NavigationLink(
                         destination: RoomDetailView(activeWeek: $activeWeek, className: collectionclass.buildingName + collectionclass.classMessage.classroom, classData: collectionclass.classMessage),
                         label: {
-                            StudyRoomBuildingCardView(buildingName: collectionclass.buildingName, className: collectionclass.classMessage.classroom, isFree: collectionclass.classMessage.status[checkTheClassNum] == "0")
+                            StudyRoomBuildingCardView(buildingName: collectionclass.buildingName, className: collectionclass.classMessage.classroom, classData: collectionclass.classMessage)
                         })
                    
                     
