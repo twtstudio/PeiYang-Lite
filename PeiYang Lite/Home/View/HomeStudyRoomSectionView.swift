@@ -8,52 +8,124 @@
 import SwiftUI
 
 struct HomeStudyRoomSectionView: View {
-    let studyRooms = [
-        StudyRoom(image: Image("StudyRoomIcon"),building: "47", number: "a201", isAvailable: true),
-        StudyRoom(image: Image("StudyRoomIcon"),building: "47", number: "a201", isAvailable: false),
-        StudyRoom(image: Image("StudyRoomIcon"),building: "47", number: "a201", isAvailable: true),
-        StudyRoom(image: Image("StudyRoomIcon"),building: "47", number: "a201", isAvailable: false),
-        StudyRoom(image: Image("StudyRoomIcon"),building: "47", number: "a201", isAvailable: true),
-    ]
+    let formatter = DateFormatter()
+    var endDate: Date{
+        formatter.dateFormat = "YYYYMMdd"
+        return formatter.date(from: "20210301")!
+    }
+    var totalDays: Int {
+        endDate.daysBetweenDate(toDate: Date())
+    }
+    var todayWeek: Int {
+        totalDays / 7 + 1
+    }
+    var todayDay: Int {
+        totalDays % 7 + 1
+    }
+    var nowTime: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm"
+        return dateFormatter.string(from: Date())
+    }
+    
+    // 计算现在的时间处于哪个时间段
+    var nowPeriod: Int {
+        if nowTime.prefix(2) < "10" && nowTime.prefix(2) >= "00" || (nowTime.prefix(2) == "10" && nowTime.suffix(2) < "05"){
+            return 0
+        }
+        else if nowTime.prefix(2) > "10" && nowTime.prefix(2) < "12" || (nowTime.prefix(2) == "10" && nowTime.suffix(2) >= "05"){
+            return 2
+        }
+        else if nowTime.prefix(2) >= "12" && nowTime.prefix(2) < "15" || (nowTime.prefix(2) == "15" && nowTime.suffix(2) <= "05"){
+            return 4
+        }
+        else if nowTime.prefix(2) > "15" && nowTime.prefix(2) < "17" || (nowTime.prefix(2) == "15" && nowTime.suffix(2) > "05") {
+            return 6
+        }
+        else if nowTime.prefix(2) >= "17" && nowTime.prefix(2) < "20" || (nowTime.prefix(2) == "20" && nowTime.suffix(2) <= "05"){
+            return 8
+        }
+        else {return 10}
+    }
+    
+    @State var isGetCollectionData: Bool = false
+
+    
+    // 收藏
+    @State var getCollectionClassId: [String] = []
+    @State var collectionClass: [CollectionClass] = []
+    @State var buildings: [StudyBuilding] = []
+
     
     var body: some View {
+        if getCollectionClassId == [] {
+            NavigationLink(destination: StudyRoomTopView()) {
+                Text("还没有get到您的收藏")
+                    .font(.caption)
+                    .foregroundColor(.gray)
+            }
+            
+        }
+        
         ScrollView(.horizontal, showsIndicators: false, content: {
-            HStack {
-                ForEach(studyRooms) { room in
+            HStack(spacing: 20) {
+                ForEach(collectionClass, id: \.self) { collectionclass in
                     NavigationLink(
                         destination: StudyRoomTopView(),
                         label: {
-                            VStack {
-                                room.image
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: screen.width/15)
-                                
-                                Text(room.description)
-                                    .font(.body)
-                                    .bold()
-                                    .foregroundColor(Color(#colorLiteral(red: 0.4156862745, green: 0.4274509804, blue: 0.4901960784, alpha: 1)))
-                                    .padding(.vertical)
-//                                    .fitToWidth(1.2)
-                                HStack {
-                                    Circle()
-                                        .fill()
-                                        .frame(width: 10, height: 10)
-                                    Text(room.isAvailable ? "空闲" : "占用")
-                                }
-                                .foregroundColor(room.isAvailable ? .green : .red)
-                            }
-                            .padding()
-                            .background(Color.white)
-                            .clipShape(RoundedRectangle(cornerRadius: 5))
+                            StudyRoomBuildingCardView(buildingName: collectionclass.buildingName, className: collectionclass.classMessage.classroom, isFree: collectionclass.classMessage.status[nowPeriod] == "0", classData: collectionclass.classMessage)
                         })
-                        .frame(width: screen.width * 0.3)
+                   
+                    
                 }
-                .padding(10)
             }
-            .frame(height: screen.width * 0.45)
+        }).padding()
+
+        .onAppear(perform: {
+            
+            StudyRoomManager.allBuidlingGet(term: "20212", week: String(todayWeek), day: String(todayDay)) { result in
+                switch result {
+                case .success(let data):
+                    buildings = data.data
+                    if(data.errorCode == 0) {
+                        isGetCollectionData = true
+                        requestDataToUseData()
+                        break
+                    } else{
+                        isGetCollectionData = false
+                    }
+                case .failure(let error):
+                    isGetCollectionData = false
+                    log(error)
+                }
+            }
+            
         })
     }
+    func requestDataToUseData() {
+        collectionClass = []
+        CollectionManager.getCollections() { result in
+            switch result {
+            case .success(let data):
+                getCollectionClassId = data.data.classroomID ?? []
+                DataStorage.store(getCollectionClassId, in: .caches, as: "studyroom/collections.json")
+                for code in getCollectionClassId {
+                    for building in buildings {
+                        for area in building.areas {
+                            for room in area.classrooms {
+                                if(room.classroomID == code) {
+                                    collectionClass.append(CollectionClass(classMessage: room, buildingName: building.building))
+                                }
+                            }
+                        }
+                    }
+                }
+            case .failure(_):
+                break
+            }
+        }
+    }
+
 }
 
 

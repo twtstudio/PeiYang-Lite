@@ -46,17 +46,18 @@ struct HomeView2: View {
         UITableView.appearance().backgroundColor = .white
     }
     @EnvironmentObject var sharedMessage: SharedMessage
+    
     var body: some View {
         VStack {
                 HomeHeaderView(AccountName: sharedMessage.Account.nickname)
                 .padding(.top, safeAreaHeight)
                 .padding(.horizontal)
-                
+
             ScrollView(showsIndicators: false) {
             HomeModuleSectionView()
-            
+
             HomeCourseSectionView()
-                
+
             if(!isNotShowGPA) {
                 Section(header: HStack {
                     Text(Localizable.gpa.rawValue)
@@ -69,7 +70,7 @@ struct HomeView2: View {
                 }
                 .padding()
             }
-            
+
             Section(header: HStack {
                 Text("自习室")
                     .font(.title3)
@@ -83,12 +84,12 @@ struct HomeView2: View {
             }
             }
             .padding(.vertical, 30)
-            
+
         }
         .navigationBarHidden(true)
         .background(Color(#colorLiteral(red: 0.9352087975, green: 0.9502342343, blue: 0.9600060582, alpha: 1)))
         .edgesIgnoringSafeArea(.all)
-        
+//        HomeScrollView(model: homeViewModel)
 
         
     }
@@ -102,6 +103,72 @@ struct HomeView2_Previews: PreviewProvider {
     }
 }
 
-
-
-
+//fileprivate class HomeViewModel: HomeScrollViewModel, HomeScrollViewAction, HomeScrollViewDataSource {
+//
+//
+//
+//    @Published var studyRoomCollections: [CollectionClass] = []
+//
+//    private var collectionId: [String] = []
+//
+//    private var allBuilding: [StudyBuilding] = []
+//
+//    init() {
+//        loadOnAppear()
+//    }
+//
+//    func loadOnAppear() {
+//        StudyRoomManager.allBuidlingGet(term: "20212", week: "1", day: "7") { result in
+//            switch result {
+//            case .success(let data):
+//                if(data.errorCode == 0) {
+//                    DispatchQueue.main.async {
+//                        self.allBuilding = data.data
+//                        self.collectionIdToClass()
+//                    }
+//                }
+//            case .failure(let error):
+//                print("加载教学楼失败", error)
+//            }
+//
+//        }
+//    }
+//
+//    func collectionIdToClass() {
+//        CollectionManager.getCollections(){ result in
+//            switch result {
+//            case .success(let data):
+//                self.collectionId = data.data.classroomID ?? []
+//                for code in self.collectionId {
+//                    for building in self.allBuilding {
+//                        for area in building.areas {
+//                            for room in area.classrooms {
+//                                if(room.classroomID == code) {
+//                                    self.studyRoomCollections.append(CollectionClass(classMessage: room, buildingName: building.building))
+//                                }
+//                            }
+//                        }
+//                    }
+//                }
+//            case .failure(let error):
+//                print("转换失败", error)
+//            }
+//        }
+//    }
+//
+////    func reloadData() {
+////        self.studyRoomCollections = []
+////        self.collectionIdToClass()
+////    }
+//
+//    var action: HomeScrollViewAction { self }
+//
+//    private lazy var _dataSource: HomeScrollViewDataSource = { self }()
+//
+//    var dataSource: HomeScrollViewDataSource {
+//        get { _dataSource }
+//        set { _dataSource = newValue }
+//    }
+//}
+//
+//

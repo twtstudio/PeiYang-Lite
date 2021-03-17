@@ -21,7 +21,7 @@ struct RegisterThiView: View {
     @State private var isLogin: Bool = false
     
     @State private var isShowManual: Bool = false
-    @State private var isAgree = false
+    @State var isAgree = false
     
     // Alert var
         @State private var AlertMessage: String = "网络出现问题"
@@ -58,16 +58,13 @@ struct RegisterThiView: View {
                 Button(action:{
                     isAgree.toggle()
                 }){
-                    if(!isAgree) {
-                        Image(systemName: "square")
-                            .foregroundColor(.black)
-                    } else {
-                        Image("check")
-                    }
-                    
+                    Image(systemName: isAgree ? "checkmark.square" : "square")
+                        .foregroundColor(.black)
+                   
                 }
                 
                 Text("我已阅读")
+                    .foregroundColor(.black)
                 Button(action: {isShowManual = true}){
                     Text("微北洋用户需知")
                         .foregroundColor(.blue)

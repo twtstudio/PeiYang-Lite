@@ -33,7 +33,8 @@ class SharedMessage: ObservableObject {
     
     // 自习室的时间数据和是否获取信息
     @Published var studyRoomSelectDate: Date = Date()
-    @Published var studyRoomSelectTime: String = ""
+    @Published var studyRoomSelectTime: String = "" // 主页显示
+    @Published var studyRoomSelectPeriod: [String] = [""] // 自习室中的显示时间段
     @Published var isGetStudyRoomBuildingMessage: Bool = false
     
 

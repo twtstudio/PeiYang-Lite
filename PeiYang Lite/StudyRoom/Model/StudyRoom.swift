@@ -60,7 +60,7 @@ struct Classroom: Codable, Identifiable, Hashable {
     }
 }
 // 收藏储存结构体
-struct CollectionClass: Hashable, Encodable {
+struct CollectionClass: Hashable, Encodable, Identifiable {
     var id = UUID()
     var classMessage: Classroom
     var buildingName: String

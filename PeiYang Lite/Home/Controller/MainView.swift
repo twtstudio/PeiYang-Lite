@@ -39,11 +39,11 @@ struct MainView: View {
                     Text("抽屉")
                 }.tag(1)
             
-            SchView()
-                .tabItem {
-                    Image(systemName: self.selected == 2 ? "captions.bubble.fill" : "captions.bubble")
-                    Text("校务专区")
-                }.tag(2)
+//            SchView()
+//                .tabItem {
+//                    Image(systemName: self.selected == 2 ? "captions.bubble.fill" : "captions.bubble")
+//                    Text("校务专区")
+//                }.tag(2)
             
             AccountView()
                 .tabItem {

@@ -24,7 +24,7 @@ struct SchHistorySectionView: View {
                     UserDefaults.standard.removeObject(forKey: SharedMessage.studyRoomHistoryKey)
                     
                 }, label: {
-                    Image("trash")
+                    Image("sch-trash")
                 })
             }.padding()
             GeometryReader { geometry in
@@ -82,34 +82,83 @@ struct SchHistorySectionView: View {
 
 //MARK: Building + Class
 struct SearchBuildingAndClassView: View {
+    @EnvironmentObject var sharedMessage: SharedMessage
     let color = Color.init(red: 98/255, green: 103/255, blue: 124/255)
+    let diameter = UIScreen.main.bounds.width / 50
     var title: String
-    var isFree: Bool
+    @State var periodsFree: Bool = true
+    @State var indexArray: [Int] = []
+    var classData: Classroom
     var body: some View {
         HStack{
             Text(title)
                 .fontWeight(.heavy)
                 .foregroundColor(color)
             Spacer()
-            if(isFree) {
-                Color.green
-                    .frame(width: UIScreen.main.bounds.width / 50, height: UIScreen.main.bounds.width / 50, alignment: .center)
-                    .cornerRadius(UIScreen.main.bounds.width / 100)
+            if indexArray == [] {
+                Color.gray
+                    .frame(width: diameter, height: diameter, alignment: .center)
+                    .cornerRadius(diameter / 2)
+                
+                Text("未选择时间段")
+                    .font(.footnote)
+                    .fontWeight(.heavy)
+                    .foregroundColor(.gray)
             } else {
-                Color.red
-                    .frame(width: UIScreen.main.bounds.width / 50, height: UIScreen.main.bounds.width / 50, alignment: .center)
-                    .cornerRadius(UIScreen.main.bounds.width / 100)
+                if(periodsFree) {
+                    Color.green
+                        .frame(width: diameter, height: diameter, alignment: .center)
+                        .cornerRadius(diameter / 2)
+                } else {
+                    Color.red
+                        .frame(width: diameter, height: diameter, alignment: .center)
+                        .cornerRadius(diameter / 2)
+                }
+                
+                Text(periodsFree ? "空闲" : "占用")
+                    .font(.footnote)
+                    .fontWeight(.heavy)
+                    .foregroundColor(periodsFree ? .green : .red)
             }
+           
             
-            Text(isFree ? "空闲" : "占用")
-                .font(.footnote)
-                .fontWeight(.heavy)
-                .foregroundColor(isFree ? .green : .red)
+            
         }
         .padding()
         .frame(width: UIScreen.main.bounds.width * 0.9, height: UIScreen.main.bounds.height / 20, alignment: .center)
         .background(Color.white)
         .cornerRadius(15)
+        .onAppear(perform: {
+            if(sharedMessage.studyRoomSelectPeriod != []) {
+                turnPeriodToIndex()
+                for i in indexArray {
+                    if classData.status[i] == "1" {
+                        periodsFree = false
+                        break
+                    }
+                }
+            }
+        })
+    }
+    func turnPeriodToIndex() {
+        for period in sharedMessage.studyRoomSelectPeriod {
+            switch period {
+            case "8:30--10:05":
+                indexArray.append(0)
+            case "10:25--12:00":
+                indexArray.append(2)
+            case "13:30--15:05":
+                indexArray.append(4)
+            case "15:25--17:00":
+                indexArray.append(6)
+            case "18:30--20:05":
+                indexArray.append(8)
+            case "20:25--22:00":
+                indexArray.append(10)
+            default:
+                indexArray.append(-1)
+            }
+        }
     }
 }
 

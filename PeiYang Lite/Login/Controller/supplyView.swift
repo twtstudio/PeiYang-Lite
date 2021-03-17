@@ -86,7 +86,7 @@ struct supplyView: View {
                 Spacer()
     
                 Button(action: {
-                    VerficationCodeManager.CodePost(phone: telephone){ result in
+                    RegisterManager.CodePost(phone: telephone){ result in
                         switch result{
                         case .success(_):
                             break

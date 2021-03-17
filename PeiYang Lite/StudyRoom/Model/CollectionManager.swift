@@ -114,7 +114,7 @@ class CollectionManager {
 
 // MARK: - Collections
 struct Collections: Codable {
-    let data: DataClass
+    let data: CollectionsData
     let errorCode: Int
     let message: String
 
@@ -126,7 +126,7 @@ struct Collections: Codable {
 }
 
 // MARK: - DataClass
-struct DataClass: Codable {
+struct CollectionsData: Codable {
     let classroomID: [String]?
 
     enum CodingKeys: String, CodingKey {
@@ -136,12 +136,18 @@ struct DataClass: Codable {
 
 // MARK: - StudyroomOrdinaryMessage
 struct StudyroomOrdinaryMessage: Codable {
+    let data: NilData
     let errorCode: Int
     let message: String
-    let data: JSONNull?
 
     enum CodingKeys: String, CodingKey {
+        case data
         case errorCode = "error_code"
-        case message, data
+        case message
     }
 }
+
+// MARK: - DataClass
+struct NilData: Codable {
+}
+
