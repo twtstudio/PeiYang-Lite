@@ -62,7 +62,7 @@ struct NavigationBar_Previews: PreviewProvider {
                     Image(systemName: "checkmark")
                 })
                 .font(.title2)
-                .foregroundColor(Color(#colorLiteral(red: 0.3856853843, green: 0.403162986, blue: 0.4810273647, alpha: 1)))
+                .foregroundColor(Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)))
                 .padding()
             })
             Spacer()

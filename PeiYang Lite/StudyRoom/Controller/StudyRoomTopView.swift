@@ -464,6 +464,7 @@ struct StudyRoomTopView_Previews: PreviewProvider {
 
 struct StudyRoomBuildingCardView: View {
     // 横向的自习室收藏卡片
+    let circleDiameter = UIScreen.main.bounds.width / 55
     var buildingName: String
     var className: String
     @EnvironmentObject var sharedMessage: SharedMessage
@@ -501,11 +502,11 @@ struct StudyRoomBuildingCardView: View {
             HStack{
                 if isFree != nil {
                     if (isFree!) {
-                        Color.green.frame(width: UIScreen.main.bounds.width / 50, height: UIScreen.main.bounds.width / 50, alignment: .center)
-                            .cornerRadius(UIScreen.main.bounds.width / 100)
+                        Color.green.frame(width: circleDiameter, height: circleDiameter, alignment: .center)
+                            .cornerRadius(circleDiameter / 2)
                     } else {
-                        Color.red.frame(width: UIScreen.main.bounds.width / 50, height: UIScreen.main.bounds.width / 50, alignment: .center)
-                            .cornerRadius(UIScreen.main.bounds.width / 100)
+                        Color.red.frame(width: circleDiameter, height: circleDiameter, alignment: .center)
+                            .cornerRadius(circleDiameter / 2)
                     }
                     Text(isFree! ? "空闲" : "占用")
                         .font(.headline)
@@ -514,11 +515,11 @@ struct StudyRoomBuildingCardView: View {
                     
                 } else {
                     if (isPeriodFree) {
-                        Color.green.frame(width: UIScreen.main.bounds.width / 50, height: UIScreen.main.bounds.width / 50, alignment: .center)
-                            .cornerRadius(UIScreen.main.bounds.width / 100)
+                        Color.green.frame(width: circleDiameter, height: circleDiameter, alignment: .center)
+                            .cornerRadius(circleDiameter / 2)
                     } else {
-                        Color.red.frame(width: UIScreen.main.bounds.width / 50, height: UIScreen.main.bounds.width / 50, alignment: .center)
-                            .cornerRadius(UIScreen.main.bounds.width / 100)
+                        Color.red.frame(width: circleDiameter, height: circleDiameter, alignment: .center)
+                            .cornerRadius(circleDiameter / 2)
                     }
                     Text(isPeriodFree ? "空闲" : "占用")
                         .font(.headline)

@@ -31,9 +31,7 @@ struct ClassesBindingView: View {
         })
     }
     
-    func refreshCaptcha() {
-        
-    }
+
 }
 
 struct LoadingView: View {

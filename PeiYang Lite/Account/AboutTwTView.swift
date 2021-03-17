@@ -8,10 +8,17 @@
 import SwiftUI
 
 struct AboutTwTView: View {
+    @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     var body: some View {
+        
         ScrollView(.vertical, showsIndicators: false) {
             VStack(alignment: .leading, spacing: 15.0){
-                Text("微北洋4.0  天外天介绍").font(.title2).fontWeight(.heavy)
+                HStack{
+                    Spacer()
+                    Text("微北洋4.0  天外天介绍").font(.title2).fontWeight(.heavy)
+                    Spacer()
+                }
+               
                 Text("天外天下设天外天新闻中心和天外天工作室，是天津大学唯一的全媒体平台，连续八年荣获天津大学十佳社团第一名。\n\n天外天新闻网，连续七年荣获教育部“全国高校百佳网站”的称号、连续四年荣获“全国高校十佳新闻网站”的称号。2019年，天外天荣获教育部中国大学生在线“优秀校园网络通讯站”称号。\n\n\(Text("天外天新闻中心").font(.headline))“天外天”微信公众号，关注人数超过65000人，累计发布文章千余篇，年均推送阅读量过百万。拥有若干原创作品，同时于校内各大平台组织、机关部处、学生社团、校外网络平台等合作开展活动和宣传。")
                 Image("AbFirst")
                     .resizable()
@@ -58,7 +65,14 @@ struct AboutTwTView: View {
             .frame(width: screen.width * 0.9)
             .padding(.vertical)
         }
-        .padding(.top, 30)
+        .navigationBarTitle("关于天外天", displayMode: .inline)
+        .navigationBarBackButtonHidden(true)
+        .navigationBarItems(leading: Button(action: {
+            self.mode.wrappedValue.dismiss()
+        }, label: {
+            Image("back-arrow-black")
+        }))
+        .padding(.bottom, 30)
     }
 }
 

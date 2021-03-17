@@ -31,8 +31,7 @@ struct AccountView: View {
     @State var isJumpToTop = false
     @State var isJumpToChange = false
     
-    // 关于天外天
-    @State var isShowAboutTwT = false
+    
 
     let themeColor = Color(red: 102/255, green: 106/255, blue: 125/255)
     let titleColor = Color.init(red: 98/255, green: 103/255, blue: 122/255)
@@ -97,9 +96,7 @@ struct AccountView: View {
                     .background(Color.white)
                     .cornerRadius(15)
                     
-                    Button(action:{
-                        isShowAboutTwT = true
-                    }){
+                    NavigationLink(destination: AboutTwTView()){
                         HStack {
                             Image("TwT")
                             Text("关于天外天")
@@ -186,9 +183,7 @@ struct AccountView: View {
             .offset(y: isShowSignOut ? 0 : 1000)
             .animation(.easeInOut)
         }
-        .sheet(isPresented: $isShowAboutTwT, content: {
-            AboutTwTView()
-        })
+        
         .navigationBarHidden(true)
         .navigationBarBackButtonHidden(true)
     }
