@@ -98,7 +98,6 @@
 		C9663C2E25E248A600DFC973 /* CouseTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9663C2725E248A600DFC973 /* CouseTableHeaderView.swift */; };
 		C971BA7B25C64F7D006A292E /* CalendarRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C971BA7A25C64F7D006A292E /* CalendarRepresentable.swift */; };
 		C971BA8125C6500D006A292E /* TimeSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C971BA8025C6500D006A292E /* TimeSelectionView.swift */; };
-		C971BA8725C8DED9006A292E /* VerificationCodeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C971BA8625C8DED9006A292E /* VerificationCodeManager.swift */; };
 		C971BA8F25C8FEE4006A292E /* RegisterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C971BA8E25C8FEE4006A292E /* RegisterManager.swift */; };
 		C971BA9425C9076D006A292E /* ForgetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C971BA9325C9076D006A292E /* ForgetManager.swift */; };
 		C97795682560B3C6001CA8F0 /* ChooseClassView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97795672560B3C6001CA8F0 /* ChooseClassView.swift */; };
@@ -132,7 +131,6 @@
 		C9CF3DD925D2B1E00085263F /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CF3DC725D2B1E00085263F /* Weather.swift */; };
 		C9D59B3825BBB80C006865FC /* BeginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D59B3725BBB80C006865FC /* BeginView.swift */; };
 		C9D59B3F25BBC138006865FC /* KeywordLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D59B3E25BBC138006865FC /* KeywordLoginView.swift */; };
-		C9D59B4F25BC49CC006865FC /* PQTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D59B4E25BC49CC006865FC /* PQTextField.swift */; };
 		C9D59B5A25BD35D0006865FC /* ChMeToFindView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D59B5925BD35D0006865FC /* ChMeToFindView.swift */; };
 		C9D59B6025BD3859006865FC /* FirstStepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D59B5F25BD3859006865FC /* FirstStepView.swift */; };
 		C9D59B6825BE6E71006865FC /* SecondStepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D59B6725BE6E71006865FC /* SecondStepView.swift */; };
@@ -144,6 +142,7 @@
 		C9D5BF7525D010F000CD3537 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D5BF7425D010F000CD3537 /* SettingView.swift */; };
 		C9D5BF8025D0D5FE00CD3537 /* ClassesBindingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D5BF7F25D0D5FE00CD3537 /* ClassesBindingView.swift */; };
 		C9D95F0B2531874F00C3C911 /* Morning-Star-1.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C9D95F0A2531874F00C3C911 /* Morning-Star-1.ttf */; };
+		C9E3E01F260225FF00CEAEC9 /* PQTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E3E01E260225FF00CEAEC9 /* PQTextField.swift */; };
 		C9ED446625C40936001A5456 /* RegisterFirView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9ED446525C40936001A5456 /* RegisterFirView.swift */; };
 		C9ED446F25C40C88001A5456 /* RegisterThiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9ED446E25C40C88001A5456 /* RegisterThiView.swift */; };
 		C9ED447725C413A2001A5456 /* RegisterSecView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9ED447625C413A2001A5456 /* RegisterSecView.swift */; };
@@ -301,7 +300,6 @@
 		C9663C2725E248A600DFC973 /* CouseTableHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CouseTableHeaderView.swift; sourceTree = "<group>"; };
 		C971BA7A25C64F7D006A292E /* CalendarRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarRepresentable.swift; sourceTree = "<group>"; };
 		C971BA8025C6500D006A292E /* TimeSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSelectionView.swift; sourceTree = "<group>"; };
-		C971BA8625C8DED9006A292E /* VerificationCodeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationCodeManager.swift; sourceTree = "<group>"; };
 		C971BA8E25C8FEE4006A292E /* RegisterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterManager.swift; sourceTree = "<group>"; };
 		C971BA9325C9076D006A292E /* ForgetManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetManager.swift; sourceTree = "<group>"; };
 		C97795672560B3C6001CA8F0 /* ChooseClassView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseClassView.swift; sourceTree = "<group>"; };
@@ -335,7 +333,6 @@
 		C9CF3DC725D2B1E00085263F /* Weather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 		C9D59B3725BBB80C006865FC /* BeginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeginView.swift; sourceTree = "<group>"; };
 		C9D59B3E25BBC138006865FC /* KeywordLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordLoginView.swift; sourceTree = "<group>"; };
-		C9D59B4E25BC49CC006865FC /* PQTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PQTextField.swift; sourceTree = "<group>"; };
 		C9D59B5925BD35D0006865FC /* ChMeToFindView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChMeToFindView.swift; sourceTree = "<group>"; };
 		C9D59B5F25BD3859006865FC /* FirstStepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstStepView.swift; sourceTree = "<group>"; };
 		C9D59B6725BE6E71006865FC /* SecondStepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondStepView.swift; sourceTree = "<group>"; };
@@ -347,6 +344,7 @@
 		C9D5BF7425D010F000CD3537 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		C9D5BF7F25D0D5FE00CD3537 /* ClassesBindingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassesBindingView.swift; sourceTree = "<group>"; };
 		C9D95F0A2531874F00C3C911 /* Morning-Star-1.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Morning-Star-1.ttf"; sourceTree = "<group>"; };
+		C9E3E01E260225FF00CEAEC9 /* PQTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PQTextField.swift; path = "../../../../Desktop/PeiYang-Lite/PeiYang Lite/Account/Model/PQTextField.swift"; sourceTree = "<group>"; };
 		C9ED446525C40936001A5456 /* RegisterFirView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterFirView.swift; sourceTree = "<group>"; };
 		C9ED446E25C40C88001A5456 /* RegisterThiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterThiView.swift; sourceTree = "<group>"; };
 		C9ED447625C413A2001A5456 /* RegisterSecView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterSecView.swift; sourceTree = "<group>"; };
@@ -446,6 +444,7 @@
 				03B6895724D157D90020AD47 /* GridStack.swift */,
 				C9FCF26925EB92B7004FC993 /* GridWithoutScrollStack.swift */,
 				03ACE52924D844C5009468D4 /* RefreshButton.swift */,
+				C9E3E01E260225FF00CEAEC9 /* PQTextField.swift */,
 				C92E614E253997990008A38A /* RadarChartView.swift */,
 				C9D5BF4B25CB9C2800CD3537 /* AlertView.swift */,
 				C9D5BF5225CC0D4800CD3537 /* RemindView.swift */,
@@ -917,7 +916,6 @@
 		C9D59B4D25BC4959006865FC /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				C9D59B4E25BC49CC006865FC /* PQTextField.swift */,
 				C9A9942125C271950063C3BB /* LoginManager.swift */,
 				C942C1BD25CABE71006D0B83 /* SupplyManager.swift */,
 			);
@@ -967,7 +965,6 @@
 		C9ED448025C42105001A5456 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				C971BA8625C8DED9006A292E /* VerificationCodeManager.swift */,
 				C971BA8E25C8FEE4006A292E /* RegisterManager.swift */,
 			);
 			path = Model;
@@ -1258,7 +1255,6 @@
 				C9663C2D25E248A600DFC973 /* CourseTableWeekdaysView.swift in Sources */,
 				C9D59B6C25BE7655006865FC /* FinalStepView.swift in Sources */,
 				03B6894924D1579B0020AD47 /* CurveDetailView.swift in Sources */,
-				C971BA8725C8DED9006A292E /* VerificationCodeManager.swift in Sources */,
 				D346ACDA25F2A90000A146D8 /* ScrollViewWithRefresh.swift in Sources */,
 				C9ED446625C40936001A5456 /* RegisterFirView.swift in Sources */,
 				C9CF3D5E25D153780085263F /* BindPhoneView.swift in Sources */,
@@ -1279,6 +1275,7 @@
 				C95B57C325EBF3C2004300B5 /* HomeCardView.swift in Sources */,
 				D357A26325F0FFC600C061CF /* SchAnswerManager.swift in Sources */,
 				C95B57C925EBF3C2004300B5 /* HomeHeaderView.swift in Sources */,
+				C9E3E01F260225FF00CEAEC9 /* PQTextField.swift in Sources */,
 				D37DD87D25EDFA8700A662E0 /* SchView.swift in Sources */,
 				D35E4E6D25F0C32700526388 /* SchCommentManager.swift in Sources */,
 				C9D59B3825BBB80C006865FC /* BeginView.swift in Sources */,
@@ -1306,7 +1303,6 @@
 				D3EB57F125F4B40700A9321F /* MutiLineVStack.swift in Sources */,
 				C95B57D425EBF3DD004300B5 /* GPACardView.swift in Sources */,
 				C95B57C125EBF3C2004300B5 /* HomeLoginView.swift in Sources */,
-				C9D59B4F25BC49CC006865FC /* PQTextField.swift in Sources */,
 				C9FB81D525FF80A10097C400 /* HomeScrollView.swift in Sources */,
 				C95B57B225EBF3BA004300B5 /* HomeSettingView.swift in Sources */,
 				C9A9942225C271950063C3BB /* LoginManager.swift in Sources */,

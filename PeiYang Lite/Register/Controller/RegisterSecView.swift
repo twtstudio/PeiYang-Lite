@@ -124,7 +124,7 @@ struct RegisterSecView: View {
                     Spacer()
         
                     Button(action: {
-                        VerficationCodeManager.CodePost(phone: phoneNumber) {
+                        RegisterManager.CodePost(phone: phoneNumber) {
                             result in
                             switch result {
                             case .success(let data):
