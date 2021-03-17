@@ -1255,10 +1255,6 @@
 				C9663C2D25E248A600DFC973 /* CourseTableWeekdaysView.swift in Sources */,
 				C9D59B6C25BE7655006865FC /* FinalStepView.swift in Sources */,
 				03B6894924D1579B0020AD47 /* CurveDetailView.swift in Sources */,
-<<<<<<< HEAD
-				C971BA8725C8DED9006A292E /* VerificationCodeManager.swift in Sources */,
-=======
->>>>>>> PhoneixBranch
 				D346ACDA25F2A90000A146D8 /* ScrollViewWithRefresh.swift in Sources */,
 				C9ED446625C40936001A5456 /* RegisterFirView.swift in Sources */,
 				C9CF3D5E25D153780085263F /* BindPhoneView.swift in Sources */,
