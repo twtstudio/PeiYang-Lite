@@ -23,7 +23,7 @@ struct BindEmailView: View {
     var body: some View {
         ZStack {
             VStack(spacing: UIScreen.main.bounds.width / 15){
-                HStack(alignment: .bottom){
+                HStack{
                     Text("邮箱绑定")
                         .font(.custom("Avenir-Heavy", size: UIScreen.main.bounds.height / 35))
                         .foregroundColor(.init(red: 48/255, green: 60/255, blue: 102/255))

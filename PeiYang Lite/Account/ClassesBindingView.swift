@@ -15,7 +15,8 @@ struct ClassesBindingView: View {
     
     @State var isShowSignOut = false
     var body: some View {
-        ZStack {
+        VStack {
+           
             if(isLogin == true){
                 ClassesBindingLoginedView(isLogin: $isLogin)
             } else {
@@ -55,7 +56,7 @@ struct BsLoginView_Previews: PreviewProvider {
         ClassesBindingView()
     }
 }
-
+//MARK: 已绑定页面
 struct ClassesBindingLoginedView: View {
     @State var isShowSignOut: Bool = false
     @AppStorage(ClassesManager.usernameKey, store: Storage.defaults) private var username = ""
@@ -66,7 +67,7 @@ struct ClassesBindingLoginedView: View {
     var body: some View {
         ZStack {
             VStack{
-                HStack(alignment: .bottom){
+                HStack{
                     Text("办公网账号绑定")
                         .font(.custom("Avenir-Black", size: UIScreen.main.bounds.height / 35))
                         .foregroundColor(.init(red: 48/255, green: 60/255, blue: 102/255))
@@ -128,6 +129,13 @@ struct ClassesBindingLoginedView: View {
                         isShowSignOut = false
                         ClassesManager.removeAll()
                         isLogin = false
+                        /// 删除cookie
+                        let cookieStorage = HTTPCookieStorage.shared
+                        if let cookies = cookieStorage.cookies {
+                            for cookie in cookies {
+                                cookieStorage.deleteCookie(cookie)
+                            }
+                        }
                     }){
                         Text("确认")
                             .foregroundColor(titleColor)
@@ -152,7 +160,7 @@ struct ClassesBindingLoginedView: View {
         }
     }
 }
-
+//MARK: 未绑定页面
 struct ClassesBindingLoginView: View {
     @State var isEnable: Bool = false
     @State var isError: Bool = false
