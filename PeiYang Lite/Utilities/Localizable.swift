@@ -8,7 +8,7 @@
 import SwiftUI
 
 enum Localizable: LocalizedStringKey, CaseIterable {
-    case urlError, requestFailed, loginFailed, unknownError
+    case urlError, requestFailed, loginFailed, unknownError, alreadyLogin, usorpwWrong, captchaWrong
     
     case notificationError, notificationErrorMessage
     case biometryNotEnrolled, biometryNotAvailable, biometryNotAvailableMessage, userCancel, faceIDUsageDescription

@@ -42,21 +42,27 @@ struct ClassesManager {
     static func ssoGet(completion: @escaping (Result<String, Network.Failure>) -> Void) {
         Network.fetch("https://sso.tju.edu.cn/cas/login") { result in
             switch result {
-            case .success(let (data, _)):
-                guard let html = String(data: data, encoding: .utf8) else {
-                    completion(.failure(.urlError))
-                    return
-                }
-                
-                let execution = html.find("name=\"execution\" value=\"([^\"]+)\"")
-                completion(.success(execution))
-            case .failure(let error):
-                completion(.failure(error))
+                case .success(let (data, _)):
+                    guard let html = String(data: data, encoding: .utf8) else {
+                        completion(.failure(.urlError))
+                        return
+                    }
+                    if html.contains("登录成功") || html.contains("Log In Successful") {
+                        completion(.failure(Network.Failure.alreadyLogin))
+                        return
+                    }
+                    
+                    let execution = html.find("name=\"execution\" value=\"([^\"]+)\"")
+                    
+                    completion(.success(execution))
+                case .failure(let error):
+                    completion(.failure(error))
             }
         }
     }
     
-    static func ssoPost(captcha: String, completion: @escaping (Result<String, Network.Failure>) -> Void) {
+    // 登入
+    static func login(captcha: String, completion: @escaping (Result<String, Network.Failure>) -> Void) {
         ssoGet { result in
             switch result {
             case .success(let execution):
@@ -75,23 +81,28 @@ struct ClassesManager {
                         ]
                     ) { result in
                         switch result {
-                        case .success(let (data, response)):
-                            guard let html = String(data: data, encoding: .utf8) else {
-                                completion(.failure(.requestFailed))
-                                return
-                            }
-                            
-                            switch response.statusCode {
-                            case 200:
-                                let message = html.find("<h2>([^<>]+)</h2>")
-                                completion(.success(message))
-                            case 401:
-                                completion(.failure(.loginFailed))
-                            default:
-                                completion(.failure(.unknownError))
-                            }
-                        case .failure(let error):
-                            completion(.failure(error))
+                            case .success(let (data, response)):
+                                guard let html = String(data: data, encoding: .utf8) else {
+                                    completion(.failure(.requestFailed))
+                                    return
+                                }
+                                
+                                switch response.statusCode {
+                                    case 200:
+                                        let message = html.find("<h2>([^<>]+)</h2>")
+                                        completion(.success(message))
+                                    case 401:
+                                        let message = html.find("<div class=\"alert alert-danger\">\n            <span>(.+?)</span>\n        </div>")
+                                        if message.contains("错误") || message.contains("Mismatch")  {
+                                            completion(.failure(.captchaWrong))
+                                        } else {
+                                            completion(.failure(.usorpwWrong))
+                                        }
+                                    default:
+                                        completion(.failure(.unknownError))
+                                }
+                            case .failure(let error):
+                                completion(.failure(error))
                         }
                     }
                 }
@@ -101,8 +112,22 @@ struct ClassesManager {
         }
     }
     
+    // 登出
+    static func logout(completion: @escaping (Result<String, Network.Failure>) -> Void) {
+        Network.fetch("http://classes.tju.edu.cn/eams/logoutExt.action") { (result) in
+            switch result {
+                case .success(_):
+                    // 应该不需要逻辑，登不出就是token掉了，能登出也不用返回
+                    completion(.success("登出成功"))
+                    break
+                case .failure(let error):
+                    completion(.failure(error))
+            }
+        }
+    }
+    
     // MARK: - Service
-    static func fetch(
+    private static func fetch(
         _ method: Network.Method = .get,
         urlString: String,
         query: [String: String] = [:],
@@ -133,7 +158,7 @@ struct ClassesManager {
         }
     }
     
-    static func batch(
+    private static func batch(
         _ method: Network.Method = .get,
         urlString: String,
         query: [String: String] = [:],
@@ -189,10 +214,6 @@ struct ClassesManager {
 // MARK: - GPA
 extension ClassesManager {
     static func getGPA(completion: @escaping ((Result<GPA, Error>) -> Void)) {
-        
-    }
-    
-    static func gpaGet(completion: @escaping (Result<GPA, Network.Failure>) -> Void) {
         semesterPost { result in
             switch result {
             case .success(let semesterArray):
@@ -207,26 +228,65 @@ extension ClassesManager {
                         ) { result in
                             switch result {
                             case .success(let html):
+                                let tbhead = html.replacingOccurrences(of: "\r", with: "").find("<thead class=\"gridhead\">(.+?)</thead>")
+                                let courseAttri = tbhead.findArray("<th .*?>(.+?)</th>")
+                                var attributesDict: [String: Int] = [:]
+                                for (i, name) in courseAttri.enumerated() {
+                                    var keyName = ""
+                                    switch name {
+                                        // ["学年学期", "课程代码", "课程序号", "课程名称", "课程类别", "学分", "考试情况", "期末成绩", "平时成绩", "总评成绩", "最终", "绩点"]
+                                        case "学年学期":
+                                            keyName = "semester"
+                                        case "课程代码":
+                                            keyName = "code"
+                                        case "课程序号":
+                                            keyName = "no"
+                                        case "课程类别":
+                                            keyName = "type"
+                                        case "课程性质":
+                                            keyName = "classProperty"
+                                        case "课程名称":
+                                            keyName = "name"
+                                        case "学分":
+                                            keyName = "credit"
+                                        case "考试情况":
+                                            keyName = "condition"
+                                        case "最终", "成绩":
+                                            keyName = "score"
+                                        case "绩点":
+                                            keyName = "gpa"
+                                        default: break
+                                    }
+                                    attributesDict[keyName] = i
+                                }
+                                // 直接用Dict来获取值
+                                func getAttribute(_ attriArr: [String], key: String) -> String {
+                                    if let idx = attributesDict[key] {
+                                        return attriArr[idx]
+                                    } else {
+                                        return ""
+                                    }
+                                }
+                                
                                 let gpaArray = html
                                     .replacingOccurrences(of: "\r", with: "") // only worked after `\r` removed, insane!
                                     .findArray("<tr .+?\">(.+?)</tr>")
                                     .map { singleGPAHTML -> SingleGPA in
                                         let singleGPA = singleGPAHTML.findArray("<td[^>]*>\\s*([^<\\t\\n]*)")
-                                        switch singleGPA.count {
-                                        case 9:
-//                                            return SingleGPA(fullGPA: singleGPA)
-                                            return singleGPA[1].contains("S") ? SingleGPA(pgGPA2: singleGPA) : SingleGPA(fullGPA: singleGPA)
-                                        case 11:
-                                            return SingleGPA(pgGPA: singleGPA)
-                                        case 6:
-                                            return SingleGPA(partialGPA: singleGPA)
-                                        default:
-                                            return SingleGPA()
-                                        }
+                                        return SingleGPA(semester: getAttribute(singleGPA, key: "semester"),
+                                                         courseCode: getAttribute(singleGPA, key: "code"),
+                                                         no: getAttribute(singleGPA, key: "no"),
+                                                         name: getAttribute(singleGPA, key: "name"),
+                                                         type: getAttribute(singleGPA, key: "type"),
+                                                         classProperty: getAttribute(singleGPA, key: "classProperty"),
+                                                         credit: Double(getAttribute(singleGPA, key: "credit")) ?? 0,
+                                                         score: Double(getAttribute(singleGPA, key: "score")) ?? 0,
+                                                         scoreProperty: getAttribute(singleGPA, key: "score"),
+                                                         gpa: Double(getAttribute(singleGPA, key: "gpa")) ?? 0)
                                     }
-                                
-                                let semesterGPA = SemesterGPA(semester: semester, gpaArray: gpaArray)
-                                semesterGPAArray.append(semesterGPA)
+                                if !gpaArray.isEmpty {
+                                    semesterGPAArray.append(SemesterGPA(semester: semester, gpaArray: gpaArray))
+                                }
                                 semaphore.signal()
                             case .failure(let error):
                                 completion(.failure(error))

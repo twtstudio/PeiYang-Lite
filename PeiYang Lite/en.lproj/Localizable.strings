@@ -9,7 +9,11 @@
 "urlError" = "URL Error";
 "requestFailed" = "Request Failed";
 "loginFailed" = "Login Failed";
+"alreadyLogin" = "Already Login";
+"usorpwWrong" = "Username Or Password Wrong";
+"captchaWrong" = "Captcha Wrong";
 "unknownError" = "Unknown Error";
+
 "notificationError" = "Notification Error";
 "notificationErrorMessage" = "PeiYang Lite need your permission to enable notification for course table.";
 "biometryNotEnrolled" = "Biometry Not Enrolled";

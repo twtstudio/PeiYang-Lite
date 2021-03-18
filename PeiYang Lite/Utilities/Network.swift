@@ -8,20 +8,23 @@
 import SwiftUI
 
 struct Network {
-    enum Failure: Error, Equatable {
-        case urlError, requestFailed, loginFailed, unknownError
+    enum Failure: Error, Equatable, Hashable {
+        case urlError, requestFailed, loginFailed, unknownError, alreadyLogin, usorpwWrong, captchaWrong
         case custom(String)
         
-//        private static let pair: [Failure: Localizable] = [
-//            .urlError: .urlError,
-//            .requestFailed: .requestFailed,
-//            .loginFailed: .loginFailed,
-//            .unknownError: .unknownError,
-//        ]
-//
-//        var localizedStringKey: LocalizedStringKey {
-//            Failure.pair[self]?.rawValue ?? ""
-//        }
+        private static let pair: [Failure: Localizable] = [
+            .urlError: .urlError,
+            .requestFailed: .requestFailed,
+            .loginFailed: .loginFailed,
+            .unknownError: .unknownError,
+            .alreadyLogin: .alreadyLogin,
+            .usorpwWrong: .usorpwWrong,
+            .captchaWrong: .captchaWrong,
+        ]
+
+        var localizedStringKey: LocalizedStringKey {
+            Failure.pair[self]?.rawValue ?? ""
+        }
         
     }
     
@@ -301,7 +304,7 @@ extension Network.Failure: LocalizedError {
         switch self {
             case .custom(let desc):
                 return desc
-            default: return self.localizedDescription
+            default: return self.localizedStringKey.stringValue()
         }
     }
 }

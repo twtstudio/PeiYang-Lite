@@ -19,17 +19,19 @@ struct SingleGPA: Codable, Storable, Hashable {
     let scoreProperty: String
     let gpa: Double
     
-//    init(semester: String, no: String, name: String, type: String, classProperty: String, credit: Double, score: Double, scoreProperty: String, gpa: Double) {
-//        self.semester = semester
-//        self.no = no
-//        self.name = name
-//        self.type = type
-//        self.classProperty = classProperty
-//        self.credit = credit
-//        self.score = score
-//        self.scoreProperty = scoreProperty
-//        self.gpa = gpa
-//    }
+    init(semester: String, courseCode: String, no: String, name: String, type: String, classProperty: String, credit: Double, score: Double, scoreProperty: String, gpa: Double) {
+        self.semester = semester
+        self.courseCode = courseCode
+        self.no = no
+        self.name = name
+        self.type = type
+        self.classProperty = classProperty
+        self.credit = credit
+        self.score = score
+        self.scoreProperty = scoreProperty
+        self.gpa = gpa
+    }
+    
     init(pgGPA: [String]) {
         self.semester = pgGPA[0]
         self.no = pgGPA[2]

@@ -34,6 +34,14 @@ struct ClassesSSOView: View {
                 TextField(Localizable.captcha.rawValue, text: $captcha)
                 .keyboardType(.asciiCapable)
                 
+                URLImage(url: URL(string: captchaURL)!) { (image)in
+                    ColorInvertView {
+                        image
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(height: 32)
+                    }
+                }
 //                URLImage(
 //                    URL(string: captchaURL)!,
 //                    placeholder: { _ in
@@ -64,7 +72,7 @@ struct ClassesSSOView: View {
     }
     
     func login() {
-        ClassesManager.ssoPost(captcha: captcha) { result in
+        ClassesManager.login(captcha: captcha) { result in
             switch result {
             case .success:
                 isLogin = true
@@ -85,24 +93,6 @@ struct ClassesSSOView: View {
         captchaURL = "https://sso.tju.edu.cn/cas/images/kaptcha.jpg?id=\(Double.random(in: 0...1))"
     }
 }
-
-//struct LoadingView: View {
-//    @State private var isAnimating = false
-//
-//    var body: some View {
-//        Image(systemName: "gear")
-//            .rotationEffect(.degrees(isAnimating ? 360 : 0))
-//            .animation(Animation.linear(duration: 2).repeatForever(autoreverses: false))
-//            .onAppear {
-//                DispatchQueue.main.async { // wired, no animation in the first loading if sync
-//                    isAnimating = true
-//                }
-//            }
-//            .onDisappear {
-//                isAnimating = false
-//            }
-//    }
-//}
 
 struct ColorInvertView<Content: View>: View {
     @Environment(\.colorScheme) private var colorScheme

@@ -9,7 +9,11 @@
 "urlError" = "網址錯誤";
 "requestFailed" = "請求失敗";
 "loginFailed" = "登錄失敗";
+"alreadyLogin" = "已經登錄";
+"usorpwWrong" = "賬號或密碼錯誤";
+"captchaWrong" = "驗證碼錯誤";
 "unknownError" = "未知錯誤";
+
 "notificationError" = "通知錯誤";
 "notificationErrorMessage" = "輕北洋需要您的許可來啟用課程表通知.";
 "biometryNotEnrolled" = "尚未錄入生物信息";

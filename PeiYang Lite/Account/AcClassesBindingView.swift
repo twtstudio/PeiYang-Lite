@@ -110,7 +110,7 @@ fileprivate struct ClassesBindingLoginedView: View {
             }
             // 解绑界面
             Color.black
-                .ignoresSafeArea()
+                .edgesIgnoringSafeArea(.all)
                 .opacity(isShowSignOut ? 0.5 : 0)
                 .animation(.easeIn)
             
@@ -243,13 +243,14 @@ fileprivate struct ClassesBindingLoginView: View {
                             .cornerRadius(10)
                             .padding(.trailing)
                     }
+                    .onAppear(perform: refreshCaptcha)
                     .onTapGesture(perform: refreshCaptcha)
                     
                 }
                 .frame(width: UIScreen.main.bounds.width * 0.9)
                 
                 Button(action: {
-                    ClassesManager.ssoPost(captcha: captcha) { result in
+                    ClassesManager.login(captcha: captcha) { result in
                         switch result {
                             case .success:
                                 isLogin = true

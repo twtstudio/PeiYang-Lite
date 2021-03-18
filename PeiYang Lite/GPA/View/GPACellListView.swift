@@ -11,7 +11,8 @@ struct GPACellListView: View {
     let activeSemesterGPA: SemesterGPA
     var body: some View {
         VStack {
-            ForEach(activeSemesterGPA.gpaArray, id: \.no) { singleGPA in
+            ForEach(activeSemesterGPA.gpaArray.indices, id: \.self) { i in
+                let singleGPA = activeSemesterGPA.gpaArray[i]
                 HStack {
                     Image(systemName: "book.fill")
                         .font(.title)
@@ -30,7 +31,7 @@ struct GPACellListView: View {
                     
                     Spacer()
                     
-                    Text(singleGPA.score.decimal)
+                    Text(singleGPA.score.decimal == 0.description ? singleGPA.scoreProperty : singleGPA.score.decimal)
                         .font(.title)
                         .fontWeight(.bold)
                         .foregroundColor(.white)

@@ -9,7 +9,11 @@
 "urlError" = "网址错误";
 "requestFailed" = "请求失败";
 "loginFailed" = "登录失败";
+"alreadyLogin" = "已经登录";
+"usorpwWrong" = "账号或密码错误";
+"captchaWrong" = "验证码错误";
 "unknownError" = "未知错误";
+
 "notificationError" = "通知错误";
 "notificationErrorMessage" = "轻北洋需要您的许可来启用课程表通知.";
 "biometryNotEnrolled" = "尚未录入生物信息";
