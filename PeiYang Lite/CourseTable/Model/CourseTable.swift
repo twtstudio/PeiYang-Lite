@@ -140,7 +140,7 @@ struct Course: Codable, Storable {
 }
 
 struct CourseTable: Codable, Storable {
-    let courseArray: [Course]
+    var courseArray: [Course]
     
     var totalWeek: Int {
         courseArray.map { $0.weekRange.max() ?? 1 }.max() ?? 1

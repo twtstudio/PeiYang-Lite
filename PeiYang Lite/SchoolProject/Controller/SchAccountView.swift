@@ -21,6 +21,10 @@ struct SchAccountView: View {
     @State private var isShowAlert: Bool = false
     @State private var questionIdToDelete: Int = -1
     
+    private var questions: [SchQuestionModel] {
+        return isMineSelected ? myQuestions : favQuestions
+    }
+    
     var body: some View {
         
         VStack {
@@ -66,14 +70,23 @@ struct SchAccountView: View {
             .background(Color.white)
             .cornerRadius(20)
             
-            ScrollView {
-                LazyVStack {
-                    let questions = isMineSelected ? myQuestions : favQuestions
-                    ForEach(questions.indices, id: \.self) { i in
-                        SchQuestionCellView(question: questions[i], isEditing: isMineSelected, deleteAction: {
+            ScrollView(showsIndicators: false) {
+                if isMineSelected {
+                    ForEach(myQuestions.indices, id: \.self) { i in
+                        SchQuestionCellView(question: myQuestions[i], isEditing: isMineSelected, deleteAction: {
                             isShowAlert = true
-                            questionIdToDelete = questions[i].id ?? -1
+                            questionIdToDelete = myQuestions[i].id ?? -1
                         })
+                        .frame(maxWidth: .infinity)
+                            .padding(.top, 10)
+                    }
+                } else {
+                    ForEach(favQuestions.indices, id: \.self) { i in
+                        SchQuestionCellView(question: favQuestions[i], isEditing: isMineSelected, deleteAction: {
+                            isShowAlert = true
+                            questionIdToDelete = favQuestions[i].id ?? -1
+                        })
+                        .frame(maxWidth: .infinity)
                             .padding(.top, 10)
                     }
                 }

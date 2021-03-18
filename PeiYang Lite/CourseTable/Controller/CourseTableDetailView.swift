@@ -156,7 +156,7 @@ struct CourseTableDetailView: View {
 //            }
 //        }
         
-        ClassesManager.courseTablePost { result in
+        ClassesManager.getCourseTable { result in
             switch result {
             case .success(let courseTable):
                 store.object = courseTable
@@ -185,7 +185,7 @@ struct CourseTableDetailView: View {
             }
         }
         
-        ClassesManager.courseTablePost { result in
+        ClassesManager.getCourseTable { result in
             switch result {
             case .success(let courseTable):
                 store.object = courseTable

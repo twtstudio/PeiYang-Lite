@@ -18,6 +18,7 @@ struct AcChangeNameView: View {
         @State private var alertTime = 2
     var body: some View {
         VStack{
+            NavigationBar(center: { Text("更改名字") })
             HStack {
                 TextField("", text: $changeName)
                     .foregroundColor(.init(red: 98/255, green: 103/255, blue: 124/255))
@@ -58,13 +59,7 @@ struct AcChangeNameView: View {
             Spacer()
             AlertView(alertMessage: AlertMessage, isShow: $isShowAlert)
         }
-        .navigationBarTitle("更改名字", displayMode: .inline)
-        .navigationBarBackButtonHidden(true)
-        .navigationBarItems(leading: Button(action:{
-            self.mode.wrappedValue.dismiss()
-        }){
-            Image("back-arrow-black")
-        })
+        .navigationBarHidden(true)
     }
 }
 

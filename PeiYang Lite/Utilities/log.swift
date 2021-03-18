@@ -29,3 +29,13 @@ func log<T>(_ object: T, functionName: String = #function, fileName: String = #f
     print("<\(className)> \(functionName) [#\(lineNumber)]|\(emoji) \(object)\n")
     #endif
 }
+
+func log(_ object: Any..., functionName: String = #function, fileName: String = #file, lineNumber: Int = #line) {
+    #if DEBUG
+    let className = (fileName as NSString).lastPathComponent
+    let objectDescription = object.map { String(describing: $0) }.joined(separator: " ")
+    let emoji = emojiDict[String(describing: String.self)] ?? ""
+    // swiftlint:disable:next print_check
+    print("<\(className)> \(functionName) [#\(lineNumber)]|\(emoji) \(objectDescription)\n")
+    #endif
+}

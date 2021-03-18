@@ -35,7 +35,7 @@ struct SchCommentModel: Codable {
 
 
 struct SchCommentManager {
-    static func commentGet(id: Int, completion: @escaping (Result<[SchCommentModel], Network.Failure>) -> Void) {
+    static func commentGet(id: Int, completion: @escaping (Result<[SchCommentModel], Error>) -> Void) {
         SchManager.request("/user/question/get/commit?question_id=\(id)") { (result) in
             switch result {
                 case .success(let (data, _)):
@@ -43,7 +43,7 @@ struct SchCommentManager {
                         let res = try JSONDecoder().decode(SchResponseModel<[SchCommentModel]>.self, from: data)
                         completion(.success(res.data ?? []))
                     } catch {
-                        completion(.failure(error as! Network.Failure))
+                        completion(.failure(error))
                     }
                 case .failure(let err):
                     completion(.failure(err))
@@ -51,7 +51,7 @@ struct SchCommentManager {
         }
     }
     
-    static func addComment(questionId: Int, contain: String, completion: @escaping (Result<Bool, Network.Failure>) -> Void) {
+    static func addComment(questionId: Int, contain: String, completion: @escaping (Result<Bool, Error>) -> Void) {
         let paras = ["question_id": questionId, "contain": contain] as [String : Any]
         SchManager.request("/user/commit/add/question",
                                   method: .post,
@@ -64,7 +64,7 @@ struct SchCommentManager {
                             completion(.success(true))
                         }
                     } catch {
-                        completion(.failure(error as! Network.Failure))
+                        completion(.failure(error))
                     }
                 case .failure(let err):
                     completion(.failure(err))
@@ -72,7 +72,7 @@ struct SchCommentManager {
         }
     }
     
-    static func likeOrDislikeComment(commentId: Int, like: Bool, completion: @escaping (Result<Bool, Network.Failure>) -> Void) {
+    static func likeOrDislikeComment(commentId: Int, like: Bool, completion: @escaping (Result<Bool, Error>) -> Void) {
         let paras = ["id": commentId]
         SchManager.request(like ? "/user/commit/like" : "/user/commit/dislike",
                                   method: .post,
@@ -85,7 +85,7 @@ struct SchCommentManager {
                             completion(.success(true))
                         }
                     } catch {
-                        completion(.failure(error as! Network.Failure))
+                        completion(.failure(error))
                     }
                 case .failure(let err):
                     completion(.failure(err))

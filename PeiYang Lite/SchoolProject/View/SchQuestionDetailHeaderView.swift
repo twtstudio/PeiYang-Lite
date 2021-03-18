@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SchQuestionDetailHeaderView: View {
-    @Binding var question: SchQuestionModel
+    @State var question: SchQuestionModel
     
     private var questionTime: String {
         get {
@@ -50,6 +50,10 @@ struct SchQuestionDetailHeaderView: View {
                 .padding(.horizontal)
             
             PhotoListView(imageURLs: question.thumbUrlList ?? [])
+                .frame(maxWidth: .infinity)
+//                .alignmentGuide(.leading, computeValue: { dimension in
+//                    return dimension[.center]
+//                })
             
             HStack {
                 Text(questionTime)
@@ -119,7 +123,7 @@ struct SchQuestionCardView_Previews: PreviewProvider {
             Color(#colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1))
                 .edgesIgnoringSafeArea(.all)
             
-            SchQuestionDetailHeaderView(question: .constant(SchQuestionModel(id: 0, name: "微北洋真不戳", content: "微北洋真不戳微北洋真不戳微北洋真不戳微北洋真不戳微北洋真不戳微北洋真不戳", userID: nil, solved: 1, noCommit: 0, likes: 999, createdAt: "2021-03-10T12:50:28.000000Z", updatedAt: nil, username: "真不戳", msgCount: 999, urlList: ["https://www.hackingwithswift.com/img/covers-flat/watchos@2x.png","https://www.hackingwithswift.com/img/covers-flat/watchos@2x.png"], thumbImg: nil, tags: [SchTagModel(id: 0, name: "天津大学", description: nil, tagDescription: nil, isSelected: nil, children: nil)], thumbUrlList: ["https://www.hackingwithswift.com/img/covers-flat/watchos@2x.png","https://www.hackingwithswift.com/img/covers-flat/watchos@2x.png"], isLiked: true, isOwner: true)))
+            SchQuestionDetailHeaderView(question: SchQuestionModel(id: 0, name: "微北洋真不戳", content: "微北洋真不戳微北洋真不戳微北洋真不戳微北洋真不戳微北洋真不戳微北洋真不戳", userID: nil, solved: 1, noCommit: 0, likes: 999, createdAt: "2021-03-10T12:50:28.000000Z", updatedAt: nil, username: "真不戳", msgCount: 999, urlList: ["https://www.hackingwithswift.com/img/covers-flat/watchos@2x.png","https://www.hackingwithswift.com/img/covers-flat/watchos@2x.png"], thumbImg: nil, tags: [SchTagModel(id: 0, name: "天津大学", description: nil, tagDescription: nil, isSelected: nil, children: nil)], thumbUrlList: ["https://www.hackingwithswift.com/img/covers-flat/watchos@2x.png","https://www.hackingwithswift.com/img/covers-flat/watchos@2x.png"], isLiked: true, isOwner: true))
                 .frame(width: screen.width - 20, height: screen.width - 20)
                 .shadow(color: Color.black.opacity(0.2), radius: 10, x: 2, y: 2)
         }

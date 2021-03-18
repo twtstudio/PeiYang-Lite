@@ -1,5 +1,6 @@
 PODS:
   - FSCalendar (2.8.2)
+  - SKPhotoBrowser (6.1.0)
   - URLImage (2.2.3):
     - URLImage/Common (= 2.2.3)
     - URLImage/DownloadManager (= 2.2.3)
@@ -22,17 +23,20 @@ PODS:
 
 DEPENDENCIES:
   - FSCalendar (= 2.8.2)
+  - SKPhotoBrowser
   - URLImage
 
 SPEC REPOS:
   trunk:
     - FSCalendar
+    - SKPhotoBrowser
     - URLImage
 
 SPEC CHECKSUMS:
   FSCalendar: e6a2eb9c571bf0719ed797ef807e08426753c241
+  SKPhotoBrowser: 343de95d89dc7913763c5dda243cc6e606e4a168
   URLImage: 1eeb43e09cd736008da21944ba51d433ef41c09d
 
-PODFILE CHECKSUM: 57089fce9758ce19daced74ad02de295317918b2
+PODFILE CHECKSUM: 2db2d15997c50ae62aac7baaaa007d115df831d4
 
 COCOAPODS: 1.10.0

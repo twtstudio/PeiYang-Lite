@@ -142,7 +142,6 @@
 		C9D5BF7525D010F000CD3537 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D5BF7425D010F000CD3537 /* SettingView.swift */; };
 		C9D5BF8025D0D5FE00CD3537 /* ClassesBindingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D5BF7F25D0D5FE00CD3537 /* ClassesBindingView.swift */; };
 		C9D95F0B2531874F00C3C911 /* Morning-Star-1.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C9D95F0A2531874F00C3C911 /* Morning-Star-1.ttf */; };
-		C9E3E01F260225FF00CEAEC9 /* PQTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E3E01E260225FF00CEAEC9 /* PQTextField.swift */; };
 		C9ED446625C40936001A5456 /* RegisterFirView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9ED446525C40936001A5456 /* RegisterFirView.swift */; };
 		C9ED446F25C40C88001A5456 /* RegisterThiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9ED446E25C40C88001A5456 /* RegisterThiView.swift */; };
 		C9ED447725C413A2001A5456 /* RegisterSecView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9ED447625C413A2001A5456 /* RegisterSecView.swift */; };
@@ -156,10 +155,12 @@
 		D31F8DEA25FCA95800911775 /* log.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31F8DE925FCA95800911775 /* log.swift */; };
 		D31F8DEE25FCA97100911775 /* SchFavManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31F8DED25FCA97100911775 /* SchFavManager.swift */; };
 		D31F8DF825FCA9C000911775 /* SchQuestionAnswerCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31F8DF725FCA9C000911775 /* SchQuestionAnswerCellView.swift */; };
-		D344856625F38EF30005915B /* SchSearchResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344856525F38EF30005915B /* SchSearchResultView.swift */; };
+		D31F8E0425FCB07200911775 /* SchAnswerDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31F8E0325FCB07200911775 /* SchAnswerDetailView.swift */; };
+		D3466F0D2600C4390056F43C /* KeyboardGuardian.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3466F0C2600C4390056F43C /* KeyboardGuardian.swift */; };
 		D346ACDA25F2A90000A146D8 /* ScrollViewWithRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = D346ACD925F2A90000A146D8 /* ScrollViewWithRefresh.swift */; };
 		D3490D0025FA42B3004AB614 /* SchQuestionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3490CFF25FA42B3004AB614 /* SchQuestionDetailView.swift */; };
 		D3490D1225FAE78A004AB614 /* SchQuestionCommentCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3490D1125FAE78A004AB614 /* SchQuestionCommentCellView.swift */; };
+		D34E4B8D26031609006F49F4 /* PQTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34E4B8C26031609006F49F4 /* PQTextField.swift */; };
 		D357A25725F0FEEA00C061CF /* UniversalExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D357A25625F0FEEA00C061CF /* UniversalExtension.swift */; };
 		D357A25F25F0FF7F00C061CF /* UniversalExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D357A25625F0FEEA00C061CF /* UniversalExtension.swift */; };
 		D357A26325F0FFC600C061CF /* SchAnswerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D357A26225F0FFC600C061CF /* SchAnswerManager.swift */; };
@@ -177,9 +178,11 @@
 		D37DD88125EDFA8700A662E0 /* SchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37DD87925EDFA8700A662E0 /* SchManager.swift */; };
 		D37DD88225EDFA8700A662E0 /* SchQuestionCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37DD87B25EDFA8700A662E0 /* SchQuestionCellView.swift */; };
 		D37DD88325EDFA8700A662E0 /* SchSelectTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37DD87C25EDFA8700A662E0 /* SchSelectTagView.swift */; };
+		D380D6A72601FE7B00FD5F30 /* log.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31F8DE925FCA95800911775 /* log.swift */; };
 		D38F7FEA25F63A67008DBB0E /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38F7FE925F63A67008DBB0E /* LoadingView.swift */; };
 		D3EB57EB25F3991500A9321F /* SchQuestionScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3EB57EA25F3991500A9321F /* SchQuestionScrollView.swift */; };
 		D3EB57F125F4B40700A9321F /* MutiLineVStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3EB57F025F4B40700A9321F /* MutiLineVStack.swift */; };
+		D3F725F02603382400249313 /* SKPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F725EF2603382400249313 /* SKPhotoView.swift */; };
 		F81EA16B8704924F59A9337E /* Pods_PeiYang_Lite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9455FB18B34C565541F53AB /* Pods_PeiYang_Lite.framework */; };
 /* End PBXBuildFile section */
 
@@ -344,7 +347,6 @@
 		C9D5BF7425D010F000CD3537 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		C9D5BF7F25D0D5FE00CD3537 /* ClassesBindingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassesBindingView.swift; sourceTree = "<group>"; };
 		C9D95F0A2531874F00C3C911 /* Morning-Star-1.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Morning-Star-1.ttf"; sourceTree = "<group>"; };
-		C9E3E01E260225FF00CEAEC9 /* PQTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PQTextField.swift; path = "../../../../Desktop/PeiYang-Lite/PeiYang Lite/Account/Model/PQTextField.swift"; sourceTree = "<group>"; };
 		C9ED446525C40936001A5456 /* RegisterFirView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterFirView.swift; sourceTree = "<group>"; };
 		C9ED446E25C40C88001A5456 /* RegisterThiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterThiView.swift; sourceTree = "<group>"; };
 		C9ED447625C413A2001A5456 /* RegisterSecView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterSecView.swift; sourceTree = "<group>"; };
@@ -358,10 +360,12 @@
 		D31F8DE925FCA95800911775 /* log.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = log.swift; sourceTree = "<group>"; };
 		D31F8DED25FCA97100911775 /* SchFavManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchFavManager.swift; sourceTree = "<group>"; };
 		D31F8DF725FCA9C000911775 /* SchQuestionAnswerCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchQuestionAnswerCellView.swift; sourceTree = "<group>"; };
-		D344856525F38EF30005915B /* SchSearchResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchSearchResultView.swift; sourceTree = "<group>"; };
+		D31F8E0325FCB07200911775 /* SchAnswerDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchAnswerDetailView.swift; sourceTree = "<group>"; };
+		D3466F0C2600C4390056F43C /* KeyboardGuardian.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardGuardian.swift; sourceTree = "<group>"; };
 		D346ACD925F2A90000A146D8 /* ScrollViewWithRefresh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollViewWithRefresh.swift; sourceTree = "<group>"; };
 		D3490CFF25FA42B3004AB614 /* SchQuestionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchQuestionDetailView.swift; sourceTree = "<group>"; };
 		D3490D1125FAE78A004AB614 /* SchQuestionCommentCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchQuestionCommentCellView.swift; sourceTree = "<group>"; };
+		D34E4B8C26031609006F49F4 /* PQTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PQTextField.swift; sourceTree = "<group>"; };
 		D357A25625F0FEEA00C061CF /* UniversalExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniversalExtension.swift; sourceTree = "<group>"; };
 		D357A26225F0FFC600C061CF /* SchAnswerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchAnswerManager.swift; sourceTree = "<group>"; };
 		D35E4E4225EEB18D00526388 /* PhotoListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoListView.swift; sourceTree = "<group>"; };
@@ -381,6 +385,7 @@
 		D38F7FE925F63A67008DBB0E /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		D3EB57EA25F3991500A9321F /* SchQuestionScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchQuestionScrollView.swift; sourceTree = "<group>"; };
 		D3EB57F025F4B40700A9321F /* MutiLineVStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MutiLineVStack.swift; sourceTree = "<group>"; };
+		D3F725EF2603382400249313 /* SKPhotoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKPhotoView.swift; sourceTree = "<group>"; };
 		D7E41DE3E6B713D16EC6B8F9 /* Pods-PeiYangLiteWidgetExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PeiYangLiteWidgetExtension.debug.xcconfig"; path = "Target Support Files/Pods-PeiYangLiteWidgetExtension/Pods-PeiYangLiteWidgetExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		FEBDECA626850C8311037F0F /* Pods-PeiYang Lite.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PeiYang Lite.release.xcconfig"; path = "Target Support Files/Pods-PeiYang Lite/Pods-PeiYang Lite.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -442,13 +447,14 @@
 				0369E06924DA371A00643F7D /* ChartView */,
 				03B6895624D157D90020AD47 /* BlurView.swift */,
 				03B6895724D157D90020AD47 /* GridStack.swift */,
+				D34E4B8C26031609006F49F4 /* PQTextField.swift */,
 				C9FCF26925EB92B7004FC993 /* GridWithoutScrollStack.swift */,
 				03ACE52924D844C5009468D4 /* RefreshButton.swift */,
-				C9E3E01E260225FF00CEAEC9 /* PQTextField.swift */,
 				C92E614E253997990008A38A /* RadarChartView.swift */,
 				C9D5BF4B25CB9C2800CD3537 /* AlertView.swift */,
 				C9D5BF5225CC0D4800CD3537 /* RemindView.swift */,
 				C930724125E16C75005E5736 /* BubbleView.swift */,
+				D3F725EF2603382400249313 /* SKPhotoView.swift */,
 				D35E4E4225EEB18D00526388 /* PhotoListView.swift */,
 				D35E4E6125F061B000526388 /* ImagePicker.swift */,
 				D346ACD925F2A90000A146D8 /* ScrollViewWithRefresh.swift */,
@@ -458,6 +464,7 @@
 				D31F8DE125FCA93900911775 /* DynamicHeightTextField.swift */,
 				D31F8DE225FCA93900911775 /* NavigationBar.swift */,
 				D31F8DE325FCA93900911775 /* WebHtmlView.swift */,
+				D3466F0C2600C4390056F43C /* KeyboardGuardian.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1015,8 +1022,8 @@
 				D37DD87525EDFA8700A662E0 /* SchAccountView.swift */,
 				D37DD87625EDFA8700A662E0 /* SchNewQuestionView.swift */,
 				D37DD87725EDFA8700A662E0 /* SchSearchView.swift */,
-				D344856525F38EF30005915B /* SchSearchResultView.swift */,
 				D3490CFF25FA42B3004AB614 /* SchQuestionDetailView.swift */,
+				D31F8E0325FCB07200911775 /* SchAnswerDetailView.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1038,9 +1045,9 @@
 		D37DD87A25EDFA8700A662E0 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				D31F8DF725FCA9C000911775 /* SchQuestionAnswerCellView.swift */,
 				C95B57A125EBF37F004300B5 /* SchQuestionDetailHeaderView.swift */,
 				D3490D1125FAE78A004AB614 /* SchQuestionCommentCellView.swift */,
+				D31F8DF725FCA9C000911775 /* SchQuestionAnswerCellView.swift */,
 				D37DD87B25EDFA8700A662E0 /* SchQuestionCellView.swift */,
 				D37DD87C25EDFA8700A662E0 /* SchSelectTagView.swift */,
 				D3EB57EA25F3991500A9321F /* SchQuestionScrollView.swift */,
@@ -1239,6 +1246,7 @@
 				C9663C2A25E248A600DFC973 /* WeekGridView.swift in Sources */,
 				C9ED447725C413A2001A5456 /* RegisterSecView.swift in Sources */,
 				03B6893824D1572A0020AD47 /* PieCellView.swift in Sources */,
+				D34E4B8D26031609006F49F4 /* PQTextField.swift in Sources */,
 				C91CF662252C859F001C327B /* ClassesManager.swift in Sources */,
 				03D85EB424DD071800637AB8 /* WLANManager.swift in Sources */,
 				D31F8DEA25FCA95800911775 /* log.swift in Sources */,
@@ -1255,6 +1263,7 @@
 				C9663C2D25E248A600DFC973 /* CourseTableWeekdaysView.swift in Sources */,
 				C9D59B6C25BE7655006865FC /* FinalStepView.swift in Sources */,
 				03B6894924D1579B0020AD47 /* CurveDetailView.swift in Sources */,
+				D3F725F02603382400249313 /* SKPhotoView.swift in Sources */,
 				D346ACDA25F2A90000A146D8 /* ScrollViewWithRefresh.swift in Sources */,
 				C9ED446625C40936001A5456 /* RegisterFirView.swift in Sources */,
 				C9CF3D5E25D153780085263F /* BindPhoneView.swift in Sources */,
@@ -1275,7 +1284,6 @@
 				C95B57C325EBF3C2004300B5 /* HomeCardView.swift in Sources */,
 				D357A26325F0FFC600C061CF /* SchAnswerManager.swift in Sources */,
 				C95B57C925EBF3C2004300B5 /* HomeHeaderView.swift in Sources */,
-				C9E3E01F260225FF00CEAEC9 /* PQTextField.swift in Sources */,
 				D37DD87D25EDFA8700A662E0 /* SchView.swift in Sources */,
 				D35E4E6D25F0C32700526388 /* SchCommentManager.swift in Sources */,
 				C9D59B3825BBB80C006865FC /* BeginView.swift in Sources */,
@@ -1286,6 +1294,7 @@
 				C9016EF525E9CC72007524DD /* StudySearchView.swift in Sources */,
 				D357A25725F0FEEA00C061CF /* UniversalExtension.swift in Sources */,
 				03B6892424D156F40020AD47 /* ECardLoginView.swift in Sources */,
+				D31F8E0425FCB07200911775 /* SchAnswerDetailView.swift in Sources */,
 				C9D5BF5325CC0D4800CD3537 /* RemindView.swift in Sources */,
 				C95B57DB25EBF3ED004300B5 /* GPACellListView.swift in Sources */,
 				C971BA8F25C8FEE4006A292E /* RegisterManager.swift in Sources */,
@@ -1322,13 +1331,13 @@
 				C9CF3D6225D162310085263F /* BindManager.swift in Sources */,
 				C9836FD025F29160000E3367 /* AcSetShowDayView.swift in Sources */,
 				D35E4E6F25F0C32700526388 /* SchQusetionManager.swift in Sources */,
+				D3466F0D2600C4390056F43C /* KeyboardGuardian.swift in Sources */,
 				03D85EBF24DD17B700637AB8 /* WLANLoginView.swift in Sources */,
 				C9663C2C25E248A600DFC973 /* CourseTableContentView.swift in Sources */,
 				03B6892024D156F40020AD47 /* Semester.swift in Sources */,
 				C9CF3DD925D2B1E00085263F /* Weather.swift in Sources */,
 				C942C1BE25CABE71006D0B83 /* SupplyManager.swift in Sources */,
 				03B688EE24D156CE0020AD47 /* Storage.swift in Sources */,
-				D344856625F38EF30005915B /* SchSearchResultView.swift in Sources */,
 				C95B57C225EBF3C2004300B5 /* HomeStudyRoomSectionView.swift in Sources */,
 				C971BA9425C9076D006A292E /* ForgetManager.swift in Sources */,
 				C930724225E16C75005E5736 /* BubbleView.swift in Sources */,
@@ -1391,6 +1400,7 @@
 				C9CF3DAB25D2B0370085263F /* WeatherService.swift in Sources */,
 				C9CF3D9F25D2B02B0085263F /* PeiYangLiteWidget.swift in Sources */,
 				C9129FA7251340FD00EDE4CE /* Network.swift in Sources */,
+				D380D6A72601FE7B00FD5F30 /* log.swift in Sources */,
 				C9CF3D9525D2AFFD0085263F /* SmallView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1554,9 +1564,9 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "PeiYang Lite/PeiYang Lite.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 202103072021;
+				CURRENT_PROJECT_VERSION = 202103142021;
 				DEVELOPMENT_ASSET_PATHS = "\"PeiYang Lite/Preview Content\"";
-				DEVELOPMENT_TEAM = 863S6TAW4N;
+				DEVELOPMENT_TEAM = T5JB4K7FT9;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "PeiYang Lite/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -1581,9 +1591,9 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "PeiYang Lite/PeiYang Lite.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 202103072021;
+				CURRENT_PROJECT_VERSION = 202103142021;
 				DEVELOPMENT_ASSET_PATHS = "\"PeiYang Lite/Preview Content\"";
-				DEVELOPMENT_TEAM = 863S6TAW4N;
+				DEVELOPMENT_TEAM = T5JB4K7FT9;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "PeiYang Lite/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -1607,8 +1617,8 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = PeiYangLiteWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 202103072021;
-				DEVELOPMENT_TEAM = 863S6TAW4N;
+				CURRENT_PROJECT_VERSION = 202103142021;
+				DEVELOPMENT_TEAM = T5JB4K7FT9;
 				INFOPLIST_FILE = PeiYangLiteWidget/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1632,8 +1642,8 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = PeiYangLiteWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 202103072021;
-				DEVELOPMENT_TEAM = 863S6TAW4N;
+				CURRENT_PROJECT_VERSION = 202103142021;
+				DEVELOPMENT_TEAM = T5JB4K7FT9;
 				INFOPLIST_FILE = PeiYangLiteWidget/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

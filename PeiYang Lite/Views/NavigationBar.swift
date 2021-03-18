@@ -50,7 +50,6 @@ struct NavigationBar<Leading, Center, Trailing>: View where Leading: View, Cente
     }
 }
 
-
 struct NavigationBar_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
@@ -68,6 +67,14 @@ struct NavigationBar_Previews: PreviewProvider {
             Spacer()
         }
         .background(Color.black.edgesIgnoringSafeArea(.all))
+    }
+}
+
+extension NavigationBar where Leading == EmptyView, Center == EmptyView, Trailing == EmptyView {
+    init () {
+        self.leading = nil
+        self.center = nil
+        self.trailing = nil
     }
 }
 

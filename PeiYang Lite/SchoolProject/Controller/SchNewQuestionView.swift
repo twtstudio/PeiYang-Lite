@@ -33,143 +33,152 @@ struct SchNewQuestionView: View {
     @State private var detailDidChange = false
     
     // 报错
+    @State private var noCompleteError = false
     @State private var noTagError = false
     @State private var submitError = false
     
     
     var body: some View {
-        ZStack {
+        VStack {
+            // MARK: NavigationBar
+            NavigationBar(center: {
+                Text("新建提问")
+                    .font(.title2)
+                    .foregroundColor(color)
+            })
+            
             VStack {
-                // MARK: NavigationBar
-                HStack {//MARK: NavigationBar
-                    Button(action: {self.mode.wrappedValue.dismiss()}, label: {
-                        Image("back-arrow")
-                    })
-                    
-                    Spacer()
-                    Text("新建提问")
+                HStack {
+                    TextEditor(text: $textManager.title)
+                        .foregroundColor(titleDidChange ? color : textColor)
                         .font(.title2)
-                        .foregroundColor(color)
-                    Spacer()
-                    Image("back-arrow")
-                        .opacity(0)
-                }
-                .frame(width: UIScreen.main.bounds.width * 0.9)
-                
-                VStack {
-                    HStack {
-                        TextEditor(text: $textManager.title)
-                            .foregroundColor(titleDidChange ? color : textColor)
-                            .font(.title2)
-                            .background(Color.clear)
-                            .frame(height: UIScreen.main.bounds.height / 25, alignment: .center)
-                            .onTapGesture {
-                                if !titleDidChange {
-                                    textManager.title = ""
-                                    titleDidChange = true
-                                }
-                            }
-                        Text("\(String(titleDidChange ? textManager.title.count : 0))/20")
-                            .font(.footnote)
-                            .foregroundColor(textColor)
-                    }
-                    
-                    seperator.frame(width: UIScreen.main.bounds.width * 0.85, height: 1, alignment: .center)
-                    
-                    TextEditor(text: $textManager.detail)
-                        .foregroundColor(detailDidChange ? color : textColor)
-                        //                        .padding(.all)
-                        .font(.body)
+                        .background(Color.clear)
+                        .frame(height: UIScreen.main.bounds.height / 25, alignment: .center)
                         .onTapGesture {
-                            if !detailDidChange {
-                                detailDidChange = true
-                                textManager.detail = ""
+                            if !titleDidChange {
+                                textManager.title = ""
+                                titleDidChange = true
                             }
                         }
-                    HStack {
-                        Spacer()
-                        Text("\(String(detailDidChange ? textManager.detail.count : 0))/200")
-                            .font(.footnote)
-                            .foregroundColor(textColor)
+                    Text("\(String(titleDidChange ? textManager.title.count : 0))/20")
+                        .font(.footnote)
+                        .foregroundColor(textColor)
+                }
+                
+                seperator.frame(width: UIScreen.main.bounds.width * 0.85, height: 1, alignment: .center)
+                
+                TextEditor(text: $textManager.detail)
+                    .foregroundColor(detailDidChange ? color : textColor)
+                    //                        .padding(.all)
+                    .font(.body)
+                    .onTapGesture {
+                        if !detailDidChange {
+                            detailDidChange = true
+                            textManager.detail = ""
+                        }
                     }
-                    
-                    // 图片选择
-                    PhotoListView(images: $images, mode: .write)
-                    
-                    // 标签选择
-                    HStack {
+                    .alert(isPresented: $noCompleteError, content: {
+                        Alert(title: Text("问题或详情不完整"))
+                    })
+                HStack {
+                    Spacer()
+                    Text("\(String(detailDidChange ? textManager.detail.count : 0))/200")
+                        .font(.footnote)
+                        .foregroundColor(textColor)
+                }
+                
+                // 图片选择
+                PhotoListView(images: $images, mode: .write)
+                
+                // 标签选择
+                HStack {
+                    Button(action: {
+                        if !tagSource.tags.isEmpty {
+                            isShowTagSelector = true
+                        }
+                    }, label: {
                         Text(tags)
                             .foregroundColor(color)
-                            .onTapGesture {
-                                if !tagSource.tags.isEmpty {
-                                    isShowTagSelector = true
-                                }
-                            }
-                        Spacer()
-                    }
-                    // sheet不能添加给全局
-                    .sheet(isPresented: $isShowTagSelector, content: {
-                        SchSelectTagView()
-                            .environmentObject(tagSource)
                     })
-                    
-                    // 分割线
-                    seperator.frame(width: UIScreen.main.bounds.width * 0.85, height: 1, alignment: .center)
-                    
-                    // 提交
-                    Button(action: {
-                        submitQuestion()
-//                        isLoading = true
-                    }, label: {
-                        Text("提交")
-                            .bold()
-                            .foregroundColor(color)
-                            .font(.title3)
-                    })
-                    .alert(isPresented: $noTagError, content: {
-                        Alert(title: Text("您还未选择标签"))
-                    })
-                    
-                    Text("")
-                        .frame(width: 0, height: 0)
-                        // emm 此为下策但是alert之间只能是平级
-                        .alert(isPresented: $submitError, content: {
-                            Alert(title: Text("问题提交失败"))
-                        })
+                    Spacer()
                 }
-                .padding()
-                .frame(width: UIScreen.main.bounds.width * 0.9, height: UIScreen.main.bounds.height * 0.6, alignment: .center)
-                .background(Color.white)
-                .cornerRadius(10)
-                .shadow(color: Color.black.opacity(0.1), radius: 10, x: 0.0, y: 0.0)
-                Spacer()
+                .padding(.top)
+                // sheet不能添加给全局
+                .sheet(isPresented: $isShowTagSelector, content: {
+                    SchSelectTagView()
+                        .environmentObject(tagSource)
+                })
                 
+                // 分割线
+                seperator.frame(width: UIScreen.main.bounds.width * 0.85, height: 1, alignment: .center)
+                
+                // 提交
+                Button(action: {
+                    submitQuestion()
+                    //                        isLoading = true
+                }, label: {
+                    Text("提交")
+                        .bold()
+                        .foregroundColor(color)
+                        .font(.title3)
+                })
+                .alert(isPresented: $noTagError, content: {
+                    Alert(title: Text("您还未选择标签"))
+                })
+                
+                Text("")
+                    .frame(width: 0, height: 0)
+                    // emm 此为下策但是alert之间只能是平级
+                    .alert(isPresented: $submitError, content: {
+                        Alert(title: Text("问题提交失败"))
+                    })
             }
-            .padding(.top, 40)
-            .ignoresSafeArea(edges: .bottom)
-            .background(
-                Color.init(red: 247/255, green: 247/255, blue: 248/255)
-                    .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height, alignment: .center)
-                    .ignoresSafeArea()
-            )
+            .padding()
+            .frame(width: UIScreen.main.bounds.width * 0.9, height: UIScreen.main.bounds.height * 0.6, alignment: .center)
+            .background(Color.white)
+            .cornerRadius(10)
+            .shadow(color: Color.black.opacity(0.1), radius: 10, x: 0.0, y: 0.0)
+            Spacer()
+            
         }
+        .navigationBarHidden(true)
+        .ignoresSafeArea(edges: .bottom)
+        .background(
+            Color.init(red: 247/255, green: 247/255, blue: 248/255)
+                .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height, alignment: .center)
+                .ignoresSafeArea()
+        )
+        .gesture(
+            TapGesture().onEnded({
+                hideKeyboard()
+            })
+        )
+        .gesture(
+            DragGesture().onEnded({ (_) in
+                hideKeyboard()
+            })
+        )
         .onAppear {
             SchTagManager.tagGet { (result) in
                 switch result {
                     case .success(let tags):
                         tagSource.tags = tags
                         
-                        print("获取标签成功")
+                        log("获取标签成功")
                     case .failure(let err):
-                        print("获取标签错误", err)
+                        log(err)
                 }
             }
         }
         .loading(style: .medium, isLoading: $isLoading)
     }
     
-    func submitQuestion() {
+    private func submitQuestion() {
         let tag = tagSource.tags.reduce(0, { $0 + (($1.isSelected ?? false) ? ($1.id ?? 0) : 0) })
+        guard !textManager.title.isEmpty && !textManager.detail.isEmpty else {
+            noCompleteError = true
+            return
+        }
         guard tag != 0 else {
             noTagError = true
             return
@@ -187,10 +196,10 @@ struct SchNewQuestionView: View {
                             SchQuestionManager.postImg(img: images[i], question_id: questionId) { (result) in
                                 switch result {
                                 case .success(let str):
-                                    print("上传图片成功", str)
+                                    log("上传图片成功", str)
                                     group.leave()
                                 case .failure(let err):
-                                    print(err)
+                                    log(err)
                                     group.leave()
                                 }
                             }
@@ -203,12 +212,12 @@ struct SchNewQuestionView: View {
                     } else {
                         isLoading = false
                         mode.wrappedValue.dismiss()
-                        print("提交问题成功, id:", questionId)
+                        log("提交问题成功, id:", questionId)
                     }
                 case .failure(let err):
                     isLoading = false
                     submitError = true
-                    print("提交问题失败", err)
+                    log("提交问题失败", err)
             }
             
         }

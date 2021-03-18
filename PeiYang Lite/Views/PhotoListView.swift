@@ -16,7 +16,7 @@ struct PhotoListView: View {
     // 图片数据
     @Binding var images: [UIImage]
     @State var imageURLs: [String] = []
-    private var mode: PhotoListViewType = .write
+    
     
     // 删除图片
     @State private var imageToDelete: UIImage?
@@ -29,15 +29,19 @@ struct PhotoListView: View {
     @State private var useCamera: Bool = false
     @State private var imageToReplace: UIImage?
     // 添加模式or查看模式
+    private var mode: PhotoListViewType = .write
+    // 看大图
+    @State private var showPhotoBrowser: Bool = false
+    @State private var seletedIdx: Int = 0
     
-    init (images: Binding<[UIImage]>, mode: PhotoListViewType = .read) {
+    init (images: Binding<[UIImage]>, mode: PhotoListViewType = .write) {
         _images = images
         self.mode = mode
     }
     // 只能是只读的
     init (imageURLs: [String]) {
-        self._images = .constant([])
-        self.imageURLs = imageURLs
+        self._images = .constant([UIImage(named: "Text")!])
+        self._imageURLs = State(wrappedValue: imageURLs)
         self.mode = .read
     }
     
@@ -54,7 +58,7 @@ struct PhotoListView: View {
                                 showSelector = true
                                 imageToReplace = image
                             } else {
-                                // 看大图
+                                showPhotoBrowser = true
                             }
                         }
                         .onLongPressGesture {
@@ -70,10 +74,12 @@ struct PhotoListView: View {
                         image
                             .resizable()
                             .frame(width: 100, height: 100, alignment: .center)
+                            .frame(maxWidth: screen.width / (CGFloat(imageURLs.count) + 0.5))
                             .cornerRadius(5)
                     })
                     .onTapGesture {
-                        // 看大图
+                        seletedIdx = i
+                        showPhotoBrowser = true
                     }
                 }
             }
@@ -124,12 +130,20 @@ struct PhotoListView: View {
                   }),
                   secondaryButton: .cancel())
         })
+        .fullScreenCover(isPresented: $showPhotoBrowser, content: {
+            SKPhotoView(imageURLs: imageURLs, selectedIdx: seletedIdx)
+                .background(Color.black.edgesIgnoringSafeArea(.all))
+                .edgesIgnoringSafeArea(.bottom)
+        })
     }
 }
 
 struct PhotoListView_Previews: PreviewProvider {
     static var previews: some View {
-        PhotoListView(images: .constant([]))
+        VStack {
+            PhotoListView(images: .constant([]))
+            PhotoListView(imageURLs: ["http://47.94.198.197:10805/storage/thumb_images/2021_03/userId_7_17_05_10_33_413940.jpeg","http://47.94.198.197:10805/storage/thumb_images/2021_03/userId_7_17_05_10_33_443122.jpeg"])
+        }
     }
 }
 

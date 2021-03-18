@@ -14,7 +14,7 @@ struct SchQuestionCellView: View {
     let bottomColor = Color.init(red: 177/255, green: 178/255, blue: 190/255)
     let settleColor = Color.init(red: 48/255, green: 60/255, blue: 102/255)
     
-    @State var question: SchQuestionModel
+    var question: SchQuestionModel
     
     @State var isEditing: Bool = false
     var deleteAction: (() -> Void)? = nil
@@ -48,10 +48,12 @@ struct SchQuestionCellView: View {
                 HStack {
                     VStack(alignment: .leading) {
                         HStack {
-                            ForEach(0..<(question.tags?.count ?? 0), id: \.self) { i in
-                                Text("#" + (question.tags?[i].name ?? ""))
-                                    .foregroundColor(labelColor)
-                                    .font(.caption)
+                            ForEach(question.tags?.indices ?? 0..<0, id: \.self) { i in
+                                if question.tags?[i].id ?? 0 != 3 {
+                                    Text("#" + (question.tags?[i].name ?? ""))
+                                        .foregroundColor(labelColor)
+                                        .font(.caption)
+                                }
                             }
                         }
                         .padding(.horizontal)
@@ -86,6 +88,7 @@ struct SchQuestionCellView: View {
                     .foregroundColor(bottomColor)
                     .font(.caption)
                 Image((question.isLiked ?? false) ? "sch-like-fill" : "sch-like")
+                    .padding(.leading, 10)
                 Text((question.likes ?? 0).description)
                     .foregroundColor(bottomColor)
                     .font(.caption)
@@ -105,7 +108,7 @@ struct SchQuestionCellView: View {
             .padding()
             
             NavigationLink(
-                destination: SchQuestionDetailView(question: $question),
+                destination: SchQuestionDetailView(question: question),
                 isActive: $navigateToDetail,
                 label: {
                     EmptyView()

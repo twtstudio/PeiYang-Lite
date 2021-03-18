@@ -69,11 +69,11 @@ struct SchQuestionModel: Codable, Identifiable {
 }
 
 struct SchQuestionManager {
-    static func loadQuestions(limits: Int = 10, page: Int = 1, completion: @escaping (Result<([SchQuestionModel], Int), Network.Failure>) -> Void) {
+    static func loadQuestions(limits: Int = 10, page: Int = 1, completion: @escaping (Result<([SchQuestionModel], Int), Error>) -> Void) {
         return searchQuestions(tags: [], string: "", limits: limits, page: page, completion: completion)
     }
     
-    static func searchQuestions(tags: [SchTagModel] = [], string: String = "", limits: Int = 10, page: Int = 1, completion: @escaping (Result<([SchQuestionModel], Int), Network.Failure>) -> Void) {
+    static func searchQuestions(tags: [SchTagModel] = [], string: String = "", limits: Int = 10, page: Int = 1, completion: @escaping (Result<([SchQuestionModel], Int), Error>) -> Void) {
         let tagList = tags.map { tag in tag.id ?? 0 }
         SchManager.request("/user/question/search?tagList=\(tagList)&searchString=\(string)&limits=\(limits)&page=\(page)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!) { (result) in
             switch result {
@@ -82,7 +82,7 @@ struct SchQuestionManager {
                     let questionGet = try JSONDecoder().decode(SchResponseModel<SchQuestionData>.self, from: data)
                     completion(.success((questionGet.data?.data ?? [], questionGet.data?.total ?? 0)))
                 } catch {
-                    completion(.failure(error as! Network.Failure))
+                    completion(.failure(error))
                 }
             case .failure(let err):
                 completion(.failure(err))
@@ -90,7 +90,7 @@ struct SchQuestionManager {
         }
     }
     
-    static func postQuestion(title: String, content: String, tagList: [Int], campus: Int = 0, completion: @escaping (Result<Int, Network.Failure>) -> Void) {
+    static func postQuestion(title: String, content: String, tagList: [Int], campus: Int = 0, completion: @escaping (Result<Int, Error>) -> Void) {
         let paras = ["name": title, "description": content, "tagList": tagList.description, "campus": campus] as [String : Any]
         SchManager.request("/user/question/add",
                                   method: .post,
@@ -105,7 +105,7 @@ struct SchQuestionManager {
                             }
                         }
                     } catch {
-                        completion(.failure(error as! Network.Failure))
+                        completion(.failure(error))
                     }
                 case .failure(let err):
                     completion(.failure(err))
@@ -113,7 +113,7 @@ struct SchQuestionManager {
         }
     }
     
-    static func postImg(img: UIImage, question_id: Int, completion: @escaping (Result<String, Network.Failure>) -> Void) {
+    static func postImg(img: UIImage, question_id: Int, completion: @escaping (Result<String, Error>) -> Void) {
         let imageData = img.jpegData(compressionQuality: 0.5)!
         let paras =  ["question_id": question_id] as [String: Int]
         
@@ -130,7 +130,7 @@ struct SchQuestionManager {
                         }
                     }
                 } catch {
-                    completion(.failure(error as! Network.Failure))
+                    completion(.failure(error))
                 }
             case .failure(let err):
                 completion(.failure(err))
@@ -138,7 +138,7 @@ struct SchQuestionManager {
         }
     }
     
-    static func likeOrDislikeQuestion(id: Int, like: Bool, completion: @escaping (Result<Bool, Network.Failure>) -> Void) {
+    static func likeOrDislikeQuestion(id: Int, like: Bool, completion: @escaping (Result<Bool, Error>) -> Void) {
         let paras = ["id": id] as [String : Any]
         SchManager.request(like ? "/user/question/like" : "/user/question/dislike",
                                   method: .post,
@@ -151,7 +151,7 @@ struct SchQuestionManager {
                             completion(.success(true))
                         }
                     } catch {
-                        completion(.failure(error as! Network.Failure))
+                        completion(.failure(error))
                     }
                 case .failure(let err):
                     completion(.failure(err))
@@ -163,7 +163,7 @@ struct SchQuestionManager {
         case fav, my
     }
     
-    static func getQuestions(type: QuesGetType, limits: Int = 0, completion: @escaping (Result<[SchQuestionModel], Network.Failure>) -> Void) {
+    static func getQuestions(type: QuesGetType, limits: Int = 0, completion: @escaping (Result<[SchQuestionModel], Error>) -> Void) {
         SchManager.request(type == .fav ? "/user/favorite/get/all" : "/user/question/get/myQuestion?limits=\(limits)") { (result) in
             switch result {
                 case .success(let (data, _)):
@@ -176,7 +176,7 @@ struct SchQuestionManager {
                             completion(.success(res.data?.data ?? []))
                         }
                     } catch {
-                        completion(.failure(error as! Network.Failure))
+                        completion(.failure(error))
                     }
                 case .failure(let err):
                     completion(.failure(err))
@@ -184,7 +184,7 @@ struct SchQuestionManager {
         }
     }
     
-    static func deleteMyQuestion(questionId: Int, completion: @escaping (Result<Bool, Network.Failure>) -> Void) {
+    static func deleteMyQuestion(questionId: Int, completion: @escaping (Result<Bool, Error>) -> Void) {
         let paras = ["question_id": questionId]
         SchManager.request("/user/question/delete",
                                   method: .post,
@@ -197,7 +197,7 @@ struct SchQuestionManager {
                             completion(.success(true))
                         }
                     } catch {
-                        completion(.failure(error as! Network.Failure))
+                        completion(.failure(error))
                     }
                 case .failure(let err):
                     completion(.failure(err))

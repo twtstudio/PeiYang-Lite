@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ProgressBar: View {
-    var value: Double
+    var value: Double = 0
     
     var body: some View {
         GeometryReader { geometry in

@@ -6,6 +6,7 @@ target 'PeiYang Lite' do
   use_frameworks!
   pod 'FSCalendar', '2.8.2'
   pod 'URLImage'
+  pod 'SKPhotoBrowser'
   # Pods for PeiYang Lite
 
 end

@@ -18,14 +18,6 @@ struct MainView: View {
     @State private var selected = 0
    
     var body: some View {
-//        NavigationView {
-//            CurrentScreen(currentView: self.$currentView)
-//                .background(Color.white)
-//                .navigationViewStyle(StackNavigationViewStyle())
-//        }
-//
-//        TabBar(currentView: self.$currentView)
-
         TabView(selection: $selected) {
             HomeView2()
                 .tabItem{
@@ -39,11 +31,11 @@ struct MainView: View {
                     Text("抽屉")
                 }.tag(1)
             
-//            SchView()
-//                .tabItem {
-//                    Image(systemName: self.selected == 2 ? "captions.bubble.fill" : "captions.bubble")
-//                    Text("校务专区")
-//                }.tag(2)
+            SchView()
+                .tabItem {
+                    Image(systemName: self.selected == 2 ? "captions.bubble.fill" : "captions.bubble")
+                    Text("校务专区")
+                }.tag(2)
             
             AccountView()
                 .tabItem {

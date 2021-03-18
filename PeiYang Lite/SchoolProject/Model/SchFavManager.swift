@@ -8,7 +8,7 @@
 import Foundation
 
 struct SchFavManager {
-    static func favGet(completion: @escaping (Result<[SchQuestionModel], Network.Failure>) -> Void) {
+    static func favGet(completion: @escaping (Result<[SchQuestionModel], Error>) -> Void) {
         SchManager.request("/user/favorite/get/all") { (result) in
             switch result {
                 case .success(let (data, _)):
@@ -16,7 +16,7 @@ struct SchFavManager {
                         let res = try JSONDecoder().decode(SchResponseModel<[SchQuestionModel]>.self, from: data)
                         completion(.success(res.data ?? []))
                     } catch {
-                        completion(.failure(error as! Network.Failure))
+                        completion(.failure(error))
                     }
                 case .failure(let err):
                     completion(.failure(err))
@@ -24,7 +24,7 @@ struct SchFavManager {
         }
     }
     
-    static func favOrUnfavQuestion(questionId: Int, fav: Bool, completion: @escaping (Result<Bool, Network.Failure>) -> Void) {
+    static func favOrUnfavQuestion(questionId: Int, fav: Bool, completion: @escaping (Result<Bool, Error>) -> Void) {
         let paras = ["question_id": questionId]
         SchManager.request(fav ? "/user/question/favorite" : "/user/question/unfavorite",
                                   method: .post,
@@ -37,7 +37,7 @@ struct SchFavManager {
                             completion(.success(true))
                         }
                     } catch {
-                        completion(.failure(error as! Network.Failure))
+                        completion(.failure(error))
                     }
                 case .failure(let err):
                     completion(.failure(err))

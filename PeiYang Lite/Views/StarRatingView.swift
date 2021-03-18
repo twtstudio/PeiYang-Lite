@@ -24,6 +24,9 @@ struct StarRatingView: View {
     // 填充颜色
     var fillColor: Color = .yellow
     
+    // 是否可以交互
+    var isInteractive: Bool = false
+    
     // 最大个数
     let maxRating: Int
     
@@ -31,6 +34,9 @@ struct StarRatingView: View {
     @State private var width: CGFloat = 0
     
     @State private var totalWidth: CGFloat = 0
+    
+    // end回调函数
+    var scoreChanged: ((CGFloat) -> Void)? = nil
     
     var body: some View {
         let stars = HStack(spacing: spacing) {
@@ -51,6 +57,7 @@ struct StarRatingView: View {
                         }
                         .onAppear {
                             totalWidth = g.size.width
+                            initWidth()
                         }
                     )
                 }
@@ -58,19 +65,52 @@ struct StarRatingView: View {
             )
             .foregroundColor(.gray)
             .onTapWithLocation(.local) { value in
-                calcWidth(value.x)
+                if isInteractive {
+                    calcWidth(value.x)
+                    scoreChanged?(rating)
+                }
             }
             .gesture(
                 DragGesture()
                     .onChanged({ (value) in
-                        calcWidth(value.location.x)
+                        if isInteractive {
+                            calcWidth(value.location.x)
+                        }
+                    })
+                    .onEnded({ (value) in
+                        if isInteractive {
+                            calcWidth(value.location.x)
+                            scoreChanged?(rating)
+                        }
                     })
             )
         }
+    }
+    
+    private func initWidth() {
+        guard rating >= 0 || rating <= CGFloat(maxRating) else { return }
         
+        let starWidth: CGFloat = (totalWidth - CGFloat(maxRating - 1) * spacing) / CGFloat(maxRating)
+        let starCnt = CGFloat(floor(rating))
+        if type == .continuous {
+            width = starWidth * rating + spacing * starCnt
+        } else if type == .fill {
+            width = (starWidth + spacing) * starCnt
+        } else {
+            var i: CGFloat = 0
+            while Int(i) < maxRating * 2 + 1 {
+                if abs(i * 0.5 - rating) < 0.25 {
+                    break
+                } else {
+                    i += 1
+                }
+            }
+            width = i * 0.5 * starWidth + starCnt * spacing
+        }
     }
     
     private func calcWidth(_ tmpX: CGFloat) {
+        guard tmpX >= 0 && tmpX <= totalWidth else { return }
         let starWidth: CGFloat = (totalWidth - CGFloat(maxRating - 1) * spacing) / CGFloat(maxRating)
         let t = CGFloat(floor(tmpX / (starWidth + spacing)))
         rating = t + tmpX.truncatingRemainder(dividingBy: starWidth + spacing) / starWidth
@@ -148,18 +188,16 @@ fileprivate struct TapLocationBackground: UIViewRepresentable {
     }
 }
 
-
-
 struct StarRatingView_Previews: PreviewProvider {
-    @State static var rating: CGFloat = 0
+    @State static var rating: CGFloat = 3.5
     
     static var previews: some View {
         // 实际测试没问题，但是好像preview不行
         VStack {
             Text(rating.description)
-            StarRatingView(rating: $rating, type: .half, maxRating: 5)
-            StarRatingView(rating: $rating, type: .fill, maxRating: 5)
-            StarRatingView(rating: $rating, type: .continuous, maxRating: 5)
+            StarRatingView(rating: $rating, type: .half, isInteractive: true, maxRating: 5)
+//            StarRatingView(rating: $rating, type: .fill, isInteractive: true, maxRating: 5)
+//            StarRatingView(rating: $rating, type: .continuous, isInteractive: true, maxRating: 5)
         }
     }
 }

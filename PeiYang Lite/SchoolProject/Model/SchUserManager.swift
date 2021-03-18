@@ -25,7 +25,7 @@ struct SchUserModel: Codable {
 }
 
 struct SchUserManager {
-    static func getDetail(completion: @escaping (Result<SchUserModel, Network.Failure>) -> Void) {
+    static func getDetail(completion: @escaping (Result<SchUserModel, Error>) -> Void) {
         SchManager.request("/user/userData") { (result) in
             switch result {
             case .success(let (data, _)):
@@ -33,7 +33,7 @@ struct SchUserManager {
                     let user = try JSONDecoder().decode(SchResponseModel<SchUserModel>.self, from: data)
                     completion(.success(user.data ?? SchUserModel()))
                 } catch {
-                    completion(.failure(error as! Network.Failure))
+                    completion(.failure(error))
                 }
             case .failure(let err):
                 completion(.failure(err))
@@ -41,7 +41,7 @@ struct SchUserManager {
         }
     }
     
-    static func login(completion: @escaping (Result<Bool, Network.Failure>) -> Void) {
+    static func login(completion: @escaping (Result<Bool, Error>) -> Void) {
         SchManager.request("/user/login",
                                   method: .post,
                                   body: [
@@ -60,7 +60,7 @@ struct SchUserManager {
                         }
                     }
                 } catch {
-                    completion(.failure(error as! Network.Failure))
+                    completion(.failure(error))
                 }
             case .failure(let err):
                 completion(.failure(err))

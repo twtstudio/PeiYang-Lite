@@ -51,7 +51,7 @@ struct SchQuestionCommentCellView: View {
                                 comment.likes = (comment.likes ?? 0) - 1
                             }
                         case .failure(let err):
-                            print("评论点赞失败", err)
+                            log("评论点赞失败", err)
                         }
                     }
                 }, label: {

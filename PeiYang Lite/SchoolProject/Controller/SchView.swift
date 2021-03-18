@@ -80,18 +80,18 @@ fileprivate class SchViewModel: SchQuestionScrollViewModel, SchQuestionScrollVie
     }
     
     func reloadData() {
-        page = 1
-        SchQuestionManager.loadQuestions { (result) in
-            switch result {
-                case .success(let (questions, maxPage)):
-                    DispatchQueue.main.async {
-                        self.questions = questions
-                        self.maxPage = maxPage
-                        self.isReloading = false
-                        print("刷新成功")
-                    }
-                case .failure(let err):
-                    print("刷新失败", err)
+        DispatchQueue.main.async {
+            self.page = 1
+            SchQuestionManager.loadQuestions { (result) in
+                switch result {
+                    case .success(let (questions, maxPage)):
+                            self.questions = questions
+                            self.maxPage = maxPage
+                            self.isReloading = false
+                            log("刷新成功")
+                    case .failure(let err):
+                        log(err)
+                }
             }
         }
     }
@@ -99,16 +99,16 @@ fileprivate class SchViewModel: SchQuestionScrollViewModel, SchQuestionScrollVie
         guard page < maxPage else {
             return
         }
-        page += 1
-        SchQuestionManager.loadQuestions(page: page) { (result) in
-            switch result {
-                case .success(let (questions, _)):
-                    DispatchQueue.main.async {
-                        self.questions += questions
-                        self.isLoadingMore = false
-                    }
-                case .failure(let err):
-                    print("刷新失败", err)
+        DispatchQueue.main.async {
+            self.page += 1
+            SchQuestionManager.loadQuestions(page: self.page) { (result) in
+                switch result {
+                    case .success(let (questions, _)):
+                            self.questions += questions
+                            self.isLoadingMore = false
+                    case .failure(let err):
+                        log(err)
+                }
             }
         }
     }
@@ -119,7 +119,7 @@ fileprivate class SchViewModel: SchQuestionScrollViewModel, SchQuestionScrollVie
                 case .success(_):
                     self.reloadData()
                 case .failure(let err):
-                    print("刷新失败", err)
+                    log(err)
             }
         }
     }

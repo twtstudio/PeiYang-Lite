@@ -72,6 +72,7 @@ struct DataStorage {
             // FIXME: handle error
             // 我觉得不该错
 //            fatalError(error.localizedDescription)
+            log(error)
         }
     }
 
@@ -94,6 +95,7 @@ struct DataStorage {
                 let model = try decoder.decode(type, from: data)
                 return model
             } catch {
+                log(error)
                 return nil
             }
         } else {
@@ -108,6 +110,7 @@ struct DataStorage {
         do {
             try FileManager.default.removeItem(at: url)
         } catch {
+            log(error)
             return false
         }
         return true
@@ -123,7 +126,7 @@ struct DataStorage {
             }
         } catch {
             // FIXME: handle error
-//            fatalError("error decode data")
+            log(error)
         }
     }
 

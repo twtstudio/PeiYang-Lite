@@ -15,55 +15,68 @@ struct SchSearchView: View {
     @StateObject private var tagSource: SchTagSource = .init()
     @StateObject private var searchModel: SchSearchResultViewModel = .init()
     
+    @State private var isSearching: Bool = false
+    
     var body: some View {
         VStack {
-            SchSearchTopView(inputMessage: $searchModel.searchString, historyArray: $historyArray)
+            SchSearchTopView(inputMessage: $searchModel.searchString, historyArray: $historyArray, isSearching: $isSearching)
                 .environmentObject(tagSource)
                 .environmentObject(searchModel)
-            VStack(alignment: .leading) {
-                HStack {
-                    Text("历史记录")
-                        .foregroundColor(.init(red: 98/255, green: 103/255, blue: 124/255))
-                        .font(.custom("Avenir-Black", size: 17))
-                    Spacer()
-                    Button(action: {
-                        historyArray = []
-                    }, label: {
-                        Image("sch-trash")
-                    })
-                }
-                .frame(width: UIScreen.main.bounds.width * 0.9)
-                
-                VStack(spacing: 20){
-                    ForEach(historyArray, id: \.self) { s in
-                        Button(action: {
-                            searchModel.searchString = s
-                        }, label: {
-                            HStack{
-                                Text(s)
-                                    .font(.subheadline)
-                                    .foregroundColor(.init(red: 48/255, green: 60/255, blue: 102/255))
-                                Spacer()
-                                Image("SchArrow")
+
+                if !isSearching {
+                    VStack(alignment: .leading) {
+                        HStack {
+                            Text("历史记录")
+                                .foregroundColor(.init(red: 98/255, green: 103/255, blue: 124/255))
+                                .font(.custom("Avenir-Black", size: 17))
+                            Spacer()
+                            Button(action: {
+                                historyArray = []
+                            }, label: {
+                                Image("sch-trash")
+                            })
+                        }
+                        .frame(width: UIScreen.main.bounds.width * 0.9)
+                        
+                        VStack(spacing: 20){
+                            ForEach(historyArray, id: \.self) { s in
+                                Button(action: {
+                                    searchModel.searchString = s
+                                }, label: {
+                                    HStack{
+                                        Text(s)
+                                            .font(.subheadline)
+                                            .foregroundColor(.init(red: 48/255, green: 60/255, blue: 102/255))
+                                        Spacer()
+                                        Image("SchArrow")
+                                    }
+                                })
                             }
-                        })
+                        }
+                        .padding(.top, 10)
+                        .frame(width: UIScreen.main.bounds.width * 0.9)
+                        
+                        Text("标签搜索")
+                            .foregroundColor(.init(red: 98/255, green: 103/255, blue: 124/255))
+                            .font(.custom("Avenir-Black", size: 17))
                     }
+                    .padding(.top)
+                        
+                    GeometryReader { g in
+                        ScrollView {
+                            generateView(g)
+                        }
+                    }
+                    .frame(width: UIScreen.main.bounds.width * 0.9)
+                } else if searchModel.questions.isEmpty {
+                    Text("未检索到相关问题")
+                        .frame(maxHeight: .infinity)
+                } else {
+                    SchQuestionScrollView(model: searchModel)
+                        .padding(.top)
+                        .frame(width: screen.width)
                 }
-                .padding(.top, 10)
-                .frame(width: UIScreen.main.bounds.width * 0.9)
-                
-                Text("标签搜索")
-                    .foregroundColor(.init(red: 98/255, green: 103/255, blue: 124/255))
-                    .font(.custom("Avenir-Black", size: 17))
-            }
-            .padding(.top)
-                
-            GeometryReader { g in
-                ScrollView {
-                    generateView(g)
-                }
-            }
-            .frame(width: UIScreen.main.bounds.width * 0.9)
+            
             Spacer()
         }
         .background(
@@ -73,16 +86,6 @@ struct SchSearchView: View {
         )
         .navigationBarHidden(true)
         .navigationBarBackButtonHidden(true)
-        .onAppear {
-            SchTagManager.tagGet { (result) in
-                switch result {
-                    case .success(let tags):
-                        self.tagSource.tags = tags
-                    case .failure(let err):
-                        print("获取标签失败", err)
-                }
-            }
-        }
     }
     
     private func generateView(_ g: GeometryProxy) -> some View {
@@ -132,10 +135,11 @@ struct SchSearchTableView_Previews: PreviewProvider {
     }
 }
 
-struct SchSearchTopView: View {
+fileprivate struct SchSearchTopView: View {
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     @Binding var inputMessage: String
     @Binding var historyArray: [String]
+    @Binding var isSearching: Bool
     @EnvironmentObject var tagSource: SchTagSource
     @EnvironmentObject var searchModel: SchSearchResultViewModel
     
@@ -155,6 +159,9 @@ struct SchSearchTopView: View {
             .frame(width: UIScreen.main.bounds.width * 0.8, height: UIScreen.main.bounds.height / 20, alignment: .center)
             .background(Color.init(red: 236/255, green: 237/255, blue: 239/255))
             .cornerRadius(UIScreen.main.bounds.height / 40)
+            .onTapGesture {
+                isSearching = false
+            }
             
             Button(action: {
                 self.mode.wrappedValue.dismiss()
@@ -162,26 +169,82 @@ struct SchSearchTopView: View {
                 Text("取消")
                     .foregroundColor(.init(red: 98/255, green: 103/255, blue: 124/255))
             })
-            
-            NavigationLink(
-                destination:
-                    SchSearchResultView()
-                    .environmentObject(tagSource)
-                    .environmentObject(searchModel),
-                isActive: $navigateToResult,
-                label: { EmptyView() })
         }
         
     }
     
     private func searchQuestion() {
+        guard !inputMessage.isEmpty else { return }
         if !historyArray.contains(inputMessage) {
             historyArray.insert(inputMessage, at: 0)
             if historyArray.count > 4 {
                 historyArray.removeLast()
             }
         }
-        navigateToResult = true
+        isSearching = true
+        hideKeyboard()
+//        navigateToResult = true
+    }
+}
+
+fileprivate class SchSearchResultViewModel: SchQuestionScrollViewModel, SchQuestionScrollViewDataSource, SchQuestionScrollViewAction {
+    @Published var questions: [SchQuestionModel] = []
+    
+    @Published var isReloading: Bool = false
+    
+    @Published var isLoadingMore: Bool = false
+    
+    @Published var page: Int = 0
+    
+    @Published var maxPage: Int = 0
+    
+    @Published var tags: [SchTagModel] = []
+    
+    @Published var searchString: String = "" {
+        didSet {
+            self.reloadData()
+        }
+    }
+    
+    func reloadData() {
+        page = 1
+        SchQuestionManager.searchQuestions(tags: tags, string: searchString, page: page) { (result) in
+            switch result {
+                case .success(let (questions, maxPage)):
+                    DispatchQueue.main.async {
+                        self.questions = questions
+                        self.maxPage = maxPage
+                        self.isReloading = false
+                        log("刷新成功")
+                    }
+                case .failure(let err):
+                    log("刷新失败", err)
+            }
+        }
+    }
+    func loadMore() {
+        guard page < maxPage else {
+            return
+        }
+        page += 1
+        SchQuestionManager.searchQuestions(tags: tags, string: searchString, page: page) { (result) in
+            switch result {
+                case .success(let (questions, _)):
+                    self.questions += questions
+                    self.isLoadingMore = false
+                case .failure(let err):
+                    log("刷新失败", err)
+            }
+        }
+    }
+    
+    func loadOnAppear() {}
+    
+    var action: SchQuestionScrollViewAction { self }
+    private lazy var _dataSource: SchQuestionScrollViewDataSource = { self }()
+    var dataSource: SchQuestionScrollViewDataSource {
+        get { _dataSource }
+        set { _dataSource = newValue }
     }
 }
 
