@@ -160,7 +160,7 @@ fileprivate struct ClassesBindingLoginedView: View {
 fileprivate struct ClassesBindingLoginView: View {
     @State var isEnable: Bool = false
     @State var isError: Bool = false
-    @State private var errorMessage: LocalizedStringKey = ""
+    @State private var errorMessage:String = ""
     
     @Binding var isLogin: Bool
     
@@ -257,7 +257,7 @@ fileprivate struct ClassesBindingLoginView: View {
                                 mode.wrappedValue.dismiss()
                             case .failure(let error):
                                 isError = true
-                                errorMessage = error.localizedStringKey
+                                errorMessage = error.localizedDescription
                                 password = ""
                                 captcha = ""
                                 refreshCaptcha()

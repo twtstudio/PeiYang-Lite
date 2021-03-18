@@ -213,7 +213,7 @@ extension Date {
 struct ColorHelper {
     let color: [String: Color]
     
-    static var shared = ColorHelper(Storage.courseTable.object.courseArray)
+    static let shared = ColorHelper(Storage.courseTable.object.courseArray)
     
     init(_ courseArray: [Course]) {
         var colorArray = [

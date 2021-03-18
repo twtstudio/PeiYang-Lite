@@ -9,6 +9,8 @@
 import SwiftUI
 import CommonCrypto
 
+let screen = UIScreen.main.bounds
+
 extension String {
     var sha1: String {
         let data = self.data(using: String.Encoding.utf8)!
@@ -240,5 +242,33 @@ extension NSAttributedString {
         
         label.sizeToFit()
         return label.bounds.height
+    }
+}
+
+extension CGRect {
+    var center: CGPoint {
+        CGPoint(x: self.midX, y: self.maxY)
+    }
+}
+
+func animate(withDuration duration: TimeInterval, body: () -> Void, completion: @escaping () -> Void) {
+    withAnimation(Animation.spring(response: 0.5, dampingFraction: 0.7, blendDuration: duration), body)
+
+    DispatchQueue.main.asyncAfter(deadline: .now() + duration, execute: completion)
+}
+
+struct RoundedCorner: Shape {
+    var radius: CGFloat = .infinity
+    var corners: UIRectCorner = .allCorners
+
+    func path(in rect: CGRect) -> Path {
+        let path = UIBezierPath(roundedRect: rect, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
+        return Path(path.cgPath)
+    }
+}
+
+extension View {
+    func cornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View {
+        clipShape(RoundedCorner(radius: radius, corners: corners))
     }
 }

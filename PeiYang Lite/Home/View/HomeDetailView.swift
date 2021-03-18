@@ -13,7 +13,7 @@ struct HomeDetailView: View {
     var body: some View {
         switch module {
         case .courseTable:
-            CourseTableDetailView(alertCourse: AlertCourse())
+            CourseTableDetailView()
         case .gpa:
             GPADetailView()
         case .ecard:

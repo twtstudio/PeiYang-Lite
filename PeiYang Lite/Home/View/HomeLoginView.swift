@@ -7,17 +7,17 @@
 
 import SwiftUI
 
-struct HomeLoginView: View {
-    let module: Home
-    
-    var body: some View {
-        switch module {
-        case .courseTable, .gpa:
-            ClassesSSOView()
-        case .ecard:
-            ECardLoginView()
-        case .wlan:
-            WLANLoginView()
-        }
-    }
-}
+//struct HomeLoginView: View {
+//    let module: Home
+//    
+//    var body: some View {
+//        switch module {
+//        case .courseTable, .gpa:
+//            ClassesSSOView()
+//        case .ecard:
+//            ECardLoginView()
+//        case .wlan:
+//            WLANLoginView()
+//        }
+//    }
+//}

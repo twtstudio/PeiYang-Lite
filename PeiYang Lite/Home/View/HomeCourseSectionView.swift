@@ -46,7 +46,7 @@ struct HomeCourseSectionView: View {
                 .foregroundColor(Color(#colorLiteral(red: 0.3803921569, green: 0.3960784314, blue: 0.4862745098, alpha: 1)))
                 .padding(.horizontal)
         }) {
-        NavigationLink(destination: CourseTableDetailView(alertCourse: AlertCourse())) {
+        NavigationLink(destination: CourseTableDetailView()) {
             if currentCourseArray.isEmpty {
                 ZStack(alignment: .center) {
                     RoundedRectangle(cornerRadius: 10)

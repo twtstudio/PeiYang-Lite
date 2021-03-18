@@ -394,16 +394,19 @@ extension ClassesManager {
                             switch result {
                             case .success(let minorModel):
                                 newModel.courseArray += minorModel.courseArray
+                                Storage.defaults.setValue(true, forKey: isCourseStoreKey)
                                 log("获取辅修课表成功")
                                 completion(.success(newModel))
                                 return
                             case .failure(let err):
                                 log("辅修课表获取失败", err)
+                                Storage.defaults.setValue(true, forKey: isCourseStoreKey)
                                 completion(.success(newModel))
                                 return
                             }
                         }
                     } else {
+                        Storage.defaults.setValue(true, forKey: isCourseStoreKey)
                         completion(.success(newModel))
                         return
                     }
@@ -545,11 +548,7 @@ extension ClassesManager {
                     arrangePairArray: arrangePairArray
                 )
             }
-        ColorHelper.shared = ColorHelper(courseArray)
         
-        Storage.defaults.setValue(true, forKey: isCourseStoreKey)
-        Storage.courseTable.object = CourseTable(courseArray: courseArray)
-        Storage.courseTable.save()
         return CourseTable(courseArray: courseArray)
     }
 }

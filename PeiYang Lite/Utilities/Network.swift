@@ -8,18 +8,20 @@
 import SwiftUI
 
 struct Network {
-    enum Failure: Error {
+    enum Failure: Error, Equatable {
         case urlError, requestFailed, loginFailed, unknownError
-        private static let pair: [Failure: Localizable] = [
-            .urlError: .urlError,
-            .requestFailed: .requestFailed,
-            .loginFailed: .loginFailed,
-            .unknownError: .unknownError,
-        ]
+        case custom(String)
         
-        var localizedStringKey: LocalizedStringKey {
-            Failure.pair[self]?.rawValue ?? ""
-        }
+//        private static let pair: [Failure: Localizable] = [
+//            .urlError: .urlError,
+//            .requestFailed: .requestFailed,
+//            .loginFailed: .loginFailed,
+//            .unknownError: .unknownError,
+//        ]
+//
+//        var localizedStringKey: LocalizedStringKey {
+//            Failure.pair[self]?.rawValue ?? ""
+//        }
         
     }
     
@@ -291,5 +293,15 @@ extension Dictionary {
         }
         .joined(separator: "&")
         .data(using: .utf8)
+    }
+}
+
+extension Network.Failure: LocalizedError {
+    var errorDescription: String? {
+        switch self {
+            case .custom(let desc):
+                return desc
+            default: return self.localizedDescription
+        }
     }
 }

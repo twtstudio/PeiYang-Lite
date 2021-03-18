@@ -17,16 +17,11 @@ struct CourseTableDetailView: View {
     @State private var showLogin = false
     
     @State private var activeWeek = Storage.courseTable.object.currentWeek
-    private var activeCourseArray: [Course] {
-        courseTable.courseArray.filter { $0.weekRange.contains(activeWeek) }
-    }
     
-    @ObservedObject var alertCourse: AlertCourse
+    @StateObject private var alertCourse: AlertCourse = .init()
     
     @State private var isError = false
-    @State private var errorMessage: LocalizedStringKey = ""
-    
-    @State private var navBarHeight: CGFloat = 0
+    @State private var errorMessage: String = ""
     
     var body: some View {
 //        GeometryReader { full in
@@ -82,59 +77,51 @@ struct CourseTableDetailView: View {
                                     .frame(width: screen.width, height: 80, alignment: .center)
                             }
                         }
-                        .padding(.horizontal, 10)
-                    }
-//                    .frame(width: full.size.width, height: full.size.height*1.2)
-                    .alert(isPresented: $isError) {
-                        Alert(title: Text(errorMessage),
-                              dismissButton: .default(Text(Localizable.ok.rawValue)))
                     }
                     NavigationLink(
                         destination: AcClassesBindingView(),
                         isActive: $showLogin,
                         label: {EmptyView()})
                 }
+                NavigationLink(
+                    destination: ClassesBindingView(),
+                    isActive: $showLogin,
+                    label: { EmptyView() })
                 
-                if alertCourse.showDetail {
-                    Group {
-                        Color.clear
-                            .frame(width: screen.width,
-                                   height: screen.height,
-                                   alignment: .center)
-                            .contentShape(Rectangle())
+            }
+            
+            if alertCourse.showDetail {
+                ZStack {
+                    Color.clear
                         
-                        CourseDetailView(course: $alertCourse.currentCourse, weekDay: $alertCourse.currentWeekday, isRegular: isRegular)
-                            .frame(width: screen.width / 1.5, height: screen.height / 1.8, alignment: .center)
-                            .background(
-                                Image("emblem")
-                                    .resizable()
-                                    .scaledToFit()
-                            )
-                            .clipShape(RoundedRectangle(cornerRadius: 8))
-                            .shadow(color: Color.gray.opacity(0.5), radius: 8, x: 5, y: 5)
-                    }
-                    .animation(.easeInOut)
-                    .onTapGesture {
-                        withAnimation(.easeOut) {
-                            self.alertCourse.showDetail = false
-                        }
+                        .frame(width: screen.width,
+                               alignment: .center)
+                        .frame(maxHeight: .infinity)
+                        .contentShape(Rectangle())
+                    
+                    CourseDetailView(course: $alertCourse.currentCourse, weekDay: $alertCourse.currentWeekday, isRegular: isRegular)
+                        .frame(width: screen.width / 1.5, height: screen.height / 1.8, alignment: .center)
+                        .background(
+                            Image("emblem")
+                                .resizable()
+                                .scaledToFit()
+                        )
+                        .clipShape(RoundedRectangle(cornerRadius: 8))
+                        .shadow(color: Color.gray.opacity(0.5), radius: 8, x: 5, y: 5)
+                }
+                .animation(.easeInOut)
+                .onTapGesture {
+                    withAnimation(.easeOut) {
+                        self.alertCourse.showDetail = false
                     }
                 }
-                
             }
         .onAppear(perform: load)
         .edgesIgnoringSafeArea(.bottom)
         .edgesIgnoringSafeArea(.horizontal)
         .navigationBarHidden(true)
-        //        .navigationBarBackButtonHidden(true)
-        //        .navigationBarItems(
-        //            leading: Button(action: {
-        //                self.presentationMode.wrappedValue.dismiss()
-        //            }){
-        //                Image("back-arrow")
-        //            },
-        //            trailing: RefreshButton(isLoading: $isLoading, action: load, color: Color(#colorLiteral(red: 0.3856853843, green: 0.403162986, blue: 0.4810273647, alpha: 1)))
-        //        )
+        .edgesIgnoringSafeArea(.bottom)
+        
     }
     //MARK: function: LOAD
     func load() {
@@ -147,7 +134,7 @@ struct CourseTableDetailView: View {
 //                sharedMessage.isBindBs = false
 //                if error == .requestFailed {
 //                    isError = true
-//                    errorMessage = error.localizedStringKey
+//                    errorMessage = error.localizedDescription
 //                } else {
 //                    showLogin = true
 //                }
@@ -176,7 +163,7 @@ struct CourseTableDetailView: View {
                 sharedMessage.isBindBs = false
                 if error == .requestFailed {
                     isError = true
-                    errorMessage = error.localizedStringKey
+                    errorMessage = error.localizedDescription
                 } else {
                     sharedMessage.isBindBs = false
                     isLogin = false
@@ -256,7 +243,7 @@ struct CourseTableDetailView2_Previews: PreviewProvider {
         ZStack {
 //            Color.black
 //                .edgesIgnoringSafeArea(.all)
-            CourseTableDetailView(alertCourse: AlertCourse())
+            CourseTableDetailView()
                 .environment(\.colorScheme, .dark)
         }
     }

@@ -12,7 +12,7 @@ struct SelectedDetailView: View {
     var body: some View {
         switch selected {
         case .courseTable:
-            CourseTableDetailView(alertCourse: AlertCourse())
+            CourseTableDetailView()
         case .GPA:
             GPADetailView()
         case .yellowPage:

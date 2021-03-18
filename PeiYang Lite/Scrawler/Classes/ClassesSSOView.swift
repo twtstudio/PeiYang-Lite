@@ -21,7 +21,7 @@ struct ClassesSSOView: View {
     @State private var isEnable = true
     
     @State private var isError = false
-    @State private var errorMessage: LocalizedStringKey = ""
+    @State private var errorMessage: String = ""
     
     var body: some View {
         Form {
@@ -71,7 +71,7 @@ struct ClassesSSOView: View {
                 preMode.wrappedValue.dismiss()
             case .failure(let error):
                 isError = true
-                errorMessage = error.localizedStringKey
+                errorMessage = error.localizedDescription
                 password = ""
                 captcha = ""
                 refreshCaptcha()

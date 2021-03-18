@@ -21,7 +21,7 @@ struct GPADetailView: View {
     @State private var showLogin = false
     
     @State private var isError = false
-    @State private var errorMessage: LocalizedStringKey = ""
+    @State private var errorMessage: String = ""
     
     var body: some View {
         GeometryReader { full in
@@ -119,7 +119,7 @@ struct GPADetailView: View {
 //            case .failure(let error):
 //                if error == .requestFailed {
 //                    isError = true
-//                    errorMessage = error.localizedStringKey
+//                    errorMessage = error.localizedDescription
 //                } else {
 //                    showLogin = true
 //                }
@@ -148,7 +148,7 @@ struct GPADetailView: View {
             case .failure(let error):
                 if error == .requestFailed {
                     isError = true
-                    errorMessage = error.localizedStringKey
+                    errorMessage = error.localizedDescription
                 } else {
                     sharedMessage.isBindBs = false
                     isLogin = false
