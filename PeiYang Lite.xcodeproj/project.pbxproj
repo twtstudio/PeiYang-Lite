@@ -142,6 +142,7 @@
 		C9D5BF7525D010F000CD3537 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D5BF7425D010F000CD3537 /* SettingView.swift */; };
 		C9D5BF8025D0D5FE00CD3537 /* ClassesBindingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D5BF7F25D0D5FE00CD3537 /* ClassesBindingView.swift */; };
 		C9D95F0B2531874F00C3C911 /* Morning-Star-1.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C9D95F0A2531874F00C3C911 /* Morning-Star-1.ttf */; };
+		C9E3E02B26025EF300CEAEC9 /* PQTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E3E02A26025EF300CEAEC9 /* PQTextField.swift */; };
 		C9ED446625C40936001A5456 /* RegisterFirView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9ED446525C40936001A5456 /* RegisterFirView.swift */; };
 		C9ED446F25C40C88001A5456 /* RegisterThiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9ED446E25C40C88001A5456 /* RegisterThiView.swift */; };
 		C9ED447725C413A2001A5456 /* RegisterSecView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9ED447625C413A2001A5456 /* RegisterSecView.swift */; };
@@ -451,6 +452,7 @@
 				C9FCF26925EB92B7004FC993 /* GridWithoutScrollStack.swift */,
 				03ACE52924D844C5009468D4 /* RefreshButton.swift */,
 				C92E614E253997990008A38A /* RadarChartView.swift */,
+				C9E3E02A26025EF300CEAEC9 /* PQTextField.swift */,
 				C9D5BF4B25CB9C2800CD3537 /* AlertView.swift */,
 				C9D5BF5225CC0D4800CD3537 /* RemindView.swift */,
 				C930724125E16C75005E5736 /* BubbleView.swift */,
@@ -1274,6 +1276,7 @@
 				D35E4E6225F061B000526388 /* ImagePicker.swift in Sources */,
 				C9CF3DD725D2B1E00085263F /* Home.swift in Sources */,
 				C9D59B5A25BD35D0006865FC /* ChMeToFindView.swift in Sources */,
+				C9E3E02B26025EF300CEAEC9 /* PQTextField.swift in Sources */,
 				C903418625F8B78900F78B9C /* AcChangeNameView.swift in Sources */,
 				D37DD87E25EDFA8700A662E0 /* SchAccountView.swift in Sources */,
 				D37DD88125EDFA8700A662E0 /* SchManager.swift in Sources */,
