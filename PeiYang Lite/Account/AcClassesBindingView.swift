@@ -1,5 +1,5 @@
 //
-//  ClassesBindingView.swift
+//  AcClassesBindingView.swift
 //  PeiYang Lite
 //
 //  Created by phoenix Dai on 2021/2/8.
@@ -7,7 +7,7 @@
 import SwiftUI
 import URLImage
 
-struct ClassesBindingView: View {
+struct AcClassesBindingView: View {
     @AppStorage(ClassesManager.isLoginKey, store: Storage.defaults) private var isLogin = false
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     
@@ -37,7 +37,7 @@ struct ClassesBindingView: View {
     
 }
 
-struct LoadingView: View {
+fileprivate struct LoadingView: View {
     @State private var isAnimating = false
     
     var body: some View {
@@ -57,11 +57,11 @@ struct LoadingView: View {
 
 struct BsLoginView_Previews: PreviewProvider {
     static var previews: some View {
-        ClassesBindingView()
+        AcClassesBindingView()
     }
 }
 //MARK: 已绑定页面
-struct ClassesBindingLoginedView: View {
+fileprivate struct ClassesBindingLoginedView: View {
     @State var isShowSignOut: Bool = false
     @AppStorage(ClassesManager.usernameKey, store: Storage.defaults) private var username = ""
     let themeColor = Color(red: 102/255, green: 106/255, blue: 125/255)
@@ -157,7 +157,7 @@ struct ClassesBindingLoginedView: View {
     }
 }
 //MARK: 未绑定页面
-struct ClassesBindingLoginView: View {
+fileprivate struct ClassesBindingLoginView: View {
     @State var isEnable: Bool = false
     @State var isError: Bool = false
     @State private var errorMessage: LocalizedStringKey = ""

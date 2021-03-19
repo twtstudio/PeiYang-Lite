@@ -19,13 +19,14 @@ struct SplashView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                NavigationLink(destination:MainView(), isActive: $isJumpToAccount){}
+                NavigationLink(destination:MainView(), isActive: $isJumpToAccount){EmptyView()}
                 NavigationLink(
-                    destination: BeginView(),
+                    destination: LgBeginView(),
                     isActive: $isJumpToLog,
-                    label: {})
+                    label: {EmptyView()})
                 Image("splash_screen")
                     .resizable()
+                    .scaledToFit()
                     .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height, alignment: .center)
             }
             .navigationBarHidden(true)
@@ -41,13 +42,13 @@ struct SplashView: View {
         
     }
     func Jump(isStored: Bool) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+        DispatchQueue.main.asyncAfter(deadline: .now()) {
             if(isStored){
-                LoginManager.LoginPost(account: storageUserName, password: storagePassword) { result in
+                LgLoginManager.LoginPost(account: storageUserName, password: storagePassword) { result in
                     switch result {
                     case .success(let data):
                         sharedMessage.Account = data.result
-                        SupplyPhManager.token = sharedMessage.Account.token
+                        LgSupplyPhManager.token = sharedMessage.Account.token
                         isJumpToAccount = true
                     case .failure(_):
                         isJumpToLog = true

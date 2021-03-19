@@ -1,5 +1,5 @@
 //
-//  CollectionManager.swift
+//  StyCollectionManager.swift
 //  PeiYang Lite
 //
 //  Created by phoenix Dai on 2021/3/7.
@@ -7,10 +7,10 @@
 
 import Foundation
 
-class CollectionManager {
+class StyCollectionManager {
     static let ticket = "YmFuYW5hLjM3YjU5MDA2M2Q1OTM3MTY0MDVhMmM1YTM4MmIxMTMwYjI4YmY4YTc="
     static let domain = "weipeiyang.twt.edu.cn"
-    static let token = SupplyPhManager.token
+    static let token = LgSupplyPhManager.token
     
     static func getCollections(completion: @escaping (Result<Collections, Network.Failure>) -> Void) {
         

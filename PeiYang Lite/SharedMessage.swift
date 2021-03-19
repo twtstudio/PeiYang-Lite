@@ -22,7 +22,7 @@ class SharedMessage: ObservableObject {
     static var username: String {Storage.defaults.string(forKey: usernameKey) ?? ""}
     static var password: String {Storage.defaults.string(forKey: passwordKey) ?? ""}
     static var showCourseNum: Int {Int(Storage.defaults.double(forKey: showCourseNumKey))}
-//    static var studyRoomHistory: [String] {Storage.defaults.stringArray(forKey: studyRoomHistoryKey) ?? [""]}
+
     
     @Published var Account: AccountResult = AccountResult(userNumber: "", nickname: "", telephone: "", email: "", token: "", role: "", realname: "", gender: "", department: "", major: "", stuType: "", avatar: "", campus: "")
     @Published var isBindBs: Bool = false

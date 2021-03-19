@@ -1,5 +1,5 @@
 //
-//  SecondStepView.swift
+//  FgSecondStepView.swift
 //  PeiYang Lite
 //
 //  Created by phoenix Dai on 2021/1/25.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SecondStepView: View {
+struct FgSecondStepView: View {
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     @State private var password: String = ""
     @State private var cfPassword: String = ""
@@ -22,6 +22,8 @@ struct SecondStepView: View {
 
     var body: some View {
         VStack(spacing: 25.0) {
+            NavigationBar()
+            
             Text("天外天账号密码找回")
                 .font(.title2)
                 .foregroundColor(Color.init(red: 98/255, green: 103/255, blue: 124/255))
@@ -48,7 +50,7 @@ struct SecondStepView: View {
             }
             
             NavigationLink(
-                destination: FinalStepView(),
+                destination: FgFinalStepView(),
                 isActive: $isChangePs,
                 label: {
                     // 空
@@ -103,20 +105,13 @@ struct SecondStepView: View {
                     UIApplication.shared.endEditing()
                 })
         )
-        .navigationBarBackButtonHidden(true)
-        .navigationBarItems(leading: Button(action : {
-            self.mode.wrappedValue.dismiss()
-        }){
-            Image("back-arrow")
-                .foregroundColor(.black)
-                .font(.title)
-        })
+        .navigationBarHidden(true)
         
     }
 }
 
 struct SecondStepView_Previews: PreviewProvider {
     static var previews: some View {
-        SecondStepView()
+        FgSecondStepView()
     }
 }

@@ -1,5 +1,5 @@
 //
-//  LoginByPs.swift
+//  LgLoginManager.swift
 //  PeiYang Lite
 //
 //  Created by phoenix Dai on 2021/1/28.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct LoginManager {
+struct LgLoginManager {
     
     static let isTokenKey = "tokenIsGet"
     static let isAcLogin = "acIsget"

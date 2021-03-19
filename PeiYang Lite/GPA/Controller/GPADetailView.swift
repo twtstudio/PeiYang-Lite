@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct GPADetailView: View {
+    @AppStorage(ClassesManager.isLoginKey, store: Storage.defaults) private var isLogin = true
+    @EnvironmentObject var sharedMessage: SharedMessage
     @Environment(\.presentationMode) private var presentationMode
     @ObservedObject var store = Storage.gpa
     private var gpa: GPA { store.object }
@@ -25,25 +27,23 @@ struct GPADetailView: View {
         GeometryReader { full in
             VStack {
                 // MARK: - Header
-                HStack {
+                NavigationBar(leading: {
                     Button(action: {
                         self.presentationMode.wrappedValue.dismiss()
                       }) {
                         Image(systemName: "arrow.left")
                             .font(.title)
                             .foregroundColor(.white)
-                            .padding()
                     }
-                    
-                    Spacer()
-                    
-                    RefreshButton(isLoading: $isLoading, action: reload, color: .white)
-                    Image(systemName: "exclamationmark.circle")
-                        .font(.title)
-                        .foregroundColor(.white)
-                }
-                .padding(.top, 40)
-                .padding(.trailing, 20)
+                }, trailing: {
+                    HStack{
+                        RefreshButton(isLoading: $isLoading, action: reload, color: .white)
+                        Image(systemName: "exclamationmark.circle")
+                            .font(.title)
+                            .foregroundColor(.white)
+                    }
+                }).padding(.horizontal)
+                
                 if !gpa.semesterGPAArray.isEmpty {
                 ScrollView(showsIndicators: false) {
                         // MARK: - RadarChart
@@ -93,16 +93,18 @@ struct GPADetailView: View {
                               dismissButton: .default(Text(Localizable.ok.rawValue)))
                     }
                 }
+                NavigationLink(
+                    destination: AcClassesBindingView(),
+                    isActive: $showLogin,
+                    label: {EmptyView()})
                 }
 //                .edgesIgnoringSafeArea(.all)
 //                .background(Color(#colorLiteral(red: 0.500842154, green: 0.5448840261, blue: 0.3510230184, alpha: 1)))
         }
         .onAppear(perform: load)
         .navigationBarHidden(true)
-        .sheet(isPresented: $showLogin) {
-            HomeLoginView(module: .gpa)
-        }
-        .edgesIgnoringSafeArea(.all)
+        .edgesIgnoringSafeArea(.bottom)
+        .edgesIgnoringSafeArea(.horizontal)
         .background(Color(#colorLiteral(red: 0.500842154, green: 0.5448840261, blue: 0.3510230184, alpha: 1)).edgesIgnoringSafeArea(.all))
     }
     
@@ -148,6 +150,8 @@ struct GPADetailView: View {
                     isError = true
                     errorMessage = error.localizedStringKey
                 } else {
+                    sharedMessage.isBindBs = false
+                    isLogin = false
                     showLogin = true
                 }
             }

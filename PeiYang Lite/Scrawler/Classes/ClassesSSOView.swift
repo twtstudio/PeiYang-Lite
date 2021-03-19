@@ -57,6 +57,7 @@ struct ClassesSSOView: View {
             }
             .disabled(!isEnable || username.isEmpty || password.isEmpty || captcha.isEmpty)
         }
+        
         .alert(isPresented: $isError) {
             Alert(title: Text(errorMessage), dismissButton: .cancel())
         }

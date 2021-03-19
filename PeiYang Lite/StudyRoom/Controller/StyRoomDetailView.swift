@@ -1,5 +1,5 @@
 //
-//  RoomDetailView.swift
+//  StyRoomDetailView.swift
 //  PeiYang Lite
 //
 //  Created by 游奕桁 on 2021/2/16.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct RoomDetailView: View {
+struct StyRoomDetailView: View {
     @Binding var activeWeek: Int
     @ObservedObject var store = Storage.courseTable
     private var courseTable: CourseTable { store.object }
@@ -18,29 +18,26 @@ struct RoomDetailView: View {
     var className: String
     // 定位classroom
     var classData: Classroom
-    /// 每一个元素会重复两次……
     @State var weekData: [String] =  ["", "", "", "", "", "", ""]
     
     var body: some View {
         VStack {
-            HStack {
+            
+            NavigationBar(leading: {
                 Button(action: {
                     self.mode.wrappedValue.dismiss()
                   }) {
                     Image("back-arrow")
                 }
-
-                Spacer()
+            }, trailing: {
                 Button(action: {
                     isShowCalender.toggle()
                 }, label: {
                     Image("calender")
                 })
-            }
+            })
             .frame(width: screen.width * 0.9)
-            .padding(.top, 40)
            
-//            RoomDetailHeaderView(classroomId: classData.classroomID, className: className, activeWeek: activeWeek)
             HStack(alignment: .firstTextBaseline) {
                 Text(className)
                     .font(.title)
@@ -57,7 +54,7 @@ struct RoomDetailView: View {
                 Button(action: {
                     
                     if (isFavoured == false){
-                        CollectionManager.addFavour(classroomID: classData.classroomID) {result in
+                        StyCollectionManager.addFavour(classroomID: classData.classroomID) {result in
                             switch result {
                             case .success(let data):
                                 if data.errorCode == 0 {
@@ -69,7 +66,7 @@ struct RoomDetailView: View {
                         }
                     }
                     else if (isFavoured == true) {
-                        CollectionManager.deleteFavour(classroomID: classData.classroomID) { result in
+                        StyCollectionManager.deleteFavour(classroomID: classData.classroomID) { result in
                             switch result {
                             case .success(let data):
                                 if data.errorCode == 0 {
@@ -113,9 +110,9 @@ struct RoomDetailView: View {
                 .padding(.horizontal, 10)
             }
         }
-        .navigationBarTitle("")
         .navigationBarHidden(true)
-        .edgesIgnoringSafeArea(.all)
+        .edgesIgnoringSafeArea(.bottom)
+        .edgesIgnoringSafeArea(.horizontal)
         .sheet(isPresented: $isShowCalender,
                content: {
                 CalendarView(isShowCalender: $isShowCalender)
@@ -164,7 +161,7 @@ struct RoomDetailView: View {
 
 struct RoomDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        RoomDetailView(activeWeek: .constant(16), className: "16教A208", classData: Classroom(classroomID: "303", classroom: "303", status: "001100110011"))
+        StyRoomDetailView(activeWeek: .constant(16), className: "16教A208", classData: Classroom(classroomID: "303", classroom: "303", status: "001100110011"))
     }
 }
 
@@ -193,7 +190,7 @@ struct RoomDetailView_Previews: PreviewProvider {
 //
 //            Button(action: {
 //                if (isFavoured == false){
-//                    CollectionManager.addFavour(classroomID: classroomId) {result in
+//                    StyCollectionManager.addFavour(classroomID: classroomId) {result in
 //                        switch result {
 //                        case .success(let data):
 //

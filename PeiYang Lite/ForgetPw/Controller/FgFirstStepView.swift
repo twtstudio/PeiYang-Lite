@@ -1,5 +1,5 @@
 //
-//  FirstStepView.swift
+//  FgFirstStepView.swift
 //  PeiYang Lite
 //
 //  Created by phoenix Dai on 2021/1/24.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct FirstStepView: View {
+struct FgFirstStepView: View {
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     @State private var phoneNum: String = ""
     @State private var code: String = ""
@@ -37,6 +37,7 @@ struct FirstStepView: View {
     
     var body: some View {
         VStack(spacing: 25.0) {
+            NavigationBar()
 
             Text("天外天账号密码找回")
                 .font(.title2)
@@ -123,7 +124,7 @@ struct FirstStepView: View {
                      .frame(alignment: .top)
              }
             NavigationLink(
-                destination: SecondStepView(),
+                destination: FgSecondStepView(),
                 isActive: $isVerifyCode,
                 label: {
                     // 空
@@ -173,14 +174,7 @@ struct FirstStepView: View {
                     UIApplication.shared.endEditing()
                 })
         )
-        .navigationBarBackButtonHidden(true)
-        .navigationBarItems(leading: Button(action : {
-            self.mode.wrappedValue.dismiss()
-        }){
-            Image("back-arrow")
-                .foregroundColor(.black)
-                .font(.title)
-        })
+        .navigationBarHidden(true)
             
     }
 
@@ -188,6 +182,6 @@ struct FirstStepView: View {
 
 struct FirstStepView_Previews: PreviewProvider {
     static var previews: some View {
-        FirstStepView()
+        FgFirstStepView()
     }
 }

@@ -11,7 +11,7 @@ struct CourseTableDetailView: View {
     @State private var isLoading = false
     @AppStorage(SharedMessage.isShowFullCourseKey, store: Storage.defaults) private var showFullCourse = true
     @AppStorage(SharedMessage.showCourseNumKey, store: Storage.defaults) private var showCourseNum = 5
-    
+    @AppStorage(ClassesManager.isLoginKey, store: Storage.defaults) private var isLogin = true
     @EnvironmentObject var sharedMessage: SharedMessage
     
     @State private var showLogin = false
@@ -33,22 +33,20 @@ struct CourseTableDetailView: View {
             ZStack {
                 VStack {
                     // 头部伪导航栏
-                    HStack {
+//
+                    NavigationBar(leading: {
                         Button(action: {
                             self.presentationMode.wrappedValue.dismiss()
                         }) {
                             Image(systemName: "arrow.left")
                                 .font(.title)
                                 .foregroundColor(Color(#colorLiteral(red: 0.3856853843, green: 0.403162986, blue: 0.4810273647, alpha: 1)))
-                                .padding()
                         }
-                        
-                        Spacer()
-                        
+
+                    }, trailing: {
                         RefreshButton(isLoading: $isLoading, action: reload, color: Color(#colorLiteral(red: 0.3856853843, green: 0.403162986, blue: 0.4810273647, alpha: 1)))
-                    }
-                    .padding(.top, 40)
-                    .padding(.trailing, 20)
+                    }).padding(.horizontal)
+                    
                     
                     // MARK: - Header
                     CouseTableHeaderView(
@@ -92,9 +90,9 @@ struct CourseTableDetailView: View {
                               dismissButton: .default(Text(Localizable.ok.rawValue)))
                     }
                     NavigationLink(
-                        destination: ClassesBindingView(),
+                        destination: AcClassesBindingView(),
                         isActive: $showLogin,
-                        label: {})
+                        label: {EmptyView()})
                 }
                 
                 if alertCourse.showDetail {
@@ -124,9 +122,9 @@ struct CourseTableDetailView: View {
                 }
                 
             }
-//        }
         .onAppear(perform: load)
-        .edgesIgnoringSafeArea(.all)
+        .edgesIgnoringSafeArea(.bottom)
+        .edgesIgnoringSafeArea(.horizontal)
         .navigationBarHidden(true)
         //        .navigationBarBackButtonHidden(true)
         //        .navigationBarItems(
@@ -180,6 +178,8 @@ struct CourseTableDetailView: View {
                     isError = true
                     errorMessage = error.localizedStringKey
                 } else {
+                    sharedMessage.isBindBs = false
+                    isLogin = false
                     showLogin = true
                 }
             }

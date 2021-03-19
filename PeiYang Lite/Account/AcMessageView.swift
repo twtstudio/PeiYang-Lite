@@ -4,10 +4,10 @@
 //
 //  Created by phoenix Dai on 2021/2/6.
 //
-
 import SwiftUI
 
 struct AcMessageView: View {
+    
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     @EnvironmentObject var sharedMessage: SharedMessage
     @AppStorage(ClassesManager.isLoginKey, store: Storage.defaults) private var isLogin = false
@@ -22,15 +22,19 @@ struct AcMessageView: View {
     @State private var alertTimer: Timer?
     @State private var alertTime = 2
     
+    /// fix the deselect prob. T_T
+    @State private var selectedItem: String?
+    @State private var listViewId = UUID()
     
     init() {
         UITableView.appearance().backgroundColor = #colorLiteral(red: 0.968627451, green: 0.968627451, blue: 0.968627451, alpha: 1)
+        UIScrollView.appearance().isScrollEnabled = false
     }
     
     var body: some View {
         VStack {
             NavigationBar(center: {Text("个人信息更改")})
-            List {
+            Form {
                 Section() {
                     Button(action:{
                         print("Todo")
@@ -50,30 +54,43 @@ struct AcMessageView: View {
                     
                     NavigationLink(
                         destination: AcChangeNameView(),
+                        tag: "0",
+                        selection: $selectedItem,
                         label: {
                             AcListView(title: "用户名", caption: sharedMessage.Account.nickname)
                         })
                     
-                    NavigationLink(destination: ClassesBindingView()){
+                    NavigationLink(destination: AcClassesBindingView(),
+                                   tag: "1",
+                                   selection: $selectedItem){
                         AcListView(title: "办公网", caption: isLogin ? "已绑定" : "未绑定")
                     }
                 }
                 
                 Section() {
-                    NavigationLink(destination: BindPhoneView()){
+                    NavigationLink(destination: AcBindPhoneView(),
+                                   tag: "2",
+                                   selection: $selectedItem){
                         AcListView2(img: "phone", title: "电话", caption: sharedMessage.isBindPh ? "已绑定" : "未绑定")
                     }
                     
-                    NavigationLink(destination: BindEmailView()){
+                    NavigationLink(destination: AcBindEmailView(),
+                                   tag: "3",
+                                   selection: $selectedItem){
                         AcListView2(img: "email", title: "邮箱", caption: sharedMessage.isBindEm ? "已绑定" : "未绑定")
                     }
                     
                 }
             }
-            .listStyle(InsetGroupedListStyle())
             .environment(\.horizontalSizeClass, .regular)
+            .id(listViewId)
+            .onAppear {
+                if selectedItem != nil {
+                    selectedItem = nil
+                    listViewId = UUID()
+                }
+            }
         }
-        
         .navigationBarHidden(true)
         .onAppear(perform: {
             if(sharedMessage.Account.email != nil) {
@@ -93,7 +110,7 @@ struct AcMessageView_Previews: PreviewProvider {
     }
 }
 
-struct AcListView: View {
+fileprivate struct AcListView: View {
     let themeColor = Color.init(red: 98/255, green: 103/255, blue: 122/255)
     let captionColor = Color.init(red: 205/255, green: 206/255, blue: 212/255)
     var title: String
@@ -113,7 +130,7 @@ struct AcListView: View {
     }
 }
 
-struct AcListView2: View {
+fileprivate struct AcListView2: View {
     let themeColor = Color.init(red: 98/255, green: 103/255, blue: 122/255)
     let captionColor = Color.init(red: 205/255, green: 206/255, blue: 212/255)
     var img: String
@@ -133,3 +150,6 @@ struct AcListView2: View {
         .frame(height: UIScreen.main.bounds.height / 15, alignment: .center)
     }
 }
+
+
+

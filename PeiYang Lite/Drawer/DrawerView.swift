@@ -30,7 +30,7 @@ struct DrawerView: View {
                 DrawerCellView(imgName: "drawer-phone", title: "黄页")
                 Spacer()
                 NavigationLink(
-                    destination: StudyRoomTopView(),
+                    destination: StyTopView(),
                     label: {
                         DrawerCellView(imgName: "drawer-building", title: "自习室")
                     })
@@ -62,7 +62,7 @@ struct DrawerView_Previews: PreviewProvider {
     }
 }
 
-struct DrawerCellView: View {
+fileprivate struct DrawerCellView: View {
     let themeColor = Color.init(red: 98/255, green: 103/255, blue: 123/255)
     var imgName: String
     var title: String

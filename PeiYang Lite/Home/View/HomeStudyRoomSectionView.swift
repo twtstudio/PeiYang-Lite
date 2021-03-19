@@ -59,7 +59,7 @@ struct HomeStudyRoomSectionView: View {
     
     var body: some View {
         if getCollectionClassId == [] {
-            NavigationLink(destination: StudyRoomTopView()) {
+            NavigationLink(destination: StyTopView()) {
                 Text("还没有get到您的收藏")
                     .font(.caption)
                     .foregroundColor(.gray)
@@ -71,7 +71,7 @@ struct HomeStudyRoomSectionView: View {
             HStack(spacing: 20) {
                 ForEach(collectionClass, id: \.self) { collectionclass in
                     NavigationLink(
-                        destination: StudyRoomTopView(),
+                        destination: StyTopView(),
                         label: {
                             StudyRoomBuildingCardView(buildingName: collectionclass.buildingName, className: collectionclass.classMessage.classroom, isFree: collectionclass.classMessage.status[nowPeriod] == "0", classData: collectionclass.classMessage)
                         })
@@ -104,7 +104,7 @@ struct HomeStudyRoomSectionView: View {
     }
     func requestDataToUseData() {
         collectionClass = []
-        CollectionManager.getCollections() { result in
+        StyCollectionManager.getCollections() { result in
             switch result {
             case .success(let data):
                 getCollectionClassId = data.data.classroomID ?? []

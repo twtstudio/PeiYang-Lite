@@ -1,5 +1,5 @@
 //
-//  StudyRoomTopView.swift
+//  StyTopView.swift
 //  PeiYang Lite
 //
 //  Created by phoenix Dai on 2021/1/30.
@@ -8,7 +8,7 @@
 import SwiftUI
 import Foundation
 
-struct StudyRoomTopView: View {
+struct StyTopView: View {
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     @EnvironmentObject var sharedMessage: SharedMessage
     let themeColor = Color.init(red: 98/255, green: 103/255, blue: 123/255)
@@ -101,24 +101,23 @@ struct StudyRoomTopView: View {
     var body: some View {
         
         VStack (spacing: 25){
-            HStack {
+            
+            NavigationBar(leading: {
                 Button(action : {
-                    self.mode.wrappedValue.dismiss()
-                    sharedMessage.studyRoomSelectDate = Date()
-                }) {
-                    Image("back-arrow")
-                }
-                
-                Spacer()
-                
+                   self.mode.wrappedValue.dismiss()
+                   sharedMessage.studyRoomSelectDate = Date()
+               }) {
+                   Image("back-arrow")
+               }
+            }, trailing: {
                 Button(action : {
                     isShowCalender.toggle()
                 }) {
                     Image("calender")
                 }
-            }.frame(width: screen.width * 0.9)
-            .padding(.top, UIScreen.main.bounds.height / 15)
-            
+            })
+            .frame(width: screen.width * 0.9)
+            .padding(.top, screen.height / 16)
 
             HStack{
                 Image("position")
@@ -205,7 +204,7 @@ struct StudyRoomTopView: View {
                         GeometryReader { geo in
                             if(buildingsWJ[index].areas[0].areaID != "-1") {
                                 NavigationLink(
-                                    destination: BuildingSectionView(buildingName: buildingsWJ[index].building, sections: buildingsWJ[index].areas, weeks: weeks, buildingID: buildingsWJ[index].buildingID),
+                                    destination: StyBuildingSectionView(buildingName: buildingsWJ[index].building, sections: buildingsWJ[index].areas, weeks: weeks, buildingID: buildingsWJ[index].buildingID),
                                     label: {
                                         VStack(spacing: 5) {
                                             Image("building")
@@ -222,7 +221,7 @@ struct StudyRoomTopView: View {
 
                             } else {
                                 NavigationLink(
-                                    destination: ChooseClassView(buildingID: buildingsWJ[index].buildingID, sectionName: "-1", week: weeks, buildingName: buildingsWJ[index].building),
+                                    destination: StyChooseClassView(buildingID: buildingsWJ[index].buildingID, sectionName: "-1", week: weeks, buildingName: buildingsWJ[index].building),
                                     label: {
                                         VStack(spacing: 5) {
                                             Image("building")
@@ -248,11 +247,11 @@ struct StudyRoomTopView: View {
                     //MARK: show the buildings in BY
                     GridWithoutScrollStack(minCellWidth: UIScreen.main.bounds.width / 8,
                                            spacing: 20,
-                                           numItems: buildingsBY.count) {} content: { index, width in
+                                           numItems: buildingsBY.count) {EmptyView()} content: { index, width in
                         GeometryReader { geo in
                             if(buildingsBY[index].areas[0].areaID != "-1") {
                                 NavigationLink(
-                                    destination: BuildingSectionView(buildingName: buildingsBY[index].building, sections: buildingsBY[index].areas, weeks: weeks, buildingID: buildingsBY[index].buildingID),
+                                    destination: StyBuildingSectionView(buildingName: buildingsBY[index].building, sections: buildingsBY[index].areas, weeks: weeks, buildingID: buildingsBY[index].buildingID),
                                     label: {
                                         VStack(spacing: 5) {
                                             Image("building")
@@ -269,7 +268,7 @@ struct StudyRoomTopView: View {
 
                             } else {
                                 NavigationLink(
-                                    destination: ChooseClassView(buildingID: buildingsBY[index].buildingID, sectionName: "-1", week: weeks, buildingName: buildingsBY[index].building),
+                                    destination: StyChooseClassView(buildingID: buildingsBY[index].buildingID, sectionName: "-1", week: weeks, buildingName: buildingsBY[index].building),
                                     label: {
                                         VStack(spacing: 5) {
                                             Image("building")
@@ -307,12 +306,12 @@ struct StudyRoomTopView: View {
             Spacer()
             
             NavigationLink(
-                destination: StudySearchView(activeWeek: weeks),
+                destination: StySearchView(activeWeek: weeks),
                 isActive: $isShowSearch,
-                label: {})
+                label: {EmptyView()})
         }//: VSTACK
+        .frame(width: UIScreen.main.bounds.width * 0.9)
         .navigationBarHidden(true)
-        .edgesIgnoringSafeArea(.top)
         // MARK: 请求当天数据
         .onAppear {
             if(isGetStudyRoomBuildingMessage == false) {
@@ -333,10 +332,7 @@ struct StudyRoomTopView: View {
             }
         })
         .background(Color(#colorLiteral(red: 0.9352087975, green: 0.9502342343, blue: 0.9600060582, alpha: 1)).frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height, alignment: .center).ignoresSafeArea())
-       
-//
-        
-        
+           
     }//: BODY
     
     func save() {
@@ -351,7 +347,7 @@ struct StudyRoomTopView: View {
     
     //MARK: 收藏的数据整理
     func requestDataToUseData() {
-        CollectionManager.getCollections() { result in
+        StyCollectionManager.getCollections() { result in
             switch result {
             case .success(let data):
                 if(data.errorCode != 0){
@@ -453,7 +449,7 @@ struct StudyRoomTopView: View {
 
 struct StudyRoomTopView_Previews: PreviewProvider {
     static var previews: some View {
-        StudyRoomTopView()
+        StyTopView()
             .environmentObject(SharedMessage())
     }
 }
@@ -509,7 +505,8 @@ struct StudyRoomBuildingCardView: View {
                             .cornerRadius(circleDiameter / 2)
                     }
                     Text(isFree! ? "空闲" : "占用")
-                        .font(.headline)
+                        .fontWeight(.heavy)
+                        .font(.footnote)
                         .foregroundColor(isFree! ? .green : .red)
                         .fontWeight(.heavy)
                     
@@ -522,7 +519,8 @@ struct StudyRoomBuildingCardView: View {
                             .cornerRadius(circleDiameter / 2)
                     }
                     Text(isPeriodFree ? "空闲" : "占用")
-                        .font(.headline)
+                        .font(.footnote)
+                        .fontWeight(.heavy)
                         .foregroundColor(isPeriodFree ? .green : .red)
                         .fontWeight(.heavy)
                 }
@@ -584,12 +582,10 @@ struct StudyRoomFavourCard: View {
             HStack(spacing: 20) {
                 ForEach(collectionClasses, id: \.self) { collectionclass in
                     NavigationLink(
-                        destination: RoomDetailView(activeWeek: $activeWeek, className: collectionclass.buildingName + collectionclass.classMessage.classroom, classData: collectionclass.classMessage),
+                        destination: StyRoomDetailView(activeWeek: $activeWeek, className: collectionclass.buildingName + collectionclass.classMessage.classroom, classData: collectionclass.classMessage),
                         label: {
                             StudyRoomBuildingCardView(buildingName: collectionclass.buildingName, className: collectionclass.classMessage.classroom, classData: collectionclass.classMessage)
                         })
-                   
-                    
                 }
             }
         }).padding()

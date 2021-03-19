@@ -124,7 +124,7 @@ struct RegisterSecView: View {
                     Spacer()
         
                     Button(action: {
-                        RegisterManager.CodePost(phone: phoneNumber) {
+                        RgRegisterManager.CodePost(phone: phoneNumber) {
                             result in
                             switch result {
                             case .success(let data):
@@ -184,9 +184,9 @@ struct RegisterSecView: View {
                     }
                     Spacer()
                     NavigationLink(
-                        destination: RegisterThiView(), isActive: $isJumpToThir) {}
+                        destination: RegisterThiView(), isActive: $isJumpToThir) {EmptyView()}
                     Button(action:{
-                        RegisterManager.SecondPost(idNumber: idNumber, email: e_mailNum, phone: phoneNumber) { result in
+                        RgRegisterManager.SecondPost(idNumber: idNumber, email: e_mailNum, phone: phoneNumber) { result in
                             switch result {
                             case .success(let data):
                                 AlertMessage = data.message
@@ -210,6 +210,7 @@ struct RegisterSecView: View {
                     }){
                         Image("right-arrow")
                     }
+                    .disabled(phoneNumber == "" || idNumber == "" || e_mailNum == "" || code == "")
                 }
                 .frame(width: UIScreen.main.bounds.width * 0.9, height: UIScreen.main.bounds.height / 15, alignment: .center)
             }

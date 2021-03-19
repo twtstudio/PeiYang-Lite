@@ -1,5 +1,5 @@
 //
-//  KeywordLoginView.swift
+//  LgKeywordLoginView.swift
 //  PeiYang Lite
 //
 //  Created by phoenix Dai on 2021/1/23.
@@ -8,9 +8,9 @@
 import SwiftUI
 
 
-struct KeywordLoginView: View {
+struct LgKeywordLoginView: View {
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
-    @AppStorage(LoginManager.isTokenKey, store: Storage.defaults) private var token = ""
+    @AppStorage(LgLoginManager.isTokenKey, store: Storage.defaults) private var token = ""
     @AppStorage(SharedMessage.usernameKey, store: Storage.defaults) private var storageUserName = ""
     @AppStorage(SharedMessage.passwordKey, store: Storage.defaults) private var storagePassword = ""
     
@@ -37,7 +37,9 @@ struct KeywordLoginView: View {
     
     var body: some View {
         VStack(spacing: 25.0){
-            Text("天外天账号密码登录")
+            NavigationBar()
+            
+            Text("微北洋4.0")
                 .font(.title2)
                 .foregroundColor(Color.init(red: 98/255, green: 103/255, blue: 124/255))
                 
@@ -79,7 +81,7 @@ struct KeywordLoginView: View {
          
             HStack{
                 NavigationLink(
-                    destination: ChMeToFindView(),
+                    destination: FgChMeToFindView(),
                     label: {
                         Text("忘记密码?")
                             .foregroundColor(Color.init(red: 79/255, green: 88/255, blue: 107/255))
@@ -91,13 +93,13 @@ struct KeywordLoginView: View {
             
             Button(action:{
                 //MARK: Login
-                LoginManager.LoginPost(account: username, password: password) { result in
+                LgLoginManager.LoginPost(account: username, password: password) { result in
                     switch result {
                     case .success(let data):
                         isLogin = true
                         accountMessage = data
                         AlertMessage = accountMessage.message
-                        SupplyPhManager.token = accountMessage.result.token
+                        LgSupplyPhManager.token = accountMessage.result.token
                         token = accountMessage.result.token
                         storagePassword = password
                         storageUserName = username
@@ -132,7 +134,7 @@ struct KeywordLoginView: View {
             .disabled(!isEnable || username.isEmpty || password.isEmpty)
             
             if(accountMessage.result.telephone == nil || accountMessage.result.email == nil) {
-                NavigationLink(destination: supplyView(), isActive: $isLogin){
+                NavigationLink(destination: LgSupplyView(), isActive: $isLogin){
                     // 空
                 }
             } else {
@@ -158,14 +160,7 @@ struct KeywordLoginView: View {
             sharedMessage.Account = accountMessage.result
         })
         .padding(.bottom)
-        .navigationBarBackButtonHidden(true)
-        .navigationBarItems(leading: Button(action : {
-            self.mode.wrappedValue.dismiss()
-        }){
-            Image("back-arrow")
-                .foregroundColor(.black)
-                .font(.title)
-        })
+        .navigationBarHidden(true)
     }
     
 }
@@ -177,7 +172,7 @@ struct KeywordLoginView: View {
 struct KeywordLoginView_Previews: PreviewProvider {
     static var previews: some View {
      
-        KeywordLoginView()
+        LgKeywordLoginView()
             .environment(\.colorScheme, .light)
         
     }

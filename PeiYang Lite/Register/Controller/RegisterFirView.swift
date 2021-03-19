@@ -25,6 +25,7 @@ struct RegisterFirView: View {
     
     var body: some View {
         VStack(spacing: 25.0){
+            NavigationBar()
             Text("新用户注册")
                 .font(.title2)
                 .foregroundColor(Color.init(red: 98/255, green: 103/255, blue: 124/255))
@@ -52,9 +53,9 @@ struct RegisterFirView: View {
             HStack{
                 Spacer()
                 NavigationLink(
-                    destination: RegisterSecView(), isActive: $isJumpToSec) {}
+                    destination: RegisterSecView(), isActive: $isJumpToSec) {EmptyView()}
                 Button(action:{
-                    RegisterManager.FirstPost(userNumber: userNumber, username: username) { result in
+                    RgRegisterManager.FirstPost(userNumber: userNumber, username: username) { result in
                         switch result {
                         case .success(let data):
                             AlertMessage = data.message
@@ -78,6 +79,7 @@ struct RegisterFirView: View {
                 }) {
                     Image("right-arrow")
                 }
+                .disabled(username == "" || userNumber == "")
             }
             .frame(width: UIScreen.main.bounds.width * 0.9, height: UIScreen.main.bounds.height / 15, alignment: .center)
       
@@ -90,14 +92,7 @@ struct RegisterFirView: View {
                     UIApplication.shared.endEditing()
                 })
         )
-        .navigationBarBackButtonHidden(true)
-        .navigationBarItems(leading: Button(action : {
-            self.mode.wrappedValue.dismiss()
-        }){
-            Image("back-arrow")
-                .foregroundColor(.black)
-                .font(.title)
-        })
+        .navigationBarHidden(true)
         .onDisappear(perform: {
             user.nickName = username
             user.userNumber = userNumber

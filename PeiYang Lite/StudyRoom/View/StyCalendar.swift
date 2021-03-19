@@ -1,5 +1,5 @@
 //
-//  CalendarRepresentable.swift
+//  StyCalendar.swift
 //  PeiYang Lite
 //
 //  Created by phoenix Dai on 2021/1/31.
@@ -10,7 +10,7 @@ import UIKit
 import FSCalendar
 
 //MARK: Calendar
-struct CalendarRepresentable: UIViewRepresentable {
+struct StyCalendar: UIViewRepresentable {
     let themeColor = UIColor.init(red: 98/255, green: 103/255, blue: 123/255, alpha: 1)
     typealias UIViewType = FSCalendar
     var calendar = FSCalendar()
@@ -45,9 +45,9 @@ struct CalendarRepresentable: UIViewRepresentable {
     }
     
     class Coordinator: NSObject, FSCalendarDelegate, FSCalendarDataSource {
-        var parent: CalendarRepresentable
+        var parent: StyCalendar
         
-        init(_ parent: CalendarRepresentable){
+        init(_ parent: StyCalendar){
             self.parent = parent
         }
         func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
@@ -73,25 +73,25 @@ struct CalendarView: View {
     @State var weeksBuildings: [[StudyBuilding]] = [[], [], [], [], [], [], []]
     var body: some View {
         VStack{
-            CalendarRepresentable(isChangeDate: $isChangeDate)
+            StyCalendar(isChangeDate: $isChangeDate)
                 .padding()
                 .frame(width: UIScreen.main.bounds.width * 0.9, height: UIScreen.main.bounds.height / 2, alignment: .center)
             
             // 选择具体时间的view
             VStack(spacing: 25.0) {
                 HStack(spacing: 30.0){
-                    TimeSelectionView(timePeriod: "8:30--10:05")
-                    TimeSelectionView(timePeriod: "10:25--12:00")
+                    StyTimeSelectionView(timePeriod: "8:30--10:05")
+                    StyTimeSelectionView(timePeriod: "10:25--12:00")
                 }
                 
                 HStack(spacing: 30.0){
-                    TimeSelectionView(timePeriod: "13:30--15:05")
-                    TimeSelectionView(timePeriod: "15:25--17:00")
+                    StyTimeSelectionView(timePeriod: "13:30--15:05")
+                    StyTimeSelectionView(timePeriod: "15:25--17:00")
                 }
                 
                 HStack(spacing: 30.0){
-                    TimeSelectionView(timePeriod: "18:30--20:05")
-                    TimeSelectionView(timePeriod: "20:25--22:00")
+                    StyTimeSelectionView(timePeriod: "18:30--20:05")
+                    StyTimeSelectionView(timePeriod: "20:25--22:00")
                 }
             }
             

@@ -1,5 +1,5 @@
 //
-//  ChMeToFindView.swift
+//  FgChMeToFindView.swift
 //  PeiYang Lite
 //
 //  Created by phoenix Dai on 2021/1/24.
@@ -7,13 +7,15 @@
 
 import SwiftUI
 
-struct ChMeToFindView: View {
+struct FgChMeToFindView: View {
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     @State private var isMessageShow = false
     var body: some View {
         ZStack {
             VStack {
+                NavigationBar()
                 
+                Spacer()
                 Text("天外天账号密码找回")
                     .font(.title2)
                     .foregroundColor(Color.init(red: 98/255, green: 103/255, blue: 124/255))
@@ -21,7 +23,7 @@ struct ChMeToFindView: View {
                 
                 VStack(){
                 
-                    NavigationLink(destination: FirstStepView()) {
+                    NavigationLink(destination: FgFirstStepView()) {
                         Text("账号已绑定手机号")
                             .foregroundColor(.white)
                             .font(.custom("", size: 20))
@@ -50,16 +52,9 @@ struct ChMeToFindView: View {
                     }
                     
                 }
-
+                Spacer()
             }
-            .navigationBarBackButtonHidden(true)
-            .navigationBarItems(leading: Button(action : {
-                self.mode.wrappedValue.dismiss()
-            }){
-                Image("back-arrow")
-                    .foregroundColor(.black)
-                    .font(.title)
-            })
+            .navigationBarHidden(true)
             
             Color.black.ignoresSafeArea()
                 .opacity(isMessageShow ? 0.5 : 0)
@@ -72,7 +67,7 @@ struct ChMeToFindView: View {
 
 struct ChMeToFindView_Previews: PreviewProvider {
     static var previews: some View {
-        ChMeToFindView()
+        FgChMeToFindView()
     }
 }
 

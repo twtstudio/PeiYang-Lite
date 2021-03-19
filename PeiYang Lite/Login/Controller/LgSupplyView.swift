@@ -1,5 +1,5 @@
 //
-//  supplyView.swift
+//  LgSupplyView.swift
 //  PeiYang Lite
 //
 //  Created by phoenix Dai on 2021/2/3.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct supplyView: View {
+struct LgSupplyView: View {
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     @State private var telephone = ""
     @State private var verifyCode = ""
@@ -40,6 +40,8 @@ struct supplyView: View {
     }
     var body: some View {
         VStack(spacing: 25.0){
+            NavigationBar()
+            
             Text("请补全信息后登录")
                 .font(.title2)
                 .foregroundColor(Color.init(red: 98/255, green: 103/255, blue: 124/255))
@@ -86,7 +88,7 @@ struct supplyView: View {
                 Spacer()
     
                 Button(action: {
-                    RegisterManager.CodePost(phone: telephone){ result in
+                    RgRegisterManager.CodePost(phone: telephone){ result in
                         switch result{
                         case .success(_):
                             break
@@ -117,7 +119,7 @@ struct supplyView: View {
             .frame(width: UIScreen.main.bounds.width * 0.9, height: UIScreen.main.bounds.height/15, alignment: .center)
             
             Button(action:{
-                SupplyPhManager.SupplyPost(telephone: telephone, verifyCode: verifyCode, email: email){ result in
+                LgSupplyPhManager.SupplyPost(telephone: telephone, verifyCode: verifyCode, email: email){ result in
                     switch result{
                     case .success(let data):
                         AlertMessage = data.message
@@ -149,7 +151,7 @@ struct supplyView: View {
             NavigationLink(
                 destination: MainView(),
                 isActive: $isSupplied,
-                label: {})
+                label: {EmptyView()})
             Spacer()
             AlertView(alertMessage: AlertMessage, isShow: $isShowAlert)
         }
@@ -161,19 +163,12 @@ struct supplyView: View {
                     UIApplication.shared.endEditing()
                 })
         )
-        .navigationBarBackButtonHidden(true)
-        .navigationBarItems(leading: Button(action : {
-            self.mode.wrappedValue.dismiss()
-        }){
-            Image("back-arrow")
-                .foregroundColor(.black)
-                .font(.title)
-        })
+        .navigationBarHidden(true)
     }
 }
 
 struct supplyView_Previews: PreviewProvider {
     static var previews: some View {
-        supplyView()
+        LgSupplyView()
     }
 }

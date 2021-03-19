@@ -1,5 +1,5 @@
 //
-//  TimeSelectionView.swift
+//  StyTimeSelectionView.swift
 //  PeiYang Lite
 //
 //  Created by phoenix Dai on 2021/1/31.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct TimeSelectionView: View {
+struct StyTimeSelectionView: View {
     let themeColor = Color.init(red: 98/255, green: 103/255, blue: 123/255)
     var timePeriod: String
     
@@ -47,7 +47,7 @@ struct TimeSelectionView: View {
 }
 struct TimeSelectionView_Previews: PreviewProvider {
     static var previews: some View {
-        TimeSelectionView(timePeriod: "11:00")
+        StyTimeSelectionView(timePeriod: "11:00")
             .environmentObject(SharedMessage())
     }
 }

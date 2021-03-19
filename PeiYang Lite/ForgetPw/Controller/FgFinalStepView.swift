@@ -1,5 +1,5 @@
 //
-//  FinalStepView.swift
+//  FgFinalStepView.swift
 //  PeiYang Lite
 //
 //  Created by phoenix Dai on 2021/1/25.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct FinalStepView: View {
+struct FgFinalStepView: View {
     @EnvironmentObject var appState: AppState
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     var body: some View {
@@ -33,6 +33,6 @@ struct FinalStepView: View {
 
 struct FinalStepView_Previews: PreviewProvider {
     static var previews: some View {
-        FinalStepView()
+        FgFinalStepView()
     }
 }

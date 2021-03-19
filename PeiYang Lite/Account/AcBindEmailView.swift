@@ -1,5 +1,5 @@
 //
-//  BindEmailView.swift
+//  AcBindEmailView.swift
 //  PeiYang Lite
 //
 //  Created by phoenix Dai on 2021/2/8.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct BindEmailView: View {
+struct AcBindEmailView: View {
     let themeColor = Color(red: 102/255, green: 106/255, blue: 125/255)
     let titleColor = Color.init(red: 98/255, green: 103/255, blue: 122/255)
     
@@ -23,6 +23,7 @@ struct BindEmailView: View {
     var body: some View {
         ZStack {
             VStack(spacing: UIScreen.main.bounds.width / 15){
+                NavigationBar()
                 HStack{
                     Text("邮箱绑定")
                         .font(.custom("Avenir-Heavy", size: UIScreen.main.bounds.height / 35))
@@ -32,7 +33,7 @@ struct BindEmailView: View {
                         .foregroundColor(.init(red: 98/255, green: 103/255, blue: 122/255))
                     Spacer()
                 }
-                .padding(.vertical, 30)
+                .padding(.bottom, 30)
                 .frame(width: UIScreen.main.bounds.width * 0.9)
                 
                 if(sharedMessage.isBindEm) {
@@ -63,7 +64,7 @@ struct BindEmailView: View {
                         .keyboardType(.numberPad)
                     
                     Button(action: {
-                        BindManager.BindEmPut(email: email){ result in
+                        AcBindManager.BindEmPut(email: email){ result in
                             switch result {
                             case .success(let data):
                                 AlertMessage = data.message
@@ -138,19 +139,13 @@ struct BindEmailView: View {
             .animation(.easeInOut)
             
         }
-        .navigationBarBackButtonHidden(true)
-        .navigationBarItems(leading: Button(action : {
-            self.mode.wrappedValue.dismiss()
-        }){
-            Image("back-arrow")
-                
-        })
+        .navigationBarHidden(true)
     }
 }
 
 struct BindEmailView_Previews: PreviewProvider {
     static var previews: some View {
-        BindEmailView()
+        AcBindEmailView()
             .environmentObject(SharedMessage())
     }
 }

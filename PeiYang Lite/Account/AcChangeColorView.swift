@@ -12,6 +12,7 @@ struct AcChangeColorView: View {
     
     var body: some View {
         VStack(alignment: .center, spacing: 15){
+            NavigationBar()
             HStack(alignment: .bottom){
                 Text("调色板")
                     .font(.custom("Avenir-Black", size: UIScreen.main.bounds.height / 35))
@@ -19,7 +20,7 @@ struct AcChangeColorView: View {
                 Spacer()
             }
             .frame(width: screen.width * 0.9)
-            .padding(.vertical)
+            .padding(.bottom)
             HStack{
                 Text("给课表、GPA选择喜欢的颜色。")
                     .font(.caption)
@@ -113,13 +114,9 @@ struct AcChangeColorView: View {
             
             Spacer()
         }
-        .offset(y: -screen.height / 40)
-        .navigationBarBackButtonHidden(true)
-        .navigationBarItems(leading: Button(action: {
-            self.mode.wrappedValue.dismiss()
-        }, label: {
-            Image("back-arrow-black")
-        }))    }
+        .navigationBarHidden(true)
+        
+    }
 }
 
 struct AcChangeColorView_Previews: PreviewProvider {

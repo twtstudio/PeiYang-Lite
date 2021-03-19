@@ -1,5 +1,5 @@
 //
-//  SearchAnsViews.swift
+//  StySearchAnsViews.swift
 //  PeiYang Lite
 //
 //  Created by phoenix Dai on 2021/2/27.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 //MARK: History
-struct SchHistorySectionView: View {
+struct StyHistorySectionView: View {
     let color = Color.init(red: 98/255, green: 103/255, blue: 124/255)
     @Binding var searchString: String
     @Binding var searchHistory: [String]
@@ -81,7 +81,7 @@ struct SchHistorySectionView: View {
 }
 
 //MARK: Building + Class
-struct SearchBuildingAndClassView: View {
+struct StySearchBuildingAndClassView: View {
     @EnvironmentObject var sharedMessage: SharedMessage
     let color = Color.init(red: 98/255, green: 103/255, blue: 124/255)
     let diameter = UIScreen.main.bounds.width / 50
@@ -163,7 +163,7 @@ struct SearchBuildingAndClassView: View {
 }
 
 //MARK: Building
-struct SearchBuildingSectionView: View {
+struct StySearchBuildingSectionView: View {
     var title: String
     var section: String
     var backImg: Image{
@@ -193,7 +193,7 @@ struct SearchBuildingSectionView: View {
     }
 }
 
-struct SearchBuildingView: View {
+struct StySearchBuildingView: View {
     let themeColor = Color.init(red: 98/255, green: 103/255, blue: 123/255)
     
     var title: String

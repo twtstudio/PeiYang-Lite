@@ -18,7 +18,7 @@ struct SelectedDetailView: View {
         case .yellowPage:
             Text("黄页")
         case .studyRoom:
-            StudyRoomTopView()
+            StyTopView()
         }
     }
 }

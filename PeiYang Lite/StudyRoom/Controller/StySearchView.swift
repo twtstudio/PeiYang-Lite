@@ -1,5 +1,5 @@
 //
-//  StudySearchView.swift
+//  StySearchView.swift
 //  PeiYang Lite
 //
 //  Created by phoenix Dai on 2021/2/27.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct StudySearchView: View {
+struct StySearchView: View {
     // text
     @Binding var activeWeek: Int
     let color = Color.init(red: 98/255, green: 103/255, blue: 124/255)
@@ -115,7 +115,7 @@ struct StudySearchView: View {
                 .frame(width: UIScreen.main.bounds.width * 0.9, height: 1, alignment: .center)
                 .padding(.top, 0)
             if(!isSearched){
-                SchHistorySectionView(searchString: $searchString, searchHistory: $studyRoomHistory)
+                StyHistorySectionView(searchString: $searchString, searchHistory: $studyRoomHistory)
             } else {
                 ScrollView(.vertical, showsIndicators: false){
                     switch selectedMethod {
@@ -130,16 +130,16 @@ struct StudySearchView: View {
                             ForEach(searchBuilding, id: \.self) { building in
                                 if(building.areas[0].areaID != "-1"){
                                     NavigationLink(
-                                        destination: BuildingSectionView(buildingName: building.building, sections: building.areas, weeks: $activeWeek, buildingID: building.buildingID),
+                                        destination: StyBuildingSectionView(buildingName: building.building, sections: building.areas, weeks: $activeWeek, buildingID: building.buildingID),
                                         label: {
-                                            SearchBuildingView(title: building.building)
+                                            StySearchBuildingView(title: building.building)
                                         })
                                 }
                                 else {
                                     NavigationLink(
-                                        destination: ChooseClassView(buildingID: building.buildingID, sectionName: "-1", week: $activeWeek, buildingName: building.building),
+                                        destination: StyChooseClassView(buildingID: building.buildingID, sectionName: "-1", week: $activeWeek, buildingName: building.building),
                                         label: {
-                                            SearchBuildingView(title: building.building)
+                                            StySearchBuildingView(title: building.building)
                                         })
                                 }
                             }
@@ -154,9 +154,9 @@ struct StudySearchView: View {
                         ) {
                             ForEach(searchSection, id: \.self){ section in
                                 NavigationLink(
-                                    destination: ChooseClassView(buildingID: section.buildingID, sectionName: section.sectionData.areaID, week: $activeWeek, buildingName: section.buildingName + section.sectionData.areaID),
+                                    destination: StyChooseClassView(buildingID: section.buildingID, sectionName: section.sectionData.areaID, week: $activeWeek, buildingName: section.buildingName + section.sectionData.areaID),
                                     label: {
-                                        SearchBuildingSectionView(title: section.buildingName, section: section.sectionData.areaID)
+                                        StySearchBuildingSectionView(title: section.buildingName, section: section.sectionData.areaID)
                                     })
                             }
                         }
@@ -170,7 +170,7 @@ struct StudySearchView: View {
                         ) {
                             ForEach(searchRoom, id: \.self) { room in
                                 NavigationLink(
-                                    destination: RoomDetailView(activeWeek: $activeWeek, className: room.buildingName + ((room.sectionName == "-1") ? "" : room.sectionName) + room.room.classroom, classData: room.room),
+                                    destination: StyRoomDetailView(activeWeek: $activeWeek, className: room.buildingName + ((room.sectionName == "-1") ? "" : room.sectionName) + room.room.classroom, classData: room.room),
                                     label: {
                                         SelectRoomView(classTitle: room.room.classroom, classData: room.room)
                                     })
@@ -188,9 +188,9 @@ struct StudySearchView: View {
                     case .unclearrooms:
                         ForEach(searchRoom, id: \.self) { room in
                             NavigationLink(
-                                destination: RoomDetailView(activeWeek: $activeWeek, className: room.buildingName + ((room.sectionName == "-1") ? "" : room.sectionName)+room.room.classroom, classData: room.room),
+                                destination: StyRoomDetailView(activeWeek: $activeWeek, className: room.buildingName + ((room.sectionName == "-1") ? "" : room.sectionName)+room.room.classroom, classData: room.room),
                                 label: {
-                                    SearchBuildingAndClassView(title: room.buildingName + ((room.sectionName == "-1") ? "" : room.sectionName) + room.room.classroom, classData: room.room)
+                                    StySearchBuildingAndClassView(title: room.buildingName + ((room.sectionName == "-1") ? "" : room.sectionName) + room.room.classroom, classData: room.room)
                                 })
                         }
                     }
@@ -408,7 +408,7 @@ struct StudySearchView: View {
 
 struct StudySearchView_Previews: PreviewProvider {
     static var previews: some View {
-        StudySearchView(activeWeek: .constant(10))
+        StySearchView(activeWeek: .constant(10))
     }
 }
 
@@ -429,51 +429,3 @@ struct SearchClassData: Identifiable, Hashable {
 
 
 
-//struct SearchAnsView: View {
-//    @State var textNum = 1
-//    let color = Color.init(red: 98/255, green: 103/255, blue: 124/255)
-//
-//    @EnvironmentObject var sharedMessage: SharedMessage
-//    var checkTheClassNum: Int {
-//        switch sharedMessage.studyRoomSelectTime {
-//        case "8:30--10:05":
-//            return 0
-//        case "10:25--12:00":
-//            return 2
-//        case "13:30--15:05":
-//            return 4
-//        case "15:25--17:00":
-//            return 6
-//        case "18:30--20:05":
-//            return 8
-//        case "20:25--22:00":
-//            return 10
-//        default:
-//            return -1
-//        }
-//    }
-//
-//    // grid布局
-//    var roomAndBuildingColumns: [GridItem] = [
-//        GridItem(.fixed(UIScreen.main.bounds.width / 5.5), spacing: 16),
-//        GridItem(.fixed(UIScreen.main.bounds.width / 5.5), spacing: 16),
-//        GridItem(.fixed(UIScreen.main.bounds.width / 5.5), spacing: 16),
-//        GridItem(.fixed(UIScreen.main.bounds.width / 5.5), spacing: 16)
-//        ]
-//
-//    var sectionColumns: [GridItem] = [
-//        GridItem(.fixed(UIScreen.main.bounds.width / 4), spacing: 20),
-//        GridItem(.fixed(UIScreen.main.bounds.width / 4), spacing: 20),
-//        GridItem(.fixed(UIScreen.main.bounds.width / 4), spacing: 20),
-//    ]
-//    // data
-//    @Binding var searchBuilding: [StudyBuilding]
-//    @Binding var searchSection: [SearchSectionData]
-//    @Binding var searchRoom: [SearchClassData]
-//
-//
-//    var body: some View {
-//
-//
-//    }
-//}

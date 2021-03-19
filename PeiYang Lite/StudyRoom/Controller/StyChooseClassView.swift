@@ -1,5 +1,5 @@
 //
-//  ChooseClassView.swift
+//  StyChooseClassView.swift
 //  PeiYang Lite
 //
 //  Created by phoenix Dai on 2020/11/15.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ChooseClassView: View {
+struct StyChooseClassView: View {
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     @EnvironmentObject var sharedMessage: SharedMessage
     let themeColor = Color.init(red: 98/255, green: 103/255, blue: 123/255)
@@ -59,22 +59,21 @@ struct ChooseClassView: View {
     
     var body: some View {
         VStack {
-            HStack {
+            
+            NavigationBar(leading: {
                 Button(action: {
                     self.mode.wrappedValue.dismiss()
                   }) {
                     Image("back-arrow")
                 }
-
-                Spacer()
+            }, trailing: {
                 Button(action: {
                     isShowCalender.toggle()
                 }, label: {
                     Image("calender")
                 })
-            }
+            })
             .frame(width: screen.width * 0.9)
-            .padding(.top, 40)
             
             HStack{
                 Image("building-gray")
@@ -106,7 +105,7 @@ struct ChooseClassView: View {
                                     
                                     
                                 NavigationLink(
-                                    destination: RoomDetailView(activeWeek: $week, className: buildingName + rooms.classroom, classData: rooms)) {
+                                    destination: StyRoomDetailView(activeWeek: $week, className: buildingName + rooms.classroom, classData: rooms)) {
                                     SelectRoomView(classTitle: rooms.classroom, classData: rooms)
                                     }
                                     
@@ -129,7 +128,6 @@ struct ChooseClassView: View {
 
 
         })
-        .edgesIgnoringSafeArea(.top)
         .frame(width: UIScreen.main.bounds.width)
         .background(Color(#colorLiteral(red: 0.9352087975, green: 0.9502342343, blue: 0.9600060582, alpha: 1)).ignoresSafeArea())
         .sheet(isPresented: $isShowCalender,
@@ -188,7 +186,7 @@ func GetFloorsAndSort(fullClasses: [Classroom]) ->([[Classroom]], Int) {
 }
 
 
-struct FloorTitleView: View {
+fileprivate struct FloorTitleView: View {
     let themeColor = Color.init(red: 98/255, green: 103/255, blue: 123/255)
     var floor: String
     var body: some View {

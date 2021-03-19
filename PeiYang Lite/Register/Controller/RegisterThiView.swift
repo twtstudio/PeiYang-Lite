@@ -96,7 +96,7 @@ struct RegisterThiView: View {
                 }
                 Spacer()
                 Button(action:{
-                    RegisterManager.RegisterPost(userNumber: user.userNumber, nickname: user.nickName, phone: user.phone, verifyCode: user.verifyCode, password: password, email: user.email, idNumber: user.idNumber) { result in
+                    RgRegisterManager.RegisterPost(userNumber: user.userNumber, nickname: user.nickName, phone: user.phone, verifyCode: user.verifyCode, password: password, email: user.email, idNumber: user.idNumber) { result in
                         switch result {
                         case .success(let data):
                             AlertMessage = data.message

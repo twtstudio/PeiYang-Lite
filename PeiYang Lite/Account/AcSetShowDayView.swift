@@ -13,20 +13,24 @@ struct AcSetShowDayView: View {
     @AppStorage(SharedMessage.showCourseNumKey, store: Storage.defaults) private var showCourseNum = 5
     var body: some View {
         VStack {
+            NavigationBar()
             HStack {
                 Text("课程表-每周展示天数")
                     .font(.custom("Avenir-heavy", size: UIScreen.main.bounds.height / 35))
                     .foregroundColor(.init(red: 48/255, green: 60/255, blue: 102/255))
                 Spacer()
-            }.padding(.horizontal, 30)
-            .padding(.vertical, 10)
+            }
+            .padding(.horizontal, 30)
+            
             HStack {
                 Text("课程表页面将会根据选择调整展示的天数。")
                     .font(.footnote)
                     .foregroundColor(.gray)
                 Spacer()
-            }.padding(.horizontal, 30)
+            }
+            .padding(.horizontal, 30)
             .padding(.vertical, 10)
+            
             List {
                 Section {
                     Button(action: {
@@ -51,12 +55,7 @@ struct AcSetShowDayView: View {
         .frame(width: screen.width)
         .background(Color.init(red: 245/255, green: 245/255, blue: 245/255).frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height).ignoresSafeArea()
         )
-        .navigationBarBackButtonHidden(true)
-        .navigationBarItems(leading: Button(action: {
-            self.mode.wrappedValue.dismiss()
-        }, label: {
-            Image("back-arrow-black")
-        }))
+        .navigationBarHidden(true)
     }
 }
 
@@ -66,7 +65,7 @@ struct AcSetShowDayView_Previews: PreviewProvider {
     }
 }
 
-struct ChooseShowDaysView: View {
+fileprivate struct ChooseShowDaysView: View {
     var isSelected: Bool
     var title: String
     var subTitle: String {

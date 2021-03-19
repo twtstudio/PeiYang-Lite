@@ -43,7 +43,7 @@ struct AccountView: View {
             VStack(spacing: UIScreen.main.bounds.height / 40) {
                 HStack{
                     Spacer()
-                    NavigationLink(destination: SettingView()){
+                    NavigationLink(destination: AcSettingView()){
                         Image("setting")
                     }
                 }
@@ -129,9 +129,9 @@ struct AccountView: View {
                     .background(Color.white)
                     .cornerRadius(15)
                     NavigationLink(
-                        destination: BeginView(),
+                        destination: LgBeginView(),
                         isActive: $isJumpToTop,
-                        label: {})
+                        label: {EmptyView()})
                 }//: VSTACK List
                 Spacer()
             }//: VSTACK body
@@ -151,15 +151,7 @@ struct AccountView: View {
                         } else {
                            isJumpToTop = true
                         }
-                        ClassesManager.removeAll()
-                        let cookieStorage = HTTPCookieStorage.shared
-                        if let cookies = cookieStorage.cookies {
-                            for cookie in cookies {
-                                cookieStorage.deleteCookie(cookie)
-                            }
-                        }
-                        SharedMessage.removeAll()
-                        DataStorage.clear(in: DataStorage.Directory.caches)
+                        loadOut()
                         
                     }){
                         Text("确认")
@@ -187,6 +179,17 @@ struct AccountView: View {
         .navigationBarHidden(true)
         .navigationBarBackButtonHidden(true)
     }
+    func loadOut() {
+        ClassesManager.removeAll()
+        let cookieStorage = HTTPCookieStorage.shared
+        if let cookies = cookieStorage.cookies {
+            for cookie in cookies {
+                cookieStorage.deleteCookie(cookie)
+            }
+        }
+        SharedMessage.removeAll()
+        DataStorage.clear(in: DataStorage.Directory.caches)
+    }
 }
 
 struct AccountView_Previews: PreviewProvider {
@@ -198,7 +201,7 @@ struct AccountView_Previews: PreviewProvider {
     }
 }
 
-struct BackGroundView: View {
+fileprivate struct BackGroundView: View {
     var themeColor: Color
     var body: some View {
         VStack(spacing: 0.0) {

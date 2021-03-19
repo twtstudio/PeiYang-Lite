@@ -1,5 +1,5 @@
 //
-//  BuildingSectionView.swift
+//  StyBuildingSectionView.swift
 //  PeiYang Lite
 //
 //  Created by phoenix Dai on 2021/2/26.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct BuildingSectionView: View {
+struct StyBuildingSectionView: View {
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     @EnvironmentObject var sharedMessage: SharedMessage
     let themeColor = Color.init(red: 98/255, green: 103/255, blue: 123/255)
@@ -22,22 +22,20 @@ struct BuildingSectionView: View {
     
     var body: some View {
             VStack {
-                HStack {
+                NavigationBar(leading: {
                     Button(action: {
                         self.mode.wrappedValue.dismiss()
                       }) {
                         Image("back-arrow")
                     }
-
-                    Spacer()
+                }, trailing: {
                     Button(action: {
                         isShowCalender.toggle()
                     }, label: {
                         Image("calender")
                     })
-                }
+                })
                 .frame(width: screen.width * 0.9)
-                .padding(.top, 40)
                 
                 HStack{
                     Image("building-gray")
@@ -54,21 +52,18 @@ struct BuildingSectionView: View {
                 HStack(spacing: 20) {
                     ForEach(0..<sections.count) { index in
                         NavigationLink(
-                            destination:ChooseClassView(buildingID: buildingID, sectionName: sections[index].areaID, week: $weeks, buildingName: buildingName + sections[index].areaID + "区"),
+                            destination:StyChooseClassView(buildingID: buildingID, sectionName: sections[index].areaID, week: $weeks, buildingName: buildingName + sections[index].areaID + "区"),
                             label: {
                                 SchSection(title: sections[index].areaID + "区")
                         })
                     }
-                    .navigationBarHidden(true)
                     Spacer()
                 }
                 .frame(width: UIScreen.main.bounds.width * 0.9)
                
                 Spacer()
             }
-//            .padding(.top, UIScreen.main.bounds.height / 10)
-            .edgesIgnoringSafeArea(.top)
-            
+            .navigationBarHidden(true)
             .sheet(isPresented: $isShowCalender,
                    content: {
                     CalendarView(isShowCalender: $isShowCalender)
@@ -81,7 +76,7 @@ struct BuildingSectionView: View {
 
 
 
-struct SchSection: View {
+fileprivate struct SchSection: View {
     var title: String
     private var backColor: Color {
         switch title {

@@ -135,7 +135,7 @@ struct HomeView2_Previews: PreviewProvider {
 //    }
 //
 //    func collectionIdToClass() {
-//        CollectionManager.getCollections(){ result in
+//        StyCollectionManager.getCollections(){ result in
 //            switch result {
 //            case .success(let data):
 //                self.collectionId = data.data.classroomID ?? []

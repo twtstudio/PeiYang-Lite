@@ -1,5 +1,5 @@
 //
-//  SettingView.swift
+//  AcSettingView.swift
 //  PeiYang Lite
 //
 //  Created by phoenix Dai on 2021/2/7.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SettingView: View {
+struct AcSettingView: View {
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     @EnvironmentObject var sharedMessage: SharedMessage
     @State var isNightKitty = false
@@ -23,19 +23,7 @@ struct SettingView: View {
     
     var body: some View {
         VStack{
-            HStack{
-                Button(action:{
-                    self.mode.wrappedValue.dismiss()
-                }){
-                    Image("back-arrow-black")
-                }
-                Spacer()
-                Text("设置")
-                    .offset(x: -10)
-                    
-                Spacer()
-            }.padding()
-            .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.04, alignment: .center)
+            NavigationBar(center: {Text("设置")})
             
             ScrollView{
     //MARK: the first section
@@ -126,12 +114,12 @@ struct SettingView: View {
 
 struct SettingView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingView()
+        AcSettingView()
             .environmentObject(SharedMessage())
     }
 }
 
-struct HeaderView: View {
+fileprivate struct HeaderView: View {
     var headerName: String
     var body: some View {
         HStack{
@@ -145,7 +133,7 @@ struct HeaderView: View {
 }
 
 
-struct StListView: View {
+fileprivate struct StListView: View {
     let titleColor = Color.init(red: 98/255, green: 103/255, blue: 122/255)
     let captionColor = Color.init(red: 205/255, green: 206/255, blue: 212/255)
     var title, caption: String
@@ -168,7 +156,7 @@ struct StListView: View {
     }
 }
 
-struct StToggleView: View {
+fileprivate struct StToggleView: View {
     let titleColor = Color.init(red: 98/255, green: 103/255, blue: 122/255)
     let captionColor = Color.init(red: 205/255, green: 206/255, blue: 212/255)
     var title: String

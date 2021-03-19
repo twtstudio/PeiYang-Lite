@@ -1,5 +1,5 @@
 //
-//  BeginView.swift
+//  LgBeginView.swift
 //  PeiYang Lite
 //
 //  Created by phoenix Dai on 2021/1/23.
@@ -8,7 +8,7 @@
 import SwiftUI
 import Combine
 
-struct BeginView: View {
+struct LgBeginView: View {
     @EnvironmentObject var appState: AppState
 
     var body: some View {
@@ -31,7 +31,7 @@ struct BeginView: View {
                 Spacer()
                 
                 HStack(){
-                    NavigationLink(destination: KeywordLoginView(), isActive: self.$appState.leftHome) {
+                    NavigationLink(destination: LgKeywordLoginView(), isActive: self.$appState.leftHome) {
                         Text("登录")
                             .foregroundColor(.white)
                             .font(.custom("", size: 20))
@@ -86,7 +86,7 @@ class AppState: ObservableObject {
 
 struct ChooseMethodView_Previews: PreviewProvider {
     static var previews: some View {
-        BeginView()
+        LgBeginView()
             .environmentObject(User())
             .environmentObject(AppState())
     }
