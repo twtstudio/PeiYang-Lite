@@ -68,13 +68,9 @@ struct CourseTableDetailView: View {
                                 .frame(width: screen.width, height: 80, alignment: .center)
                         }
                     }
-                    NavigationLink(
-                        destination: AcClassesBindingView(),
-                        isActive: $showLogin,
-                        label: {EmptyView()})
                 }
                 NavigationLink(
-                    destination: ClassesBindingView(),
+                    destination: AcClassesBindingView(),
                     isActive: $showLogin,
                     label: { EmptyView() })
                 
@@ -106,40 +102,41 @@ struct CourseTableDetailView: View {
                     }
                 }
             }
+        }
         .onAppear(perform: load)
         .edgesIgnoringSafeArea(.bottom)
-        .edgesIgnoringSafeArea(.horizontal)
         .navigationBarHidden(true)
-        .edgesIgnoringSafeArea(.bottom)
         
     }
     //MARK: function: LOAD
     func load() {
-        isLoading = true
-//        ClassesManager.checkLogin { result in
-//            switch result {
-//            case .success:
-//                return
-//            case .failure(let error):
-//                sharedMessage.isBindBs = false
-//                if error == .requestFailed {
-//                    isError = true
-//                    errorMessage = error.localizedDescription
-//                } else {
-//                    showLogin = true
-//                }
-//            }
-//        }
-        
-        ClassesManager.getCourseTable { result in
-            switch result {
-            case .success(let courseTable):
-                store.object = courseTable
-                store.save()
-            case .failure(let error):
-                print(error)
+        if courseTable.courseArray.isEmpty {
+            isLoading = true
+            ClassesManager.checkLogin { result in
+                switch result {
+                case .success:
+                    ClassesManager.getCourseTable { result in
+                        switch result {
+                        case .success(let courseTable):
+                            store.object = courseTable
+                            store.save()
+                        case .failure(let error):
+                            log(error)
+                        }
+                        isLoading = false
+                    }
+                    return
+                case .failure(let error):
+                    sharedMessage.isBindBs = false
+                    if error == .requestFailed {
+                        isError = true
+                        errorMessage = error.localizedDescription
+                    } else {
+                        showLogin = true
+                        isLoading = false
+                    }
+                }
             }
-            isLoading = false
         }
     }
     
@@ -148,6 +145,16 @@ struct CourseTableDetailView: View {
         ClassesManager.checkLogin { result in
             switch result {
             case .success:
+                ClassesManager.getCourseTable { result in
+                    switch result {
+                    case .success(let courseTable):
+                        store.object = courseTable
+                        store.save()
+                    case .failure(let error):
+                        print(error)
+                    }
+                    isLoading = false
+                }
                 return
             case .failure(let error):
                 sharedMessage.isBindBs = false
@@ -158,20 +165,12 @@ struct CourseTableDetailView: View {
                     sharedMessage.isBindBs = false
                     isLogin = false
                     showLogin = true
+                    isLoading = false
                 }
             }
         }
         
-        ClassesManager.getCourseTable { result in
-            switch result {
-            case .success(let courseTable):
-                store.object = courseTable
-                store.save()
-            case .failure(let error):
-                print(error)
-            }
-            isLoading = false
-        }
+        
     }
     
     private func getCourseHour(week: Int) -> Double {

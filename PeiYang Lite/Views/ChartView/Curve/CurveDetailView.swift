@@ -78,6 +78,12 @@ struct CurveDetailView: View {
                 .straighten()
             
             if showIndicator {
+                if data.points.count < 2 {
+                    Indicator(color: indicatorColor)
+                        .animation(nil)
+                        .scaleEffect(1.5)
+                        .position(CGPoint(x: stepWidth, y: CGFloat(data.onlyPoints().min() ?? 0)))
+                } else {
                 ForEach(Array(data.onlyPoints().enumerated()), id: \.element) { i, point in // using `id` to ensure independent animation
                     Indicator(color: indicatorColor)
                         .animation(nil) // avoid animation when change between light and dark
@@ -98,6 +104,7 @@ struct CurveDetailView: View {
                             }
                         }
                 }
+                }
             }
         }
         .onAppear {
@@ -110,7 +117,7 @@ struct CurveDetailView: View {
     }
     
     func position(at i: Int) -> CGPoint {
-        path.point(to: CGFloat(i==0 ? 1 : i) * stepWidth)
+        path.point(to: CGFloat(i) * stepWidth)
     }
 }
 

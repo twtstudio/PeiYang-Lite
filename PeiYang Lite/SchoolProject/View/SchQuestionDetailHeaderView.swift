@@ -49,7 +49,7 @@ struct SchQuestionDetailHeaderView: View {
                 .foregroundColor(Color(#colorLiteral(red: 0.2117647059, green: 0.2352941176, blue: 0.3294117647, alpha: 1)))
                 .padding(.horizontal)
             
-            PhotoListView(imageURLs: question.thumbUrlList ?? [])
+            PhotoListView(imageURLs: question.urlList ?? [])
                 .frame(maxWidth: .infinity)
 //                .alignmentGuide(.leading, computeValue: { dimension in
 //                    return dimension[.center]

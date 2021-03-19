@@ -63,14 +63,10 @@
 		C92E614F253997990008A38A /* RadarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92E614E253997990008A38A /* RadarChartView.swift */; };
 		C930724225E16C75005E5736 /* BubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C930724125E16C75005E5736 /* BubbleView.swift */; };
 		C941D59525D65CAC00E361AB /* SharedMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C941D59425D65CAC00E361AB /* SharedMessage.swift */; };
-		C942C1BA25CABACE006D0B83 /* LgSupplyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C942C1B925CABACE006D0B83 /* LgSupplyView.swift */; };
-		C942C1BE25CABE71006D0B83 /* LgSupplyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C942C1BD25CABE71006D0B83 /* LgSupplyManager.swift */; };
 		C941D97C260481F200D91CD3 /* UMAnalyticsSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = C941D978260481F200D91CD3 /* UMAnalyticsSwift.swift */; };
 		C941D97D260481F200D91CD3 /* UMCommonSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = C941D979260481F200D91CD3 /* UMCommonSwift.swift */; };
 		C941D97E260481F200D91CD3 /* UMGameAnalyticsSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = C941D97A260481F200D91CD3 /* UMGameAnalyticsSwift.swift */; };
 		C941D9CC26049E8400D91CD3 /* UMCommonLogSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = C941D9CB26049E8400D91CD3 /* UMCommonLogSwift.swift */; };
-		C942C1BA25CABACE006D0B83 /* supplyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C942C1B925CABACE006D0B83 /* supplyView.swift */; };
-		C942C1BE25CABE71006D0B83 /* SupplyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C942C1BD25CABE71006D0B83 /* SupplyManager.swift */; };
 		C942EF2125DB9785005495C3 /* GPA.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9ED7F1925DB886600CB3438 /* GPA.swift */; };
 		C95A700B25F10F4900C83F65 /* AboutTwTView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95A700A25F10F4900C83F65 /* AboutTwTView.swift */; };
 		C95B57A325EBF37F004300B5 /* SchQuestionDetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95B57A125EBF37F004300B5 /* SchQuestionDetailHeaderView.swift */; };
@@ -148,7 +144,6 @@
 		C9D5BF7525D010F000CD3537 /* AcSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D5BF7425D010F000CD3537 /* AcSettingView.swift */; };
 		C9D5BF8025D0D5FE00CD3537 /* AcClassesBindingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D5BF7F25D0D5FE00CD3537 /* AcClassesBindingView.swift */; };
 		C9D95F0B2531874F00C3C911 /* Morning-Star-1.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C9D95F0A2531874F00C3C911 /* Morning-Star-1.ttf */; };
-		C9E3E02B26025EF300CEAEC9 /* PQTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E3E02A26025EF300CEAEC9 /* PQTextField.swift */; };
 		C9ED446625C40936001A5456 /* RegisterFirView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9ED446525C40936001A5456 /* RegisterFirView.swift */; };
 		C9ED446F25C40C88001A5456 /* RegisterThiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9ED446E25C40C88001A5456 /* RegisterThiView.swift */; };
 		C9ED447725C413A2001A5456 /* RegisterSecView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9ED447625C413A2001A5456 /* RegisterSecView.swift */; };
@@ -163,6 +158,8 @@
 		D31F8DEE25FCA97100911775 /* SchFavManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31F8DED25FCA97100911775 /* SchFavManager.swift */; };
 		D31F8DF825FCA9C000911775 /* SchQuestionAnswerCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31F8DF725FCA9C000911775 /* SchQuestionAnswerCellView.swift */; };
 		D31F8E0425FCB07200911775 /* SchAnswerDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31F8E0325FCB07200911775 /* SchAnswerDetailView.swift */; };
+		D32A545A2604EA0F00F48A0F /* LgSupplyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32A54592604EA0F00F48A0F /* LgSupplyManager.swift */; };
+		D32A54602604EA1700F48A0F /* LgSupplyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32A545F2604EA1700F48A0F /* LgSupplyView.swift */; };
 		D3466F0D2600C4390056F43C /* KeyboardGuardian.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3466F0C2600C4390056F43C /* KeyboardGuardian.swift */; };
 		D346ACDA25F2A90000A146D8 /* ScrollViewWithRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = D346ACD925F2A90000A146D8 /* ScrollViewWithRefresh.swift */; };
 		D3490D0025FA42B3004AB614 /* SchQuestionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3490CFF25FA42B3004AB614 /* SchQuestionDetailView.swift */; };
@@ -276,15 +273,11 @@
 		C92E614E253997990008A38A /* RadarChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadarChartView.swift; sourceTree = "<group>"; };
 		C930724125E16C75005E5736 /* BubbleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleView.swift; sourceTree = "<group>"; };
 		C941D59425D65CAC00E361AB /* SharedMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedMessage.swift; sourceTree = "<group>"; };
-		C942C1B925CABACE006D0B83 /* LgSupplyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LgSupplyView.swift; sourceTree = "<group>"; };
-		C942C1BD25CABE71006D0B83 /* LgSupplyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LgSupplyManager.swift; sourceTree = "<group>"; };
 		C941D97126047AEE00D91CD3 /* PeiYang-Lite-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PeiYang-Lite-Bridging-Header.h"; sourceTree = "<group>"; };
 		C941D978260481F200D91CD3 /* UMAnalyticsSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UMAnalyticsSwift.swift; sourceTree = "<group>"; };
 		C941D979260481F200D91CD3 /* UMCommonSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UMCommonSwift.swift; sourceTree = "<group>"; };
 		C941D97A260481F200D91CD3 /* UMGameAnalyticsSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UMGameAnalyticsSwift.swift; sourceTree = "<group>"; };
 		C941D9CB26049E8400D91CD3 /* UMCommonLogSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UMCommonLogSwift.swift; sourceTree = "<group>"; };
-		C942C1B925CABACE006D0B83 /* supplyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = supplyView.swift; sourceTree = "<group>"; };
-		C942C1BD25CABE71006D0B83 /* SupplyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupplyManager.swift; sourceTree = "<group>"; };
 		C9455FB18B34C565541F53AB /* Pods_PeiYang_Lite.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PeiYang_Lite.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C95A700A25F10F4900C83F65 /* AboutTwTView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutTwTView.swift; sourceTree = "<group>"; };
 		C95B57A125EBF37F004300B5 /* SchQuestionDetailHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchQuestionDetailHeaderView.swift; sourceTree = "<group>"; };
@@ -375,6 +368,8 @@
 		D31F8DED25FCA97100911775 /* SchFavManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchFavManager.swift; sourceTree = "<group>"; };
 		D31F8DF725FCA9C000911775 /* SchQuestionAnswerCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchQuestionAnswerCellView.swift; sourceTree = "<group>"; };
 		D31F8E0325FCB07200911775 /* SchAnswerDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchAnswerDetailView.swift; sourceTree = "<group>"; };
+		D32A54592604EA0F00F48A0F /* LgSupplyManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LgSupplyManager.swift; sourceTree = "<group>"; };
+		D32A545F2604EA1700F48A0F /* LgSupplyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LgSupplyView.swift; sourceTree = "<group>"; };
 		D3466F0C2600C4390056F43C /* KeyboardGuardian.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardGuardian.swift; sourceTree = "<group>"; };
 		D346ACD925F2A90000A146D8 /* ScrollViewWithRefresh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollViewWithRefresh.swift; sourceTree = "<group>"; };
 		D3490CFF25FA42B3004AB614 /* SchQuestionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchQuestionDetailView.swift; sourceTree = "<group>"; };
@@ -465,7 +460,6 @@
 				C9FCF26925EB92B7004FC993 /* GridWithoutScrollStack.swift */,
 				03ACE52924D844C5009468D4 /* RefreshButton.swift */,
 				C92E614E253997990008A38A /* RadarChartView.swift */,
-				C9E3E02A26025EF300CEAEC9 /* PQTextField.swift */,
 				C9D5BF4B25CB9C2800CD3537 /* AlertView.swift */,
 				C9D5BF5225CC0D4800CD3537 /* RemindView.swift */,
 				C930724125E16C75005E5736 /* BubbleView.swift */,
@@ -941,9 +935,9 @@
 		C9D59B3B25BBB814006865FC /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				D32A545F2604EA1700F48A0F /* LgSupplyView.swift */,
 				C9D59B3725BBB80C006865FC /* LgBeginView.swift */,
 				C9D59B3E25BBC138006865FC /* LgKeywordLoginView.swift */,
-				C942C1B925CABACE006D0B83 /* LgSupplyView.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -951,8 +945,8 @@
 		C9D59B4D25BC4959006865FC /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				D32A54592604EA0F00F48A0F /* LgSupplyManager.swift */,
 				C9A9942125C271950063C3BB /* LgLoginManager.swift */,
-				C942C1BD25CABE71006D0B83 /* LgSupplyManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1303,6 +1297,7 @@
 				C9663C2B25E248A600DFC973 /* CourseTableListView.swift in Sources */,
 				C95B57C625EBF3C2004300B5 /* SelectedDetailView.swift in Sources */,
 				C95B57C825EBF3C2004300B5 /* HomeModuleSectionView.swift in Sources */,
+				D32A54602604EA1700F48A0F /* LgSupplyView.swift in Sources */,
 				C9B97FD525FB53B6006E5CB7 /* AcChangeColorView.swift in Sources */,
 				C95B57D325EBF3DD004300B5 /* GPADetailView.swift in Sources */,
 				D35E4E7125F0C32700526388 /* SchUserManager.swift in Sources */,
@@ -1384,12 +1379,10 @@
 				C9663C2C25E248A600DFC973 /* CourseTableContentView.swift in Sources */,
 				03B6892024D156F40020AD47 /* Semester.swift in Sources */,
 				C9CF3DD925D2B1E00085263F /* Weather.swift in Sources */,
-				C942C1BE25CABE71006D0B83 /* LgSupplyManager.swift in Sources */,
 				03B688EE24D156CE0020AD47 /* Storage.swift in Sources */,
 				C95B57C225EBF3C2004300B5 /* HomeStudyRoomSectionView.swift in Sources */,
 				C971BA9425C9076D006A292E /* ForgetManager.swift in Sources */,
 				C930724225E16C75005E5736 /* BubbleView.swift in Sources */,
-				C942C1BA25CABACE006D0B83 /* LgSupplyView.swift in Sources */,
 				03B6894A24D1579B0020AD47 /* Indicator.swift in Sources */,
 				D3490D1225FAE78A004AB614 /* SchQuestionCommentCellView.swift in Sources */,
 				03B6893524D1572A0020AD47 /* ECardOverviewView.swift in Sources */,
@@ -1402,6 +1395,7 @@
 				C95B57E825EBF40C004300B5 /* CourseTableCardView.swift in Sources */,
 				03B6893324D1572A0020AD47 /* ECardCardView.swift in Sources */,
 				C9D5BF6925CE407700CD3537 /* AcMessageView.swift in Sources */,
+				D32A545A2604EA0F00F48A0F /* LgSupplyManager.swift in Sources */,
 				03B6893424D1572A0020AD47 /* ECard.swift in Sources */,
 				03B6892224D156F40020AD47 /* ClassesSSOView.swift in Sources */,
 				D3EB57EB25F3991500A9321F /* SchQuestionScrollView.swift in Sources */,
@@ -1631,7 +1625,7 @@
 				MARKETING_VERSION = 1.0.9;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.twtstudio.PeiYang-Lite";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/yuuekiketa/Open_Source/PeiYang-Lite/PeiYang Lite/PeiYang-Lite-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "PeiYang Lite/PeiYang-Lite-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1663,7 +1657,7 @@
 				MARKETING_VERSION = 1.0.9;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.twtstudio.PeiYang-Lite";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/yuuekiketa/Open_Source/PeiYang-Lite/PeiYang Lite/PeiYang-Lite-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "PeiYang Lite/PeiYang-Lite-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

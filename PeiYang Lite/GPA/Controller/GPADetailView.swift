@@ -36,12 +36,12 @@ struct GPADetailView: View {
                             .foregroundColor(.white)
                     }
                 }, trailing: {
-                    HStack {
-                        RefreshButton(isLoading: $isLoading, action: reload, color: .white)
-                        Image(systemName: "exclamationmark.circle")
-                            .font(.title)
-                            .foregroundColor(.white)
-                    }
+                    //                    HStack {
+                    RefreshButton(isLoading: $isLoading, action: reload, color: .white)
+                    //                        Image(systemName: "exclamationmark.circle")
+                    //                            .font(.title)
+                    //                            .foregroundColor(.white)
+                    //                    }
                 }).padding(.horizontal)
                 
                 if !gpa.semesterGPAArray.isEmpty {
@@ -87,45 +87,45 @@ struct GPADetailView: View {
                     }
                 }
             }
-            //                .edgesIgnoringSafeArea(.all)
-            //                .background(Color(#colorLiteral(red: 0.500842154, green: 0.5448840261, blue: 0.3510230184, alpha: 1)))
         }
         .onAppear(perform: load)
         .navigationBarHidden(true)
-        .sheet(isPresented: $showLogin) {
+        .sheet(isPresented: $showLogin, onDismiss: {
+            load()
+        }, content: {
             ClassesSSOView()
-        }
+        })
         .edgesIgnoringSafeArea(.bottom)
         .background(Color(#colorLiteral(red: 0.500842154, green: 0.5448840261, blue: 0.3510230184, alpha: 1)).edgesIgnoringSafeArea(.all))
     }
     
     func load() {
-        isLoading = true
-        
-        //        ClassesManager.checkLogin { result in
-        //            switch result {
-        //            case .success:
-        ////                showLogin = false
-        //                return
-        //            case .failure(let error):
-        //                if error == .requestFailed {
-        //                    isError = true
-        //                    errorMessage = error.localizedDescription
-        //                } else {
-        //                    showLogin = true
-        //                }
-        //            }
-        //        }
-        //
-        ClassesManager.getGPA { result in
-            switch result {
-                case .success(let gpa):
-                    store.object = gpa
-                    store.save()
-                case .failure(let error):
-                    print(error)
+        if gpa.semesterGPAArray.isEmpty {
+            isLoading = true
+            ClassesManager.checkLogin { result in
+                switch result {
+                    case .success:
+                        ClassesManager.getGPA { result in
+                            switch result {
+                                case .success(let gpa):
+                                    store.object = gpa
+                                    store.save()
+                                case .failure(let error):
+                                    log(error)
+                            }
+                            isLoading = false
+                        }
+                        return
+                    case .failure(let error):
+                        if error == .requestFailed {
+                            isError = true
+                            errorMessage = error.localizedDescription
+                        } else {
+                            showLogin = true
+                            isLoading = false
+                        }
+                }
             }
-            isLoading = false
         }
     }
     
@@ -133,30 +133,31 @@ struct GPADetailView: View {
         isLoading = true
         ClassesManager.checkLogin { result in
             switch result {
-            case .success:
-//                showLogin = false
-                return
-            case .failure(let error):
-                if error == .requestFailed {
-                    isError = true
-                    errorMessage = error.localizedDescription
-                } else {
-                    sharedMessage.isBindBs = false
-                    isLogin = false
-                    showLogin = true
-                }
-            }
-        }
-        ClassesManager.getGPA { result in
-            switch result {
-                case .success(let gpa):
-                    store.object = gpa
-                    store.save()
+                case .success:
+                    ClassesManager.getGPA { result in
+                        switch result {
+                            case .success(let gpa):
+                                store.object = gpa
+                                store.save()
+                            case .failure(let error):
+                                log(error)
+                        }
+                        isLoading = false
+                    }
+                    return
                 case .failure(let error):
-                    print(error)
+                    if error == .requestFailed {
+                        isError = true
+                        errorMessage = error.localizedDescription
+                    } else {
+                        sharedMessage.isBindBs = false
+                        isLogin = false
+                        isLoading = false
+                        showLogin = true
+                    }
             }
-            isLoading = false
         }
+        
     }
 }
 
