@@ -27,7 +27,7 @@ struct CurveDetailView: View {
     
     var stepWidth: CGFloat {
         if data.points.count < 2 {
-            return 0
+            return size.width/2
         }
         return size.width / CGFloat(data.points.count - 1)
     }
@@ -74,7 +74,6 @@ struct CurveDetailView: View {
             }
             
             path
-//                .trim(from: 0, to: showFull ? 1 : 0)
                 .stroke(LinearGradient(gradient: pathGradient, startPoint: .leading, endPoint: .trailing), style: StrokeStyle(lineWidth: 3, lineJoin: .round))
                 .straighten()
             
@@ -111,7 +110,7 @@ struct CurveDetailView: View {
     }
     
     func position(at i: Int) -> CGPoint {
-        path.point(to: CGFloat(i) * stepWidth)
+        path.point(to: CGFloat(i==0 ? 1 : i) * stepWidth)
     }
 }
 
@@ -122,7 +121,7 @@ struct CurveDetailView_Previews: PreviewProvider {
                 .edgesIgnoringSafeArea(.all)
             GeometryReader{ geometry in
                 CurveDetailView(
-                    data: ChartData(points: [12, -230, 10, 54]),
+                    data: ChartData(points: [12]),
                     size: .constant(CGSize(width: 320, height: 160)),
                     minDataValue: .constant(nil),
                     maxDataValue: .constant(nil),

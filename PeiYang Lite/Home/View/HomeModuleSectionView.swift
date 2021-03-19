@@ -12,7 +12,7 @@ struct HomeModuleSectionView: View {
     let modules: [Module] = [
         Module(image: Image("CourseTableIcon"), title: "课程表", destination: .courseTable),
         Module(image: Image("GPAIcon"), title: "GPA", destination: .GPA),
-        Module(image: Image("YelloPageIcon"), title: "黄页", destination: .yellowPage),
+//        Module(image: Image("YelloPageIcon"), title: "黄页", destination: .yellowPage),
         Module(image: Image("StudyRoomIcon"), title: "自习室", destination: .studyRoom),
         
     ]

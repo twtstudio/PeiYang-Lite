@@ -30,10 +30,13 @@ struct HomeHeaderView: View {
                 .font(.body)
                 
             }
+            
             Spacer()
+            
             Text(AccountName)
                 .fontWeight(.bold)
-                .padding()
+                .padding(.horizontal)
+            
             NavigationLink(destination: AcMessageView()) {
                 Image(systemName: "person.circle")
                     .resizable()

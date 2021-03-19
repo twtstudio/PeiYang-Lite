@@ -1,6 +1,13 @@
 PODS:
   - FSCalendar (2.8.2)
   - SKPhotoBrowser (6.1.0)
+  - "UMAnalyticsGame (7.2.5+G)":
+    - UMCommon
+  - UMAPM (1.1.1)
+  - UMCCommonLog (2.0.0)
+  - UMCommon (7.2.5):
+    - UMDevice
+  - UMDevice (1.1.0)
   - URLImage (2.2.3):
     - URLImage/Common (= 2.2.3)
     - URLImage/DownloadManager (= 2.2.3)
@@ -24,19 +31,34 @@ PODS:
 DEPENDENCIES:
   - FSCalendar (= 2.8.2)
   - SKPhotoBrowser
+  - UMAnalyticsGame
+  - UMAPM
+  - UMCCommonLog
+  - UMCommon
+  - UMDevice
   - URLImage
 
 SPEC REPOS:
   trunk:
     - FSCalendar
     - SKPhotoBrowser
+    - UMAnalyticsGame
+    - UMAPM
+    - UMCCommonLog
+    - UMCommon
+    - UMDevice
     - URLImage
 
 SPEC CHECKSUMS:
   FSCalendar: e6a2eb9c571bf0719ed797ef807e08426753c241
   SKPhotoBrowser: 343de95d89dc7913763c5dda243cc6e606e4a168
+  UMAnalyticsGame: ec5de1bf631a17eb89203545330a98d92309abdd
+  UMAPM: d0623e0b3ca8b1a1df855e0bddb91b5c002d097d
+  UMCCommonLog: 9b7ddde5d14a52fc1986ba5ac3121b8b2f433638
+  UMCommon: b5aabdb9fad44330ff8738d9bc46ebf93db14bf2
+  UMDevice: 28d21a568c8e8322e5a03bbd53b138d0c098d3b3
   URLImage: 1eeb43e09cd736008da21944ba51d433ef41c09d
 
-PODFILE CHECKSUM: 2db2d15997c50ae62aac7baaaa007d115df831d4
+PODFILE CHECKSUM: 14086e16c3b1254fc338598096c6497e63cba170
 
-COCOAPODS: 1.10.0
+COCOAPODS: 1.10.0.beta.1

@@ -75,19 +75,12 @@ struct GPADetailView: View {
                             backgroundGradient: Gradient(colors: [Color.clear]),
                             indicatorColor: Color.white
                         )
-                        //                        .frame(width: full.size.width - 30, height: full.size.width*0.5)
                         .frame(height: full.size.width*0.5)
                         .padding(.leading)
-                        //                    }
-                        //                    .frame(width: full.size.width, height: full.size.width/6)
-                        //                    .padding()
                         // MARK: - CellList
                         GPACellListView(activeSemesterGPA: gpa.semesterGPAArray[activeIndex])
                     }
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    //                    .sheet(isPresented: $showLogin) {
-                    //                        HomeLoginView(module: .gpa)
-                    //                    }
                     .alert(isPresented: $isError) {
                         Alert(title: Text(errorMessage),
                               dismissButton: .default(Text(Localizable.ok.rawValue)))
@@ -140,7 +133,6 @@ struct GPADetailView: View {
         isLoading = true
         ClassesManager.checkLogin { result in
             switch result {
-<<<<<<< HEAD
             case .success:
 //                showLogin = false
                 return
@@ -153,18 +145,6 @@ struct GPADetailView: View {
                     isLogin = false
                     showLogin = true
                 }
-=======
-                case .success:
-                    //                showLogin = false
-                    return
-                case .failure(let error):
-                    if error == .requestFailed {
-                        isError = true
-                        errorMessage = error.localizedDescription
-                    } else {
-                        showLogin = true
-                    }
->>>>>>> e739bcb... [Fix] GPA已修复,但是只有单学期曲线图不显示
             }
         }
         ClassesManager.getGPA { result in

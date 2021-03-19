@@ -24,58 +24,48 @@ struct CourseTableDetailView: View {
     @State private var errorMessage: String = ""
     
     var body: some View {
-//        GeometryReader { full in
-            ZStack {
-                VStack {
-                    // 头部伪导航栏
-//
-                    NavigationBar(leading: {
-                        Button(action: {
-                            self.presentationMode.wrappedValue.dismiss()
-                        }) {
-                            Image(systemName: "arrow.left")
-                                .font(.title)
-                                .foregroundColor(Color(#colorLiteral(red: 0.3856853843, green: 0.403162986, blue: 0.4810273647, alpha: 1)))
-                        }
-
-                    }, trailing: {
-                        RefreshButton(isLoading: $isLoading, action: reload, color: Color(#colorLiteral(red: 0.3856853843, green: 0.403162986, blue: 0.4810273647, alpha: 1)))
-                    }).padding(.horizontal)
-                    
-                    
-                    // MARK: - Header
-                    CouseTableHeaderView(
-                        activeWeek: $activeWeek,
-                        showFullCourse: $showFullCourse,
-                        totalWeek: courseTable.totalWeek
-                    )
-                    .frame(width: screen.width, height: screen.height/5, alignment: .leading)
-                    
-                    CourseTableWeekdaysView(
-                        activeWeek: $activeWeek,
-                        courseTable: courseTable,
-                        width: (screen.width-40-14*CGFloat(showCourseNum)) / CGFloat(showCourseNum),//9
-                        showCourseNum: showCourseNum
-                    )
-                    .frame(width: screen.width, alignment: .center)
-                    
-                    ScrollView(.vertical, showsIndicators: false) {
-                        // MARK: - Table
-                        VStack {
-                            CourseTableContentView(
-                                activeWeek: activeWeek,
-                                courseArray: courseTable.courseArray,
-                                width: (screen.width-40-14*CGFloat(showCourseNum)) / CGFloat(showCourseNum),//9
-                                alertCourse: alertCourse,
-                                showFullCourse: $showFullCourse
-                            )
-                            .frame(width: screen.width, height: screen.height*1.2, alignment: .top)
-                            
-                            if let totalHour = getCourseHour(week: courseTable.totalWeek), let currentHour = getCourseHour(week: activeWeek) {
-                                ProgressBarView(current: currentHour, total: totalHour)
-                                    .padding(.horizontal)
-                                    .frame(width: screen.width, height: 80, alignment: .center)
-                            }
+        
+        ZStack {
+            VStack(spacing: 0) {
+                NavigationBar(trailing: {
+                    RefreshButton(isLoading: $isLoading, action: reload, color: Color(#colorLiteral(red: 0.3856853843, green: 0.403162986, blue: 0.4810273647, alpha: 1)))
+                        .padding()
+                })
+                
+                // MARK: - Header
+                CouseTableHeaderView(
+                    activeWeek: $activeWeek,
+                    showFullCourse: $showFullCourse,
+                    totalWeek: courseTable.totalWeek
+                )
+                .padding(.horizontal)
+                .frame(alignment: .leading)
+                
+                CourseTableWeekdaysView(
+                    activeWeek: $activeWeek,
+                    courseTable: courseTable,
+                    width: (screen.width-40-14*CGFloat(showCourseNum)) / CGFloat(showCourseNum),//9
+                    showCourseNum: showCourseNum
+                )
+                .frame(width: screen.width, alignment: .center)
+                .padding(.bottom, 5)
+                
+                ScrollView(.vertical, showsIndicators: false) {
+                    // MARK: - Table
+                    VStack {
+                        CourseTableContentView(
+                            activeWeek: activeWeek,
+                            courseArray: courseTable.courseArray,
+                            width: (screen.width-40-14*CGFloat(showCourseNum)) / CGFloat(showCourseNum),//9
+                            alertCourse: alertCourse,
+                            showFullCourse: $showFullCourse
+                        )
+                        .frame(width: screen.width, height: screen.height*1.52, alignment: .top)
+                        
+                        if let totalHour = getCourseHour(week: courseTable.totalWeek), let currentHour = getCourseHour(week: activeWeek) {
+                            ProgressBarView(current: currentHour, total: totalHour)
+                                .padding(.horizontal)
+                                .frame(width: screen.width, height: 80, alignment: .center)
                         }
                     }
                     NavigationLink(

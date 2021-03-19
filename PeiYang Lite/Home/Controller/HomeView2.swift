@@ -49,14 +49,17 @@ struct HomeView2: View {
     
     var body: some View {
         VStack {
-                HomeHeaderView(AccountName: sharedMessage.Account.nickname)
+            HomeHeaderView(AccountName: sharedMessage.Account.nickname)
                 .padding(.top, safeAreaHeight)
                 .padding(.horizontal)
 
             ScrollView(showsIndicators: false) {
+                
             HomeModuleSectionView()
+                .padding(.bottom)
 
             HomeCourseSectionView()
+                .padding(.bottom)
 
             if(!isNotShowGPA) {
                 Section(header: HStack {
@@ -67,8 +70,9 @@ struct HomeView2: View {
                     Spacer()
                 }) {
                     HomeGPASectionView()
+                        .padding(.bottom)
                 }
-                .padding()
+                .padding(.horizontal)
             }
 
             Section(header: HStack {
@@ -81,9 +85,8 @@ struct HomeView2: View {
             }) {
                 HomeStudyRoomSectionView()
                     .padding(.bottom, 80)
+                }
             }
-            }
-            .padding(.vertical, 30)
 
         }
         .navigationBarHidden(true)

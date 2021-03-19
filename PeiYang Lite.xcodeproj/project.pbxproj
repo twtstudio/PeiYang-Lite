@@ -65,6 +65,12 @@
 		C941D59525D65CAC00E361AB /* SharedMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C941D59425D65CAC00E361AB /* SharedMessage.swift */; };
 		C942C1BA25CABACE006D0B83 /* LgSupplyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C942C1B925CABACE006D0B83 /* LgSupplyView.swift */; };
 		C942C1BE25CABE71006D0B83 /* LgSupplyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C942C1BD25CABE71006D0B83 /* LgSupplyManager.swift */; };
+		C941D97C260481F200D91CD3 /* UMAnalyticsSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = C941D978260481F200D91CD3 /* UMAnalyticsSwift.swift */; };
+		C941D97D260481F200D91CD3 /* UMCommonSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = C941D979260481F200D91CD3 /* UMCommonSwift.swift */; };
+		C941D97E260481F200D91CD3 /* UMGameAnalyticsSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = C941D97A260481F200D91CD3 /* UMGameAnalyticsSwift.swift */; };
+		C941D9CC26049E8400D91CD3 /* UMCommonLogSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = C941D9CB26049E8400D91CD3 /* UMCommonLogSwift.swift */; };
+		C942C1BA25CABACE006D0B83 /* supplyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C942C1B925CABACE006D0B83 /* supplyView.swift */; };
+		C942C1BE25CABE71006D0B83 /* SupplyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C942C1BD25CABE71006D0B83 /* SupplyManager.swift */; };
 		C942EF2125DB9785005495C3 /* GPA.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9ED7F1925DB886600CB3438 /* GPA.swift */; };
 		C95A700B25F10F4900C83F65 /* AboutTwTView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95A700A25F10F4900C83F65 /* AboutTwTView.swift */; };
 		C95B57A325EBF37F004300B5 /* SchQuestionDetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95B57A125EBF37F004300B5 /* SchQuestionDetailHeaderView.swift */; };
@@ -272,6 +278,13 @@
 		C941D59425D65CAC00E361AB /* SharedMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedMessage.swift; sourceTree = "<group>"; };
 		C942C1B925CABACE006D0B83 /* LgSupplyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LgSupplyView.swift; sourceTree = "<group>"; };
 		C942C1BD25CABE71006D0B83 /* LgSupplyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LgSupplyManager.swift; sourceTree = "<group>"; };
+		C941D97126047AEE00D91CD3 /* PeiYang-Lite-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PeiYang-Lite-Bridging-Header.h"; sourceTree = "<group>"; };
+		C941D978260481F200D91CD3 /* UMAnalyticsSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UMAnalyticsSwift.swift; sourceTree = "<group>"; };
+		C941D979260481F200D91CD3 /* UMCommonSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UMCommonSwift.swift; sourceTree = "<group>"; };
+		C941D97A260481F200D91CD3 /* UMGameAnalyticsSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UMGameAnalyticsSwift.swift; sourceTree = "<group>"; };
+		C941D9CB26049E8400D91CD3 /* UMCommonLogSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UMCommonLogSwift.swift; sourceTree = "<group>"; };
+		C942C1B925CABACE006D0B83 /* supplyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = supplyView.swift; sourceTree = "<group>"; };
+		C942C1BD25CABE71006D0B83 /* SupplyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupplyManager.swift; sourceTree = "<group>"; };
 		C9455FB18B34C565541F53AB /* Pods_PeiYang_Lite.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PeiYang_Lite.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C95A700A25F10F4900C83F65 /* AboutTwTView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutTwTView.swift; sourceTree = "<group>"; };
 		C95B57A125EBF37F004300B5 /* SchQuestionDetailHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchQuestionDetailHeaderView.swift; sourceTree = "<group>"; };
@@ -509,8 +522,10 @@
 				03D85EB524DD0C4300637AB8 /* WLAN */,
 				03B6891824D156F40020AD47 /* Scrawler */,
 				0369E06D24DA382F00643F7D /* Views */,
+				C941D977260481F200D91CD3 /* UMSwift */,
 				03B688B324D156CE0020AD47 /* Utilities */,
 				C941D59425D65CAC00E361AB /* SharedMessage.swift */,
+				C941D97126047AEE00D91CD3 /* PeiYang-Lite-Bridging-Header.h */,
 				03B6887C24D155850020AD47 /* PeiYang_LiteApp.swift */,
 				C9ED7EF025DB7A0300CB3438 /* SplashView.swift */,
 				D357A25625F0FEEA00C061CF /* UniversalExtension.swift */,
@@ -695,6 +710,17 @@
 				C9CF3D8425D2AFD20085263F /* LargeView.swift */,
 			);
 			path = WidgetViews;
+			sourceTree = "<group>";
+		};
+		C941D977260481F200D91CD3 /* UMSwift */ = {
+			isa = PBXGroup;
+			children = (
+				C941D978260481F200D91CD3 /* UMAnalyticsSwift.swift */,
+				C941D979260481F200D91CD3 /* UMCommonSwift.swift */,
+				C941D97A260481F200D91CD3 /* UMGameAnalyticsSwift.swift */,
+				C941D9CB26049E8400D91CD3 /* UMCommonLogSwift.swift */,
+			);
+			path = UMSwift;
 			sourceTree = "<group>";
 		};
 		C95B57AA25EBF3BA004300B5 /* Controller */ = {
@@ -1070,6 +1096,7 @@
 				03B6887724D155850020AD47 /* Resources */,
 				C9129F9F2513401E00EDE4CE /* Embed App Extensions */,
 				5F478FF6DEC0E114CC6FF748 /* [CP] Embed Pods Frameworks */,
+				6236DC5CB5510E213CF397C1 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1202,6 +1229,23 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PeiYang Lite/Pods-PeiYang Lite-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		6236DC5CB5510E213CF397C1 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PeiYang Lite/Pods-PeiYang Lite-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PeiYang Lite/Pods-PeiYang Lite-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PeiYang Lite/Pods-PeiYang Lite-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		86567CA5A41E53899BBD7119 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1266,6 +1310,7 @@
 				C9D59B6C25BE7655006865FC /* FgFinalStepView.swift in Sources */,
 				03B6894924D1579B0020AD47 /* CurveDetailView.swift in Sources */,
 				D3F725F02603382400249313 /* SKPhotoView.swift in Sources */,
+				C941D97D260481F200D91CD3 /* UMCommonSwift.swift in Sources */,
 				D346ACDA25F2A90000A146D8 /* ScrollViewWithRefresh.swift in Sources */,
 				C9ED446625C40936001A5456 /* RegisterFirView.swift in Sources */,
 				C9CF3D5E25D153780085263F /* AcBindPhoneView.swift in Sources */,
@@ -1279,6 +1324,7 @@
 				C903418625F8B78900F78B9C /* AcChangeNameView.swift in Sources */,
 				D37DD87E25EDFA8700A662E0 /* SchAccountView.swift in Sources */,
 				D37DD88125EDFA8700A662E0 /* SchManager.swift in Sources */,
+				C941D97C260481F200D91CD3 /* UMAnalyticsSwift.swift in Sources */,
 				D37DD87E25EDFA8700A662E0 /* SchAccountView.swift in Sources */,
 				D35E4E6E25F0C32700526388 /* SchTagManager.swift in Sources */,
 				D37DD88125EDFA8700A662E0 /* SchManager.swift in Sources */,
@@ -1367,6 +1413,7 @@
 				D35E4E4325EEB18D00526388 /* PhotoListView.swift in Sources */,
 				C971BA7B25C64F7D006A292E /* StyCalendar.swift in Sources */,
 				03B6891624D156CF0020AD47 /* Network.swift in Sources */,
+				C941D97E260481F200D91CD3 /* UMGameAnalyticsSwift.swift in Sources */,
 				03ACE52A24D844C5009468D4 /* RefreshButton.swift in Sources */,
 				C9836FAD25F285A9000E3367 /* StudyRoomContentView.swift in Sources */,
 				C971BA8125C6500D006A292E /* StyTimeSelectionView.swift in Sources */,
@@ -1376,6 +1423,7 @@
 				C95B57A325EBF37F004300B5 /* SchQuestionDetailHeaderView.swift in Sources */,
 				D31F8DE625FCA93900911775 /* WebHtmlView.swift in Sources */,
 				03B6893724D1572A0020AD47 /* ECardTranscationView.swift in Sources */,
+				C941D9CC26049E8400D91CD3 /* UMCommonLogSwift.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1570,6 +1618,10 @@
 				DEVELOPMENT_ASSET_PATHS = "\"PeiYang Lite/Preview Content\"";
 				DEVELOPMENT_TEAM = T5JB4K7FT9;
 				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/UMFramework",
+				);
 				INFOPLIST_FILE = "PeiYang Lite/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1579,6 +1631,7 @@
 				MARKETING_VERSION = 1.0.9;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.twtstudio.PeiYang-Lite";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/yuuekiketa/Open_Source/PeiYang-Lite/PeiYang Lite/PeiYang-Lite-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1597,6 +1650,10 @@
 				DEVELOPMENT_ASSET_PATHS = "\"PeiYang Lite/Preview Content\"";
 				DEVELOPMENT_TEAM = T5JB4K7FT9;
 				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/UMFramework",
+				);
 				INFOPLIST_FILE = "PeiYang Lite/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1606,6 +1663,7 @@
 				MARKETING_VERSION = 1.0.9;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.twtstudio.PeiYang-Lite";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/yuuekiketa/Open_Source/PeiYang-Lite/PeiYang Lite/PeiYang-Lite-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

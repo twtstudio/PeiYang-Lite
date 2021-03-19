@@ -7,6 +7,11 @@ target 'PeiYang Lite' do
   pod 'FSCalendar', '2.8.2'
   pod 'URLImage'
   pod 'SKPhotoBrowser'
+  pod 'UMAnalyticsGame'
+  pod 'UMAPM'
+  pod 'UMCCommonLog'
+  pod 'UMCommon'
+  pod 'UMDevice'
   # Pods for PeiYang Lite
 
 end
