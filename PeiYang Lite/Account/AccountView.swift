@@ -129,7 +129,7 @@ struct AccountView: View {
                     .background(Color.white)
                     .cornerRadius(15)
                     NavigationLink(
-                        destination: LgBeginView(),
+                        destination: LgBeginView().environmentObject(AppState()),
                         isActive: $isJumpToTop,
                         label: {EmptyView()})
                 }//: VSTACK List

@@ -11,6 +11,9 @@ import SwiftUI
 @main
 struct PeiYang_LiteApp: App {
     @State var images: [UIImage] = []
+    // to adapt AppDelegate
+    @UIApplicationDelegateAdaptor(AppDelegate.self) private var appDelegate
+    
     var body: some Scene {
         WindowGroup {
             SplashView()
@@ -20,6 +23,9 @@ struct PeiYang_LiteApp: App {
         }
     }
 }
+
+
+
 extension UIApplication {
     func endEditing() {
         sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)

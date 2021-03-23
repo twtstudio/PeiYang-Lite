@@ -21,7 +21,7 @@ struct SplashView: View {
             ZStack {
                 NavigationLink(destination:MainView(), isActive: $isJumpToAccount){EmptyView()}
                 NavigationLink(
-                    destination: LgBeginView(),
+                    destination: LgBeginView().environmentObject(AppState()),
                     isActive: $isJumpToLog,
                     label: {EmptyView()})
                 Image("splash_screen")
@@ -31,6 +31,7 @@ struct SplashView: View {
             }
             .navigationBarHidden(true)
         }
+        .navigationViewStyle(StackNavigationViewStyle())
         .onAppear(perform: {
             if(storagePassword != "" && storageUserName != "") {
                 isStored = true
