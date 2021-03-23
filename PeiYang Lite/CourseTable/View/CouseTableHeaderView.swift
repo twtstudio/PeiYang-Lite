@@ -52,9 +52,9 @@ struct CouseTableHeaderView: View {
     
     private func getWeekMatrix() -> [[[Bool]]] {
         var emptyMatrix = [[Bool]]()
-        for _ in 0...5 {
+        for _ in 0..<6 {
             var row = [Bool]()
-            for _ in 0...6 {
+            for _ in 0..<7 {
                 row.append(false)
             }
             emptyMatrix.append(row)

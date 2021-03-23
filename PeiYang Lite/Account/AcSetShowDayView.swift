@@ -10,7 +10,7 @@ import SwiftUI
 struct AcSetShowDayView: View {
     init(){UITableView.appearance().backgroundColor = .clear}
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
-    @AppStorage(SharedMessage.showCourseNumKey, store: Storage.defaults) private var showCourseNum = 5
+    @AppStorage(SharedMessage.showCourseNumKey, store: Storage.defaults) private var showCourseNum = 6
     var body: some View {
         VStack {
             NavigationBar()
@@ -34,17 +34,17 @@ struct AcSetShowDayView: View {
             List {
                 Section {
                     Button(action: {
-                        showCourseNum = 4
+                        showCourseNum = 5
                     }, label: {
                         ChooseShowDaysView(isSelected: showCourseNum == 4, title: "5天")
                     })
                     Button(action: {
-                        showCourseNum = 5
+                        showCourseNum = 6
                     }, label: {
                         ChooseShowDaysView(isSelected: showCourseNum == 5, title: "6天")
                     })
                     Button(action: {
-                        showCourseNum = 6
+                        showCourseNum = 7
                     }, label: {
                         ChooseShowDaysView(isSelected: showCourseNum == 6, title: "7天")
                     })

@@ -95,7 +95,7 @@ struct StyRoomDetailView: View {
                         activeWeek: $activeWeek,
                         courseTable: courseTable,
                         width: screen.width / 9.5 ,// 变成七天的手动
-                        showCourseNum: 6
+                        showCourseNum: 7
                     )
                     .padding(.leading, screen.width/16 + 7)
                     .frame(width: screen.width, alignment: .center)
