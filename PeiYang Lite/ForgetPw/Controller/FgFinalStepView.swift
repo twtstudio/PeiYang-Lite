@@ -27,7 +27,12 @@ struct FgFinalStepView: View {
             }
             .navigationBarBackButtonHidden(true)
         }
-        
+        .onAppear(perform: {
+            UMAnalyticsSwift.beginLogPageView(pageName: "PasswordChangeView")
+        })
+        .onDisappear{
+            UMAnalyticsSwift.endLogPageView(pageName: "PasswordChangeView")
+        }
     }
 }
 

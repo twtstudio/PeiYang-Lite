@@ -225,7 +225,13 @@ struct AcBindPhoneView: View {
             .animation(.easeInOut)
             
         }
+        .onAppear(perform: {
+            UMAnalyticsSwift.beginLogPageView(pageName: "PhoneBindingView")
+        })
         .navigationBarHidden(true)
+        .onDisappear(perform: {
+            UMAnalyticsSwift.endLogPageView(pageName: "PhoneBindingView")
+        })
     }
 }
 

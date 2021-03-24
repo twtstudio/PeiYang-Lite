@@ -63,6 +63,12 @@ struct SchView: View {
             }
             .frame(height: UIScreen.main.bounds.height * 0.8)
         }
+        .onAppear(perform: {
+            UMAnalyticsSwift.beginLogPageView(pageName: "SchoolProjectHomeView")
+        })
+        .onDisappear(perform: {
+            UMAnalyticsSwift.endLogPageView(pageName: "SchoolProjectHomeView")
+        })
     }
 }
 

@@ -175,7 +175,12 @@ struct FgFirstStepView: View {
                 })
         )
         .navigationBarHidden(true)
-            
+        .onAppear(perform: {
+            UMAnalyticsSwift.beginLogPageView(pageName: "PhoneGetPasswordView")
+        })
+        .onDisappear{
+            UMAnalyticsSwift.endLogPageView(pageName: "PhoneGetPasswordView")
+        }
     }
 
 }

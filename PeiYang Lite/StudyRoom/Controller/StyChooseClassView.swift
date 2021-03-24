@@ -125,7 +125,7 @@ struct StyChooseClassView: View {
             let getFloorsAndSort = GetFloorsAndSort(fullClasses: finalFullClasses)
             classes = getFloorsAndSort.0
             totalFloors = getFloorsAndSort.1
-
+            UMAnalyticsSwift.beginLogPageView(pageName: "StudyRoomChooseClassView")
 
         })
         .frame(width: UIScreen.main.bounds.width)
@@ -140,6 +140,9 @@ struct StyChooseClassView: View {
                     })
         })//: sheet
         .navigationBarHidden(true)
+        .onDisappear {
+            UMAnalyticsSwift.endLogPageView(pageName: "StudyRoomChooseClassView")
+        }
 
   
     }

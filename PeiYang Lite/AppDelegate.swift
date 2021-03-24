@@ -23,6 +23,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GeTuiSdkDelegate, UNUserN
         // [ GTSDK ]：是否允许APP后台运行
 //        GeTuiSdk.runBackgroundEnable(true)
         
+        UMCommonLogSwift.setUpUMCommonLogManager()
+        UMCommonSwift.setLogEnabled(bFlag: true)
+        UMCommonSwift.initWithAppkey(appKey: "605440876ee47d382b8b74c3", channel: "App Store")
+        
         return true
     }
     

@@ -139,7 +139,13 @@ struct AcBindEmailView: View {
             .animation(.easeInOut)
             
         }
+        .onAppear(perform: {
+            UMAnalyticsSwift.beginLogPageView(pageName: "EmailBindingView")
+        })
         .navigationBarHidden(true)
+        .onDisappear(perform: {
+            UMAnalyticsSwift.endLogPageView(pageName: "EmailBindingView")
+        })
     }
 }
 

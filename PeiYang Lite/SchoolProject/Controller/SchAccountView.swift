@@ -107,8 +107,12 @@ struct SchAccountView: View {
         .background(SchBackGround())
         .navigationBarHidden(true)
         .onAppear {
+            UMAnalyticsSwift.beginLogPageView(pageName: "SchoolProjectAccountView")
             loadQuestionData()
         }
+        .onDisappear(perform: {
+            UMAnalyticsSwift.endLogPageView(pageName: "SchoolProjectAccountView")
+        })
     }
     
     private func loadQuestionData() {

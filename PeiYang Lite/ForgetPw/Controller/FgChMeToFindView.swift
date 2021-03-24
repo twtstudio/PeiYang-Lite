@@ -62,6 +62,12 @@ struct FgChMeToFindView: View {
             
             RemindView(remindMessage: "您好！请联系辅导员进行密码重置！若有疑问，请加入天外天用户社区qq群：\n 1群群号：738068756；\n 2群群号：738064793；", isMessageShow: $isMessageShow, type: 1)
         }
+        .onAppear(perform: {
+            UMAnalyticsSwift.beginLogPageView(pageName: "ForgetPasswordView")
+        })
+        .onDisappear{
+            UMAnalyticsSwift.endLogPageView(pageName: "ForgetPasswordView")
+        }
     }
 }
 

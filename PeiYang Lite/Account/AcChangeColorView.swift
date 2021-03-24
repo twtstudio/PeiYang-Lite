@@ -114,6 +114,12 @@ struct AcChangeColorView: View {
             
             Spacer()
         }
+        .onAppear(perform: {
+            UMAnalyticsSwift.beginLogPageView(pageName: "ColorChangeView")
+        })
+        .onDisappear(perform: {
+            UMAnalyticsSwift.endLogPageView(pageName: "ColorChangeView")
+        })
         .navigationBarHidden(true)
         
     }

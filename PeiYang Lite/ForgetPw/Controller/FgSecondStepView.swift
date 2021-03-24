@@ -106,7 +106,12 @@ struct FgSecondStepView: View {
                 })
         )
         .navigationBarHidden(true)
-        
+        .onAppear(perform: {
+            UMAnalyticsSwift.beginLogPageView(pageName: "TwTGetPasswordView")
+        })
+        .onDisappear{
+            UMAnalyticsSwift.endLogPageView(pageName: "TwTGetPasswordView")
+        }
     }
 }
 
