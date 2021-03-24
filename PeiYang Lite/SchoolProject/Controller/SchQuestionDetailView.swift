@@ -146,7 +146,6 @@ struct SchQuestionDetailView: View {
         }
         .edgesIgnoringSafeArea(.bottom)
         .onAppear {
-            UMAnalyticsSwift.beginLogPageView(pageName: "SchoolProjectQuestionDetailView")
             loadComment()
             if question.solved ?? -1 == 1 {
                 loadAnswer()
@@ -154,7 +153,6 @@ struct SchQuestionDetailView: View {
             self.keyboardGuardian.addObserver()
         }
         .onDisappear {
-            UMAnalyticsSwift.endLogPageView(pageName: "SchoolProjectQuestionDetailView")
             self.keyboardGuardian.removeObserver()
         }
         .gesture(
@@ -167,6 +165,7 @@ struct SchQuestionDetailView: View {
                 .ignoresSafeArea()
                 .frame(width: screen.width, height: screen.height)
         )
+        .addAnalytics(className: "SchoolProjectQuestionDetailView")
         
                 
         .navigationBarHidden(true)

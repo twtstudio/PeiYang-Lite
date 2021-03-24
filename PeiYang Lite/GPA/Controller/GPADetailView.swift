@@ -90,7 +90,6 @@ struct GPADetailView: View {
         }
         .onAppear(perform:  {
             load()
-            UMAnalyticsSwift.beginLogPageView(pageName: "GPADetailView")
         })
         .navigationBarHidden(true)
         .sheet(isPresented: $showLogin, onDismiss: {
@@ -100,9 +99,7 @@ struct GPADetailView: View {
         })
         .edgesIgnoringSafeArea(.bottom)
         .background(Color(#colorLiteral(red: 0.500842154, green: 0.5448840261, blue: 0.3510230184, alpha: 1)).edgesIgnoringSafeArea(.all))
-        .onDisappear {
-            UMAnalyticsSwift.endLogPageView(pageName: "GPADetailView")
-        }
+        .addAnalytics(className: "GPADetailView")
     }
     
     func load() {

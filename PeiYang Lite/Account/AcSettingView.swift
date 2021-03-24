@@ -106,15 +106,10 @@ struct AcSettingView: View {
             }
 
         }
-        .onAppear(perform: {
-            UMAnalyticsSwift.beginLogPageView(pageName: "AccountSettingView")
-        })
         .navigationBarHidden(true)
         .background(Color.init(red: 247/255, green: 247/255, blue: 248/255).ignoresSafeArea().frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height, alignment: .center)
         )
-        .onDisappear(perform: {
-            UMAnalyticsSwift.endLogPageView(pageName: "AccountSettingView")
-        })
+        .addAnalytics(className: "AccountSettingView")
     }
 }
 

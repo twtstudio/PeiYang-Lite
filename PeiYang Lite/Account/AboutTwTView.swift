@@ -65,9 +65,6 @@ struct AboutTwTView: View {
             .frame(width: screen.width * 0.9)
             .padding(.vertical)
         }
-        .onAppear(perform: {
-            UMAnalyticsSwift.beginLogPageView(pageName: "AboutTwTView")
-        })
         .navigationBarTitle("关于天外天", displayMode: .inline)
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading: Button(action: {
@@ -76,9 +73,7 @@ struct AboutTwTView: View {
             Image("back-arrow-black")
         }))
         .padding(.bottom, 30)
-        .onDisappear(perform: {
-            UMAnalyticsSwift.endLogPageView(pageName: "AboutTwTView")
-        })
+        .addAnalytics(className: "AboutTwTView")
     }
 }
 

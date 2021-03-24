@@ -93,14 +93,11 @@ struct RegisterFirView: View {
                 })
         )
         .navigationBarHidden(true)
-        .onAppear(perform: {
-            UMAnalyticsSwift.beginLogPageView(pageName: "RegisterViewNo.1")
-        })
         .onDisappear(perform: {
             user.nickName = username
             user.userNumber = userNumber
-            UMAnalyticsSwift.endLogPageView(pageName: "RegisterViewNo.1")
         })
+        .addAnalytics(className: "RegisterViewNo.1")
     }
 }
 

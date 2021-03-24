@@ -105,13 +105,10 @@ struct CourseTableDetailView: View {
         }
         .onAppear(perform: {
             load()
-            UMAnalyticsSwift.beginLogPageView(pageName: "CourseTableDetailView")
         })
         .edgesIgnoringSafeArea(.bottom)
         .navigationBarHidden(true)
-        .onDisappear {
-            UMAnalyticsSwift.endLogPageView(pageName: "CourseTableDetailView")
-        }
+        .addAnalytics(className: "CourseTableDetailView")
     }
     
     //MARK: function: LOAD

@@ -223,17 +223,14 @@ struct RegisterSecView: View {
                     UIApplication.shared.endEditing()
                 })
         )
-        .onAppear(perform: {
-            UMAnalyticsSwift.beginLogPageView(pageName: "RegisterViewNo.2")
-        })
         .onDisappear{
             user.email = e_mailNum
             user.idNumber = idNumber
             user.phone = phoneNumber
             user.verifyCode = code
-            UMAnalyticsSwift.endLogPageView(pageName: "RegisterViewNo.2")
         }
         .navigationBarBackButtonHidden(true)
+        .addAnalytics(className: "RegisterViewNo.2")
     }
 }
 

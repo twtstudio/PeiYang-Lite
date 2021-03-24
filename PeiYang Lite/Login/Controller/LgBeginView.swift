@@ -72,12 +72,7 @@ struct LgBeginView: View {
             
             Spacer()
         }
-        .onAppear(perform: {
-            UMAnalyticsSwift.beginLogPageView(pageName: "LoginBeginView")
-        })
-        .onDisappear{
-            UMAnalyticsSwift.endLogPageView(pageName: "LoginBeginView")
-        }
+        .addAnalytics(className: "LoginBeginView")
         .navigationBarHidden(true)
 //        .onDisappear(perform: {
 //            let array: [String] = []

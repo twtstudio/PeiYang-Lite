@@ -159,7 +159,6 @@ struct SchNewQuestionView: View {
             })
         )
         .onAppear {
-            UMAnalyticsSwift.beginLogPageView(pageName: "SchoolProjectNewQuestionView")
             SchTagManager.tagGet { (result) in
                 switch result {
                     case .success(let tags):
@@ -172,9 +171,7 @@ struct SchNewQuestionView: View {
             }
         }
         .loading(style: .medium, isLoading: $isLoading)
-        .onDisappear(perform: {
-            UMAnalyticsSwift.endLogPageView(pageName: "SchoolProjectNewQuestionView")
-        })
+        .addAnalytics(className: "SchoolProjectNewQuestionView")
     }
     
     private func submitQuestion() {

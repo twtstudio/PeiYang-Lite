@@ -149,6 +149,7 @@
 		C9E5E01126070FF3007A1684 /* StyCollectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C983704925F459CE000E3367 /* StyCollectionManager.swift */; };
 		C9E5E01626071040007A1684 /* LgLoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A9942125C271950063C3BB /* LgLoginManager.swift */; };
 		C9E5E01926071044007A1684 /* LgSupplyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32A54592604EA0F00F48A0F /* LgSupplyManager.swift */; };
+		C9E5E0C9260B2CE6007A1684 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E5E0C8260B2CE6007A1684 /* Analytics.swift */; };
 		C9ED446625C40936001A5456 /* RegisterFirView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9ED446525C40936001A5456 /* RegisterFirView.swift */; };
 		C9ED446F25C40C88001A5456 /* RegisterThiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9ED446E25C40C88001A5456 /* RegisterThiView.swift */; };
 		C9ED447725C413A2001A5456 /* RegisterSecView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9ED447625C413A2001A5456 /* RegisterSecView.swift */; };
@@ -372,6 +373,7 @@
 		C9D5BF7425D010F000CD3537 /* AcSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcSettingView.swift; sourceTree = "<group>"; };
 		C9D5BF7F25D0D5FE00CD3537 /* AcClassesBindingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcClassesBindingView.swift; sourceTree = "<group>"; };
 		C9D95F0A2531874F00C3C911 /* Morning-Star-1.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Morning-Star-1.ttf"; sourceTree = "<group>"; };
+		C9E5E0C8260B2CE6007A1684 /* Analytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Analytics.swift; sourceTree = "<group>"; };
 		C9ED446525C40936001A5456 /* RegisterFirView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterFirView.swift; sourceTree = "<group>"; };
 		C9ED446E25C40C88001A5456 /* RegisterThiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterThiView.swift; sourceTree = "<group>"; };
 		C9ED447625C413A2001A5456 /* RegisterSecView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterSecView.swift; sourceTree = "<group>"; };
@@ -581,6 +583,7 @@
 			isa = PBXGroup;
 			children = (
 				D31F8DE925FCA95800911775 /* log.swift */,
+				C9E5E0C8260B2CE6007A1684 /* Analytics.swift */,
 				C983703B25F37B98000E3367 /* DataStorage.swift */,
 				03B688B424D156CE0020AD47 /* Storage.swift */,
 				03B688EC24D156CE0020AD47 /* Network.swift */,
@@ -1376,6 +1379,7 @@
 				C9C25AD325C4F9D500F26E40 /* StyTopView.swift in Sources */,
 				C95B57B425EBF3BA004300B5 /* MainView.swift in Sources */,
 				C9D5BF4C25CB9C2800CD3537 /* AlertView.swift in Sources */,
+				C9E5E0C9260B2CE6007A1684 /* Analytics.swift in Sources */,
 				C9663C2E25E248A600DFC973 /* CouseTableHeaderView.swift in Sources */,
 				D37DD88325EDFA8700A662E0 /* SchSelectTagView.swift in Sources */,
 				D35E4FE225F7E6F000526388 /* StarRatingView.swift in Sources */,

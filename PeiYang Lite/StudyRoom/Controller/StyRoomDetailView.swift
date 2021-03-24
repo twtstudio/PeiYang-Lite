@@ -122,11 +122,8 @@ struct StyRoomDetailView: View {
         })
         .onAppear(perform: {
             loadTodayOrNewWeekData()
-            UMAnalyticsSwift.beginLogPageView(pageName: "StudyRoomDetailView")
         })
-        .onDisappear {
-            UMAnalyticsSwift.endLogPageView(pageName: "StudyRoomDetailView")
-        }
+        .addAnalytics(className: "StudyRoomDetailView")
     }
     
     func loadTodayOrNewWeekData() {

@@ -155,12 +155,7 @@ struct LgSupplyView: View {
             Spacer()
             AlertView(alertMessage: AlertMessage, isShow: $isShowAlert)
         }
-        .onAppear(perform: {
-            UMAnalyticsSwift.beginLogPageView(pageName: "LoginView")
-        })
-        .onDisappear{
-            UMAnalyticsSwift.endLogPageView(pageName: "LoginView")
-        }
+        .addAnalytics(className: "LoginView")
         .background(
             Color.white
                 .ignoresSafeArea()

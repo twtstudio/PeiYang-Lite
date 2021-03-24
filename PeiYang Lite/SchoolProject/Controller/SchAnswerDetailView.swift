@@ -57,18 +57,13 @@ struct SchAnswerDetailView: View {
             
             Spacer()
         }
-        .onAppear(perform: {
-            UMAnalyticsSwift.beginLogPageView(pageName: "SchoolProjectAnswerDetailView")
-        })
         .navigationBarHidden(true)
         .background(
             Color(#colorLiteral(red: 0.968627451, green: 0.968627451, blue: 0.9725490196, alpha: 1))
                 .ignoresSafeArea()
                 .frame(width: screen.width, height: screen.height)
         )
-        .onDisappear(perform: {
-            UMAnalyticsSwift.endLogPageView(pageName: "SchoolProjectAnswerDetailView")
-        })
+        .addAnalytics(className: "SchoolProjectAnswerDetailView")
     }
     
     private func postScore(score: CGFloat) {

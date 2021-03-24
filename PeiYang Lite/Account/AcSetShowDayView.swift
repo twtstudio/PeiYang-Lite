@@ -52,12 +52,7 @@ struct AcSetShowDayView: View {
             }.listStyle(InsetGroupedListStyle())
             .environment(\.horizontalSizeClass, .regular)
         }
-        .onAppear(perform: {
-            UMAnalyticsSwift.beginLogPageView(pageName: "DayNumSettingView")
-        })
-        .onDisappear(perform: {
-            UMAnalyticsSwift.endLogPageView(pageName: "DayNumSettingView")
-        })
+        .addAnalytics(className: "DayNumSettingView")
         .frame(width: screen.width)
         .background(Color.init(red: 245/255, green: 245/255, blue: 245/255).frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height).ignoresSafeArea()
         )

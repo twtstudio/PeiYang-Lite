@@ -206,12 +206,11 @@ struct StySearchView: View {
         .background(Color(#colorLiteral(red: 0.9352087975, green: 0.9502342343, blue: 0.9600060582, alpha: 1)).frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height, alignment: .center).ignoresSafeArea())
         .onDisappear(perform: {
             save()
-            UMAnalyticsSwift.endLogPageView(pageName: "StudyRoomSearchView")
         })
         .onAppear(perform: {
             load()
-            UMAnalyticsSwift.beginLogPageView(pageName: "StudyRoomSearchView")
         })
+        .addAnalytics(className: "StudyRoomSearchView")
     }
     //MARK: save
     func save() {

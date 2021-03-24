@@ -59,13 +59,8 @@ struct AcChangeNameView: View {
             Spacer()
             AlertView(alertMessage: AlertMessage, isShow: $isShowAlert)
         }
-        .onAppear(perform: {
-            UMAnalyticsSwift.beginLogPageView(pageName: "NameChangeView")
-        })
         .navigationBarHidden(true)
-        .onDisappear(perform: {
-            UMAnalyticsSwift.endLogPageView(pageName: "NameChangeView")
-        })
+        .addAnalytics(className: "NameChangeView")
     }
 }
 

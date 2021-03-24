@@ -324,15 +324,15 @@ struct StyTopView: View {
             } else {
                 secondInLoadtoday()
             }
-            UMAnalyticsSwift.beginLogPageView(pageName: "StudyRoomMainView")
+            
         }
         .onDisappear(perform: {
             if(!isFailGetOneWeek) {
                 save()
             }
-            UMAnalyticsSwift.endLogPageView(pageName: "StudyRoomMainView")
         })
         .background(Color(#colorLiteral(red: 0.9352087975, green: 0.9502342343, blue: 0.9600060582, alpha: 1)).frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height, alignment: .center).ignoresSafeArea())
+        .addAnalytics(className: "StudyRoomMainView")
            
     }//: BODY
     

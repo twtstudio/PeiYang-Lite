@@ -63,18 +63,13 @@ struct StyBuildingSectionView: View {
                
                 Spacer()
             }
-            .onAppear(perform: {
-                UMAnalyticsSwift.beginLogPageView(pageName: "BuildingSectionView")
-            })
             .navigationBarHidden(true)
             .sheet(isPresented: $isShowCalender,
                    content: {
                     CalendarView(isShowCalender: $isShowCalender)
             })//: sheet
             .background(Color(#colorLiteral(red: 0.9352087975, green: 0.9502342343, blue: 0.9600060582, alpha: 1)).frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height, alignment: .center).ignoresSafeArea())
-            .onDisappear {
-                UMAnalyticsSwift.endLogPageView(pageName: "BuildingSectionView")
-            }
+            .addAnalytics(className: "BuildingSectionView")
 
 
     }
