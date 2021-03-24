@@ -100,6 +100,7 @@ struct AcMessageView: View {
                 sharedMessage.isBindPh = true
             }
         })
+        .addAnalytics(className: "AccountChangeView")
     }
 }
 
