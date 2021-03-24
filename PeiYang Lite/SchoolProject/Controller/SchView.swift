@@ -50,9 +50,13 @@ struct SchView: View {
                     NavigationLink(
                         destination: SchNewQuestionView(),
                         label: {
-                            Image("SchAdd")
-                                .resizable()
-                                .frame(width: screen.width * 0.2, height: screen.width * 0.2)
+                            Image(systemName: "plus")
+                                .font(.title2)
+                                .foregroundColor(.white)
+                                .frame(width: screen.width * 0.15, height: screen.width * 0.15)
+                                .background(Color(#colorLiteral(red: 0.1882352941, green: 0.2392156863, blue: 0.3882352941, alpha: 1)))
+                                .cornerRadius(screen.width * 0.075)
+                                .shadow(radius: 5)
                         })
                 }
                 .padding()

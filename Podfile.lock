@@ -1,5 +1,7 @@
 PODS:
   - FSCalendar (2.8.2)
+  - GTExtensionSDK (2.2.4)
+  - GTSDK (2.5.4.0)
   - SKPhotoBrowser (6.1.0)
   - "UMAnalyticsGame (7.2.5+G)":
     - UMCommon
@@ -30,6 +32,8 @@ PODS:
 
 DEPENDENCIES:
   - FSCalendar (= 2.8.2)
+  - GTExtensionSDK
+  - GTSDK
   - SKPhotoBrowser
   - UMAnalyticsGame
   - UMAPM
@@ -41,6 +45,8 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - FSCalendar
+    - GTExtensionSDK
+    - GTSDK
     - SKPhotoBrowser
     - UMAnalyticsGame
     - UMAPM
@@ -51,6 +57,8 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   FSCalendar: e6a2eb9c571bf0719ed797ef807e08426753c241
+  GTExtensionSDK: e8a788b267b25251d764349c28a80e3320f94af6
+  GTSDK: 9ee5e20cd1087eb6f035a49f9cfd12530f6f57f8
   SKPhotoBrowser: 343de95d89dc7913763c5dda243cc6e606e4a168
   UMAnalyticsGame: ec5de1bf631a17eb89203545330a98d92309abdd
   UMAPM: d0623e0b3ca8b1a1df855e0bddb91b5c002d097d
@@ -59,6 +67,6 @@ SPEC CHECKSUMS:
   UMDevice: 28d21a568c8e8322e5a03bbd53b138d0c098d3b3
   URLImage: 1eeb43e09cd736008da21944ba51d433ef41c09d
 
-PODFILE CHECKSUM: 93b15d9ea359f7f12ee3c2235388288e6e593e26
+PODFILE CHECKSUM: 8b46274e3a8a351ff3324c358c8ae32b60d8d28b
 
 COCOAPODS: 1.10.0.beta.1

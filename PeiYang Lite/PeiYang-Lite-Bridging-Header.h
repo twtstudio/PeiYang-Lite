@@ -16,6 +16,8 @@
 #import <UMCommon/MobClick.h>
 //导入UMAnalytics Game的OC的头文件
 #import <UMAnalyticsGame/MobClickGameAnalytics.h>
+// 个推的SDK
+#import <GTSDK/GeTuiSdk.h>
 
 
 
