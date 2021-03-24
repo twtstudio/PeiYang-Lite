@@ -12,7 +12,7 @@ struct CourseTableWeekdaysView: View {
     let courseTable: CourseTable
     let width: CGFloat
     let showCourseNum: Int
-//    @AppStorage(SharedMessage.showCourseNumKey, store: Storage.defaults) private var showCourseNum = 5
+//    @AppStorage(SharedMessage.showCourseNumKey, store: Storage.defaults) private var showCourseNum = 6
     @Environment(\.horizontalSizeClass) private var sizeClass
     private var isRegular: Bool { sizeClass == .regular }
     
@@ -34,7 +34,7 @@ struct CourseTableWeekdaysView: View {
     
     private var dates: [Date] {
         var dates = [Date]()
-        for i in 0...6 {
+        for i in 0..<7 {
             let date = activeWeekStartDate.addingTimeInterval(TimeInterval(i * 24 * 60 * 60))
             dates.append(date)
         }
@@ -60,27 +60,27 @@ struct CourseTableWeekdaysView: View {
         return approximateDate(courseTable.currentDate) == approximateDate(date)
     }
     
+    private var dayWidth: CGFloat { width / CGFloat(showCourseNum) }
+    
     var body: some View {
-        HStack(alignment: .center) {
+        HStack(alignment: .center, spacing: 0) {
 //            Text(activeMonth)
 //                .font(isRegular ? .body : .footnote)
 //                .frame(width: width)
             
-            ForEach(0...showCourseNum, id: \.self) {
+            ForEach(0..<showCourseNum, id: \.self) {
                 Text("\(activeMonth)\\\(days[$0])")
                     .bold()
                     .lineLimit(1)
                     .font(isRegular ? .subheadline : .system(size: 10))
                     .padding(4)//8
                     .foregroundColor(isActiveDate(dates[$0]) ? .gray : Color(#colorLiteral(red: 0.8110870719, green: 0.8155250549, blue: 0.8371899128, alpha: 1)))
-//                    .foregroundColor(Color(#colorLiteral(red: 0.8110870719, green: 0.8155250549, blue: 0.8371899128, alpha: 1)))
-                    .frame(width: width)
-                    .frame(minHeight: width/1.7)
-//                    .background(isActiveDate(dates[$0]) ? Color(#colorLiteral(red: 0.9372549057, green: 0.3490196168, blue: 0.1921568662, alpha: 1)) : Color.clear)
-                    .background(Color(#colorLiteral(red: 0.9246603847, green: 0.9294714928, blue: 0.9379970431, alpha: 1)))
-                    .clipShape(RoundedRectangle(cornerRadius: 5))
+                    .frame(width: dayWidth)
+                    .frame(minHeight: dayWidth/1.7)
+                    .background(Color(#colorLiteral(red: 0.9246603847, green: 0.9294714928, blue: 0.9379970431, alpha: 1)).cornerRadius(5).padding(2))
             }
         }
+        .frame(width: width)
     }
 }
 

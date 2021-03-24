@@ -22,99 +22,147 @@ struct CourseTableContentView: View {
     @ObservedObject var alertCourse: AlertCourse
     @Binding var showFullCourse: Bool
     
-    @AppStorage(SharedMessage.showCourseNumKey, store: Storage.defaults) private var showCourseNum = 5
+    @AppStorage(SharedMessage.showCourseNumKey, store: Storage.defaults) private var showCourseNum = 6
+    
+    private var dayWidth: CGFloat { width / CGFloat(showCourseNum) }
     
     var body: some View {
-        HStack(alignment: .top) {
-            // MARK: - Unit
-//            VStack {
-//                ForEach(1...12, id: \.self) {
-//                    Text("\($0)")
-//                        .frame(width: width*1.1, height: width)
-//                }
-//            }
-            
+        HStack(alignment: .top, spacing: 0) {
             // MARK: - Course
-            ForEach(0...showCourseNum, id: \.self) { weekday in
+            ForEach(0..<showCourseNum, id: \.self) { weekday in
+                
+                var courseTimeArray: [Int] = Array(repeating: 0, count: 12)
+                
                 ZStack(alignment: .top) {
+                    // 先遍历本周课
                     ForEach(
                         courseArray
                             .filter { course in
-                                if !showFullCourse {
-                                    return course.arrangeArray
-                                        .filter { $0.weekArray.contains(activeWeek) }
-                                        .map(\.weekday)
-                                        .contains(weekday)
-                                } else {
-                                    return true
-                                }
+                                return course.arrangeArray
+                                    .filter { $0.weekArray.contains(activeWeek) }
+                                    .map(\.weekday)
+                                    .contains(weekday)
                             },
                         id: \.no
-                    ) { course in
-                        VStack {
-                            if !self.isThisWeek(course, activeWeek: activeWeek, weekday: weekday) {
-                                VStack {
-                                Image(systemName: "lock.fill")
-                                    .font(.body)
-                                    .padding(.vertical, 1)
-                                
+                    ) { course -> AnyView in
+                        for i in course.activeArrange(weekday).unitArray {
+                            courseTimeArray[i] = 1
+                        }
+                        
+                        return AnyView(
+                            VStack {
                                 Text(course.name)
                                     .bold()
-                                    .padding(.vertical, 1)
-                                
-                                Text("非本周")
-                                    .fontWeight(.thin)
-                                    .padding(.vertical, 1)
-                                }
-                                
-                            } else {
-                                VStack {
-                                Text(course.name)
-                                    .bold()
-                                    .padding(.vertical, 1)
                                 
                                 Text(course.teachers)
                                     .fontWeight(.light)
-                                    .padding(.vertical, 1)
-//                                    .bold()
                                 
                                 Text(course.activeArrange(weekday).location)
                                     .fontWeight(.thin)
-                                    .padding(.vertical, 1)
-                                }
-//                                .zIndex(1)
                             }
-                        }
-                        .font(isRegular ? .footnote : .system(size: 9))
-                        .multilineTextAlignment(.center)
-                        .padding(7)
-                        .foregroundColor(self.isThisWeek(course, activeWeek: activeWeek, weekday: weekday) ? .white : .gray)
-                        .frame(
-                            width: width*1.1,
-                            height: CGFloat(course.activeArrange(weekday).length) * width * 1.5
+                            .foregroundColor(.white)
+                            .padding(.horizontal, 7)
+                            .font(isRegular ? .footnote : .system(size: 9))
+                            .multilineTextAlignment(.center)
+    //                        .padding(7)
+                            .frame(maxWidth: .infinity)
+                            .frame(
+                                height: CGFloat(course.activeArrange(weekday).length) * dayWidth * 1.5
+                            )
+                            // to adapt show full week
+                            .background(
+                                colorHelper.color[course.no]
+                                    .cornerRadius(10)
+                                    .padding(2)
+                            )
+                            .zIndex(1)
+                            .offset(y: CGFloat(course.activeArrange(weekday).startUnit) * dayWidth * 1.5)
+                            .onTapGesture {
+                                withAnimation {
+                                    self.alertCourse.showDetail = true
+                                    self.alertCourse.currentCourse = course
+                                    self.alertCourse.currentWeekday = weekday
+                                }
+                            }
                         )
-                        // to adapt show full week
-                        .background(self.isThisWeek(course, activeWeek: activeWeek, weekday: weekday) ?
-                                        colorHelper.color[course.no] :
-                                        Color(#colorLiteral(red: 0.9246603847, green: 0.9294714928, blue: 0.9379970431, alpha: 1)))
-                        .zIndex(self.isThisWeek(course, activeWeek: activeWeek, weekday: weekday) ? 1 : 0)
-                        .clipShape(RoundedRectangle(cornerRadius: 8))
-                        .offset(y: CGFloat(course.activeArrange(weekday).startUnit) * width * 1.52)
-                        .onTapGesture {
-                            withAnimation {
-                                self.alertCourse.showDetail = true
-                                self.alertCourse.currentCourse = course
-                                self.alertCourse.currentWeekday = weekday
+                    }
+                    
+                    if showFullCourse {
+                        ForEach(
+                            courseArray
+                                .filter { course in
+                                    return course.arrangeArray
+                                        .filter { !$0.weekArray.contains(activeWeek) }
+                                        .map(\.weekday)
+                                        .contains(weekday)
+                                },
+                            id: \.no
+                        ) { course in
+                            VStack {
+                                Image(systemName: "lock.fill")
+                                    .font(.body)
+                                
+                                Text(course.name)
+                                    .bold()
+                                
+                                Text("非本周")
+                                    .fontWeight(.thin)
+                                
+                            }
+                            .foregroundColor(.gray)
+                            .padding(.horizontal, 7)
+                            .font(isRegular ? .footnote : .system(size: 9))
+                            .multilineTextAlignment(.center)
+    //                        .padding(7)
+                            .frame(maxWidth: .infinity)
+                            .frame(height: calcHeight(timeArray: courseTimeArray, course: course, weekday: weekday))
+                            // to adapt show full week
+                            .background(
+                                Color(#colorLiteral(red: 0.9246603847, green: 0.9294714928, blue: 0.9379970431, alpha: 1))
+                                    .cornerRadius(10)
+                                    .padding(2)
+                            )
+                            .zIndex(0)
+                           
+                            .offset(y: calcOffset(timeArray: courseTimeArray, course: course, weekday: weekday))
+                            .onTapGesture {
+                                withAnimation {
+                                    self.alertCourse.showDetail = true
+                                    self.alertCourse.currentCourse = course
+                                    self.alertCourse.currentWeekday = weekday
+                                }
                             }
                         }
                     }
                     
+                    
+                    
                 }
-                .frame(width: width)
-//                .frame(maxheight: .infinity)
+                .frame(width: dayWidth, alignment: .top)
             }
         }
 //        .padding(.leading)
+    }
+    
+    private func calcHeight(timeArray: [Int], course: Course, weekday: Int) -> CGFloat {
+        let unitArray = course.activeArrange(weekday).unitArray
+        var availableUnit: Int = 0
+        for i in unitArray {
+            if timeArray[i] == 0 {
+                availableUnit += 1
+            }
+        }
+        
+        return CGFloat(availableUnit) * dayWidth * 1.5
+    }
+    
+    private func calcOffset(timeArray: [Int], course: Course, weekday: Int) -> CGFloat {
+        var startUnit = course.activeArrange(weekday).startUnit
+        while timeArray[startUnit] == 1 {
+            startUnit += 1
+        }
+        
+        return CGFloat(startUnit) * dayWidth * 1.5
     }
     
     private func isThisWeek(_ course: Course, activeWeek: Int, weekday: Int) -> Bool {

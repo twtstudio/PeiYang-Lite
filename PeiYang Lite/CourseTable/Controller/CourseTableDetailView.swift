@@ -10,7 +10,7 @@ struct CourseTableDetailView: View {
     
     @State private var isLoading = false
     @AppStorage(SharedMessage.isShowFullCourseKey, store: Storage.defaults) private var showFullCourse = true
-    @AppStorage(SharedMessage.showCourseNumKey, store: Storage.defaults) private var showCourseNum = 5
+    @AppStorage(SharedMessage.showCourseNumKey, store: Storage.defaults) private var showCourseNum = 6
     @AppStorage(ClassesManager.isLoginKey, store: Storage.defaults) private var isLogin = true
     @EnvironmentObject var sharedMessage: SharedMessage
     
@@ -44,11 +44,10 @@ struct CourseTableDetailView: View {
                 CourseTableWeekdaysView(
                     activeWeek: $activeWeek,
                     courseTable: courseTable,
-                    width: (screen.width-40-14*CGFloat(showCourseNum)) / CGFloat(showCourseNum),//9
+                    width: screen.width,//9
                     showCourseNum: showCourseNum
                 )
                 .frame(width: screen.width, alignment: .center)
-                .padding(.bottom, 5)
                 
                 ScrollView(.vertical, showsIndicators: false) {
                     // MARK: - Table
@@ -56,13 +55,15 @@ struct CourseTableDetailView: View {
                         CourseTableContentView(
                             activeWeek: activeWeek,
                             courseArray: courseTable.courseArray,
-                            width: (screen.width-40-14*CGFloat(showCourseNum)) / CGFloat(showCourseNum),//9
+                            width: screen.width,
                             alertCourse: alertCourse,
                             showFullCourse: $showFullCourse
                         )
-                        .frame(width: screen.width, height: screen.height*1.52, alignment: .top)
+                        // 单节课高度 * 12
+                        .frame(height: screen.width / CGFloat(showCourseNum) * 1.5 * 12, alignment: .top)
                         
-                        if let totalHour = getCourseHour(week: courseTable.totalWeek), let currentHour = getCourseHour(week: activeWeek) {
+                        if let totalHour = getCourseHour(week: courseTable.totalWeek),
+                           let currentHour = getCourseHour(week: activeWeek) {
                             ProgressBarView(current: currentHour, total: totalHour)
                                 .padding(.horizontal)
                                 .frame(width: screen.width, height: 80, alignment: .center)
