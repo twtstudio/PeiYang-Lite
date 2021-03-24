@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import ObjectiveC
 
 //enum Tab {
 //    case tab1, tab2, tab3, tab4
@@ -43,7 +44,13 @@ struct MainView: View {
                     Text("个人中心")
                 }.tag(3)
         }
+        .onAppear(perform: {
+            UMAnalyticsSwift.beginLogPageView(pageName: "HomeView")
+        })
         .navigationBarBackButtonHidden(true)
+        .onDisappear {
+            UMAnalyticsSwift.endLogPageView(pageName: "HomeView")
+        }
     
     }
 }

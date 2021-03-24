@@ -103,11 +103,17 @@ struct CourseTableDetailView: View {
                 }
             }
         }
-        .onAppear(perform: load)
+        .onAppear(perform: {
+            load()
+            UMAnalyticsSwift.beginLogPageView(pageName: "CourseTableDetailView")
+        })
         .edgesIgnoringSafeArea(.bottom)
         .navigationBarHidden(true)
-        
+        .onDisappear {
+            UMAnalyticsSwift.endLogPageView(pageName: "CourseTableDetailView")
+        }
     }
+    
     //MARK: function: LOAD
     func load() {
         if courseTable.courseArray.isEmpty {

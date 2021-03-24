@@ -49,9 +49,14 @@ struct DrawerView: View {
 //            .frame(width: UIScreen.main.bounds.width * 0.8)
             Spacer()
         }
+        .onAppear(perform: {
+            UMAnalyticsSwift.beginLogPageView(pageName: "DrawerView")
+        })
         .frame(width: UIScreen.main.bounds.width)
         .background(Color(#colorLiteral(red: 0.9352087975, green: 0.9502342343, blue: 0.9600060582, alpha: 1)).ignoresSafeArea())
-        
+        .onDisappear {
+            UMAnalyticsSwift.endLogPageView(pageName: "DrawerView")
+        }
         
     }
 }

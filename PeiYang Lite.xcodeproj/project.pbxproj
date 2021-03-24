@@ -144,6 +144,11 @@
 		C9D5BF7525D010F000CD3537 /* AcSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D5BF7425D010F000CD3537 /* AcSettingView.swift */; };
 		C9D5BF8025D0D5FE00CD3537 /* AcClassesBindingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D5BF7F25D0D5FE00CD3537 /* AcClassesBindingView.swift */; };
 		C9D95F0B2531874F00C3C911 /* Morning-Star-1.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C9D95F0A2531874F00C3C911 /* Morning-Star-1.ttf */; };
+		C9E5DFEB2606FEFB007A1684 /* AppDelagate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E5DFEA2606FEFB007A1684 /* AppDelagate.swift */; };
+		C9E5E00626070FCB007A1684 /* StudyRoomManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C990BB85255FB05B00444D2E /* StudyRoomManager.swift */; };
+		C9E5E01126070FF3007A1684 /* StyCollectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C983704925F459CE000E3367 /* StyCollectionManager.swift */; };
+		C9E5E01626071040007A1684 /* LgLoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A9942125C271950063C3BB /* LgLoginManager.swift */; };
+		C9E5E01926071044007A1684 /* LgSupplyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32A54592604EA0F00F48A0F /* LgSupplyManager.swift */; };
 		C9ED446625C40936001A5456 /* RegisterFirView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9ED446525C40936001A5456 /* RegisterFirView.swift */; };
 		C9ED446F25C40C88001A5456 /* RegisterThiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9ED446E25C40C88001A5456 /* RegisterThiView.swift */; };
 		C9ED447725C413A2001A5456 /* RegisterSecView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9ED447625C413A2001A5456 /* RegisterSecView.swift */; };
@@ -354,6 +359,7 @@
 		C9D5BF7425D010F000CD3537 /* AcSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcSettingView.swift; sourceTree = "<group>"; };
 		C9D5BF7F25D0D5FE00CD3537 /* AcClassesBindingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcClassesBindingView.swift; sourceTree = "<group>"; };
 		C9D95F0A2531874F00C3C911 /* Morning-Star-1.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Morning-Star-1.ttf"; sourceTree = "<group>"; };
+		C9E5DFEA2606FEFB007A1684 /* AppDelagate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelagate.swift; sourceTree = "<group>"; };
 		C9ED446525C40936001A5456 /* RegisterFirView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterFirView.swift; sourceTree = "<group>"; };
 		C9ED446E25C40C88001A5456 /* RegisterThiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterThiView.swift; sourceTree = "<group>"; };
 		C9ED447625C413A2001A5456 /* RegisterSecView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterSecView.swift; sourceTree = "<group>"; };
@@ -520,6 +526,7 @@
 				03B688B324D156CE0020AD47 /* Utilities */,
 				C941D59425D65CAC00E361AB /* SharedMessage.swift */,
 				C941D97126047AEE00D91CD3 /* PeiYang-Lite-Bridging-Header.h */,
+				C9E5DFEA2606FEFB007A1684 /* AppDelagate.swift */,
 				03B6887C24D155850020AD47 /* PeiYang_LiteApp.swift */,
 				C9ED7EF025DB7A0300CB3438 /* SplashView.swift */,
 				D357A25625F0FEEA00C061CF /* UniversalExtension.swift */,
@@ -1333,6 +1340,7 @@
 				C9D5BF7525D010F000CD3537 /* AcSettingView.swift in Sources */,
 				C983704A25F459CE000E3367 /* StyCollectionManager.swift in Sources */,
 				C95B57B025EBF3BA004300B5 /* HomeView2.swift in Sources */,
+				C9E5DFEB2606FEFB007A1684 /* AppDelagate.swift in Sources */,
 				C92E614F253997990008A38A /* RadarChartView.swift in Sources */,
 				C9016EF525E9CC72007524DD /* StySearchView.swift in Sources */,
 				D357A25725F0FEEA00C061CF /* UniversalExtension.swift in Sources */,
@@ -1427,14 +1435,17 @@
 			files = (
 				C9CF3D9125D2AFF60085263F /* MediumView.swift in Sources */,
 				C90384C1252C5BAD00CC7A44 /* Semester.swift in Sources */,
+				C9E5E01926071044007A1684 /* LgSupplyManager.swift in Sources */,
 				C927A83125D2B2F200C1B18C /* Weather.swift in Sources */,
 				C9129FBE2513472800EDE4CE /* ECard.swift in Sources */,
 				C9129FB72513430400EDE4CE /* Localizable.swift in Sources */,
 				C9129FA8251340FD00EDE4CE /* Storage.swift in Sources */,
+				C9E5E01626071040007A1684 /* LgLoginManager.swift in Sources */,
 				C9CF3D8925D2AFDF0085263F /* RoomCardView.swift in Sources */,
 				C9CF3DA725D2B0370085263F /* CourseEntry.swift in Sources */,
 				C942EF2125DB9785005495C3 /* GPA.swift in Sources */,
 				C9CF3DA825D2B0370085263F /* CourseTimelineProvider.swift in Sources */,
+				C9E5E00626070FCB007A1684 /* StudyRoomManager.swift in Sources */,
 				C9CF3D8525D2AFD20085263F /* LargeView.swift in Sources */,
 				C95B57F025EBF45D004300B5 /* CourseTable.swift in Sources */,
 				C9CF3DA925D2B0370085263F /* FontTool.swift in Sources */,
@@ -1443,6 +1454,7 @@
 				C91CF669252C85B4001C327B /* ClassesManager.swift in Sources */,
 				C9CF3DAB25D2B0370085263F /* WeatherService.swift in Sources */,
 				C9CF3D9F25D2B02B0085263F /* PeiYangLiteWidget.swift in Sources */,
+				C9E5E01126070FF3007A1684 /* StyCollectionManager.swift in Sources */,
 				C9129FA7251340FD00EDE4CE /* Network.swift in Sources */,
 				D380D6A72601FE7B00FD5F30 /* log.swift in Sources */,
 				C9CF3D9525D2AFFD0085263F /* SmallView.swift in Sources */,
