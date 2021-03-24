@@ -10,7 +10,6 @@ import SwiftUI
 
 @main
 struct PeiYang_LiteApp: App {
-    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     
     @State var images: [UIImage] = []
     // to adapt AppDelegate

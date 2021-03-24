@@ -92,6 +92,12 @@ struct HomeView2: View {
         .navigationBarHidden(true)
         .background(Color(#colorLiteral(red: 0.9352087975, green: 0.9502342343, blue: 0.9600060582, alpha: 1)))
         .edgesIgnoringSafeArea(.all)
+        .onAppear(perform: {
+            UMAnalyticsSwift.beginLogPageView(pageName: "HomeView")
+        })
+        .onDisappear {
+            UMAnalyticsSwift.endLogPageView(pageName: "HomeView")
+        }
         
 //        HomeScrollView(model: homeViewModel)
 

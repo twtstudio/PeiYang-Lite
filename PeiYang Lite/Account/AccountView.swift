@@ -175,9 +175,14 @@ struct AccountView: View {
             .offset(y: isShowSignOut ? 0 : 1000)
             .animation(.easeInOut)
         }
-        
+        .onAppear(perform: {
+            UMAnalyticsSwift.beginLogPageView(pageName: "AccountView")
+        })
         .navigationBarHidden(true)
         .navigationBarBackButtonHidden(true)
+        .onDisappear(perform: {
+            UMAnalyticsSwift.endLogPageView(pageName: "AccountView")
+        })
     }
     func loadOut() {
         ClassesManager.removeAll()

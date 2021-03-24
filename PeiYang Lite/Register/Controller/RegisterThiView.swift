@@ -125,6 +125,12 @@ struct RegisterThiView: View {
             .frame(width: UIScreen.main.bounds.width * 0.9, height: UIScreen.main.bounds.height / 15, alignment: .center)
             
         }
+        .onAppear(perform: {
+            UMAnalyticsSwift.beginLogPageView(pageName: "RegisterViewNo.3")
+        })
+        .onDisappear{
+            UMAnalyticsSwift.endLogPageView(pageName: "RegisterViewNo.3")
+        }
         
         .sheet(isPresented: $isShowManual) {
             AccountNeedToKnowView()

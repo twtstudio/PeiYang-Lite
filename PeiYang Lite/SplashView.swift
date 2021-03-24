@@ -33,7 +33,6 @@ struct SplashView: View {
         }
         .navigationViewStyle(StackNavigationViewStyle())
         .onAppear(perform: {
-            UMAnalyticsSwift.beginLogPageView(pageName: "SplashView")
             if(storagePassword != "" && storageUserName != "") {
                 isStored = true
             } else {
@@ -41,9 +40,6 @@ struct SplashView: View {
             }
             Jump(isStored: isStored)
         })
-        .onDisappear {
-            UMAnalyticsSwift.endLogPageView(pageName: "SplashView")
-        }
         
     }
     func Jump(isStored: Bool) {

@@ -23,6 +23,9 @@ struct AcClassesBindingView: View {
             }
             Spacer()
         }
+        .onAppear(perform: {
+            UMAnalyticsSwift.beginLogPageView(pageName: "ClassesBindingView")
+        })
         .navigationBarHidden(true)
         .background(
             Color.white
@@ -32,6 +35,9 @@ struct AcClassesBindingView: View {
         .onTapGesture {
             hideKeyboard()
         }
+        .onDisappear(perform: {
+            UMAnalyticsSwift.endLogPageView(pageName: "ClassesBindingView")
+        })
     }
     
     

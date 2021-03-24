@@ -44,13 +44,7 @@ struct MainView: View {
                     Text("个人中心")
                 }.tag(3)
         }
-        .onAppear(perform: {
-            UMAnalyticsSwift.beginLogPageView(pageName: "HomeView")
-        })
         .navigationBarBackButtonHidden(true)
-        .onDisappear {
-            UMAnalyticsSwift.endLogPageView(pageName: "HomeView")
-        }
     
     }
 }

@@ -145,7 +145,6 @@
 		C9D5BF7525D010F000CD3537 /* AcSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D5BF7425D010F000CD3537 /* AcSettingView.swift */; };
 		C9D5BF8025D0D5FE00CD3537 /* AcClassesBindingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D5BF7F25D0D5FE00CD3537 /* AcClassesBindingView.swift */; };
 		C9D95F0B2531874F00C3C911 /* Morning-Star-1.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C9D95F0A2531874F00C3C911 /* Morning-Star-1.ttf */; };
-		C9E5DFEB2606FEFB007A1684 /* AppDelagate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E5DFEA2606FEFB007A1684 /* AppDelagate.swift */; };
 		C9E5E00626070FCB007A1684 /* StudyRoomManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C990BB85255FB05B00444D2E /* StudyRoomManager.swift */; };
 		C9E5E01126070FF3007A1684 /* StyCollectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C983704925F459CE000E3367 /* StyCollectionManager.swift */; };
 		C9E5E01626071040007A1684 /* LgLoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A9942125C271950063C3BB /* LgLoginManager.swift */; };
@@ -373,7 +372,6 @@
 		C9D5BF7425D010F000CD3537 /* AcSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcSettingView.swift; sourceTree = "<group>"; };
 		C9D5BF7F25D0D5FE00CD3537 /* AcClassesBindingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcClassesBindingView.swift; sourceTree = "<group>"; };
 		C9D95F0A2531874F00C3C911 /* Morning-Star-1.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Morning-Star-1.ttf"; sourceTree = "<group>"; };
-		C9E5DFEA2606FEFB007A1684 /* AppDelagate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelagate.swift; sourceTree = "<group>"; };
 		C9ED446525C40936001A5456 /* RegisterFirView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterFirView.swift; sourceTree = "<group>"; };
 		C9ED446E25C40C88001A5456 /* RegisterThiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterThiView.swift; sourceTree = "<group>"; };
 		C9ED447625C413A2001A5456 /* RegisterSecView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterSecView.swift; sourceTree = "<group>"; };
@@ -556,7 +554,6 @@
 				03B688B324D156CE0020AD47 /* Utilities */,
 				C941D59425D65CAC00E361AB /* SharedMessage.swift */,
 				C941D97126047AEE00D91CD3 /* PeiYang-Lite-Bridging-Header.h */,
-				C9E5DFEA2606FEFB007A1684 /* AppDelagate.swift */,
 				03B6887C24D155850020AD47 /* PeiYang_LiteApp.swift */,
 				D322203C2605B7A1006349F4 /* AppDelegate.swift */,
 				C9ED7EF025DB7A0300CB3438 /* SplashView.swift */,
@@ -1436,7 +1433,6 @@
 				C9D5BF7525D010F000CD3537 /* AcSettingView.swift in Sources */,
 				C983704A25F459CE000E3367 /* StyCollectionManager.swift in Sources */,
 				C95B57B025EBF3BA004300B5 /* HomeView2.swift in Sources */,
-				C9E5DFEB2606FEFB007A1684 /* AppDelagate.swift in Sources */,
 				C92E614F253997990008A38A /* RadarChartView.swift in Sources */,
 				C9016EF525E9CC72007524DD /* StySearchView.swift in Sources */,
 				D357A25725F0FEEA00C061CF /* UniversalExtension.swift in Sources */,
