@@ -77,6 +77,7 @@ struct SchAccountView: View {
                             isShowAlert = true
                             questionIdToDelete = myQuestions[i].id ?? -1
                         })
+                        .addAnalytics(className: "MyQuestionView")
                         .frame(maxWidth: .infinity)
                             .padding(.top, 10)
                     }
@@ -86,6 +87,7 @@ struct SchAccountView: View {
                             isShowAlert = true
                             questionIdToDelete = favQuestions[i].id ?? -1
                         })
+                        .addAnalytics(className: "MyFavView")
                         .frame(maxWidth: .infinity)
                             .padding(.top, 10)
                     }

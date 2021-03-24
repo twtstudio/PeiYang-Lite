@@ -32,6 +32,7 @@ struct StyHistorySectionView: View {
             }
             .frame(width: UIScreen.main.bounds.width * 0.9)
         }
+        .addAnalytics(className: "StudySearchResultView")
     }
     private func generateContent(in g: GeometryProxy) -> some View {
             var width = CGFloat.zero
