@@ -16,12 +16,16 @@ class SharedMessage: ObservableObject {
     static let passwordKey: String = "passwordKey"
     static let showCourseNumKey: String = "showCourseNumKey"
     static let studyRoomHistoryKey: String = "studyRoomHistoryKey"
+    static let GPABackgroundColorKey: String = "gpaBackgroundColorKey"
+    static let GPATextColorKey: String = "gpaTextColorKey"
     
     static var isSowFullCourse: Bool { Storage.defaults.bool(forKey: isShowFullCourseKey) }
     static var isShowGPA: Bool { Storage.defaults.bool(forKey: isShowGPAKey) }
     static var username: String {Storage.defaults.string(forKey: usernameKey) ?? ""}
     static var password: String {Storage.defaults.string(forKey: passwordKey) ?? ""}
     static var showCourseNum: Int {Int(Storage.defaults.double(forKey: showCourseNumKey))}
+    static var GPABackgroundColor: Int { Storage.defaults.integer(forKey: GPABackgroundColorKey) }
+    static var GPATextColor: Int { Storage.defaults.integer(forKey: GPATextColorKey) }
 
     
     @Published var Account: AccountResult = AccountResult(userNumber: "", nickname: "", telephone: "", email: "", token: "", role: "", realname: "", gender: "", department: "", major: "", stuType: "", avatar: "", campus: "")

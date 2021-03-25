@@ -9,6 +9,8 @@ import SwiftUI
 
 struct GPACellListView: View {
     let activeSemesterGPA: SemesterGPA
+    @AppStorage(SharedMessage.GPABackgroundColorKey, store: Storage.defaults) private var gpaBackgroundColor = 0x7f8b59
+    @AppStorage(SharedMessage.GPATextColorKey, store: Storage.defaults) private var gpaTextColor = 0xFFFFFF
     var body: some View {
         VStack {
             ForEach(activeSemesterGPA.gpaArray.indices, id: \.self) { i in
@@ -16,16 +18,16 @@ struct GPACellListView: View {
                 HStack {
                     Image(systemName: "book.fill")
                         .font(.title)
-                        .foregroundColor(Color(#colorLiteral(red: 0.6932368875, green: 0.7368911505, blue: 0.5718635321, alpha: 1)))
+                        .foregroundColor(Color.init(hex: gpaTextColor).opacity(0.7))
                         .padding(10)
                     VStack(alignment: .leading) {
                         Text(singleGPA.name)
                             .font(.body)
-                            .foregroundColor(.white)
+                            .foregroundColor(Color.init(hex: gpaTextColor).opacity(0.7))
                             .padding(.bottom, 2)
                         Text("\(singleGPA.credit.decimal) credits")
                             .font(.footnote)
-                            .foregroundColor(Color(#colorLiteral(red: 0.6932368875, green: 0.7368911505, blue: 0.5718635321, alpha: 1)))
+                            .foregroundColor(Color.init(hex: gpaTextColor).opacity(0.7))
                     }
                     .padding(5)
                     
@@ -34,11 +36,11 @@ struct GPACellListView: View {
                     Text(singleGPA.score.decimal == 0.description ? singleGPA.scoreProperty : singleGPA.score.decimal)
                         .font(.title)
                         .fontWeight(.bold)
-                        .foregroundColor(.white)
+                        .foregroundColor(Color.init(hex: gpaTextColor).opacity(0.7))
                         .padding(.trailing, 10)
                 }
                 .frame(width: screen.width - 40, height: screen.width/5)
-                .background(Color(#colorLiteral(red: 0.5362423062, green: 0.5800756216, blue: 0.4005104303, alpha: 1)))
+                .background(Color.init(hex: gpaTextColor).opacity(0.1))
                 .clipShape(RoundedRectangle(cornerRadius: 10))
                 .padding(8)
             }

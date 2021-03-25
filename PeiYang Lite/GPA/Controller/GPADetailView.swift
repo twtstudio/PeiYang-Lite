@@ -9,6 +9,8 @@ import SwiftUI
 
 struct GPADetailView: View {
     @AppStorage(ClassesManager.isLoginKey, store: Storage.defaults) private var isLogin = true
+    @AppStorage(SharedMessage.GPABackgroundColorKey, store: Storage.defaults) private var gpaBackgroundColor = 0x7f8b59
+    @AppStorage(SharedMessage.GPATextColorKey, store: Storage.defaults) private var gpaTextColor = 0xFFFFFF
     @EnvironmentObject var sharedMessage: SharedMessage
     @Environment(\.presentationMode) private var presentationMode
     @ObservedObject var store = Storage.gpa
@@ -33,15 +35,10 @@ struct GPADetailView: View {
                     }) {
                         Image(systemName: "arrow.left")
                             .font(.title)
-                            .foregroundColor(.white)
+                            .foregroundColor(.init(hex: gpaTextColor))
                     }
                 }, trailing: {
-                    //                    HStack {
-                    RefreshButton(isLoading: $isLoading, action: reload, color: .white)
-                    //                        Image(systemName: "exclamationmark.circle")
-                    //                            .font(.title)
-                    //                            .foregroundColor(.white)
-                    //                    }
+                    RefreshButton(isLoading: $isLoading, action: reload, color: .init(hex: gpaTextColor))
                 }).padding(.horizontal)
                 
                 if !gpa.semesterGPAArray.isEmpty {
@@ -49,16 +46,16 @@ struct GPADetailView: View {
                         // MARK: - RadarChart
                         //                    GPAListView(activeSemesterGPA: gpa.semesterGPAArray[activeIndex])
                         if !gpa.semesterGPAArray.isEmpty {
-                            RadarChartView(strokeColor: Color(#colorLiteral(red: 0.6459901929, green: 0.6900593638, blue: 0.5020841956, alpha: 1)), textColor: Color.white, center: CGPoint(x: (full.size.width - 30)/2, y: (full.size.width - 30)/2), width: full.size.width - 20, activeIndex: $activeIndex)
+                            RadarChartView(strokeColor: Color.init(hex: gpaTextColor).opacity(0.7), textColor: Color.init(hex: gpaTextColor), center: CGPoint(x: (full.size.width - 30)/2, y: (full.size.width - 30)/2), width: full.size.width - 20, activeIndex: $activeIndex)
                         } else {
                             Text("Empty Data!")
                         }
                         HStack {
-                            GPATitleView(value: gpa.semesterGPAArray[activeIndex].score.decimal, title: .score, titleColor: Color(#colorLiteral(red: 0.6580134034, green: 0.7014739513, blue: 0.5453689694, alpha: 1)), valueColor: .white)
+                            GPATitleView(value: gpa.semesterGPAArray[activeIndex].score.decimal, title: .score, titleColor: Color.init(hex: gpaTextColor).opacity(0.7), valueColor: .init(hex: gpaTextColor))
                                 .padding(5)
-                            GPATitleView(value: gpa.semesterGPAArray[activeIndex].gpa.decimal, title: .gpa, titleColor: Color(#colorLiteral(red: 0.6580134034, green: 0.7014739513, blue: 0.5453689694, alpha: 1)), valueColor: .white)
+                            GPATitleView(value: gpa.semesterGPAArray[activeIndex].gpa.decimal, title: .gpa, titleColor: Color.init(hex: gpaTextColor).opacity(0.7), valueColor: .init(hex: gpaTextColor))
                                 .padding(5)
-                            GPATitleView(value: gpa.semesterGPAArray[activeIndex].credit.decimal, title: .credit, titleColor: Color(#colorLiteral(red: 0.6580134034, green: 0.7014739513, blue: 0.5453689694, alpha: 1)), valueColor: .white)
+                            GPATitleView(value: gpa.semesterGPAArray[activeIndex].credit.decimal, title: .credit, titleColor: Color.init(hex: gpaTextColor).opacity(0.7), valueColor: .init(hex: gpaTextColor))
                                 .padding(5)
                         }
                         
@@ -71,9 +68,9 @@ struct GPADetailView: View {
                             maxDataValue: .constant(nil),
                             activeIndex: $activeIndex,
                             showIndicator: .constant(true),
-                            pathGradient: Gradient(colors: [Color(#colorLiteral(red: 0.6580134034, green: 0.7014739513, blue: 0.5453689694, alpha: 1))]),
+                            pathGradient: Gradient(colors: [Color.init(hex: gpaTextColor).opacity(0.7)]),
                             backgroundGradient: Gradient(colors: [Color.clear]),
-                            indicatorColor: Color.white
+                            indicatorColor: Color.init(hex: gpaTextColor)
                         )
                         .frame(height: full.size.width*0.5)
                         .padding(.leading)
@@ -98,7 +95,7 @@ struct GPADetailView: View {
             ClassesSSOView()
         })
         .edgesIgnoringSafeArea(.bottom)
-        .background(Color(#colorLiteral(red: 0.500842154, green: 0.5448840261, blue: 0.3510230184, alpha: 1)).edgesIgnoringSafeArea(.all))
+        .background(Color.init(hex: gpaBackgroundColor).edgesIgnoringSafeArea(.all))
         .addAnalytics(className: "GPADetailView")
     }
     

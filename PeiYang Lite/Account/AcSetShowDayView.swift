@@ -36,17 +36,17 @@ struct AcSetShowDayView: View {
                     Button(action: {
                         showCourseNum = 5
                     }, label: {
-                        ChooseShowDaysView(isSelected: showCourseNum == 4, title: "5天")
+                        ChooseShowDaysView(isSelected: showCourseNum == 5, title: "5天")
                     })
                     Button(action: {
                         showCourseNum = 6
                     }, label: {
-                        ChooseShowDaysView(isSelected: showCourseNum == 5, title: "6天")
+                        ChooseShowDaysView(isSelected: showCourseNum == 6, title: "6天")
                     })
                     Button(action: {
                         showCourseNum = 7
                     }, label: {
-                        ChooseShowDaysView(isSelected: showCourseNum == 6, title: "7天")
+                        ChooseShowDaysView(isSelected: showCourseNum == 7, title: "7天")
                     })
                 }
             }.listStyle(InsetGroupedListStyle())

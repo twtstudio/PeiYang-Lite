@@ -15,8 +15,6 @@ struct AcSettingView: View {
     let remindTimes = ["15分钟", "30分钟", "45分钟", "60分钟"]
     @State private var remindTime = 0
     
-    
-    
     @AppStorage(SharedMessage.isShowFullCourseKey, store: Storage.defaults) private var showFullCourse = true
     @AppStorage(ClassesManager.isGPAStoreKey, store: Storage.defaults) private var isNotShowGPA = false
     @AppStorage(SharedMessage.showCourseNumKey, store: Storage.defaults) private var showCourseNum = 6

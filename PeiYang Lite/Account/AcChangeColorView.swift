@@ -9,6 +9,8 @@ import SwiftUI
 
 struct AcChangeColorView: View {
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
+    @AppStorage(SharedMessage.GPABackgroundColorKey, store: Storage.defaults) private var gpaBackgroundColor = 0x7f8b59
+    @AppStorage(SharedMessage.GPATextColorKey, store: Storage.defaults) private var gpaTextColor = 0xFFFFFF
     
     var body: some View {
         VStack(alignment: .center, spacing: 15){
@@ -17,6 +19,7 @@ struct AcChangeColorView: View {
                 Text("调色板")
                     .font(.custom("Avenir-Black", size: UIScreen.main.bounds.height / 35))
                     .foregroundColor(.init(red: 48/255, green: 60/255, blue: 102/255))
+                    
                 Spacer()
             }
             .frame(width: screen.width * 0.9)
@@ -40,35 +43,43 @@ struct AcChangeColorView: View {
             
             VStack(spacing: 10) {
                 //MARK: GPA's Color
-                Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+                Button(action: {
+                    changeColorHex(background: 0x7f8b59, text: 0xFFFFFF)
+                }, label: {
                     Text("#7f8b59")
-                        .foregroundColor(.white)
+                        .foregroundColor(.init(hex: 0xFFFFFF))
                         .frame(width: screen.width * 0.9, height: screen.height / 15)
-                        .background(Color.init(red: 127/255, green: 139/255, blue: 89/255))
+                        .background(Color.init(hex: 0x7f8b59))
                         .cornerRadius(10)
                 })
                 
-                Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+                Button(action: {
+                    changeColorHex(background: 0xEEEDED, text: 0x9D7B83)
+                }, label: {
                     Text("#9d7b83")
-                        .foregroundColor(.init(red: 157/255, green: 123/255, blue: 131/255))
+                        .foregroundColor(.init(hex: 0x9D7B83))
                         .frame(width: screen.width * 0.9, height: screen.height / 15)
-                        .background(Color.init(red: 238/255, green: 237/255, blue: 237/255))
+                        .background(Color.init(hex: 0xEEEDED))
                         .cornerRadius(10)
                 })
                 
-                Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+                Button(action: {
+                    changeColorHex(background: 0xAD8D92, text: 0xF7F7F8)
+                }, label: {
+                    Text("#ad8d92")
+                        .foregroundColor(.init(hex: 0xF7F7F8))
+                        .frame(width: screen.width * 0.9, height: screen.height / 15)
+                        .background(Color.init(hex: 0xAD8D92))
+                        .cornerRadius(10)
+                })
+                
+                Button(action: {
+                    changeColorHex(background: 0x47535F, text: 0xCEC6B9)
+                }, label: {
                     Text("#47535f")
-                        .foregroundColor(.init(red: 247/255, green: 247/255, blue: 248/255))
+                        .foregroundColor(.init(hex: 0xCEC6B9))
                         .frame(width: screen.width * 0.9, height: screen.height / 15)
-                        .background(Color.init(red: 173/255, green: 141/255, blue: 146/255))
-                        .cornerRadius(10)
-                })
-                
-                Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
-                    Text("#7f8b59")
-                        .foregroundColor(.init(red: 206/255, green: 198/255, blue: 185/255))
-                        .frame(width: screen.width * 0.9, height: screen.height / 15)
-                        .background(Color.init(red: 71/255, green: 83/255, blue: 95/255))
+                        .background(Color.init(hexString: "47535f"))
                         .cornerRadius(10)
                 })
             }
@@ -118,10 +129,59 @@ struct AcChangeColorView: View {
         .navigationBarHidden(true)
         
     }
+    
+    private func changeColorHex(background: Int, text: Int) {
+        gpaBackgroundColor = background
+        gpaTextColor = text
+    }
 }
 
 struct AcChangeColorView_Previews: PreviewProvider {
     static var previews: some View {
         AcChangeColorView()
+    }
+}
+
+extension Color {
+    init(hex: Int, alpha: Double = 1) {
+        let components = (
+            R: Double((hex >> 16) & 0xff) / 255,
+            G: Double((hex >> 08) & 0xff) / 255,
+            B: Double((hex >> 00) & 0xff) / 255
+        )
+        self.init(
+            .sRGB,
+            red: components.R,
+            green: components.G,
+            blue: components.B,
+            opacity: alpha
+        )
+    }
+}
+
+extension Color {
+    init(hexString: String) {
+        let hex = hexString.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
+        var int: UInt64 = 0
+        Scanner(string: hex).scanHexInt64(&int)
+        let a, r, g, b: UInt64
+        switch hex.count {
+        case 3: // RGB (12-bit)
+            (a, r, g, b) = (255, (int >> 8) * 17, (int >> 4 & 0xF) * 17, (int & 0xF) * 17)
+        case 6: // RGB (24-bit)
+            (a, r, g, b) = (255, int >> 16, int >> 8 & 0xFF, int & 0xFF)
+        case 8: // ARGB (32-bit)
+            (a, r, g, b) = (int >> 24, int >> 16 & 0xFF, int >> 8 & 0xFF, int & 0xFF)
+        default:
+            (a, r, g, b) = (1, 1, 1, 0)
+        }
+
+        self.init(
+            .sRGB,
+            red: Double(r) / 255,
+            green: Double(g) / 255,
+            blue:  Double(b) / 255,
+            opacity: Double(a) / 255
+        )
     }
 }
