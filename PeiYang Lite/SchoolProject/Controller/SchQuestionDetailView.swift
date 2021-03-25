@@ -44,6 +44,8 @@ struct SchQuestionDetailView: View {
             // 头部伪导航栏
             NavigationBar(center: {
                 Text("问题详情")
+                    .font(.title3)
+                    .foregroundColor(Color(#colorLiteral(red: 0.1882352941, green: 0.2352941176, blue: 0.4, alpha: 1)))
             }) {
                 if question.isOwner ?? false {
                     Button(action: {

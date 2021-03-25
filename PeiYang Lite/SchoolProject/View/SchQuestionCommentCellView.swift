@@ -27,16 +27,22 @@ struct SchQuestionCommentCellView: View {
                         .frame(width: g.size.height, height: g.size.height)
                         .cornerRadius(g.size.height / 2)
                     Text(comment.username ?? "")
+                        .foregroundColor(Color(#colorLiteral(red: 0.6941176471, green: 0.6980392157, blue: 0.7450980392, alpha: 1)))
+                        .font(.subheadline)
                     Spacer()
                     Text(commentTime)
+                        .foregroundColor(Color(#colorLiteral(red: 0.6941176471, green: 0.6980392157, blue: 0.7450980392, alpha: 1)))
+                        .font(.subheadline)
                 }
                 .frame(height: g.size.height)
             }
-            .frame(height: screen.height * 0.05)
+            .frame(height: screen.height * 0.04)
             
             Text(comment.contain ?? "")
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .multilineTextAlignment(.leading)
+                .foregroundColor(Color(#colorLiteral(red: 0.2117647059, green: 0.2352941176, blue: 0.3294117647, alpha: 1)))
+                .font(.system(size: 16))
             
             HStack {
                 Spacer()
@@ -58,6 +64,8 @@ struct SchQuestionCommentCellView: View {
                     Image(comment.isLiked ?? false ? "sch-like-fill" : "sch-like")
                 })
                 Text((comment.likes ?? 0).description)
+                    .foregroundColor(Color(#colorLiteral(red: 0.6941176471, green: 0.6980392157, blue: 0.7450980392, alpha: 1)))
+                    .font(.subheadline)
             }
         }
         .padding()

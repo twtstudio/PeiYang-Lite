@@ -44,7 +44,9 @@ struct AccountView: View {
                 HStack{
                     Spacer()
                     NavigationLink(destination: AcSettingView()){
-                        Image("setting")
+                        Image(systemName: "gearshape")
+                            .foregroundColor(.white)
+                            .font(.title2)
                     }
                 }
                 .frame(width: UIScreen.main.bounds.width * 0.9)

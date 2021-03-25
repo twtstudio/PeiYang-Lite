@@ -14,7 +14,7 @@ A quicker and portable WePeiYang
 本次操作类别
 
 - New 新增
-- Delete 删除
+- Del 删除
 - Fix 修正
 - Mix 多种操作
 

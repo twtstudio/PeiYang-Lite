@@ -32,7 +32,7 @@ struct SchAccountView: View {
                 Button(action: {
                     self.presentationMode.wrappedValue.dismiss()
                 }) {
-                    Image(systemName: "arrow.left")
+                    Image(systemName: "chevron.backward")
                 }
                 .font(.title2)
                 .foregroundColor(.white)

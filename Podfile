@@ -18,9 +18,9 @@ target 'PeiYang Lite' do
 
 end
 
-target 'PeiYangLiteNotificationService' do
-  pod 'GTExtensionSDK'
-end
+#target 'PeiYangLiteNotificationService' do
+# pod 'GTExtensionSDK'
+#end
 
 target 'PeiYangLiteWidgetExtension' do
   # Comment the next line if you don't want to use dynamic frameworks

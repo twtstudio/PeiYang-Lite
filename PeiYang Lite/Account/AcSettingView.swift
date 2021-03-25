@@ -44,7 +44,7 @@ struct AcSettingView: View {
                 NavigationLink(
                     destination: AcSetShowDayView(),
                     label: {
-                        StListView(title: "每周显示天数", caption: String(showCourseNum + 1))
+                        StListView(title: "每周显示天数", caption: String(showCourseNum))
                     })
                 
                 StToggleView(title: "课表显示非本周课程", caption: "课表中将会显示当周并未开课的课程", isOn: $showFullCourse)

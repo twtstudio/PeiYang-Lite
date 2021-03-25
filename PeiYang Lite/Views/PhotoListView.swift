@@ -40,7 +40,7 @@ struct PhotoListView: View {
     }
     // 只能是只读的
     init (imageURLs: [String]) {
-        self._images = .constant([UIImage(named: "Text")!])
+        self._images = .constant([])
         self._imageURLs = State(wrappedValue: imageURLs)
         self.mode = .read
     }
@@ -119,6 +119,13 @@ struct PhotoListView: View {
                     })
                 Spacer()
             }
+            // fullScreenCover得和sheet同级
+            EmptyView()
+                .fullScreenCover(isPresented: $showPhotoBrowser, content: {
+                    SKPhotoView(imageURLs: imageURLs, selectedIdx: seletedIdx)
+                        .background(Color.black.edgesIgnoringSafeArea(.all))
+                        .edgesIgnoringSafeArea(.bottom)
+                })
         }
         // emm竟然只能添加一个alert对一个view
         .alert(isPresented: $showDeleteAlert, content: {
@@ -130,11 +137,7 @@ struct PhotoListView: View {
                   }),
                   secondaryButton: .cancel())
         })
-        .fullScreenCover(isPresented: $showPhotoBrowser, content: {
-            SKPhotoView(imageURLs: imageURLs, selectedIdx: seletedIdx)
-                .background(Color.black.edgesIgnoringSafeArea(.all))
-                .edgesIgnoringSafeArea(.bottom)
-        })
+        
     }
 }
 

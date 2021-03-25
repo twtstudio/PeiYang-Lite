@@ -33,7 +33,7 @@ struct GPADetailView: View {
                     Button(action: {
                         self.presentationMode.wrappedValue.dismiss()
                     }) {
-                        Image(systemName: "arrow.left")
+                        Image(systemName: "chevron.backward")
                             .font(.title)
                             .foregroundColor(.init(hex: gpaTextColor))
                     }

@@ -35,6 +35,7 @@ struct SchQuestionAnswerCellView: View {
                         .clipShape(RoundedRectangle(cornerRadius: 10))
                     Spacer()
                     Text(commentTime)
+                        .foregroundColor(Color(#colorLiteral(red: 0.6941176471, green: 0.6980392157, blue: 0.7450980392, alpha: 1)))
                         .font(.subheadline)
                 }
                 .frame(height: g.size.height)
@@ -47,9 +48,11 @@ struct SchQuestionAnswerCellView: View {
             HStack {
                 if comment.score ?? -1 == -1 {
                     Text("提问者未评分")
+                        .foregroundColor(Color(#colorLiteral(red: 0.6941176471, green: 0.6980392157, blue: 0.7450980392, alpha: 1)))
                         .font(.subheadline)
                 } else {
                     Text("提问者评分: ")
+                        .foregroundColor(Color(#colorLiteral(red: 0.6941176471, green: 0.6980392157, blue: 0.7450980392, alpha: 1)))
                         .font(.subheadline)
                     StarRatingView(rating: .constant(CGFloat(3.5)), type: .half, spacing: 4, maxRating: 5)
                         .frame(height: screen.height * 0.02)
@@ -73,6 +76,7 @@ struct SchQuestionAnswerCellView: View {
                     Image(comment.isLiked ?? false ? "sch-like-fill" : "sch-like")
                 })
                 Text((comment.likes ?? 0).description)
+                    .foregroundColor(Color(#colorLiteral(red: 0.6941176471, green: 0.6980392157, blue: 0.7450980392, alpha: 1)))
                     .font(.subheadline)
             }
         }

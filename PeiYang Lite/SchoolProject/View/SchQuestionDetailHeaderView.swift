@@ -65,7 +65,7 @@ struct SchQuestionDetailHeaderView: View {
                 
                 Text("\(question.msgCount ?? 0)")
                     .font(.subheadline)
-                
+                    .padding(.trailing, 5)
                 
                 Button(action: {
                     likeQuestion()
@@ -74,6 +74,8 @@ struct SchQuestionDetailHeaderView: View {
                 })
                 Text("\(question.likes ?? 0)")
                     .font(.subheadline)
+                    .padding(.trailing, 5)
+                
                 Button(action: {
                     favQuestion()
                 }, label: {

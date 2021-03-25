@@ -41,7 +41,6 @@
 		03D85EBB24DD10A500637AB8 /* WLANCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D85EBA24DD10A500637AB8 /* WLANCardView.swift */; };
 		03D85EBD24DD10AF00637AB8 /* WLANDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D85EBC24DD10AF00637AB8 /* WLANDetailView.swift */; };
 		03D85EBF24DD17B700637AB8 /* WLANLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D85EBE24DD17B700637AB8 /* WLANLoginView.swift */; };
-		507292A3AC195A3008427A49 /* Pods_PeiYangLiteNotificationService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA2BC4513D37049E808DB398 /* Pods_PeiYangLiteNotificationService.framework */; };
 		AD84AA3202491DFCF618DD89 /* Pods_PeiYangLiteWidgetExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04BB6100050161BFA2B5D4B3 /* Pods_PeiYangLiteWidgetExtension.framework */; };
 		C9016EED25E95242007524DD /* StyBuildingSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9016EEC25E95242007524DD /* StyBuildingSectionView.swift */; };
 		C9016EF525E9CC72007524DD /* StySearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9016EF425E9CC72007524DD /* StySearchView.swift */; };
@@ -167,8 +166,6 @@
 		D322203D2605B7A1006349F4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D322203C2605B7A1006349F4 /* AppDelegate.swift */; };
 		D32A545A2604EA0F00F48A0F /* LgSupplyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32A54592604EA0F00F48A0F /* LgSupplyManager.swift */; };
 		D32A54602604EA1700F48A0F /* LgSupplyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32A545F2604EA1700F48A0F /* LgSupplyView.swift */; };
-		D32A54962604F9C700F48A0F /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32A54952604F9C700F48A0F /* NotificationService.swift */; };
-		D32A549A2604F9C700F48A0F /* PeiYangLiteNotificationService.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D32A54932604F9C700F48A0F /* PeiYangLiteNotificationService.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D3466F0D2600C4390056F43C /* KeyboardGuardian.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3466F0C2600C4390056F43C /* KeyboardGuardian.swift */; };
 		D346ACDA25F2A90000A146D8 /* ScrollViewWithRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = D346ACD925F2A90000A146D8 /* ScrollViewWithRefresh.swift */; };
 		D3490D0025FA42B3004AB614 /* SchQuestionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3490CFF25FA42B3004AB614 /* SchQuestionDetailView.swift */; };
@@ -207,13 +204,6 @@
 			remoteGlobalIDString = C9129F8F2513401D00EDE4CE;
 			remoteInfo = PeiYangLiteWidgetExtension;
 		};
-		D32A54982604F9C700F48A0F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 03B6887124D155850020AD47 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D32A54922604F9C700F48A0F;
-			remoteInfo = PeiYangLiteNotificationService;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -224,7 +214,6 @@
 			dstSubfolderSpec = 13;
 			files = (
 				C9129F9E2513401E00EDE4CE /* PeiYangLiteWidgetExtension.appex in Embed App Extensions */,
-				D32A549A2604F9C700F48A0F /* PeiYangLiteNotificationService.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 1;
@@ -275,7 +264,6 @@
 		03D85EBE24DD17B700637AB8 /* WLANLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WLANLoginView.swift; sourceTree = "<group>"; };
 		04BB6100050161BFA2B5D4B3 /* Pods_PeiYangLiteWidgetExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PeiYangLiteWidgetExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		478399CB343B8DC9325A9BC1 /* Pods-PeiYangLiteWidgetExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PeiYangLiteWidgetExtension.release.xcconfig"; path = "Target Support Files/Pods-PeiYangLiteWidgetExtension/Pods-PeiYangLiteWidgetExtension.release.xcconfig"; sourceTree = "<group>"; };
-		7B8BEAAB4D4380C1E74DD09A /* Pods-PeiYangLiteNotificationService.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PeiYangLiteNotificationService.release.xcconfig"; path = "Target Support Files/Pods-PeiYangLiteNotificationService/Pods-PeiYangLiteNotificationService.release.xcconfig"; sourceTree = "<group>"; };
 		A778CB9C0C13C61941F8EA2C /* Pods-PeiYang Lite.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PeiYang Lite.debug.xcconfig"; path = "Target Support Files/Pods-PeiYang Lite/Pods-PeiYang Lite.debug.xcconfig"; sourceTree = "<group>"; };
 		BA2BC4513D37049E808DB398 /* Pods_PeiYangLiteNotificationService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PeiYangLiteNotificationService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9016EEC25E95242007524DD /* StyBuildingSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyBuildingSectionView.swift; sourceTree = "<group>"; };
@@ -391,14 +379,10 @@
 		D322203C2605B7A1006349F4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D32A54592604EA0F00F48A0F /* LgSupplyManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LgSupplyManager.swift; sourceTree = "<group>"; };
 		D32A545F2604EA1700F48A0F /* LgSupplyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LgSupplyView.swift; sourceTree = "<group>"; };
-		D32A54932604F9C700F48A0F /* PeiYangLiteNotificationService.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = PeiYangLiteNotificationService.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		D32A54952604F9C700F48A0F /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
-		D32A54972604F9C700F48A0F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D3466F0C2600C4390056F43C /* KeyboardGuardian.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardGuardian.swift; sourceTree = "<group>"; };
 		D346ACD925F2A90000A146D8 /* ScrollViewWithRefresh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollViewWithRefresh.swift; sourceTree = "<group>"; };
 		D3490CFF25FA42B3004AB614 /* SchQuestionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchQuestionDetailView.swift; sourceTree = "<group>"; };
 		D3490D1125FAE78A004AB614 /* SchQuestionCommentCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchQuestionCommentCellView.swift; sourceTree = "<group>"; };
-		D34DDC092605B61500C96E9E /* PeiYang-Lite-NotificationService-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PeiYang-Lite-NotificationService-Bridging-Header.h"; sourceTree = "<group>"; };
 		D34E4B8C26031609006F49F4 /* PQTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PQTextField.swift; sourceTree = "<group>"; };
 		D357A25625F0FEEA00C061CF /* UniversalExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniversalExtension.swift; sourceTree = "<group>"; };
 		D357A26225F0FFC600C061CF /* SchAnswerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchAnswerManager.swift; sourceTree = "<group>"; };
@@ -421,7 +405,6 @@
 		D3EB57F025F4B40700A9321F /* MutiLineVStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MutiLineVStack.swift; sourceTree = "<group>"; };
 		D3F725EF2603382400249313 /* SKPhotoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKPhotoView.swift; sourceTree = "<group>"; };
 		D7E41DE3E6B713D16EC6B8F9 /* Pods-PeiYangLiteWidgetExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PeiYangLiteWidgetExtension.debug.xcconfig"; path = "Target Support Files/Pods-PeiYangLiteWidgetExtension/Pods-PeiYangLiteWidgetExtension.debug.xcconfig"; sourceTree = "<group>"; };
-		F4FE324460F2677E904371CB /* Pods-PeiYangLiteNotificationService.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PeiYangLiteNotificationService.debug.xcconfig"; path = "Target Support Files/Pods-PeiYangLiteNotificationService/Pods-PeiYangLiteNotificationService.debug.xcconfig"; sourceTree = "<group>"; };
 		FEBDECA626850C8311037F0F /* Pods-PeiYang Lite.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PeiYang Lite.release.xcconfig"; path = "Target Support Files/Pods-PeiYang Lite/Pods-PeiYang Lite.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -441,14 +424,6 @@
 				C9129F952513401D00EDE4CE /* SwiftUI.framework in Frameworks */,
 				C9129F932513401D00EDE4CE /* WidgetKit.framework in Frameworks */,
 				AD84AA3202491DFCF618DD89 /* Pods_PeiYangLiteWidgetExtension.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D32A54902604F9C700F48A0F /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				507292A3AC195A3008427A49 /* Pods_PeiYangLiteNotificationService.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -518,7 +493,6 @@
 				C92C636F2519F40D000C0411 /* PeiYangLiteWidgetExtension.entitlements */,
 				03B6887B24D155850020AD47 /* PeiYang Lite */,
 				C9129F962513401D00EDE4CE /* PeiYangLiteWidget */,
-				D32A54942604F9C700F48A0F /* PeiYangLiteNotificationService */,
 				C9129F912513401D00EDE4CE /* Frameworks */,
 				03B6887A24D155850020AD47 /* Products */,
 				B6F6EFF7A80D1BD8F2E8C7BA /* Pods */,
@@ -530,7 +504,6 @@
 			children = (
 				03B6887924D155850020AD47 /* PeiYang Lite.app */,
 				C9129F902513401D00EDE4CE /* PeiYangLiteWidgetExtension.appex */,
-				D32A54932604F9C700F48A0F /* PeiYangLiteNotificationService.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -701,8 +674,6 @@
 				FEBDECA626850C8311037F0F /* Pods-PeiYang Lite.release.xcconfig */,
 				D7E41DE3E6B713D16EC6B8F9 /* Pods-PeiYangLiteWidgetExtension.debug.xcconfig */,
 				478399CB343B8DC9325A9BC1 /* Pods-PeiYangLiteWidgetExtension.release.xcconfig */,
-				F4FE324460F2677E904371CB /* Pods-PeiYangLiteNotificationService.debug.xcconfig */,
-				7B8BEAAB4D4380C1E74DD09A /* Pods-PeiYangLiteNotificationService.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -1068,16 +1039,6 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		D32A54942604F9C700F48A0F /* PeiYangLiteNotificationService */ = {
-			isa = PBXGroup;
-			children = (
-				D32A54952604F9C700F48A0F /* NotificationService.swift */,
-				D32A54972604F9C700F48A0F /* Info.plist */,
-				D34DDC092605B61500C96E9E /* PeiYang-Lite-NotificationService-Bridging-Header.h */,
-			);
-			path = PeiYangLiteNotificationService;
-			sourceTree = "<group>";
-		};
 		D37DD87225EDFA8700A662E0 /* SchoolProject */ = {
 			isa = PBXGroup;
 			children = (
@@ -1147,7 +1108,6 @@
 			);
 			dependencies = (
 				C9129F9D2513401E00EDE4CE /* PBXTargetDependency */,
-				D32A54992604F9C700F48A0F /* PBXTargetDependency */,
 			);
 			name = "PeiYang Lite";
 			productName = "PeiYang Lite";
@@ -1172,24 +1132,6 @@
 			productReference = C9129F902513401D00EDE4CE /* PeiYangLiteWidgetExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
-		D32A54922604F9C700F48A0F /* PeiYangLiteNotificationService */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D32A549D2604F9C700F48A0F /* Build configuration list for PBXNativeTarget "PeiYangLiteNotificationService" */;
-			buildPhases = (
-				E1301419B139C85A5C5A2D3B /* [CP] Check Pods Manifest.lock */,
-				D32A548F2604F9C700F48A0F /* Sources */,
-				D32A54902604F9C700F48A0F /* Frameworks */,
-				D32A54912604F9C700F48A0F /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = PeiYangLiteNotificationService;
-			productName = PeiYangLiteNotificationService;
-			productReference = D32A54932604F9C700F48A0F /* PeiYangLiteNotificationService.appex */;
-			productType = "com.apple.product-type.app-extension";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -1204,9 +1146,6 @@
 					};
 					C9129F8F2513401D00EDE4CE = {
 						CreatedOnToolsVersion = 12.0;
-					};
-					D32A54922604F9C700F48A0F = {
-						CreatedOnToolsVersion = 12.4;
 					};
 				};
 			};
@@ -1226,7 +1165,6 @@
 			projectRoot = "";
 			targets = (
 				03B6887824D155850020AD47 /* PeiYang Lite */,
-				D32A54922604F9C700F48A0F /* PeiYangLiteNotificationService */,
 				C9129F8F2513401D00EDE4CE /* PeiYangLiteWidgetExtension */,
 			);
 		};
@@ -1252,13 +1190,6 @@
 				C9CF3DB725D2B0B00085263F /* GILROY-BOLD-4.OTF in Resources */,
 				C9D95F0B2531874F00C3C911 /* Morning-Star-1.ttf in Resources */,
 				C9129FCB25135B2100EDE4CE /* Localizable.strings in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D32A54912604F9C700F48A0F /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1337,28 +1268,6 @@
 			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-PeiYangLiteWidgetExtension-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		E1301419B139C85A5C5A2D3B /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-PeiYangLiteNotificationService-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1558,14 +1467,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D32A548F2604F9C700F48A0F /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D32A54962604F9C700F48A0F /* NotificationService.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -1573,11 +1474,6 @@
 			isa = PBXTargetDependency;
 			target = C9129F8F2513401D00EDE4CE /* PeiYangLiteWidgetExtension */;
 			targetProxy = C9129F9C2513401E00EDE4CE /* PBXContainerItemProxy */;
-		};
-		D32A54992604F9C700F48A0F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = D32A54922604F9C700F48A0F /* PeiYangLiteNotificationService */;
-			targetProxy = D32A54982604F9C700F48A0F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1730,14 +1626,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "PeiYang Lite/PeiYang Lite.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 202103142021;
+				CURRENT_PROJECT_VERSION = 202103252300;
 				DEVELOPMENT_ASSET_PATHS = "\"PeiYang Lite/Preview Content\"";
 				DEVELOPMENT_TEAM = T5JB4K7FT9;
 				ENABLE_PREVIEWS = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/UMFramework",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "PeiYang Lite/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1762,14 +1655,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "PeiYang Lite/PeiYang Lite.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 202103142021;
+				CURRENT_PROJECT_VERSION = 202103252300;
 				DEVELOPMENT_ASSET_PATHS = "\"PeiYang Lite/Preview Content\"";
 				DEVELOPMENT_TEAM = T5JB4K7FT9;
 				ENABLE_PREVIEWS = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/UMFramework",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "PeiYang Lite/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1793,7 +1683,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = PeiYangLiteWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 202103142021;
+				CURRENT_PROJECT_VERSION = 202103252300;
 				DEVELOPMENT_TEAM = T5JB4K7FT9;
 				INFOPLIST_FILE = PeiYangLiteWidget/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1818,7 +1708,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = PeiYangLiteWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 202103142021;
+				CURRENT_PROJECT_VERSION = 202103252300;
 				DEVELOPMENT_TEAM = T5JB4K7FT9;
 				INFOPLIST_FILE = PeiYangLiteWidget/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1830,50 +1720,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.twtstudio.PeiYang-Lite.PeiYangLiteWidget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
-		D32A549B2604F9C700F48A0F /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = F4FE324460F2677E904371CB /* Pods-PeiYangLiteNotificationService.debug.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = T5JB4K7FT9;
-				INFOPLIST_FILE = PeiYangLiteNotificationService/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.twtstudio.PeiYang-Lite-PeiYangLiteNotificationService";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "PeiYangLiteNotificationService/PeiYang-Lite-NotificationService-Bridging-Header.h";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		D32A549C2604F9C700F48A0F /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7B8BEAAB4D4380C1E74DD09A /* Pods-PeiYangLiteNotificationService.release.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = T5JB4K7FT9;
-				INFOPLIST_FILE = PeiYangLiteNotificationService/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.twtstudio.PeiYang-Lite-PeiYangLiteNotificationService";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "PeiYangLiteNotificationService/PeiYang-Lite-NotificationService-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1905,15 +1751,6 @@
 			buildConfigurations = (
 				C9129FA02513401E00EDE4CE /* Debug */,
 				C9129FA12513401E00EDE4CE /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		D32A549D2604F9C700F48A0F /* Build configuration list for PBXNativeTarget "PeiYangLiteNotificationService" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D32A549B2604F9C700F48A0F /* Debug */,
-				D32A549C2604F9C700F48A0F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

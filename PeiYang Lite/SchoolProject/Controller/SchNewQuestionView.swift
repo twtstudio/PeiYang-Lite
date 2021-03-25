@@ -115,7 +115,6 @@ struct SchNewQuestionView: View {
                 // 提交
                 Button(action: {
                     submitQuestion()
-                    //                        isLoading = true
                 }, label: {
                     Text("提交")
                         .bold()
@@ -161,12 +160,12 @@ struct SchNewQuestionView: View {
         .onAppear {
             SchTagManager.tagGet { (result) in
                 switch result {
-                    case .success(let tags):
-                        tagSource.tags = tags
-                        
-                        log("获取标签成功")
-                    case .failure(let err):
-                        log(err)
+                case .success(let tags):
+                    tagSource.tags = tags
+                    
+                    log("获取标签成功")
+                case .failure(let err):
+                    log(err)
                 }
             }
         }
@@ -188,37 +187,37 @@ struct SchNewQuestionView: View {
         isLoading = true
         SchQuestionManager.postQuestion(title: textManager.title, content: textManager.detail, tagList: [tag]) { (result) in
             switch result {
-                case .success(let questionId):
-                    if !images.isEmpty {
-                        let group = DispatchGroup()
-                        
-                        for i in 0..<images.count {
-                            group.enter()
-                            SchQuestionManager.postImg(img: images[i], question_id: questionId) { (result) in
-                                switch result {
-                                case .success(let str):
-                                    log("上传图片成功", str)
-                                    group.leave()
-                                case .failure(let err):
-                                    log(err)
-                                    group.leave()
-                                }
+            case .success(let questionId):
+                if !images.isEmpty {
+                    let group = DispatchGroup()
+                    
+                    for i in 0..<images.count {
+                        group.enter()
+                        SchQuestionManager.postImg(img: images[i], question_id: questionId) { (result) in
+                            switch result {
+                            case .success(let str):
+                                log("上传图片成功", str)
+                                group.leave()
+                            case .failure(let err):
+                                log(err)
+                                group.leave()
                             }
                         }
-                        group.notify(queue: .main, work: DispatchWorkItem(block: {
-                            isLoading = false
-                            mode.wrappedValue.dismiss()
-                            print("提交问题成功, id:", questionId)
-                        }))
-                    } else {
+                    }
+                    group.notify(queue: .main, work: DispatchWorkItem(block: {
                         isLoading = false
                         mode.wrappedValue.dismiss()
-                        log("提交问题成功, id:", questionId)
-                    }
-                case .failure(let err):
+                        print("提交问题成功, id:", questionId)
+                    }))
+                } else {
                     isLoading = false
-                    submitError = true
-                    log("提交问题失败", err)
+                    mode.wrappedValue.dismiss()
+                    log("提交问题成功, id:", questionId)
+                }
+            case .failure(let err):
+                isLoading = false
+                submitError = true
+                log("提交问题失败", err)
             }
             
         }

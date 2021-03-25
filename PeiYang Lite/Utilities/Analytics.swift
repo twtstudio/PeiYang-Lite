@@ -12,9 +12,9 @@ struct AnalyticsModifier: ViewModifier {
     
     func body(content: Content) -> some View {
         content
-            .onAppear(perform: {
+            .onAppear {
                 UMAnalyticsSwift.beginLogPageView(pageName: className)
-            })
+            }
             .onDisappear {
                 UMAnalyticsSwift.endLogPageView(pageName: className)
             }

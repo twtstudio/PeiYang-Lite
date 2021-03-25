@@ -28,7 +28,7 @@ struct NavigationBar<Leading, Center, Trailing>: View where Leading: View, Cente
                     Button(action: {
                         self.presentationMode.wrappedValue.dismiss()
                     }) {
-                        Image(systemName: "arrow.left")
+                        Image(systemName: "chevron.backward")
                     }
                     .font(.title2)
                     .foregroundColor(Color(#colorLiteral(red: 0.3856853843, green: 0.403162986, blue: 0.4810273647, alpha: 1)))
