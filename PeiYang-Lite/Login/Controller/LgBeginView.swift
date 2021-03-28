@@ -4,7 +4,6 @@
 //
 //  Created by phoenix Dai on 2021/1/23.
 //
-
 import SwiftUI
 import Combine
 
@@ -12,66 +11,64 @@ struct LgBeginView: View {
     @EnvironmentObject var appState: AppState
 
     var body: some View {
-//        NavigationView {
-//
-//        }
-//        .navigationBarHidden(true)
-        VStack {
-            HStack {// toppest text
-                VStack(alignment: .leading) {
-                    Text("Hello,")
-                    Text("微北洋 4.0")
+        NavigationView {
+            VStack {
+                HStack {// toppest text
+                    VStack(alignment: .leading) {
+                        Text("Hello,")
+                        Text("微北洋 4.0")
+                    }
+                    .foregroundColor(Color.init(red: 98/255, green: 103/255, blue: 124/255))
+                    .font(.custom("PingFangHK-Light", size: UIScreen.main.bounds.height / 20))
+                    
+                    Spacer()
                 }
-                .foregroundColor(Color.init(red: 98/255, green: 103/255, blue: 124/255))
-                .font(.custom("PingFangHK-Light", size: screen.height / 20))
+                .padding()
+                
+
+                
+                Spacer()
+                
+                HStack(){
+                    NavigationLink(destination: LgKeywordLoginView(), isActive: self.$appState.leftHome) {
+                        Text("登录")
+                            .foregroundColor(.white)
+                            .font(.custom("", size: 20))
+                    }
+                    .isDetailLink(false)
+                    .frame(width: UIScreen.main.bounds.width * 0.3, height: UIScreen.main.bounds.height / 15, alignment: .center)
+                    .background(Color.init(red: 79/255, green: 88/255, blue: 107/255))
+                    .cornerRadius(UIScreen.main.bounds.height / 30)
+                    .padding()
+                
+                    ZStack {// the first button need a margin
+                        Color.black
+                            .frame(width: UIScreen.main.bounds.width * 0.3 + 2, height: UIScreen.main.bounds.height / 15 + 2, alignment: .center)
+                            .cornerRadius(UIScreen.main.bounds.height / 30)
+                        NavigationLink(destination: RegisterFirView(), isActive: self.$appState.rightHome) {
+                            Text("注册")
+                                .foregroundColor(.black)
+                                .font(.custom("", size: 20))
+                        }
+                        .isDetailLink(false)
+                        .frame(width: UIScreen.main.bounds.width * 0.3, height: UIScreen.main.bounds.height / 15, alignment: .center)
+                        .background(Color.white)
+                        .cornerRadius(UIScreen.main.bounds.height / 30)
+                        .padding()
+                        
+                    }
+                }
+                .padding(.bottom)
+                
+                
+                Text("首次登录微北洋4.0请使用天外天账号密码登录，在登录后绑定手机号码即可手机验证登录。")
+                    .font(.custom("", size: 14))
+                    .foregroundColor(.gray)
+                    .frame(width: UIScreen.main.bounds.width * 0.6, height: UIScreen.main.bounds.height / 15, alignment: .center)
                 
                 Spacer()
             }
-            .padding()
-            
-
-            
-            Spacer()
-            
-            HStack(){
-                NavigationLink(destination: LgKeywordLoginView(), isActive: self.$appState.leftHome) {
-                    Text("登录")
-                        .foregroundColor(.white)
-                        .font(.custom("", size: 20))
-                }
-                .isDetailLink(false)
-                .frame(width: screen.width * 0.3, height: screen.height / 15, alignment: .center)
-                .background(Color.init(red: 79/255, green: 88/255, blue: 107/255))
-                .cornerRadius(screen.height / 30)
-                .padding()
-            
-                
-                NavigationLink(destination: RegisterFirView(), isActive: self.$appState.rightHome) {
-                    Text("注册")
-                        .foregroundColor(.black)
-                        .font(.custom("", size: 20))
-                }
-                .isDetailLink(false)
-                .frame(width: screen.width * 0.3, height: screen.height / 15, alignment: .center)
-                .background(Color.white)
-                .cornerRadius(screen.height / 30)
-                .overlay(
-                    RoundedRectangle(cornerRadius: UIScreen.main.bounds.height/30)
-                        .stroke(Color.black, lineWidth: 1)
-                )
-                .padding()
-                    
-                
-            }
-            .padding(.bottom)
-            
-            
-            Text("首次登录微北洋4.0请使用天外天账号密码登录，在登录后绑定手机号码即可手机验证登录。")
-                .font(.custom("", size: 14))
-                .foregroundColor(.gray)
-                .frame(width: screen.width * 0.6, height: screen.height / 15, alignment: .center)
-            
-            Spacer()
+            .navigationBarHidden(true)
         }
         .addAnalytics(className: "LoginBeginView")
         .navigationBarHidden(true)
@@ -94,4 +91,3 @@ struct ChooseMethodView_Previews: PreviewProvider {
             .environmentObject(AppState())
     }
 }
-

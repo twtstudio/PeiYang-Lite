@@ -11,6 +11,7 @@ struct AcChangeNameView: View {
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     @State var changeName: String = ""
     @EnvironmentObject var sharedMessage: SharedMessage
+    @AppStorage(SharedMessage.userTokenKey, store: Storage.defaults) private var userToken = ""
     // Alert var
         @State private var AlertMessage: String = "网络出现问题"
         @State private var isShowAlert: Bool = false
@@ -23,7 +24,7 @@ struct AcChangeNameView: View {
                 TextField("", text: $changeName)
                     .foregroundColor(.init(red: 98/255, green: 103/255, blue: 124/255))
                 Button(action: {
-                    AcBindManager.ChangeName(username: changeName) { result in
+                    AcBindManager.ChangeName(username: changeName, token: userToken) { result in
                         switch result{
                         case .success(let data):
                             AlertMessage = data.message

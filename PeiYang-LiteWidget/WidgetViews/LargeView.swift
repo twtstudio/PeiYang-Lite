@@ -151,18 +151,22 @@ struct LargeView: View {
                     }
                 }
             }
-            
+            GeometryReader { g in
             VStack(alignment: .leading) {
                 Text("自习室")
                     .font(.footnote)
                     .foregroundColor(colorScheme == .dark ? .white : Color(#colorLiteral(red: 0.1279886365, green: 0.1797681153, blue: 0.2823780477, alpha: 1)))
+                    .padding(.leading)
                 
                 HStack(alignment: .center) {
-                    RoomCardView()
-                    RoomCardView()
-                    RoomCardView()
-                    RoomCardView()
+                    ForEach(0..<4) { i in
+                        RoomCardView()
+                            .frame(width: (g.size.width-60)/4, height: g.size.height-40, alignment: .center)
+                            .background(Color(#colorLiteral(red: 0.8519811034, green: 0.8703891039, blue: 0.9223362803, alpha: 1)).cornerRadius(8))
+                    }
                 }
+                .padding(.horizontal)
+            }
             }
         }
         }

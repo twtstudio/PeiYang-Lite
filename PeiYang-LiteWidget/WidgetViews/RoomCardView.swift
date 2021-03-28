@@ -9,8 +9,8 @@ import SwiftUI
 
 struct RoomCardView: View {
     var body: some View {
-        ZStack {
-            Image("空闲背景")
+//        ZStack {
+//            Image("空闲背景")
             
             VStack {
                 Text("46教\nA108")
@@ -23,7 +23,7 @@ struct RoomCardView: View {
                     .bold()
                     .foregroundColor(Color(#colorLiteral(red: 0.1279886365, green: 0.1797681153, blue: 0.2823780477, alpha: 1)))
             }
-        }
+//        }
     }
 }
 

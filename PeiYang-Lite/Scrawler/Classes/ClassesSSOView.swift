@@ -4,7 +4,6 @@
 //
 //  Created by TwTStudio on 7/7/20.
 //
-
 import SwiftUI
 import URLImage
 
@@ -21,7 +20,7 @@ struct ClassesSSOView: View {
     @State private var isEnable = true
     
     @State private var isError = false
-    @State private var errorMessage: String = ""
+    @State private var errorMessage: LocalizedStringKey = ""
     
     var body: some View {
         Form {
@@ -34,14 +33,6 @@ struct ClassesSSOView: View {
                 TextField(Localizable.captcha.rawValue, text: $captcha)
                 .keyboardType(.asciiCapable)
                 
-                URLImage(url: URL(string: captchaURL)!) { (image)in
-                    ColorInvertView {
-                        image
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(height: 32)
-                    }
-                }
 //                URLImage(
 //                    URL(string: captchaURL)!,
 //                    placeholder: { _ in
@@ -72,14 +63,14 @@ struct ClassesSSOView: View {
     }
     
     func login() {
-        ClassesManager.login(captcha: captcha) { result in
+        ClassesManager.ssoPost(captcha: captcha) { result in
             switch result {
             case .success:
                 isLogin = true
                 preMode.wrappedValue.dismiss()
             case .failure(let error):
                 isError = true
-                errorMessage = error.localizedDescription
+                errorMessage = error.localizedStringKey
                 password = ""
                 captcha = ""
                 refreshCaptcha()
@@ -94,6 +85,23 @@ struct ClassesSSOView: View {
     }
 }
 
+//struct LoadingView: View {
+//    @State private var isAnimating = false
+//
+//    var body: some View {
+//        Image(systemName: "gear")
+//            .rotationEffect(.degrees(isAnimating ? 360 : 0))
+//            .animation(Animation.linear(duration: 2).repeatForever(autoreverses: false))
+//            .onAppear {
+//                DispatchQueue.main.async { // wired, no animation in the first loading if sync
+//                    isAnimating = true
+//                }
+//            }
+//            .onDisappear {
+//                isAnimating = false
+//            }
+//    }
+//}
 struct ColorInvertView<Content: View>: View {
     @Environment(\.colorScheme) private var colorScheme
     let content: () -> Content

@@ -1,18 +1,18 @@
+
 //
 //  StyCollectionManager.swift
 //  PeiYang Lite
 //
 //  Created by phoenix Dai on 2021/3/7.
 //
-
 import Foundation
 
 class StyCollectionManager {
     static let ticket = "YmFuYW5hLjM3YjU5MDA2M2Q1OTM3MTY0MDVhMmM1YTM4MmIxMTMwYjI4YmY4YTc="
     static let domain = "weipeiyang.twt.edu.cn"
-    static let token = LgSupplyPhManager.token
+//    static let token = LgSupplyPhManager.token
     
-    static func getCollections(completion: @escaping (Result<Collections, Network.Failure>) -> Void) {
+    static func getCollections(token: String, completion: @escaping (Result<Collections, Network.Failure>) -> Void) {
         
         Network.fetch(
             "https://selfstudy.twt.edu.cn/getCollections",
@@ -43,7 +43,7 @@ class StyCollectionManager {
             }
         }
     }
-    static func addFavour(classroomID: String, completion: @escaping (Result<StudyroomOrdinaryMessage, Network.Failure>) -> Void) {
+    static func addFavour(classroomID: String, token: String, completion: @escaping (Result<StudyroomOrdinaryMessage, Network.Failure>) -> Void) {
         Network.fetch(
             "https://selfstudy.twt.edu.cn/addCollection",
             headers:[
@@ -75,7 +75,7 @@ class StyCollectionManager {
         }
     }
     
-    static func deleteFavour(classroomID: String, completion: @escaping (Result<StudyroomOrdinaryMessage, Network.Failure>) -> Void) {
+    static func deleteFavour(classroomID: String, token: String, completion: @escaping (Result<StudyroomOrdinaryMessage, Network.Failure>) -> Void) {
         Network.fetch(
             "https://selfstudy.twt.edu.cn/deleteCollection",
             headers:[
@@ -150,4 +150,6 @@ struct StudyroomOrdinaryMessage: Codable {
 // MARK: - DataClass
 struct NilData: Codable {
 }
+
+
 

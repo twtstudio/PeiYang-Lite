@@ -27,18 +27,17 @@ struct AcClassesBindingView: View {
         .background(
             Color.white
                 .ignoresSafeArea()
-                .frame(width: screen.width, height: screen.height)
+                .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
         )
         .onTapGesture {
             hideKeyboard()
         }
-        .addAnalytics(className: "ClassesBindingView")
     }
     
     
 }
 
-fileprivate struct LoadingView: View {
+struct LoadingView: View {
     @State private var isAnimating = false
     
     var body: some View {
@@ -74,7 +73,7 @@ fileprivate struct ClassesBindingLoginedView: View {
             VStack{
                 HStack{
                     Text("办公网账号绑定")
-                        .font(.custom("Avenir-Black", size: screen.height / 35))
+                        .font(.custom("Avenir-Black", size: UIScreen.main.bounds.height / 35))
                         .foregroundColor(.init(red: 48/255, green: 60/255, blue: 102/255))
                     Text("已绑定")
                         .font(.callout)
@@ -82,45 +81,44 @@ fileprivate struct ClassesBindingLoginedView: View {
                     Spacer()
                 }
                 .padding(.horizontal, 30)
-                .frame(width: screen.width * 0.9)
+                .frame(width: UIScreen.main.bounds.width * 0.9)
                 
-                HStack(spacing: screen.width / 15){
+                HStack(spacing: UIScreen.main.bounds.width / 15){
                     Image("business-circle")
                         .resizable()
-                        .frame(width: screen.width / 8, height: screen.width / 8, alignment: .center)
+                        .frame(width: UIScreen.main.bounds.width / 8, height: UIScreen.main.bounds.width / 8, alignment: .center)
                     Image("bind")
                     Image("TwT-circle")
                         .resizable()
-                        .frame(width: screen.width / 8, height: screen.width / 8, alignment: .center)
+                        .frame(width: UIScreen.main.bounds.width / 8, height: UIScreen.main.bounds.width / 8, alignment: .center)
                 }
-                .padding(.vertical, screen.width / 20)
+                .padding(.vertical, UIScreen.main.bounds.width / 20)
                 
                 Text("绑定账号：\(username)")
                     .foregroundColor(.init(red: 79/255, green: 88/255, blue: 107/255))
-                    .padding(.bottom, screen.width / 5)
+                    .padding(.bottom, UIScreen.main.bounds.width / 5)
                 Button(action: {
                     isShowSignOut = true
                 }) {
                     Text("解除绑定")
                         .foregroundColor(.white)
-                        .frame(width: screen.width * 0.4, height: screen.height / 15, alignment: .center)
+                        .frame(width: UIScreen.main.bounds.width * 0.4, height: UIScreen.main.bounds.height / 15, alignment: .center)
                         .background(Color.init(red: 79/255, green: 88/255, blue: 107/255))
-                        .cornerRadius(screen.height / 30)
+                        .cornerRadius(UIScreen.main.bounds.height / 30)
                 }
                 Spacer()
             }
             // 解绑界面
             Color.black
-                .edgesIgnoringSafeArea(.all)
                 .opacity(isShowSignOut ? 0.5 : 0)
                 .animation(.easeIn)
             
-            VStack(spacing: screen.height / 40) {
+            VStack(spacing: UIScreen.main.bounds.height / 40) {
                 Text("解除办公网绑定后无法正常使用课表、GPA、校务专区功能。您是否确定解除绑定？").padding()
                     .foregroundColor(themeColor)
                     .font(.caption)
                 
-                HStack(spacing: screen.width * 0.1){
+                HStack(spacing: UIScreen.main.bounds.width * 0.1){
                     
                     Button(action:{
                         isShowSignOut = false
@@ -148,7 +146,7 @@ fileprivate struct ClassesBindingLoginedView: View {
                     }
                 }
             }
-            .frame(width: screen.width * 0.8, height: screen.height / 6, alignment: .center)
+            .frame(width: UIScreen.main.bounds.width * 0.8, height: UIScreen.main.bounds.height / 6, alignment: .center)
             .background(Color.init(red: 242/255, green: 242/255, blue: 242/255))
             .cornerRadius(15)
             .shadow(radius: 10)
@@ -161,7 +159,7 @@ fileprivate struct ClassesBindingLoginedView: View {
 fileprivate struct ClassesBindingLoginView: View {
     @State var isEnable: Bool = false
     @State var isError: Bool = false
-    @State private var errorMessage:String = ""
+    @State private var errorMessage: LocalizedStringKey = ""
     
     @Binding var isLogin: Bool
     
@@ -178,50 +176,50 @@ fileprivate struct ClassesBindingLoginView: View {
         VStack{
             HStack{
                 Text("办公网账号绑定")
-                    .font(.custom("Avenir-Black", size: screen.height / 35))
+                    .font(.custom("Avenir-Black", size: UIScreen.main.bounds.height / 35))
                     .foregroundColor(.init(red: 48/255, green: 60/255, blue: 102/255))
                 Text("未绑定")
                     .font(.callout)
                     .foregroundColor(.init(red: 98/255, green: 103/255, blue: 122/255))
                 Spacer()
             }
-            .frame(width: screen.width * 0.9)
+            .frame(width: UIScreen.main.bounds.width * 0.9)
             
-            HStack(spacing: screen.width / 15){
+            HStack(spacing: UIScreen.main.bounds.width / 15){
                 Image("business-circle")
                     .resizable()
-                    .frame(width: screen.width / 8, height: screen.width / 8, alignment: .center)
+                    .frame(width: UIScreen.main.bounds.width / 8, height: UIScreen.main.bounds.width / 8, alignment: .center)
                 Image("bind-gray")
                 Image("TwT-circle")
                     .resizable()
-                    .frame(width: screen.width / 8, height: screen.width / 8, alignment: .center)
+                    .frame(width: UIScreen.main.bounds.width / 8, height: UIScreen.main.bounds.width / 8, alignment: .center)
             }
-            .padding(.top, screen.width / 10)
+            .padding(.top, UIScreen.main.bounds.width / 10)
             
             
             Text("只有绑定了办公网后才能正常使用课表、GPA、校务专区功能。 若忘记密码请前往办公网找回。")
                 .foregroundColor(.init(red: 98/255, green: 103/255, blue: 122/255))
                 .font(.caption)
-                .frame(width: screen.width * 0.7)
+                .frame(width: UIScreen.main.bounds.width * 0.7)
                 .padding()
             VStack(spacing: 25){
                 TextField("学号", text: $username)
                     .padding()
-                    .frame(width: screen.width * 0.9, height: screen.height / 15, alignment: .center)
+                    .frame(width: UIScreen.main.bounds.width * 0.9, height: UIScreen.main.bounds.height / 15, alignment: .center)
                     .background(Color.init(red: 235/255, green: 238/255, blue: 243/255))
                     .cornerRadius(10)
                     .keyboardType(.numberPad)
                 
                 SecureField("密码", text: $password)
                     .padding()
-                    .frame(width: screen.width * 0.9, height: screen.height / 15, alignment: .center)
+                    .frame(width: UIScreen.main.bounds.width * 0.9, height: UIScreen.main.bounds.height / 15, alignment: .center)
                     .background(Color.init(red: 235/255, green: 238/255, blue: 243/255))
                     .cornerRadius(10)
                 
                 HStack {
                     TextField("验证码", text: $captcha)
                         .padding()
-                        .frame(width: screen.width * 0.5, height: screen.height / 15, alignment: .center)
+                        .frame(width: UIScreen.main.bounds.width * 0.5, height: UIScreen.main.bounds.height / 15, alignment: .center)
                         .background(Color.init(red: 235/255, green: 238/255, blue: 243/255))
                         .cornerRadius(10)
                         .keyboardType(.asciiCapable)
@@ -240,18 +238,17 @@ fileprivate struct ClassesBindingLoginView: View {
                         image
                             .resizable()
                             .scaledToFit()
-                            .frame(width: screen.width * 0.2, height: screen.height / 15, alignment: .center)
+                            .frame(width: UIScreen.main.bounds.width * 0.2, height: UIScreen.main.bounds.height / 15, alignment: .center)
                             .cornerRadius(10)
                             .padding(.trailing)
                     }
-                    .onAppear(perform: refreshCaptcha)
                     .onTapGesture(perform: refreshCaptcha)
                     
                 }
-                .frame(width: screen.width * 0.9)
+                .frame(width: UIScreen.main.bounds.width * 0.9)
                 
                 Button(action: {
-                    ClassesManager.login(captcha: captcha) { result in
+                    ClassesManager.ssoPost(captcha: captcha) { result in
                         switch result {
                             case .success:
                                 isLogin = true
@@ -259,7 +256,7 @@ fileprivate struct ClassesBindingLoginView: View {
                                 mode.wrappedValue.dismiss()
                             case .failure(let error):
                                 isError = true
-                                errorMessage = error.localizedDescription
+                                errorMessage = error.localizedStringKey
                                 password = ""
                                 captcha = ""
                                 refreshCaptcha()
@@ -272,9 +269,9 @@ fileprivate struct ClassesBindingLoginView: View {
                 }) {
                     Text("绑定")
                         .foregroundColor(.white)
-                        .frame(width: screen.width * 0.9, height: screen.height / 15, alignment: .center)
+                        .frame(width: UIScreen.main.bounds.width * 0.9, height: UIScreen.main.bounds.height / 15, alignment: .center)
                         .background(Color.init(red: 79/255, green: 88/255, blue: 107/255))
-                        .cornerRadius(screen.height / 30)
+                        .cornerRadius(UIScreen.main.bounds.height / 30)
                 }
                 .disabled(username.isEmpty || password.isEmpty || captcha.isEmpty)
                 

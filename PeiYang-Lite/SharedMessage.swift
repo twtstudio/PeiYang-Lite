@@ -18,6 +18,8 @@ class SharedMessage: ObservableObject {
     static let studyRoomHistoryKey: String = "studyRoomHistoryKey"
     static let schoolDistrictKey: String = "schoolDistrictKey"
     static let userTokenKey: String = "userTokenKey"
+    static let GPABackgroundColorKey: String = "gpaBackgroundColorKey"
+    static let GPATextColorKey: String = "gpaTextColorKey"
     
     static var isSowFullCourse: Bool { Storage.defaults.bool(forKey: isShowFullCourseKey) }
     static var isShowGPA: Bool { Storage.defaults.bool(forKey: isShowGPAKey) }
@@ -26,6 +28,8 @@ class SharedMessage: ObservableObject {
     static var showCourseNum: Int {Int(Storage.defaults.double(forKey: showCourseNumKey))}
     static var schoolDistrict: Int{Storage.defaults.integer(forKey: schoolDistrictKey)}
     static var userToken: String {Storage.defaults.string(forKey: userTokenKey) ?? ""}
+    static var gpaBackgroundColor: Int { Storage.defaults.integer(forKey: GPABackgroundColorKey)}
+    static var gpaTextColor: Int { Storage.defaults.integer(forKey: GPATextColorKey)}
     
 
     

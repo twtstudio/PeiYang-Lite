@@ -103,7 +103,7 @@ class WeatherService {
         case "雪": return "小雪"
         case "晴转多云": return "晴转阴"
         case "多云转晴": return "晴转阴"
-        default: return "sun.max"
+        default: return "晴"
         }
     }
 }

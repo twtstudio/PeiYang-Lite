@@ -12,6 +12,7 @@ struct StyRoomDetailView: View {
     @ObservedObject var store = Storage.courseTable
     private var courseTable: CourseTable { store.object }
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
+    @AppStorage(SharedMessage.userTokenKey, store: Storage.defaults) private var userToken = ""
     
     @State private var isShowCalender = false
     @State var isFavoured: Bool = false
@@ -54,7 +55,7 @@ struct StyRoomDetailView: View {
                 Button(action: {
                     
                     if (isFavoured == false){
-                        StyCollectionManager.addFavour(classroomID: classData.classroomID) {result in
+                        StyCollectionManager.addFavour(classroomID: classData.classroomID, token: userToken) {result in
                             switch result {
                             case .success(let data):
                                 if data.errorCode == 0 {
@@ -66,7 +67,7 @@ struct StyRoomDetailView: View {
                         }
                     }
                     else if (isFavoured == true) {
-                        StyCollectionManager.deleteFavour(classroomID: classData.classroomID) { result in
+                        StyCollectionManager.deleteFavour(classroomID: classData.classroomID, token: userToken) { result in
                             switch result {
                             case .success(let data):
                                 if data.errorCode == 0 {
