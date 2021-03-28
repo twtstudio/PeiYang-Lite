@@ -9,20 +9,22 @@ import SwiftUI
 
 struct LgSupplyView: View {
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
+    @AppStorage(SharedMessage.userTokenKey, store: Storage.defaults) private var userToken = ""
     @State private var telephone = ""
     @State private var verifyCode = ""
     @State private var email = ""
     @State private var codeIsEdit = false
     @State private var timer: Timer?
-    @State private var countDown = 60
+    @State private var countDown = 30
     @State private var isWrong = false
     @State private var phoneNumIsEdit = false
-    static var token = ""
     
     @State private var AlertMessage: String = "网络出现问题"
     @State private var isShowAlert: Bool = false
     @State private var alertTimer: Timer?
     @State private var alertTime = 2
+    
+    @State private var isRetry: Bool = false
     
     @State private var isSupplied = false
     
@@ -48,7 +50,7 @@ struct LgSupplyView: View {
             
             TextField("E-mail", text: $email)
                 .padding()
-                .frame(width: screen.width * 0.9, height: screen.height / 15, alignment: .center)
+                .frame(width: UIScreen.main.bounds.width * 0.9, height: UIScreen.main.bounds.height / 15, alignment: .center)
                 .background(Color.init(red: 235/255, green: 238/255, blue: 243/255))
                 .cornerRadius(15)
                 .shadow(color: Color.black.opacity(0.1), radius: 1, x: 1, y: 1)
@@ -60,7 +62,7 @@ struct LgSupplyView: View {
                     self.phoneNumIsEdit = false
                     self.telephone = tf.text ?? ""
                  }).padding()
-                .frame(width: screen.width * 0.9, height: screen.height / 15, alignment: .center)
+                .frame(width: UIScreen.main.bounds.width * 0.9, height: UIScreen.main.bounds.height / 15, alignment: .center)
                 .background(Color.init(red: 235/255, green: 238/255, blue: 243/255))
                 .cornerRadius(15)
                 .shadow(color: Color.black.opacity(0.1), radius: 1, x: 1, y: 1)
@@ -78,7 +80,7 @@ struct LgSupplyView: View {
                    self.codeIsEdit = false
                    self.verifyCode = tf.text ?? ""
                 }).padding()
-                    .frame(width: screen.width * 0.5, height: screen.height / 15, alignment: .center)
+                    .frame(width: UIScreen.main.bounds.width * 0.5, height: UIScreen.main.bounds.height / 15, alignment: .center)
                     .background(Color.init(red: 235/255, green: 238/255, blue: 243/255))
                     .cornerRadius(15)
                     .shadow(color: Color.black.opacity(0.1), radius: 1, x: 1, y: 1)
@@ -90,42 +92,65 @@ struct LgSupplyView: View {
                 Button(action: {
                     RgRegisterManager.CodePost(phone: telephone){ result in
                         switch result{
-                        case .success(_):
-                            break
-                        case .failure(_):
-                            break
+                        case .success(let data):
+                            AlertMessage = data.message
+                            if AlertMessage == "成功"{
+                                break
+                            } else {
+                                isRetry = true
+                            }
+                        case .failure(let error):
+                           log(error)
                         }
                     }
+                    isShowAlert = true
+                    
+                    alertTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { (time) in
+                        if self.alertTime < 1 {
+                            self.alertTime = 3
+                            time.invalidate()
+                            isShowAlert = false
+                            if AlertMessage == "成功" {
+                                self.mode.wrappedValue.dismiss()
+                            }
+                        }
+                        self.alertTime -= 1
+                    })
                     
                     timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { (t) in
+                        if isRetry {
+                            isRetry = false
+                            countDown = 31
+                            t.invalidate()
+                        }
                         if self.countDown < 1 {
-                            self.countDown = 61
+                            self.countDown = 31
                             t.invalidate()
                         }
                         self.countDown -= 1
                     })
                 }, label: {
-                    Text((countDown == 60) ?  "获取验证码" : "请\(countDown)s之后重试")
+                    Text((countDown == 30) ?  "获取验证码" : "请\(countDown)s之后重试")
                         .foregroundColor((telephone.count != 11) ? .gray : .white)
-                        .frame(width: screen.width * 0.35, height: screen.height / 15, alignment: .center)
+                        .frame(width: UIScreen.main.bounds.width * 0.35, height: UIScreen.main.bounds.height / 15, alignment: .center)
                         .background((telephone.count != 11) ? Color.init(red: 235/255, green: 238/255, blue: 243/255) : Color.init(red: 79/255, green: 88/255, blue: 107/255))
-                        .cornerRadius(screen.height / 30)
+                        .cornerRadius(UIScreen.main.bounds.height / 30)
                         
                 })
-                .disabled(countDown != 60 || telephone.count != 11)
+                .disabled(countDown != 30 || telephone.count != 11)
                 
                 
             }
-            .frame(width: screen.width * 0.9, height: screen.height/15, alignment: .center)
+            .frame(width: UIScreen.main.bounds.width * 0.9, height: UIScreen.main.bounds.height/15, alignment: .center)
             
             Button(action:{
-                LgSupplyPhManager.SupplyPost(telephone: telephone, verifyCode: verifyCode, email: email){ result in
+                LgSupplyPhManager.SupplyPost(telephone: telephone, verifyCode: verifyCode, email: email, token: userToken){ result in
                     switch result{
                     case .success(let data):
                         AlertMessage = data.message
                         isSupplied = true
-                    case .failure(_):
-                        break
+                    case .failure(let error):
+                        log(error)
                     }
                 }
                 isShowAlert = true
@@ -141,11 +166,11 @@ struct LgSupplyView: View {
                 
             }) {
                 Text("登录")
-                    .frame(width: screen.width * 0.9, height: screen.height/15, alignment: .center)
+                    .frame(width: UIScreen.main.bounds.width * 0.9, height: UIScreen.main.bounds.height/15, alignment: .center)
                     .font(.headline)
                     .foregroundColor(.white)
                     .background(Color.init(red: 79/255, green: 88/255, blue: 107/255))
-                    .cornerRadius(screen.height/30)
+                    .cornerRadius(UIScreen.main.bounds.height/30)
             }
             .disabled(telephone == "" || verifyCode == "" || email == "")
             NavigationLink(
@@ -159,7 +184,7 @@ struct LgSupplyView: View {
         .background(
             Color.white
                 .ignoresSafeArea()
-                .frame(width: screen.width, height: screen.height)
+                .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
                 .onTapGesture(perform: {
                     hideKeyboard()
                 })

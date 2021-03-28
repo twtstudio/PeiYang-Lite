@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		C86163F98B76BCBCB60A6221 /* Pods_PeiYang_LiteWidgetExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78444971033F32FCC7B5DEA2 /* Pods_PeiYang_LiteWidgetExtension.framework */; };
+		C99C16262610297700986EF7 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C99C16252610297600986EF7 /* NotificationView.swift */; };
+		C99C162A2610298000986EF7 /* UpdateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C99C16292610298000986EF7 /* UpdateView.swift */; };
+		C99C162E261029CF00986EF7 /* AcChangePsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C99C162D261029CF00986EF7 /* AcChangePsView.swift */; };
+		C99C163226102BEB00986EF7 /* CourseFailedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C99C163126102BEB00986EF7 /* CourseFailedView.swift */; };
 		CA45A53899AD520194CACD00 /* Pods_PeiYang_Lite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C065CD05CD1966D5050600B3 /* Pods_PeiYang_Lite.framework */; };
 		D3540260260DEEF10092D83A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D354025F260DEEF10092D83A /* AppDelegate.swift */; };
 		D3540262260DEEF10092D83A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3540261260DEEF10092D83A /* SceneDelegate.swift */; };
@@ -226,6 +230,10 @@
 		B3F7CFA199C2D0BCA8A32B13 /* Pods-PeiYang-Lite.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PeiYang-Lite.debug.xcconfig"; path = "Target Support Files/Pods-PeiYang-Lite/Pods-PeiYang-Lite.debug.xcconfig"; sourceTree = "<group>"; };
 		BDB731A15EDF94320C852459 /* Pods-PeiYang-Lite.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PeiYang-Lite.release.xcconfig"; path = "Target Support Files/Pods-PeiYang-Lite/Pods-PeiYang-Lite.release.xcconfig"; sourceTree = "<group>"; };
 		C065CD05CD1966D5050600B3 /* Pods_PeiYang_Lite.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PeiYang_Lite.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C99C16252610297600986EF7 /* NotificationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
+		C99C16292610298000986EF7 /* UpdateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateView.swift; sourceTree = "<group>"; };
+		C99C162D261029CF00986EF7 /* AcChangePsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AcChangePsView.swift; sourceTree = "<group>"; };
+		C99C163126102BEB00986EF7 /* CourseFailedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseFailedView.swift; sourceTree = "<group>"; };
 		D354025C260DEEF10092D83A /* PeiYang-Lite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PeiYang-Lite.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D354025F260DEEF10092D83A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D3540261260DEEF10092D83A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -464,6 +472,7 @@
 			isa = PBXGroup;
 			children = (
 				D3540491260DF7EC0092D83A /* PeiYang-Lite.entitlements */,
+				D3540280260DEF2F0092D83A /* SplashView.swift */,
 				D3540304260DEF720092D83A /* Account */,
 				D3540321260DEF720092D83A /* CourseTable */,
 				D35402F5260DEF720092D83A /* Drawer */,
@@ -484,7 +493,6 @@
 				D3540261260DEEF10092D83A /* SceneDelegate.swift */,
 				D3540281260DEF2F0092D83A /* PeiYang-Lite-Bridging-Header.h */,
 				D354027E260DEF2F0092D83A /* SharedMessage.swift */,
-				D3540280260DEF2F0092D83A /* SplashView.swift */,
 				D3540282260DEF2F0092D83A /* UniversalExtension.swift */,
 				D3540265260DEEF10092D83A /* Main.storyboard */,
 				D3540268260DEEF10092D83A /* Assets.xcassets */,
@@ -534,6 +542,9 @@
 		D354028F260DEF710092D83A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C99C163126102BEB00986EF7 /* CourseFailedView.swift */,
+				C99C16292610298000986EF7 /* UpdateView.swift */,
+				C99C16252610297600986EF7 /* NotificationView.swift */,
 				D3540298260DEF710092D83A /* ChartView */,
 				D3540290260DEF710092D83A /* BlurView.swift */,
 				D3540291260DEF710092D83A /* SKPhotoView.swift */,
@@ -785,9 +796,9 @@
 		D35402EE260DEF720092D83A /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				D35402EF260DEF720092D83A /* LgSupplyView.swift */,
 				D35402F0260DEF720092D83A /* LgBeginView.swift */,
 				D35402F1260DEF720092D83A /* LgKeywordLoginView.swift */,
+				D35402EF260DEF720092D83A /* LgSupplyView.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -859,6 +870,7 @@
 				D354030A260DEF720092D83A /* AcBindPhoneView.swift */,
 				D354030B260DEF720092D83A /* AcClassesBindingView.swift */,
 				D354030C260DEF720092D83A /* AcBindEmailView.swift */,
+				C99C162D261029CF00986EF7 /* AcChangePsView.swift */,
 				D354030D260DEF720092D83A /* Model */,
 				D354030F260DEF720092D83A /* AccountView.swift */,
 				D3540310260DEF720092D83A /* AboutTwTView.swift */,
@@ -886,10 +898,10 @@
 		D3540312260DEF720092D83A /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				D3540316260DEF720092D83A /* FgChMeToFindView.swift */,
+				D3540315260DEF720092D83A /* FgFirstStepView.swift */,
 				D3540313260DEF720092D83A /* FgSecondStepView.swift */,
 				D3540314260DEF720092D83A /* FgFinalStepView.swift */,
-				D3540315260DEF720092D83A /* FgFirstStepView.swift */,
-				D3540316260DEF720092D83A /* FgChMeToFindView.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1020,9 +1032,9 @@
 		D3540348260DEF720092D83A /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				D3540349260DEF720092D83A /* RegisterThiView.swift */,
 				D354034A260DEF720092D83A /* RegisterFirView.swift */,
 				D354034B260DEF720092D83A /* RegisterSecView.swift */,
+				D3540349260DEF720092D83A /* RegisterThiView.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1380,8 +1392,10 @@
 				D3540378260DEF720092D83A /* MainView.swift in Sources */,
 				D354037E260DEF720092D83A /* HomeStudyRoomSectionView.swift in Sources */,
 				D354036F260DEF720092D83A /* GPACellListView.swift in Sources */,
+				C99C162A2610298000986EF7 /* UpdateView.swift in Sources */,
 				D35403D8260DEF720092D83A /* SchQuestionDetailHeaderView.swift in Sources */,
 				D35403C9260DEF720092D83A /* SchSearchView.swift in Sources */,
+				C99C163226102BEB00986EF7 /* CourseFailedView.swift in Sources */,
 				D35403B3260DEF720092D83A /* FgFinalStepView.swift in Sources */,
 				D3540399260DEF720092D83A /* LgSupplyView.swift in Sources */,
 				D354039A260DEF720092D83A /* LgBeginView.swift in Sources */,
@@ -1405,6 +1419,7 @@
 				D3540386260DEF720092D83A /* StySearchView.swift in Sources */,
 				D35403B2260DEF720092D83A /* FgSecondStepView.swift in Sources */,
 				D35403A7260DEF720092D83A /* AcChangeColorView.swift in Sources */,
+				C99C16262610297700986EF7 /* NotificationView.swift in Sources */,
 				D3540373260DEF720092D83A /* UMCommonLogSwift.swift in Sources */,
 				D3540370260DEF720092D83A /* UMAnalyticsSwift.swift in Sources */,
 				D35403AD260DEF720092D83A /* AcClassesBindingView.swift in Sources */,
@@ -1417,6 +1432,7 @@
 				D3540387260DEF720092D83A /* StyRoomDetailView.swift in Sources */,
 				D3540285260DEF2F0092D83A /* SplashView.swift in Sources */,
 				D35403B9260DEF720092D83A /* DataStorage.swift in Sources */,
+				C99C162E261029CF00986EF7 /* AcChangePsView.swift in Sources */,
 				D3540360260DEF720092D83A /* MutiLineVStack.swift in Sources */,
 				D35403BC260DEF720092D83A /* Localizable.swift in Sources */,
 				D35403DC260DEF720092D83A /* RegisterThiView.swift in Sources */,

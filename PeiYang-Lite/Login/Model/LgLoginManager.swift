@@ -10,11 +10,8 @@ import Foundation
 
 struct LgLoginManager {
     
-    static let isTokenKey = "tokenIsGet"
     static let isAcLogin = "acIsget"
 
-    static var token: String { Storage.defaults.string(forKey: isTokenKey) ?? "" }
-   
     
     static let ticket = "YmFuYW5hLjM3YjU5MDA2M2Q1OTM3MTY0MDVhMmM1YTM4MmIxMTMwYjI4YmY4YTc="
     static let domain = "weipeiyang.twt.edu.cn"

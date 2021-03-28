@@ -45,22 +45,23 @@ struct LgBeginView: View {
                 .cornerRadius(screen.height / 30)
                 .padding()
             
-                ZStack {// the first button need a margin
-                    Color.black
-                        .frame(width: screen.width * 0.3 + 2, height: screen.height / 15 + 2, alignment: .center)
-                        .cornerRadius(screen.height / 30)
-                    NavigationLink(destination: RegisterFirView(), isActive: self.$appState.rightHome) {
-                        Text("注册")
-                            .foregroundColor(.black)
-                            .font(.custom("", size: 20))
-                    }
-                    .isDetailLink(false)
-                    .frame(width: screen.width * 0.3, height: screen.height / 15, alignment: .center)
-                    .background(Color.white)
-                    .cornerRadius(screen.height / 30)
-                    .padding()
-                    
+                
+                NavigationLink(destination: RegisterFirView(), isActive: self.$appState.rightHome) {
+                    Text("注册")
+                        .foregroundColor(.black)
+                        .font(.custom("", size: 20))
                 }
+                .isDetailLink(false)
+                .frame(width: screen.width * 0.3, height: screen.height / 15, alignment: .center)
+                .background(Color.white)
+                .cornerRadius(screen.height / 30)
+                .overlay(
+                    RoundedRectangle(cornerRadius: UIScreen.main.bounds.height/30)
+                        .stroke(Color.black, lineWidth: 1)
+                )
+                .padding()
+                    
+                
             }
             .padding(.bottom)
             

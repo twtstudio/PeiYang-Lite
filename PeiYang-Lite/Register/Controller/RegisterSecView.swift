@@ -20,7 +20,7 @@ struct RegisterSecView: View {
     
     @State private var codeIsEdit = false
     @State private var timer: Timer?
-    @State private var countDown = 60
+    @State private var countDown = 30
     @State private var isWrong = false
     @State private var phoneNumIsEdit = false
     @State private var idIsEdit = false
@@ -31,6 +31,8 @@ struct RegisterSecView: View {
         @State private var isShowAlert: Bool = false
         @State private var alertTimer: Timer?
         @State private var alertTime = 2
+    
+    @State private var isRetry: Bool = false
     
     var isPhoneNum: Bool {
         if phoneNumIsEdit {
@@ -64,7 +66,7 @@ struct RegisterSecView: View {
                     self.idIsEdit = false
                     self.idNumber = tf.text ?? ""
                  }).padding()
-                .frame(width: screen.width * 0.9, height: screen.height / 15, alignment: .center)
+                .frame(width: UIScreen.main.bounds.width * 0.9, height: UIScreen.main.bounds.height / 15, alignment: .center)
                 .background(fieldColor)
                 .cornerRadius(15)
             .shadow(color: Color.black.opacity(0.1), radius: 1, x: 1, y: 1)
@@ -77,7 +79,7 @@ struct RegisterSecView: View {
             
             TextField("E-Mail", text: $e_mailNum)
                 .padding()
-                .frame(width: screen.width * 0.9, height: screen.height / 15, alignment: .center)
+                .frame(width: UIScreen.main.bounds.width * 0.9, height: UIScreen.main.bounds.height / 15, alignment: .center)
                 .background(Color.init(red: 235/255, green: 238/255, blue: 243/255))
                 .cornerRadius(15)
                 .shadow(color: Color.black.opacity(0.1), radius: 1, x: 1, y: 1)
@@ -91,7 +93,7 @@ struct RegisterSecView: View {
                      self.phoneNumIsEdit = false
                      self.phoneNumber = tf.text ?? ""
                   }).padding()
-                 .frame(width: screen.width * 0.9, height: screen.height / 15, alignment: .center)
+                 .frame(width: UIScreen.main.bounds.width * 0.9, height: UIScreen.main.bounds.height / 15, alignment: .center)
                  .background(fieldColor)
                  .cornerRadius(15)
              .shadow(color: Color.black.opacity(0.1), radius: 1, x: 1, y: 1)
@@ -114,7 +116,7 @@ struct RegisterSecView: View {
                        self.codeIsEdit = false
                        self.code = tf.text ?? ""
                     }).padding()
-                        .frame(width: screen.width * 0.5, height: screen.height / 15, alignment: .center)
+                        .frame(width: UIScreen.main.bounds.width * 0.5, height: UIScreen.main.bounds.height / 15, alignment: .center)
                         .background(fieldColor)
                         .cornerRadius(15)
                         .shadow(color: Color.black.opacity(0.1), radius: 1, x: 1, y: 1)
@@ -129,13 +131,17 @@ struct RegisterSecView: View {
                             switch result {
                             case .success(let data):
                                 AlertMessage = data.message
-                            case .failure(_):
-                                print("wrong")
-                                break
+                                if AlertMessage != "成功"{
+                                    isRetry = true
+                                }
+                            case .failure(let error):
+                                isRetry = true
+                                log(error)
                             }
                         }
                         isShowAlert = true
                         alertTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { (time) in
+                            
                             if self.alertTime < 1 {
                                 self.alertTime = 3
                                 time.invalidate()
@@ -145,25 +151,30 @@ struct RegisterSecView: View {
                         })
                         
                         timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { (t) in
+                            if isRetry {
+                                t.invalidate()
+                                countDown = 31
+                                isRetry = false
+                            }
                             if self.countDown < 1 {
-                                self.countDown = 61
+                                self.countDown = 31
                                 t.invalidate()
                             }
                             self.countDown -= 1
                         })
                     }, label: {
-                        Text((countDown == 60) ?  "获取验证码" : "请\(countDown)s之后重试")
+                        Text((countDown == 30) ?  "获取验证码" : "请\(countDown)s之后重试")
                             .foregroundColor((phoneNumber.count != 11) ? .gray : .white)
-                            .frame(width: screen.width * 0.35, height: screen.height / 15, alignment: .center)
+                            .frame(width: UIScreen.main.bounds.width * 0.35, height: UIScreen.main.bounds.height / 15, alignment: .center)
                             .background((phoneNumber.count != 11) ? Color.init(red: 235/255, green: 238/255, blue: 243/255) : Color.init(red: 79/255, green: 88/255, blue: 107/255))
-                            .cornerRadius(screen.height / 30)
+                            .cornerRadius(UIScreen.main.bounds.height / 30)
                             
                     })
-                    .disabled(countDown != 60 || phoneNumber.count != 11)
+                    .disabled(countDown != 30 || phoneNumber.count != 11)
                     
                     
                 }
-                .frame(width: screen.width * 0.9, height: screen.height/15, alignment: .center)
+                .frame(width: UIScreen.main.bounds.width * 0.9, height: UIScreen.main.bounds.height/15, alignment: .center)
                 
                 if !isCode {
                      Text("请输入正确的验证码(6位数字)")
@@ -212,13 +223,14 @@ struct RegisterSecView: View {
                     }
                     .disabled(phoneNumber == "" || idNumber == "" || e_mailNum == "" || code == "")
                 }
-                .frame(width: screen.width * 0.9, height: screen.height / 15, alignment: .center)
+                .frame(width: UIScreen.main.bounds.width * 0.9, height: UIScreen.main.bounds.height / 15, alignment: .center)
             }
         }
+        .addAnalytics(className: "RegisterViewNo.2")
         .background(
             Color.white
                 .ignoresSafeArea()
-                .frame(width: screen.width, height: screen.height)
+                .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
                 .onTapGesture(perform: {
                     hideKeyboard()
                 })
@@ -230,7 +242,6 @@ struct RegisterSecView: View {
             user.verifyCode = code
         }
         .navigationBarBackButtonHidden(true)
-        .addAnalytics(className: "RegisterViewNo.2")
     }
 }
 

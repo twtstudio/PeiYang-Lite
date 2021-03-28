@@ -16,24 +16,23 @@ class SharedMessage: ObservableObject {
     static let passwordKey: String = "passwordKey"
     static let showCourseNumKey: String = "showCourseNumKey"
     static let studyRoomHistoryKey: String = "studyRoomHistoryKey"
-    static let GPABackgroundColorKey: String = "gpaBackgroundColorKey"
-    static let GPATextColorKey: String = "gpaTextColorKey"
+    static let schoolDistrictKey: String = "schoolDistrictKey"
+    static let userTokenKey: String = "userTokenKey"
     
     static var isSowFullCourse: Bool { Storage.defaults.bool(forKey: isShowFullCourseKey) }
     static var isShowGPA: Bool { Storage.defaults.bool(forKey: isShowGPAKey) }
     static var username: String {Storage.defaults.string(forKey: usernameKey) ?? ""}
     static var password: String {Storage.defaults.string(forKey: passwordKey) ?? ""}
     static var showCourseNum: Int {Int(Storage.defaults.double(forKey: showCourseNumKey))}
-    static var GPABackgroundColor: Int { Storage.defaults.integer(forKey: GPABackgroundColorKey) }
-    static var GPATextColor: Int { Storage.defaults.integer(forKey: GPATextColorKey) }
+    static var schoolDistrict: Int{Storage.defaults.integer(forKey: schoolDistrictKey)}
+    static var userToken: String {Storage.defaults.string(forKey: userTokenKey) ?? ""}
+    
 
     
     @Published var Account: AccountResult = AccountResult(userNumber: "", nickname: "", telephone: "", email: "", token: "", role: "", realname: "", gender: "", department: "", major: "", stuType: "", avatar: "", campus: "")
     @Published var isBindBs: Bool = false
     @Published var isBindPh: Bool = false
     @Published var isBindEm: Bool = false
-    static var schoolDistrictKey: String = "schoolDistrictKey"
-    static var schoolDistrict: Int{Storage.defaults.integer(forKey: schoolDistrictKey)}
     
     // 自习室的时间数据和是否获取信息
     @Published var studyRoomSelectDate: Date = Date()
@@ -52,7 +51,27 @@ class SharedMessage: ObservableObject {
         remove(passwordKey)
         remove(showCourseNumKey)
         remove(schoolDistrictKey)
+        remove(userTokenKey)
     }
-    
+}
 
+class AccountSaveMessage: ObservableObject {
+    static let AccountNameKey: String = "accountnamekey"
+    static let AccountIdKey: String = "accountidkey"
+    static let AccountTelephoneKey: String = "accounttelephonekey"
+    static let AccountEmailKey: String = "accountemailkey"
+    
+    static var accountName: String {Storage.defaults.string(forKey: AccountNameKey) ?? ""}
+    static var accountId: String {Storage.defaults.string(forKey: AccountIdKey) ?? ""}
+    static var accountTelephone: String {Storage.defaults.string(forKey: AccountTelephoneKey) ?? ""}
+    static var accountEmail: String {Storage.defaults.string(forKey: AccountEmailKey) ?? ""}
+    
+    static func remove(_ key: String) { Storage.defaults.removeObject(forKey: key) }
+    
+    static func removeAll() {
+        remove(AccountNameKey)
+        remove(AccountIdKey)
+        remove(AccountEmailKey)
+        remove(AccountTelephoneKey)
+    }
 }

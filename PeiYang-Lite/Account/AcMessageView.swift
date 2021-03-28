@@ -45,11 +45,12 @@ struct AcMessageView: View {
                             Spacer()
                             Image(systemName: "person.circle")
                                 .resizable()
-                                .frame(width: screen.height / 25, height: screen.height / 25, alignment: .center)
+                                .frame(width: UIScreen.main.bounds.height / 25, height: UIScreen.main.bounds.height / 25, alignment: .center)
                                 .foregroundColor(themeColor)
-                                .cornerRadius(screen.height / 50)
+                                .cornerRadius(UIScreen.main.bounds.height / 50)
+
                         }
-                        .frame(height: screen.height / 15, alignment: .center)
+                        .frame(height: UIScreen.main.bounds.height / 15, alignment: .center)
                     }
                     
                     NavigationLink(
@@ -65,17 +66,22 @@ struct AcMessageView: View {
                                    selection: $selectedItem){
                         AcListView(title: "办公网", caption: isLogin ? "已绑定" : "未绑定")
                     }
+                    NavigationLink(destination: AcChangePsView(),
+                                   tag: "2",
+                                   selection: $selectedItem){
+                        AcListView(title: "密码更改", caption: "")
+                    }
                 }
                 
                 Section() {
                     NavigationLink(destination: AcBindPhoneView(),
-                                   tag: "2",
+                                   tag: "3",
                                    selection: $selectedItem){
                         AcListView2(img: "phone", title: "电话", caption: sharedMessage.isBindPh ? "已绑定" : "未绑定")
                     }
                     
-                    NavigationLink(destination: AcBindEmailView(),
-                                   tag: "3",
+                    NavigationLink(destination: AcChangePsView(),
+                                   tag: "4",
                                    selection: $selectedItem){
                         AcListView2(img: "email", title: "邮箱", caption: sharedMessage.isBindEm ? "已绑定" : "未绑定")
                     }

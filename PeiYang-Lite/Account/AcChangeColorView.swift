@@ -96,7 +96,7 @@ struct AcChangeColorView: View {
             
             VStack(spacing: 10) {
                 //MARK: CourseTable's Color
-                Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+                Button(action: {}, label: {
                     Text("blue ashes")
                         .foregroundColor(.white)
                         .frame(width: screen.width * 0.9, height: screen.height / 15)
@@ -104,7 +104,7 @@ struct AcChangeColorView: View {
                         .cornerRadius(10)
                 })
                 
-                Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+                Button(action: {}, label: {
                     Text("sap green")
                         .foregroundColor(.white)
                         .frame(width: screen.width * 0.9, height: screen.height / 15)
@@ -112,7 +112,7 @@ struct AcChangeColorView: View {
                         .cornerRadius(10)
                 })
                 
-                Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+                Button(action: {}, label: {
                     Text("earth yellow")
                         .foregroundColor(.white)
                         .frame(width: screen.width * 0.9, height: screen.height / 15)

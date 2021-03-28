@@ -14,13 +14,15 @@ struct FgFirstStepView: View {
     @State private var phoneNumIsEdit = false
     @State private var codeIsEdit = false
     @State private var waitingTimer: Timer?
-    @State private var countDown = 60
+    @State private var countDown = 30
     
     @State private var AlertMessage: String = "网络出现问题"
     @State private var isShowAlert: Bool = false
     @State private var alertTimer: Timer?
     @State private var alertTime = 2
     @State private var isVerifyCode = false
+    
+    @State private var isRetry: Bool = false
     
     var isPhoneNum: Bool {
         if phoneNumIsEdit {
@@ -52,7 +54,7 @@ struct FgFirstStepView: View {
                     self.phoneNum = tf.text ?? ""
                  })
                 .padding()
-                .frame(width: screen.width * 0.9, height: screen.height / 15, alignment: .center)
+                .frame(width: UIScreen.main.bounds.width * 0.9, height: UIScreen.main.bounds.height / 15, alignment: .center)
                 .background(Color.init(red: 235/255, green: 238/255, blue: 243/255))
                 .cornerRadius(15)
                 .shadow(color: Color.black.opacity(0.1), radius: 1, x: 1, y: 1)
@@ -72,7 +74,7 @@ struct FgFirstStepView: View {
                         self.code = tf.text ?? ""
                      })
                     .padding()
-                    .frame(width: screen.width * 0.5, height: screen.height / 15, alignment: .center)
+                    .frame(width: UIScreen.main.bounds.width * 0.5, height: UIScreen.main.bounds.height / 15, alignment: .center)
                     .background(Color.init(red: 235/255, green: 238/255, blue: 243/255))
                     .cornerRadius(15)
                     .shadow(color: Color.black.opacity(0.1), radius: 1, x: 1, y: 1)
@@ -84,7 +86,10 @@ struct FgFirstStepView: View {
                         switch result {
                         case .success(let data):
                             AlertMessage = data.message
-                        case .failure(_): break
+                            if AlertMessage != "成功"{
+                                isRetry = true
+                            }
+                        case .failure(_): isRetry = true
                         }
                     }
                     isShowAlert = true
@@ -99,24 +104,29 @@ struct FgFirstStepView: View {
                     })
                     
                     waitingTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { (time) in
+                        if isRetry {
+                            isRetry = false
+                            countDown = 31
+                            time.invalidate()
+                        }
                         if self.countDown < 1 {
-                            self.countDown = 61
+                            self.countDown = 31
                             time.invalidate()
                         }
                         self.countDown -= 1
                     })
                 }, label: {
-                    Text((countDown == 60) ?  "获取验证码" : "请\(countDown)s之后重试")
+                    Text((countDown == 30) ?  "获取验证码" : "请\(countDown)s之后重试")
                         .foregroundColor(.white)
-                        .frame(width: screen.width * 0.35, height: screen.height / 15, alignment: .center)
+                        .frame(width: UIScreen.main.bounds.width * 0.35, height: UIScreen.main.bounds.height / 15, alignment: .center)
                         .background(Color.init(red: 79/255, green: 88/255, blue: 107/255))
-                        .cornerRadius(screen.height / 30)
+                        .cornerRadius(UIScreen.main.bounds.height / 30)
                         .shadow(color: Color.black.opacity(0.5), radius: 2, x: 0, y: 1)
                         
                 })
-                .disabled(countDown != 60 || phoneNum.count != 11)
+                .disabled(countDown != 30 || phoneNum.count != 11)
             }
-            .frame(width: screen.width * 0.9, height: screen.height / 15, alignment: .center)
+            .frame(width: UIScreen.main.bounds.width * 0.9, height: UIScreen.main.bounds.height / 15, alignment: .center)
             if !isCode {
                  Text("请输入正确的验证码(6位数字)")
                      .font(.headline)
@@ -163,13 +173,13 @@ struct FgFirstStepView: View {
                 
             
             }
-            .frame(width: screen.width * 0.9, height: screen.height / 15, alignment: .center)
+            .frame(width: UIScreen.main.bounds.width * 0.9, height: UIScreen.main.bounds.height / 15, alignment: .center)
             
         }
         .background(
             Color.white
                 .ignoresSafeArea()
-                .frame(width: screen.width, height: screen.height)
+                .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
                 .onTapGesture(perform: {
                     hideKeyboard()
                 })
