@@ -448,6 +448,22 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		C926FC442611A9BE007F0C43 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				D3540305260DEF720092D83A /* AcChangeColorView.swift */,
+				D3540306260DEF720092D83A /* AcSetShowDayView.swift */,
+				D3540307260DEF720092D83A /* AcMessageView.swift */,
+				D3540308260DEF720092D83A /* AcSettingView.swift */,
+				D3540309260DEF720092D83A /* AcChangeNameView.swift */,
+				D354030A260DEF720092D83A /* AcBindPhoneView.swift */,
+				D354030B260DEF720092D83A /* AcClassesBindingView.swift */,
+				D354030C260DEF720092D83A /* AcBindEmailView.swift */,
+				C99C162D261029CF00986EF7 /* AcChangePsView.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		D3540253260DEEF10092D83A = {
 			isa = PBXGroup;
 			children = (
@@ -862,15 +878,7 @@
 		D3540304260DEF720092D83A /* Account */ = {
 			isa = PBXGroup;
 			children = (
-				D3540305260DEF720092D83A /* AcChangeColorView.swift */,
-				D3540306260DEF720092D83A /* AcSetShowDayView.swift */,
-				D3540307260DEF720092D83A /* AcMessageView.swift */,
-				D3540308260DEF720092D83A /* AcSettingView.swift */,
-				D3540309260DEF720092D83A /* AcChangeNameView.swift */,
-				D354030A260DEF720092D83A /* AcBindPhoneView.swift */,
-				D354030B260DEF720092D83A /* AcClassesBindingView.swift */,
-				D354030C260DEF720092D83A /* AcBindEmailView.swift */,
-				C99C162D261029CF00986EF7 /* AcChangePsView.swift */,
+				C926FC442611A9BE007F0C43 /* Controller */,
 				D354030D260DEF720092D83A /* Model */,
 				D354030F260DEF720092D83A /* AccountView.swift */,
 				D3540310260DEF720092D83A /* AboutTwTView.swift */,
