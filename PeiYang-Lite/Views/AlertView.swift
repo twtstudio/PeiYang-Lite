@@ -16,12 +16,13 @@ struct AlertView: View {
             Text(alertMessage)
                 .multilineTextAlignment(.center)
                 .lineLimit(nil)
-                .foregroundColor(.white)
+                .foregroundColor(alertMessage == "成功" ? .black : .white)
                 .animation(.none)
                 .padding()
         }
         .frame(width: screen.width * 0.4, height: screen.height/10, alignment: .center)
-        .background(Color.black)
+        .background(alertMessage == "成功" ? Color.green : Color.black)
+        .animation(.none)
         .cornerRadius(screen.height/80)
         .opacity(isShow ? 1 : 0)
         .animation(

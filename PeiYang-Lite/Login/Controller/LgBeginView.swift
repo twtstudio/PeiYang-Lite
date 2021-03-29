@@ -76,10 +76,6 @@ struct LgBeginView: View {
         }
         .addAnalytics(className: "LoginBeginView")
         .navigationBarHidden(true)
-//        .onDisappear(perform: {
-//            let array: [String] = []
-//            UserDefaults.standard.set(array, forKey: SharedMessage.studyRoomHistoryKey)
-//        })
     }
 }
 
