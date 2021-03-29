@@ -248,7 +248,7 @@ fileprivate struct ClassesBindingLoginView: View {
                 .frame(width: UIScreen.main.bounds.width * 0.9)
                 
                 Button(action: {
-                    ClassesManager.ssoPost(captcha: captcha) { result in
+                    ClassesManager.login(captcha: captcha) { result in
                         switch result {
                             case .success:
                                 isLogin = true
@@ -262,7 +262,6 @@ fileprivate struct ClassesBindingLoginView: View {
                                 refreshCaptcha()
                                 isLogin = false
                         }
-                        
                         isEnable = true
                     }
                     isEnable = false

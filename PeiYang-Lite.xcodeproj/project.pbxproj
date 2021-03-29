@@ -472,7 +472,6 @@
 			isa = PBXGroup;
 			children = (
 				D3540491260DF7EC0092D83A /* PeiYang-Lite.entitlements */,
-				D3540280260DEF2F0092D83A /* SplashView.swift */,
 				D3540304260DEF720092D83A /* Account */,
 				D3540321260DEF720092D83A /* CourseTable */,
 				D35402F5260DEF720092D83A /* Drawer */,
@@ -491,9 +490,10 @@
 				D3540289260DEF710092D83A /* WLAN */,
 				D354025F260DEEF10092D83A /* AppDelegate.swift */,
 				D3540261260DEEF10092D83A /* SceneDelegate.swift */,
-				D3540281260DEF2F0092D83A /* PeiYang-Lite-Bridging-Header.h */,
+				D3540280260DEF2F0092D83A /* SplashView.swift */,
 				D354027E260DEF2F0092D83A /* SharedMessage.swift */,
 				D3540282260DEF2F0092D83A /* UniversalExtension.swift */,
+				D3540281260DEF2F0092D83A /* PeiYang-Lite-Bridging-Header.h */,
 				D3540265260DEEF10092D83A /* Main.storyboard */,
 				D3540268260DEEF10092D83A /* Assets.xcassets */,
 				D354026A260DEEF10092D83A /* LaunchScreen.storyboard */,

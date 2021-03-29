@@ -64,7 +64,7 @@ struct CourseFailedView: View {
             
             Button(action: {
                 isEnable = false
-                ClassesManager.ssoPost(captcha: captcha) { result in
+                ClassesManager.login(captcha: captcha) { result in
                     switch result {
                         case .success:
                             isLogin = true

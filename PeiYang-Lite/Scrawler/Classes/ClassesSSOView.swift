@@ -4,6 +4,7 @@
 //
 //  Created by TwTStudio on 7/7/20.
 //
+
 import SwiftUI
 import URLImage
 
@@ -20,7 +21,7 @@ struct ClassesSSOView: View {
     @State private var isEnable = true
     
     @State private var isError = false
-    @State private var errorMessage: LocalizedStringKey = ""
+    @State private var errorMessage: String = ""
     
     var body: some View {
         Form {
@@ -31,23 +32,31 @@ struct ClassesSSOView: View {
             
             HStack {
                 TextField(Localizable.captcha.rawValue, text: $captcha)
-                .keyboardType(.asciiCapable)
+                    .keyboardType(.asciiCapable)
                 
-//                URLImage(
-//                    URL(string: captchaURL)!,
-//                    placeholder: { _ in
-//                        LoadingView()
-//                    },
-//                    content: { imageProxy in
-//                        ColorInvertView {
-//                            imageProxy.image
-//                                .resizable()
-//                                .aspectRatio(contentMode: .fit)
-//                                .frame(height: 32)
-//                        }
-//                    }
-//                )
-//                .onTapGesture(perform: refreshCaptcha)
+                URLImage(url: URL(string: captchaURL)!) { (image)in
+                    ColorInvertView {
+                        image
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(height: 32)
+                    }
+                }
+                //                URLImage(
+                //                    URL(string: captchaURL)!,
+                //                    placeholder: { _ in
+                //                        LoadingView()
+                //                    },
+                //                    content: { imageProxy in
+                //                        ColorInvertView {
+                //                            imageProxy.image
+                //                                .resizable()
+                //                                .aspectRatio(contentMode: .fit)
+                //                                .frame(height: 32)
+                //                        }
+                //                    }
+                //                )
+                //                .onTapGesture(perform: refreshCaptcha)
             }
             
             Button(Localizable.login.rawValue) {
@@ -63,14 +72,14 @@ struct ClassesSSOView: View {
     }
     
     func login() {
-        ClassesManager.ssoPost(captcha: captcha) { result in
+        ClassesManager.login(captcha: captcha) { result in
             switch result {
             case .success:
                 isLogin = true
                 preMode.wrappedValue.dismiss()
             case .failure(let error):
                 isError = true
-                errorMessage = error.localizedStringKey
+                errorMessage = error.localizedDescription
                 password = ""
                 captcha = ""
                 refreshCaptcha()
@@ -85,36 +94,19 @@ struct ClassesSSOView: View {
     }
 }
 
-//struct LoadingView: View {
-//    @State private var isAnimating = false
-//
-//    var body: some View {
-//        Image(systemName: "gear")
-//            .rotationEffect(.degrees(isAnimating ? 360 : 0))
-//            .animation(Animation.linear(duration: 2).repeatForever(autoreverses: false))
-//            .onAppear {
-//                DispatchQueue.main.async { // wired, no animation in the first loading if sync
-//                    isAnimating = true
-//                }
-//            }
-//            .onDisappear {
-//                isAnimating = false
-//            }
-//    }
-//}
 struct ColorInvertView<Content: View>: View {
     @Environment(\.colorScheme) private var colorScheme
     let content: () -> Content
-
+    
     var body: some View {
         colorScheme == .dark
-        ? AnyView(
-            content()
-                .colorInvert()
-        )
-        : AnyView(
-            content()
-        )
+            ? AnyView(
+                content()
+                    .colorInvert()
+            )
+            : AnyView(
+                content()
+            )
     }
 }
 

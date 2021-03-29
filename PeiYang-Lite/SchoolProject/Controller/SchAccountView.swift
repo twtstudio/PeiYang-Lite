@@ -26,7 +26,6 @@ struct SchAccountView: View {
     }
     
     var body: some View {
-        
         VStack {
             NavigationBar(leading: {
                 Button(action: {
@@ -102,13 +101,11 @@ struct SchAccountView: View {
             })
             
             Spacer()
-            
-            
-            
         }
         .background(SchBackGround())
         .navigationBarHidden(true)
         .addAnalytics(className: "SchoolProjectAccountView")
+        .onAppear(perform: loadQuestionData)
     }
     
     private func loadQuestionData() {
@@ -116,6 +113,7 @@ struct SchAccountView: View {
             switch result {
                 case .success(let questions):
                     self.favQuestions = questions
+                    print(favQuestions)
                 case .failure(let err):
                     log(err)
             }
