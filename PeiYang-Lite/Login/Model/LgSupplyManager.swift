@@ -9,9 +9,8 @@ import Foundation
 struct LgSupplyPhManager {
     static let ticket = "YmFuYW5hLjM3YjU5MDA2M2Q1OTM3MTY0MDVhMmM1YTM4MmIxMTMwYjI4YmY4YTc="
     static let domain = "weipeiyang.twt.edu.cn"
-//    static var token = ""
     
-    static func CodePost(phone: String, token: String, completion: @escaping (Result<OrdinaryMessage, Network.Failure>) -> Void) {
+    static func CodePost(phone: String, completion: @escaping (Result<OrdinaryMessage, Network.Failure>) -> Void) {
         Network.fetch(
             "https://api.twt.edu.cn/api/user/phone/msg",
             query: [
@@ -20,7 +19,7 @@ struct LgSupplyPhManager {
             headers:[
                 "ticket": ticket,
                 "domain": domain,
-                "token": token
+                "token": Storage.defaults.string(forKey: SharedMessage.userTokenKey) ?? ""
             ],
             method: .post
         ) {
@@ -45,7 +44,7 @@ struct LgSupplyPhManager {
         }
     }
     
-    static func SupplyPost(telephone: String, verifyCode: String, email: String, token: String, completion: @escaping (Result<OrdinaryMessage, Network.Failure>) -> Void) {
+    static func SupplyPost(telephone: String, verifyCode: String, email: String, completion: @escaping (Result<OrdinaryMessage, Network.Failure>) -> Void) {
         Network.fetch(
             "https://api.twt.edu.cn/api/user/single",
             query: [
@@ -56,7 +55,7 @@ struct LgSupplyPhManager {
             headers:[
                 "ticket": ticket,
                 "domain": domain,
-                "token": token
+                "token": Storage.defaults.string(forKey: SharedMessage.userTokenKey) ?? ""
             ],
             method: .put
         ) {

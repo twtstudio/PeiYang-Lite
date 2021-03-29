@@ -34,26 +34,33 @@ struct LgBeginView: View {
                         Text("登录")
                             .foregroundColor(.white)
                             .font(.custom("", size: 20))
+                            .frame(width: UIScreen.main.bounds.width * 0.3, height: UIScreen.main.bounds.height / 15, alignment: .center)
+                            .background(Color.init(red: 79/255, green: 88/255, blue: 107/255))
+                            .cornerRadius(UIScreen.main.bounds.height / 30)
                     }
                     .isDetailLink(false)
-                    .frame(width: UIScreen.main.bounds.width * 0.3, height: UIScreen.main.bounds.height / 15, alignment: .center)
-                    .background(Color.init(red: 79/255, green: 88/255, blue: 107/255))
-                    .cornerRadius(UIScreen.main.bounds.height / 30)
-                    .padding()
                     
+                    .padding()
+                
+                    
+                        
                     NavigationLink(destination: RegisterFirView(), isActive: self.$appState.rightHome) {
                         Text("注册")
                             .foregroundColor(.black)
                             .font(.custom("", size: 20))
+                            .frame(width: UIScreen.main.bounds.width * 0.3, height: UIScreen.main.bounds.height / 15, alignment: .center)
+                            .background(Color.white)
+                            .cornerRadius(UIScreen.main.bounds.height / 30)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: UIScreen.main.bounds.height / 30)
+                                    .stroke(Color.black, lineWidth: 1)
+                            )
                     }
                     .isDetailLink(false)
-                    .frame(width: UIScreen.main.bounds.width * 0.3, height: UIScreen.main.bounds.height / 15, alignment: .center)
-                    .background(Color.white)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: screen.height / 30)
-                            .stroke(Color.init(red: 79/255, green: 88/255, blue: 107/255), lineWidth: 1)
-                    )
+                   
                     .padding()
+                        
+                    
                 }
                 .padding(.bottom)
                 
@@ -69,10 +76,6 @@ struct LgBeginView: View {
         }
         .addAnalytics(className: "LoginBeginView")
         .navigationBarHidden(true)
-        //        .onDisappear(perform: {
-        //            let array: [String] = []
-        //            UserDefaults.standard.set(array, forKey: SharedMessage.studyRoomHistoryKey)
-        //        })
     }
 }
 

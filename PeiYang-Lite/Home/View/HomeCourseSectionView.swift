@@ -26,7 +26,10 @@ struct HomeCourseSectionView: View {
     }
     
     private var currentCourseArray: [Course] {
-        activeCourseArray.filter { $0.arrangeArray.map(\.weekday).contains(courseTable.currentWeekday) && $0.arrangeArray.map(\.weekday).contains(activeWeek) }
+        activeCourseArray.filter {
+            $0.arrangeArray.map(\.weekday).contains(courseTable.currentWeekday) &&
+                $0.arrangeArray.flatMap(\.weekArray).contains(activeWeek)
+        }
     }
     
     private var colorHelper: ColorHelper { ColorHelper.shared }
@@ -46,16 +49,19 @@ struct HomeCourseSectionView: View {
                 .foregroundColor(Color(#colorLiteral(red: 0.3803921569, green: 0.3960784314, blue: 0.4862745098, alpha: 1)))
                 .padding(.horizontal)
         }) {
-        NavigationLink(destination: CourseTableDetailView()) {
+            //            NavigationLink(destination: CourseTableDetailView()) {
             if currentCourseArray.isEmpty {
                 ZStack(alignment: .center) {
                     RoundedRectangle(cornerRadius: 10)
                         .frame(width: screen.width-40, height: screen.width/2 - 40)
                         .foregroundColor(Color(#colorLiteral(red: 0.3856853843, green: 0.403162986, blue: 0.4810273647, alpha: 1)))
                         .padding()
-                        
+                    
                     Text(Localizable.emptyCourseMeesage.rawValue)
                         .foregroundColor(.white)
+                }
+                .onTapGesture {
+                    print(activeCourseArray, currentCourseArray)
                 }
             } else {
                 ScrollView(.horizontal, showsIndicators: false) {
@@ -63,22 +69,22 @@ struct HomeCourseSectionView: View {
                         ForEach(currentCourseArray, id: \.no) { course in
                             VStack(alignment: .leading) {
                                 Group {
-                                Text(course.name)
-                                    .bold()
-                                    .lineLimit(2)
-                                    .font(.body)
-                                    .padding()
-                                
-                                Spacer()
-                                    .frame(height: 20)
-                                
-                                Text(course.activeArrange(courseTable.currentWeekday).unitTimeString)
-                                    .font(.footnote)
-                                    .padding()
-                            
-                                Text(course.activeArrange(courseTable.currentWeekday).location)
-                                    .bold()
-                                    .padding([.horizontal, .bottom])
+                                    Text(course.name)
+                                        .bold()
+                                        .lineLimit(2)
+                                        .font(.body)
+                                        .padding()
+                                    
+                                    Spacer()
+                                        .frame(height: 20)
+                                    
+                                    Text(course.activeArrange(courseTable.currentWeekday).unitTimeString)
+                                        .font(.footnote)
+                                        .padding()
+                                    
+                                    Text(course.activeArrange(courseTable.currentWeekday).location)
+                                        .bold()
+                                        .padding([.horizontal, .bottom])
                                 }
                                 .foregroundColor(.white)
                                 
@@ -87,16 +93,16 @@ struct HomeCourseSectionView: View {
                             .background(colorHelper.color[course.no])
                             .contentShape(RoundedRectangle(cornerRadius: 15))
                             .clipShape(RoundedRectangle(cornerRadius: 15))
-    //                        .padding(.leading, 10)
+                            //                        .padding(.leading, 10)
                         }
                     }
                     .frame(height: screen.width)
                     .padding(.leading, 10)
                 }
                 .frame(height: screen.width/2)
+                //                }
             }
         }
-    }
     }
     
 }

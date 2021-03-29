@@ -1,4 +1,12 @@
+//
+//  CourseTableDetailView.swift
+//  PeiYang Lite
+//
+//  Created by TwTStudio on 7/30/20.
+//
+
 import SwiftUI
+import SwiftMessages
 
 struct CourseTableDetailView: View {
     @ObservedObject var store = Storage.courseTable
@@ -14,14 +22,17 @@ struct CourseTableDetailView: View {
     @AppStorage(ClassesManager.isLoginKey, store: Storage.defaults) private var isLogin = true
     @EnvironmentObject var sharedMessage: SharedMessage
     
-    @State private var showLogin = false
+//    @State private var showLogin = false
     
     @State private var activeWeek = Storage.courseTable.object.currentWeek
     
     @StateObject private var alertCourse: AlertCourse = .init()
     
     @State private var isError = false
+    @State private var showRelogin = false
     @State private var errorMessage: String = ""
+    
+    
     
     var body: some View {
         
@@ -44,7 +55,7 @@ struct CourseTableDetailView: View {
                 CourseTableWeekdaysView(
                     activeWeek: $activeWeek,
                     courseTable: courseTable,
-                    width: screen.width,//9
+                    width: screen.width,
                     showCourseNum: showCourseNum
                 )
                 .frame(width: screen.width, alignment: .center)
@@ -70,11 +81,10 @@ struct CourseTableDetailView: View {
                         }
                     }
                 }
-                NavigationLink(
-                    destination: AcClassesBindingView(),
-                    isActive: $showLogin,
-                    label: { EmptyView() })
-                
+//                NavigationLink(
+//                    destination: AcClassesBindingView(),
+//                    isActive: $showLogin,
+//                    label: { EmptyView() })
             }
             
             if alertCourse.showDetail {
@@ -104,43 +114,24 @@ struct CourseTableDetailView: View {
                 }
             }
         }
-        .onAppear(perform: {
-            load()
-        })
+        .onAppear(perform: load)
         .edgesIgnoringSafeArea(.bottom)
         .navigationBarHidden(true)
         .addAnalytics(className: "CourseTableDetailView")
+        .showReloginView($showRelogin) { (result) in
+            switch result {
+            case .success:
+                showRelogin = false
+                self.reload()
+            case .failure: break
+            }
+        }
     }
     
     //MARK: function: LOAD
     func load() {
         if courseTable.courseArray.isEmpty {
-            isLoading = true
-            ClassesManager.checkLogin { result in
-                switch result {
-                case .success:
-                    ClassesManager.getCourseTable { result in
-                        switch result {
-                        case .success(let courseTable):
-                            store.object = courseTable
-                            store.save()
-                        case .failure(let error):
-                            log(error)
-                        }
-                        isLoading = false
-                    }
-                    return
-                case .failure(let error):
-                    sharedMessage.isBindBs = false
-                    if error == .requestFailed {
-                        isError = true
-                        errorMessage = error.localizedDescription
-                    } else {
-                        showLogin = true
-                        isLoading = false
-                    }
-                }
-            }
+            reload()
         }
     }
     
@@ -155,7 +146,7 @@ struct CourseTableDetailView: View {
                         store.object = courseTable
                         store.save()
                     case .failure(let error):
-                        print(error)
+                        log(error)
                     }
                     isLoading = false
                 }
@@ -168,13 +159,11 @@ struct CourseTableDetailView: View {
                 } else {
                     sharedMessage.isBindBs = false
                     isLogin = false
-                    showLogin = true
                     isLoading = false
+                    showRelogin = true
                 }
             }
         }
-        
-        
     }
     
     private func getCourseHour(week: Int) -> Double {

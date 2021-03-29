@@ -20,9 +20,8 @@ struct GPADetailView: View {
     
     @State private var activeIndex = 0
     
-    @State private var showLogin = false
-    
     @State private var isError = false
+    @State private var showRelogin = false
     @State private var errorMessage: String = ""
     
     var body: some View {
@@ -89,43 +88,22 @@ struct GPADetailView: View {
             load()
         })
         .navigationBarHidden(true)
-        .sheet(isPresented: $showLogin, onDismiss: {
-            load()
-        }, content: {
-            ClassesSSOView()
-        })
         .edgesIgnoringSafeArea(.bottom)
         .background(Color.init(hex: gpaBackgroundColor).edgesIgnoringSafeArea(.all))
         .addAnalytics(className: "GPADetailView")
+        .showReloginView($showRelogin) { (result) in
+            switch result {
+            case .success:
+                self.reload()
+                showRelogin = false
+            case .failure: break
+            }
+        }
     }
     
     func load() {
         if gpa.semesterGPAArray.isEmpty {
-            isLoading = true
-            ClassesManager.checkLogin { result in
-                switch result {
-                    case .success:
-                        ClassesManager.getGPA { result in
-                            switch result {
-                                case .success(let gpa):
-                                    store.object = gpa
-                                    store.save()
-                                case .failure(let error):
-                                    log(error)
-                            }
-                            isLoading = false
-                        }
-                        return
-                    case .failure(let error):
-                        if error == .requestFailed {
-                            isError = true
-                            errorMessage = error.localizedDescription
-                        } else {
-                            showLogin = true
-                            isLoading = false
-                        }
-                }
-            }
+            reload()
         }
     }
     
@@ -153,7 +131,7 @@ struct GPADetailView: View {
                         sharedMessage.isBindBs = false
                         isLogin = false
                         isLoading = false
-                        showLogin = true
+                        showRelogin = true
                     }
             }
         }

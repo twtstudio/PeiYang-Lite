@@ -6,6 +6,7 @@
 //  Copyright © 2018年 twtstudio. All rights reserved.
 //
 
+import UIKit
 import SwiftUI
 import CommonCrypto
 

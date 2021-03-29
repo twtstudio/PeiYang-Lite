@@ -20,7 +20,7 @@ struct MainView: View {
    
     var body: some View {
         TabView(selection: $selected) {
-            HomeView2()
+            HomeView()
                 .tabItem{
                     Image(systemName: self.selected == 0 ? "house.fill" : "house")
                     Text("主页")
@@ -61,7 +61,7 @@ struct MainView_Previews: PreviewProvider {
 //    var body: some View {
 //        VStack {
 //            if self.currentView == .tab1 {
-//                HomeView2()
+//                HomeView()
 //            } else if self.currentView == .tab2 {
 ////                HomeView(inBackground: .constant(false), isUnlocked: .constant(true))
 //                Text("抽屉")

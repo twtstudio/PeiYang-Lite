@@ -27,29 +27,33 @@ struct FgChMeToFindView: View {
                         Text("账号已绑定手机号")
                             .foregroundColor(.white)
                             .font(.custom("", size: 20))
+                            .frame(width: screen.width * 0.6, height: screen.height / 15, alignment: .center)
+                            .background(Color.init(red: 79/255, green: 88/255, blue: 107/255))
+                            .cornerRadius(screen.height / 30)
                     }
-                    .frame(width: screen.width * 0.6, height: screen.height / 15, alignment: .center)
-                    .background(Color.init(red: 79/255, green: 88/255, blue: 107/255))
-                    .cornerRadius(screen.height / 30)
+                   
                     .padding()
                     
-                    ZStack {
-                        Color.black
-                            .frame(width: screen.width * 0.6 + 2, height: screen.height / 15 + 2, alignment: .center)
-                            .cornerRadius(screen.height / 30)
-                        Button(action: {
-                            isMessageShow = true;
-                        }) {
-                            Text("账号未绑定手机号")
-                                .foregroundColor(.black)
-                                .font(.custom("", size: 20))
-                        }
-                        .frame(width: screen.width * 0.6, height: screen.height / 15, alignment: .center)
-                        .background(Color.white)
-                        .cornerRadius(screen.height / 30)
-                        .padding()
+                    
                         
+                    Button(action: {
+                        isMessageShow = true;
+                    }) {
+                        Text("账号未绑定手机号")
+                            .foregroundColor(.black)
+                            .font(.custom("", size: 20))
+                            .frame(width: screen.width * 0.6, height: screen.height / 15, alignment: .center)
+                            .background(Color.white)
+                            .cornerRadius(screen.height / 30)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: UIScreen.main.bounds.height / 30)
+                                    .stroke(Color.black, lineWidth: 1)
+                            )
                     }
+                    
+                    .padding()
+                        
+                    
                     
                 }
                 Spacer()

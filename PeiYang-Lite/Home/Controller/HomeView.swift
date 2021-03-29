@@ -1,238 +1,211 @@
-////
-////  HomeView.swift
-////  PeiYang Lite
-////
-////  Created by TwTStudio on 7/6/20.
-////
 //
-//import SwiftUI
+//  HomeView.swift
+//  PeiYang Lite
 //
-//let screen = UIScreen.main.bounds
-//let presentWidth = max(screen.width, screen.height) / 2
+//  Created by Zr埋 on 2020/10/22.
 //
-//struct HomeView: View {
-//    @Binding var inBackground: Bool
-//    @AppStorage(Account.needUnlockKey, store: Storage.defaults) private var needUnlock = false
-//    @Binding var isUnlocked: Bool
-//    private var needHide: Bool { (needUnlock && !isUnlocked) || inBackground }
+
+import SwiftUI
+
+struct MyCourse {
+    var name: String
+    var time: String
+    var loc: String
+}
+
+enum Destination {
+    case courseTable, yellowPage, GPA, studyRoom
+}
+
+struct Module {
+    var image: Image
+    var title: String
+    var destination: Destination
+}
+
+struct StudyRoom: Identifiable {
+    let id: UUID = UUID()
+    var image: Image
+    var building: String
+    var number: String
+    var isAvailable: Bool
+    
+    var description: String {
+        building + "教 " + number
+    }
+}
+
+struct HomeView: View {
+    @AppStorage(SharedMessage.isShowGPAKey, store: Storage.defaults) private var isShowGPA = true
+    
+    private var safeAreaHeight: CGFloat {
+        return (UIApplication.shared.windows.first ?? UIWindow()).safeAreaInsets.top
+    }
+    
+    init() {
+        UITableView.appearance().backgroundColor = .white
+    }
+    @EnvironmentObject var sharedMessage: SharedMessage
+    @State private var showUpdateView: Bool = false
+    
+    var body: some View {
+        VStack {
+            HomeHeaderView(AccountName: sharedMessage.Account.nickname)
+                .padding(.top, safeAreaHeight)
+                .padding(.horizontal)
+
+            ScrollView(showsIndicators: false) {
+                
+            HomeModuleSectionView()
+                .padding(.bottom)
+
+            HomeCourseSectionView()
+                .padding(.bottom)
+
+            if(isShowGPA) {
+                Section(header: HStack {
+                    Text(Localizable.gpa.rawValue)
+                        .font(.title3)
+                        .bold()
+                        .foregroundColor(Color(#colorLiteral(red: 0.3803921569, green: 0.3960784314, blue: 0.4862745098, alpha: 1)))
+                    Spacer()
+                }) {
+                    HomeGPASectionView()
+                        .padding(.bottom)
+                }
+                .padding(.horizontal)
+            }
+
+            Section(header: HStack {
+                Text("自习室")
+                    .font(.title3)
+                    .bold()
+                    .foregroundColor(Color(#colorLiteral(red: 0.3803921569, green: 0.3960784314, blue: 0.4862745098, alpha: 1)))
+                    .padding(.horizontal)
+                Spacer()
+            }) {
+                HomeStudyRoomSectionView()
+                    .padding(.bottom, 80)
+                }
+            }
+
+        }
+        .navigationBarHidden(true)
+        .background(Color(#colorLiteral(red: 0.9352087975, green: 0.9502342343, blue: 0.9600060582, alpha: 1)))
+        .edgesIgnoringSafeArea(.all)
+        .addAnalytics(className: "HomeView")
+//        HomeScrollView(model: homeViewModel)
+        .onAppear(perform: checkUpdate)
+        .showUpdateView($showUpdateView)
+    }
+    
+    private func checkUpdate() {
+        struct LookUpResponse: Codable {
+            let results: [LookUpResult]?
+        }
+        struct LookUpResult: Codable {
+            let version: String?
+        }
+        
+        let appid = String(1542905353)
+        let localVersion:String = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
+        Network.fetch("http://itunes.apple.com/lookup?id=" + appid) { (result) in
+            switch result {
+            case .success(let (data, _)):
+                do {
+                    let res = try JSONDecoder().decode(LookUpResponse.self, from: data)
+                    guard !(res.results ?? []).isEmpty else { return }
+                    let newVersion = res.results![0].version ?? ""
+                    let lvArr = localVersion.split(separator: ".").map { s in Int(s) ?? 0 }
+                    let nvArr = newVersion.split(separator: ".").map { s in Int(s) ?? 0 }
+                    let shouldUpdate = zip(lvArr, nvArr).reduce(false) { (oldResult, tup) in oldResult || (tup.0 < tup.1) }
+                    if shouldUpdate {
+                        showUpdateView = true
+                    }
+                } catch {
+                    log(error)
+                }
+            case .failure(let error):
+                log(error)
+            }
+        }
+    }
+    
+    
+}
+
+struct HomeView2_Previews: PreviewProvider {
+    static var previews: some View {
+        HomeView()
+    }
+}
+
+//fileprivate class HomeViewModel: HomeScrollViewModel, HomeScrollViewAction, HomeScrollViewDataSource {
 //
-//    let modules: [Home] = [.courseTable, .gpa, /*.ecard,*/ .wlan]
 //
-//    @ObservedObject var store = Storage.courseTable
-//    private var courseTable: CourseTable { store.object }
 //
-//    @Environment(\.horizontalSizeClass) private var sizeClass
-//    @Environment(\.colorScheme) private var colorScheme
+//    @Published var studyRoomCollections: [CollectionClass] = []
 //
-//    private var isRegular: Bool { sizeClass == .regular }
+//    private var collectionId: [String] = []
 //
-//    // MARK: - Card and Detail
-//    @State private var width: CGFloat = 0
-//    @State private var activeIndex = -1
-//    @State private var activeCenter: CGPoint = .zero
-//    @State private var showDetail = false
-//    @State private var showFull = false
-//    @State private var dragAmount: CGFloat = 0
+//    private var allBuilding: [StudyBuilding] = []
 //
-//    private var safeAreaHeight: CGFloat {
-//        return (UIApplication.shared.windows.first ?? UIWindow()).safeAreaInsets.top == 44 ? 44 : 0
+//    init() {
+//        loadOnAppear()
 //    }
 //
-//    /// Determine which module is active and should be shown
-//    /// - Parameter index: module index
-//    func isActive(_ index: Int) -> Bool { activeIndex == index && showDetail }
+//    func loadOnAppear() {
+//        StudyRoomManager.allBuidlingGet(term: "20212", week: "1", day: "7") { result in
+//            switch result {
+//            case .success(let data):
+//                if(data.errorCode == 0) {
+//                    DispatchQueue.main.async {
+//                        self.allBuilding = data.data
+//                        self.collectionIdToClass()
+//                    }
+//                }
+//            case .failure(let error):
+//                print("加载教学楼失败", error)
+//            }
 //
-//    /// Reset detail back to card
-//    func reset() {
-//        animate(withDuration: 0.5) {
-//            showFull = false
-//        } completion: {
-//            activeIndex = -1
-//            activeCenter = .zero
-//            showDetail = false
 //        }
 //    }
 //
-//    // MARK: - Alert
-//    @State private var isError = false
-//    @State private var errorMessage:String = ""
-//
-//    // MARK: - Sheet
-//    @State private var showSetting = false
-//    @State private var showLogin = false
-//
-//    var body: some View {
-//        GeometryReader { full in
-//            ZStack {
-//                GridStack(
-//                    minCellWidth: 300,
-//                    spacing: 18,
-//                    numItems: modules.count
-//                ) {
-//                    // MARK: - Header
-//                    HStack {
-//                        HomeViewHeaderView()
-//                            .padding(.top)
-//
-//                        Spacer()
-//
-//                        Button(action: { showSetting = true }, label: {
-//                            Image(systemName: "gearshape")
-//                                .foregroundColor(colorScheme == .dark ? .white : .black)
-//                                .font(.title)
-//                                .padding()
-//                        })
-//                        // Setting Sheet
-//                        .sheet(isPresented: $showSetting) {
-//                            ZStack {
-//                                HomeSettingView()
-//
-//                                if needHide {
-//                                    BlurView()
-//                                        .edgesIgnoringSafeArea(.all)
+//    func collectionIdToClass() {
+//        StyCollectionManager.getCollections(){ result in
+//            switch result {
+//            case .success(let data):
+//                self.collectionId = data.data.classroomID ?? []
+//                for code in self.collectionId {
+//                    for building in self.allBuilding {
+//                        for area in building.areas {
+//                            for room in area.classrooms {
+//                                if(room.classroomID == code) {
+//                                    self.studyRoomCollections.append(CollectionClass(classMessage: room, buildingName: building.building))
 //                                }
 //                            }
 //                        }
-//
-//
 //                    }
-//                } content: { index, width in
-//                    GeometryReader { geo in
-//                        // MARK: - Card
-//                        HomeCardView(module: modules[index])
-//                            .padding()
-//                            .frame(width: width, height: width * 0.6)
-//                            .background(Color.background)
-//                            .cornerRadius(24)
-//                            .shadow(color: .shadow, radius: 4)
-//                            .opacity(isActive(index) ? 0 : 1)
-//                            .onTapGesture {
-//                                self.width = width
-//                                activeIndex = index
-//                                activeCenter = CGPoint(x: geo.frame(in: .global).midX, y: geo.frame(in: .global).midY)
-////                                if modules[index].isLogin || courseTable.courseArray.count != 0 && modules[index] == .courseTable {
-//                                if modules[index].isStore {
-//                                    showDetail = true
-//                                    // TODO: fix it
-//                                    modules[index].checkLogin { result in
-//                                        switch result {
-//                                        case .success:
-//                                            return
-//                                        case .failure(let error):
-//                                            if error == .requestFailed {
-//                                                isError = true
-//                                                errorMessage = error.localizedDescription
-//                                            } else {
-//                                                modules[index].exitLogin()
-////                                                showDetail = false
-////                                                showLogin = true
-//                                            }
-//                                        }
-//                                    }
-//                                } else {
-//                                    showLogin = true
-//                                }
-//                            }
-//                            // MARK: - Login Sheet
-//                            .sheet(isPresented: $showLogin) {
-//                                if modules[activeIndex].isLogin {
-//                                    showDetail = true
-//                                } else {
-//                                    modules[activeIndex].clear()
-//                                    showFull = false
-//                                }
-//                            } content: {
-//                                ZStack {
-//                                    HomeLoginView(module: modules[activeIndex])
-//
-//                                    if needHide {
-//                                        BlurView()
-//                                            .edgesIgnoringSafeArea(.all)
-//                                    }
-//                                }
-//                            }
-//                    }
-//                    .frame(width: width, height: width * 0.6)
 //                }
-//
-//                // MARK: - Blur
-//                BlurView()
-//                    .opacity(showFull ? 1 : 0)
-//                    .statusBar(hidden: showDetail)
-//                    .edgesIgnoringSafeArea(.all)
-//                    .animation(.easeInOut)
-//                    .onTapGesture(perform: reset)
-//
-//                // MARK: - Detail
-//                if showDetail {
-//                    HomeDetailView(module: modules[activeIndex])
-//                        .padding()
-//                        .frame(
-//                            width: showFull ? (isRegular ? presentWidth : full.frame(in: .global).width) : width,
-//                            height: showFull ? full.frame(in: .global).height * 1 : width * 0.6
-//                        )
-//                        .background(Color.background)
-////                        .cornerRadius(isRegular ? 24 : 240 * dragAmount, corners: [.topLeft, .topRight])
-//                        .cornerRadius(24)
-////                        .cornerRadius(24, corners: [.topLeft, .topRight])
-//                        .cornerRadius(isRegular ? 0 : 240 * dragAmount, corners: [.bottomLeft, .bottomRight])
-//                        .shadow(color: .shadow, radius: 4)
-//                        .opacity(showDetail ? 1 : 0)
-//                        .offset(
-//                            x: showFull ? 0 : activeCenter.x - full.frame(in: .global).midX,
-//                            y: showFull ? safeAreaHeight : activeCenter.y - full.frame(in: .global).midY
-//                        )
-//                        .onAppear {
-//                            withAnimation(.spring(response: 0.5, dampingFraction: 0.7, blendDuration: 0)) {
-//                                showFull = true
-//                            }
-//                        }
-//                        .offset(y: isRegular ? dragAmount * 1000 : 0)
-//                        .scaleEffect(isRegular ? 1 : 1 - dragAmount)
-//                        .onTapGesture(count: 2, perform: {
-//                            reset()
-//                        })
-//                        .gesture(
-//                            DragGesture(minimumDistance: 30, coordinateSpace: .local)
-//                                .onChanged { value in
-//                                    let height = value.translation.height
-//
-//                                    if height < 0 { return }
-//                                    if height > 100 {
-//                                        reset()
-//                                        return
-//                                    }
-//
-//                                    dragAmount = height / 1000
-//                                }
-//                                .onEnded { value in
-//                                    withAnimation {
-//                                        dragAmount = 0
-//                                    }
-//                                }
-//                        )
-//                }
+//            case .failure(let error):
+//                print("转换失败", error)
 //            }
 //        }
-//        .edgesIgnoringSafeArea([.top, .bottom])
-//        // MARK: - Alert
-//        .alert(isPresented: $isError) {
-//            Alert(
-//                title: Text(errorMessage),
-//                dismissButton: .default(Text(Localizable.ok.rawValue))
-//            )
-//        }
+//    }
+//
+////    func reloadData() {
+////        self.studyRoomCollections = []
+////        self.collectionIdToClass()
+////    }
+//
+//    var action: HomeScrollViewAction { self }
+//
+//    private lazy var _dataSource: HomeScrollViewDataSource = { self }()
+//
+//    var dataSource: HomeScrollViewDataSource {
+//        get { _dataSource }
+//        set { _dataSource = newValue }
 //    }
 //}
 //
-//struct HomeView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ZStack {
-//            Color.black
-//                .edgesIgnoringSafeArea(.all)
-//            HomeView(inBackground: .constant(false), isUnlocked: .constant(true))
-//                .environment(\.colorScheme, .dark)
-//        }
-//    }
-//}
 //

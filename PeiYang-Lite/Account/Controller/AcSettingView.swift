@@ -16,7 +16,7 @@ struct AcSettingView: View {
     @State private var remindTime = 0
     
     @AppStorage(SharedMessage.isShowFullCourseKey, store: Storage.defaults) private var showFullCourse = true
-    @AppStorage(ClassesManager.isGPAStoreKey, store: Storage.defaults) private var isNotShowGPA = false
+    @AppStorage(SharedMessage.isShowGPAKey, store: Storage.defaults) private var isShowGPA = true
     @AppStorage(SharedMessage.showCourseNumKey, store: Storage.defaults) private var showCourseNum = 6
     
     var body: some View {
@@ -33,7 +33,7 @@ struct AcSettingView: View {
                     StListView(title: "调色板", caption: "给课表、GPA以及黄页自定义喜欢的颜色")
                 }
                
-                StToggleView(title: "首页不显示GPA", caption: nil, isOn: $isNotShowGPA)
+                StToggleView(title: "首页显示GPA", caption: nil, isOn: $isShowGPA)
                 
                 StToggleView(title: "开启夜猫子模式", caption: "晚上9:00以后首页课表将展示第二天课程安排", isOn: $isNightKitty)
                 

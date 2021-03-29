@@ -10,7 +10,6 @@ import SwiftUI
 struct AcBindEmailView: View {
     let themeColor = Color(red: 102/255, green: 106/255, blue: 125/255)
     let titleColor = Color.init(red: 98/255, green: 103/255, blue: 122/255)
-    @AppStorage(SharedMessage.userTokenKey, store: Storage.defaults) private var userToken = ""
     @State private var email = ""
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     @State private var AlertMessage: String = "网络问题"
@@ -64,7 +63,7 @@ struct AcBindEmailView: View {
                         .keyboardType(.numberPad)
                     
                     Button(action: {
-                        AcBindManager.BindEmPut(email: email, token: userToken){ result in
+                        AcBindManager.BindEmPut(email: email){ result in
                             switch result {
                             case .success(let data):
                                 AlertMessage = data.message

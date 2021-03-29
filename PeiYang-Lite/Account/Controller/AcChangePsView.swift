@@ -11,7 +11,6 @@ struct AcChangePsView: View {
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     
     @AppStorage(SharedMessage.passwordKey, store: Storage.defaults) private var storedPassword = ""
-    @AppStorage(SharedMessage.userTokenKey, store: Storage.defaults) private var userToken = ""
     @State var oldPassword = ""
     @State var newPassword = ""
     @State var newCheckPassword = ""
@@ -60,7 +59,7 @@ struct AcChangePsView: View {
                     isShowAlert = true
                     countdown()
                 } else {
-                    AcBindManager.ChangePs(password: newPassword, token: userToken) {result in
+                    AcBindManager.ChangePs(password: newPassword) {result in
                         switch result {
                         case .success(let data):
                             AlertMessage = data.message

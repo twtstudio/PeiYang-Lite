@@ -9,7 +9,6 @@ import SwiftUI
 
 struct LgSupplyView: View {
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
-    @AppStorage(SharedMessage.userTokenKey, store: Storage.defaults) private var userToken = ""
     @State private var telephone = ""
     @State private var verifyCode = ""
     @State private var email = ""
@@ -144,7 +143,7 @@ struct LgSupplyView: View {
             .frame(width: UIScreen.main.bounds.width * 0.9, height: UIScreen.main.bounds.height/15, alignment: .center)
             
             Button(action:{
-                LgSupplyPhManager.SupplyPost(telephone: telephone, verifyCode: verifyCode, email: email, token: userToken){ result in
+                LgSupplyPhManager.SupplyPost(telephone: telephone, verifyCode: verifyCode, email: email){ result in
                     switch result{
                     case .success(let data):
                         AlertMessage = data.message

@@ -14,8 +14,9 @@
 		C99C16262610297700986EF7 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C99C16252610297600986EF7 /* NotificationView.swift */; };
 		C99C162A2610298000986EF7 /* UpdateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C99C16292610298000986EF7 /* UpdateView.swift */; };
 		C99C162E261029CF00986EF7 /* AcChangePsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C99C162D261029CF00986EF7 /* AcChangePsView.swift */; };
-		C99C163226102BEB00986EF7 /* CourseFailedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C99C163126102BEB00986EF7 /* CourseFailedView.swift */; };
+		C99C163226102BEB00986EF7 /* ReLoginDialogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C99C163126102BEB00986EF7 /* ReLoginDialogView.swift */; };
 		CA45A53899AD520194CACD00 /* Pods_PeiYang_Lite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C065CD05CD1966D5050600B3 /* Pods_PeiYang_Lite.framework */; };
+		D30AFB332611F6DF0061902C /* UniversalExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3540282260DEF2F0092D83A /* UniversalExtension.swift */; };
 		D3540260260DEEF10092D83A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D354025F260DEEF10092D83A /* AppDelegate.swift */; };
 		D3540262260DEEF10092D83A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3540261260DEEF10092D83A /* SceneDelegate.swift */; };
 		D3540267260DEEF10092D83A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3540265260DEEF10092D83A /* Main.storyboard */; };
@@ -65,8 +66,7 @@
 		D3540371260DEF720092D83A /* UMCommonSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35402B8260DEF720092D83A /* UMCommonSwift.swift */; };
 		D3540372260DEF720092D83A /* UMGameAnalyticsSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35402B9260DEF720092D83A /* UMGameAnalyticsSwift.swift */; };
 		D3540373260DEF720092D83A /* UMCommonLogSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35402BA260DEF720092D83A /* UMCommonLogSwift.swift */; };
-		D3540374260DEF720092D83A /* HomeView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35402BD260DEF720092D83A /* HomeView2.swift */; };
-		D3540375260DEF720092D83A /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35402BE260DEF720092D83A /* HomeView.swift */; };
+		D3540374260DEF720092D83A /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35402BD260DEF720092D83A /* HomeView.swift */; };
 		D3540376260DEF720092D83A /* HomeSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35402BF260DEF720092D83A /* HomeSettingView.swift */; };
 		D3540377260DEF720092D83A /* HomeViewHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35402C0260DEF720092D83A /* HomeViewHeaderView.swift */; };
 		D3540378260DEF720092D83A /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35402C1260DEF720092D83A /* MainView.swift */; };
@@ -189,7 +189,6 @@
 		D35404B0260DF9570092D83A /* CourseTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3540326260DEF720092D83A /* CourseTable.swift */; };
 		D35404B3260DF9690092D83A /* DataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D354031C260DEF720092D83A /* DataStorage.swift */; };
 		D35404B9260DF9AC0092D83A /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35402C6260DEF720092D83A /* Weather.swift */; };
-		D35404BC260DF9C00092D83A /* UniversalExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3540282260DEF2F0092D83A /* UniversalExtension.swift */; };
 		D35404CE260DFA5E0092D83A /* log.swift in Sources */ = {isa = PBXBuildFile; fileRef = D354031D260DEF720092D83A /* log.swift */; };
 		D35404D3260DFA720092D83A /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D354031B260DEF720092D83A /* Storage.swift */; };
 		D35404D6260DFA880092D83A /* WLAN.swift in Sources */ = {isa = PBXBuildFile; fileRef = D354028E260DEF710092D83A /* WLAN.swift */; };
@@ -234,7 +233,7 @@
 		C99C16252610297600986EF7 /* NotificationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		C99C16292610298000986EF7 /* UpdateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateView.swift; sourceTree = "<group>"; };
 		C99C162D261029CF00986EF7 /* AcChangePsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AcChangePsView.swift; sourceTree = "<group>"; };
-		C99C163126102BEB00986EF7 /* CourseFailedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseFailedView.swift; sourceTree = "<group>"; };
+		C99C163126102BEB00986EF7 /* ReLoginDialogView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReLoginDialogView.swift; sourceTree = "<group>"; };
 		D354025C260DEEF10092D83A /* PeiYang-Lite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PeiYang-Lite.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D354025F260DEEF10092D83A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D3540261260DEEF10092D83A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -286,8 +285,7 @@
 		D35402B8260DEF720092D83A /* UMCommonSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UMCommonSwift.swift; sourceTree = "<group>"; };
 		D35402B9260DEF720092D83A /* UMGameAnalyticsSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UMGameAnalyticsSwift.swift; sourceTree = "<group>"; };
 		D35402BA260DEF720092D83A /* UMCommonLogSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UMCommonLogSwift.swift; sourceTree = "<group>"; };
-		D35402BD260DEF720092D83A /* HomeView2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView2.swift; sourceTree = "<group>"; };
-		D35402BE260DEF720092D83A /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		D35402BD260DEF720092D83A /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		D35402BF260DEF720092D83A /* HomeSettingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeSettingView.swift; sourceTree = "<group>"; };
 		D35402C0260DEF720092D83A /* HomeViewHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewHeaderView.swift; sourceTree = "<group>"; };
 		D35402C1260DEF720092D83A /* MainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -448,6 +446,22 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		C926FC442611A9BE007F0C43 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				D3540305260DEF720092D83A /* AcChangeColorView.swift */,
+				D3540306260DEF720092D83A /* AcSetShowDayView.swift */,
+				D3540307260DEF720092D83A /* AcMessageView.swift */,
+				D3540308260DEF720092D83A /* AcSettingView.swift */,
+				D3540309260DEF720092D83A /* AcChangeNameView.swift */,
+				D354030A260DEF720092D83A /* AcBindPhoneView.swift */,
+				D354030B260DEF720092D83A /* AcClassesBindingView.swift */,
+				D354030C260DEF720092D83A /* AcBindEmailView.swift */,
+				C99C162D261029CF00986EF7 /* AcChangePsView.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		D3540253260DEEF10092D83A = {
 			isa = PBXGroup;
 			children = (
@@ -542,10 +556,10 @@
 		D354028F260DEF710092D83A /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				C99C163126102BEB00986EF7 /* CourseFailedView.swift */,
+				D3540298260DEF710092D83A /* ChartView */,
+				C99C163126102BEB00986EF7 /* ReLoginDialogView.swift */,
 				C99C16292610298000986EF7 /* UpdateView.swift */,
 				C99C16252610297600986EF7 /* NotificationView.swift */,
-				D3540298260DEF710092D83A /* ChartView */,
 				D3540290260DEF710092D83A /* BlurView.swift */,
 				D3540291260DEF710092D83A /* SKPhotoView.swift */,
 				D3540292260DEF710092D83A /* GridWithoutScrollStack.swift */,
@@ -659,8 +673,7 @@
 		D35402BC260DEF720092D83A /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				D35402BD260DEF720092D83A /* HomeView2.swift */,
-				D35402BE260DEF720092D83A /* HomeView.swift */,
+				D35402BD260DEF720092D83A /* HomeView.swift */,
 				D35402BF260DEF720092D83A /* HomeSettingView.swift */,
 				D35402C0260DEF720092D83A /* HomeViewHeaderView.swift */,
 				D35402C1260DEF720092D83A /* MainView.swift */,
@@ -862,15 +875,7 @@
 		D3540304260DEF720092D83A /* Account */ = {
 			isa = PBXGroup;
 			children = (
-				D3540305260DEF720092D83A /* AcChangeColorView.swift */,
-				D3540306260DEF720092D83A /* AcSetShowDayView.swift */,
-				D3540307260DEF720092D83A /* AcMessageView.swift */,
-				D3540308260DEF720092D83A /* AcSettingView.swift */,
-				D3540309260DEF720092D83A /* AcChangeNameView.swift */,
-				D354030A260DEF720092D83A /* AcBindPhoneView.swift */,
-				D354030B260DEF720092D83A /* AcClassesBindingView.swift */,
-				D354030C260DEF720092D83A /* AcBindEmailView.swift */,
-				C99C162D261029CF00986EF7 /* AcChangePsView.swift */,
+				C926FC442611A9BE007F0C43 /* Controller */,
 				D354030D260DEF720092D83A /* Model */,
 				D354030F260DEF720092D83A /* AccountView.swift */,
 				D3540310260DEF720092D83A /* AboutTwTView.swift */,
@@ -1320,7 +1325,7 @@
 				D35403DB260DEF720092D83A /* AccountNeedToKnowView.swift in Sources */,
 				D354038F260DEF720092D83A /* StyCalendar.swift in Sources */,
 				D354038D260DEF720092D83A /* StyTimeSelectionView.swift in Sources */,
-				D3540374260DEF720092D83A /* HomeView2.swift in Sources */,
+				D3540374260DEF720092D83A /* HomeView.swift in Sources */,
 				D3540371260DEF720092D83A /* UMCommonSwift.swift in Sources */,
 				D354035B260DEF720092D83A /* CurveCardView.swift in Sources */,
 				D35403BE260DEF720092D83A /* CourseTableDetailView.swift in Sources */,
@@ -1329,7 +1334,6 @@
 				D354035E260DEF720092D83A /* Chart.swift in Sources */,
 				D354036C260DEF720092D83A /* GPACardView.swift in Sources */,
 				D3540379260DEF720092D83A /* Home.swift in Sources */,
-				D3540375260DEF720092D83A /* HomeView.swift in Sources */,
 				D35403B0260DEF720092D83A /* AccountView.swift in Sources */,
 				D35403BA260DEF720092D83A /* log.swift in Sources */,
 				D35403B1260DEF720092D83A /* AboutTwTView.swift in Sources */,
@@ -1395,7 +1399,7 @@
 				C99C162A2610298000986EF7 /* UpdateView.swift in Sources */,
 				D35403D8260DEF720092D83A /* SchQuestionDetailHeaderView.swift in Sources */,
 				D35403C9260DEF720092D83A /* SchSearchView.swift in Sources */,
-				C99C163226102BEB00986EF7 /* CourseFailedView.swift in Sources */,
+				C99C163226102BEB00986EF7 /* ReLoginDialogView.swift in Sources */,
 				D35403B3260DEF720092D83A /* FgFinalStepView.swift in Sources */,
 				D3540399260DEF720092D83A /* LgSupplyView.swift in Sources */,
 				D354039A260DEF720092D83A /* LgBeginView.swift in Sources */,
@@ -1459,8 +1463,8 @@
 				D354044A260DF1310092D83A /* CourseTimelineProvider.swift in Sources */,
 				D354046D260DF15D0092D83A /* Network.swift in Sources */,
 				D35404D9260DFA9E0092D83A /* GPA.swift in Sources */,
+				D30AFB332611F6DF0061902C /* UniversalExtension.swift in Sources */,
 				D354044F260DF1330092D83A /* CourseEntry.swift in Sources */,
-				D35404BC260DF9C00092D83A /* UniversalExtension.swift in Sources */,
 				D3540454260DF1360092D83A /* FontTool.swift in Sources */,
 				D35404DF260DFABE0092D83A /* Semester.swift in Sources */,
 				D35404B3260DF9690092D83A /* DataStorage.swift in Sources */,

@@ -11,7 +11,7 @@ struct AcBindManager{
     static let ticket = "YmFuYW5hLjM3YjU5MDA2M2Q1OTM3MTY0MDVhMmM1YTM4MmIxMTMwYjI4YmY4YTc="
     static let domain = "weipeiyang.twt.edu.cn"
     
-    static func BindPhPut(telephone: String, verifyCode: String, token: String, completion: @escaping (Result<OrdinaryMessage, Network.Failure>) -> Void) {
+    static func BindPhPut(telephone: String, verifyCode: String, completion: @escaping (Result<OrdinaryMessage, Network.Failure>) -> Void) {
         Network.fetch(
             "https://api.twt.edu.cn/api/user/single/phone",
             query: [
@@ -21,7 +21,7 @@ struct AcBindManager{
             headers:[
                 "ticket": ticket,
                 "domain": domain,
-                "token": token
+                "token": Storage.defaults.string(forKey: SharedMessage.userTokenKey) ?? ""
             ],
             method: .put
         ) {
@@ -46,7 +46,7 @@ struct AcBindManager{
         }
     }
     
-    static func BindEmPut(email: String, token: String, completion: @escaping (Result<OrdinaryMessage, Network.Failure>) -> Void) {
+    static func BindEmPut(email: String, completion: @escaping (Result<OrdinaryMessage, Network.Failure>) -> Void) {
         Network.fetch(
             "https://api.twt.edu.cn/api/user/single/email",
             query: [
@@ -55,7 +55,7 @@ struct AcBindManager{
             headers:[
                 "ticket": ticket,
                 "domain": domain,
-                "token": token
+                "token": Storage.defaults.string(forKey: SharedMessage.userTokenKey) ?? ""
             ],
             method: .put
         ) {
@@ -80,7 +80,7 @@ struct AcBindManager{
         }
     }
     
-    static func ChangeName(username: String, token: String, completion: @escaping (Result<OrdinaryMessage, Network.Failure>) -> Void) {
+    static func ChangeName(username: String, completion: @escaping (Result<OrdinaryMessage, Network.Failure>) -> Void) {
         Network.fetch(
             "https://api.twt.edu.cn/api/user/single/username",
             query: [
@@ -89,7 +89,7 @@ struct AcBindManager{
             headers:[
                 "ticket": ticket,
                 "domain": domain,
-                "token": token
+                "token": Storage.defaults.string(forKey: SharedMessage.userTokenKey) ?? ""
             ],
             method: .put
         ) {
@@ -113,14 +113,14 @@ struct AcBindManager{
             }
         }
     }
-    static func ChangePs(password: String, token: String, completion: @escaping (Result<OrdinaryMessage, Network.Failure>) -> ()) {
+    static func ChangePs(password: String, completion: @escaping (Result<OrdinaryMessage, Network.Failure>) -> ()) {
         Network.fetch(
         "https://api.twt.edu.cn/api/password/person/reset",
             query: ["password" : password],
             headers:[
                 "ticket": ticket,
                 "domain": domain,
-                "token": token
+                "token": Storage.defaults.string(forKey: SharedMessage.userTokenKey) ?? ""
             ],
             method: .put
         ) {

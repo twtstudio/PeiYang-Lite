@@ -1,5 +1,5 @@
 //
-//  CourseFailedView.swift
+//  ReLoginDialogView.swift
 //  PeiYang Lite
 //
 //  Created by phoenix Dai on 2021/3/24.
@@ -7,7 +7,7 @@
 import SwiftUI
 import URLImage
 
-struct CourseFailedView: View {
+struct ReLoginDialogView: View {
     @EnvironmentObject var sharedMessage: SharedMessage
     let foreColor = Color.init(red: 79/255, green: 88/255, blue: 107/255)
     @AppStorage(ClassesManager.usernameKey, store: Storage.defaults) private var storageUserName = ""
@@ -18,6 +18,9 @@ struct CourseFailedView: View {
     @State private var errorMessage: LocalizedStringKey = ""
     @State private var captcha: String = ""
     @State private var captchaURL = "https://sso.tju.edu.cn/cas/images/kaptcha.jpg"
+    
+    var completion: (Result<Bool, Error>) -> Void
+    
     var body: some View {
         VStack(spacing: 20.0){
             
@@ -69,6 +72,7 @@ struct CourseFailedView: View {
                         case .success:
                             isLogin = true
                             sharedMessage.isBindBs = true
+                            completion(.success(true))
                         case .failure(let error):
                             log(error)
                             isError = true
@@ -76,6 +80,7 @@ struct CourseFailedView: View {
                             captcha = ""
                             refreshCaptcha()
                             isLogin = false
+                            completion(.failure(error))
                     }
                     isEnable = true
                 }
@@ -107,9 +112,9 @@ struct CourseFailedView: View {
 struct CourseFailedView_Previews: PreviewProvider {
     static var previews: some View {
         ZStack{
-            Color.white
+            Color.black
                 .ignoresSafeArea()
-            CourseFailedView()
+            ReLoginDialogView(completion: {_ in})
                 .environmentObject(SharedMessage())
         }
        
@@ -137,5 +142,32 @@ fileprivate struct CourseFailedSecureField: View {
             .frame(width: cellWidth, height: screen.height * 0.06, alignment: .center)
             .background(Color.init(red: 235/255, green: 238/255, blue: 243/255))
             .cornerRadius(10)
+    }
+}
+
+fileprivate struct ReLoginViewModifier: ViewModifier {
+    @Binding var isRelogin: Bool
+    let completion: (Result<Bool, Error>) -> Void
+    
+    func body(content: Content) -> some View {
+        ZStack {
+            content
+            if isRelogin {
+                BlurView()
+                    .edgesIgnoringSafeArea(.all)
+                    .onTapGesture {
+                        withAnimation {
+                            isRelogin = false
+                        }
+                    }
+                ReLoginDialogView(completion: completion)
+            }
+        }
+    }
+}
+
+extension View {
+    func showReloginView(_ isRelogin: Binding<Bool>, completion: @escaping (Result<Bool, Error>) -> Void) -> some View {
+        self.modifier(ReLoginViewModifier(isRelogin: isRelogin, completion: completion))
     }
 }

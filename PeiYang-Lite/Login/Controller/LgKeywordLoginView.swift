@@ -22,9 +22,8 @@ struct LgKeywordLoginView: View {
     
     @State private var isLogin = false
     @State private var username = ""
-    @State  private var password = ""
+    @State private var password = ""
     @State private var isEnable = true
-    
     
     @State var accountMessage: AccountMessage = AccountMessage(errorCode: 0, message:  "网络出现问题", result: AccountResult(userNumber: "无", nickname: "无", telephone: nil, email: "无", token: "", role: "无", realname: "无", gender: "无", department: "无", major: "无", stuType: "无", avatar: "无", campus: "无"))
     

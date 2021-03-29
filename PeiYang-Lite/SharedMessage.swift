@@ -57,6 +57,7 @@ class SharedMessage: ObservableObject {
         remove(schoolDistrictKey)
         remove(userTokenKey)
     }
+    
 }
 
 class AccountSaveMessage: ObservableObject {
