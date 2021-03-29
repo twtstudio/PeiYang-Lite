@@ -34,29 +34,33 @@ struct LgBeginView: View {
                         Text("登录")
                             .foregroundColor(.white)
                             .font(.custom("", size: 20))
+                            .frame(width: UIScreen.main.bounds.width * 0.3, height: UIScreen.main.bounds.height / 15, alignment: .center)
+                            .background(Color.init(red: 79/255, green: 88/255, blue: 107/255))
+                            .cornerRadius(UIScreen.main.bounds.height / 30)
                     }
                     .isDetailLink(false)
-                    .frame(width: UIScreen.main.bounds.width * 0.3, height: UIScreen.main.bounds.height / 15, alignment: .center)
-                    .background(Color.init(red: 79/255, green: 88/255, blue: 107/255))
-                    .cornerRadius(UIScreen.main.bounds.height / 30)
+                    
                     .padding()
                 
-                    ZStack {// the first button need a margin
-                        Color.black
-                            .frame(width: UIScreen.main.bounds.width * 0.3 + 2, height: UIScreen.main.bounds.height / 15 + 2, alignment: .center)
-                            .cornerRadius(UIScreen.main.bounds.height / 30)
-                        NavigationLink(destination: RegisterFirView(), isActive: self.$appState.rightHome) {
-                            Text("注册")
-                                .foregroundColor(.black)
-                                .font(.custom("", size: 20))
-                        }
-                        .isDetailLink(false)
-                        .frame(width: UIScreen.main.bounds.width * 0.3, height: UIScreen.main.bounds.height / 15, alignment: .center)
-                        .background(Color.white)
-                        .cornerRadius(UIScreen.main.bounds.height / 30)
-                        .padding()
+                    
                         
+                    NavigationLink(destination: RegisterFirView(), isActive: self.$appState.rightHome) {
+                        Text("注册")
+                            .foregroundColor(.black)
+                            .font(.custom("", size: 20))
+                            .frame(width: UIScreen.main.bounds.width * 0.3, height: UIScreen.main.bounds.height / 15, alignment: .center)
+                            .background(Color.white)
+                            .cornerRadius(UIScreen.main.bounds.height / 30)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: UIScreen.main.bounds.height / 30)
+                                    .stroke(Color.black, lineWidth: 1)
+                            )
                     }
+                    .isDetailLink(false)
+                   
+                    .padding()
+                        
+                    
                 }
                 .padding(.bottom)
                 
