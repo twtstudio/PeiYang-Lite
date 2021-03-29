@@ -12,7 +12,6 @@ struct StyTopView: View {
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     @EnvironmentObject var sharedMessage: SharedMessage
     let themeColor = Color.init(red: 98/255, green: 103/255, blue: 123/255)
-    @AppStorage(SharedMessage.userTokenKey, store: Storage.defaults) private var userToken = ""
     
     //是否获取教室信息
     @State var isGetStudyRoomBuildingMessage = false
@@ -347,7 +346,7 @@ struct StyTopView: View {
     
     //MARK: 收藏的数据整理
     func requestDataToUseData() {
-        StyCollectionManager.getCollections(token: userToken) { result in
+        StyCollectionManager.getCollections() { result in
             switch result {
             case .success(let data):
                 if(data.errorCode != 0){

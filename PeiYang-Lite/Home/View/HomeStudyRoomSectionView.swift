@@ -7,7 +7,6 @@
 import SwiftUI
 
 struct HomeStudyRoomSectionView: View {
-    @AppStorage(SharedMessage.userTokenKey, store: Storage.defaults) private var userToken = ""
     let formatter = DateFormatter()
     var endDate: Date{
         formatter.dateFormat = "YYYYMMdd"
@@ -104,7 +103,7 @@ struct HomeStudyRoomSectionView: View {
     }
     func requestDataToUseData() {
         collectionClass = []
-        StyCollectionManager.getCollections(token: userToken) { result in
+        StyCollectionManager.getCollections() { result in
             switch result {
             case .success(let data):
                 getCollectionClassId = data.data.classroomID ?? []

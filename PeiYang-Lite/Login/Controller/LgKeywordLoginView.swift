@@ -24,7 +24,6 @@ struct LgKeywordLoginView: View {
     @State private var username = ""
     @State private var password = ""
     @State private var isEnable = true
-    @State private var isAbleToJump = false
     
     @State var accountMessage: AccountMessage = AccountMessage(errorCode: 0, message:  "网络出现问题", result: AccountResult(userNumber: "无", nickname: "无", telephone: nil, email: "无", token: "", role: "无", realname: "无", gender: "无", department: "无", major: "无", stuType: "无", avatar: "无", campus: "无"))
     
@@ -131,9 +130,6 @@ struct LgKeywordLoginView: View {
                         self.alertTime = 3
                         time.invalidate()
                         isShowAlert = false
-                        if isLogin {
-                            isAbleToJump = true
-                        }
                     }
                     self.alertTime -= 1
                 })
@@ -148,11 +144,11 @@ struct LgKeywordLoginView: View {
             .disabled(!isEnable || username.isEmpty || password.isEmpty)
             
             if(accountMessage.result.telephone == nil || accountMessage.result.email == nil) {
-                NavigationLink(destination: LgSupplyView(), isActive: $isAbleToJump){
+                NavigationLink(destination: LgSupplyView(), isActive: $isLogin){
                     EmptyView()
                 }
             } else {
-                NavigationLink(destination: MainView(), isActive: $isAbleToJump){
+                NavigationLink(destination: MainView(), isActive: $isLogin){
                     EmptyView()
                 }
             }

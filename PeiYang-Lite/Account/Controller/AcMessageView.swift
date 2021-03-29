@@ -80,7 +80,7 @@ struct AcMessageView: View {
                         AcListView2(img: "phone", title: "电话", caption: sharedMessage.isBindPh ? "已绑定" : "未绑定")
                     }
                     
-                    NavigationLink(destination: AcChangePsView(),
+                    NavigationLink(destination: AcBindEmailView(),
                                    tag: "4",
                                    selection: $selectedItem){
                         AcListView2(img: "email", title: "邮箱", caption: sharedMessage.isBindEm ? "已绑定" : "未绑定")
