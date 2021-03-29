@@ -44,6 +44,7 @@ struct MainView: View {
                     Text("个人中心")
                 }.tag(3)
         }
+        .accentColor(Color(#colorLiteral(red: 0.1960784314, green: 0.2392156863, blue: 0.3882352941, alpha: 1)))
         .navigationBarBackButtonHidden(true)
     
     }
