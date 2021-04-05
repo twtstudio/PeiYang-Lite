@@ -16,6 +16,8 @@
 		C99C162E261029CF00986EF7 /* AcChangePsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C99C162D261029CF00986EF7 /* AcChangePsView.swift */; };
 		C99C163226102BEB00986EF7 /* ReLoginDialogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C99C163126102BEB00986EF7 /* ReLoginDialogView.swift */; };
 		CA45A53899AD520194CACD00 /* Pods_PeiYang_Lite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C065CD05CD1966D5050600B3 /* Pods_PeiYang_Lite.framework */; };
+		D30888C0261B0CF5006A8856 /* SchMessageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30888BF261B0CF5006A8856 /* SchMessageManager.swift */; };
+		D30888C4261B1AE7006A8856 /* SchRecvMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30888C3261B1AE7006A8856 /* SchRecvMessageView.swift */; };
 		D30AFB332611F6DF0061902C /* UniversalExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3540282260DEF2F0092D83A /* UniversalExtension.swift */; };
 		D3540260260DEEF10092D83A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D354025F260DEEF10092D83A /* AppDelegate.swift */; };
 		D3540262260DEEF10092D83A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3540261260DEEF10092D83A /* SceneDelegate.swift */; };
@@ -234,6 +236,8 @@
 		C99C16292610298000986EF7 /* UpdateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateView.swift; sourceTree = "<group>"; };
 		C99C162D261029CF00986EF7 /* AcChangePsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AcChangePsView.swift; sourceTree = "<group>"; };
 		C99C163126102BEB00986EF7 /* ReLoginDialogView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReLoginDialogView.swift; sourceTree = "<group>"; };
+		D30888BF261B0CF5006A8856 /* SchMessageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchMessageManager.swift; sourceTree = "<group>"; };
+		D30888C3261B1AE7006A8856 /* SchRecvMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchRecvMessageView.swift; sourceTree = "<group>"; };
 		D354025C260DEEF10092D83A /* PeiYang-Lite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PeiYang-Lite.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D354025F260DEEF10092D83A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D3540261260DEEF10092D83A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -987,12 +991,13 @@
 		D3540330260DEF720092D83A /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				D3540336260DEF720092D83A /* SchView.swift */,
 				D3540331260DEF720092D83A /* SchAccountView.swift */,
 				D3540332260DEF720092D83A /* SchSearchView.swift */,
 				D3540333260DEF720092D83A /* SchNewQuestionView.swift */,
 				D3540334260DEF720092D83A /* SchAnswerDetailView.swift */,
 				D3540335260DEF720092D83A /* SchQuestionDetailView.swift */,
-				D3540336260DEF720092D83A /* SchView.swift */,
+				D30888C3261B1AE7006A8856 /* SchRecvMessageView.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1007,6 +1012,7 @@
 				D354033C260DEF720092D83A /* SchTagManager.swift */,
 				D354033D260DEF720092D83A /* SchAnswerManager.swift */,
 				D354033E260DEF720092D83A /* SchUserManager.swift */,
+				D30888BF261B0CF5006A8856 /* SchMessageManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1323,6 +1329,7 @@
 				D354038A260DEF720092D83A /* StyChooseClassView.swift in Sources */,
 				D3540260260DEEF10092D83A /* AppDelegate.swift in Sources */,
 				D35403DB260DEF720092D83A /* AccountNeedToKnowView.swift in Sources */,
+				D30888C0261B0CF5006A8856 /* SchMessageManager.swift in Sources */,
 				D354038F260DEF720092D83A /* StyCalendar.swift in Sources */,
 				D354038D260DEF720092D83A /* StyTimeSelectionView.swift in Sources */,
 				D3540374260DEF720092D83A /* HomeView.swift in Sources */,
@@ -1395,6 +1402,7 @@
 				D3540362260DEF720092D83A /* WebHtmlView.swift in Sources */,
 				D3540378260DEF720092D83A /* MainView.swift in Sources */,
 				D354037E260DEF720092D83A /* HomeStudyRoomSectionView.swift in Sources */,
+				D30888C4261B1AE7006A8856 /* SchRecvMessageView.swift in Sources */,
 				D354036F260DEF720092D83A /* GPACellListView.swift in Sources */,
 				C99C162A2610298000986EF7 /* UpdateView.swift in Sources */,
 				D35403D8260DEF720092D83A /* SchQuestionDetailHeaderView.swift in Sources */,

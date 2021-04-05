@@ -40,6 +40,15 @@ struct SchAccountView: View {
                 Text("个人中心")
                     .font(.title2)
                     .foregroundColor(.white)
+            }, trailing: {
+                Button(action: {
+                    
+                }) {
+                    Image(systemName: "text.bubble")
+                }
+                .font(.title2)
+                .foregroundColor(.white)
+                .padding()
             })
             VStack {
                 Text(sharedMessage.Account.nickname)

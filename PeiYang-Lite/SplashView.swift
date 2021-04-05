@@ -40,6 +40,7 @@ struct SplashView: View {
             }
             .navigationBarHidden(true)
         }
+        .navigationViewStyle(StackNavigationViewStyle())
         .onAppear(perform: {
             jump()
         })

@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import ObjectiveC
 
 //enum Tab {
 //    case tab1, tab2, tab3, tab4
@@ -15,9 +14,11 @@ import ObjectiveC
 
 struct MainView: View {
     
-//    @State private var currentView: Tab = .tab1
-    @State private var selected = 0
-   
+    //    @State private var currentView: Tab = .tab1
+    @State private var showBadge: Bool = false
+    @State private var selected: Int = 0
+    @State private var badgeConfig = TabBarBadgeConfig()
+    
     var body: some View {
         TabView(selection: $selected) {
             HomeView()
@@ -26,11 +27,11 @@ struct MainView: View {
                     Text("主页")
                 }.tag(0)
             
-//            DrawerView()
-//                .tabItem {
-//                    Image(systemName: self.selected == 1 ? "archivebox.fill" : "archivebox")
-//                    Text("抽屉")
-//                }.tag(1)
+            //            DrawerView()
+            //                .tabItem {
+            //                    Image(systemName: self.selected == 1 ? "archivebox.fill" : "archivebox")
+            //                    Text("抽屉")
+            //                }.tag(1)
             
             SchView()
                 .tabItem {
@@ -46,7 +47,68 @@ struct MainView: View {
         }
         .accentColor(Color(#colorLiteral(red: 0.1960784314, green: 0.2392156863, blue: 0.3882352941, alpha: 1)))
         .navigationBarBackButtonHidden(true)
+        .showTabBarBadge(isPresented: $showBadge, config: badgeConfig)
+        .onAppear {
+            if SchManager.schToken != nil {
+                SchMessageManager.getUnreadMessage { (result) in
+                    switch result {
+                        case .success(let msgs):
+                            if !msgs.isEmpty {
+                                badgeConfig.count = msgs.count
+                                showBadge = true
+                            }
+                        case .failure(let err):
+                            log(err)
+                    }
+                }
+            }
+        }
+    }
+}
+
+struct TabBarBadgeConfig {
+    var count: Int = 0
+    var pos: Int = 0
+    var tabsCount: Int = 0
+}
+
+struct TabBarBadgeModifier: ViewModifier {
+    @Binding var isPresented: Bool
+    var config: TabBarBadgeConfig
     
+    func body(content: Content) -> some View {
+        GeometryReader { g in
+            ZStack(alignment: .bottomLeading) {
+                content
+                // Badge View
+                if isPresented {
+                    ZStack {
+                        Circle()
+                            .foregroundColor(.red)
+                        
+                        if config.count > 0 {
+                            Text("3")
+                                .foregroundColor(.white)
+                                .font(Font.system(size: 12))
+                        }
+                    }
+                    .frame(width: 15, height: 15)
+                    .offset(x: calcBadgePosX(badgePosition: 2, tabsCount: 3, g: g), y: -25)
+                    .allowsHitTesting(false)
+                }
+            }
+        }
+    }
+    
+    private func calcBadgePosX(badgePosition: CGFloat, tabsCount: CGFloat, g: GeometryProxy) -> CGFloat {
+        return ( ( 2 * badgePosition) - 0.95 ) * ( g.size.width / ( 2 * tabsCount ) ) + 2
+    }
+}
+
+extension View {
+    // only show circle when count equals -1
+    func showTabBarBadge(isPresented: Binding<Bool>, config: TabBarBadgeConfig) -> some View {
+        self.modifier(TabBarBadgeModifier(isPresented: isPresented, config: config))
     }
 }
 
@@ -55,69 +117,3 @@ struct MainView_Previews: PreviewProvider {
         MainView()
     }
 }
-
-//struct CurrentScreen: View {
-//    @Binding var currentView: Tab
-//
-//    var body: some View {
-//        VStack {
-//            if self.currentView == .tab1 {
-//                HomeView()
-//            } else if self.currentView == .tab2 {
-////                HomeView(inBackground: .constant(false), isUnlocked: .constant(true))
-//                Text("抽屉")
-//            } else if self.currentView == .tab3 {
-////                HomeView2()
-//                Text("校务")
-//            } else {
-//                Text("个人")
-//            }
-//        }
-////        .ignoresSafeArea()
-//    }
-//}
-//
-//struct TabBar: View {
-//    @Binding var currentView: Tab
-//
-//    var body: some View {
-//        HStack {
-//            TabBarItem(currentView: $currentView, image: Image("HomeIcon"), paddingEdges: .leading, tab: .tab1, lable: "主页")
-//            Spacer()
-//            TabBarItem(currentView: $currentView, image: Image("DrawerIcon"), paddingEdges: .leading, tab: .tab2, lable: "抽屉")
-//            Spacer()
-//            TabBarItem(currentView: $currentView, image: Image("IssueIcon"), paddingEdges: .leading, tab: .tab3, lable: "校务专区")
-//            Spacer()
-//            TabBarItem(currentView: $currentView, image: Image("PersonIcon"), paddingEdges: .leading, tab: .tab4, lable: "个人中心")
-//        }
-//    }
-//}
-//
-//struct TabBarItem: View {
-//    @Binding var currentView: Tab
-//    let image: Image
-//    let paddingEdges: Edge.Set
-//    let tab: Tab
-//    let lable: String
-//
-//    var body: some View {
-//        VStack {
-//            image
-//                .resizable()
-//                .aspectRatio(contentMode: .fit)
-//                .padding(5)
-//                .frame(width: 40, height: 40, alignment: .center)
-//                .background(Color(self.currentView == tab ? .blue : .white).opacity(0.2))
-//                .foregroundColor(Color(self.currentView == tab ? .darkGray : .gray))
-//                .cornerRadius(6)
-//
-//            Text(lable)
-//                .font(.footnote)
-//                .foregroundColor(.gray)
-//        }
-//        .frame(width: 100, height: 50)
-//        .onTapGesture { self.currentView = self.tab }
-//        .padding(paddingEdges, 15)
-//    }
-//
-//}

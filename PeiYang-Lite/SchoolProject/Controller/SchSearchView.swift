@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Introspect
 
 struct SchSearchView: View {
     // 历史记录本地存储
@@ -16,11 +17,11 @@ struct SchSearchView: View {
     @StateObject private var searchModel: SchSearchResultViewModel = .init()
     
     @State private var isSearching: Bool = false
+    @State private var placeholder: String = "搜索问题..."
     
     var body: some View {
         VStack {
-            SchSearchTopView(inputMessage: $searchModel.searchString, historyArray: $historyArray, isSearching: $isSearching)
-                .environmentObject(tagSource)
+            SchSearchTopView(placeholder: $placeholder, inputMessage: $searchModel.searchString, historyArray: $historyArray, isSearching: $isSearching)
                 .environmentObject(searchModel)
 
                 if !isSearching {
@@ -94,14 +95,17 @@ struct SchSearchView: View {
         var height: CGFloat = 0
         
         return ZStack(alignment: .topLeading) {
-            ForEach(tagSource.tags.indices, id: \.self) { i in
+            ForEach(searchModel.tags.indices, id: \.self) { i in
                 Button(action: {
-                    for i in tagSource.tags.indices {
-                        tagSource.tags[i].isSelected = false
+                    if let idx = Array(searchModel.tags.indices).firstIndex(where: { searchModel.tags[$0].isSelected ?? false }) {
+                        if idx != i {
+                            searchModel.tags[idx].isSelected?.toggle()
+                        }
                     }
-                    tagSource.tags[i].isSelected?.toggle()
+                    searchModel.tags[i].isSelected?.toggle()
+                    self.placeholder = "直接搜索可以查看标签相关问题"
                 }, label: {
-                    SchTagView(model: $tagSource.tags[i])
+                    SchTagView(model: $searchModel.tags[i])
                 })
                 .padding([.horizontal, .vertical], 10)
                 .alignmentGuide(.leading, computeValue: { d in
@@ -111,7 +115,7 @@ struct SchSearchView: View {
                         height -= d.height
                     }
                     let result = width
-                    if tagSource.tags[i] == tagSource.tags.last! {
+                    if searchModel.tags[i] == searchModel.tags.last! {
                         width = 0 //last item
                     } else {
                         width -= d.width
@@ -120,7 +124,7 @@ struct SchSearchView: View {
                 })
                 .alignmentGuide(.top, computeValue: {d in
                     let result = height
-                    if tagSource.tags[i] == tagSource.tags.last! {
+                    if searchModel.tags[i] == searchModel.tags.last! {
                         height = 0 // last item
                     }
                     return result
@@ -138,10 +142,10 @@ struct SchSearchTableView_Previews: PreviewProvider {
 
 fileprivate struct SchSearchTopView: View {
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
+    @Binding var placeholder: String
     @Binding var inputMessage: String
     @Binding var historyArray: [String]
     @Binding var isSearching: Bool
-    @EnvironmentObject var tagSource: SchTagSource
     @EnvironmentObject var searchModel: SchSearchResultViewModel
     
     @State private var navigateToResult: Bool = false
@@ -150,9 +154,9 @@ fileprivate struct SchSearchTopView: View {
         HStack {
             HStack {
                 Image("search")
-                TextField("搜索问题...", text: $inputMessage, onCommit: {
+                XTextField(placeholder: $placeholder, inputMessage: $inputMessage, returnKeyType: .done) { (_) in
                     searchQuestion()
-                })
+                }
                 .foregroundColor(inputMessage.isEmpty ? .init(red: 207/255, green: 208/255, blue: 213/255) : Color.black)
                 Spacer()
             }
@@ -175,8 +179,8 @@ fileprivate struct SchSearchTopView: View {
     }
     
     private func searchQuestion() {
-        guard !inputMessage.isEmpty else { return }
-        if !historyArray.contains(inputMessage) {
+        guard !inputMessage.isEmpty || searchModel.tags.reduce(false, { $0 || $1.isSelected ?? false }) else { return }
+        if !historyArray.contains(inputMessage) && !inputMessage.isEmpty {
             historyArray.insert(inputMessage, at: 0)
             if historyArray.count > 4 {
                 historyArray.removeLast()
@@ -184,7 +188,54 @@ fileprivate struct SchSearchTopView: View {
         }
         isSearching = true
         hideKeyboard()
-//        navigateToResult = true
+    }
+    
+    private struct XTextField: UIViewRepresentable {
+        @Binding var placeholder: String
+        @Binding var inputMessage: String
+        var returnKeyType: UIReturnKeyType
+        var onCommit: (UITextField) -> Void
+        
+        func makeUIView(context: Context) -> UITextField {
+            let textField = UITextField(frame: .zero)
+            textField.placeholder = placeholder
+            textField.returnKeyType = self.returnKeyType
+            textField.text = inputMessage
+            textField.delegate = context.coordinator
+            
+            return textField
+        }
+        
+        func updateUIView(_ uiView: UITextField, context: Context) {
+            uiView.text = inputMessage
+            uiView.placeholder = placeholder
+        }
+        
+        func makeCoordinator() -> Coordinator {
+            Coordinator(self)
+        }
+        
+        class Coordinator: NSObject, UITextFieldDelegate {
+            var parent: XTextField
+            
+            init(_ parent: XTextField) {
+                self.parent = parent
+            }
+            
+            func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+                if let currentValue = textField.text as NSString? {
+                    let proposedValue = currentValue.replacingCharacters(in: range, with: string)
+                    parent.inputMessage = proposedValue
+                }
+                return true
+            }
+            
+            func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+                parent.onCommit(textField)
+                textField.resignFirstResponder()
+                return true
+            }
+        }
     }
 }
 
@@ -199,11 +250,26 @@ fileprivate class SchSearchResultViewModel: SchQuestionScrollViewModel, SchQuest
     
     @Published var maxPage: Int = 0
     
-    @Published var tags: [SchTagModel] = []
+    @Published var tags: [SchTagModel] = [] {
+        didSet {
+            self.reloadData()
+        }
+    }
     
     @Published var searchString: String = "" {
         didSet {
             self.reloadData()
+        }
+    }
+    
+    init() {
+        SchTagManager.tagGet { (result) in
+            switch result {
+                case .success(let tags):
+                    self.tags = tags
+                case .failure(let err):
+                    log("获取标签失败", err)
+            }
         }
     }
     
