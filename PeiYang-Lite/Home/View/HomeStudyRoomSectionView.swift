@@ -51,13 +51,12 @@ struct HomeStudyRoomSectionView: View {
 
     
     // 收藏
-    @State var getCollectionClassId: [String] = []
     @State var collectionClass: [CollectionClass] = []
     @State var buildings: [StudyBuilding] = []
 
     
     var body: some View {
-        if getCollectionClassId == [] {
+        if collectionClass == [] {
             NavigationLink(destination: StyTopView()) {
                 Text("还没有get到您的收藏")
                     .font(.caption)
@@ -103,24 +102,13 @@ struct HomeStudyRoomSectionView: View {
     }
     func requestDataToUseData() {
         collectionClass = []
-        StyCollectionManager.getCollections() { result in
+        StyCollectionManager.getCollections(buildings: buildings) {result in
             switch result {
             case .success(let data):
-                getCollectionClassId = data.data.classroomID ?? []
-                DataStorage.store(getCollectionClassId, in: .caches, as: "studyroom/collections.json")
-                for code in getCollectionClassId {
-                    for building in buildings {
-                        for area in building.areas {
-                            for room in area.classrooms {
-                                if(room.classroomID == code) {
-                                    collectionClass.append(CollectionClass(classMessage: room, buildingName: building.building))
-                                }
-                            }
-                        }
-                    }
-                }
-            case .failure(_):
-                break
+                collectionClass = data
+//                DataStorage.store(getCollectionClassId, in: .caches, as: "studyroom/collections.json")
+            case .failure(let error):
+                log(error)
             }
         }
     }

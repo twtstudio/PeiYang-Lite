@@ -11,22 +11,34 @@ struct AlertView: View {
     var alertMessage: String
     @Binding var isShow: Bool
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    var isRight: Bool {
+        switch alertMessage {
+        case "成功":
+            return true
+        case "取消收藏成功":
+            return true
+        case "收藏成功":
+            return true
+        default:
+            return false
+        }
+    }
     var body: some View {
         HStack {
             Text(alertMessage)
                 .multilineTextAlignment(.center)
                 .lineLimit(nil)
-                .foregroundColor(alertMessage == "成功" ? .black : .white)
+                .foregroundColor(isRight ? .black : .white)
                 .animation(.none)
                 .padding()
         }
-        .frame(width: screen.width * 0.4, height: screen.height/10, alignment: .center)
-        .background(alertMessage == "成功" ? Color.green : Color.black)
+        .frame(height: screen.height/12, alignment: .center)
+        .background(isRight ? Color.green : Color.black)
+        .cornerRadius(screen.height/50)
         .animation(.none)
-        .cornerRadius(screen.height/80)
         .opacity(isShow ? 1 : 0)
         .animation(
-            Animation.easeInOut(duration: 0.5)
+            Animation.easeInOut(duration: 0.4)
                 .delay(1)
         )
     }

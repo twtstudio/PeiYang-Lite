@@ -11,6 +11,7 @@ struct AcBindEmailView: View {
     let themeColor = Color(red: 102/255, green: 106/255, blue: 125/255)
     let titleColor = Color.init(red: 98/255, green: 103/255, blue: 122/255)
     @State private var email = ""
+    @AppStorage(AccountSaveMessage.AccountEmailKey, store: Storage.defaults) private var accountEmail = ""
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     @State private var AlertMessage: String = "网络问题"
     @State private var isShowAlert: Bool = false
@@ -60,7 +61,7 @@ struct AcBindEmailView: View {
                         .frame(width: UIScreen.main.bounds.width * 0.9, height: UIScreen.main.bounds.height / 15, alignment: .center)
                         .background(Color.init(red: 235/255, green: 238/255, blue: 243/255))
                         .cornerRadius(10)
-                        .keyboardType(.numberPad)
+                        .keyboardType(.emailAddress)
                     
                     Button(action: {
                         AcBindManager.BindEmPut(email: email){ result in
@@ -70,6 +71,7 @@ struct AcBindEmailView: View {
                                 if(AlertMessage == "成功") {
                                     sharedMessage.Account.email = email
                                     sharedMessage.isBindEm = true
+                                    accountEmail = email
                                     self.mode.wrappedValue.dismiss()
                                 } else {
                                     isShowAlert = true

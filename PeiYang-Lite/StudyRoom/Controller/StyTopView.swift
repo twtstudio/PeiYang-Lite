@@ -52,7 +52,6 @@ struct StyTopView: View {
     @State var alertMessage = ""
     
     // 收藏
-    @State var getCollectionClassId: [String] = []
     @State var collectionClass: [CollectionClass] = []
     
 //     StudyRoom共享数据
@@ -128,6 +127,7 @@ struct StyTopView: View {
                 }.pickerStyle(MenuPickerStyle())
                 .foregroundColor(themeColor)
                 .font(.custom("HelveticaNeue-Bold", size: screen.height/40))
+                .animation(.none)
 
 
                 Spacer()
@@ -239,8 +239,8 @@ struct StyTopView: View {
                         }
                         .frame(width: width, height: width) // That's sucked!
                     }
-                    .padding()
-                    .frame(width: screen.width, height: screen.height * 0.4, alignment: .center)
+                    .padding(.horizontal)
+                    .frame(width: screen.width, height: screen.height * 0.35, alignment: .center)
                 } else{
                     //MARK: show the buildings in BY
                     GridWithoutScrollStack(minCellWidth: screen.width / 8,
@@ -287,11 +287,12 @@ struct StyTopView: View {
                         }
                         .frame(width: width, height: width) // That's sucked!
                     }
-                    .padding()
-                    .frame(width: screen.width, height: screen.height * 0.4, alignment: .center)
+                    .padding(.horizontal)
+                    .frame(width: screen.width, height: screen.height * 0.35, alignment: .center)
                 }
                 
             }
+            
             // MARK: Collections
             HStack {
                 Text("我的收藏")
@@ -299,6 +300,7 @@ struct StyTopView: View {
                     .foregroundColor(themeColor)
                 Spacer()
             }
+            .animation(.none)
             .frame(width: screen.width * 0.9)
             StudyRoomFavourCard(activeWeek: weeks, collectionClasses: collectionClass)
             Spacer()
@@ -308,6 +310,7 @@ struct StyTopView: View {
                 isActive: $isShowSearch,
                 label: {EmptyView()})
         }//: VSTACK
+        .animation(.easeInOut)
         .frame(width: screen.width * 0.9)
         .navigationBarHidden(true)
         // MARK: 请求当天数据
@@ -339,36 +342,19 @@ struct StyTopView: View {
         queue.async {
             DataStorage.store(buildings, in: .caches, as: "studyroom/todaydata.json")
             DataStorage.store(weeksBuildings, in: .caches, as: "studyroom/weekdata.json")
-            DataStorage.store(getCollectionClassId, in: .caches, as: "studyroom/collections.json")
+//            DataStorage.store(getCollectionClassId, in: .caches, as: "studyroom/collections.json")
             DataStorage.store(collectionClass, in: .caches, as: "studyroom/collectionclass.json")
         }
     }
     
     //MARK: 收藏的数据整理
     func requestDataToUseData() {
-        StyCollectionManager.getCollections() { result in
+        StyCollectionManager.getCollections(buildings: buildings) {result in
             switch result {
             case .success(let data):
-                if(data.errorCode != 0){
-                    alertMessage = data.message
-                } else {
-                    alertMessage = data.message
-                    getCollectionClassId = data.data.classroomID!
-                    DataStorage.store(getCollectionClassId, in: .caches, as: "studyroom/collections.json")
-                }
-                for code in getCollectionClassId {
-                    for building in buildings {
-                        for area in building.areas {
-                            for room in area.classrooms {
-                                if(room.classroomID == code) {
-                                    collectionClass.append(CollectionClass(classMessage: room, buildingName: building.building))
-                                }
-                            }
-                        }
-                    }
-                }
-            case .failure(_):
-                break
+                collectionClass = data
+            case .failure(let error):
+                log(error)
             }
         }
     }
@@ -425,8 +411,6 @@ struct StyTopView: View {
         /// clear the array data first
         buildingsWJ = []
         buildingsBY = []
-        collectionClass = []
-        getCollectionClassId = []
         if let saveBuildings = DataStorage.retreive("studyroom/todaydata.json", from: .caches, as: [StudyBuilding].self) {
             buildings = saveBuildings
             requestDataToUseData()
@@ -459,7 +443,7 @@ struct StudyRoomTopView_Previews: PreviewProvider {
 
 struct StudyRoomBuildingCardView: View {
     // 横向的自习室收藏卡片
-    let circleDiameter = screen.width / 55
+    let circleDiameter = screen.width / 60
     var buildingName: String
     var className: String
     @EnvironmentObject var sharedMessage: SharedMessage
@@ -471,7 +455,9 @@ struct StudyRoomBuildingCardView: View {
         return buildingName + " " + className
     }
     let themeColor = Color.init(red: 98/255, green: 103/255, blue: 123/255)
-    var imageId = Int(arc4random_uniform(4)) // 0-3随机数
+    var imageId: Int{
+        return (Int(className) ?? 0) % 3
+    }
     var ImageName: String {
         switch imageId {
         case 0:
@@ -489,10 +475,10 @@ struct StudyRoomBuildingCardView: View {
             Image(ImageName)
                 .resizable()
                 .scaledToFit()
-                .frame(width: screen.width / 9)
+                .frame(width: screen.width / 10)
             Text(fullName)
-                .font(.headline)
-                .fontWeight(.heavy)
+                .font(.subheadline)
+                .fontWeight(.bold)
                 .foregroundColor(themeColor)
             HStack{
                 if isFree != nil {
@@ -505,7 +491,7 @@ struct StudyRoomBuildingCardView: View {
                     }
                     Text(isFree! ? "空闲" : "占用")
                         .fontWeight(.heavy)
-                        .font(.footnote)
+                        .font(.caption)
                         .foregroundColor(isFree! ? .green : .red)
                         .fontWeight(.heavy)
                     
@@ -527,7 +513,7 @@ struct StudyRoomBuildingCardView: View {
             }
             .padding(.top, 0)
         }
-        .frame(width: screen.width / 3.5, height: screen.width / 2.5, alignment: .center)
+        .frame(width: screen.width / 4, height: screen.width / 3, alignment: .center)
         .background(Color.white)
         .cornerRadius(15)
         .onAppear(perform: {
@@ -574,8 +560,6 @@ struct StudyRoomFavourCard: View {
     @Binding var activeWeek: Int
     var collectionClasses: [CollectionClass]
     
-    
- 
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false, content: {
             HStack(spacing: 20) {
@@ -583,11 +567,11 @@ struct StudyRoomFavourCard: View {
                     NavigationLink(
                         destination: StyRoomDetailView(activeWeek: $activeWeek, className: collectionclass.buildingName + collectionclass.classMessage.classroom, classData: collectionclass.classMessage),
                         label: {
-                            StudyRoomBuildingCardView(buildingName: collectionclass.buildingName, className: collectionclass.classMessage.classroom, classData: collectionclass.classMessage)
+                            StudyRoomBuildingCardView(buildingName: collectionclass.buildingName + ((collectionclass.sectionName != "-1") ? collectionclass.sectionName : ""), className: collectionclass.classMessage.classroom, classData: collectionclass.classMessage)
                         })
                 }
             }
-        }).padding()
+        })
     }
 }
 

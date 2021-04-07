@@ -729,11 +729,11 @@
 		D35402D3260DEF720092D83A /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				D35402D4260DEF720092D83A /* StySearchView.swift */,
-				D35402D5260DEF720092D83A /* StyRoomDetailView.swift */,
-				D35402D6260DEF720092D83A /* StyBuildingSectionView.swift */,
 				D35402D7260DEF720092D83A /* StyTopView.swift */,
+				D35402D4260DEF720092D83A /* StySearchView.swift */,
+				D35402D6260DEF720092D83A /* StyBuildingSectionView.swift */,
 				D35402D8260DEF720092D83A /* StyChooseClassView.swift */,
+				D35402D5260DEF720092D83A /* StyRoomDetailView.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -875,9 +875,9 @@
 		D3540304260DEF720092D83A /* Account */ = {
 			isa = PBXGroup;
 			children = (
+				D354030F260DEF720092D83A /* AccountView.swift */,
 				C926FC442611A9BE007F0C43 /* Controller */,
 				D354030D260DEF720092D83A /* Model */,
-				D354030F260DEF720092D83A /* AccountView.swift */,
 				D3540310260DEF720092D83A /* AboutTwTView.swift */,
 			);
 			path = Account;

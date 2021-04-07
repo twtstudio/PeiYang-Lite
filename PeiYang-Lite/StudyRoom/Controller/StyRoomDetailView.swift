@@ -15,115 +15,154 @@ struct StyRoomDetailView: View {
     
     @State private var isShowCalender = false
     @State var isFavoured: Bool = false
+    @State var isAddedNow: Bool = false
     var className: String
     // 定位classroom
     var classData: Classroom
     @State var weekData: [String] =  ["", "", "", "", "", "", ""]
     
+    // Alert var
+        @State private var AlertMessage: String = ""
+        @State private var isShowAlert: Bool = false
+        @State private var alertTimer: Timer?
+        @State private var alertTime = 2
+    
     var body: some View {
-        VStack {
-            
-            NavigationBar(leading: {
-                Button(action: {
-                    self.mode.wrappedValue.dismiss()
-                  }) {
-                    Image("back-arrow")
-                }
-            }, trailing: {
-                Button(action: {
-                    isShowCalender.toggle()
-                }, label: {
-                    Image("calender")
+        ZStack {
+            VStack {
+                
+                NavigationBar(leading: {
+                    Button(action: {
+                        self.mode.wrappedValue.dismiss()
+                      }) {
+                        Image("back-arrow")
+                    }
+                }, trailing: {
+                    Button(action: {
+                        isShowCalender.toggle()
+                    }, label: {
+                        Image("calender")
+                    })
                 })
-            })
-            .frame(width: screen.width * 0.9)
-           
-            HStack(alignment: .firstTextBaseline) {
-                Text(className)
-                    .font(.title)
-                    .fontWeight(.bold)
-                    .foregroundColor(Color(#colorLiteral(red: 0.3856853843, green: 0.403162986, blue: 0.4810273647, alpha: 1)))
-                
-                Text("WEEK \(activeWeek.description)")
-                    .font(.body)
-                    .fontWeight(.light)
-                    .foregroundColor(.gray)
-                
-                Spacer()
-                
-                Button(action: {
-                    
-                    if (isFavoured == false){
-                        StyCollectionManager.addFavour(classroomID: classData.classroomID) {result in
-                            switch result {
-                            case .success(let data):
-                                if data.errorCode == 0 {
-                                    isFavoured.toggle()
-                                }
-                            case .failure(let error):
-                                log(error)
-                            }
-                        }
-                    }
-                    else if (isFavoured == true) {
-                        StyCollectionManager.deleteFavour(classroomID: classData.classroomID) { result in
-                            switch result {
-                            case .success(let data):
-                                if data.errorCode == 0 {
-                                    isFavoured.toggle()
-                                }
-                            case .failure(let error):
-                               log(error)
-                            }
-                        }
-                        
-                    }
-                    
-                }) {
-                    Text(isFavoured ? "已收藏" : "收藏")
-                        .font(.headline)
-                        .bold()
+                .frame(width: screen.width * 0.9)
+               
+                HStack(alignment: .firstTextBaseline) {
+                    Text(className)
+                        .font(.title)
+                        .fontWeight(.bold)
                         .foregroundColor(Color(#colorLiteral(red: 0.3856853843, green: 0.403162986, blue: 0.4810273647, alpha: 1)))
+                    
+                    Text("WEEK \(activeWeek.description)")
+                        .font(.body)
+                        .fontWeight(.light)
+                        .foregroundColor(.gray)
+                    
+                    Spacer()
+                    
+                    Button(action: {
+                        
+                        if (isFavoured == false){
+                            StyCollectionManager.addFavour(classroomID: classData.classroomID) {result in
+                                switch result {
+                                case .success(let data):
+                                    if data.errorCode == 0 {
+                                        isFavoured.toggle()
+                                        isAddedNow = true
+                                        AlertMessage = "收藏成功"
+                                    }else {
+                                        AlertMessage = "收藏失败"
+                                    }
+                                case .failure(let error):
+                                    AlertMessage = "收藏失败"
+                                    log(error)
+                                }
+                                isShowAlert = true
+                            }
+                        }
+                        else if (isFavoured == true) {
+                            StyCollectionManager.deleteFavour(classroomID: classData.classroomID) { result in
+                                switch result {
+                                case .success(let data):
+                                    if data.errorCode == 0 {
+                                        isFavoured.toggle()
+                                        isAddedNow = false
+                                        AlertMessage = "取消收藏成功"
+                                    } else {
+                                        AlertMessage = "取消收藏失败"
+                                    }
+                                case .failure(let error):
+                                    AlertMessage = "取消收藏失败"
+                                    log(error)
+                                }
+                            }
+                            isShowAlert = true
+                        }
+                        alertTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { (time) in
+                            if self.alertTime < 1 {
+                                self.alertTime = 3
+                                time.invalidate()
+                                isShowAlert = false
+                            }
+                            self.alertTime -= 1
+                        })
+                    }) {
+                        if (isAddedNow) {
+                            Text("取消收藏")
+                                .font(.headline)
+                                .bold()
+                                .foregroundColor(Color(#colorLiteral(red: 0.3856853843, green: 0.403162986, blue: 0.4810273647, alpha: 1)))
+                        } else {
+                            Text(isFavoured ? "已收藏" : "收藏")
+                                .font(.headline)
+                                .bold()
+                                .foregroundColor(Color(#colorLiteral(red: 0.3856853843, green: 0.403162986, blue: 0.4810273647, alpha: 1)))
+                        }
+                    }
                 }
-            }
-            .padding()
-                .padding(.horizontal)
-            
-            ScrollView(.vertical, showsIndicators: false) {
-                VStack {
-                    CourseTableWeekdaysView(
-                        activeWeek: $activeWeek,
-                        courseTable: courseTable,
-                        width: screen.width / 9.5 ,// 变成七天的手动
-                        showCourseNum: 7
-                    )
-                    .padding(.leading, screen.width/16 + 7)
-                    .frame(width: screen.width, alignment: .center)
-
-                    StudyRoomContentView(
-                        activeWeek: activeWeek,
-                        courseArray: courseTable.courseArray, status: weekData,
-                        width: screen.width / 9.5 // 变成七天的手动
+                .padding()
+                    .padding(.horizontal)
+                
+                ScrollView(.vertical, showsIndicators: false) {
+                    VStack {
+                        CourseTableWeekdaysView(
+                            activeWeek: $activeWeek,
+                            courseTable: courseTable,
+                            width: screen.width ,// 变成七天的手动
+                            showCourseNum: 7
                         )
-                    .frame(width: screen.width, height: screen.height*1.2, alignment: .top)
+                        .padding(.leading, screen.width/16 + 7)
+                        .frame(width: screen.width, alignment: .center)
+
+                        StudyRoomContentView(
+                            activeWeek: activeWeek,
+                            courseArray: courseTable.courseArray, status: weekData,
+                            width: screen.width / 9.5 // 变成七天的手动
+                            )
+                        .frame(width: screen.width, height: screen.height*1.2, alignment: .top)
+                    }
+                    .padding(.horizontal, 10)
                 }
-                .padding(.horizontal, 10)
+               
+            }
+            .navigationBarHidden(true)
+            .edgesIgnoringSafeArea(.bottom)
+            .edgesIgnoringSafeArea(.horizontal)
+            .sheet(isPresented: $isShowCalender,
+                   content: {
+                    CalendarView(isShowCalender: $isShowCalender)
+                        .onDisappear(perform: {
+                            loadTodayOrNewWeekData()
+                        })
+            })
+            .onAppear(perform: {
+                loadTodayOrNewWeekData()
+            })
+            .addAnalytics(className: "StudyRoomDetailView")
+            VStack{
+                Spacer()
+                AlertView(alertMessage: AlertMessage, isShow: $isShowAlert).padding(.bottom)
             }
         }
-        .navigationBarHidden(true)
-        .edgesIgnoringSafeArea(.bottom)
-        .edgesIgnoringSafeArea(.horizontal)
-        .sheet(isPresented: $isShowCalender,
-               content: {
-                CalendarView(isShowCalender: $isShowCalender)
-                    .onDisappear(perform: {
-                        loadTodayOrNewWeekData()
-                    })
-        })
-        .onAppear(perform: {
-            loadTodayOrNewWeekData()
-        })
-        .addAnalytics(className: "StudyRoomDetailView")
     }
     
     func loadTodayOrNewWeekData() {

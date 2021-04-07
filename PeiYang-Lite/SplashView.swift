@@ -21,6 +21,7 @@ struct SplashView: View {
     @AppStorage(AccountSaveMessage.AccountTelephoneKey, store: Storage.defaults) private var accountTelephone = ""
     @AppStorage(AccountSaveMessage.AccountIdKey, store: Storage.defaults) private var accountId = ""
     @AppStorage(AccountSaveMessage.AccountNameKey, store: Storage.defaults) private var accountName = ""
+    @AppStorage(AccountSaveMessage.AccountUpdateTimeKey, store: Storage.defaults) private var accountLoginTime = 0
     
     @State private var isStored: Bool = false
     @State private var isJumpToLog: Bool = false
@@ -41,7 +42,15 @@ struct SplashView: View {
             .navigationBarHidden(true)
         }
         .onAppear(perform: {
-            jump()
+            let now = Date()
+            let timeInterval: TimeInterval = now.timeIntervalSince1970
+            let timeStamp = Int(timeInterval)
+            if timeStamp - accountLoginTime <= 604800 {
+                jump()
+            } else {
+                Jump()
+                accountLoginTime = timeStamp
+            }
         })
         
     }
@@ -56,31 +65,31 @@ struct SplashView: View {
         }
     }
     
-//    func Jump() {
-//        DispatchQueue.global().asyncAfter(deadline: .now() + 1) {
-//
-//            LgLoginManager.LoginPost(account: storageUserName, password: storagePassword) { result in
-//                switch result {
-//                case .success(let data):
-//                    sharedMessage.Account = data.result
-//                    // 存储用户本地数据
-//                    accountId = sharedMessage.Account.userNumber
-//                    accountEmail = sharedMessage.Account.email ?? ""
-//                    accountTelephone = sharedMessage.Account.telephone ?? ""
-//                    accountName = sharedMessage.Account.nickname
-//                    // 更新token
-//                    userToken = sharedMessage.Account.token
-//                    isJumpToAccount = true
-//                case .failure(let error):
-//                    isJumpToAccount = true
-//                    sharedMessage.Account = AccountResult(userNumber: accountId, nickname: accountName, telephone: accountTelephone, email: accountEmail, token: userToken, role: "", realname: "", gender: "", department: "", major: "", stuType: "", avatar: "", campus: "")
-//                    log(error)
-//                }
-//            }
-//
-//
-//        }
-//    }
+    func Jump() {
+        DispatchQueue.global().asyncAfter(deadline: .now() + 1) {
+
+            LgLoginManager.LoginPost(account: storageUserName, password: storagePassword) { result in
+                switch result {
+                case .success(let data):
+                    sharedMessage.Account = data.result
+                    // 存储用户本地数据
+                    accountId = sharedMessage.Account.userNumber
+                    accountEmail = sharedMessage.Account.email ?? ""
+                    accountTelephone = sharedMessage.Account.telephone ?? ""
+                    accountName = sharedMessage.Account.nickname
+                    // 更新token
+                    userToken = sharedMessage.Account.token
+                    isJumpToAccount = true
+                case .failure(let error):
+                    isJumpToAccount = true
+                    sharedMessage.Account = AccountResult(userNumber: accountId, nickname: accountName, telephone: accountTelephone, email: accountEmail, token: userToken, role: "", realname: "", gender: "", department: "", major: "", stuType: "", avatar: "", campus: "")
+                    log(error)
+                }
+            }
+
+
+        }
+    }
 }
 
 struct SplashView_Previews: PreviewProvider {

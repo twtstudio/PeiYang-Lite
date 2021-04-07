@@ -24,6 +24,7 @@ struct AcBindPhoneView: View {
     @State private var alertTime = 2
     
     @EnvironmentObject var sharedMessage: SharedMessage
+    @AppStorage(AccountSaveMessage.AccountTelephoneKey, store: Storage.defaults) private var accountTelephone = ""
     
     @State var isShowSignOut = false
     
@@ -177,6 +178,7 @@ struct AcBindPhoneView: View {
                                 if(AlertMessage == "成功") {
                                     sharedMessage.Account.telephone = phoneNum
                                     sharedMessage.isBindPh = true
+                                    accountTelephone = phoneNum
                                     self.mode.wrappedValue.dismiss()
                                 } else {
                                     isShowAlert = true
@@ -211,7 +213,7 @@ struct AcBindPhoneView: View {
                 .opacity(isShowSignOut ? 0.5 : 0)
                 .animation(.easeIn)
 
-            VStack(spacing: UIScreen.main.bounds.height / 40) {
+            VStack(spacing: UIScreen.main.bounds.height / 50) {
                 Text("解除邮箱绑定后无法使用邮箱登录微北洋。若本次登录为邮箱登录则将退出登录，需要您重新进行账号密码登录。您是否确定解除绑定？").padding()
                     .foregroundColor(themeColor)
                     .font(.caption)
@@ -235,7 +237,7 @@ struct AcBindPhoneView: View {
                             .foregroundColor(titleColor)
                             .font(.custom("Avenir-Black", size: 20))
                     }
-                }
+                }.padding(.bottom)
             }
             .frame(width: UIScreen.main.bounds.width * 0.8, height: UIScreen.main.bounds.height / 6, alignment: .center)
             .background(Color.init(red: 242/255, green: 242/255, blue: 242/255))

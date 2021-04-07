@@ -18,6 +18,7 @@ struct LgKeywordLoginView: View {
     @AppStorage(AccountSaveMessage.AccountTelephoneKey, store: Storage.defaults) private var accountTelephone = ""
     @AppStorage(AccountSaveMessage.AccountIdKey, store: Storage.defaults) private var accountId = ""
     @AppStorage(AccountSaveMessage.AccountNameKey, store: Storage.defaults) private var accountName = ""
+    @AppStorage(AccountSaveMessage.AccountUpdateTimeKey, store: Storage.defaults) private var accountLoginTime = 0
     
     
     @State private var isLogin = false
@@ -112,7 +113,12 @@ struct LgKeywordLoginView: View {
                         userToken = accountMessage.result.token
                         storagePassword = password
                         storageUserName = username
-                        isShowAlert = true
+                        // 存时间戳
+                        let now = Date()
+                        let timeInterval: TimeInterval = now.timeIntervalSince1970
+                        let timeStamp = Int(timeInterval)
+                        accountLoginTime = timeStamp
+
                     case .failure(let error):
                         isError = true
                         AlertMessage = error.message

@@ -46,7 +46,7 @@ struct AcChangeColorView: View {
                 Button(action: {
                     changeColorHex(background: 0x7f8b59, text: 0xFFFFFF)
                 }, label: {
-                    Text("#7f8b59")
+                    Text("#7f8b59"+(gpaTextColor == 0xFFFFFF ? "(已选)" : ""))
                         .foregroundColor(.init(hex: 0xFFFFFF))
                         .frame(width: screen.width * 0.9, height: screen.height / 15)
                         .background(Color.init(hex: 0x7f8b59))
@@ -56,7 +56,7 @@ struct AcChangeColorView: View {
                 Button(action: {
                     changeColorHex(background: 0xEEEDED, text: 0x9D7B83)
                 }, label: {
-                    Text("#9d7b83")
+                    Text("#9d7b83"+(gpaTextColor == 0x9D7B83 ? "(已选)" : ""))
                         .foregroundColor(.init(hex: 0x9D7B83))
                         .frame(width: screen.width * 0.9, height: screen.height / 15)
                         .background(Color.init(hex: 0xEEEDED))
@@ -66,7 +66,7 @@ struct AcChangeColorView: View {
                 Button(action: {
                     changeColorHex(background: 0xAD8D92, text: 0xF7F7F8)
                 }, label: {
-                    Text("#ad8d92")
+                    Text("#ad8d92"+(gpaTextColor == 0xF7F7F8 ? "(已选)" : ""))
                         .foregroundColor(.init(hex: 0xF7F7F8))
                         .frame(width: screen.width * 0.9, height: screen.height / 15)
                         .background(Color.init(hex: 0xAD8D92))
@@ -76,7 +76,7 @@ struct AcChangeColorView: View {
                 Button(action: {
                     changeColorHex(background: 0x47535F, text: 0xCEC6B9)
                 }, label: {
-                    Text("#47535f")
+                    Text("#47535f"+(gpaTextColor == 0xCEC6B9 ? "(已选)" : ""))
                         .foregroundColor(.init(hex: 0xCEC6B9))
                         .frame(width: screen.width * 0.9, height: screen.height / 15)
                         .background(Color.init(hexString: "47535f"))

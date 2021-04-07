@@ -78,15 +78,7 @@ struct StySearchView: View {
         VStack{
             HStack {
                 Button(action: {
-                    if(searchBuilding != [] || searchSection != [] || searchRoom != []) {
-                        searchBuilding = []
-                        searchRoom = []
-                        searchSection = []
-                    }
-                    studyRoomHistory.insert(searchString, at: 0)
-                    chooseMethod()
-                    isSearched = true
-                    search()
+                    searchGo()
                 }, label: {
                     Image("search")
                         .resizable()
@@ -94,9 +86,12 @@ struct StySearchView: View {
                         .frame(width: screen.width / 20)
                 })
                 .disabled(searchString == "")
-                TextField("", text: $searchString)
+                TextField("", text: $searchString, onCommit: {
+                    searchGo()
+                })
                     .font(.callout)
                     .padding()
+                    .keyboardType(.webSearch)
                 Button(action: {
                     if(searchString == "") {
                         self.mode.wrappedValue.dismiss()
@@ -404,6 +399,17 @@ struct StySearchView: View {
         case .wrong:
             break
         }
+    }
+    private func searchGo(){
+        if(searchBuilding != [] || searchSection != [] || searchRoom != []) {
+            searchBuilding = []
+            searchRoom = []
+            searchSection = []
+        }
+        studyRoomHistory.insert(searchString, at: 0)
+        chooseMethod()
+        isSearched = true
+        search()
     }
 }
 

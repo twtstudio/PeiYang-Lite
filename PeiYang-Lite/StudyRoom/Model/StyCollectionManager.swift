@@ -11,8 +11,7 @@ class StyCollectionManager {
     static let ticket = "YmFuYW5hLjM3YjU5MDA2M2Q1OTM3MTY0MDVhMmM1YTM4MmIxMTMwYjI4YmY4YTc="
     static let domain = "weipeiyang.twt.edu.cn"
     
-    static func getCollections(completion: @escaping (Result<Collections, Network.Failure>) -> Void) {
-        
+    static func getCollections(buildings: [StudyBuilding], completion: @escaping (Result<[CollectionClass], Network.Failure>) -> Void) {
         Network.fetch(
             "https://selfstudy.twt.edu.cn/getCollections",
             headers:[
@@ -29,9 +28,22 @@ class StyCollectionManager {
                     completion(.failure(.requestFailed))
                     return
                 }
+                var returnMessageData: [CollectionClass] = []
+                DataStorage.store(ReturnMessage.data.classroomID ?? [], in: .caches, as: "studyroom/collections.json")
+                for code in ReturnMessage.data.classroomID ?? [] {
+                    for building in buildings {
+                        for area in building.areas {
+                            for room in area.classrooms {
+                                if room.classroomID == code {
+                                    returnMessageData.append(CollectionClass(sectionName: area.areaID, classMessage: room, buildingName: building.building))
+                                }
+                            }
+                        }
+                    }
+                }
                 switch response.statusCode {
                 case 200:
-                    completion(.success(ReturnMessage))
+                    completion(.success(returnMessageData))
                 case 401:
                     completion(.failure(.urlError))
                 default:
@@ -42,6 +54,9 @@ class StyCollectionManager {
             }
         }
     }
+    
+        
+    
     static func addFavour(classroomID: String, completion: @escaping (Result<StudyroomOrdinaryMessage, Network.Failure>) -> Void) {
         Network.fetch(
             "https://selfstudy.twt.edu.cn/addCollection",

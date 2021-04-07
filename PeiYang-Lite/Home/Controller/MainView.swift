@@ -26,11 +26,11 @@ struct MainView: View {
                     Text("主页")
                 }.tag(0)
             
-//            DrawerView()
-//                .tabItem {
-//                    Image(systemName: self.selected == 1 ? "archivebox.fill" : "archivebox")
-//                    Text("抽屉")
-//                }.tag(1)
+            DrawerView()
+                .tabItem {
+                    Image(systemName: self.selected == 1 ? "archivebox.fill" : "archivebox")
+                    Text("抽屉")
+                }.tag(1)
             
             SchView()
                 .tabItem {

@@ -65,11 +65,13 @@ class AccountSaveMessage: ObservableObject {
     static let AccountIdKey: String = "accountidkey"
     static let AccountTelephoneKey: String = "accounttelephonekey"
     static let AccountEmailKey: String = "accountemailkey"
+    static let AccountUpdateTimeKey: String = "accountupdatekey"
     
     static var accountName: String {Storage.defaults.string(forKey: AccountNameKey) ?? ""}
     static var accountId: String {Storage.defaults.string(forKey: AccountIdKey) ?? ""}
     static var accountTelephone: String {Storage.defaults.string(forKey: AccountTelephoneKey) ?? ""}
     static var accountEmail: String {Storage.defaults.string(forKey: AccountEmailKey) ?? ""}
+    static var accountLoginTime: Int {Storage.defaults.integer(forKey: AccountUpdateTimeKey)}
     
     static func remove(_ key: String) { Storage.defaults.removeObject(forKey: key) }
     
@@ -78,5 +80,6 @@ class AccountSaveMessage: ObservableObject {
         remove(AccountIdKey)
         remove(AccountEmailKey)
         remove(AccountTelephoneKey)
+        remove(AccountUpdateTimeKey)
     }
 }
