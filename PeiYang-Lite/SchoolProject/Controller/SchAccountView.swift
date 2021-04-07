@@ -32,23 +32,23 @@ struct SchAccountView: View {
                     self.presentationMode.wrappedValue.dismiss()
                 }) {
                     Image(systemName: "chevron.backward")
+                        .font(.title2)
+                        .foregroundColor(.white)
+                        .padding()
                 }
-                .font(.title2)
-                .foregroundColor(.white)
-                .padding()
             }, center: {
                 Text("个人中心")
                     .font(.title2)
                     .foregroundColor(.white)
             }, trailing: {
-                Button(action: {
-                    
-                }) {
-                    Image(systemName: "text.bubble")
-                }
-                .font(.title2)
-                .foregroundColor(.white)
-                .padding()
+                NavigationLink(
+                    destination: SchRecvMessageView(),
+                    label: {
+                        Image(systemName: "text.bubble")
+                            .font(.title2)
+                            .foregroundColor(.white)
+                            .padding()
+                    })
             })
             VStack {
                 Text(sharedMessage.Account.nickname)
@@ -87,7 +87,7 @@ struct SchAccountView: View {
                         })
                         .addAnalytics(className: "MyQuestionView")
                         .frame(maxWidth: .infinity)
-                            .padding(.top, 10)
+                        .padding(.top, 10)
                     }
                 } else {
                     ForEach(favQuestions.indices, id: \.self) { i in
@@ -97,7 +97,7 @@ struct SchAccountView: View {
                         })
                         .addAnalytics(className: "MyFavView")
                         .frame(maxWidth: .infinity)
-                            .padding(.top, 10)
+                        .padding(.top, 10)
                     }
                 }
             }
@@ -120,19 +120,19 @@ struct SchAccountView: View {
     private func loadQuestionData() {
         SchQuestionManager.getQuestions(type: .fav) { (result) in
             switch result {
-                case .success(let questions):
-                    self.favQuestions = questions
-                    print(favQuestions)
-                case .failure(let err):
-                    log(err)
+            case .success(let questions):
+                self.favQuestions = questions
+                print(favQuestions)
+            case .failure(let err):
+                log(err)
             }
         }
         SchQuestionManager.getQuestions(type: .my) { (result) in
             switch result {
-                case .success(let questions):
-                    self.myQuestions = questions
-                case .failure(let err):
-                    log(err)
+            case .success(let questions):
+                self.myQuestions = questions
+            case .failure(let err):
+                log(err)
             }
         }
     }
@@ -140,11 +140,11 @@ struct SchAccountView: View {
     private func deleteQuestion(questionId: Int) {
         SchQuestionManager.deleteMyQuestion(questionId: questionId) { (result) in
             switch result {
-                case .success(_):
-                    log("删除问题成功")
-                    loadQuestionData()
-                case .failure(let err):
-                    log(err)
+            case .success(_):
+                log("删除问题成功")
+                loadQuestionData()
+            case .failure(let err):
+                log(err)
             }
         }
     }

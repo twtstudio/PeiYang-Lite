@@ -25,9 +25,14 @@ struct SchView: View {
                     NavigationLink(
                         destination: SchAccountView(),
                         label: {
-                            Image("SchAccount")
+                            ZStack(alignment: .topTrailing) {
+                                Image("SchAccount")
+                                    .padding(2)
+                                Circle()
+                                    .fill(Color.red)
+                                    .frame(width: 10, height: 10)
+                            }
                         })
-                    
                 }
                 .frame(width: screen.width * 0.9)
                 
