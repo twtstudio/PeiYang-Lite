@@ -199,6 +199,7 @@
 		D35404DF260DFABE0092D83A /* Semester.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35402FB260DEF720092D83A /* Semester.swift */; };
 		D35404E2260DFAC40092D83A /* ClassesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35402FC260DEF720092D83A /* ClassesManager.swift */; };
 		D35404E5260DFAD60092D83A /* Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D354031F260DEF720092D83A /* Localizable.swift */; };
+		D3DEB5BE261D5C72007DFC79 /* test.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DEB5BD261D5C72007DFC79 /* test.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -414,6 +415,7 @@
 		D354048A260DF69B0092D83A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D3540490260DF7D30092D83A /* PeiYang-LiteWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "PeiYang-LiteWidgetExtension.entitlements"; sourceTree = "<group>"; };
 		D3540491260DF7EC0092D83A /* PeiYang-Lite.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "PeiYang-Lite.entitlements"; sourceTree = "<group>"; };
+		D3DEB5BD261D5C72007DFC79 /* test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = test.swift; sourceTree = "<group>"; };
 		D79A87E51F44E7CF688FA2E6 /* Pods-PeiYang-LiteWidgetExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PeiYang-LiteWidgetExtension.release.xcconfig"; path = "Target Support Files/Pods-PeiYang-LiteWidgetExtension/Pods-PeiYang-LiteWidgetExtension.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -450,7 +452,7 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		C926FC442611A9BE007F0C43 /* Controller */ = {
+		C926FC442611A9BE007F0C43 /* View */ = {
 			isa = PBXGroup;
 			children = (
 				D3540305260DEF720092D83A /* AcChangeColorView.swift */,
@@ -463,7 +465,7 @@
 				D354030C260DEF720092D83A /* AcBindEmailView.swift */,
 				C99C162D261029CF00986EF7 /* AcChangePsView.swift */,
 			);
-			path = Controller;
+			path = View;
 			sourceTree = "<group>";
 		};
 		D3540253260DEEF10092D83A = {
@@ -879,10 +881,9 @@
 		D3540304260DEF720092D83A /* Account */ = {
 			isa = PBXGroup;
 			children = (
-				C926FC442611A9BE007F0C43 /* Controller */,
+				D3DEB5B6261D5101007DFC79 /* Controller */,
+				C926FC442611A9BE007F0C43 /* View */,
 				D354030D260DEF720092D83A /* Model */,
-				D354030F260DEF720092D83A /* AccountView.swift */,
-				D3540310260DEF720092D83A /* AboutTwTView.swift */,
 			);
 			path = Account;
 			sourceTree = "<group>";
@@ -1104,6 +1105,16 @@
 				D354043B260DF0A60092D83A /* RoomCardView.swift */,
 			);
 			path = WidgetViews;
+			sourceTree = "<group>";
+		};
+		D3DEB5B6261D5101007DFC79 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				D354030F260DEF720092D83A /* AccountView.swift */,
+				D3DEB5BD261D5C72007DFC79 /* test.swift */,
+				D3540310260DEF720092D83A /* AboutTwTView.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1444,6 +1455,7 @@
 				D3540387260DEF720092D83A /* StyRoomDetailView.swift in Sources */,
 				D3540285260DEF2F0092D83A /* SplashView.swift in Sources */,
 				D35403B9260DEF720092D83A /* DataStorage.swift in Sources */,
+				D3DEB5BE261D5C72007DFC79 /* test.swift in Sources */,
 				C99C162E261029CF00986EF7 /* AcChangePsView.swift in Sources */,
 				D3540360260DEF720092D83A /* MutiLineVStack.swift in Sources */,
 				D35403BC260DEF720092D83A /* Localizable.swift in Sources */,
