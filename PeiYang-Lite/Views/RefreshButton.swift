@@ -24,8 +24,8 @@ struct RefreshButton: View {
                 .rotationEffect(.degrees(isAnimating ? 360 : 0))
                 .animation(
                     isLoading
-                    ? Animation.linear(duration: 2).repeatForever(autoreverses: false)
-                    : .default
+                        ? Animation.linear(duration: 2).repeatForever(autoreverses: false)
+                        : .default
                 )
                 .onAppear {
                     isAnimating = true

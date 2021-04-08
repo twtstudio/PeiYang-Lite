@@ -21,6 +21,17 @@ struct SchAccountView: View {
     @State private var isShowAlert: Bool = false
     @State private var questionIdToDelete: Int = -1
     
+    // 红点相关
+    @State private var questionsHasReddot: [Int] = []
+    
+    private var isMyQuestionsHasReddot: Bool {
+        !myQuestions.reduce(true, { $0 && ($1.readen ?? true) })
+    }
+    
+    private var isFavQuestionsHasReddot: Bool {
+        !favQuestions.reduce(true, { $0 && ($1.readen ?? true) })
+    }
+    
     // 未读消息
     @AppStorage(SchMessageManager.SCH_MESSAGE_CONFIG_KEY, store: Storage.defaults) private var unreadMessageCount: Int = 0
     
@@ -47,16 +58,10 @@ struct SchAccountView: View {
                 NavigationLink(
                     destination: SchRecvMessageView(),
                     label: {
-                        ZStack(alignment: .topTrailing) {
-                            Image(systemName: "text.bubble")
-                                .font(.title2)
-                                .foregroundColor(.white)
-                            if unreadMessageCount != 0 {
-                                Circle()
-                                    .fill(Color.red)
-                                    .frame(width: 10, height: 10)
-                            }
-                        }
+                        Image(systemName: "text.bubble")
+                            .font(.title2)
+                            .foregroundColor(.white)
+                            .addReddot(isPresented: unreadMessageCount != 0, size: 10)
                         .padding()
                     })
             })
@@ -76,12 +81,14 @@ struct SchAccountView: View {
                     isFavSelected = false
                 }, label: {
                     SchAccountModeView(img: "sch-ques", title: "我的提问", isSelected: $isMineSelected)
+                        .addReddot(isPresented: isMyQuestionsHasReddot, size: 10)
                 })
                 Button(action: {
                     isMineSelected = false
                     isFavSelected = true
                 }, label: {
                     SchAccountModeView(img: "sch-favour", title: "我的收藏", isSelected: $isFavSelected)
+                        .addReddot(isPresented: isFavQuestionsHasReddot, size: 10)
                 })
             }// Horizontal 3 icons
             .frame(width: screen.width * 0.9, height: screen.height * 0.17, alignment: .center)
@@ -94,7 +101,7 @@ struct SchAccountView: View {
                         SchQuestionCellView(question: myQuestions[i], isEditing: isMineSelected, deleteAction: {
                             isShowAlert = true
                             questionIdToDelete = myQuestions[i].id ?? -1
-                        })
+                        }, showReddot: !(myQuestions[i].readen ?? true))
                         .addAnalytics(className: "MyQuestionView")
                         .frame(maxWidth: .infinity)
                         .padding(.top, 10)
@@ -104,7 +111,7 @@ struct SchAccountView: View {
                         SchQuestionCellView(question: favQuestions[i], isEditing: isMineSelected, deleteAction: {
                             isShowAlert = true
                             questionIdToDelete = favQuestions[i].id ?? -1
-                        })
+                        }, showReddot: !(favQuestions[i].readen ?? true))
                         .addAnalytics(className: "MyFavView")
                         .frame(maxWidth: .infinity)
                         .padding(.top, 10)

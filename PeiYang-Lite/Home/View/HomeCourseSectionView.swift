@@ -10,6 +10,7 @@ import SwiftUI
 struct HomeCourseSectionView: View {
     @ObservedObject var store = Storage.courseTable
     private var courseTable: CourseTable { store.object }
+    @AppStorage(ClassesManager.isLoginKey, store: Storage.defaults) private var isLogin = false
     
     @State private var activeWeek = Storage.courseTable.object.currentWeek
     
@@ -33,6 +34,7 @@ struct HomeCourseSectionView: View {
     }
     
     private var colorHelper: ColorHelper { ColorHelper.shared }
+//    private var destination: View { courseTable.courseArray.isEmpty ? AcClassesBindingView() : CourseTableDetailView() }
     
     var body: some View {
         Section(header: HStack {
@@ -49,7 +51,15 @@ struct HomeCourseSectionView: View {
                 .foregroundColor(Color(#colorLiteral(red: 0.3803921569, green: 0.3960784314, blue: 0.4862745098, alpha: 1)))
                 .padding(.horizontal)
         }) {
-            NavigationLink(destination: CourseTableDetailView()) {
+            NavigationLink(destination:
+                            Group {
+                                if isLogin {
+                                    CourseTableDetailView()
+                                } else {
+                                    AcClassesBindingView()
+                                }
+                            }
+            ) {
                 if currentCourseArray.isEmpty {
                     ZStack(alignment: .center) {
                         RoundedRectangle(cornerRadius: 10)

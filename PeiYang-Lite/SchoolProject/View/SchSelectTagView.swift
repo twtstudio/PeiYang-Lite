@@ -24,13 +24,15 @@ struct SchSelectTagView: View {
         return ""
     }
     
-    
-    
     var body: some View {
         VStack(spacing: 10) {
             Text("添加标签")
                 .padding(.top)
                 .font(.title2)
+                .foregroundColor(color)
+            Text(tagDescription)
+                .frame(width: screen.width * 0.8)
+                .font(.footnote)
                 .foregroundColor(color)
             GeometryReader { g in
                 ScrollView {

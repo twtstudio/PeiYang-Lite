@@ -41,5 +41,10 @@ struct AlertView: View {
             Animation.easeInOut(duration: 0.4)
                 .delay(1)
         )
+        .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                isShow = false
+            }
+        }
     }
 }

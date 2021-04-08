@@ -48,11 +48,12 @@ struct SchQuestionModel: Codable, Identifiable {
     var isLiked: Bool?
     var isOwner: Bool?
     var isFavorite: Bool?
+    var readen: Bool?
     
     enum CodingKeys: String, CodingKey {
         case id, name
         case userID = "user_id"
-        case solved
+        case solved, readen
         case noCommit = "no_commit"
         case likes, tags
         case createdAt = "created_at"

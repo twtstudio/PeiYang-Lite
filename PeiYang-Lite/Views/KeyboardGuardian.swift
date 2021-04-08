@@ -58,7 +58,7 @@ final class KeyboardGuardian: ObservableObject {
 
     func addObserver() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyBoardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyBoardDidHide(notification:)), name: UIResponder.keyboardDidHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyBoardDidHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
 
     func removeObserver() {
@@ -89,7 +89,6 @@ final class KeyboardGuardian: ObservableObject {
             slide = 0
         } else {
             let tfRect = self.rects[self.showField]
-            print(screen.height, keyboardRect.minY, tfRect.maxY)
             let diff = keyboardRect.minY - tfRect.maxY
 
             if diff > 0 {

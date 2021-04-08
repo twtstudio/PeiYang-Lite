@@ -36,10 +36,6 @@ struct LgKeywordLoginView: View {
 // Alert var
     @State private var AlertMessage: String = "网络出现问题"
     @State private var isShowAlert: Bool = false
-    @State private var alertTimer: Timer?
-    @State private var alertTime = 2
-    
-    
     
     var body: some View {
         VStack(spacing: 25.0){
@@ -102,7 +98,7 @@ struct LgKeywordLoginView: View {
                 LgLoginManager.LoginPost(account: username, password: password) { result in
                     switch result {
                     case .success(let data):
-                        isLogin = true
+                        	isLogin = true
                         accountInfo = data
                         // 存下基础信息
                         accountId = accountInfo.result.userNumber
@@ -128,17 +124,7 @@ struct LgKeywordLoginView: View {
                     isEnable = true
                 }
                 isEnable = false// 确保只会点击一次
-                
-                
-                
-                alertTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { (time) in
-                    if self.alertTime < 1 {
-                        self.alertTime = 3
-                        time.invalidate()
-                        isShowAlert = false
-                    }
-                    self.alertTime -= 1
-                })
+
             }) {
                 Text("登录")
                     .frame(width: UIScreen.main.bounds.width * 0.9, height: UIScreen.main.bounds.height/15, alignment: .center)

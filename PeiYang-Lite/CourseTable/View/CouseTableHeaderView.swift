@@ -30,6 +30,7 @@ struct CouseTableHeaderView: View {
             .padding(.horizontal, 10)
             
             ScrollView(.horizontal, showsIndicators: false) {
+                ScrollViewReader { proxy in
                 HStack {
                     ForEach(1...totalWeek, id: \.self) { week in
                         Button(action: { activeWeek = week }, label: {
@@ -42,10 +43,15 @@ struct CouseTableHeaderView: View {
                                         .foregroundColor(.gray)
                                         .font(.footnote)
                                 }
+                                .id(week)
                             }
                         })
                         .padding(10)
                     }
+                }
+                .onAppear {
+                    proxy.scrollTo(activeWeek)
+                }
                 }
             }
             //            .cthViewButtonModifier()

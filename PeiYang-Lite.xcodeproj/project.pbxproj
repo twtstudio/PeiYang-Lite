@@ -200,6 +200,7 @@
 		D35404E2260DFAC40092D83A /* ClassesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35402FC260DEF720092D83A /* ClassesManager.swift */; };
 		D35404E5260DFAD60092D83A /* Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D354031F260DEF720092D83A /* Localizable.swift */; };
 		D3DEB5CA261DEF57007DFC79 /* AccountMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DEB5C9261DEF57007DFC79 /* AccountMessageView.swift */; };
+		D3FB2B0B261F2F2F00F087AC /* ReddotModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FB2B0A261F2F2F00F087AC /* ReddotModifier.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -416,6 +417,7 @@
 		D3540490260DF7D30092D83A /* PeiYang-LiteWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "PeiYang-LiteWidgetExtension.entitlements"; sourceTree = "<group>"; };
 		D3540491260DF7EC0092D83A /* PeiYang-Lite.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "PeiYang-Lite.entitlements"; sourceTree = "<group>"; };
 		D3DEB5C9261DEF57007DFC79 /* AccountMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountMessageView.swift; sourceTree = "<group>"; };
+		D3FB2B0A261F2F2F00F087AC /* ReddotModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReddotModifier.swift; sourceTree = "<group>"; };
 		D79A87E51F44E7CF688FA2E6 /* Pods-PeiYang-LiteWidgetExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PeiYang-LiteWidgetExtension.release.xcconfig"; path = "Target Support Files/Pods-PeiYang-LiteWidgetExtension/Pods-PeiYang-LiteWidgetExtension.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -586,6 +588,7 @@
 				D35402AA260DEF710092D83A /* PhotoListView.swift */,
 				D35402AB260DEF710092D83A /* LoadingView.swift */,
 				D35402AC260DEF710092D83A /* StarRatingView.swift */,
+				D3FB2B0A261F2F2F00F087AC /* ReddotModifier.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1428,6 +1431,7 @@
 				D3540283260DEF2F0092D83A /* SharedMessage.swift in Sources */,
 				D35403BD260DEF720092D83A /* Color.swift in Sources */,
 				D3540376260DEF720092D83A /* HomeSettingView.swift in Sources */,
+				D3FB2B0B261F2F2F00F087AC /* ReddotModifier.swift in Sources */,
 				D35403A6260DEF720092D83A /* WLANManager.swift in Sources */,
 				D354036A260DEF720092D83A /* StarRatingView.swift in Sources */,
 				D35403D9260DEF720092D83A /* SchQuestionCellView.swift in Sources */,
@@ -1654,7 +1658,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "PeiYang-Lite/PeiYang-Lite.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 202103292230;
+				CURRENT_PROJECT_VERSION = 202104082200;
 				DEVELOPMENT_TEAM = T5JB4K7FT9;
 				INFOPLIST_FILE = "PeiYang-Lite/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1679,7 +1683,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "PeiYang-Lite/PeiYang-Lite.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 202103292230;
+				CURRENT_PROJECT_VERSION = 202104082200;
 				DEVELOPMENT_TEAM = T5JB4K7FT9;
 				INFOPLIST_FILE = "PeiYang-Lite/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1704,7 +1708,7 @@
 				CODE_SIGN_ENTITLEMENTS = "PeiYang-LiteWidget/PeiYang-LiteWidgetExtension.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 202103292230;
+				CURRENT_PROJECT_VERSION = 202104082200;
 				DEVELOPMENT_TEAM = T5JB4K7FT9;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "PeiYang-LiteWidget/Info.plist";
@@ -1732,7 +1736,7 @@
 				CODE_SIGN_ENTITLEMENTS = "PeiYang-LiteWidget/PeiYang-LiteWidgetExtension.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 202103292230;
+				CURRENT_PROJECT_VERSION = 202104082200;
 				DEVELOPMENT_TEAM = T5JB4K7FT9;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "PeiYang-LiteWidget/Info.plist";

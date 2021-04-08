@@ -26,15 +26,9 @@ struct SchView: View {
                     NavigationLink(
                         destination: SchAccountView(),
                         label: {
-                            ZStack(alignment: .topTrailing) {
-                                Image("SchAccount")
-                                    .padding(2)
-                                if unreadMessageCount != 0 {
-                                    Circle()
-                                        .fill(Color.red)
-                                        .frame(width: 10, height: 10)
-                                }
-                            }
+                            Image("SchAccount")
+                                .padding(2)
+                                .addReddot(isPresented: unreadMessageCount != 0, size: 10)
                         })
                 }
                 .frame(width: screen.width * 0.9)

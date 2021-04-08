@@ -19,6 +19,7 @@ struct LoadingModifier: ViewModifier {
         ZStack {
             content
             if isLoading {
+                BlurView()
                 VStack {
                     if style == .small {
                         ProgressView()
