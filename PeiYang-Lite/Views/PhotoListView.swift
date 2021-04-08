@@ -74,13 +74,16 @@ struct PhotoListView: View {
                         image
                             .resizable()
                             .frame(width: 100, height: 100, alignment: .center)
-                            .frame(maxWidth: screen.width / (CGFloat(imageURLs.count) + 0.5))
+//                            .frame(maxWidth: screen.width / (CGFloat(imageURLs.count) + 0.5))
                             .cornerRadius(5)
                     })
                     .onTapGesture {
                         seletedIdx = i
                         showPhotoBrowser = true
                     }
+                }
+                if imageURLs.count < 3 {
+                    Spacer()
                 }
             }
             // 图片占位符

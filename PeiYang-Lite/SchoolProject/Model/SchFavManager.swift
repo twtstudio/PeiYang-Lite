@@ -1,8 +1,8 @@
 //
 //  SchFavManager.swift
-//  PeiYang Lite
+//  PeiYang-Lite
 //
-//  Created by Zrzz on 2021/3/13.
+//  Created by Zrzz on 2021/4/5.
 //
 
 import Foundation

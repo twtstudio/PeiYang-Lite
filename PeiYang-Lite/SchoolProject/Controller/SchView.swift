@@ -10,6 +10,7 @@ import SwiftUI
 struct SchView: View {
     @Environment(\.presentationMode) var mode
     @StateObject private var schViewModel: SchViewModel = .init()
+    @AppStorage(SchMessageManager.SCH_MESSAGE_CONFIG_KEY, store: Storage.defaults) private var unreadMessageCount: Int = 0
     
     var body: some View {
         ZStack {
@@ -25,9 +26,16 @@ struct SchView: View {
                     NavigationLink(
                         destination: SchAccountView(),
                         label: {
-                            Image("SchAccount")
+                            ZStack(alignment: .topTrailing) {
+                                Image("SchAccount")
+                                    .padding(2)
+                                if unreadMessageCount != 0 {
+                                    Circle()
+                                        .fill(Color.red)
+                                        .frame(width: 10, height: 10)
+                                }
+                            }
                         })
-                    
                 }
                 .frame(width: screen.width * 0.9)
                 

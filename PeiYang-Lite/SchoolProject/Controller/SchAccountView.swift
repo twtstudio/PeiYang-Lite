@@ -21,6 +21,9 @@ struct SchAccountView: View {
     @State private var isShowAlert: Bool = false
     @State private var questionIdToDelete: Int = -1
     
+    // 未读消息
+    @AppStorage(SchMessageManager.SCH_MESSAGE_CONFIG_KEY, store: Storage.defaults) private var unreadMessageCount: Int = 0
+    
     private var questions: [SchQuestionModel] {
         return isMineSelected ? myQuestions : favQuestions
     }
@@ -32,14 +35,30 @@ struct SchAccountView: View {
                     self.presentationMode.wrappedValue.dismiss()
                 }) {
                     Image(systemName: "chevron.backward")
+                        .font(.title2)
+                        .foregroundColor(.white)
+                        .padding()
                 }
-                .font(.title2)
-                .foregroundColor(.white)
-                .padding()
             }, center: {
                 Text("个人中心")
                     .font(.title2)
                     .foregroundColor(.white)
+            }, trailing: {
+                NavigationLink(
+                    destination: SchRecvMessageView(),
+                    label: {
+                        ZStack(alignment: .topTrailing) {
+                            Image(systemName: "text.bubble")
+                                .font(.title2)
+                                .foregroundColor(.white)
+                            if unreadMessageCount != 0 {
+                                Circle()
+                                    .fill(Color.red)
+                                    .frame(width: 10, height: 10)
+                            }
+                        }
+                        .padding()
+                    })
             })
             VStack {
                 Text(sharedMessage.Account.nickname)
@@ -78,7 +97,7 @@ struct SchAccountView: View {
                         })
                         .addAnalytics(className: "MyQuestionView")
                         .frame(maxWidth: .infinity)
-                            .padding(.top, 10)
+                        .padding(.top, 10)
                     }
                 } else {
                     ForEach(favQuestions.indices, id: \.self) { i in
@@ -88,7 +107,7 @@ struct SchAccountView: View {
                         })
                         .addAnalytics(className: "MyFavView")
                         .frame(maxWidth: .infinity)
-                            .padding(.top, 10)
+                        .padding(.top, 10)
                     }
                 }
             }
@@ -111,19 +130,18 @@ struct SchAccountView: View {
     private func loadQuestionData() {
         SchQuestionManager.getQuestions(type: .fav) { (result) in
             switch result {
-                case .success(let questions):
-                    self.favQuestions = questions
-                    print(favQuestions)
-                case .failure(let err):
-                    log(err)
+            case .success(let questions):
+                self.favQuestions = questions
+            case .failure(let err):
+                log(err)
             }
         }
         SchQuestionManager.getQuestions(type: .my) { (result) in
             switch result {
-                case .success(let questions):
-                    self.myQuestions = questions
-                case .failure(let err):
-                    log(err)
+            case .success(let questions):
+                self.myQuestions = questions
+            case .failure(let err):
+                log(err)
             }
         }
     }
@@ -131,11 +149,11 @@ struct SchAccountView: View {
     private func deleteQuestion(questionId: Int) {
         SchQuestionManager.deleteMyQuestion(questionId: questionId) { (result) in
             switch result {
-                case .success(_):
-                    log("删除问题成功")
-                    loadQuestionData()
-                case .failure(let err):
-                    log(err)
+            case .success(_):
+                log("删除问题成功")
+                loadQuestionData()
+            case .failure(let err):
+                log(err)
             }
         }
     }

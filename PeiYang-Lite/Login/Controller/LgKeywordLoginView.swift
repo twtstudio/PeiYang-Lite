@@ -26,7 +26,7 @@ struct LgKeywordLoginView: View {
     @State private var password = ""
     @State private var isEnable = true
     
-    @State var accountMessage: AccountMessage = AccountMessage(errorCode: 0, message:  "网络出现问题", result: AccountResult(userNumber: "无", nickname: "无", telephone: nil, email: "无", token: "", role: "无", realname: "无", gender: "无", department: "无", major: "无", stuType: "无", avatar: "无", campus: "无"))
+    @State var accountInfo: AccountInfo = AccountInfo(errorCode: 0, message:  "网络出现问题", result: AccountResult(userNumber: "无", nickname: "无", telephone: nil, email: "无", token: "", role: "无", realname: "无", gender: "无", department: "无", major: "无", stuType: "无", avatar: "无", campus: "无"))
     
     @EnvironmentObject var sharedMessage: SharedMessage
     
@@ -103,14 +103,14 @@ struct LgKeywordLoginView: View {
                     switch result {
                     case .success(let data):
                         isLogin = true
-                        accountMessage = data
+                        accountInfo = data
                         // 存下基础信息
-                        accountId = accountMessage.result.userNumber
-                        accountEmail = accountMessage.result.email ?? ""
-                        accountTelephone = accountMessage.result.telephone ?? ""
-                        accountName = accountMessage.result.nickname
-                        AlertMessage = accountMessage.message
-                        userToken = accountMessage.result.token
+                        accountId = accountInfo.result.userNumber
+                        accountEmail = accountInfo.result.email ?? ""
+                        accountTelephone = accountInfo.result.telephone ?? ""
+                        accountName = accountInfo.result.nickname
+                        AlertMessage = accountInfo.message
+                        userToken = accountInfo.result.token
                         storagePassword = password
                         storageUserName = username
                         // 存时间戳
@@ -149,7 +149,7 @@ struct LgKeywordLoginView: View {
             }
             .disabled(!isEnable || username.isEmpty || password.isEmpty)
             
-            if(accountMessage.result.telephone == nil || accountMessage.result.email == nil) {
+            if(accountInfo.result.telephone == nil || accountInfo.result.email == nil) {
                 NavigationLink(destination: LgSupplyView(), isActive: $isLogin){
                     EmptyView()
                 }
@@ -173,7 +173,7 @@ struct LgKeywordLoginView: View {
                 })
         )
         .onDisappear(perform: {
-            sharedMessage.Account = accountMessage.result
+            sharedMessage.Account = accountInfo.result
         })
         .padding(.bottom)
         .navigationBarHidden(true)

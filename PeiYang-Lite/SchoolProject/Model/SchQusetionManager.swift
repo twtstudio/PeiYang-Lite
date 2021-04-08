@@ -1,9 +1,8 @@
 //
 //  QusetionManager.swift
-//  WePeiYang
+//  PeiYang-Lite
 //
-//  Created by 于隆祎 on 2020/9/20.
-//  Copyright © 2020 twtstudio. All rights reserved.
+//  Created by Zrzz on 2021/4/5.
 //
 
 import Foundation
