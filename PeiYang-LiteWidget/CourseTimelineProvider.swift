@@ -60,7 +60,7 @@ struct  CourseTimelineProvider: TimelineProvider {
     func getTodayCourse() -> [Course] {
         let activeWeek = storage.object.currentWeek
         
-        var weeddays: [String] {
+        var weekdays: [String] {
             var calendar = Calendar.current
             calendar.firstWeekday = 2
             var weekdays = calendar.shortWeekdaySymbols

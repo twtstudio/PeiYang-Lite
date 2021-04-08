@@ -70,7 +70,7 @@ struct SmallView: View {
                                                 .foregroundColor(.gray)
                                             
                                             Text("\(preCourse.course.activeArrange(courseTable.currentWeekday).startTimeString)-\(preCourse.course.activeArrange(courseTable.currentWeekday).endTimeString)")
-                                                .font(.system(size: 12))
+                                                .font(.system(size: 10))
                                                 .foregroundColor(.gray)
                                         }
                                     }

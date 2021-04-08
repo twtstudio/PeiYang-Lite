@@ -30,9 +30,16 @@ struct LargeView: View {
         let date = dateFormatter.string(from: Date())
         return date
     }
+    var weekDay: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "EEEE"
+        let date = dateFormatter.string(from: Date())
+        return date
+    }
+    
     var body: some View {
         GeometryReader { geo in
-        VStack {
+            VStack(alignment: .center) {
             HStack {
                 Text("天津市")
                     .font(.body)
@@ -62,7 +69,7 @@ struct LargeView: View {
             Image("line")
             
             HStack {
-                Text("Monday")
+                Text(weekDay)
                     .gilroy(style: .body, weight: .bold)
                     .foregroundColor(colorScheme == .dark ? .white : Color(#colorLiteral(red: 0.1279886365, green: 0.1797681153, blue: 0.2823780477, alpha: 1)))
                 
@@ -89,8 +96,8 @@ struct LargeView: View {
                         ZStack {
                             Image("NOW")
                                 .resizable()
-                                .scaledToFill()
-                                .frame(width: (geo.size.width-60)/2, height: geo.size.height-250)
+                                .scaledToFit()
+                                .frame(width: (geo.size.width-60)/2)
                                 .clipShape(RoundedRectangle(cornerRadius: 5))
                             
                             if !preCourse.isEmpty && !preCourse.isNext {
@@ -117,11 +124,14 @@ struct LargeView: View {
                             }
                         }
                     
+                    Spacer()
+                        .frame(width: 10)
+                    
                     ZStack {
                         Image("NEXT")
                             .resizable()
-                            .scaledToFill()
-                            .frame(width: (geo.size.width-60)/2, height: geo.size.height-250)
+                            .scaledToFit()
+                            .frame(width: (geo.size.width-60)/2)
                             .clipShape(RoundedRectangle(cornerRadius: 5))
                         
                         if let nextCourse = self.getNextCourse(courseArray: currentCourseTable, courseTable: courseTable, hour: hour) {
@@ -162,7 +172,7 @@ struct LargeView: View {
                     ForEach(0..<4) { i in
                         RoomCardView()
                             .frame(width: (g.size.width-60)/4, height: g.size.height-40, alignment: .center)
-                            .background(Color(#colorLiteral(red: 0.8519811034, green: 0.8703891039, blue: 0.9223362803, alpha: 1)).cornerRadius(8))
+                            .background(colorScheme == .dark ? Color(#colorLiteral(red: 0.2358871102, green: 0.5033512712, blue: 0.9931854606, alpha: 1)).cornerRadius(8) : Color(#colorLiteral(red: 0.8519811034, green: 0.8703891039, blue: 0.9223362803, alpha: 1)).cornerRadius(8))
                     }
                 }
                 .padding(.horizontal)
