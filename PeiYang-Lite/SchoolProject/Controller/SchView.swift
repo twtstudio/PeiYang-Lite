@@ -66,6 +66,18 @@ struct SchView: View {
             .frame(height: screen.height * 0.8)
         }
         .addAnalytics(className: "SchoolProjectHomeView")
+        .onAppear {
+            if SchManager.schToken != nil {
+                SchMessageManager.getUnreadCount { (result) in
+                    switch result {
+                    case .success(let (totalCount, _)):
+                        unreadMessageCount = totalCount
+                    case .failure(let err):
+                        log(err)
+                    }
+                }
+            }
+        }
     }
 }
 

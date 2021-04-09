@@ -61,7 +61,7 @@ struct SchAccountView: View {
                         Image(systemName: "text.bubble")
                             .font(.title2)
                             .foregroundColor(.white)
-                            .addReddot(isPresented: unreadMessageCount != 0, size: 10)
+                            .addReddot(isPresented: unreadMessageCount != 0, count: unreadMessageCount, size: 15)
                         .padding()
                     })
             })
@@ -132,6 +132,18 @@ struct SchAccountView: View {
         .navigationBarHidden(true)
         .addAnalytics(className: "SchoolProjectAccountView")
         .onAppear(perform: loadQuestionData)
+        .onAppear {
+            if SchManager.schToken != nil {
+                SchMessageManager.getUnreadCount { (result) in
+                    switch result {
+                    case .success(let (totalCount, _)):
+                        unreadMessageCount = totalCount
+                    case .failure(let err):
+                        log(err)
+                    }
+                }
+            }
+        }
     }
     
     private func loadQuestionData() {

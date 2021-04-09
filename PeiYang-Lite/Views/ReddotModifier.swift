@@ -20,13 +20,15 @@ struct ReddotModifer: ViewModifier {
             if isPresented {
                 Circle()
                     .fill(Color.red)
+                    .overlay(
+                        Text(count.description)
+                            .foregroundColor(.white)
+                            .opacity(count > 0 ? 1 : 0)
+                            .font(Font.system(size: size * 0.8))
+                    )
                     .frame(width: size, height: size)
                 
-                if count > 0 {
-                    Text(count.description)
-                        .foregroundColor(.white)
-                        .font(Font.system(size: 12))
-                }
+                
             }
         })
     }

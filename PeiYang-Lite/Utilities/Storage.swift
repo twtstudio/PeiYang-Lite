@@ -15,6 +15,10 @@ struct Storage {
     static let ecard = Store<ECard>("ecard")
     static let wlan = Store<WLAN>("wlan")
     static let weather = Store<Weather>("weather")
+    
+    static func removeAll() {
+        UserDefaults.standard.removeSuite(named: "group.com.twtstudio.PeiYang-Lite")
+    }
 }
 
 protocol Storable {

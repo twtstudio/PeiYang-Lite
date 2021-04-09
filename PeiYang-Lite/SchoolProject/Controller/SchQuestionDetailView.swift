@@ -144,7 +144,7 @@ struct SchQuestionDetailView: View {
             .shadow(color: .black, radius: 1.5, y: 1)
             
             .offset(y: keyboardGuardian.slide)
-            .animation(.spring())
+            .animation(.easeIn)
         }
         .edgesIgnoringSafeArea(.bottom)
         .onAppear {
