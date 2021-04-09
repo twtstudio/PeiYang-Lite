@@ -108,7 +108,7 @@ struct DataStorage {
     @discardableResult static func remove(_ filename: String, from directory: Directory) -> Bool {
         let url = getURL(for: directory).appendingPathComponent(filename, isDirectory: false)
         do {
-            try FileManager.default.removeItem(at: url)
+            try FileManager.default.removeItem(atPath: url.path)
         } catch {
             log(error)
             return false
@@ -122,7 +122,7 @@ struct DataStorage {
         do {
             let urls = try FileManager.default.contentsOfDirectory(at: url, includingPropertiesForKeys: nil, options: [])
             for file in urls {
-                try FileManager.default.removeItem(at: file)
+                try FileManager.default.removeItem(atPath: file.path)
             }
         } catch {
             // FIXME: handle error

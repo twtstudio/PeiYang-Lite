@@ -148,12 +148,13 @@ struct AccountView: View {
                 
                 HStack(spacing: screen.width * 0.1){
                     Button(action:{
+                        loadOut()
                         if(appState.leftHome) {
                         self.appState.leftHome.toggle()
                         } else {
                            isJumpToTop = true
                         }
-                        loadOut()
+                        
                         
                     }){
                         Text("确认")
@@ -190,7 +191,7 @@ struct AccountView: View {
             }
         }
         SharedMessage.removeAll()
-        DataStorage.clear(in: DataStorage.Directory.caches)
+        DataStorage.remove("studyroom/history.json", from: .caches)
     }
 }
 
