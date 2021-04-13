@@ -51,7 +51,7 @@ struct SchView: View {
                     Spacer()
                     NavigationLink(
                         destination: SchNewQuestionView(),
-                        label: {
+                        label: {	
                             Image(systemName: "plus")
                                 .font(.title2)
                                 .foregroundColor(.white)
@@ -77,6 +77,8 @@ struct SchView: View {
                     }
                 }
             }
+            // 刷新数据
+            schViewModel.loadOnAppear()
         }
     }
 }

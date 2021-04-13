@@ -27,10 +27,16 @@ struct HomeCourseSectionView: View {
     }
     
     private var currentCourseArray: [Course] {
-        activeCourseArray.filter {
-            $0.arrangeArray.map(\.weekday).contains(courseTable.currentWeekday) &&
-                $0.arrangeArray.flatMap(\.weekArray).contains(activeWeek)
-        }
+        activeCourseArray
+            .filter {
+                $0.arrangeArray.map(\.weekday).contains(courseTable.currentWeekday) &&
+                    $0.arrangeArray.flatMap(\.weekArray).contains(activeWeek)
+            }
+            .sorted { (c1, c2) -> Bool in
+                let c1arrange = c1.arrangeArray.first { $0.weekday == courseTable.currentWeekday && $0.weekArray.contains(activeWeek) }!
+                let c2arrange = c2.arrangeArray.first { $0.weekday == courseTable.currentWeekday && $0.weekArray.contains(activeWeek) }!
+                return c1arrange.startUnit < c2arrange.startUnit
+            }
     }
     
     private var colorHelper: ColorHelper { ColorHelper.shared }

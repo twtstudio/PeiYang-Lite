@@ -8,41 +8,43 @@
 import SwiftUI
 
 struct LoadingModifier: ViewModifier {
-    enum LoadingStyle {
-        case large, medium, small
-    }
-    
-    @State var style: LoadingStyle = .medium
     @Binding var isLoading: Bool
+    @State private var idx = 0
+    @State private var timer: Timer?
     
     func body(content: Content) -> some View {
         ZStack {
             content
             if isLoading {
                 BlurView()
-                VStack {
-                    if style == .small {
-                        ProgressView()
-                    } else if style == .medium {
-                        ProgressView()
-                            .scaleEffect(2)
-                    } else {
-                        ProgressView()
-                            .scaleEffect(3)
+               
+                HStack {
+                    ForEach(0..<3) { i in
+                        Circle()
+                            .fill(idx % 3 == i ? Color(#colorLiteral(red: 0.6196078431, green: 0.6666666667, blue: 0.7137254902, alpha: 1)) : Color(#colorLiteral(red: 0.3411764706, green: 0.3803921569, blue: 0.4235294118, alpha: 1)))
+                            .frame(width: 10, height: 10)
                     }
                 }
-                .padding(50)
-                .background(Color.background)
-                .cornerRadius(20)
-                .shadow(color: .black, radius: 2, x: 1, y: 1)
+                .onAppear {
+                    timer = Timer(timeInterval: 0.5, repeats: true, block: { (_) in
+                        withAnimation {
+                            idx += 1
+                        }
+                    })
+                    RunLoop.current.add(timer!, forMode: .default)
+                    timer?.fire()
+                }
+                .onDisappear {
+                    timer?.invalidate()
+                }
             }
         }
     }
 }
 
 extension View {
-    func loading(style: LoadingModifier.LoadingStyle, isLoading: Binding<Bool>) -> some View {
-        self.modifier(LoadingModifier(style: style, isLoading: isLoading))
+    func loading(isLoading: Binding<Bool>) -> some View {
+        self.modifier(LoadingModifier(isLoading: isLoading))
     }
 }
 
@@ -52,6 +54,6 @@ struct LoadingView_Previews: PreviewProvider {
         VStack {
             Text("Hello")
         }
-        .loading(style: .medium, isLoading: .constant(true))
+        .loading(isLoading: .constant(true))
     }
 }

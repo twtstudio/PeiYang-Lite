@@ -169,7 +169,7 @@ struct SchNewQuestionView: View {
                 }
             }
         }
-        .loading(style: .medium, isLoading: $isLoading)
+        .loading(isLoading: $isLoading)
         .addAnalytics(className: "SchoolProjectNewQuestionView")
     }
     

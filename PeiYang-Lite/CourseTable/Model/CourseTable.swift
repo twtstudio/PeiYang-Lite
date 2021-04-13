@@ -234,24 +234,20 @@ struct ColorHelper {
 struct NotificationHelper {
     static func setNotification(for courseTable: CourseTable, failure: @escaping (Error) -> Void) {
         var messagePairArray = [(Date, String)]()
-        for week in courseTable.currentWeek...courseTable.totalWeek {
-            for course in courseTable.courseArray {
-                for arrange in course.arrangeArray {
-                    guard arrange.weekday > courseTable.currentWeekday else {
-                        continue
-                    }
-                    
-                    let hour = arrange.startTime.0
-                    let minute = arrange.startTime.1
-                    let offsetMinute = Storage.defaults.integer(forKey: "courseTableOffsetMinute")
+        for course in courseTable.courseArray {
+            for arrange in course.arrangeArray {
+                let hour = arrange.startTime.0
+                let minute = arrange.startTime.1
+                let offsetMinute = Storage.defaults.integer(forKey: "courseTableOffsetMinute")
+                // 对于本周及之后的课加上buff
+                for week in arrange.weekArray.filter({ $0 >= courseTable.currentWeek }) {
                     let second = (
                         (
                             (
                                 (week - 1) * 7 + arrange.weekday - 1
                             ) * 24 + hour
-                        ) * 60 + minute + offsetMinute
+                        ) * 60 + minute - offsetMinute
                     ) * 60
-                    
                     let date = courseTable.startDate.addingTimeInterval(TimeInterval(second))
                     guard date > courseTable.currentDate else {
                         continue

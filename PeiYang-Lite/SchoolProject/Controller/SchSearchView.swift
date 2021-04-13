@@ -102,6 +102,7 @@ struct SchSearchView: View {
                         }
                     }
                     searchModel.tags[i].isSelected?.toggle()
+                    searchModel.reloadData()
                     self.placeholder = "直接搜索可以查看标签相关问题"
                 }, label: {
                     SchTagView(model: $searchModel.tags[i])
@@ -249,11 +250,7 @@ fileprivate class SchSearchResultViewModel: SchQuestionScrollViewModel, SchQuest
     
     @Published var maxPage: Int = 0
     
-    @Published var tags: [SchTagModel] = [] {
-        didSet {
-            self.reloadData()
-        }
-    }
+    @Published var tags: [SchTagModel] = []
     
     private var selectedTags: [SchTagModel] {
         if tags.reduce(false, { $0 || ($1.isSelected ?? false) }) {
