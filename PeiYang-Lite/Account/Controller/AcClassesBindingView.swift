@@ -12,26 +12,26 @@ struct AcClassesBindingView: View {
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     
     
-    @State var isShowSignOut = false
     var body: some View {
-        VStack {
-            NavigationBar()
+
             if isLogin {
                 ClassesBindingLoginedView(isLogin: $isLogin)
+                    .navigationBarHidden(true)
             } else {
                 ClassesBindingLoginView(isLogin: $isLogin)
+                    .navigationBarHidden(true)
+                    .onTapGesture {
+                        hideKeyboard()
+                    }
             }
-            Spacer()
-        }
-        .navigationBarHidden(true)
-        .background(
-            Color.white
-                .ignoresSafeArea()
-                .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
-        )
-        .onTapGesture {
-            hideKeyboard()
-        }
+
+//        .navigationBarHidden(true)
+//        .background(
+//            Color.white
+//                .ignoresSafeArea()
+//                .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+//        )
+        
     }
     
     
@@ -71,6 +71,7 @@ fileprivate struct ClassesBindingLoginedView: View {
     var body: some View {
         ZStack {
             VStack{
+                NavigationBar()
                 HStack{
                     Text("办公网账号绑定")
                         .font(.custom("Avenir-Black", size: UIScreen.main.bounds.height / 35))
@@ -110,6 +111,7 @@ fileprivate struct ClassesBindingLoginedView: View {
             }
             // 解绑界面
             Color.black
+                .ignoresSafeArea()
                 .opacity(isShowSignOut ? 0.5 : 0)
                 .animation(.easeIn)
             
@@ -174,6 +176,7 @@ fileprivate struct ClassesBindingLoginView: View {
     
     var body: some View {
         VStack{
+            NavigationBar()
             HStack{
                 Text("办公网账号绑定")
                     .font(.custom("Avenir-Black", size: UIScreen.main.bounds.height / 35))
@@ -276,6 +279,9 @@ fileprivate struct ClassesBindingLoginView: View {
                 
             }
             Spacer()
+        }
+        .onAppear{
+            refreshCaptcha()
         }
         .alert(isPresented: $isError) {
             Alert(title: Text(errorMessage), dismissButton: .cancel())
