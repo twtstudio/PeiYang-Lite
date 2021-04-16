@@ -21,6 +21,8 @@ struct AcChangePsView: View {
     @State private var alertTime = 2
     @State private var isEnable: Bool = true
     
+    
+    
     var body: some View {
         VStack(spacing: 20) {
             NavigationBar(center: {Text("密码更改")})
@@ -42,9 +44,14 @@ struct AcChangePsView: View {
             
             
             HStack{
-                Text("忘记原密码").underline()
-                    .foregroundColor(.init(red: 98/255, green: 103/255, blue: 124/255))
-                    .fontWeight(.bold)
+                NavigationLink(
+                    destination: FgChMeToFindView(),
+                    label: {
+                        Text("忘记原密码").underline()
+                            .foregroundColor(.init(red: 98/255, green: 103/255, blue: 124/255))
+                            .fontWeight(.bold)
+                    })
+                
                 Spacer()
             }.frame(width: screen.width * 0.9)
             
@@ -85,8 +92,14 @@ struct AcChangePsView: View {
            
             AlertView(alertMessage: AlertMessage, isShow: $isShowAlert)
         }
+        .ignoresSafeArea(.keyboard)
         .navigationBarHidden(true)
-        .background(Color.init(red: 247/255, green: 247/255, blue: 248/255).edgesIgnoringSafeArea(.bottom))
+        .background(
+            Color.init(red: 247/255, green: 247/255, blue: 248/255).edgesIgnoringSafeArea(.bottom)
+                .onTapGesture {
+                    hideKeyboard()
+                }
+        )
         .addAnalytics(className: "ChangePsView")
     }
     func countdown() {

@@ -44,6 +44,12 @@ struct AcChangeNameView: View {
         .onAppear(perform: {
             self.changeName = sharedMessage.Account.nickname
         })
+        .background(
+            Color.white.ignoresSafeArea()
+                .onTapGesture {
+                    hideKeyboard()
+                }
+        )
         .addAnalytics(className: "NameChangeView")
     }
     private func changeNameFunc() {

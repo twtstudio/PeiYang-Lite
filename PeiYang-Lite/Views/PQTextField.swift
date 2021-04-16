@@ -28,6 +28,7 @@ struct PQTextField: UIViewRepresentable {
         textField.placeholder = placeholder
         textField.addTarget(context.coordinator, action: #selector(context.coordinator.textChange(textField:)), for: .editingChanged)
         textField.text = text
+        textField.keyboardType = .numberPad
         onConfig?(textField)
         return textField
     }
