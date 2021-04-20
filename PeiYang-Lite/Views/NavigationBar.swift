@@ -7,7 +7,7 @@
 import SwiftUI
 
 struct NavigationBar<Leading, Center, Trailing>: View where Leading: View, Center: View, Trailing: View {
-    @Environment(\.presentationMode) private var presentationMode
+    @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     
     let leading: Leading?
     let center: Center?
@@ -26,9 +26,12 @@ struct NavigationBar<Leading, Center, Trailing>: View where Leading: View, Cente
                     leading!
                 } else {
                     Button(action: {
-                        self.presentationMode.wrappedValue.dismiss()
+                        self.mode.wrappedValue.dismiss()
                     }) {
                         Image(systemName: "chevron.backward")
+                        // 我也不知道为啥有了text，这个button就能用……
+                        Text("idontknowwhy").opacity(0)
+                        
                     }
                     .font(.title2)
                     .foregroundColor(Color(#colorLiteral(red: 0.3856853843, green: 0.403162986, blue: 0.4810273647, alpha: 1)))

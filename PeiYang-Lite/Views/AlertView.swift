@@ -36,7 +36,7 @@ struct AlertView: View {
         .background(isRight ? Color.green : Color.black)
         .cornerRadius(screen.height/50)
         .animation(.none)
-        .opacity(isShow ? 1 : 0)
+        .opacity(isShow ? 0.85 : 0)
         .animation(
             Animation.easeInOut(duration: 0.4)
                 .delay(1)
