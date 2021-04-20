@@ -109,9 +109,6 @@ struct LgSupplyView: View {
                             self.alertTime = 3
                             time.invalidate()
                             isShowAlert = false
-                            if AlertMessage == "成功" {
-                                self.mode.wrappedValue.dismiss()
-                            }
                         }
                         self.alertTime -= 1
                     })
