@@ -35,7 +35,13 @@ struct StyTopView: View {
         dateFormatter.dateFormat = "HH:mm"
         return dateFormatter.string(from: Date())
     }
-    
+    // gridView 排版
+    var columns: [GridItem] = [
+        GridItem(.fixed(screen.width / 5.5), spacing: 16),
+        GridItem(.fixed(screen.width / 5.5), spacing: 16),
+        GridItem(.fixed(screen.width / 5.5), spacing: 16),
+        GridItem(.fixed(screen.width / 5.5), spacing: 16)
+        ]
     
     // 教学楼储存数组
     @State var buildings: [StudyBuilding] = []
@@ -194,100 +200,189 @@ struct StyTopView: View {
                 
                 if(schoolDistrict == 0) {
                     //MARK: show the buildings in WJ
-                    GridWithoutScrollStack(minCellWidth: screen.width / 8,
-                                           spacing: 20,
-                                           numItems: buildingsWJ.count) {
-                        
-                    } content: { index, width in
-                        GeometryReader { geo in
-                            if(buildingsWJ[index].areas[0].areaID != "-1") {
-                                NavigationLink(
-                                    destination: StyBuildingSectionView(buildingName: buildingsWJ[index].building, sections: buildingsWJ[index].areas, weeks: weeks, buildingID: buildingsWJ[index].buildingID),
-                                    label: {
-                                        VStack(spacing: 5) {
-                                            Image("building")
-                                                .resizable()
-                                                .scaledToFit()
-                                                .frame(width:screen.width / 8)
-                                            Text(buildingsWJ[index].building)
-                                                .font(.custom("HelveticaNeue-Bold", size: screen.height / 60))
-                                                .foregroundColor(themeColor)
-                                            
-                                        }
-                                        .frame(width: width, height: width)
-                                    })
+//                    GridWithoutScrollStack(minCellWidth: screen.width / 8,
+//                                           spacing: 20,
+//                                           numItems: buildingsWJ.count) {
+//
+//                    } content: { index, width in
+//                        GeometryReader { geo in
+//                            if(buildingsWJ[index].areas[0].areaID != "-1") {
+//                                NavigationLink(
+//                                    destination: StyBuildingSectionView(buildingName: buildingsWJ[index].building, sections: buildingsWJ[index].areas, weeks: weeks, buildingID: buildingsWJ[index].buildingID),
+//                                    label: {
+//                                        VStack(spacing: 5) {
+//                                            Image("building")
+//                                                .resizable()
+//                                                .scaledToFit()
+//                                                .frame(width:screen.width / 8)
+//                                            Text(buildingsWJ[index].building)
+//                                                .font(.custom("HelveticaNeue-Bold", size: screen.height / 60))
+//                                                .foregroundColor(themeColor)
+//
+//                                        }
+//                                        .frame(width: width, height: width)
+//                                    })
+//
+//                            } else {
+//                                NavigationLink(
+//                                    destination: StyChooseClassView(buildingID: buildingsWJ[index].buildingID, sectionName: "-1", week: weeks, buildingName: buildingsWJ[index].building),
+//                                    label: {
+//                                        VStack(spacing: 5) {
+//                                            Image("building")
+//                                                .resizable()
+//                                                .scaledToFit()
+//                                                .frame(width:screen.width / 8)
+//                                            Text(buildingsWJ[index].building)
+//                                                .font(.custom("HelveticaNeue-Bold", size: screen.height / 60))
+//                                                .foregroundColor(themeColor)
+//
+//                                        }
+//                                        .frame(width: width, height: width)
+//                                    })
+//
+//                            }
+//
+//                        }
+//                        .frame(width: width, height: width) // That's sucked!
+//                    }
+//                    .padding(.horizontal)
+//                    .frame(width: screen.width, height: screen.height * 0.35, alignment: .center)
+                    VStack{
+                        LazyVGrid(
+                            columns: columns,
+                            alignment: .center,
+                            spacing: 16,
+                            pinnedViews: [.sectionHeaders, .sectionFooters]
+                        ) {
+                            ForEach(buildingsWJ, id: \.self) { buildingWJ in
+                                if(buildingWJ.areas[0].areaID != "-1") {
+                                    NavigationLink(
+                                        destination: StyBuildingSectionView(buildingName: buildingWJ.building, sections: buildingWJ.areas, weeks: weeks, buildingID: buildingWJ.buildingID),
+                                        label: {
+                                            VStack(spacing: 5) {
+                                                Image("building")
+                                                    .resizable()
+                                                    .scaledToFit()
+                                                    .frame(width:screen.width / 8)
+                                                Text(buildingWJ.building)
+                                                    .font(.custom("HelveticaNeue-Bold", size: screen.height / 60))
+                                                    .foregroundColor(themeColor)
+                                            }
+                                        })
 
-                            } else {
-                                NavigationLink(
-                                    destination: StyChooseClassView(buildingID: buildingsWJ[index].buildingID, sectionName: "-1", week: weeks, buildingName: buildingsWJ[index].building),
-                                    label: {
-                                        VStack(spacing: 5) {
-                                            Image("building")
-                                                .resizable()
-                                                .scaledToFit()
-                                                .frame(width:screen.width / 8)
-                                            Text(buildingsWJ[index].building)
-                                                .font(.custom("HelveticaNeue-Bold", size: screen.height / 60))
-                                                .foregroundColor(themeColor)
-                                            
-                                        }
-                                        .frame(width: width, height: width)
-                                    })
+                                } else {
+                                    NavigationLink(
+                                        destination: StyChooseClassView(buildingID: buildingWJ.buildingID, sectionName: "-1", week: weeks, buildingName: buildingWJ.building),
+                                        label: {
+                                            VStack(spacing: 5) {
+                                                Image("building")
+                                                    .resizable()
+                                                    .scaledToFit()
+                                                    .frame(width:screen.width / 8)
+                                                Text(buildingWJ.building)
+                                                    .font(.custom("HelveticaNeue-Bold", size: screen.height / 60))
+                                                    .foregroundColor(themeColor)
+
+                                            }
+                                        })
+                                }
 
                             }
-                                                        
                         }
-                        .frame(width: width, height: width) // That's sucked!
+                        Spacer()
                     }
-                    .padding(.horizontal)
                     .frame(width: screen.width, height: screen.height * 0.35, alignment: .center)
+                                        
                 } else{
                     //MARK: show the buildings in BY
-                    GridWithoutScrollStack(minCellWidth: screen.width / 8,
-                                           spacing: 20,
-                                           numItems: buildingsBY.count) {EmptyView()} content: { index, width in
-                        GeometryReader { geo in
-                            if(buildingsBY[index].areas[0].areaID != "-1") {
-                                NavigationLink(
-                                    destination: StyBuildingSectionView(buildingName: buildingsBY[index].building, sections: buildingsBY[index].areas, weeks: weeks, buildingID: buildingsBY[index].buildingID),
-                                    label: {
-                                        VStack(spacing: 5) {
-                                            Image("building")
-                                                .resizable()
-                                                .scaledToFit()
-                                                .frame(width:screen.width / 8)
-                                            Text(buildingsBY[index].building)
-                                                .font(.custom("HelveticaNeue-Bold", size: screen.height / 60))
-                                                .foregroundColor(themeColor)
-                                            
-                                        }
-                                        .frame(width: width, height: width)
-                                    })
+//                    GridWithoutScrollStack(minCellWidth: screen.width / 8,
+//                                           spacing: 20,
+//                                           numItems: buildingsBY.count) {EmptyView()} content: { index, width in
+//                        GeometryReader { geo in
+//                            if(buildingsBY[index].areas[0].areaID != "-1") {
+//                                NavigationLink(
+//                                    destination: StyBuildingSectionView(buildingName: buildingsBY[index].building, sections: buildingsBY[index].areas, weeks: weeks, buildingID: buildingsBY[index].buildingID),
+//                                    label: {
+//                                        VStack(spacing: 5) {
+//                                            Image("building")
+//                                                .resizable()
+//                                                .scaledToFit()
+//                                                .frame(width:screen.width / 8)
+//                                            Text(buildingsBY[index].building)
+//                                                .font(.custom("HelveticaNeue-Bold", size: screen.height / 60))
+//                                                .foregroundColor(themeColor)
+//
+//                                        }
+//                                        .frame(width: width, height: width)
+//                                    })
+//
+//                            } else {
+//                                NavigationLink(
+//                                    destination: StyChooseClassView(buildingID: buildingsBY[index].buildingID, sectionName: "-1", week: weeks, buildingName: buildingsBY[index].building),
+//                                    label: {
+//                                        VStack(spacing: 5) {
+//                                            Image("building")
+//                                                .resizable()
+//                                                .scaledToFit()
+//                                                .frame(width:screen.width / 8)
+//                                            Text(buildingsBY[index].building)
+//                                                .font(.custom("HelveticaNeue-Bold", size: screen.height / 60))
+//                                                .foregroundColor(themeColor)
+//
+//                                        }
+//                                        .frame(width: width, height: width)
+//                                    })
+//
+//                            }
+//
+//
+//                        }
+//                        .frame(width: width, height: width) // That's sucked!
+//                    }
+//                    .padding(.horizontal)
+//                    .frame(width: screen.width, height: screen.height * 0.35, alignment: .center)
+                    VStack{
+                        LazyVGrid(
+                            columns: columns,
+                            alignment: .center,
+                            spacing: 16,
+                            pinnedViews: [.sectionHeaders, .sectionFooters]
+                        ) {
+                            ForEach(buildingsBY, id: \.self) { buildingBY in
+                                if(buildingBY.areas[0].areaID != "-1") {
+                                    NavigationLink(
+                                        destination: StyBuildingSectionView(buildingName: buildingBY.building, sections: buildingBY.areas, weeks: weeks, buildingID: buildingBY.buildingID),
+                                        label: {
+                                            VStack(spacing: 5) {
+                                                Image("building")
+                                                    .resizable()
+                                                    .scaledToFit()
+                                                    .frame(width:screen.width / 8)
+                                                Text(buildingBY.building)
+                                                    .font(.custom("HelveticaNeue-Bold", size: screen.height / 60))
+                                                    .foregroundColor(themeColor)
+                                            }
+                                        })
 
-                            } else {
-                                NavigationLink(
-                                    destination: StyChooseClassView(buildingID: buildingsBY[index].buildingID, sectionName: "-1", week: weeks, buildingName: buildingsBY[index].building),
-                                    label: {
-                                        VStack(spacing: 5) {
-                                            Image("building")
-                                                .resizable()
-                                                .scaledToFit()
-                                                .frame(width:screen.width / 8)
-                                            Text(buildingsBY[index].building)
-                                                .font(.custom("HelveticaNeue-Bold", size: screen.height / 60))
-                                                .foregroundColor(themeColor)
-                                            
-                                        }
-                                        .frame(width: width, height: width)
-                                    })
-
+                                } else {
+                                    NavigationLink(
+                                        destination: StyChooseClassView(buildingID: buildingBY.buildingID, sectionName: "-1", week: weeks, buildingName: buildingBY.building),
+                                        label: {
+                                            VStack(spacing: 5) {
+                                                Image("building")
+                                                    .resizable()
+                                                    .scaledToFit()
+                                                    .frame(width:screen.width / 8)
+                                                Text(buildingBY.building)
+                                                    .font(.custom("HelveticaNeue-Bold", size: screen.height / 60))
+                                                    .foregroundColor(themeColor)
+                                            }
+                                        })
+                                }
                             }
-
-                            
                         }
-                        .frame(width: width, height: width) // That's sucked!
+                        Spacer()
                     }
-                    .padding(.horizontal)
                     .frame(width: screen.width, height: screen.height * 0.35, alignment: .center)
                 }
                 
