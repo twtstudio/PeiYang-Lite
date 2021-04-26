@@ -9,7 +9,7 @@ import Combine
 
 struct LgBeginView: View {
     @EnvironmentObject var appState: AppState
-    
+    @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     var body: some View {
         VStack {
             HStack {// toppest text

@@ -76,8 +76,10 @@ struct LgKeywordLoginView: View {
                     self.isHide.toggle()
                 }){
                     Image(systemName: isHide ? "eye.slash.fill" : "eye.fill")
-                        .foregroundColor(isHide ? Color.secondary : Color.init(red: 79/255, green: 88/255, blue: 107/255))
+                    // 奇怪的运行了起来……
+                    Text("idontknowwhy").opacity(0)
                 }
+                .foregroundColor(isHide ? Color.secondary : Color.init(red: 79/255, green: 88/255, blue: 107/255))
                 .frame(width: UIScreen.main.bounds.width * 0.08, height: UIScreen.main.bounds.height / 15, alignment: .center)
             }
          

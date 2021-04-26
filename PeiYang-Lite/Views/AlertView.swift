@@ -32,11 +32,11 @@ struct AlertView: View {
                 .animation(.none)
                 .padding()
         }
-        .frame(height: screen.height/12, alignment: .center)
+        .frame(width: screen.width * 0.9, height: screen.height/12, alignment: .center)
         .background(isRight ? Color.green : Color.black)
         .cornerRadius(screen.height/50)
         .animation(.none)
-        .opacity(isShow ? 1 : 0)
+        .opacity(isShow ? 0.85 : 0)
         .animation(
             Animation.easeInOut(duration: 0.4)
                 .delay(1)

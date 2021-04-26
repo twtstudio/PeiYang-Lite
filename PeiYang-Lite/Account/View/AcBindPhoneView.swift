@@ -208,15 +208,21 @@ struct AcBindPhoneView: View {
                     AlertView(alertMessage: AlertMessage, isShow: $isShowAlert)
                 }
             }
+            .background(
+                Color.white.ignoresSafeArea()
+                    .onTapGesture {
+                        hideKeyboard()
+                    }
+            )
             
             Color.black.ignoresSafeArea()
                 .opacity(isShowSignOut ? 0.5 : 0)
                 .animation(.easeIn)
 
             VStack(spacing: UIScreen.main.bounds.height / 50) {
-                Text("解除邮箱绑定后无法使用邮箱登录微北洋。若本次登录为邮箱登录则将退出登录，需要您重新进行账号密码登录。您是否确定解除绑定？").padding()
+                Text("确认解绑电话号码？").padding()
                     .foregroundColor(themeColor)
-                    .font(.caption)
+                    .font(.custom("Avenir", size: 20))
 
                 HStack(spacing: UIScreen.main.bounds.width * 0.1){
         

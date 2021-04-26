@@ -95,7 +95,7 @@ struct HomeView: View {
         .edgesIgnoringSafeArea(.all)
         .addAnalytics(className: "HomeView")
 //        HomeScrollView(model: homeViewModel)
-        .onAppear(perform: checkUpdate)
+//        .onAppear(perform: checkUpdate)
         .showUpdateView($showUpdateView)
     }
     

@@ -10,6 +10,7 @@ import SwiftUI
 struct FgFinalStepView: View {
     @EnvironmentObject var appState: AppState
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
+    @State private var isJumpToBack = false
     var body: some View {
         VStack(spacing: 20.0) {
             Text("密码修改完成")
@@ -17,7 +18,11 @@ struct FgFinalStepView: View {
                 .foregroundColor(Color.init(red: 98/255, green: 103/255, blue: 124/255))
             
             Button(action:{
-                self.appState.leftHome.toggle()
+                if self.appState.leftHome {
+                    self.appState.leftHome.toggle()
+                } else {
+                    isJumpToBack = true
+                }
             }) {
                 Text("前往登录")
                     .foregroundColor(.white)
@@ -26,6 +31,12 @@ struct FgFinalStepView: View {
                     .cornerRadius(screen.height / 30)
             }
             .navigationBarBackButtonHidden(true)
+            NavigationLink(
+                destination: LgKeywordLoginView(),
+                isActive: $isJumpToBack,
+                label: {
+                    EmptyView()
+                })
         }
         .addAnalytics(className: "PasswordChangeView")
     }
