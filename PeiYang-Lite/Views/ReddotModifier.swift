@@ -27,8 +27,6 @@ struct ReddotModifer: ViewModifier {
                             .font(Font.system(size: size * 0.8))
                     )
                     .frame(width: size, height: size)
-                
-                
             }
         })
     }

@@ -50,6 +50,7 @@ struct SchRecvMessageView: View {
                             }
                             .opacity(i == pageIndex ? 1 : 0)
                         )
+                        .addReddot(isPresented: hasReddot(idx: i), size: 5)
                     }
                     Spacer()
                 }
@@ -75,6 +76,20 @@ struct SchRecvMessageView: View {
         .navigationBarHidden(true)
         .background(Color(#colorLiteral(red: 0.968627451, green: 0.968627451, blue: 0.9725490196, alpha: 1)).edgesIgnoringSafeArea(.all))
         .onAppear(perform: loadData)
+    }
+    
+    // 页标签红点计算
+    private func hasReddot(idx: Int) -> Bool {
+        switch idx {
+        case 0:
+            return thumbedMessage.reduce(false, { b, m in return b || (m.visible ?? 0 == 1) })
+        case 1:
+            return commentMessage.reduce(false, { b, m in return b || (m.visible ?? 0 == 1) })
+        case 2:
+            return replyMessage.reduce(false, { b, m in return b || (m.visible ?? 0 == 1) })
+        default:
+            return false
+        }
     }
     
     // 返回滚动列表
@@ -138,15 +153,15 @@ struct SchRecvMessageView: View {
                 log(err)
             }
         }
-//        func generate(count: Int, type: Int) -> [SchMessageModel] {
-//            return Array(repeating: SchMessageModel(id: 0, type: type, visible: 1, createdAt: "2021-03-10T12:50:28.000000Z", updatedAt: nil,
-//                                                    contain: SchMessageContain(id: 0, contain: "不要你离开距离隔不开思念变成海在窗外进不来原谅说太快爱成了阻碍不要你离开距离隔不开思念变成海在窗外进不来原谅说太快爱成了阻碍", userID: 0, adminID: 0, likes: 999, createdAt: "2021-03-10T12:50:28.000000Z", updatedAt: nil, username: "这种重中之重", adminName: "哈啊哈哈哈哈", isLiked: true, score: 4, commit: "可以的"),
-//                                                    question: SchQuestionModel(id: 0, name: "微北洋", content: "微北洋真不戳微北洋真不戳微北洋真不戳微北洋真不戳微北洋真不戳微北洋真不戳", userID: nil, solved: 1, noCommit: 0, likes: 999, createdAt: "2021-03-10T12:50:28.000000Z", updatedAt: nil, username: "真不戳", msgCount: 999, urlList: ["https://www.hackingwithswift.com/img/covers-flat/watchos@2x.png","https://www.hackingwithswift.com/img/covers-flat/watchos@2x.png"], thumbImg: "https://www.hackingwithswift.com/img/covers-flat/watchos@2x.png", tags: [SchTagModel(id: 0, name: "天津大学", description: nil, tagDescription: nil, isSelected: nil, children: nil)], thumbUrlList: ["https://www.hackingwithswift.com/img/covers-flat/watchos@2x.png","https://www.hackingwithswift.com/img/covers-flat/watchos@2x.png"], isLiked: true, isOwner: true)), count: count)
-//        }
-//
-//        thumbedMessage = generate(count: 5, type: 0)
-//        commentMessage = generate(count: 8, type: 1)
-//        replyMessage = generate(count: 10, type: 2)
+        //        func generate(count: Int, type: Int) -> [SchMessageModel] {
+        //            return Array(repeating: SchMessageModel(id: 0, type: type, visible: 1, createdAt: "2021-03-10T12:50:28.000000Z", updatedAt: nil,
+        //                                                    contain: SchMessageContain(id: 0, contain: "不要你离开距离隔不开思念变成海在窗外进不来原谅说太快爱成了阻碍不要你离开距离隔不开思念变成海在窗外进不来原谅说太快爱成了阻碍", userID: 0, adminID: 0, likes: 999, createdAt: "2021-03-10T12:50:28.000000Z", updatedAt: nil, username: "这种重中之重", adminName: "哈啊哈哈哈哈", isLiked: true, score: 4, commit: "可以的"),
+        //                                                    question: SchQuestionModel(id: 0, name: "微北洋", content: "微北洋真不戳微北洋真不戳微北洋真不戳微北洋真不戳微北洋真不戳微北洋真不戳", userID: nil, solved: 1, noCommit: 0, likes: 999, createdAt: "2021-03-10T12:50:28.000000Z", updatedAt: nil, username: "真不戳", msgCount: 999, urlList: ["https://www.hackingwithswift.com/img/covers-flat/watchos@2x.png","https://www.hackingwithswift.com/img/covers-flat/watchos@2x.png"], thumbImg: "https://www.hackingwithswift.com/img/covers-flat/watchos@2x.png", tags: [SchTagModel(id: 0, name: "天津大学", description: nil, tagDescription: nil, isSelected: nil, children: nil)], thumbUrlList: ["https://www.hackingwithswift.com/img/covers-flat/watchos@2x.png","https://www.hackingwithswift.com/img/covers-flat/watchos@2x.png"], isLiked: true, isOwner: true)), count: count)
+        //        }
+        //
+        //        thumbedMessage = generate(count: 5, type: 0)
+        //        commentMessage = generate(count: 8, type: 1)
+        //        replyMessage = generate(count: 10, type: 2)
     }
 }
 
@@ -162,60 +177,59 @@ fileprivate struct ThumbedCellView: View {
     
     var body: some View {
         VStack {
-            HStack {
-                Image("Text")
-                    .resizable()
-                    .frame(width: 30, height: 30)
-                    .cornerRadius(15)
-                Text((message.contain?.username ?? "") + "  点赞了问题")
-                    .font(.callout)
-                    .foregroundColor(Color(#colorLiteral(red: 0.262745098, green: 0.2745098039, blue: 0.3137254902, alpha: 1)))
-                Spacer()
-                Text(commentTime)
-                    .foregroundColor(Color(#colorLiteral(red: 0.6941176471, green: 0.6980392157, blue: 0.7450980392, alpha: 1)))
-                    .font(.footnote)
-            }
-            
-            
-                VStack {
-                    HStack {
-                        Text(message.question?.name ?? "")
-                            .foregroundColor(Color(#colorLiteral(red: 0.2117647059, green: 0.2352941176, blue: 0.3294117647, alpha: 1)))
-                            .font(.title2)
-                            .bold()
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                        if message.question?.thumbImg != nil {
-                            URLImage(url: URL(string: message.question?.thumbImg ?? "")!) { (image) in
-                                image
-                                    .resizable()
-                                    .scaledToFill()
-                                    .frame(width: screen.width * 0.2, height: 50)
-                                    .cornerRadius(5)
-                            }
+            VStack {
+                HStack {
+                    Image("Text")
+                        .resizable()
+                        .frame(width: 30, height: 30)
+                        .cornerRadius(15)
+                    Text((message.contain?.username ?? "") + "  点赞了问题")
+                        .font(.callout)
+                        .foregroundColor(Color(#colorLiteral(red: 0.262745098, green: 0.2745098039, blue: 0.3137254902, alpha: 1)))
+                    Spacer()
+                    Text(commentTime)
+                        .foregroundColor(Color(#colorLiteral(red: 0.6941176471, green: 0.6980392157, blue: 0.7450980392, alpha: 1)))
+                        .font(.footnote)
+                }
+                
+                HStack {
+                    Text(message.question?.name ?? "")
+                        .foregroundColor(Color(#colorLiteral(red: 0.2117647059, green: 0.2352941176, blue: 0.3294117647, alpha: 1)))
+                        .font(.title2)
+                        .bold()
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    if message.question?.thumbImg != nil {
+                        URLImage(url: URL(string: message.question?.thumbImg ?? "")!) { (image) in
+                            image
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: screen.width * 0.2, height: 50)
+                                .cornerRadius(5)
                         }
                     }
-                    .frame(height: 60)
-                    
-                    HStack {
-                        Image("sch-comment")
-                        Text((message.question?.msgCount ?? 0).description)
-                            .foregroundColor(Color(#colorLiteral(red: 0.6941176471, green: 0.6980392157, blue: 0.7450980392, alpha: 1)))
-                            .font(.caption)
-                        Image((message.question?.isLiked ?? false) ? "sch-like-fill" : "sch-like")
-                            .padding(.leading, 10)
-                        Text((message.question?.likes ?? 0).description)
-                            .foregroundColor(Color(#colorLiteral(red: 0.6941176471, green: 0.6980392157, blue: 0.7450980392, alpha: 1)))
-                            .font(.caption)
-                        Spacer()
-                        Text((message.question?.solved ?? 0) == 0 ? "未回复" : "·已回复")
-                            .font(.caption)
-                            .foregroundColor((message.question?.solved ?? 0) == 0 ? Color(#colorLiteral(red: 0.6941176471, green: 0.6980392157, blue: 0.7450980392, alpha: 1)) : Color(#colorLiteral(red: 0.262745098, green: 0.2745098039, blue: 0.3137254902, alpha: 1)))
-                    }
                 }
-                .padding()
-                .background(Color.white)
-                .cornerRadius(15)
-                .addReddot(isPresented: message.visible ?? 0 == 1, size: 10)
+                .frame(height: 60)
+                
+                HStack {
+                    Image("sch-comment")
+                    Text((message.question?.msgCount ?? 0).description)
+                        .foregroundColor(Color(#colorLiteral(red: 0.6941176471, green: 0.6980392157, blue: 0.7450980392, alpha: 1)))
+                        .font(.caption)
+                    Image((message.question?.isLiked ?? false) ? "sch-like-fill" : "sch-like")
+                        .padding(.leading, 10)
+                    Text((message.question?.likes ?? 0).description)
+                        .foregroundColor(Color(#colorLiteral(red: 0.6941176471, green: 0.6980392157, blue: 0.7450980392, alpha: 1)))
+                        .font(.caption)
+                    Spacer()
+                    Text((message.question?.solved ?? 0) == 0 ? "未回复" : "已回复")
+                        .font(.caption)
+                        .foregroundColor((message.question?.solved ?? 0) == 0 ? Color(#colorLiteral(red: 0.6941176471, green: 0.6980392157, blue: 0.7450980392, alpha: 1)) : Color(#colorLiteral(red: 0.262745098, green: 0.2745098039, blue: 0.3137254902, alpha: 1)))
+                }
+            }
+            .padding()
+            .background(Color.white)
+            .cornerRadius(15)
+            .addReddot(isPresented: message.visible ?? 0 == 1, size: 10)
         }
     }
 }
@@ -232,21 +246,21 @@ fileprivate struct CommentCellView: View {
     
     var body: some View {
         VStack {
-            HStack {
-                Image("Text")
-                    .resizable()
-                    .frame(width: 30, height: 30)
-                    .cornerRadius(15)
-                Text((message.contain?.username ?? "") + "  评论了问题")
-                    .font(.callout)
-                    .foregroundColor(Color(#colorLiteral(red: 0.262745098, green: 0.2745098039, blue: 0.3137254902, alpha: 1)))
-                Spacer()
-                Text(commentTime)
-                    .foregroundColor(Color(#colorLiteral(red: 0.6941176471, green: 0.6980392157, blue: 0.7450980392, alpha: 1)))
-                    .font(.footnote)
-            }
-            
             VStack {
+                HStack {
+                    Image("Text")
+                        .resizable()
+                        .frame(width: 30, height: 30)
+                        .cornerRadius(15)
+                    Text((message.contain?.username ?? "") + "  评论了问题")
+                        .font(.callout)
+                        .foregroundColor(Color(#colorLiteral(red: 0.262745098, green: 0.2745098039, blue: 0.3137254902, alpha: 1)))
+                    Spacer()
+                    Text(commentTime)
+                        .foregroundColor(Color(#colorLiteral(red: 0.6941176471, green: 0.6980392157, blue: 0.7450980392, alpha: 1)))
+                        .font(.footnote)
+                }
+
                 HStack {
                     Text(message.question?.name ?? "")
                         .foregroundColor(Color(#colorLiteral(red: 0.2117647059, green: 0.2352941176, blue: 0.3294117647, alpha: 1)))
@@ -285,7 +299,7 @@ fileprivate struct CommentCellView: View {
                         .foregroundColor(Color(#colorLiteral(red: 0.6941176471, green: 0.6980392157, blue: 0.7450980392, alpha: 1)))
                         .font(.caption)
                     Spacer()
-                    Text((message.question?.solved ?? 0) == 0 ? "未回复" : "·已回复")
+                    Text((message.question?.solved ?? 0) == 0 ? "未回复" : "已回复")
                         .font(.caption)
                         .foregroundColor((message.question?.solved ?? 0) == 0 ? Color(#colorLiteral(red: 0.6941176471, green: 0.6980392157, blue: 0.7450980392, alpha: 1)) : Color(#colorLiteral(red: 0.262745098, green: 0.2745098039, blue: 0.3137254902, alpha: 1)))
                 }
@@ -310,22 +324,23 @@ fileprivate struct ReplyCellView: View {
     
     var body: some View {
         VStack {
-            HStack {
-                Text("官方")
-                    .foregroundColor(.white)
-                    .frame(width: 55, height: 30)
-                    .background(Color(#colorLiteral(red: 0.3490196078, green: 0.3882352941, blue: 0.5215686275, alpha: 1)))
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                Text("回复了问题")
-                    .font(.callout)
-                    .foregroundColor(Color(#colorLiteral(red: 0.262745098, green: 0.2745098039, blue: 0.3137254902, alpha: 1)))
-                Spacer()
-                Text(commentTime)
-                    .foregroundColor(Color(#colorLiteral(red: 0.6941176471, green: 0.6980392157, blue: 0.7450980392, alpha: 1)))
-                    .font(.footnote)
-            }
-            
             VStack {
+                HStack {
+                    Text(message.contain?.adminName ?? "官方")
+                        .foregroundColor(.white)
+                        .frame(height: 30)
+                        .padding(.horizontal, 3)
+                        .background(Color(#colorLiteral(red: 0.3490196078, green: 0.3882352941, blue: 0.5215686275, alpha: 1)))
+                        .clipShape(RoundedRectangle(cornerRadius: 5))
+                    Text("回复了问题")
+                        .font(.callout)
+                        .foregroundColor(Color(#colorLiteral(red: 0.262745098, green: 0.2745098039, blue: 0.3137254902, alpha: 1)))
+                    Spacer()
+                    Text(commentTime)
+                        .foregroundColor(Color(#colorLiteral(red: 0.6941176471, green: 0.6980392157, blue: 0.7450980392, alpha: 1)))
+                        .font(.footnote)
+                }
+
                 HStack {
                     Text(message.question?.name ?? "")
                         .foregroundColor(Color(#colorLiteral(red: 0.2117647059, green: 0.2352941176, blue: 0.3294117647, alpha: 1)))
@@ -364,7 +379,7 @@ fileprivate struct ReplyCellView: View {
                         .foregroundColor(Color(#colorLiteral(red: 0.6941176471, green: 0.6980392157, blue: 0.7450980392, alpha: 1)))
                         .font(.caption)
                     Spacer()
-                    Text((message.question?.solved ?? 0) == 0 ? "未回复" : "·已回复")
+                    Text((message.question?.solved ?? 0) == 0 ? "未回复" : "已回复")
                         .font(.caption)
                         .foregroundColor((message.question?.solved ?? 0) == 0 ? Color(#colorLiteral(red: 0.6941176471, green: 0.6980392157, blue: 0.7450980392, alpha: 1)) : Color(#colorLiteral(red: 0.262745098, green: 0.2745098039, blue: 0.3137254902, alpha: 1)))
                 }
@@ -385,7 +400,7 @@ struct SchRecvMessageView_Previews: PreviewProvider {
 
 struct SchRecvMessageViewCell_Previews: PreviewProvider {
     static let model = SchMessageModel(id: 0, type: 0, visible: 1, createdAt: "2021-03-10T12:50:28.000000Z", updatedAt: nil,
-                                       contain: SchMessageContain(id: 0, contain: "不要你离开距离隔不开思念变成海在窗外进不来原谅说太快爱成了阻碍不要你离开距离隔不开思念变成海在窗外进不来原谅说太快爱成了阻碍", userID: 0, adminID: 0, likes: 999, createdAt: "2021-03-10T12:50:28.000000Z", updatedAt: nil, username: "这种重中之重", adminName: "哈啊哈哈哈哈", isLiked: true, score: 4, commit: "可以的"),
+                                       contain: SchMessageContain(id: 0, contain: "不要你离开距离隔不开思念变成海在窗外进不来原谅说太快爱成了阻碍不要你离开距离隔不开思念变成海在窗外进不来原谅说太快爱成了阻碍", userID: 0, adminID: 0, likes: 999, createdAt: "2021-03-10T12:50:28.000000Z", updatedAt: nil, username: "这种重中之重", adminName: "天外天", isLiked: true, score: 4, commit: "可以的"),
                                        question: SchQuestionModel(id: 0, name: "微北洋", content: "微北洋真不戳微北洋真不戳微北洋真不戳微北洋真不戳微北洋真不戳微北洋真不戳", userID: nil, solved: 1, noCommit: 0, likes: 999, createdAt: "2021-03-10T12:50:28.000000Z", updatedAt: nil, username: "真不戳", msgCount: 999, urlList: ["https://www.hackingwithswift.com/img/covers-flat/watchos@2x.png","https://www.hackingwithswift.com/img/covers-flat/watchos@2x.png"], thumbImg: "https://www.hackingwithswift.com/img/covers-flat/watchos@2x.png", tags: [SchTagModel(id: 0, name: "天津大学", description: nil, tagDescription: nil, isSelected: nil, children: nil)], thumbUrlList: ["https://www.hackingwithswift.com/img/covers-flat/watchos@2x.png","https://www.hackingwithswift.com/img/covers-flat/watchos@2x.png"], isLiked: true, isOwner: true, isFavorite: false, readen: true))
     static var previews: some View {
         VStack {

@@ -97,25 +97,35 @@ struct SchAccountView: View {
             
             ScrollView(showsIndicators: false) {
                 if isMineSelected {
-                    ForEach(myQuestions.indices, id: \.self) { i in
-                        SchQuestionCellView(question: myQuestions[i], isEditing: isMineSelected, deleteAction: {
-                            isShowAlert = true
-                            questionIdToDelete = myQuestions[i].id ?? -1
-                        }, showReddot: !(myQuestions[i].readen ?? true))
-                        .addAnalytics(className: "MyQuestionView")
-                        .frame(maxWidth: .infinity)
-                        .padding(.top, 10)
+                    if myQuestions.isEmpty {
+                        LoadingView()
                     }
+                    LazyVStack {
+                        ForEach(myQuestions.indices, id: \.self) { i in
+                            SchQuestionCellView(question: myQuestions[i], isEditing: isMineSelected, deleteAction: {
+                                isShowAlert = true
+                                questionIdToDelete = myQuestions[i].id ?? -1
+                            }, showReddot: !(myQuestions[i].readen ?? true))
+                            .frame(maxWidth: .infinity)
+                            .padding(.top, 10)
+                        }
+                    }
+                    .addAnalytics(className: "MyQuestionView")
                 } else {
-                    ForEach(favQuestions.indices, id: \.self) { i in
-                        SchQuestionCellView(question: favQuestions[i], isEditing: isMineSelected, deleteAction: {
-                            isShowAlert = true
-                            questionIdToDelete = favQuestions[i].id ?? -1
-                        }, showReddot: !(favQuestions[i].readen ?? true))
-                        .addAnalytics(className: "MyFavView")
-                        .frame(maxWidth: .infinity)
-                        .padding(.top, 10)
+                    if favQuestions.isEmpty {
+                        LoadingView()
                     }
+                    LazyVStack {
+                        ForEach(favQuestions.indices, id: \.self) { i in
+                            SchQuestionCellView(question: favQuestions[i], isEditing: isMineSelected, deleteAction: {
+                                isShowAlert = true
+                                questionIdToDelete = favQuestions[i].id ?? -1
+                            }, showReddot: !(favQuestions[i].readen ?? true))
+                            .frame(maxWidth: .infinity)
+                            .padding(.top, 10)
+                        }
+                    }
+                    .addAnalytics(className: "MyFavView")
                 }
             }
             .padding(.top, 6)

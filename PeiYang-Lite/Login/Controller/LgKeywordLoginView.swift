@@ -25,6 +25,7 @@ struct LgKeywordLoginView: View {
     @State private var username = ""
     @State private var password = ""
     @State private var isEnable = true
+    @State private var isLoading = false
     
     @State var accountInfo: AccountInfo = AccountInfo(errorCode: 0, message:  "网络出现问题", result: AccountResult(userNumber: "无", nickname: "无", telephone: nil, email: "无", token: "", role: "无", realname: "无", gender: "无", department: "无", major: "无", stuType: "无", avatar: "无", campus: "无"))
     
@@ -96,37 +97,7 @@ struct LgKeywordLoginView: View {
            
             
             Button(action:{
-                //MARK: Login
-                LgLoginManager.LoginPost(account: username, password: password) { result in
-                    switch result {
-                    case .success(let data):
-                        	isLogin = true
-                        accountInfo = data
-                        // 存下基础信息
-                        accountId = accountInfo.result.userNumber
-                        accountEmail = accountInfo.result.email ?? ""
-                        accountTelephone = accountInfo.result.telephone ?? ""
-                        accountName = accountInfo.result.nickname
-                        AlertMessage = accountInfo.message
-                        userToken = accountInfo.result.token
-                        storagePassword = password
-                        storageUserName = username
-                        // 存时间戳
-                        let now = Date()
-                        let timeInterval: TimeInterval = now.timeIntervalSince1970
-                        let timeStamp = Int(timeInterval)
-                        accountLoginTime = timeStamp
-
-                    case .failure(let error):
-                        isError = true
-                        AlertMessage = error.message
-                        password = ""
-                        isShowAlert = true
-                    }
-                    isEnable = true
-                }
-                isEnable = false// 确保只会点击一次
-
+                withAnimation { login() }
             }) {
                 Text("登录")
                     .frame(width: UIScreen.main.bounds.width * 0.9, height: UIScreen.main.bounds.height/15, alignment: .center)
@@ -165,8 +136,45 @@ struct LgKeywordLoginView: View {
         })
         .padding(.bottom)
         .navigationBarHidden(true)
+        .loading(isLoading: $isLoading)
     }
     
+    private func login() {
+        isEnable = false// 确保只会点击一次
+        isLoading = true
+        //MARK: Login
+        LgLoginManager.LoginPost(account: username, password: password) { result in
+            switch result {
+            case .success(let data):
+                isLogin = true
+                accountInfo = data
+                // 存下基础信息
+                accountId = accountInfo.result.userNumber
+                accountEmail = accountInfo.result.email ?? ""
+                accountTelephone = accountInfo.result.telephone ?? ""
+                accountName = accountInfo.result.nickname
+                AlertMessage = accountInfo.message
+                userToken = accountInfo.result.token
+                storagePassword = password
+                storageUserName = username
+                // 存时间戳
+                let now = Date()
+                let timeInterval: TimeInterval = now.timeIntervalSince1970
+                let timeStamp = Int(timeInterval)
+                accountLoginTime = timeStamp
+                
+            case .failure(let error):
+                isError = true
+                AlertMessage = error.message
+                password = ""
+                withAnimation {
+                    isShowAlert = true
+                }
+            }
+            isEnable = true
+            isLoading = false
+        }
+    }
 }
 
 

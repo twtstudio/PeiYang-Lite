@@ -32,6 +32,7 @@ struct CourseTableDetailView: View {
     @State private var showRelogin = false
     @State private var errorMessage: String = ""
     
+    @State private var floatViewOffset: CGFloat = 0
     
     
     var body: some View {
@@ -72,13 +73,6 @@ struct CourseTableDetailView: View {
                         )
                         // 单节课高度 * 12
                         .frame(height: screen.width / CGFloat(showCourseNum) * 1.5 * 12, alignment: .top)
-                        
-                        if let totalHour = getCourseHour(week: courseTable.totalWeek),
-                           let currentHour = getCourseHour(week: activeWeek) {
-                            ProgressBarView(current: currentHour, total: totalHour)
-                                .padding(.horizontal)
-                                .frame(width: screen.width, height: 80, alignment: .center)
-                        }
                     }
                 }
 //                NavigationLink(
@@ -106,10 +100,17 @@ struct CourseTableDetailView: View {
                         .clipShape(RoundedRectangle(cornerRadius: 8))
                         .shadow(color: Color.gray.opacity(0.5), radius: 8, x: 5, y: 5)
                 }
-                .animation(.easeInOut)
+                .offset(x: 0, y: floatViewOffset)
+                .animation(.easeIn)
                 .onTapGesture {
                     withAnimation(.easeOut) {
-                        self.alertCourse.showDetail = false
+                        floatViewOffset -= 20
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+                            withAnimation(.easeOut) {
+                                self.alertCourse.showDetail = false
+                                floatViewOffset = 0
+                            }
+                        }
                     }
                 }
             }

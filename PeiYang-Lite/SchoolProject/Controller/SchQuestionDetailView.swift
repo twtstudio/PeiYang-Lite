@@ -128,7 +128,9 @@ struct SchQuestionDetailView: View {
                 Button(action: {
                     sendComment()
                 }, label: {
-                    Image("sch-send")
+                    Image((inputDidChange ? inputMessage.wrappedValue.count : 0) == 0 ?
+                            "sch-send" :
+                            "sch-send-fill")
                         .resizable()
                         .frame(height: screen.height * 0.045)
                 })

@@ -53,6 +53,7 @@ struct PhotoListView: View {
                 ForEach(images, id: \.self) { image in
                     Image(uiImage: image)
                         .resizable()
+                        .scaledToFill()
                         .frame(width: 100, height: 100, alignment: .center)
                         .cornerRadius(5)
                         .onTapGesture {
@@ -75,6 +76,7 @@ struct PhotoListView: View {
                     URLImage(url: URL(string: imageURLs[i])!, content: { (image) in
                         image
                             .resizable()
+                            .scaledToFill()
                             .frame(width: 100, height: 100, alignment: .center)
 //                            .frame(maxWidth: screen.width / (CGFloat(imageURLs.count) + 0.5))
                             .cornerRadius(5)

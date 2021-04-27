@@ -33,26 +33,6 @@ struct AcClassesBindingView: View {
 //        )
         
     }
-    
-    
-}
-
-struct LoadingView: View {
-    @State private var isAnimating = false
-    
-    var body: some View {
-        Image(systemName: "gear")
-            .rotationEffect(.degrees(isAnimating ? 360 : 0))
-            .animation(Animation.linear(duration: 2).repeatForever(autoreverses: false))
-            .onAppear {
-                DispatchQueue.main.async { // wired, no animation in the first loading if sync
-                    isAnimating = true
-                }
-            }
-            .onDisappear {
-                isAnimating = false
-            }
-    }
 }
 
 struct BsLoginView_Previews: PreviewProvider {
@@ -229,15 +209,7 @@ fileprivate struct ClassesBindingLoginView: View {
                     
                     Spacer()
                     
-                    URLImage(url: URL(string: captchaURL)!,
-                             empty: {
-                                LoadingView()
-                             },
-                             inProgress: { _ in
-                                LoadingView()
-                             }) { (err, retry) in
-                        Button("Retry", action: retry)
-                    } content: { (image) in
+                    URLImage(url: URL(string: captchaURL)!) { (image) in
                         image
                             .resizable()
                             .scaledToFit()
