@@ -1,10 +1,9 @@
 /* 
   InfoPlist.strings
-  PeiYang Lite
+  PeiYang-Lite
 
-  Created by TwTStudio on 7/29/20.
+  Created by Zr埋 on 2021/4/29.
   
 */
-
 "CFBundleDisplayName" = "PeiYang Lite";
 "NSFaceIDUsageDescription" = "PeiYang Lite need your permission to use biometry.";

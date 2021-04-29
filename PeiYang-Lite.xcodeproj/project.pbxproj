@@ -28,9 +28,7 @@
 		D3540267260DEEF10092D83A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3540265260DEEF10092D83A /* Main.storyboard */; };
 		D3540269260DEEF10092D83A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3540268260DEEF10092D83A /* Assets.xcassets */; };
 		D354026C260DEEF10092D83A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D354026A260DEEF10092D83A /* LaunchScreen.storyboard */; };
-		D3540279260DEF160092D83A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D3540274260DEF150092D83A /* InfoPlist.strings */; };
 		D354027B260DEF160092D83A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3540277260DEF160092D83A /* Preview Assets.xcassets */; };
-		D354027C260DEF160092D83A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D3540278260DEF160092D83A /* Localizable.strings */; };
 		D3540283260DEF2F0092D83A /* SharedMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D354027E260DEF2F0092D83A /* SharedMessage.swift */; };
 		D3540285260DEF2F0092D83A /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3540280260DEF2F0092D83A /* SplashView.swift */; };
 		D3540286260DEF2F0092D83A /* UniversalExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3540282260DEF2F0092D83A /* UniversalExtension.swift */; };
@@ -203,6 +201,10 @@
 		D35404DF260DFABE0092D83A /* Semester.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35402FB260DEF720092D83A /* Semester.swift */; };
 		D35404E2260DFAC40092D83A /* ClassesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35402FC260DEF720092D83A /* ClassesManager.swift */; };
 		D35404E5260DFAD60092D83A /* Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D354031F260DEF720092D83A /* Localizable.swift */; };
+		D393F834263B00BA002B35C8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D393F837263B00BA002B35C8 /* InfoPlist.strings */; };
+		D393F835263B00BA002B35C8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D393F837263B00BA002B35C8 /* InfoPlist.strings */; };
+		D393F83E263B00CA002B35C8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D393F841263B00CA002B35C8 /* Localizable.strings */; };
+		D393F83F263B00CA002B35C8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D393F841263B00CA002B35C8 /* Localizable.strings */; };
 		D3DEB5CA261DEF57007DFC79 /* AccountMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DEB5C9261DEF57007DFC79 /* AccountMessageView.swift */; };
 		D3FB2B0B261F2F2F00F087AC /* ReddotModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FB2B0A261F2F2F00F087AC /* ReddotModifier.swift */; };
 /* End PBXBuildFile section */
@@ -250,9 +252,7 @@
 		D3540266260DEEF10092D83A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D3540268260DEEF10092D83A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D354026B260DEEF10092D83A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		D3540274260DEF150092D83A /* InfoPlist.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
 		D3540277260DEF160092D83A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		D3540278260DEF160092D83A /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		D354027E260DEF2F0092D83A /* SharedMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedMessage.swift; sourceTree = "<group>"; };
 		D3540280260DEF2F0092D83A /* SplashView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		D3540281260DEF2F0092D83A /* PeiYang-Lite-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PeiYang-Lite-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -420,6 +420,16 @@
 		D354048A260DF69B0092D83A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D3540490260DF7D30092D83A /* PeiYang-LiteWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "PeiYang-LiteWidgetExtension.entitlements"; sourceTree = "<group>"; };
 		D3540491260DF7EC0092D83A /* PeiYang-Lite.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "PeiYang-Lite.entitlements"; sourceTree = "<group>"; };
+		D393F82C263B0086002B35C8 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
+		D393F82D263B0086002B35C8 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		D393F830263B008E002B35C8 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Main.strings"; sourceTree = "<group>"; };
+		D393F831263B008E002B35C8 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		D393F836263B00BA002B35C8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D393F83A263B00BE002B35C8 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		D393F83B263B00C2002B35C8 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		D393F840263B00CA002B35C8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		D393F844263B00CE002B35C8 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		D393F845263B00D2002B35C8 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		D3DEB5C9261DEF57007DFC79 /* AccountMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountMessageView.swift; sourceTree = "<group>"; };
 		D3FB2B0A261F2F2F00F087AC /* ReddotModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReddotModifier.swift; sourceTree = "<group>"; };
 		D79A87E51F44E7CF688FA2E6 /* Pods-PeiYang-LiteWidgetExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PeiYang-LiteWidgetExtension.release.xcconfig"; path = "Target Support Files/Pods-PeiYang-LiteWidgetExtension/Pods-PeiYang-LiteWidgetExtension.release.xcconfig"; sourceTree = "<group>"; };
@@ -524,8 +534,8 @@
 				D3540268260DEEF10092D83A /* Assets.xcassets */,
 				D354026A260DEEF10092D83A /* LaunchScreen.storyboard */,
 				D354048A260DF69B0092D83A /* Info.plist */,
-				D3540274260DEF150092D83A /* InfoPlist.strings */,
-				D3540278260DEF160092D83A /* Localizable.strings */,
+				D393F841263B00CA002B35C8 /* Localizable.strings */,
+				D393F837263B00BA002B35C8 /* InfoPlist.strings */,
 				D3540276260DEF160092D83A /* Preview Content */,
 			);
 			path = "PeiYang-Lite";
@@ -1191,6 +1201,8 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
+				"zh-Hant",
 			);
 			mainGroup = D3540253260DEEF10092D83A;
 			productRefGroup = D354025D260DEEF10092D83A /* Products */;
@@ -1209,11 +1221,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				D354026C260DEEF10092D83A /* LaunchScreen.storyboard in Resources */,
-				D3540279260DEF160092D83A /* InfoPlist.strings in Resources */,
+				D393F83E263B00CA002B35C8 /* Localizable.strings in Resources */,
 				D3540269260DEEF10092D83A /* Assets.xcassets in Resources */,
-				D354027C260DEF160092D83A /* Localizable.strings in Resources */,
 				D354027B260DEF160092D83A /* Preview Assets.xcassets in Resources */,
 				D3540267260DEEF10092D83A /* Main.storyboard in Resources */,
+				D393F834263B00BA002B35C8 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1221,7 +1233,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D393F83F263B00CA002B35C8 /* Localizable.strings in Resources */,
 				C91599E8261092E100D67B6E /* GILROY-BOLD-4.OTF in Resources */,
+				D393F835263B00BA002B35C8 /* InfoPlist.strings in Resources */,
 				C91599F52610931F00D67B6E /* Assets.xcassets in Resources */,
 				C91599ED261092E500D67B6E /* Morning-Star-1.ttf in Resources */,
 			);
@@ -1524,6 +1538,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				D3540266260DEEF10092D83A /* Base */,
+				D393F82C263B0086002B35C8 /* zh-Hans */,
+				D393F830263B008E002B35C8 /* zh-Hant */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -1532,8 +1548,30 @@
 			isa = PBXVariantGroup;
 			children = (
 				D354026B260DEEF10092D83A /* Base */,
+				D393F82D263B0086002B35C8 /* zh-Hans */,
+				D393F831263B008E002B35C8 /* zh-Hant */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		D393F837263B00BA002B35C8 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D393F836263B00BA002B35C8 /* en */,
+				D393F83A263B00BE002B35C8 /* zh-Hans */,
+				D393F83B263B00C2002B35C8 /* zh-Hant */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		D393F841263B00CA002B35C8 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D393F840263B00CA002B35C8 /* en */,
+				D393F844263B00CE002B35C8 /* zh-Hans */,
+				D393F845263B00D2002B35C8 /* zh-Hant */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -1543,6 +1581,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -1605,6 +1644,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -1666,7 +1706,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "PeiYang-Lite/PeiYang-Lite.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 202104132035;
+				CURRENT_PROJECT_VERSION = 202104272300;
 				DEVELOPMENT_TEAM = T5JB4K7FT9;
 				INFOPLIST_FILE = "PeiYang-Lite/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1691,7 +1731,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "PeiYang-Lite/PeiYang-Lite.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 202104132035;
+				CURRENT_PROJECT_VERSION = 202104272300;
 				DEVELOPMENT_TEAM = T5JB4K7FT9;
 				INFOPLIST_FILE = "PeiYang-Lite/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1716,7 +1756,7 @@
 				CODE_SIGN_ENTITLEMENTS = "PeiYang-LiteWidget/PeiYang-LiteWidgetExtension.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 202104132035;
+				CURRENT_PROJECT_VERSION = 202104272300;
 				DEVELOPMENT_TEAM = T5JB4K7FT9;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "PeiYang-LiteWidget/Info.plist";
@@ -1744,7 +1784,7 @@
 				CODE_SIGN_ENTITLEMENTS = "PeiYang-LiteWidget/PeiYang-LiteWidgetExtension.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 202104132035;
+				CURRENT_PROJECT_VERSION = 202104272300;
 				DEVELOPMENT_TEAM = T5JB4K7FT9;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "PeiYang-LiteWidget/Info.plist";
