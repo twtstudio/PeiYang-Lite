@@ -12,9 +12,10 @@ struct LargeView: View {
     @Environment(\.colorScheme) private var colorScheme
 
     var courseTable: CourseTable = Storage.courseTable.object
-    let entry: CourseEntry
+    let entry: DataEntry
     var currentCourseTable: [Course] { entry.courses }
     var weathers: [Weather] { entry.weathers }
+    var collections: [CollectionClass] { entry.studyRoom }
     var colorHelper: ColorHelper { ColorHelper.shared }
     var hour: Int {
         let hourFormatter = DateFormatter()
@@ -35,6 +36,32 @@ struct LargeView: View {
         dateFormatter.dateFormat = "EEEE"
         let date = dateFormatter.string(from: Date())
         return date
+    }
+    
+    var nowTime: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm"
+        return dateFormatter.string(from: Date())
+    }
+    
+    // 计算现在的时间处于哪个时间段
+    var nowPeriod: Int {
+        if nowTime.prefix(2) < "10" && nowTime.prefix(2) >= "00" || (nowTime.prefix(2) == "10" && nowTime.suffix(2) < "05"){
+            return 0
+        }
+        else if nowTime.prefix(2) > "10" && nowTime.prefix(2) < "12" || (nowTime.prefix(2) == "10" && nowTime.suffix(2) >= "05"){
+            return 2
+        }
+        else if nowTime.prefix(2) >= "12" && nowTime.prefix(2) < "15" || (nowTime.prefix(2) == "15" && nowTime.suffix(2) <= "05"){
+            return 4
+        }
+        else if nowTime.prefix(2) > "15" && nowTime.prefix(2) < "17" || (nowTime.prefix(2) == "15" && nowTime.suffix(2) > "05") {
+            return 6
+        }
+        else if nowTime.prefix(2) >= "17" && nowTime.prefix(2) < "20" || (nowTime.prefix(2) == "20" && nowTime.suffix(2) <= "05"){
+            return 8
+        }
+        else {return 10}
     }
     
     var body: some View {
@@ -169,22 +196,28 @@ struct LargeView: View {
                     .padding(.leading)
                 
                 HStack(alignment: .center) {
-                    ForEach(0..<4) { i in
-                        RoomCardView()
+                    if collections.isEmpty {
+                        Text("还没有get到你的收藏")
+                            .font(.footnote)
+                            .frame(width: g.size.width, alignment: .center)
+                    } else {
+                        ForEach(collections, id:\.id) { collection in
+                            RoomCardView(buildingName: collection.buildingName, className: collection.classMessage.classroom, isFree: collection.classMessage.status[nowPeriod] == "0")
                             .frame(width: (g.size.width-60)/4, height: g.size.height-40, alignment: .center)
-                            .background(colorScheme == .dark ? Color(#colorLiteral(red: 0.2358871102, green: 0.5033512712, blue: 0.9931854606, alpha: 1)).cornerRadius(8) : Color(#colorLiteral(red: 0.8519811034, green: 0.8703891039, blue: 0.9223362803, alpha: 1)).cornerRadius(8))
+                                .background(collection.classMessage.status[nowPeriod] == "0" ? Color(#colorLiteral(red: 0.8519811034, green: 0.8703891039, blue: 0.9223362803, alpha: 1)).cornerRadius(8) : Color(#colorLiteral(red: 0.1279886365, green: 0.1797681153, blue: 0.2823780477, alpha: 1)).cornerRadius(8))
                     }
-                }
                 .padding(.horizontal)
+                }
             }
             }
         }
         }
     }
+    }
 }
 
 struct LargeView_Previews: PreviewProvider {
     static var previews: some View {
-        LargeView(entry: CourseEntry(date: Date(), courses: [Course()], weathers: [Weather()]))
+        LargeView(entry: DataEntry(date: Date(), courses: [Course()], weathers: [Weather()], studyRoom: []))
     }
 }

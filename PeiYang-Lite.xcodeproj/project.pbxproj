@@ -15,6 +15,10 @@
 		C99C162A2610298000986EF7 /* UpdateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C99C16292610298000986EF7 /* UpdateView.swift */; };
 		C99C162E261029CF00986EF7 /* AcChangePsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C99C162D261029CF00986EF7 /* AcChangePsView.swift */; };
 		C99C163226102BEB00986EF7 /* ReLoginDialogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C99C163126102BEB00986EF7 /* ReLoginDialogView.swift */; };
+		C9D60E20263A973100308ED4 /* StudyRoomManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35402DA260DEF720092D83A /* StudyRoomManager.swift */; };
+		C9D60E25263A987C00308ED4 /* StyCollectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35402DB260DEF720092D83A /* StyCollectionManager.swift */; };
+		C9D60E28263A98A000308ED4 /* SharedMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D354027E260DEF2F0092D83A /* SharedMessage.swift */; };
+		C9D60E3B263A994200308ED4 /* LgLoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35402F3260DEF720092D83A /* LgLoginManager.swift */; };
 		CA45A53899AD520194CACD00 /* Pods_PeiYang_Lite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C065CD05CD1966D5050600B3 /* Pods_PeiYang_Lite.framework */; };
 		D30888C0261B0CF5006A8856 /* SchMessageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30888BF261B0CF5006A8856 /* SchMessageManager.swift */; };
 		D30888C4261B1AE7006A8856 /* SchRecvMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30888C3261B1AE7006A8856 /* SchRecvMessageView.swift */; };
@@ -180,7 +184,7 @@
 		D3540424260DF0920092D83A /* PeiYang_LiteWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3540423260DF0910092D83A /* PeiYang_LiteWidget.swift */; };
 		D354042A260DF0920092D83A /* PeiYang-LiteWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D354041F260DF0910092D83A /* PeiYang-LiteWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D354044A260DF1310092D83A /* CourseTimelineProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D354043C260DF0A60092D83A /* CourseTimelineProvider.swift */; };
-		D354044F260DF1330092D83A /* CourseEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3540430260DF0A60092D83A /* CourseEntry.swift */; };
+		D354044F260DF1330092D83A /* DataEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3540430260DF0A60092D83A /* DataEntry.swift */; };
 		D3540454260DF1360092D83A /* FontTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3540436260DF0A60092D83A /* FontTool.swift */; };
 		D3540459260DF1400092D83A /* MediumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3540438260DF0A60092D83A /* MediumView.swift */; };
 		D354045C260DF1420092D83A /* SmallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3540439260DF0A60092D83A /* SmallView.swift */; };
@@ -403,7 +407,7 @@
 		D354041F260DF0910092D83A /* PeiYang-LiteWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "PeiYang-LiteWidgetExtension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3540423260DF0910092D83A /* PeiYang_LiteWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeiYang_LiteWidget.swift; sourceTree = "<group>"; };
 		D3540427260DF0920092D83A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D3540430260DF0A60092D83A /* CourseEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseEntry.swift; sourceTree = "<group>"; };
+		D3540430260DF0A60092D83A /* DataEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataEntry.swift; sourceTree = "<group>"; };
 		D3540431260DF0A60092D83A /* Morning-Star-1.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Morning-Star-1.ttf"; sourceTree = "<group>"; };
 		D3540433260DF0A60092D83A /* WeatherService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
 		D3540435260DF0A60092D83A /* GILROY-BOLD-4.OTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GILROY-BOLD-4.OTF"; sourceTree = "<group>"; };
@@ -1078,7 +1082,7 @@
 			children = (
 				D3540490260DF7D30092D83A /* PeiYang-LiteWidgetExtension.entitlements */,
 				D3540423260DF0910092D83A /* PeiYang_LiteWidget.swift */,
-				D3540430260DF0A60092D83A /* CourseEntry.swift */,
+				D3540430260DF0A60092D83A /* DataEntry.swift */,
 				D354043C260DF0A60092D83A /* CourseTimelineProvider.swift */,
 				D3540436260DF0A60092D83A /* FontTool.swift */,
 				D3540435260DF0A60092D83A /* GILROY-BOLD-4.OTF */,
@@ -1487,14 +1491,18 @@
 				D354044A260DF1310092D83A /* CourseTimelineProvider.swift in Sources */,
 				D354046D260DF15D0092D83A /* Network.swift in Sources */,
 				D35404D9260DFA9E0092D83A /* GPA.swift in Sources */,
+				C9D60E28263A98A000308ED4 /* SharedMessage.swift in Sources */,
 				D30AFB332611F6DF0061902C /* UniversalExtension.swift in Sources */,
-				D354044F260DF1330092D83A /* CourseEntry.swift in Sources */,
+				D354044F260DF1330092D83A /* DataEntry.swift in Sources */,
+				C9D60E3B263A994200308ED4 /* LgLoginManager.swift in Sources */,
 				D3540454260DF1360092D83A /* FontTool.swift in Sources */,
 				D35404DF260DFABE0092D83A /* Semester.swift in Sources */,
 				D35404B3260DF9690092D83A /* DataStorage.swift in Sources */,
 				D35404B0260DF9570092D83A /* CourseTable.swift in Sources */,
+				C9D60E20263A973100308ED4 /* StudyRoomManager.swift in Sources */,
 				D35404D3260DFA720092D83A /* Storage.swift in Sources */,
 				D354045C260DF1420092D83A /* SmallView.swift in Sources */,
+				C9D60E25263A987C00308ED4 /* StyCollectionManager.swift in Sources */,
 				D35404D6260DFA880092D83A /* WLAN.swift in Sources */,
 				D35404E2260DFAC40092D83A /* ClassesManager.swift in Sources */,
 				D3540424260DF0920092D83A /* PeiYang_LiteWidget.swift in Sources */,

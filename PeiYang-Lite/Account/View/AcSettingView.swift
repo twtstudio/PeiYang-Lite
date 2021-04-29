@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AcSettingView: View {
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
-    @State var isNightKitty = false
+//    @State var isNightKitty = false
 
     let remindTimes = [15,30,45,60]
     
@@ -18,6 +18,7 @@ struct AcSettingView: View {
     @AppStorage(SharedMessage.showCourseNumKey, store: Storage.defaults) private var showCourseNum = 6
     @AppStorage(SharedMessage.isRemindBeforeClassKey, store: Storage.defaults) private var isRemindBeforeClass = false
     @AppStorage(SharedMessage.remindTimeBeforeClassKey, store: Storage.defaults) private var remindTime = 0
+    @AppStorage(SharedMessage.isNightModeKey, store: Storage.defaults) private var isNightMode = false
     
     var body: some View {
         VStack{
@@ -35,7 +36,7 @@ struct AcSettingView: View {
                 
                 StToggleView(title: "首页显示GPA", caption: nil, isOn: $isShowGPA)
                 
-                StToggleView(title: "开启夜猫子模式", caption: "晚上9:00以后首页课表将展示第二天课程安排", isOn: $isNightKitty)
+                StToggleView(title: "开启夜猫子模式", caption: "晚上9:00以后首页课表将展示第二天课程安排", isOn: $isNightMode)
                 
                 //MARK: the second section
                 HeaderView(headerName: "课程表")
