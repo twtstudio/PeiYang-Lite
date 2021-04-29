@@ -163,16 +163,16 @@ struct CourseTable: Codable, Storable {
     private var endDate: Date { Date(timeInterval: TimeInterval(totalWeek * 7 * 24 * 60 * 60), since: startDate) }
     var currentDate: Date {
         // TODO: Dynamic calculated
-//        let currentDate = Date()
-//        if currentDate < startDate {
-//            return startDate
-//        } else if currentDate > endDate {
-//            return endDate
-//        } else {
-//            return currentDate
-//        }
+        let currentDate = Date()
+        if currentDate < startDate {
+            return startDate
+        } else if currentDate > endDate {
+            return endDate
+        } else {
+            return currentDate
+        }
         // test date
-        DateComponents(calendar: currentCalendar, year: 2021, month: 4, day: 29, hour: 21, minute: 30).date ?? Date()
+//        DateComponents(calendar: currentCalendar, year: 2021, month: 4, day: 29, hour: 21, minute: 30).date ?? Date()
     }
     
     var currentMonth: String { currentDate.format(with: "LLL") }
