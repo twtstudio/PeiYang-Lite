@@ -86,42 +86,42 @@ struct AcChangeColorView: View {
             .frame(width: screen.width * 0.9)
             .padding(.horizontal)
             
-            HStack{
-                Text("课程表")
-                    .fontWeight(.heavy)
-                    .foregroundColor(.init(red: 177/255, green: 180/255, blue: 186/255))
-                Spacer()
-            }
-            .frame(width: screen.width * 0.9)
-            
-            VStack(spacing: 10) {
-                //MARK: CourseTable's Color
-                Button(action: {}, label: {
-                    Text("blue ashes")
-                        .foregroundColor(.white)
-                        .frame(width: screen.width * 0.9, height: screen.height / 15)
-                        .background(Color.init(red: 113/255, green: 118/255, blue: 137/255))
-                        .cornerRadius(10)
-                })
-                
-                Button(action: {}, label: {
-                    Text("sap green")
-                        .foregroundColor(.white)
-                        .frame(width: screen.width * 0.9, height: screen.height / 15)
-                        .background(Color.init(red: 83/255, green: 89/255, blue: 78/255))
-                        .cornerRadius(10)
-                })
-                
-                Button(action: {}, label: {
-                    Text("earth yellow")
-                        .foregroundColor(.white)
-                        .frame(width: screen.width * 0.9, height: screen.height / 15)
-                        .background(Color.init(red: 196/255, green: 148/255, blue: 125/255))
-                        .cornerRadius(10)
-                })
-            }
-            .padding(.horizontal)
-            .frame(width: screen.width * 0.9)
+//            HStack{
+//                Text("课程表")
+//                    .fontWeight(.heavy)
+//                    .foregroundColor(.init(red: 177/255, green: 180/255, blue: 186/255))
+//                Spacer()
+//            }
+//            .frame(width: screen.width * 0.9)
+//
+//            VStack(spacing: 10) {
+//                //MARK: CourseTable's Color
+//                Button(action: {}, label: {
+//                    Text("blue ashes")
+//                        .foregroundColor(.white)
+//                        .frame(width: screen.width * 0.9, height: screen.height / 15)
+//                        .background(Color.init(red: 113/255, green: 118/255, blue: 137/255))
+//                        .cornerRadius(10)
+//                })
+//
+//                Button(action: {}, label: {
+//                    Text("sap green")
+//                        .foregroundColor(.white)
+//                        .frame(width: screen.width * 0.9, height: screen.height / 15)
+//                        .background(Color.init(red: 83/255, green: 89/255, blue: 78/255))
+//                        .cornerRadius(10)
+//                })
+//
+//                Button(action: {}, label: {
+//                    Text("earth yellow")
+//                        .foregroundColor(.white)
+//                        .frame(width: screen.width * 0.9, height: screen.height / 15)
+//                        .background(Color.init(red: 196/255, green: 148/255, blue: 125/255))
+//                        .cornerRadius(10)
+//                })
+//            }
+//            .padding(.horizontal)
+//            .frame(width: screen.width * 0.9)
             
             Spacer()
         }

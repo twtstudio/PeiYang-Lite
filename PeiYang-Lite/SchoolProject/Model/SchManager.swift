@@ -1,8 +1,8 @@
 //
 //  SchManager.swift
-//  PeiYang Lite
+//  PeiYang-Lite
 //
-//  Created by phoenix Dai on 2021/2/26.
+//  Created by Zrzz on 2021/4/5.
 //
 
 import Foundation
@@ -24,6 +24,10 @@ struct SchManager {
     static let BASE_URL = "http://47.94.198.197:10805/api"
     static let tokenKey = "SCHTOKENKEY"
     
+    static var schToken: String? {
+        Storage.defaults.string(forKey: tokenKey)
+    }
+    
     static func request(
         _ path: String,
         query: [String: String] = [:],
@@ -37,9 +41,9 @@ struct SchManager {
         var tmpQuery = query
         var tmpBody = body
         if method == .get {
-            tmpQuery["token"] = Storage.defaults.string(forKey: tokenKey)
+            tmpQuery["token"] = schToken
         } else if method == .post {
-            tmpBody["token"] = Storage.defaults.string(forKey: tokenKey)
+            tmpBody["token"] = schToken
         }
         return Network.fetch(url, query: tmpQuery, headers: headers, method: method, body: tmpBody, async: async, completion: completion)
     }
@@ -56,7 +60,7 @@ struct SchManager {
     ) {
         let url = BASE_URL + path
         var tmpBody = body
-        tmpBody["token"] = Storage.defaults.string(forKey: tokenKey)
+        tmpBody["token"] = schToken
         return Network.requestWithFormData(urlString: url, parameters: tmpBody, dataPath: imageData, completion: completion)
     }
 }

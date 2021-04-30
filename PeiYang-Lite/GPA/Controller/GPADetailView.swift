@@ -111,28 +111,28 @@ struct GPADetailView: View {
         isLoading = true
         ClassesManager.checkLogin { result in
             switch result {
-                case .success:
-                    ClassesManager.getGPA { result in
-                        switch result {
-                            case .success(let gpa):
-                                store.object = gpa
-                                store.save()
-                            case .failure(let error):
-                                log(error)
-                        }
-                        isLoading = false
+            case .success:
+                ClassesManager.getGPA { result in
+                    switch result {
+                    case .success(let gpa):
+                        store.object = gpa
+                        store.save()
+                    case .failure(let error):
+                        log(error)
                     }
-                    return
-                case .failure(let error):
-                    if error == .requestFailed {
-                        isError = true
-                        errorMessage = error.localizedDescription
-                    } else {
-                        sharedMessage.isBindBs = false
-                        isLogin = false
-                        isLoading = false
-                        showRelogin = true
-                    }
+                    isLoading = false
+                }
+                return
+            case .failure(let error):
+                if error == .requestFailed {
+                    isError = true
+                    errorMessage = error.localizedDescription
+                } else {
+                    sharedMessage.isBindBs = false
+                    isLogin = false
+                    isLoading = false
+                    showRelogin = true
+                }
             }
         }
         
@@ -156,7 +156,6 @@ struct GPATitleView: View {
                 .font(.title2)
                 .foregroundColor(valueColor)
         }
-        .padding()
     }
 }
 

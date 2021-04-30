@@ -45,15 +45,7 @@ struct ReLoginDialogView: View {
                 
                 Spacer()
                 
-                URLImage(url: URL(string: captchaURL)!,
-                         empty: {
-                            LoadingView()
-                         },
-                         inProgress: { _ in
-                            LoadingView()
-                         }) { (err, retry) in
-                    Button("Retry", action: retry)
-                } content: { (image) in
+                URLImage(url: URL(string: captchaURL)!) { (image) in
                     image
                         .resizable()
                         .scaledToFit()

@@ -8,16 +8,17 @@
 import Foundation
 import WidgetKit
 
-struct CourseEntry: TimelineEntry {
+struct DataEntry: TimelineEntry {
     let date: Date
     let courses: [Course]
     let weathers: [Weather]
+    let studyRoom: [CollectionClass]
     var isPlaceHolder = false
 }
 
-extension CourseEntry {
-    static var placeholder: CourseEntry {
-        CourseEntry(date: Date(), courses: [], weathers: [Weather(), Weather()], isPlaceHolder: true)
+extension DataEntry {
+    static var placeholder: DataEntry {
+        DataEntry(date: Date(), courses: [], weathers: [Weather(), Weather()], studyRoom: [], isPlaceHolder: true)
     }
 }
 

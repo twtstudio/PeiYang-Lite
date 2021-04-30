@@ -1,0 +1,10 @@
+/* 
+  InfoPlist.strings
+  PeiYang-Lite
+
+  Created by Zr埋 on 2021/4/29.
+  
+*/
+
+"CFBundleDisplayName" = "轻北洋";
+"NSFaceIDUsageDescription" = "轻北洋需要您的许可来使用生物信息.";

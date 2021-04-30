@@ -128,7 +128,9 @@ struct SchQuestionDetailView: View {
                 Button(action: {
                     sendComment()
                 }, label: {
-                    Image("sch-send")
+                    Image((inputDidChange ? inputMessage.wrappedValue.count : 0) == 0 ?
+                            "sch-send" :
+                            "sch-send-fill")
                         .resizable()
                         .frame(height: screen.height * 0.045)
                 })
@@ -144,7 +146,7 @@ struct SchQuestionDetailView: View {
             .shadow(color: .black, radius: 1.5, y: 1)
             
             .offset(y: keyboardGuardian.slide)
-            .animation(.spring())
+            .animation(.easeIn)
         }
         .edgesIgnoringSafeArea(.bottom)
         .onAppear {
@@ -225,7 +227,7 @@ struct SchQuestionDetailView: View {
 struct SchQuestionDetailView_Previews: PreviewProvider {
     static var previews: some View {
         SchQuestionDetailView(question:
-            SchQuestionModel(id: 0, name: "微北洋真不戳", content: "微北洋真不戳微北洋真不戳微北洋真不戳微北洋真不戳微北洋真不戳微北洋真不戳", userID: nil, solved: 1, noCommit: 0, likes: 999, createdAt: "2021-03-10T12:50:28.000000Z", updatedAt: nil, username: "真不戳", msgCount: 999, urlList: ["https://www.hackingwithswift.com/img/covers-flat/watchos@2x.png","https://www.hackingwithswift.com/img/covers-flat/watchos@2x.png"], thumbImg: nil, tags: [SchTagModel(id: 0, name: "天津大学", description: nil, tagDescription: nil, isSelected: nil, children: nil)], thumbUrlList: ["https://www.hackingwithswift.com/img/covers-flat/watchos@2x.png","https://www.hackingwithswift.com/img/covers-flat/watchos@2x.png"], isLiked: true, isOwner: true)
+            SchQuestionModel(id: 0, name: "微北洋真不戳", content: "微北洋真不戳微北洋真不戳微北洋真不戳微北洋真不戳微北洋真不戳微北洋真不戳", userID: nil, solved: 1, noCommit: 0, likes: 999, createdAt: "2021-03-10T12:50:28.000000Z", updatedAt: nil, username: "真不戳", msgCount: 999, urlList: ["https://www.hackingwithswift.com/img/covers-flat/watchos@2x.png","https://www.hackingwithswift.com/img/covers-flat/watchos@2x.png"], thumbImg: nil, tags: [SchTagModel(id: 0, name: "天津大学", description: nil, tagDescription: nil, isSelected: nil, children: nil)], thumbUrlList: ["https://www.hackingwithswift.com/img/covers-flat/watchos@2x.png","https://www.hackingwithswift.com/img/covers-flat/watchos@2x.png"], isLiked: true, isOwner: true, isFavorite: false, readen: true)
         )
     }
 }

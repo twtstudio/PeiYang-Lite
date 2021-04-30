@@ -30,19 +30,31 @@ struct CouseTableHeaderView: View {
             .padding(.horizontal, 10)
             
             ScrollView(.horizontal, showsIndicators: false) {
-                HStack {
-                    ForEach(1...totalWeek, id: \.self) { week in
-                        Button(action: { activeWeek = week }, label: {
-                            if let weekMatrixArray = self.getWeekMatrix() {
-                                VStack {
-                                    WeekGridView(width: 40, height: 35, rows: 5, cols: 6, weekMatrix: weekMatrixArray[week-1])
-                                    Text("WEEK\(week.description)")
-                                        .foregroundColor(.gray)
-                                        .font(.footnote)
+                ScrollViewReader { proxy in
+                    HStack {
+                        ForEach(1...totalWeek, id: \.self) { week in
+                            Button(action: {
+                                withAnimation {
+                                    activeWeek = week
                                 }
-                            }
-                        })
-                        .padding(10)
+                            }, label: {
+                                if let weekMatrixArray = self.getWeekMatrix() {
+                                    VStack {
+                                        WeekGridView(width: 40, height: 35, rows: 5, cols: 6, weekMatrix: weekMatrixArray[week-1])
+                                            .padding(5)
+                                            .background(Color(week==activeWeek ? .gray : .clear).cornerRadius(5).opacity(0.1))
+                                        Text("WEEK\(week.description)")
+                                            .foregroundColor(.gray)
+                                            .font(.footnote)
+                                    }
+                                    .id(week)
+                                }
+                            })
+                            .padding(10)
+                        }
+                    }
+                    .onAppear {
+                        proxy.scrollTo(activeWeek)
                     }
                 }
             }

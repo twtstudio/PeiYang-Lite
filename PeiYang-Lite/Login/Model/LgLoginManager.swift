@@ -17,7 +17,7 @@ struct LgLoginManager {
     static let domain = "weipeiyang.twt.edu.cn"
     
     
-    static func LoginPost(account: String, password: String, completion: @escaping (Result<AccountMessage, OrdinaryMessage>) -> Void) {
+    static func LoginPost(account: String, password: String, completion: @escaping (Result<AccountInfo, OrdinaryMessage>) -> Void) {
         Network.fetch(
             "https://api.twt.edu.cn/api/auth/common",
             headers:[
@@ -32,14 +32,14 @@ struct LgLoginManager {
             result in
             switch result {
             case .success(let(data, response)):
-                guard let accountMessage = try? JSONDecoder().decode(AccountMessage.self, from: data) else {
+                guard let accountInfo = try? JSONDecoder().decode(AccountInfo.self, from: data) else {
                     let wrongMessage = try? JSONDecoder().decode(OrdinaryMessage.self, from: data)
                     completion(.failure(wrongMessage ?? OrdinaryMessage(errorCode: 0, message: "请求异常", result: nil)))
                     return
                 }
                 switch response.statusCode {
                 case 200:
-                    completion(.success(accountMessage))
+                    completion(.success(accountInfo))
                 case 401:
                     completion(.failure(OrdinaryMessage(errorCode: 0, message: "网络异常", result: nil)))
                 default:
@@ -54,7 +54,7 @@ struct LgLoginManager {
    
 }
 
-struct AccountMessage: Codable {
+struct AccountInfo: Codable {
     let errorCode: Int
     let message: String
     let result: AccountResult

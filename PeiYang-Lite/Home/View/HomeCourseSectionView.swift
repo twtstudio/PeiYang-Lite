@@ -10,8 +10,22 @@ import SwiftUI
 struct HomeCourseSectionView: View {
     @ObservedObject var store = Storage.courseTable
     private var courseTable: CourseTable { store.object }
+    @AppStorage(ClassesManager.isLoginKey, store: Storage.defaults) private var isLogin = false
+    @AppStorage(SharedMessage.isNightModeKey, store: Storage.defaults) private var isNightMode = false
     
     @State private var activeWeek = Storage.courseTable.object.currentWeek
+    
+    private var hour: Int {
+        let hourFormatter = DateFormatter()
+        hourFormatter.dateFormat = "HH"
+        let hrString = hourFormatter.string(from: courseTable.currentDate)
+        let hour = Int(hrString) ?? 0
+        return hour
+    }
+    
+    private var isShowNextdayCourse: Bool {
+        return isNightMode && (hour>20)
+    }
     
     private var weekdays: [String] {
         var calendar = Calendar.current
@@ -25,14 +39,25 @@ struct HomeCourseSectionView: View {
         courseTable.courseArray.filter { $0.weekRange.contains(activeWeek) }
     }
     
+    private var activeWeekday: Int {
+        return isShowNextdayCourse ? (courseTable.currentWeekday+1)%7 : courseTable.currentWeekday
+    }
+    
     private var currentCourseArray: [Course] {
-        activeCourseArray.filter {
-            $0.arrangeArray.map(\.weekday).contains(courseTable.currentWeekday) &&
-                $0.arrangeArray.flatMap(\.weekArray).contains(activeWeek)
-        }
+        activeCourseArray
+            .filter {
+                $0.arrangeArray.map(\.weekday).contains(activeWeekday) &&
+                    $0.arrangeArray.flatMap(\.weekArray).contains(activeWeek)
+            }
+            .sorted { (c1, c2) -> Bool in
+                let c1arrange = c1.arrangeArray.first { $0.weekday == activeWeekday && $0.weekArray.contains(activeWeek) }!
+                let c2arrange = c2.arrangeArray.first { $0.weekday == activeWeekday && $0.weekArray.contains(activeWeek) }!
+                return c1arrange.startUnit < c2arrange.startUnit
+            }
     }
     
     private var colorHelper: ColorHelper { ColorHelper.shared }
+//    private var destination: View { courseTable.courseArray.isEmpty ? AcClassesBindingView() : CourseTableDetailView() }
     
     var body: some View {
         Section(header: HStack {
@@ -44,12 +69,20 @@ struct HomeCourseSectionView: View {
             
             Spacer()
             
-            Text("今日\(currentCourseArray.count)节课")
+            Text(isShowNextdayCourse ? "明日\(currentCourseArray.count)节课" : "今日\(currentCourseArray.count)节课")
                 .font(.footnote)
                 .foregroundColor(Color(#colorLiteral(red: 0.3803921569, green: 0.3960784314, blue: 0.4862745098, alpha: 1)))
                 .padding(.horizontal)
         }) {
-            NavigationLink(destination: CourseTableDetailView()) {
+            NavigationLink(destination:
+                            Group {
+                                if isLogin {
+                                    CourseTableDetailView()
+                                } else {
+                                    AcClassesBindingView()
+                                }
+                            }
+            ) {
                 if currentCourseArray.isEmpty {
                     ZStack(alignment: .center) {
                         RoundedRectangle(cornerRadius: 10)
@@ -75,11 +108,11 @@ struct HomeCourseSectionView: View {
                                         Spacer()
                                             .frame(height: 20)
                                         
-                                        Text(course.activeArrange(courseTable.currentWeekday).unitTimeString)
+                                        Text(course.activeArrange(activeWeekday).unitTimeString)
                                             .font(.footnote)
                                             .padding()
                                         
-                                        Text(course.activeArrange(courseTable.currentWeekday).location)
+                                        Text(course.activeArrange(activeWeekday).location)
                                             .bold()
                                             .padding([.horizontal, .bottom])
                                     }

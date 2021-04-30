@@ -32,8 +32,6 @@ struct SchQuestionDetailHeaderView: View {
                     .font(.subheadline)
                     .foregroundColor(Color(#colorLiteral(red: 0.1882352941, green: 0.2352941176, blue: 0.4, alpha: 1)))
             }
-            .padding(.top)
-            .padding(.horizontal)
             
             HStack {
                 ForEach(question.tags ?? [], id: \.id) { tag in
@@ -41,19 +39,15 @@ struct SchQuestionDetailHeaderView: View {
                         .font(.subheadline)
                         .foregroundColor(.gray)
                 }
-                .padding(.horizontal)
+                .padding(.trailing)
             }
             
             Text(question.content ?? "")
                 .font(.body)
                 .foregroundColor(Color(#colorLiteral(red: 0.2117647059, green: 0.2352941176, blue: 0.3294117647, alpha: 1)))
-                .padding(.horizontal)
             
             PhotoListView(imageURLs: question.urlList ?? [])
                 .frame(maxWidth: .infinity)
-//                .alignmentGuide(.leading, computeValue: { dimension in
-//                    return dimension[.center]
-//                })
             
             HStack {
                 Text(questionTime)
@@ -85,9 +79,9 @@ struct SchQuestionDetailHeaderView: View {
             }
             .font(.footnote)
             .foregroundColor(.gray)
-            .padding()
             
         }
+        .padding()
         .background(Color.white)
     }
     
@@ -125,7 +119,7 @@ struct SchQuestionCardView_Previews: PreviewProvider {
             Color(#colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1))
                 .edgesIgnoringSafeArea(.all)
             
-            SchQuestionDetailHeaderView(question: SchQuestionModel(id: 0, name: "微北洋真不戳", content: "微北洋真不戳微北洋真不戳微北洋真不戳微北洋真不戳微北洋真不戳微北洋真不戳", userID: nil, solved: 1, noCommit: 0, likes: 999, createdAt: "2021-03-10T12:50:28.000000Z", updatedAt: nil, username: "真不戳", msgCount: 999, urlList: ["https://www.hackingwithswift.com/img/covers-flat/watchos@2x.png","https://www.hackingwithswift.com/img/covers-flat/watchos@2x.png"], thumbImg: nil, tags: [SchTagModel(id: 0, name: "天津大学", description: nil, tagDescription: nil, isSelected: nil, children: nil)], thumbUrlList: ["https://www.hackingwithswift.com/img/covers-flat/watchos@2x.png","https://www.hackingwithswift.com/img/covers-flat/watchos@2x.png"], isLiked: true, isOwner: true))
+            SchQuestionDetailHeaderView(question: SchQuestionModel(id: 0, name: "微北洋真不戳", content: "微北洋真不戳微北洋真不戳微北洋真不戳微北洋真不戳微北洋真不戳微北洋真不戳", userID: nil, solved: 1, noCommit: 0, likes: 999, createdAt: "2021-03-10T12:50:28.000000Z", updatedAt: nil, username: "真不戳", msgCount: 999, urlList: ["https://www.hackingwithswift.com/img/covers-flat/watchos@2x.png","https://www.hackingwithswift.com/img/covers-flat/watchos@2x.png","https://www.hackingwithswift.com/img/covers-flat/watchos@2x.png"], thumbImg: nil, tags: [SchTagModel(id: 0, name: "天津大学", description: nil, tagDescription: nil, isSelected: nil, children: nil)], thumbUrlList: ["https://www.hackingwithswift.com/img/covers-flat/watchos@2x.png","https://www.hackingwithswift.com/img/covers-flat/watchos@2x.png"], isLiked: true, isOwner: true, isFavorite: false, readen: true))
                 .frame(width: screen.width - 20, height: screen.width - 20)
                 .shadow(color: Color.black.opacity(0.2), radius: 10, x: 2, y: 2)
         }

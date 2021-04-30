@@ -15,16 +15,20 @@
 		C99C162A2610298000986EF7 /* UpdateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C99C16292610298000986EF7 /* UpdateView.swift */; };
 		C99C162E261029CF00986EF7 /* AcChangePsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C99C162D261029CF00986EF7 /* AcChangePsView.swift */; };
 		C99C163226102BEB00986EF7 /* ReLoginDialogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C99C163126102BEB00986EF7 /* ReLoginDialogView.swift */; };
+		C9D60E20263A973100308ED4 /* StudyRoomManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35402DA260DEF720092D83A /* StudyRoomManager.swift */; };
+		C9D60E25263A987C00308ED4 /* StyCollectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35402DB260DEF720092D83A /* StyCollectionManager.swift */; };
+		C9D60E28263A98A000308ED4 /* SharedMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D354027E260DEF2F0092D83A /* SharedMessage.swift */; };
+		C9D60E3B263A994200308ED4 /* LgLoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35402F3260DEF720092D83A /* LgLoginManager.swift */; };
 		CA45A53899AD520194CACD00 /* Pods_PeiYang_Lite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C065CD05CD1966D5050600B3 /* Pods_PeiYang_Lite.framework */; };
+		D30888C0261B0CF5006A8856 /* SchMessageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30888BF261B0CF5006A8856 /* SchMessageManager.swift */; };
+		D30888C4261B1AE7006A8856 /* SchRecvMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30888C3261B1AE7006A8856 /* SchRecvMessageView.swift */; };
 		D30AFB332611F6DF0061902C /* UniversalExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3540282260DEF2F0092D83A /* UniversalExtension.swift */; };
 		D3540260260DEEF10092D83A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D354025F260DEEF10092D83A /* AppDelegate.swift */; };
 		D3540262260DEEF10092D83A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3540261260DEEF10092D83A /* SceneDelegate.swift */; };
 		D3540267260DEEF10092D83A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3540265260DEEF10092D83A /* Main.storyboard */; };
 		D3540269260DEEF10092D83A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3540268260DEEF10092D83A /* Assets.xcassets */; };
 		D354026C260DEEF10092D83A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D354026A260DEEF10092D83A /* LaunchScreen.storyboard */; };
-		D3540279260DEF160092D83A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D3540274260DEF150092D83A /* InfoPlist.strings */; };
 		D354027B260DEF160092D83A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3540277260DEF160092D83A /* Preview Assets.xcassets */; };
-		D354027C260DEF160092D83A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D3540278260DEF160092D83A /* Localizable.strings */; };
 		D3540283260DEF2F0092D83A /* SharedMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D354027E260DEF2F0092D83A /* SharedMessage.swift */; };
 		D3540285260DEF2F0092D83A /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3540280260DEF2F0092D83A /* SplashView.swift */; };
 		D3540286260DEF2F0092D83A /* UniversalExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3540282260DEF2F0092D83A /* UniversalExtension.swift */; };
@@ -178,7 +182,7 @@
 		D3540424260DF0920092D83A /* PeiYang_LiteWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3540423260DF0910092D83A /* PeiYang_LiteWidget.swift */; };
 		D354042A260DF0920092D83A /* PeiYang-LiteWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D354041F260DF0910092D83A /* PeiYang-LiteWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D354044A260DF1310092D83A /* CourseTimelineProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D354043C260DF0A60092D83A /* CourseTimelineProvider.swift */; };
-		D354044F260DF1330092D83A /* CourseEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3540430260DF0A60092D83A /* CourseEntry.swift */; };
+		D354044F260DF1330092D83A /* DataEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3540430260DF0A60092D83A /* DataEntry.swift */; };
 		D3540454260DF1360092D83A /* FontTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3540436260DF0A60092D83A /* FontTool.swift */; };
 		D3540459260DF1400092D83A /* MediumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3540438260DF0A60092D83A /* MediumView.swift */; };
 		D354045C260DF1420092D83A /* SmallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3540439260DF0A60092D83A /* SmallView.swift */; };
@@ -197,6 +201,12 @@
 		D35404DF260DFABE0092D83A /* Semester.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35402FB260DEF720092D83A /* Semester.swift */; };
 		D35404E2260DFAC40092D83A /* ClassesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35402FC260DEF720092D83A /* ClassesManager.swift */; };
 		D35404E5260DFAD60092D83A /* Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D354031F260DEF720092D83A /* Localizable.swift */; };
+		D393F834263B00BA002B35C8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D393F837263B00BA002B35C8 /* InfoPlist.strings */; };
+		D393F835263B00BA002B35C8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D393F837263B00BA002B35C8 /* InfoPlist.strings */; };
+		D393F83E263B00CA002B35C8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D393F841263B00CA002B35C8 /* Localizable.strings */; };
+		D393F83F263B00CA002B35C8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D393F841263B00CA002B35C8 /* Localizable.strings */; };
+		D3DEB5CA261DEF57007DFC79 /* AccountMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DEB5C9261DEF57007DFC79 /* AccountMessageView.swift */; };
+		D3FB2B0B261F2F2F00F087AC /* ReddotModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FB2B0A261F2F2F00F087AC /* ReddotModifier.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -234,15 +244,15 @@
 		C99C16292610298000986EF7 /* UpdateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateView.swift; sourceTree = "<group>"; };
 		C99C162D261029CF00986EF7 /* AcChangePsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AcChangePsView.swift; sourceTree = "<group>"; };
 		C99C163126102BEB00986EF7 /* ReLoginDialogView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReLoginDialogView.swift; sourceTree = "<group>"; };
+		D30888BF261B0CF5006A8856 /* SchMessageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchMessageManager.swift; sourceTree = "<group>"; };
+		D30888C3261B1AE7006A8856 /* SchRecvMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchRecvMessageView.swift; sourceTree = "<group>"; };
 		D354025C260DEEF10092D83A /* PeiYang-Lite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PeiYang-Lite.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D354025F260DEEF10092D83A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D3540261260DEEF10092D83A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		D3540266260DEEF10092D83A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D3540268260DEEF10092D83A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D354026B260DEEF10092D83A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		D3540274260DEF150092D83A /* InfoPlist.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
 		D3540277260DEF160092D83A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		D3540278260DEF160092D83A /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		D354027E260DEF2F0092D83A /* SharedMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedMessage.swift; sourceTree = "<group>"; };
 		D3540280260DEF2F0092D83A /* SplashView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		D3540281260DEF2F0092D83A /* PeiYang-Lite-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PeiYang-Lite-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -397,7 +407,7 @@
 		D354041F260DF0910092D83A /* PeiYang-LiteWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "PeiYang-LiteWidgetExtension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3540423260DF0910092D83A /* PeiYang_LiteWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeiYang_LiteWidget.swift; sourceTree = "<group>"; };
 		D3540427260DF0920092D83A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D3540430260DF0A60092D83A /* CourseEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseEntry.swift; sourceTree = "<group>"; };
+		D3540430260DF0A60092D83A /* DataEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataEntry.swift; sourceTree = "<group>"; };
 		D3540431260DF0A60092D83A /* Morning-Star-1.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Morning-Star-1.ttf"; sourceTree = "<group>"; };
 		D3540433260DF0A60092D83A /* WeatherService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
 		D3540435260DF0A60092D83A /* GILROY-BOLD-4.OTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GILROY-BOLD-4.OTF"; sourceTree = "<group>"; };
@@ -410,6 +420,18 @@
 		D354048A260DF69B0092D83A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D3540490260DF7D30092D83A /* PeiYang-LiteWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "PeiYang-LiteWidgetExtension.entitlements"; sourceTree = "<group>"; };
 		D3540491260DF7EC0092D83A /* PeiYang-Lite.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "PeiYang-Lite.entitlements"; sourceTree = "<group>"; };
+		D393F82C263B0086002B35C8 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
+		D393F82D263B0086002B35C8 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		D393F830263B008E002B35C8 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Main.strings"; sourceTree = "<group>"; };
+		D393F831263B008E002B35C8 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		D393F836263B00BA002B35C8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D393F83A263B00BE002B35C8 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		D393F83B263B00C2002B35C8 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		D393F840263B00CA002B35C8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		D393F844263B00CE002B35C8 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		D393F845263B00D2002B35C8 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		D3DEB5C9261DEF57007DFC79 /* AccountMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountMessageView.swift; sourceTree = "<group>"; };
+		D3FB2B0A261F2F2F00F087AC /* ReddotModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReddotModifier.swift; sourceTree = "<group>"; };
 		D79A87E51F44E7CF688FA2E6 /* Pods-PeiYang-LiteWidgetExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PeiYang-LiteWidgetExtension.release.xcconfig"; path = "Target Support Files/Pods-PeiYang-LiteWidgetExtension/Pods-PeiYang-LiteWidgetExtension.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -446,7 +468,7 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		C926FC442611A9BE007F0C43 /* Controller */ = {
+		C926FC442611A9BE007F0C43 /* View */ = {
 			isa = PBXGroup;
 			children = (
 				D3540305260DEF720092D83A /* AcChangeColorView.swift */,
@@ -459,7 +481,7 @@
 				D354030C260DEF720092D83A /* AcBindEmailView.swift */,
 				C99C162D261029CF00986EF7 /* AcChangePsView.swift */,
 			);
-			path = Controller;
+			path = View;
 			sourceTree = "<group>";
 		};
 		D3540253260DEEF10092D83A = {
@@ -512,8 +534,8 @@
 				D3540268260DEEF10092D83A /* Assets.xcassets */,
 				D354026A260DEEF10092D83A /* LaunchScreen.storyboard */,
 				D354048A260DF69B0092D83A /* Info.plist */,
-				D3540274260DEF150092D83A /* InfoPlist.strings */,
-				D3540278260DEF160092D83A /* Localizable.strings */,
+				D393F841263B00CA002B35C8 /* Localizable.strings */,
+				D393F837263B00BA002B35C8 /* InfoPlist.strings */,
 				D3540276260DEF160092D83A /* Preview Content */,
 			);
 			path = "PeiYang-Lite";
@@ -580,6 +602,7 @@
 				D35402AA260DEF710092D83A /* PhotoListView.swift */,
 				D35402AB260DEF710092D83A /* LoadingView.swift */,
 				D35402AC260DEF710092D83A /* StarRatingView.swift */,
+				D3FB2B0A261F2F2F00F087AC /* ReddotModifier.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -875,10 +898,9 @@
 		D3540304260DEF720092D83A /* Account */ = {
 			isa = PBXGroup;
 			children = (
-				D354030F260DEF720092D83A /* AccountView.swift */,
-				C926FC442611A9BE007F0C43 /* Controller */,
+				D3DEB5B6261D5101007DFC79 /* Controller */,
+				C926FC442611A9BE007F0C43 /* View */,
 				D354030D260DEF720092D83A /* Model */,
-				D3540310260DEF720092D83A /* AboutTwTView.swift */,
 			);
 			path = Account;
 			sourceTree = "<group>";
@@ -987,12 +1009,13 @@
 		D3540330260DEF720092D83A /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				D3540336260DEF720092D83A /* SchView.swift */,
 				D3540331260DEF720092D83A /* SchAccountView.swift */,
 				D3540332260DEF720092D83A /* SchSearchView.swift */,
 				D3540333260DEF720092D83A /* SchNewQuestionView.swift */,
 				D3540334260DEF720092D83A /* SchAnswerDetailView.swift */,
 				D3540335260DEF720092D83A /* SchQuestionDetailView.swift */,
-				D3540336260DEF720092D83A /* SchView.swift */,
+				D30888C3261B1AE7006A8856 /* SchRecvMessageView.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1000,13 +1023,14 @@
 		D3540337260DEF720092D83A /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				D354033B260DEF720092D83A /* SchManager.swift */,
 				D3540338260DEF720092D83A /* SchFavManager.swift */,
 				D3540339260DEF720092D83A /* SchCommentManager.swift */,
 				D354033A260DEF720092D83A /* SchQusetionManager.swift */,
-				D354033B260DEF720092D83A /* SchManager.swift */,
 				D354033C260DEF720092D83A /* SchTagManager.swift */,
 				D354033D260DEF720092D83A /* SchAnswerManager.swift */,
 				D354033E260DEF720092D83A /* SchUserManager.swift */,
+				D30888BF261B0CF5006A8856 /* SchMessageManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1068,7 +1092,7 @@
 			children = (
 				D3540490260DF7D30092D83A /* PeiYang-LiteWidgetExtension.entitlements */,
 				D3540423260DF0910092D83A /* PeiYang_LiteWidget.swift */,
-				D3540430260DF0A60092D83A /* CourseEntry.swift */,
+				D3540430260DF0A60092D83A /* DataEntry.swift */,
 				D354043C260DF0A60092D83A /* CourseTimelineProvider.swift */,
 				D3540436260DF0A60092D83A /* FontTool.swift */,
 				D3540435260DF0A60092D83A /* GILROY-BOLD-4.OTF */,
@@ -1098,6 +1122,16 @@
 				D354043B260DF0A60092D83A /* RoomCardView.swift */,
 			);
 			path = WidgetViews;
+			sourceTree = "<group>";
+		};
+		D3DEB5B6261D5101007DFC79 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				D354030F260DEF720092D83A /* AccountView.swift */,
+				D3540310260DEF720092D83A /* AboutTwTView.swift */,
+				D3DEB5C9261DEF57007DFC79 /* AccountMessageView.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1167,6 +1201,8 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
+				"zh-Hant",
 			);
 			mainGroup = D3540253260DEEF10092D83A;
 			productRefGroup = D354025D260DEEF10092D83A /* Products */;
@@ -1185,11 +1221,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				D354026C260DEEF10092D83A /* LaunchScreen.storyboard in Resources */,
-				D3540279260DEF160092D83A /* InfoPlist.strings in Resources */,
+				D393F83E263B00CA002B35C8 /* Localizable.strings in Resources */,
 				D3540269260DEEF10092D83A /* Assets.xcassets in Resources */,
-				D354027C260DEF160092D83A /* Localizable.strings in Resources */,
 				D354027B260DEF160092D83A /* Preview Assets.xcassets in Resources */,
 				D3540267260DEEF10092D83A /* Main.storyboard in Resources */,
+				D393F834263B00BA002B35C8 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1197,7 +1233,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D393F83F263B00CA002B35C8 /* Localizable.strings in Resources */,
 				C91599E8261092E100D67B6E /* GILROY-BOLD-4.OTF in Resources */,
+				D393F835263B00BA002B35C8 /* InfoPlist.strings in Resources */,
 				C91599F52610931F00D67B6E /* Assets.xcassets in Resources */,
 				C91599ED261092E500D67B6E /* Morning-Star-1.ttf in Resources */,
 			);
@@ -1323,6 +1361,7 @@
 				D354038A260DEF720092D83A /* StyChooseClassView.swift in Sources */,
 				D3540260260DEEF10092D83A /* AppDelegate.swift in Sources */,
 				D35403DB260DEF720092D83A /* AccountNeedToKnowView.swift in Sources */,
+				D30888C0261B0CF5006A8856 /* SchMessageManager.swift in Sources */,
 				D354038F260DEF720092D83A /* StyCalendar.swift in Sources */,
 				D354038D260DEF720092D83A /* StyTimeSelectionView.swift in Sources */,
 				D3540374260DEF720092D83A /* HomeView.swift in Sources */,
@@ -1363,6 +1402,7 @@
 				D35403C7260DEF720092D83A /* CouseTableHeaderView.swift in Sources */,
 				D354037C260DEF720092D83A /* HomeScrollView.swift in Sources */,
 				D35403AC260DEF720092D83A /* AcBindPhoneView.swift in Sources */,
+				D3DEB5CA261DEF57007DFC79 /* AccountMessageView.swift in Sources */,
 				D3540394260DEF720092D83A /* ECard.swift in Sources */,
 				D3540356260DEF720092D83A /* RefreshButton.swift in Sources */,
 				D35403B8260DEF720092D83A /* Storage.swift in Sources */,
@@ -1395,6 +1435,7 @@
 				D3540362260DEF720092D83A /* WebHtmlView.swift in Sources */,
 				D3540378260DEF720092D83A /* MainView.swift in Sources */,
 				D354037E260DEF720092D83A /* HomeStudyRoomSectionView.swift in Sources */,
+				D30888C4261B1AE7006A8856 /* SchRecvMessageView.swift in Sources */,
 				D354036F260DEF720092D83A /* GPACellListView.swift in Sources */,
 				C99C162A2610298000986EF7 /* UpdateView.swift in Sources */,
 				D35403D8260DEF720092D83A /* SchQuestionDetailHeaderView.swift in Sources */,
@@ -1408,6 +1449,7 @@
 				D3540283260DEF2F0092D83A /* SharedMessage.swift in Sources */,
 				D35403BD260DEF720092D83A /* Color.swift in Sources */,
 				D3540376260DEF720092D83A /* HomeSettingView.swift in Sources */,
+				D3FB2B0B261F2F2F00F087AC /* ReddotModifier.swift in Sources */,
 				D35403A6260DEF720092D83A /* WLANManager.swift in Sources */,
 				D354036A260DEF720092D83A /* StarRatingView.swift in Sources */,
 				D35403D9260DEF720092D83A /* SchQuestionCellView.swift in Sources */,
@@ -1463,14 +1505,18 @@
 				D354044A260DF1310092D83A /* CourseTimelineProvider.swift in Sources */,
 				D354046D260DF15D0092D83A /* Network.swift in Sources */,
 				D35404D9260DFA9E0092D83A /* GPA.swift in Sources */,
+				C9D60E28263A98A000308ED4 /* SharedMessage.swift in Sources */,
 				D30AFB332611F6DF0061902C /* UniversalExtension.swift in Sources */,
-				D354044F260DF1330092D83A /* CourseEntry.swift in Sources */,
+				D354044F260DF1330092D83A /* DataEntry.swift in Sources */,
+				C9D60E3B263A994200308ED4 /* LgLoginManager.swift in Sources */,
 				D3540454260DF1360092D83A /* FontTool.swift in Sources */,
 				D35404DF260DFABE0092D83A /* Semester.swift in Sources */,
 				D35404B3260DF9690092D83A /* DataStorage.swift in Sources */,
 				D35404B0260DF9570092D83A /* CourseTable.swift in Sources */,
+				C9D60E20263A973100308ED4 /* StudyRoomManager.swift in Sources */,
 				D35404D3260DFA720092D83A /* Storage.swift in Sources */,
 				D354045C260DF1420092D83A /* SmallView.swift in Sources */,
+				C9D60E25263A987C00308ED4 /* StyCollectionManager.swift in Sources */,
 				D35404D6260DFA880092D83A /* WLAN.swift in Sources */,
 				D35404E2260DFAC40092D83A /* ClassesManager.swift in Sources */,
 				D3540424260DF0920092D83A /* PeiYang_LiteWidget.swift in Sources */,
@@ -1492,6 +1538,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				D3540266260DEEF10092D83A /* Base */,
+				D393F82C263B0086002B35C8 /* zh-Hans */,
+				D393F830263B008E002B35C8 /* zh-Hant */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -1500,8 +1548,30 @@
 			isa = PBXVariantGroup;
 			children = (
 				D354026B260DEEF10092D83A /* Base */,
+				D393F82D263B0086002B35C8 /* zh-Hans */,
+				D393F831263B008E002B35C8 /* zh-Hant */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		D393F837263B00BA002B35C8 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D393F836263B00BA002B35C8 /* en */,
+				D393F83A263B00BE002B35C8 /* zh-Hans */,
+				D393F83B263B00C2002B35C8 /* zh-Hant */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		D393F841263B00CA002B35C8 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D393F840263B00CA002B35C8 /* en */,
+				D393F844263B00CE002B35C8 /* zh-Hans */,
+				D393F845263B00D2002B35C8 /* zh-Hant */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -1511,6 +1581,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -1573,6 +1644,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -1634,7 +1706,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "PeiYang-Lite/PeiYang-Lite.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 202103292230;
+				CURRENT_PROJECT_VERSION = 202104272300;
 				DEVELOPMENT_TEAM = T5JB4K7FT9;
 				INFOPLIST_FILE = "PeiYang-Lite/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1659,7 +1731,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "PeiYang-Lite/PeiYang-Lite.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 202103292230;
+				CURRENT_PROJECT_VERSION = 202104272300;
 				DEVELOPMENT_TEAM = T5JB4K7FT9;
 				INFOPLIST_FILE = "PeiYang-Lite/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1684,7 +1756,7 @@
 				CODE_SIGN_ENTITLEMENTS = "PeiYang-LiteWidget/PeiYang-LiteWidgetExtension.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 202103292230;
+				CURRENT_PROJECT_VERSION = 202104272300;
 				DEVELOPMENT_TEAM = T5JB4K7FT9;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "PeiYang-LiteWidget/Info.plist";
@@ -1712,7 +1784,7 @@
 				CODE_SIGN_ENTITLEMENTS = "PeiYang-LiteWidget/PeiYang-LiteWidgetExtension.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 202103292230;
+				CURRENT_PROJECT_VERSION = 202104272300;
 				DEVELOPMENT_TEAM = T5JB4K7FT9;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "PeiYang-LiteWidget/Info.plist";

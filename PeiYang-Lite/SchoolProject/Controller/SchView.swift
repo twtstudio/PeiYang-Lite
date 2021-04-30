@@ -10,6 +10,7 @@ import SwiftUI
 struct SchView: View {
     @Environment(\.presentationMode) var mode
     @StateObject private var schViewModel: SchViewModel = .init()
+    @AppStorage(SchMessageManager.SCH_MESSAGE_CONFIG_KEY, store: Storage.defaults) private var unreadMessageCount: Int = 0
     
     var body: some View {
         ZStack {
@@ -26,8 +27,9 @@ struct SchView: View {
                         destination: SchAccountView(),
                         label: {
                             Image("SchAccount")
+                                .padding(2)
+                                .addReddot(isPresented: unreadMessageCount != 0, size: 10)
                         })
-                    
                 }
                 .frame(width: screen.width * 0.9)
                 
@@ -49,7 +51,7 @@ struct SchView: View {
                     Spacer()
                     NavigationLink(
                         destination: SchNewQuestionView(),
-                        label: {
+                        label: {	
                             Image(systemName: "plus")
                                 .font(.title2)
                                 .foregroundColor(.white)
@@ -64,6 +66,20 @@ struct SchView: View {
             .frame(height: screen.height * 0.8)
         }
         .addAnalytics(className: "SchoolProjectHomeView")
+        .onAppear {
+            if SchManager.schToken != nil {
+                SchMessageManager.getUnreadCount { (result) in
+                    switch result {
+                    case .success(let (totalCount, _)):
+                        unreadMessageCount = totalCount
+                    case .failure(let err):
+                        log(err)
+                    }
+                }
+            }
+            // 刷新数据
+            schViewModel.loadOnAppear()
+        }
     }
 }
 

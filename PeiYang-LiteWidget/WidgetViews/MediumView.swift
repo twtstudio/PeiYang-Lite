@@ -11,7 +11,7 @@ import WidgetKit
 struct MediumView: View {
     @Environment(\.colorScheme) private var colorScheme
     var courseTable: CourseTable = Storage.courseTable.object
-    let entry: CourseEntry
+    let entry: DataEntry
     var currentCourseTable: [Course] { entry.courses }
     var weathers: [Weather] { entry.weathers }
     var hour: Int {

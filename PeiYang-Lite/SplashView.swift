@@ -41,6 +41,7 @@ struct SplashView: View {
             }
             .navigationBarHidden(true)
         }
+        .navigationViewStyle(StackNavigationViewStyle())
         .onAppear(perform: {
             let now = Date()
             let timeInterval: TimeInterval = now.timeIntervalSince1970

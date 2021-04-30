@@ -12,7 +12,7 @@ struct SmallView: View {
     @Environment(\.colorScheme) private var colorScheme
     @ObservedObject var store = Storage.courseTable
     private var courseTable: CourseTable { store.object }
-    let entry: CourseEntry
+    let entry: DataEntry
     var currentCourseTable: [Course] { entry.courses }
     var hour: Int {
         let hourFormatter = DateFormatter()
@@ -70,7 +70,7 @@ struct SmallView: View {
                                                 .foregroundColor(.gray)
                                             
                                             Text("\(preCourse.course.activeArrange(courseTable.currentWeekday).startTimeString)-\(preCourse.course.activeArrange(courseTable.currentWeekday).endTimeString)")
-                                                .font(.system(size: 12))
+                                                .font(.system(size: 10))
                                                 .foregroundColor(.gray)
                                         }
                                     }

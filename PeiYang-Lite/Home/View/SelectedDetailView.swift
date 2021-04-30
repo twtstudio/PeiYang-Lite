@@ -8,13 +8,15 @@
 import SwiftUI
 
 struct SelectedDetailView: View {
+    @AppStorage(ClassesManager.isLoginKey, store: Storage.defaults) private var isCourseTableLogin = false
+    @AppStorage(ClassesManager.isLoginKey, store: Storage.defaults) private var isGPALogin = false
     let selected: Destination
     var body: some View {
         switch selected {
         case .courseTable:
-            CourseTableDetailView()
+            Group { if isCourseTableLogin { CourseTableDetailView() } else { AcClassesBindingView() } }
         case .GPA:
-            GPADetailView()
+            Group { if isGPALogin { GPADetailView() } else { AcClassesBindingView() } }
         case .yellowPage:
             Text("黄页")
         case .studyRoom:

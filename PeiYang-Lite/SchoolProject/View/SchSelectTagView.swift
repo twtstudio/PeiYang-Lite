@@ -12,6 +12,7 @@ struct SchSelectTagView: View {
     let color = Color.init(red: 48/255, green: 60/255, blue: 102/255)
     
     @State private var tagIntro: String = ""
+    @State private var tagDescriptionHeight: CGFloat = 0
     
     @EnvironmentObject var tagSource: SchTagSource
     private var tagDescription: String {
@@ -23,8 +24,6 @@ struct SchSelectTagView: View {
         return ""
     }
     
-    
-    
     var body: some View {
         VStack(spacing: 10) {
             Text("添加标签")
@@ -35,7 +34,6 @@ struct SchSelectTagView: View {
                 .frame(width: screen.width * 0.8)
                 .font(.footnote)
                 .foregroundColor(color)
-            
             GeometryReader { g in
                 ScrollView {
                     generateView(g)

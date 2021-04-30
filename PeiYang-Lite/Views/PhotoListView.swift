@@ -37,12 +37,14 @@ struct PhotoListView: View {
     init (images: Binding<[UIImage]>, mode: PhotoListViewType = .write) {
         _images = images
         self.mode = mode
+        UIScrollView.appearance().isScrollEnabled = true
     }
     // 只能是只读的
     init (imageURLs: [String]) {
         self._images = .constant([])
         self._imageURLs = State(wrappedValue: imageURLs)
         self.mode = .read
+        UIScrollView.appearance().isScrollEnabled = true
     }
     
     var body: some View {
@@ -51,6 +53,7 @@ struct PhotoListView: View {
                 ForEach(images, id: \.self) { image in
                     Image(uiImage: image)
                         .resizable()
+                        .scaledToFill()
                         .frame(width: 100, height: 100, alignment: .center)
                         .cornerRadius(5)
                         .onTapGesture {
@@ -73,14 +76,18 @@ struct PhotoListView: View {
                     URLImage(url: URL(string: imageURLs[i])!, content: { (image) in
                         image
                             .resizable()
+                            .scaledToFill()
                             .frame(width: 100, height: 100, alignment: .center)
-                            .frame(maxWidth: screen.width / (CGFloat(imageURLs.count) + 0.5))
+//                            .frame(maxWidth: screen.width / (CGFloat(imageURLs.count) + 0.5))
                             .cornerRadius(5)
                     })
                     .onTapGesture {
                         seletedIdx = i
                         showPhotoBrowser = true
                     }
+                }
+                if imageURLs.count < 3 {
+                    Spacer()
                 }
             }
             // 图片占位符
@@ -92,29 +99,32 @@ struct PhotoListView: View {
                     .actionSheet(isPresented: $showSelector, content: {
                         ActionSheet(title: Text("选择来源"), message: nil, buttons: [
                             .default(Text("拍照"), action: {
-                                useCamera = true
-                                showPicker = true
+                                if UIImagePickerController.isSourceTypeAvailable(.camera) {
+                                    useCamera = true
+                                    showPicker = true
+                                }
                             }),
                             .default(Text("相册"), action: {
-                                useCamera = false
-                                showPicker = true
+                                if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+                                    useCamera = false
+                                    showPicker = true
+                                }
                             }),
                             .cancel()
                         ])
                     })
-                    .sheet(isPresented: $showPicker, content: {
+                    .sheet(isPresented: $showPicker, onDismiss: {
+                        if let image = imageToAdd {
+                            if let replace = imageToReplace {
+                                let idx = images.firstIndex(of: replace)
+                                images[idx!] = image
+                            } else {
+                                images.append(image)
+                            }
+                            imageToAdd = nil
+                        }
+                    }, content: {
                         ImagePicker(image: $imageToAdd, useCamera: useCamera)
-                            .onDisappear(perform: {
-                                if let image = imageToAdd {
-                                    if let replace = imageToReplace {
-                                        let idx = images.firstIndex(of: replace)
-                                        images[idx!] = image
-                                    } else {
-                                        images.append(image)
-                                    }
-                                    imageToAdd = nil
-                                }
-                            })
                             .edgesIgnoringSafeArea(.all)
                     })
                 Spacer()

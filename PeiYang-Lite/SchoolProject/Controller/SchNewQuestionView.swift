@@ -169,7 +169,7 @@ struct SchNewQuestionView: View {
                 }
             }
         }
-        .loading(style: .medium, isLoading: $isLoading)
+        .loading(isLoading: $isLoading)
         .addAnalytics(className: "SchoolProjectNewQuestionView")
     }
     
@@ -207,7 +207,7 @@ struct SchNewQuestionView: View {
                     group.notify(queue: .main, work: DispatchWorkItem(block: {
                         isLoading = false
                         mode.wrappedValue.dismiss()
-                        print("提交问题成功, id:", questionId)
+                        log("提交问题成功, id:", questionId)
                     }))
                 } else {
                     isLoading = false

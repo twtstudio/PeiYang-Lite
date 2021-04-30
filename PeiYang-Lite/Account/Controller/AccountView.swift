@@ -23,7 +23,7 @@ struct AccountView: View {
     @AppStorage(ClassesManager.usernameKey, store: Storage.defaults) private var username = ""
     @AppStorage(ClassesManager.passwordKey, store: Storage.defaults) private var password = ""
     
-   
+    
     
     
     @State var isActive = false
@@ -31,27 +31,30 @@ struct AccountView: View {
     @State var isJumpToTop = false
     @State var isJumpToChange = false
     
-    
-
     let themeColor = Color(red: 102/255, green: 106/255, blue: 125/255)
     let titleColor = Color.init(red: 98/255, green: 103/255, blue: 122/255)
+    
     var body: some View {
-
+        
         ZStack{
-            BackGroundView(themeColor: themeColor)
-            
-            VStack(spacing: screen.height / 40) {
-                HStack{
-                    Spacer()
-                    NavigationLink(destination: AcSettingView()){
-                        Image(systemName: "gearshape")
-                            .foregroundColor(.white)
-                            .font(.title2)
+            VStack {
+                NavigationBar(trailing: {
+                    HStack {
+                        NavigationLink(destination: AccountMessageView()){
+                            Image(systemName: "bell")
+                                .foregroundColor(.white)
+                                .font(.title2)
+                        }
+                        NavigationLink(destination: AcSettingView()){
+                            Image(systemName: "gearshape")
+                                .foregroundColor(.white)
+                                .font(.title2)
+                        }
                     }
-                }
-                .frame(width: screen.width * 0.9)
-                .offset(y: screen.height / 10)
-                VStack(spacing: screen.height / 50){
+                    .padding()
+                })
+                
+                VStack {
                     HStack {//MARK: 加气泡的地方
                         NavigationLink(destination: AcMessageView(), isActive: $isJumpToChange){
                             Image(systemName: "person.circle")
@@ -59,20 +62,20 @@ struct AccountView: View {
                                 .frame(width: screen.width * 0.3, height: screen.width * 0.3, alignment: .center)
                                 .cornerRadius(screen.width * 0.15)
                         }.padding(.top)
-                       
+                        
                     }
-                   
+                    
                     Text(sharedMessage.Account.nickname)
                         .font(.custom("Avenir-Heavy", size: 20))
                     Text(sharedMessage.Account.userNumber)
                 }//: VSTACK Top Account head view
                 .foregroundColor(.white)
-                .padding(.top, screen.height / 13)
+                .frame(height: screen.height * 0.25)
                 
                 HStack{
-                   Image("AcExpect")
-                    .resizable()
-                    .scaledToFit()
+                    Image("AcExpect")
+                        .resizable()
+                        .scaledToFit()
                 }// Horizontal 3 icons
                 .padding(30)
                 .frame(width: screen.width * 0.9, height: screen.height * 0.18, alignment: .center)
@@ -118,7 +121,7 @@ struct AccountView: View {
                         isShowSignOut = true
                     }){
                         HStack {
-                            Image("logOut")
+                            Image("logout")
                             Text("登出")
                                 .foregroundColor(titleColor)
                             Spacer()
@@ -136,12 +139,13 @@ struct AccountView: View {
                         label: {EmptyView()})
                 }//: VSTACK List
                 Spacer()
-            }//: VSTACK body
+            }.background(BackGroundView(themeColor: themeColor))
+            //: VSTACK body
             
             Color.black.ignoresSafeArea()
                 .opacity(isShowSignOut ? 0.5 : 0)
                 .animation(.easeIn)
-//MARK: 退出登录确定
+            //MARK: 退出登录确定
             VStack(spacing: screen.height / 40) {
                 Text("您确定要退出登录？")
                     .foregroundColor(themeColor)
@@ -149,13 +153,14 @@ struct AccountView: View {
                 HStack(spacing: screen.width * 0.1){
                     Button(action:{
                         loadOut()
+
+                        logout()
+
                         if(appState.leftHome) {
-                        self.appState.leftHome.toggle()
+                            self.appState.leftHome.toggle()
                         } else {
-                           isJumpToTop = true
+                            isJumpToTop = true
                         }
-                        
-                        
                     }){
                         Text("确认")
                             .foregroundColor(titleColor)
@@ -179,10 +184,11 @@ struct AccountView: View {
             .animation(.easeInOut)
         }
         .navigationBarHidden(true)
-        .navigationBarBackButtonHidden(true)
+        .edgesIgnoringSafeArea(.bottom)
         .addAnalytics(className: "AccountView")
     }
-    func loadOut() {
+    
+    private func logout() {
         ClassesManager.removeAll()
         let cookieStorage = HTTPCookieStorage.shared
         if let cookies = cookieStorage.cookies {
@@ -192,6 +198,9 @@ struct AccountView: View {
         }
         SharedMessage.removeAll()
         DataStorage.remove("studyroom/history.json", from: .caches)
+        Storage.removeAll()
+
+
     }
 }
 
@@ -200,7 +209,7 @@ struct AccountView_Previews: PreviewProvider {
         AccountView()
             .environmentObject(SharedMessage())
             .environmentObject(AppState())
-            
+        
     }
 }
 

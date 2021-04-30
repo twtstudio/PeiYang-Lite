@@ -21,6 +21,20 @@ struct SchAccountView: View {
     @State private var isShowAlert: Bool = false
     @State private var questionIdToDelete: Int = -1
     
+    // 红点相关
+    @State private var questionsHasReddot: [Int] = []
+    
+    private var isMyQuestionsHasReddot: Bool {
+        !myQuestions.reduce(true, { $0 && ($1.readen ?? true) })
+    }
+    
+    private var isFavQuestionsHasReddot: Bool {
+        !favQuestions.reduce(true, { $0 && ($1.readen ?? true) })
+    }
+    
+    // 未读消息
+    @AppStorage(SchMessageManager.SCH_MESSAGE_CONFIG_KEY, store: Storage.defaults) private var unreadMessageCount: Int = 0
+    
     private var questions: [SchQuestionModel] {
         return isMineSelected ? myQuestions : favQuestions
     }
@@ -32,14 +46,24 @@ struct SchAccountView: View {
                     self.presentationMode.wrappedValue.dismiss()
                 }) {
                     Image(systemName: "chevron.backward")
+                        .font(.title2)
+                        .foregroundColor(.white)
+                        .padding()
                 }
-                .font(.title2)
-                .foregroundColor(.white)
-                .padding()
             }, center: {
                 Text("个人中心")
                     .font(.title2)
                     .foregroundColor(.white)
+            }, trailing: {
+                NavigationLink(
+                    destination: SchRecvMessageView(),
+                    label: {
+                        Image(systemName: "text.bubble")
+                            .font(.title2)
+                            .foregroundColor(.white)
+                            .addReddot(isPresented: unreadMessageCount != 0, count: unreadMessageCount, size: 15)
+                        .padding()
+                    })
             })
             VStack {
                 Text(sharedMessage.Account.nickname)
@@ -57,12 +81,14 @@ struct SchAccountView: View {
                     isFavSelected = false
                 }, label: {
                     SchAccountModeView(img: "sch-ques", title: "我的提问", isSelected: $isMineSelected)
+                        .addReddot(isPresented: isMyQuestionsHasReddot, size: 10)
                 })
                 Button(action: {
                     isMineSelected = false
                     isFavSelected = true
                 }, label: {
                     SchAccountModeView(img: "sch-favour", title: "我的收藏", isSelected: $isFavSelected)
+                        .addReddot(isPresented: isFavQuestionsHasReddot, size: 10)
                 })
             }// Horizontal 3 icons
             .frame(width: screen.width * 0.9, height: screen.height * 0.17, alignment: .center)
@@ -71,25 +97,35 @@ struct SchAccountView: View {
             
             ScrollView(showsIndicators: false) {
                 if isMineSelected {
-                    ForEach(myQuestions.indices, id: \.self) { i in
-                        SchQuestionCellView(question: myQuestions[i], isEditing: isMineSelected, deleteAction: {
-                            isShowAlert = true
-                            questionIdToDelete = myQuestions[i].id ?? -1
-                        })
-                        .addAnalytics(className: "MyQuestionView")
-                        .frame(maxWidth: .infinity)
-                            .padding(.top, 10)
+                    if myQuestions.isEmpty {
+                        LoadingView()
                     }
+                    LazyVStack {
+                        ForEach(myQuestions.indices, id: \.self) { i in
+                            SchQuestionCellView(question: myQuestions[i], isEditing: isMineSelected, deleteAction: {
+                                isShowAlert = true
+                                questionIdToDelete = myQuestions[i].id ?? -1
+                            }, showReddot: !(myQuestions[i].readen ?? true))
+                            .frame(maxWidth: .infinity)
+                            .padding(.top, 10)
+                        }
+                    }
+                    .addAnalytics(className: "MyQuestionView")
                 } else {
-                    ForEach(favQuestions.indices, id: \.self) { i in
-                        SchQuestionCellView(question: favQuestions[i], isEditing: isMineSelected, deleteAction: {
-                            isShowAlert = true
-                            questionIdToDelete = favQuestions[i].id ?? -1
-                        })
-                        .addAnalytics(className: "MyFavView")
-                        .frame(maxWidth: .infinity)
-                            .padding(.top, 10)
+                    if favQuestions.isEmpty {
+                        LoadingView()
                     }
+                    LazyVStack {
+                        ForEach(favQuestions.indices, id: \.self) { i in
+                            SchQuestionCellView(question: favQuestions[i], isEditing: isMineSelected, deleteAction: {
+                                isShowAlert = true
+                                questionIdToDelete = favQuestions[i].id ?? -1
+                            }, showReddot: !(favQuestions[i].readen ?? true))
+                            .frame(maxWidth: .infinity)
+                            .padding(.top, 10)
+                        }
+                    }
+                    .addAnalytics(className: "MyFavView")
                 }
             }
             .padding(.top, 6)
@@ -106,24 +142,35 @@ struct SchAccountView: View {
         .navigationBarHidden(true)
         .addAnalytics(className: "SchoolProjectAccountView")
         .onAppear(perform: loadQuestionData)
+        .onAppear {
+            if SchManager.schToken != nil {
+                SchMessageManager.getUnreadCount { (result) in
+                    switch result {
+                    case .success(let (totalCount, _)):
+                        unreadMessageCount = totalCount
+                    case .failure(let err):
+                        log(err)
+                    }
+                }
+            }
+        }
     }
     
     private func loadQuestionData() {
         SchQuestionManager.getQuestions(type: .fav) { (result) in
             switch result {
-                case .success(let questions):
-                    self.favQuestions = questions
-                    print(favQuestions)
-                case .failure(let err):
-                    log(err)
+            case .success(let questions):
+                self.favQuestions = questions
+            case .failure(let err):
+                log(err)
             }
         }
         SchQuestionManager.getQuestions(type: .my) { (result) in
             switch result {
-                case .success(let questions):
-                    self.myQuestions = questions
-                case .failure(let err):
-                    log(err)
+            case .success(let questions):
+                self.myQuestions = questions
+            case .failure(let err):
+                log(err)
             }
         }
     }
@@ -131,11 +178,11 @@ struct SchAccountView: View {
     private func deleteQuestion(questionId: Int) {
         SchQuestionManager.deleteMyQuestion(questionId: questionId) { (result) in
             switch result {
-                case .success(_):
-                    log("删除问题成功")
-                    loadQuestionData()
-                case .failure(let err):
-                    log(err)
+            case .success(_):
+                log("删除问题成功")
+                loadQuestionData()
+            case .failure(let err):
+                log(err)
             }
         }
     }

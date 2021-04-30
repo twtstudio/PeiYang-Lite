@@ -6,18 +6,12 @@
 //
 
 import SwiftUI
-import ObjectiveC
-
-//enum Tab {
-//    case tab1, tab2, tab3, tab4
-//}
-
 
 struct MainView: View {
+    @State private var showBadge: Bool = false
+    @State private var selected: Int = 0
+    @AppStorage(SchMessageManager.SCH_MESSAGE_CONFIG_KEY, store: Storage.defaults) private var unreadMessageCount: Int = 0
     
-//    @State private var currentView: Tab = .tab1
-    @State private var selected = 0
-   
     var body: some View {
         TabView(selection: $selected) {
             HomeView()
@@ -26,11 +20,11 @@ struct MainView: View {
                     Text("主页")
                 }.tag(0)
             
-            DrawerView()
-                .tabItem {
-                    Image(systemName: self.selected == 1 ? "archivebox.fill" : "archivebox")
-                    Text("抽屉")
-                }.tag(1)
+            //            DrawerView()
+            //                .tabItem {
+            //                    Image(systemName: self.selected == 1 ? "archivebox.fill" : "archivebox")
+            //                    Text("抽屉")
+            //                }.tag(1)
             
             SchView()
                 .tabItem {
@@ -46,7 +40,67 @@ struct MainView: View {
         }
         .accentColor(Color(#colorLiteral(red: 0.1960784314, green: 0.2392156863, blue: 0.3882352941, alpha: 1)))
         .navigationBarBackButtonHidden(true)
+        .showTabBarBadge(isPresented: $showBadge, msgCount: unreadMessageCount, pos: 2, tabsCount: 3)
+        .onAppear {
+            if SchManager.schToken != nil {
+                SchMessageManager.getUnreadCount { (result) in
+                    switch result {
+                    case .success(let (totalCount, _)):
+                        if totalCount != 0 {
+                            unreadMessageCount = totalCount
+                            showBadge = true
+                        } else {
+                            unreadMessageCount = 0
+                            showBadge = false
+                        }
+                    case .failure(let err):
+                        log(err)
+                    }
+                }
+            }
+        }
+    }
+}
+
+struct TabBarBadgeModifier: ViewModifier {
+    @Binding var isPresented: Bool
+    var msgCount: Int
+    var pos: Int
+    var tabsCount: Int
     
+    func body(content: Content) -> some View {
+        GeometryReader { g in
+            ZStack(alignment: .bottomLeading) {
+                content
+                // Badge View
+                if isPresented {
+                    ZStack {
+                        Circle()
+                            .foregroundColor(.red)
+                        
+                        if msgCount > 0 {
+                            Text(msgCount.description)
+                                .foregroundColor(.white)
+                                .font(Font.system(size: 12))
+                        }
+                    }
+                    .frame(width: 15, height: 15)
+                    .offset(x: calcBadgePosX(badgePosition: pos, tabsCount: tabsCount, g: g), y: -25)
+                    .allowsHitTesting(false)
+                }
+            }
+        }
+    }
+    
+    private func calcBadgePosX(badgePosition: Int, tabsCount: Int, g: GeometryProxy) -> CGFloat {
+        return ( ( 2 * CGFloat(badgePosition)) - 0.95 ) * ( g.size.width / ( 2 * CGFloat(tabsCount) ) ) + 2
+    }
+}
+
+extension View {
+    // only show circle when count equals -1
+    func showTabBarBadge(isPresented: Binding<Bool>, msgCount: Int, pos: Int, tabsCount: Int) -> some View {
+        self.modifier(TabBarBadgeModifier(isPresented: isPresented, msgCount: msgCount, pos: pos, tabsCount: tabsCount))
     }
 }
 
@@ -55,69 +109,3 @@ struct MainView_Previews: PreviewProvider {
         MainView()
     }
 }
-
-//struct CurrentScreen: View {
-//    @Binding var currentView: Tab
-//
-//    var body: some View {
-//        VStack {
-//            if self.currentView == .tab1 {
-//                HomeView()
-//            } else if self.currentView == .tab2 {
-////                HomeView(inBackground: .constant(false), isUnlocked: .constant(true))
-//                Text("抽屉")
-//            } else if self.currentView == .tab3 {
-////                HomeView2()
-//                Text("校务")
-//            } else {
-//                Text("个人")
-//            }
-//        }
-////        .ignoresSafeArea()
-//    }
-//}
-//
-//struct TabBar: View {
-//    @Binding var currentView: Tab
-//
-//    var body: some View {
-//        HStack {
-//            TabBarItem(currentView: $currentView, image: Image("HomeIcon"), paddingEdges: .leading, tab: .tab1, lable: "主页")
-//            Spacer()
-//            TabBarItem(currentView: $currentView, image: Image("DrawerIcon"), paddingEdges: .leading, tab: .tab2, lable: "抽屉")
-//            Spacer()
-//            TabBarItem(currentView: $currentView, image: Image("IssueIcon"), paddingEdges: .leading, tab: .tab3, lable: "校务专区")
-//            Spacer()
-//            TabBarItem(currentView: $currentView, image: Image("PersonIcon"), paddingEdges: .leading, tab: .tab4, lable: "个人中心")
-//        }
-//    }
-//}
-//
-//struct TabBarItem: View {
-//    @Binding var currentView: Tab
-//    let image: Image
-//    let paddingEdges: Edge.Set
-//    let tab: Tab
-//    let lable: String
-//
-//    var body: some View {
-//        VStack {
-//            image
-//                .resizable()
-//                .aspectRatio(contentMode: .fit)
-//                .padding(5)
-//                .frame(width: 40, height: 40, alignment: .center)
-//                .background(Color(self.currentView == tab ? .blue : .white).opacity(0.2))
-//                .foregroundColor(Color(self.currentView == tab ? .darkGray : .gray))
-//                .cornerRadius(6)
-//
-//            Text(lable)
-//                .font(.footnote)
-//                .foregroundColor(.gray)
-//        }
-//        .frame(width: 100, height: 50)
-//        .onTapGesture { self.currentView = self.tab }
-//        .padding(paddingEdges, 15)
-//    }
-//
-//}

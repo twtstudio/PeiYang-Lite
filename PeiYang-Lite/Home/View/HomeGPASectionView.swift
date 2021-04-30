@@ -28,6 +28,7 @@ struct GPAGrade: View {
 struct HomeGPASectionView: View {
     @ObservedObject var store = Storage.gpa
     private var gpa: GPA { store.object }
+    @AppStorage(ClassesManager.isLoginKey, store: Storage.defaults) private var isLogin = false
     
     @State private var activeIndex = 0
     @State private var show = true
@@ -52,15 +53,23 @@ struct HomeGPASectionView: View {
             }
             .frame(height: screen.width * 0.4)
             
-            NavigationLink(destination: GPADetailView()) {
-            HStack {
-                GPATitleView(value: gpa.score.decimal, title: .totalScore, titleColor: Color(#colorLiteral(red: 0.8040962815, green: 0.8035985827, blue: 0.8253522515, alpha: 1)), valueColor: Color(#colorLiteral(red: 0.4099749923, green: 0.4227921963, blue: 0.4921118617, alpha: 1)))
-                    .padding(5)
-                GPATitleView(value: gpa.gpa.decimal, title: .totalGPA, titleColor: Color(#colorLiteral(red: 0.8040962815, green: 0.8035985827, blue: 0.8253522515, alpha: 1)), valueColor: Color(#colorLiteral(red: 0.4099749923, green: 0.4227921963, blue: 0.4921118617, alpha: 1)))
-                    .padding(5)
-                GPATitleView(value: gpa.credit.decimal, title: .totalCredit, titleColor: Color(#colorLiteral(red: 0.8040962815, green: 0.8035985827, blue: 0.8253522515, alpha: 1)), valueColor: Color(#colorLiteral(red: 0.4099749923, green: 0.4227921963, blue: 0.4921118617, alpha: 1)))
-                    .padding(5)
-            }
+            NavigationLink(destination:
+                            Group {
+                                if isLogin {
+                                    GPADetailView()
+                                } else {
+                                    AcClassesBindingView()
+                                }
+                            }
+            ) {
+                HStack {
+                    GPATitleView(value: gpa.score.decimal, title: .totalScore, titleColor: Color(#colorLiteral(red: 0.8040962815, green: 0.8035985827, blue: 0.8253522515, alpha: 1)), valueColor: Color(#colorLiteral(red: 0.4099749923, green: 0.4227921963, blue: 0.4921118617, alpha: 1)))
+                    Spacer()
+                    GPATitleView(value: gpa.gpa.decimal, title: .totalGPA, titleColor: Color(#colorLiteral(red: 0.8040962815, green: 0.8035985827, blue: 0.8253522515, alpha: 1)), valueColor: Color(#colorLiteral(red: 0.4099749923, green: 0.4227921963, blue: 0.4921118617, alpha: 1)))
+                    Spacer()
+                    GPATitleView(value: gpa.credit.decimal, title: .totalCredit, titleColor: Color(#colorLiteral(red: 0.8040962815, green: 0.8035985827, blue: 0.8253522515, alpha: 1)), valueColor: Color(#colorLiteral(red: 0.4099749923, green: 0.4227921963, blue: 0.4921118617, alpha: 1)))
+                }
+                .padding()
             }
         }
     }

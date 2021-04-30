@@ -13,7 +13,8 @@ target 'PeiYang-Lite' do
   pod 'UMCommon'
   pod 'UMDevice'
   pod 'GTSDK'
-  pod 'SwiftMessages'  
+  pod 'SwiftMessages'
+  pod "Introspect" 
 end
 
 target 'PeiYang-LiteWidgetExtension' do
