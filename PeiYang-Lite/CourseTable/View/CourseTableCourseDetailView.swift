@@ -22,14 +22,13 @@ struct infoView: View {
 }
 
 struct CourseDetailView: View {
-    @Binding var course: Course
-    @Binding var weekDay: Int
-    var isRegular: Bool
+    let course: Course
+    let weekDay: Int
+    let isRegular: Bool
 //    var bgColor: Color
     
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
-//            VStack {
             Text(course.name)
                 .font(.title)
                 .bold()
@@ -62,10 +61,15 @@ struct CourseDetailView: View {
                 }
             }
             .padding(.vertical, 8)
-            
         }
-        .padding(15)
-        //        .frame(width: 300, height: 500, alignment: .center)
+        .padding()
+        .frame(width: screen.width / 1.5, height: screen.width / 1.5 * 1.4)
+        .background(
+            Image("emblem")
+                .resizable()
+                .scaledToFit()
+        )
+        .shadow(color: Color.gray.opacity(0.5), radius: 8, x: 5, y: 5)
     }
 }
 

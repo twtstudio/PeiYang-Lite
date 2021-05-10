@@ -194,6 +194,7 @@ struct LargeView: View {
                     .font(.footnote)
                     .foregroundColor(colorScheme == .dark ? .white : Color(#colorLiteral(red: 0.1279886365, green: 0.1797681153, blue: 0.2823780477, alpha: 1)))
                     .padding(.leading)
+                    .padding(.bottom, 2)
                 
                 HStack(alignment: .center) {
                     if collections.isEmpty {

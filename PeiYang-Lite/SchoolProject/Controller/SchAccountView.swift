@@ -180,7 +180,9 @@ struct SchAccountView: View {
             switch result {
             case .success(_):
                 log("删除问题成功")
-                loadQuestionData()
+                withAnimation {
+                    loadQuestionData()
+                }
             case .failure(let err):
                 log(err)
             }

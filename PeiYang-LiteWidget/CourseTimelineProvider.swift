@@ -49,10 +49,9 @@ struct CourseTimelineProvider: TimelineProvider {
 //        var entries: [CourseEntry] = []
         
         let currentDate = Date()
-        let refreshDate = Calendar.current.date(byAdding: .minute, value: 15, to: currentDate)!
+        let refreshDate = Calendar.current.date(byAdding: .second, value: 5, to: currentDate)!
 //        for offset in 0..<5 {
         let courses = getTodayCourse()
-        let collections = getCollection()
         
         WeatherService().weatherGet { result in
             var weathers: [Weather]
@@ -64,21 +63,21 @@ struct CourseTimelineProvider: TimelineProvider {
                 weathers = [Weather(), Weather()]
                 print(error)
             }
-            
-            let entry = DataEntry(date: currentDate, courses: courses, weathers: weathers, studyRoom: collections)
-            let timeline = Timeline(entries: [entry], policy: .after(refreshDate))
-            completion(timeline)
+            getCollection { (res) in
+                switch res {
+                case .success(let collections):
+                    let entry = DataEntry(date: currentDate, courses: courses, weathers: weathers, studyRoom: collections)
+                    let timeline = Timeline(entries: [entry], policy: .after(refreshDate))
+                    completion(timeline)
+                case .failure(let err):
+                    log(err)
+                }
+            }
         }
-//            let entryDate = Calendar.current.date(byAdding: .minute, value: offset, to: currentDate)!
-            
-//            entries.append(entry)
-//        }
-        
-        
     }
     
-    func getTodayCourse() -> [Course] {
-        let activeWeek = storage.object.currentWeek
+    private func getTodayCourse() -> [Course] {
+        let activeWeek = courseTable.currentWeek
         
         var weekdays: [String] {
             var calendar = Calendar.current
@@ -104,36 +103,28 @@ struct CourseTimelineProvider: TimelineProvider {
         
     }
     
-    func getCollection() -> [CollectionClass] {
-        var buildings: [StudyBuilding] = []
-        var collection: [CollectionClass] = []
+    private func getCollection(completion: @escaping (Result<[CollectionClass], Error>) -> Void) {
         StudyRoomManager.allBuidlingGet(term: "20212", week: String(todayWeek), day: String(todayDay)) { result in
             switch result {
             case .success(let data):
-                buildings = data.data
                 if(data.errorCode == 0) {
-                    collection = requestDataToUseData(buildings: buildings)
-                    break
-                } else{
+                    requestDataToUseData(buildings: data.data, completion: completion)
                 }
             case .failure(let error):
                 log(error)
             }
         }
-        return collection
     }
     
-    func requestDataToUseData(buildings: [StudyBuilding]) -> [CollectionClass] {
-        var collection: [CollectionClass] = []
+    private func requestDataToUseData(buildings: [StudyBuilding], completion: @escaping (Result<[CollectionClass], Error>) -> Void) {
         StyCollectionManager.getCollections(buildings: buildings) {result in
             switch result {
             case .success(let data):
-                collection = data
+                completion(.success(data))
             case .failure(let error):
-                log(error)
+                completion(.failure(error))
             }
         }
-        return collection
     }
     
 }

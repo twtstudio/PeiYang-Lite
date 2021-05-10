@@ -93,7 +93,7 @@ struct ClassesManager {
                                 completion(.success(message))
                             case 401:
                                 let message = html.find("<div class=\"alert alert-danger\">\n            <span>(.+?)</span>\n        </div>")
-                                if message.contains("错误") || message.contains("Mismatch")  {
+                                if message.contains("验证码错误") || message.contains("Mismatch")  {
                                     completion(.failure(.captchaWrong))
                                 } else {
                                     completion(.failure(.usorpwWrong))
@@ -602,9 +602,7 @@ extension ClassesManager {
             .map { courseItem -> Course in
                 guard !courseItem.findArrays("(<td>.*?</td>)").isEmpty else { return Course()}
                 return Course(
-                    fullCourse: courseItem
-                        .findArrays("(<td>.*?</td>)")
-                        .map { $0[1].find("([^>\\s]+)\\s*<") },
+                    fullCourse: courseItem.findArrays("(<td>.*?</td>)").map { $0[1].find("([^>\\s]+)\\s*<") },
                     arrangePairArray: arrangePairArray
                 )
             }

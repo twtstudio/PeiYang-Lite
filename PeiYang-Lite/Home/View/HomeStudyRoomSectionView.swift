@@ -56,13 +56,12 @@ struct HomeStudyRoomSectionView: View {
 
     
     var body: some View {
-        if collectionClass == [] {
+        if collectionClass.isEmpty {
             NavigationLink(destination: StyTopView()) {
                 Text("还没有get到您的收藏")
                     .font(.caption)
                     .foregroundColor(.gray)
             }
-            
         }
         
         ScrollView(.horizontal, showsIndicators: false, content: {
@@ -73,8 +72,6 @@ struct HomeStudyRoomSectionView: View {
                         label: {
                             StudyRoomBuildingCardView(buildingName: collectionclass.buildingName, className: collectionclass.classMessage.classroom, isFree: collectionclass.classMessage.status[nowPeriod] == "0", classData: collectionclass.classMessage)
                         })
-                   
-                    
                 }
             }
         }).padding()
@@ -88,7 +85,6 @@ struct HomeStudyRoomSectionView: View {
                     if(data.errorCode == 0) {
                         isGetCollectionData = true
                         requestDataToUseData()
-                        break
                     } else{
                         isGetCollectionData = false
                     }

@@ -156,7 +156,12 @@ struct WidgetCourse {
 extension View {
     func getPresentCourse(courseArray: [Course], courseTable: CourseTable, hour: Int) -> WidgetCourse {
         var presentCourse = WidgetCourse()
-        for course in courseArray {
+        let sortedCourseArray = courseArray.sorted { (c1, c2) -> Bool in
+            let a1 = c1.activeArrange(courseTable.currentWeekday)
+            let a2 = c2.activeArrange(courseTable.currentWeekday)
+            return a1.startUnit < a2.startUnit
+        }
+        for course in sortedCourseArray {
             let arrange = course.activeArrange(courseTable.currentWeekday)
             if arrange.startTime.0 <= hour && arrange.endTime.0 > hour {
                 presentCourse.course = course
@@ -178,7 +183,12 @@ extension View {
     
     func getNextCourse(courseArray: [Course], courseTable: CourseTable, hour: Int) -> WidgetCourse {
         var nextCourse = WidgetCourse()
-        for course in courseArray {
+        let sortedCourseArray = courseArray.sorted { (c1, c2) -> Bool in
+            let a1 = c1.activeArrange(courseTable.currentWeekday)
+            let a2 = c2.activeArrange(courseTable.currentWeekday)
+            return a1.startUnit < a2.startUnit
+        }
+        for course in sortedCourseArray {
             let arrange = course.activeArrange(courseTable.currentWeekday)
             if arrange.startTime.0 >= hour {
                 nextCourse.course = course

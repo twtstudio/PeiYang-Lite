@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Arrange: Codable, Storable, Comparable {
+struct Arrange: Codable, Storable, Comparable, Hashable {
     let teacherArray: [String]
     let weekArray: [Int] // 1...
     let weekday: Int // 0...
@@ -23,7 +23,9 @@ struct Arrange: Codable, Storable, Comparable {
     var weekString: String { "\(firstWeek)-\(lastWeek)" }
     
     // Unit
+    var length: Int { unitArray.count }
     var startUnit: Int { unitArray.first ?? 0 }
+    var endUnit: Int { startUnit + length }
     var startTime: (Int, Int) {
         [
             (8, 30), (9, 20), (10, 25), (11, 15),
@@ -32,7 +34,6 @@ struct Arrange: Codable, Storable, Comparable {
         ][startUnit]
     }
     var startTimeString: String { String(format: "%02d:%02d", startTime.0, startTime.1) }
-    var length: Int { unitArray.count }
     var endTime: (Int, Int) {
         [
             (9, 15), (10, 5), (11, 10), (12, 0),
@@ -75,7 +76,7 @@ struct Arrange: Codable, Storable, Comparable {
     }
 }
 
-struct Course: Codable, Storable {
+struct Course: Codable, Storable, Equatable, Hashable {
     
     let serial: String
     let no: String
@@ -293,9 +294,10 @@ struct NotificationHelper {
 }
 
 // to pass Detail
-class AlertCourse: ObservableObject {
+class CourseConfig: ObservableObject {
     @Published var showDetail: Bool = false
-    @Published var currentCourse = Course()
+    @Published var currentCourses: [Course] = []
+    @Published var isConflict: Bool = false
     @Published var currentWeekday = 0
 }
 

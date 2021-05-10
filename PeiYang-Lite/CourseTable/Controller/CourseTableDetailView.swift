@@ -26,7 +26,7 @@ struct CourseTableDetailView: View {
     
     @State private var activeWeek = Storage.courseTable.object.currentWeek
     
-    @StateObject private var alertCourse: AlertCourse = .init()
+    @StateObject private var courseConfig: CourseConfig = .init()
     
     @State private var isError = false
     @State private var showRelogin = false
@@ -68,37 +68,41 @@ struct CourseTableDetailView: View {
                             activeWeek: activeWeek,
                             courseArray: courseTable.courseArray,
                             width: screen.width,
-                            alertCourse: alertCourse,
+                            courseConfig: courseConfig,
                             showFullCourse: $showFullCourse
                         )
-                        // 单节课高度 * 12
-                        .frame(height: screen.width / CGFloat(showCourseNum) * 1.5 * 12, alignment: .top)
+                        // 单节课高度 * 12 (screen.height / 12) * 12 = screen.height
+                        .frame(height: screen.height, alignment: .top)
                     }
                 }
-//                NavigationLink(
-//                    destination: AcClassesBindingView(),
-//                    isActive: $showLogin,
-//                    label: { EmptyView() })
             }
             
-            if alertCourse.showDetail {
+            if courseConfig.showDetail {
                 ZStack {
                     Color.clear
-                        
-                        .frame(width: screen.width,
-                               alignment: .center)
-                        .frame(maxHeight: .infinity)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
                         .contentShape(Rectangle())
                     
-                    CourseDetailView(course: $alertCourse.currentCourse, weekDay: $alertCourse.currentWeekday, isRegular: isRegular)
-                        .frame(width: screen.width / 1.5, height: screen.height / 1.8, alignment: .center)
-                        .background(
-                            Image("emblem")
-                                .resizable()
-                                .scaledToFit()
-                        )
-                        .clipShape(RoundedRectangle(cornerRadius: 8))
-                        .shadow(color: Color.gray.opacity(0.5), radius: 8, x: 5, y: 5)
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        let svWidth = screen.width / 1.5
+                        let svHeight = svWidth * 1.4
+                        HStack {
+                            Spacer(minLength: (screen.width - svWidth) / 2)
+
+                            ForEach(courseConfig.currentCourses, id: \.self) { course in
+                                GeometryReader { g in
+                                    CourseDetailView(course: course, weekDay: courseConfig.currentWeekday, isRegular: isRegular)
+                                        .scaleEffect(1 - (abs((g.frame(in: .global).midX - screen.width / 2))) / (screen.width * 3))
+                                        .rotation3DEffect(Angle(degrees:Double(g.frame(in: .global).midX - screen.width / 2) / -20), axis: (x: 0, y: 1, z: 0))
+
+                                }
+                                .frame(width: svWidth, height: svHeight)
+                            }
+
+
+                            Spacer(minLength: (screen.width - svWidth) / 2)
+                        }
+                    }
                 }
                 .offset(x: 0, y: floatViewOffset)
                 .animation(.easeIn)
@@ -107,7 +111,7 @@ struct CourseTableDetailView: View {
                         floatViewOffset -= 20
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
                             withAnimation(.easeOut) {
-                                self.alertCourse.showDetail = false
+                                self.courseConfig.showDetail = false
                                 floatViewOffset = 0
                             }
                         }
@@ -146,6 +150,8 @@ struct CourseTableDetailView: View {
                     case .success(let courseTable):
                         store.object = courseTable
                         store.save()
+                        // 刷新HeaderView的周数
+                        activeWeek = Storage.courseTable.object.currentWeek
                     case .failure(let error):
                         log(error)
                     }

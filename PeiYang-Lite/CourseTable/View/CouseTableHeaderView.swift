@@ -13,6 +13,7 @@ struct CouseTableHeaderView: View {
     var totalWeek: Int
     @ObservedObject var store = Storage.courseTable
     private var courseTable: CourseTable { store.object }
+    @AppStorage(SharedMessage.showCourseNumKey, store: Storage.defaults) private var showCourseNum = 6
     
     var body: some View {
         VStack(alignment: .leading, spacing: 5) {
@@ -40,7 +41,7 @@ struct CouseTableHeaderView: View {
                             }, label: {
                                 if let weekMatrixArray = self.getWeekMatrix() {
                                     VStack {
-                                        WeekGridView(width: 40, height: 35, rows: 5, cols: 6, weekMatrix: weekMatrixArray[week-1])
+                                        WeekGridView(width: 40, height: 35, rows: 6, cols: showCourseNum, weekMatrix: weekMatrixArray[week-1])
                                             .padding(5)
                                             .background(Color(week==activeWeek ? .gray : .clear).cornerRadius(5).opacity(0.1))
                                         Text("WEEK\(week.description)")
@@ -64,9 +65,9 @@ struct CouseTableHeaderView: View {
     
     private func getWeekMatrix() -> [[[Bool]]] {
         var emptyMatrix = [[Bool]]()
-        for _ in 0..<6 {
+        for _ in 0..<7 {
             var row = [Bool]()
-            for _ in 0..<7 {
+            for _ in 0..<6 {
                 row.append(false)
             }
             emptyMatrix.append(row)
