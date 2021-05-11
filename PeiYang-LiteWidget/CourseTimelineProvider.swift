@@ -36,20 +36,14 @@ struct CourseTimelineProvider: TimelineProvider {
     }
     
     func getSnapshot(in context: Context, completion: @escaping (DataEntry) -> Void) {
-        if context.isPreview {
-            completion(DataEntry.placeholder)
-        } else {
-//            let courses = getTodayCourse()
-            let entry = DataEntry(date: Date(), courses: [Course()], weathers: [Weather()], studyRoom: [])
-            completion(entry)
-        }
+        completion(DataEntry.placeholder)
     }
     
     func getTimeline(in context: Context, completion: @escaping (Timeline<DataEntry>) -> Void) {
 //        var entries: [CourseEntry] = []
         
         let currentDate = Date()
-        let refreshDate = Calendar.current.date(byAdding: .second, value: 5, to: currentDate)!
+        let refreshDate = Calendar.current.date(byAdding: .minute, value: 5, to: currentDate)!
 //        for offset in 0..<5 {
         let courses = getTodayCourse()
         
@@ -79,24 +73,18 @@ struct CourseTimelineProvider: TimelineProvider {
     private func getTodayCourse() -> [Course] {
         let activeWeek = courseTable.currentWeek
         
-        var weekdays: [String] {
-            var calendar = Calendar.current
-            calendar.firstWeekday = 2
-            var weekdays = calendar.shortWeekdaySymbols
-            weekdays.append(weekdays.remove(at: 0))
-            return weekdays
+        let activeCourseArray: [Course] = courseTable.courseArray.filter {
+            $0.weekRange.contains(activeWeek)
         }
         
-        var activeCourseArray: [Course] {
-            courseTable.courseArray.filter {
-                $0.weekRange.contains(activeWeek)
-            }
+        var currentCourseArray: [Course] = activeCourseArray.filter {
+            $0.arrangeArray.map(\.weekday).contains(courseTable.currentWeekday)
         }
-        
-        var currentCourseArray: [Course] {
-            activeCourseArray.filter {
-                $0.arrangeArray.map(\.weekday).contains(courseTable.currentWeekday)
-            }
+        // 进行排序
+        currentCourseArray.sort { (c1, c2) -> Bool in
+            let a1 = c1.activeArrange(activeWeek)
+            let a2 = c2.activeArrange(activeWeek)
+            return a1.startUnit < a2.startUnit
         }
         
         return currentCourseArray

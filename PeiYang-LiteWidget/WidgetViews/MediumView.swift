@@ -14,13 +14,13 @@ struct MediumView: View {
     let entry: DataEntry
     var currentCourseTable: [Course] { entry.courses }
     var weathers: [Weather] { entry.weathers }
-    var hour: Int {
-        let hourFormatter = DateFormatter()
-        hourFormatter.dateFormat = "HH"
-        let hrString = hourFormatter.string(from: Date())
-        let hour = Int(hrString) ?? 0
-
-        return hour
+    var time: Int {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH mm"
+        let s = formatter.string(from: Date())
+        let t = s.split(separator: " ").map{ Int($0) ?? 0 }
+        
+        return 60 * t[0] + t[1]
     }
     
     var body: some View {
@@ -28,47 +28,49 @@ struct MediumView: View {
             HStack(alignment: .center) {
                 ZStack {
                     if !currentCourseTable.isEmpty {
-                    if let preCourse = getPresentCourse(courseArray: currentCourseTable, courseTable: courseTable, hour: hour) {
-                        if preCourse.isNext == false {
-                            Image("NOW")
-                                .resizable()
-                                .scaledToFill()
-                                .frame(width: geo.size.width/2, height: geo.size.height*(5/7))
-                                .clipShape(RoundedRectangle(cornerRadius: 10))
-                        } else {
-                            Image("NEXT")
-                                .resizable()
-                                .scaledToFill()
-                                .frame(width: geo.size.width/2, height: geo.size.height*(5/7))
-                                .clipShape(RoundedRectangle(cornerRadius: 10))
-                        }
-
-                        if preCourse.isEmpty == false {
-                            VStack(alignment: .center) {
-                                Text("\(preCourse.course.name)")
-                                    .font(.footnote)
-                                    .fontWeight(.bold)
-                                    .lineLimit(1)
-                                HStack {
+                        if let preCourse = WidgetCourseManager.getPresentAndNextCourse(
+                            courseArray: currentCourseTable,
+                            weekday: courseTable.currentWeekday,
+                            time: time).0 {
+                            if preCourse.isNext == false {
+                                Image("NOW")
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(width: geo.size.width/2, height: geo.size.height*(5/7))
+                                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                            } else {
+                                Image("NEXT")
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(width: geo.size.width/2, height: geo.size.height*(5/7))
+                                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                            }
+                            
+                            if preCourse.isEmpty == false {
+                                VStack(spacing: 7) {
+                                    Text("\(preCourse.course.name)")
+                                        .font(.footnote)
+                                        .fontWeight(.bold)
+                                        .lineLimit(1)
+                                    
                                     Text("\(preCourse.course.activeArrange(courseTable.currentWeekday).location)")
                                         .font(.footnote)
                                     
                                     Text("\(preCourse.course.activeArrange(courseTable.currentWeekday).startTimeString)-\(preCourse.course.activeArrange(courseTable.currentWeekday).endTimeString)")
                                         .font(.footnote)
                                 }
-                            }
-                            .frame(width: geo.size.width*(4/5), height: geo.size.height, alignment: .center)
-                            .foregroundColor(.white)
-                            .padding(8)
-                            .padding(.top, 8)
-                        } else {
-                            Text("接下来无课")
-                                .font(.footnote)
+                                .frame(width: geo.size.width*(4/5), height: geo.size.height, alignment: .center)
                                 .foregroundColor(.white)
+                                .padding(8)
+                                .padding(.top, 8)
+                            } else {
+                                Text("接下来无课")
+                                    .font(.footnote)
+                                    .foregroundColor(.white)
                             }
                         }
                     }
-        
+                    
                     else {
                         Image("无课2*4")
                             .resizable()
@@ -82,8 +84,8 @@ struct MediumView: View {
                     }
                 }
                 .frame(width: geo.size.width*(3/5), height: geo.size.height*(4/5))
-//                .padding(.trailing, 10)
-//                .padding(.leading, geo.size.width/25)
+                //                .padding(.trailing, 10)
+                //                .padding(.leading, geo.size.width/25)
                 
                 VStack(alignment: .leading) {
                     HStack {
@@ -130,7 +132,7 @@ struct MediumView: View {
         
     }
 }
-            
+
 
 
 
@@ -149,63 +151,49 @@ struct WidgetCourse {
     init() {
         isNext = false
         course = Course()
-        isEmpty = false
+        isEmpty = true
     }
 }
 
-extension View {
-    func getPresentCourse(courseArray: [Course], courseTable: CourseTable, hour: Int) -> WidgetCourse {
+struct WidgetCourseManager {
+    static func getPresentAndNextCourse(courseArray: [Course], weekday: Int, time: Int) -> (WidgetCourse, WidgetCourse) {
         var presentCourse = WidgetCourse()
-        let sortedCourseArray = courseArray.sorted { (c1, c2) -> Bool in
-            let a1 = c1.activeArrange(courseTable.currentWeekday)
-            let a2 = c2.activeArrange(courseTable.currentWeekday)
-            return a1.startUnit < a2.startUnit
-        }
-        for course in sortedCourseArray {
-            let arrange = course.activeArrange(courseTable.currentWeekday)
-            if arrange.startTime.0 <= hour && arrange.endTime.0 > hour {
-                presentCourse.course = course
-                presentCourse.isEmpty = false
-                presentCourse.isNext = false
-                break
-            } else if arrange.startTime.0 >= hour {
-                presentCourse.course = course
-                presentCourse.isNext = true
-                presentCourse.isEmpty = false
-                break
-            } else {
-                presentCourse.course = Course()
-                presentCourse.isEmpty = true
-            }
-        }
-        return presentCourse
-    }
-    
-    func getNextCourse(courseArray: [Course], courseTable: CourseTable, hour: Int) -> WidgetCourse {
         var nextCourse = WidgetCourse()
-        let sortedCourseArray = courseArray.sorted { (c1, c2) -> Bool in
-            let a1 = c1.activeArrange(courseTable.currentWeekday)
-            let a2 = c2.activeArrange(courseTable.currentWeekday)
-            return a1.startUnit < a2.startUnit
-        }
-        for course in sortedCourseArray {
-            let arrange = course.activeArrange(courseTable.currentWeekday)
-            if arrange.startTime.0 >= hour {
-                nextCourse.course = course
-                nextCourse.isEmpty = false
-                nextCourse.isNext = true
+        var i = 0
+        var isNext = false
+        
+        while i < courseArray.count {
+            let arrange = courseArray[i].activeArrange(weekday)
+            if (arrange.startTime.0 * 60 + arrange.startTime.1) > time {
+                isNext = true
                 break
-            } else {
-                nextCourse.course = Course()
-                nextCourse.isEmpty = true
+            }
+            if (arrange.startTime.0 * 60 + arrange.startTime.1) <= time && (arrange.endTime.0 * 60 + arrange.endTime.1) > time {
+                break
+            }
+            i += 1
+        }
+        // 找到present课
+        if i < courseArray.count {
+            presentCourse.isEmpty = false
+            if isNext {
+                presentCourse.isNext = true
+            }
+            presentCourse.course = courseArray[i]
+            
+            if i < courseArray.count - 1 {
+                nextCourse.course = courseArray[i + 1]
+                nextCourse.isNext = true
+                nextCourse.isEmpty = false
             }
         }
-        return nextCourse
+        
+        return (presentCourse, nextCourse)
     }
 }
 
 
 
-   
+
 
 

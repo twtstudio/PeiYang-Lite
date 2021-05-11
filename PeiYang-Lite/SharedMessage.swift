@@ -49,6 +49,10 @@ class SharedMessage: ObservableObject {
     @Published var studyRoomSelectPeriod: [String] = [""] // 自习室中的显示时间段
     @Published var isGetStudyRoomBuildingMessage: Bool = false
     
+    // 跳转相应页面
+    @Published var shouldJump: Bool = false
+    @Published var jumpPage: String = ""
+    
 
     
     // 清空全部的缓存

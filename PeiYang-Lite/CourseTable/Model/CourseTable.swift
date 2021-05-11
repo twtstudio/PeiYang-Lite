@@ -27,7 +27,10 @@ struct Arrange: Codable, Storable, Comparable, Hashable {
     var startUnit: Int { unitArray.first ?? 0 }
     var endUnit: Int { startUnit + length }
     var startTime: (Int, Int) {
-        [
+        guard startUnit >= 0 && startUnit < 12 else {
+            return (8, 30)
+        }
+        return [
             (8, 30), (9, 20), (10, 25), (11, 15),
             (13, 30), (14, 20), (15, 25), (16, 15),
             (18, 30), (19, 20), (20, 10), (21, 0)
@@ -35,11 +38,14 @@ struct Arrange: Codable, Storable, Comparable, Hashable {
     }
     var startTimeString: String { String(format: "%02d:%02d", startTime.0, startTime.1) }
     var endTime: (Int, Int) {
-        [
+        guard endUnit - 1 >= 0 && endUnit - 1 < 12 else {
+            return (9, 15)
+        }
+        return [
             (9, 15), (10, 5), (11, 10), (12, 0),
             (14, 15), (15, 5), (16, 10), (17, 0),
             (19, 15), (20, 5), (20, 55), (21, 45)
-        ][startUnit + length - 1]
+        ][endUnit - 1]
     }
     var endTimeString: String { String(format: "%02d:%02d", endTime.0, endTime.1) }
     var unitString: String { "\(startUnit + 1)-\(startUnit + length)" }

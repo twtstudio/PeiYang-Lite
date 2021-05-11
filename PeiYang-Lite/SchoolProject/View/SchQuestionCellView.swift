@@ -23,11 +23,9 @@ struct SchQuestionCellView: View {
     @State private var navigateToDetail: Bool = false
     
     private var questionTime: String {
-        get {
             let day = question.createdAt?[0..<10] ?? ""
             let time = question.createdAt?[11..<16] ?? ""
             return day + " " + time
-        }
     }
     
     var body: some View {

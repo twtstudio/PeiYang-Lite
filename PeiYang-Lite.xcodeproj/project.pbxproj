@@ -201,6 +201,7 @@
 		D35404DF260DFABE0092D83A /* Semester.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35402FB260DEF720092D83A /* Semester.swift */; };
 		D35404E2260DFAC40092D83A /* ClassesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35402FC260DEF720092D83A /* ClassesManager.swift */; };
 		D35404E5260DFAD60092D83A /* Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D354031F260DEF720092D83A /* Localizable.swift */; };
+		D36812AA264A32D200653C4C /* AcMessageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36812A9264A32D200653C4C /* AcMessageManager.swift */; };
 		D393F834263B00BA002B35C8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D393F837263B00BA002B35C8 /* InfoPlist.strings */; };
 		D393F835263B00BA002B35C8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D393F837263B00BA002B35C8 /* InfoPlist.strings */; };
 		D393F83E263B00CA002B35C8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D393F841263B00CA002B35C8 /* Localizable.strings */; };
@@ -420,6 +421,7 @@
 		D354048A260DF69B0092D83A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D3540490260DF7D30092D83A /* PeiYang-LiteWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "PeiYang-LiteWidgetExtension.entitlements"; sourceTree = "<group>"; };
 		D3540491260DF7EC0092D83A /* PeiYang-Lite.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "PeiYang-Lite.entitlements"; sourceTree = "<group>"; };
+		D36812A9264A32D200653C4C /* AcMessageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcMessageManager.swift; sourceTree = "<group>"; };
 		D393F82C263B0086002B35C8 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		D393F82D263B0086002B35C8 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		D393F830263B008E002B35C8 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Main.strings"; sourceTree = "<group>"; };
@@ -909,6 +911,7 @@
 			isa = PBXGroup;
 			children = (
 				D354030E260DEF720092D83A /* AcBindManager.swift */,
+				D36812A9264A32D200653C4C /* AcMessageManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1368,6 +1371,7 @@
 				D3540371260DEF720092D83A /* UMCommonSwift.swift in Sources */,
 				D354035B260DEF720092D83A /* CurveCardView.swift in Sources */,
 				D35403BE260DEF720092D83A /* CourseTableDetailView.swift in Sources */,
+				D36812AA264A32D200653C4C /* AcMessageManager.swift in Sources */,
 				D3540357260DEF720092D83A /* RadarChartView.swift in Sources */,
 				D3540352260DEF720092D83A /* SKPhotoView.swift in Sources */,
 				D354035E260DEF720092D83A /* Chart.swift in Sources */,
@@ -1706,7 +1710,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "PeiYang-Lite/PeiYang-Lite.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 202105110142;
+				CURRENT_PROJECT_VERSION = 202105111453;
 				DEVELOPMENT_TEAM = T5JB4K7FT9;
 				INFOPLIST_FILE = "PeiYang-Lite/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1731,7 +1735,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "PeiYang-Lite/PeiYang-Lite.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 202105110142;
+				CURRENT_PROJECT_VERSION = 202105111453;
 				DEVELOPMENT_TEAM = T5JB4K7FT9;
 				INFOPLIST_FILE = "PeiYang-Lite/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1756,7 +1760,7 @@
 				CODE_SIGN_ENTITLEMENTS = "PeiYang-LiteWidget/PeiYang-LiteWidgetExtension.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 202105110142;
+				CURRENT_PROJECT_VERSION = 202105111453;
 				DEVELOPMENT_TEAM = T5JB4K7FT9;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "PeiYang-LiteWidget/Info.plist";
@@ -1784,7 +1788,7 @@
 				CODE_SIGN_ENTITLEMENTS = "PeiYang-LiteWidget/PeiYang-LiteWidgetExtension.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 202105110142;
+				CURRENT_PROJECT_VERSION = 202105111453;
 				DEVELOPMENT_TEAM = T5JB4K7FT9;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "PeiYang-LiteWidget/Info.plist";

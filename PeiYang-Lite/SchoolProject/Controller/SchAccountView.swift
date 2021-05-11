@@ -181,7 +181,7 @@ struct SchAccountView: View {
             case .success(_):
                 log("删除问题成功")
                 withAnimation {
-                    loadQuestionData()
+                    self.myQuestions.removeAll{ ($0.id ?? 0) == questionId }
                 }
             case .failure(let err):
                 log(err)
