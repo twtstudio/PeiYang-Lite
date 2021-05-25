@@ -105,3 +105,6 @@
 "availableTraffic: %@" = "可用流量: %@";
 "detail" = "明細";
 
+"alertCourseName" = "課程名";
+"alertCourseTime" = "開始時間";
+"alertCourseLoc" = "地點";

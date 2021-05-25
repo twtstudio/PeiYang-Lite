@@ -104,3 +104,7 @@
 "wlan" = "校园网";
 "availableTraffic: %@" = "可用流量: %@";
 "detail" = "明细";
+
+"alertCourseName" = "课程名";
+"alertCourseTime" = "开始时间";
+"alertCourseLoc" = "地点";

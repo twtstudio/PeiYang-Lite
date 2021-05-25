@@ -102,3 +102,7 @@
 "wlan" = "WLAN";
 "availableTraffic: %@" = "Available Traffic: %@";
 "detail" = "Detail";
+
+"alertCourseName" = "Course Name";
+"alertCourseTime" = "Start Time";
+"alertCourseLoc" = "Location";

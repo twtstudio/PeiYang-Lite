@@ -63,6 +63,13 @@ struct AcSettingView: View {
                                    log(error)
                               }
                             }
+                            // 启用时就设置一遍
+                            Storage.defaults.setValue(remindTimes[remindTime], forKey: "courseTableOffsetMinute")
+                            let courseTable = Storage.courseTable.object
+                            guard !courseTable.courseArray.isEmpty else { return }
+                            NotificationHelper.setNotification(for: courseTable) { (err) in
+                                log(err)
+                            }
                         } else {
                             UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
                         }

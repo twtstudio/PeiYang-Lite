@@ -251,7 +251,8 @@ struct NotificationHelper {
                     let second = (
                         (
                             (
-                                (week - 1) * 7 + arrange.weekday - 1
+                                // 这里 week是从1开始， weekday是从0开始的
+                                (week - 1) * 7 + arrange.weekday
                             ) * 24 + hour
                         ) * 60 + minute - offsetMinute
                     ) * 60
@@ -259,7 +260,7 @@ struct NotificationHelper {
                     guard date > courseTable.currentDate else {
                         continue
                     }
-                    let body = "Course Name \(course.name) Start Time \(arrange.startTimeString) Location \(arrange.location)"
+                    let body = "\(NSLocalizedString("alertCourseName", comment: "Course Name")): \(course.name) \(NSLocalizedString("alertCourseTime", comment: "Start Time")): \(arrange.startTimeString) \(NSLocalizedString("alertCourseLoc", comment: "Location")): \(arrange.location)"
                     messagePairArray.append((date, body))
                 }
             }
