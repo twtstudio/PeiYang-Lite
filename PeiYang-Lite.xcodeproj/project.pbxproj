@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		C86163F98B76BCBCB60A6221 /* Pods_PeiYang_LiteWidgetExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78444971033F32FCC7B5DEA2 /* Pods_PeiYang_LiteWidgetExtension.framework */; };
+		C904071A265FAA48001C4B0F /* AcWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9040719265FAA48001C4B0F /* AcWebView.swift */; };
+		C904071C265FAE5B001C4B0F /* AcAboutTwTView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C904071B265FAE5B001C4B0F /* AcAboutTwTView.swift */; };
 		C91599E8261092E100D67B6E /* GILROY-BOLD-4.OTF in Resources */ = {isa = PBXBuildFile; fileRef = D3540435260DF0A60092D83A /* GILROY-BOLD-4.OTF */; };
 		C91599ED261092E500D67B6E /* Morning-Star-1.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D3540431260DF0A60092D83A /* Morning-Star-1.ttf */; };
 		C91599F52610931F00D67B6E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C91599F42610931F00D67B6E /* Assets.xcassets */; };
@@ -240,6 +242,8 @@
 		B3F7CFA199C2D0BCA8A32B13 /* Pods-PeiYang-Lite.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PeiYang-Lite.debug.xcconfig"; path = "Target Support Files/Pods-PeiYang-Lite/Pods-PeiYang-Lite.debug.xcconfig"; sourceTree = "<group>"; };
 		BDB731A15EDF94320C852459 /* Pods-PeiYang-Lite.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PeiYang-Lite.release.xcconfig"; path = "Target Support Files/Pods-PeiYang-Lite/Pods-PeiYang-Lite.release.xcconfig"; sourceTree = "<group>"; };
 		C065CD05CD1966D5050600B3 /* Pods_PeiYang_Lite.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PeiYang_Lite.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C9040719265FAA48001C4B0F /* AcWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcWebView.swift; sourceTree = "<group>"; };
+		C904071B265FAE5B001C4B0F /* AcAboutTwTView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcAboutTwTView.swift; sourceTree = "<group>"; };
 		C91599F42610931F00D67B6E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C99C16252610297600986EF7 /* NotificationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		C99C16292610298000986EF7 /* UpdateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateView.swift; sourceTree = "<group>"; };
@@ -473,6 +477,7 @@
 		C926FC442611A9BE007F0C43 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C9040719265FAA48001C4B0F /* AcWebView.swift */,
 				D3540305260DEF720092D83A /* AcChangeColorView.swift */,
 				D3540306260DEF720092D83A /* AcSetShowDayView.swift */,
 				D3540307260DEF720092D83A /* AcMessageView.swift */,
@@ -1133,6 +1138,7 @@
 				D354030F260DEF720092D83A /* AccountView.swift */,
 				D3540310260DEF720092D83A /* AboutTwTView.swift */,
 				D3DEB5C9261DEF57007DFC79 /* AccountMessageView.swift */,
+				C904071B265FAE5B001C4B0F /* AcAboutTwTView.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1372,6 +1378,7 @@
 				D354035B260DEF720092D83A /* CurveCardView.swift in Sources */,
 				D35403BE260DEF720092D83A /* CourseTableDetailView.swift in Sources */,
 				D36812AA264A32D200653C4C /* AcMessageManager.swift in Sources */,
+				C904071A265FAA48001C4B0F /* AcWebView.swift in Sources */,
 				D3540357260DEF720092D83A /* RadarChartView.swift in Sources */,
 				D3540352260DEF720092D83A /* SKPhotoView.swift in Sources */,
 				D354035E260DEF720092D83A /* Chart.swift in Sources */,
@@ -1416,6 +1423,7 @@
 				D35403D0260DEF720092D83A /* SchQusetionManager.swift in Sources */,
 				D354039F260DEF720092D83A /* StudyRoomData.xcdatamodeld in Sources */,
 				D35403CD260DEF720092D83A /* SchView.swift in Sources */,
+				C904071C265FAE5B001C4B0F /* AcAboutTwTView.swift in Sources */,
 				D35403A0260DEF720092D83A /* Semester.swift in Sources */,
 				D3540372260DEF720092D83A /* UMGameAnalyticsSwift.swift in Sources */,
 				D35403CC260DEF720092D83A /* SchQuestionDetailView.swift in Sources */,

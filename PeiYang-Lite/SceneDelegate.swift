@@ -21,6 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             .environmentObject(User())
             .environmentObject(AppState())
             .environmentObject(SharedMessage())
+//        let contentView = AcAboutTwTView()
 
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {

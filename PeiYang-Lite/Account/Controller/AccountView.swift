@@ -101,7 +101,7 @@ struct AccountView: View {
                     .background(Color.white)
                     .cornerRadius(15)
                     
-                    NavigationLink(destination: AboutTwTView()){
+                    NavigationLink(destination: AcAboutTwTView()){
                         HStack {
                             Image("TwT")
                             Text("关于天外天")
