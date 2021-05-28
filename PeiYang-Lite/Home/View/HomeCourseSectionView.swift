@@ -50,9 +50,11 @@ struct HomeCourseSectionView: View {
                     $0.arrangeArray.flatMap(\.weekArray).contains(activeWeek)
             }
             .sorted { (c1, c2) -> Bool in
-                let c1arrange = c1.arrangeArray.first { $0.weekday == activeWeekday && $0.weekArray.contains(activeWeek) }!
-                let c2arrange = c2.arrangeArray.first { $0.weekday == activeWeekday && $0.weekArray.contains(activeWeek) }!
-                return c1arrange.startUnit < c2arrange.startUnit
+                if let c1arrange = c1.arrangeArray.first(where: { $0.weekday == activeWeekday && $0.weekArray.contains(activeWeek) }),
+                   let c2arrange = c2.arrangeArray.first(where: { $0.weekday == activeWeekday && $0.weekArray.contains(activeWeek) }) {
+                    return c1arrange.startUnit < c2arrange.startUnit
+                }
+                return true
             }
     }
     
