@@ -38,6 +38,9 @@ struct SplashView: View {
                     .resizable()
                     .scaledToFit()
                     .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height, alignment: .center)
+                NavigationLink(destination: EmptyView()) {
+                    EmptyView()
+                }
             }
             .navigationBarHidden(true)
         }

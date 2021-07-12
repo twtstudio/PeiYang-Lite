@@ -201,14 +201,16 @@
 		D35404D9260DFA9E0092D83A /* GPA.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35402B2260DEF720092D83A /* GPA.swift */; };
 		D35404DC260DFAA30092D83A /* ECard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35402E7260DEF720092D83A /* ECard.swift */; };
 		D35404DF260DFABE0092D83A /* Semester.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35402FB260DEF720092D83A /* Semester.swift */; };
-		D35404E2260DFAC40092D83A /* ClassesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35402FC260DEF720092D83A /* ClassesManager.swift */; };
 		D35404E5260DFAD60092D83A /* Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D354031F260DEF720092D83A /* Localizable.swift */; };
 		D36812AA264A32D200653C4C /* AcMessageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36812A9264A32D200653C4C /* AcMessageManager.swift */; };
+		D392993D269C6D6300A039AB /* SwiftMessagesExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D392993C269C6D6300A039AB /* SwiftMessagesExtension.swift */; };
+		D392993E269C6F2B00A039AB /* ClassesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35402FC260DEF720092D83A /* ClassesManager.swift */; };
 		D393F834263B00BA002B35C8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D393F837263B00BA002B35C8 /* InfoPlist.strings */; };
 		D393F835263B00BA002B35C8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D393F837263B00BA002B35C8 /* InfoPlist.strings */; };
 		D393F83E263B00CA002B35C8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D393F841263B00CA002B35C8 /* Localizable.strings */; };
 		D393F83F263B00CA002B35C8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D393F841263B00CA002B35C8 /* Localizable.strings */; };
 		D3DEB5CA261DEF57007DFC79 /* AccountMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DEB5C9261DEF57007DFC79 /* AccountMessageView.swift */; };
+		D3F5AA8F269A16B500853085 /* TripleLinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F5AA8E269A16B500853085 /* TripleLinkView.swift */; };
 		D3FB2B0B261F2F2F00F087AC /* ReddotModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FB2B0A261F2F2F00F087AC /* ReddotModifier.swift */; };
 /* End PBXBuildFile section */
 
@@ -426,6 +428,7 @@
 		D3540490260DF7D30092D83A /* PeiYang-LiteWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "PeiYang-LiteWidgetExtension.entitlements"; sourceTree = "<group>"; };
 		D3540491260DF7EC0092D83A /* PeiYang-Lite.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "PeiYang-Lite.entitlements"; sourceTree = "<group>"; };
 		D36812A9264A32D200653C4C /* AcMessageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcMessageManager.swift; sourceTree = "<group>"; };
+		D392993C269C6D6300A039AB /* SwiftMessagesExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftMessagesExtension.swift; sourceTree = "<group>"; };
 		D393F82C263B0086002B35C8 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		D393F82D263B0086002B35C8 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		D393F830263B008E002B35C8 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Main.strings"; sourceTree = "<group>"; };
@@ -437,6 +440,7 @@
 		D393F844263B00CE002B35C8 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		D393F845263B00D2002B35C8 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		D3DEB5C9261DEF57007DFC79 /* AccountMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountMessageView.swift; sourceTree = "<group>"; };
+		D3F5AA8E269A16B500853085 /* TripleLinkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripleLinkView.swift; sourceTree = "<group>"; };
 		D3FB2B0A261F2F2F00F087AC /* ReddotModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReddotModifier.swift; sourceTree = "<group>"; };
 		D79A87E51F44E7CF688FA2E6 /* Pods-PeiYang-LiteWidgetExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PeiYang-LiteWidgetExtension.release.xcconfig"; path = "Target Support Files/Pods-PeiYang-LiteWidgetExtension/Pods-PeiYang-LiteWidgetExtension.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -952,6 +956,7 @@
 		D3540319260DEF720092D83A /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				D392993C269C6D6300A039AB /* SwiftMessagesExtension.swift */,
 				D354031A260DEF720092D83A /* Analytics.swift */,
 				D354031B260DEF720092D83A /* Storage.swift */,
 				D354031C260DEF720092D83A /* DataStorage.swift */,
@@ -959,6 +964,7 @@
 				D354031E260DEF720092D83A /* Network.swift */,
 				D354031F260DEF720092D83A /* Localizable.swift */,
 				D3540320260DEF720092D83A /* Color.swift */,
+				D3F5AA8E269A16B500853085 /* TripleLinkView.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -1360,7 +1366,9 @@
 				D3540388260DEF720092D83A /* StyBuildingSectionView.swift in Sources */,
 				D3540358260DEF720092D83A /* ImagePicker.swift in Sources */,
 				D35403C4260DEF720092D83A /* CourseTableListView.swift in Sources */,
+				D3F5AA8F269A16B500853085 /* TripleLinkView.swift in Sources */,
 				D3540353260DEF720092D83A /* GridWithoutScrollStack.swift in Sources */,
+				D392993D269C6D6300A039AB /* SwiftMessagesExtension.swift in Sources */,
 				D3540377260DEF720092D83A /* HomeViewHeaderView.swift in Sources */,
 				D35403C3260DEF720092D83A /* WeekGridView.swift in Sources */,
 				D354038E260DEF720092D83A /* StySearchAnsViews.swift in Sources */,
@@ -1530,7 +1538,7 @@
 				D354045C260DF1420092D83A /* SmallView.swift in Sources */,
 				C9D60E25263A987C00308ED4 /* StyCollectionManager.swift in Sources */,
 				D35404D6260DFA880092D83A /* WLAN.swift in Sources */,
-				D35404E2260DFAC40092D83A /* ClassesManager.swift in Sources */,
+				D392993E269C6F2B00A039AB /* ClassesManager.swift in Sources */,
 				D3540424260DF0920092D83A /* PeiYang_LiteWidget.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1718,7 +1726,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "PeiYang-Lite/PeiYang-Lite.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 202105111453;
+				CURRENT_PROJECT_VERSION = 202107122100;
 				DEVELOPMENT_TEAM = T5JB4K7FT9;
 				INFOPLIST_FILE = "PeiYang-Lite/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1743,7 +1751,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "PeiYang-Lite/PeiYang-Lite.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 202105111453;
+				CURRENT_PROJECT_VERSION = 202107122100;
 				DEVELOPMENT_TEAM = T5JB4K7FT9;
 				INFOPLIST_FILE = "PeiYang-Lite/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1768,7 +1776,7 @@
 				CODE_SIGN_ENTITLEMENTS = "PeiYang-LiteWidget/PeiYang-LiteWidgetExtension.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 202105111453;
+				CURRENT_PROJECT_VERSION = 202107122100;
 				DEVELOPMENT_TEAM = T5JB4K7FT9;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "PeiYang-LiteWidget/Info.plist";
@@ -1796,7 +1804,7 @@
 				CODE_SIGN_ENTITLEMENTS = "PeiYang-LiteWidget/PeiYang-LiteWidgetExtension.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 202105111453;
+				CURRENT_PROJECT_VERSION = 202107122100;
 				DEVELOPMENT_TEAM = T5JB4K7FT9;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "PeiYang-LiteWidget/Info.plist";

@@ -102,18 +102,7 @@ fileprivate struct ClassesBindingLoginedView: View {
                 
                 HStack(spacing: UIScreen.main.bounds.width * 0.1){
                     
-                    Button(action:{
-                        isShowSignOut = false
-                        ClassesManager.removeAll()
-                        isLogin = false
-                        /// 删除cookie
-                        let cookieStorage = HTTPCookieStorage.shared
-                        if let cookies = cookieStorage.cookies {
-                            for cookie in cookies {
-                                cookieStorage.deleteCookie(cookie)
-                            }
-                        }
-                    }){
+                    Button(action: unbind){
                         Text("确认")
                             .foregroundColor(titleColor)
                             .font(.custom("Avenir-Black", size: 20))
@@ -127,6 +116,9 @@ fileprivate struct ClassesBindingLoginedView: View {
                             .font(.custom("Avenir-Black", size: 20))
                     }
                 }
+                NavigationLink(destination: EmptyView()) {
+                    EmptyView()
+                }
             }
             .frame(width: UIScreen.main.bounds.width * 0.8, height: UIScreen.main.bounds.height / 6, alignment: .center)
             .background(Color.init(red: 242/255, green: 242/255, blue: 242/255))
@@ -134,6 +126,19 @@ fileprivate struct ClassesBindingLoginedView: View {
             .shadow(radius: 10)
             .offset(y: isShowSignOut ? 0 : 1000)
             .animation(.easeInOut)
+        }
+    }
+    
+    private func unbind() {
+        isShowSignOut = false
+        ClassesManager.removeAll()
+        isLogin = false
+        /// 删除cookie
+        let cookieStorage = HTTPCookieStorage.shared
+        if let cookies = cookieStorage.cookies {
+            for cookie in cookies {
+                cookieStorage.deleteCookie(cookie)
+            }
         }
     }
 }

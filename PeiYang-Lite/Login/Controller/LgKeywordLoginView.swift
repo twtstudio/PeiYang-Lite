@@ -121,6 +121,10 @@ struct LgKeywordLoginView: View {
             Spacer()
             
             AlertView(alertMessage: AlertMessage, isShow: $isShowAlert)
+            
+            NavigationLink(destination: EmptyView()) {
+                EmptyView()
+            }
         }
         //MARK: 下降键盘
         .background(

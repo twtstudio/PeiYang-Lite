@@ -64,6 +64,11 @@ struct SchView: View {
                 .padding()
             }
             .frame(height: screen.height * 0.8)
+            
+            
+            NavigationLink(destination: EmptyView()) {
+                EmptyView()
+            }
         }
         .addAnalytics(className: "SchoolProjectHomeView")
         .onAppear {
@@ -101,15 +106,17 @@ fileprivate class SchViewModel: SchQuestionScrollViewModel, SchQuestionScrollVie
     }
     
     func reloadData() {
-        DispatchQueue.main.async {
+        DispatchQueue.global().async {
             self.page = 1
             SchQuestionManager.loadQuestions { (result) in
                 switch result {
                     case .success(let (questions, maxPage)):
+                        DispatchQueue.main.async {
                             self.questions = questions
                             self.maxPage = maxPage
                             self.isReloading = false
                             log("刷新成功")
+                        }
                     case .failure(let err):
                         log(err)
                 }
@@ -120,13 +127,15 @@ fileprivate class SchViewModel: SchQuestionScrollViewModel, SchQuestionScrollVie
         guard page < maxPage else {
             return
         }
-        DispatchQueue.main.async {
+        DispatchQueue.global().async {
             self.page += 1
             SchQuestionManager.loadQuestions(page: self.page) { (result) in
                 switch result {
                     case .success(let (questions, _)):
+                        DispatchQueue.global().async {
                             self.questions += questions
                             self.isLoadingMore = false
+                        }
                     case .failure(let err):
                         log(err)
                 }

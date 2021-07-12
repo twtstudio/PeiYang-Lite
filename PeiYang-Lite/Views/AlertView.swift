@@ -28,13 +28,12 @@ struct AlertView: View {
             if isShow {
                 HStack {
                     Text(alertMessage)
-                        .multilineTextAlignment(.center)
-                        .lineLimit(nil)
+                        .multilineTextAlignment(.leading)
                         .foregroundColor(isRight ? .black : .white)
                         .animation(.none)
                         .padding()
                 }
-                .frame(width: screen.width * 0.9, height: screen.height/12, alignment: .center)
+                .frame(width: screen.width * 0.9, alignment: .center)
                 .background(isRight ? Color.green : Color.black)
                 .cornerRadius(screen.height/50)
                 .animation(.none)
@@ -48,5 +47,27 @@ struct AlertView: View {
                 }
             }
         }
+    }
+}
+
+struct AlertViewModifier: ViewModifier {
+    var alertString: String
+    @Binding var isPresented: Bool
+    
+    func body(content: Content) -> some View {
+        ZStack {
+            content
+            VStack {
+                Spacer()
+                AlertView(alertMessage: alertString, isShow: $isPresented)
+                    .padding(.bottom)
+            }
+        }
+    }
+}
+
+extension View {
+    func alertView(isPresented: Binding<Bool>, alertString: String) -> some View {
+        self.modifier(AlertViewModifier(alertString: alertString, isPresented: isPresented))
     }
 }

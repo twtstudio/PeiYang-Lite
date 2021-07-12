@@ -128,7 +128,7 @@ struct Network {
         completion: @escaping (Result<(Data, HTTPURLResponse), Failure>) -> Void
     ) {
         // URL
-        guard let url = URL(string: urlString) else {
+            guard let url = URL(string: urlString) else {
             completion(.failure(.urlError))
             return
         }
@@ -202,7 +202,8 @@ struct Network {
             } else {
                 process()
             }
-        }.resume()    }
+        }.resume()
+    }
     
     static func batch(
         _ urlString: String,

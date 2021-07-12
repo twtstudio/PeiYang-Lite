@@ -228,6 +228,14 @@ extension ClassesManager {
                         ) { result in
                             switch result {
                             case .success(let html):
+                                guard !html.contains("过快") else {
+                                    completion(.failure(Network.Failure.custom("点击过快，请稍后重试。")))
+                                    return
+                                }
+                                guard !html.contains("评教") else {
+                                    completion(.failure(Network.Failure.custom("您有待评教的成绩，请先进行评教后再查询成绩。")))
+                                    return
+                                }
                                 let tbhead = html.replacingOccurrences(of: "\r", with: "").find("<thead class=\"gridhead\">(.+?)</thead>")
                                 let courseAttri = tbhead.findArray("<th .*?>(.+?)</th>")
                                 var attributesDict: [String: Int] = [:]
@@ -457,6 +465,8 @@ extension ClassesManager {
                                 Storage.defaults.setValue(true, forKey: isCourseStoreKey)
                                 log("获取辅修课表成功")
                                 completion(.success(newModel))
+                                // 为防止打开GPA获取到辅修成绩
+                                getDetailTable(type: .major, semesterId: _semesterId, completion: {_ in})
                                 return
                             case .failure(let err):
                                 log("辅修课表获取失败", err)

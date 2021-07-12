@@ -40,7 +40,6 @@ struct LgBeginView: View {
                 .isDetailLink(false)
                 
                 .padding()
-            
                 
                     
                 NavigationLink(destination: RegisterFirView(), isActive: self.$appState.rightHome) {
@@ -70,6 +69,10 @@ struct LgBeginView: View {
                 .frame(width: UIScreen.main.bounds.width * 0.6, height: UIScreen.main.bounds.height / 15, alignment: .center)
             
             Spacer()
+            
+            NavigationLink(destination: EmptyView()) {
+                EmptyView()
+            }
         }
         .addAnalytics(className: "LoginBeginView")
         .navigationBarHidden(true)

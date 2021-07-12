@@ -74,6 +74,7 @@ struct RadarChartView: View {
 //            MARK: -DataPath
             ZStack { () -> AnyView in
                 let path = Path { path in
+                    guard !activeGPAArray.isEmpty else { return }
                     for i in 0..<activeGPAArray.count+1 {
                         let thisDimension = activeGPAArray[i == activeGPAArray.count ? 0 : i]
                         let maxVal = 100

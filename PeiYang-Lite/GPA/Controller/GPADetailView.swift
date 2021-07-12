@@ -77,12 +77,15 @@ struct GPADetailView: View {
                         GPACellListView(activeSemesterGPA: gpa.semesterGPAArray[activeIndex])
                     }
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .alert(isPresented: $isError) {
-                        Alert(title: Text(errorMessage),
-                              dismissButton: .default(Text(Localizable.ok.rawValue)))
-                    }
                 }
+                
+                Spacer()
             }
+//            .alert(isPresented: $isError) {
+//                Alert(title: Text(errorMessage),
+//                      dismissButton: .default(Text(Localizable.ok.rawValue)))
+//            }
+            .alertView(isPresented: $isError, alertString: errorMessage)
         }
         .onAppear(perform:  {
             load()
@@ -119,6 +122,8 @@ struct GPADetailView: View {
                         store.save()
                     case .failure(let error):
                         log(error)
+                        isError = true
+                        errorMessage = error.localizedDescription
                     }
                     isLoading = false
                 }
